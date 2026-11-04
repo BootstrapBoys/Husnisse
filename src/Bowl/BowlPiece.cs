@@ -28,15 +28,8 @@ namespace Husnisse.Bowl
         {
             get
             {
-                switch (WorldPolicy.Feeding)
-                {
-                    case FeedingMode.Disabled:
-                        return false;
-                    case FeedingMode.Required:
-                        return true;
-                    default:
-                        return _zdo == null || _zdo.GetBool(ZdoKeys.BowlFeeding, true);
-                }
+                if (WorldPolicy.FeedingForced) return true;
+                return _zdo == null || _zdo.GetBool(ZdoKeys.BowlFeeding, true);
             }
         }
 
@@ -173,20 +166,14 @@ namespace Husnisse.Bowl
             return true;
         }
 
-        /// <summary>The owner's own choice, only available while the server policy is Optional.</summary>
+        /// <summary>The owner's own choice, available only when the server does not force feeding.</summary>
         private bool ToggleFeeding(Humanoid user)
         {
-            var policy = WorldPolicy.Feeding;
+            var policy = WorldPolicy.FeedingForced;
 
-            if (policy == FeedingMode.Required)
+            if (policy)
             {
                 Message(user, "This server requires every nisse to be fed.");
-                return true;
-            }
-
-            if (policy == FeedingMode.Disabled)
-            {
-                Message(user, "Feeding is disabled on this server.");
                 return true;
             }
 
@@ -216,20 +203,13 @@ namespace Husnisse.Bowl
 
         public string GetHoverText()
         {
-            var policy = WorldPolicy.Feeding;
-
-            if (policy == FeedingMode.Disabled)
-            {
-                return "Porridge Bowl\nFeeding is disabled on this server.";
-            }
-
             if (!RequiresFeeding)
             {
                 return "Porridge Bowl\nThis nisse asks for nothing.\n[Alt] require offerings";
             }
 
             var text = string.Format("Porridge Bowl\nSatiety {0:0}/100   Mood {1:0}/100\n[E] offer food", Satiety, Mood);
-            if (policy == FeedingMode.Optional) text += "\n[Alt] no offerings needed";
+            if (!WorldPolicy.FeedingForced) text += "\n[Alt] no offerings needed";
             return text;
         }
 

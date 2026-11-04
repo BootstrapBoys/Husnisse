@@ -3,13 +3,6 @@ using ConditionalConfigSync;
 
 namespace Husnisse.Config
 {
-    /// <summary>Server policy for the care loop. The per-bowl choice only exists under Optional.</summary>
-    public enum FeedingMode
-    {
-        Required,
-        Optional,
-        Disabled
-    }
 
     /// <summary>
     /// All settings in one place, grouped into the numbered sections the family uses so BepInEx's
@@ -21,7 +14,7 @@ namespace Husnisse.Config
         public static ConfigEntry<bool> DebugLogging;
         public static ConfigEntry<bool> LockConfiguration;
         public static ConfigEntry<bool> CatchUpOnLoad;
-        public static ConfigEntry<FeedingMode> FeedingPolicy;
+        public static ConfigEntry<bool> ForceFeeding;
         public static ConfigEntry<float> RoundInterval;
         public static ConfigEntry<float> ClaimRadius;
         public static ConfigEntry<float> MoodDecayPerHour;
@@ -51,12 +44,10 @@ namespace Husnisse.Config
             CatchUpOnLoad = file.Bind("2. Nisse", "Catch-up Pass on Load", true,
                 "Run one bounded pass when a world loads, so a backlog is worked through once rather than fifty rounds.");
 
-            FeedingPolicy = file.Bind("2. Nisse", "Feeding Mode", FeedingMode.Required,
-                new ConfigDescription(
-                    "Required: every nisse must be fed. Optional: each player may switch feeding off at their own bowl. " +
-                    "Disabled: no nisse needs feeding and the bowl is decoration. The host writes this into the world on " +
-                    "load; clients cannot change it and a change takes effect on the next world load.",
-                    null, "ServerPolicy"));
+            ForceFeeding = file.Bind("2. Nisse", "Force Feeding", true,
+                "When on, every nisse must be fed and nobody can switch it off. When off, each player decides at " +
+                "their own bowl with Alt-interact. The host writes this into the world on load; clients cannot " +
+                "change it and a change takes effect on the next world load.");
 
             RoundInterval = file.Bind("2. Nisse", "Round Interval", 30f,
                 new ConfigDescription("Seconds between rounds.", new AcceptableValueRange<float>(5f, 600f)));
