@@ -1,3 +1,7 @@
+using System;
+using System.Reflection;
+using BepInEx;
+using BepInEx.Bootstrap;
 using Husnisse.Claims;
 using Husnisse.Config;
 using Husnisse.Core;
@@ -11,6 +15,57 @@ namespace Husnisse.Compat
     /// </summary>
     public static class ContainerFilter
     {
+        private static MethodInfo _isBackpackProxy;
+        private static bool _proxyScanned;
+
+        /// <summary>
+        /// AdventureBackpacks turns a backpack into a proxy Container. Filling one puts loot in a
+        /// player's pack, so those containers are never storage. The extension method is found by
+        /// shape rather than by type name, because its type has moved between versions.
+        /// </summary>
+        private static bool IsBackpackProxy(Container container)
+        {
+            if (!_proxyScanned)
+            {
+                _proxyScanned = true;
+                try
+                {
+                    PluginInfo info;
+                    if (Chainloader.PluginInfos.TryGetValue("vapok.mods.adventurebackpacks", out info) && info != null && info.Instance != null)
+                    {
+                        var assembly = info.Instance.GetType().Assembly;
+                        foreach (var type in assembly.GetTypes())
+                        {
+                            foreach (var method in type.GetMethods(BindingFlags.Public | BindingFlags.Static))
+                            {
+                                if (method.Name != "IsBackpackProxy" || method.ReturnType != typeof(bool)) continue;
+                                var parameters = method.GetParameters();
+                                if (parameters.Length != 1 || parameters[0].ParameterType != typeof(Container)) continue;
+                                _isBackpackProxy = method;
+                                break;
+                            }
+                            if (_isBackpackProxy != null) break;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Warn("AdventureBackpacks scan failed: " + ex.Message);
+                }
+            }
+
+            if (_isBackpackProxy == null) return false;
+
+            try
+            {
+                return (bool)_isBackpackProxy.Invoke(null, new object[] { container });
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         /// <summary>Mobile containers: sorting onto a cart or a ship lets the goods sail away.</summary>
         private static bool IsMobile(Container container)
         {
@@ -62,6 +117,12 @@ namespace Husnisse.Compat
             if (HusnisseConfig.SkipMobileContainers.Value && IsMobile(container))
             {
                 Log.Debug("Compat", "skip mobile container " + container.name);
+                return false;
+            }
+
+            if (IsBackpackProxy(container))
+            {
+                Log.Debug("Compat", "skip AdventureBackpacks proxy " + container.name);
                 return false;
             }
 

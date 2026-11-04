@@ -21,7 +21,7 @@ objects is detected by component type name.
 
 | Mod | Behaviour |
 |---|---|
-| **AdventureBackpacks**, **ExtraSlots** | Personal containers are never claim storage. The storage contract's source order (pockets → extra slots → backpack → scoped storage) applies to craft counting at 0.3; the nisse only ever moves items in the base. |
+| **AdventureBackpacks**, **ExtraSlots** | Personal containers are never claim storage. AdventureBackpacks turns a backpack into a proxy `Container`, and those are detected by the mod's own `IsBackpackProxy` method (found by shape, not by type name) and skipped — the nisse must never file loot into someone's pack. The storage contract's source order (pockets → extra slots → backpack → scoped storage) applies to craft counting at 0.3; the nisse only ever moves items in the base. |
 | **EpicLoot** | Item identity is the shared name, per the contract. Two differently enchanted materials therefore share one home. Accepted for 0.1 and documented rather than hidden. |
 | **AzuContainerSizes** (and any slot-count mod) | Slot counts are read from `Inventory.GetEmptySlots()`, never assumed. |
 | **OdinsFoodBarrels** | Ordinary containers; valid targets. Food ends up there only if the nisse learned it or the barrel already holds that item. |
@@ -37,12 +37,18 @@ objects is detected by component type name.
 | **Quartermaster_Integrations** | 0.3, when craft-from-claim exists: our storage surface replaces its Quartermaster query, and QI ships a final release pointing here. |
 | **MyLittleUI** | 0.2, with the ledger: claim knowledge should surface in its tooltips and panels rather than competing with them. Until then, no interference — MLUI is UI-only and touches no container. |
 | **AAA Crafting** | 0.3, with craft-from-claim: its crafting UI must read the claim the same way QI makes it read Quartermaster today. The patch target is the same; only the data source changes. |
+| **OdinPlus Basements** | 0.1.1, movement: basements are exactly the indoor space where the doorway finding bites. Walking stays room-scale and outdoor; thresholds fade. |
+| **Forge of Potential Redux** | 0.4, as a machine target if it exposes input/output storage; verify its station surface before promising it. |
+| **Ross QoL** | Verify before 0.2: if it sorts or stacks inventories, two systems must not fight over the same containers. Check its patches for `Container`/`Inventory` before the ledger work. |
+| **Odin Campsite** | Verify before 0.2: tents and camp pieces may add containers. If they do, they are ordinary storage; if they are display or portable, they join the excluded list. |
 
 ## No interaction needed
 
 - **DropMoreLoot**, **CreatureLevelAndLootControl** — more ground items; the round budget bounds the work.
-- **Seasonality**, **PlantEverything**, **MyDirtyHoe** — farming; no storage surface.
-- **AAA Crafting**, **AAA Build Menu**, **MyLittleUI**, **HipLantern**, **FirstPersonMode**, **Build Camera** — UI and client-side only.
+- **Seasonality**, **PlantEverything**, **MyDirtyHoe**, **HoneyPlus**, **PotionPlus** — farming and consumables; no storage surface.
+- **ImmersiveTrader**, **SellTrophies**, **OttoPay** — economy and trading; they price items, they do not store them.
+- **AdvancedPortals**, **RossPortals**, **TheGreatestMap**, **Get Up u Coward** — travel, map and animation.
+- **AAA Crafting** is a 0.3 target, not a no-op; **AAA Build Menu**, **MyLittleUI**, **HipLantern**, **FirstPersonMode**, **Build Camera** — UI and client-side only.
 - **Server_devcommands**, **AdvancedAdminPanel**, **ServerSideSave**, **SmoothServer**, **Upgrade_World** — admin and server maintenance.
 - **Jotunn**, **ConditionalConfigSync**, **JsonDotNET**, **YamlDotNet**, **Zen ModLib**, **ConfigurationManager** — libraries. Jotunn and ConditionalConfigSync are the only declared dependencies.
 
