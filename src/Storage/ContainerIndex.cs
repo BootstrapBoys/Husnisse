@@ -16,7 +16,7 @@ namespace Husnisse.Storage
         public static List<Container> InClaim(Claim claim)
         {
             var result = new List<Container>();
-            foreach (var container in Object.FindObjectsOfType<Container>())
+            foreach (var container in Object.FindObjectsByType<Container>(FindObjectsSortMode.None))
             {
                 if (container == null) continue;
                 if (!claim.Contains(container.transform.position)) continue;
@@ -28,7 +28,7 @@ namespace Husnisse.Storage
 
         public static Container ById(Claim claim, ZDOID id)
         {
-            foreach (var container in Object.FindObjectsOfType<Container>())
+            foreach (var container in Object.FindObjectsByType<Container>(FindObjectsSortMode.None))
             {
                 if (container == null || !claim.Contains(container.transform.position)) continue;
                 if (!ContainerFilter.CanUse(claim, container)) continue;

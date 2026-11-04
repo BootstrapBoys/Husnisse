@@ -7,19 +7,15 @@ using UnityEngine;
 namespace Husnisse.Creature
 {
     /// <summary>
-    /// Registers the creature. The body is a seam, not a commitment: set <see cref="BodyOverride"/> to
-    /// a prefab (vanilla or from an asset bundle) before registration and the nisse wears it instead of
-    /// the Greyling clone. Behaviour, faction, health and speeds are applied in code either way, so
-    /// re-arting the mod never touches the AI or the save data — the registered name stays constant.
+    /// Registers the creature. A Greyling clone is the cheapest humanoid in the game; its hostile AI is
+    /// removed and replaced with <see cref="NisseActor"/>. To re-art the nisse later, change
+    /// <see cref="BasePrefabName"/> or pass a loaded prefab to CreateClonedPrefab; the registered
+    /// prefab name stays constant, so save data survives the swap.
     /// </summary>
     public static class NissePrefab
     {
         public const string PrefabName = "husnisse_nisse";
         private const string BasePrefabName = "Greyling";
-
-        /// <summary>Optional replacement body. Must carry Character, ZNetView, Rigidbody, a capsule
-        /// collider and a ZSyncAnimation. Null means the Greyling clone.</summary>
-        public static GameObject BodyOverride;
 
         private static bool _registered;
 
@@ -27,14 +23,11 @@ namespace Husnisse.Creature
         {
             if (_registered) return;
 
-            var prefab = BodyOverride != null
-                ? PrefabManager.Instance.CreateClonedPrefab(PrefabName, BodyOverride)
-                : PrefabManager.Instance.CreateClonedPrefab(PrefabName, BasePrefabName);
+            var prefab = PrefabManager.Instance.CreateClonedPrefab(PrefabName, BasePrefabName);
 
             if (prefab == null)
             {
-                Log.Error("nisse: no body prefab available (" +
-                          (BodyOverride != null ? BodyOverride.name : BasePrefabName) + ")");
+                Log.Error("nisse: no body prefab available (" + BasePrefabName + ")");
                 return;
             }
 

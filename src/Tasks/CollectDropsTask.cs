@@ -22,7 +22,7 @@ namespace Husnisse.Tasks
             var memory = MemoryOf(context);
             var worked = false;
 
-            foreach (var drop in Object.FindObjectsOfType<ItemDrop>())
+            foreach (var drop in Object.FindObjectsByType<ItemDrop>(FindObjectsSortMode.None))
             {
                 if (drop == null) continue;
                 if (!context.Claim.Contains(drop.transform.position)) continue;

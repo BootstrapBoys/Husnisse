@@ -12,7 +12,6 @@ namespace Husnisse.Creature
         private ZDO _zdo;
 
         public ZDOID BowlId { get; private set; }
-        public bool IsBoundToBowl => BowlId != ZDOID.None;
 
         protected override void Awake()
         {
@@ -31,11 +30,6 @@ namespace Husnisse.Creature
         {
             transform.position = position;
             if (m_body != null) m_body.position = position;
-        }
-
-        public void PlayIdle()
-        {
-            if (m_animator != null) m_animator.SetTrigger("idle");
         }
 
         public void PlaySpawn()

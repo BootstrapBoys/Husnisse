@@ -42,16 +42,7 @@ namespace Husnisse.Config
             else zone.RemoveGlobalKey(ForcedKey);
 
             Log.Info("world feeding forced=" + FeedingForced);
-        }
-
-        /// <summary>For a future admin command; the server owns the key.</summary>
-        public static void Force(bool forced)
-        {
-            var zone = ZoneSystem.instance;
-            if (zone == null) return;
-
-            if (forced) zone.SetGlobalKey(ForcedKey);
-            else zone.RemoveGlobalKey(ForcedKey);
+            SaveSchema.Publish();
         }
     }
 }

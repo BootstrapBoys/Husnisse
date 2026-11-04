@@ -21,7 +21,7 @@ namespace Husnisse.Creature
             NisseActor cached;
             if (Bound.TryGetValue(bowlId, out cached) && cached != null) return cached;
 
-            foreach (var actor in Object.FindObjectsOfType<NisseActor>())
+            foreach (var actor in Object.FindObjectsByType<NisseActor>(FindObjectsSortMode.None))
             {
                 if (actor == null || actor.BowlId != bowlId) continue;
                 Bound[bowlId] = actor;

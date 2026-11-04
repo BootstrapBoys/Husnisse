@@ -41,10 +41,5 @@ namespace Husnisse.Creature
         {
             Say(claim, HungryLines[(int)(Time.time / 90f) % HungryLines.Length]);
         }
-
-        public static void Forget(ZDOID bowlId)
-        {
-            LastSpoke.Remove(bowlId);
-        }
     }
 }

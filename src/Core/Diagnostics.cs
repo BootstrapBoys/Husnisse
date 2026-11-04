@@ -42,7 +42,7 @@ namespace Husnisse.Core
                 }
 
                 var nisse = "none";
-                foreach (var actor in Object.FindObjectsOfType<NisseActor>())
+                foreach (var actor in Object.FindObjectsByType<NisseActor>(FindObjectsSortMode.None))
                 {
                     if (actor != null && actor.BowlId == claim.BowlId) nisse = "yes";
                 }
