@@ -41,5 +41,11 @@ namespace Husnisse.Creature
         {
             Say(claim, HungryLines[(int)(Time.time / 90f) % HungryLines.Length]);
         }
+
+        /// <summary>Drops the throttle entry for a bowl that no longer exists.</summary>
+        public static void Forget(ZDOID bowlId)
+        {
+            LastSpoke.Remove(bowlId);
+        }
     }
 }
