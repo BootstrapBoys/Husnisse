@@ -16,6 +16,7 @@ namespace Husnisse.Config
         public static ConfigEntry<bool> LockConfiguration;
         public static ConfigEntry<bool> CatchUpOnLoad;
         public static ConfigEntry<bool> FeedingRequired;
+        public static ConfigEntry<bool> AllowOrders;
         public static ConfigEntry<float> RoundInterval;
         public static ConfigEntry<float> ClaimRadius;
         public static ConfigEntry<float> MoodDecayPerHour;
@@ -53,6 +54,9 @@ namespace Husnisse.Config
                 "When on, every nisse must be fed and nobody can switch it off. When off, feeding is opt-in per bowl: " +
                 "a new bowl asks for nothing and its owner can turn the care loop on with Alt-interact. The host writes " +
                 "this into the world on load; clients cannot change it and a change takes effect on the next world load.");
+
+            AllowOrders = file.Bind("2. Nisse", "Allow Orders", true,
+                "Empty Pockets (interact with the nisse) and Tidy (Alt-interact a chest inside a claim).");
 
             RoundInterval = file.Bind("2. Nisse", "Round Interval", 30f,
                 new ConfigDescription("Seconds between rounds.", new AcceptableValueRange<float>(5f, 600f)));

@@ -160,6 +160,17 @@ at the end: a household spirit does not use doors, it steps through the wall. A 
 destination, the following round walks it, and after one failed retry the nisse fades and reports that
 it could not reach — legible failure, same as everything else.
 
+### Orders
+
+Two direct commands, both still the nisse's work:
+
+- **Empty Pockets** — interact with the nisse. It takes what it can file from your inventory, up to one
+  sort budget; equipped items stay where they are.
+- **Tidy** — Alt-interact a chest inside a claim. The nisse files its contents into the right chests.
+
+Both refuse when the nisse is absent, when the bowl is empty and feeding is required, or when the
+player is outside the claim — and they say which. Combine stacks is not implemented yet.
+
 ### The bowl
 
 The home piece. It stores food, satiety and mood. Mood decays with time and work; food restores it.
@@ -263,7 +274,7 @@ order, spend order, ward filtering, all-or-nothing spending, reentrancy — that
 
 | Version | Scope | Why |
 |---|---|---|
-| **0.1** | Creature (a nisse), bowl, claim, memory, sort-only rounds. **No navigation** — it fades between bowl and chest | Proves the fiction is playable. If feeding a spirit to get items sorted is not fun, stop here. |
+| **0.1** | Creature (a nisse), bowl, claim, memory, sort-only rounds, Empty Pockets and Tidy orders. **No navigation** — it fades between bowl and chest | Proves the fiction is playable. If feeding a spirit to get items sorted is not fun, stop here. |
 | **0.1.1** | "Legs": room-scale and outdoor walking, fade across thresholds | Only after 0.1 playtests well. Movement changes the feel without changing the loop. |
 | **0.2** | Teaching by demonstration, ledger panel, chest roles, MyLittleUI-aware readouts | The signature mechanic; needs 0.1's memory to build on. |
 | **0.3** | Pantries and craft-from-storage; AAA Crafting reads the claim. Counts come straight from container ZDOs — no sync layer | First feature that touches another mod's flow; needs the supply rules settled. |

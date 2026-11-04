@@ -10,7 +10,7 @@ namespace Husnisse.Storage
     /// </summary>
     public static class StorageRouter
     {
-        public static Container FindTarget(Claim claim, string itemName, ItemMemory memory)
+        public static Container FindTarget(Claim claim, string itemName, ItemMemory memory, Container exclude = null)
         {
             if (memory != null)
             {
@@ -18,13 +18,15 @@ namespace Husnisse.Storage
                 if (memory.TryRecall(itemName, out remembered))
                 {
                     var known = ContainerIndex.ById(claim, remembered);
-                    if (known != null && ContainerIndex.HasRoom(known)) return known;
+                    if (known != null && known != exclude && ContainerIndex.HasRoom(known)) return known;
                 }
             }
 
             Container fallback = null;
             foreach (var container in ContainerIndex.InClaim(claim))
             {
+                if (container == exclude) continue;
+
                 var inventory = container.GetInventory();
                 if (inventory == null) continue;
 

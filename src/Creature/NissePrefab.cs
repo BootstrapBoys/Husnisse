@@ -55,6 +55,7 @@ namespace Husnisse.Creature
             character.m_runSpeed = 4f;
 
             prefab.AddComponent<NisseActor>();
+            prefab.AddComponent<NisseHands>();
 
             var config = new CreatureConfig { Name = "Nisse" };
             var custom = new CustomCreature(prefab, false, config);
