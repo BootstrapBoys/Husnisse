@@ -135,6 +135,7 @@ namespace Husnisse.Bowl
             if (_claim == null) return;
             ClaimRegistry.Unregister(_claim.BowlId);
             NisseVoice.Forget(_claim.BowlId);
+            NisseFactory.Despawn(_claim.BowlId);
         }
 
         /// <summary>Feed from a player's inventory. One food item per interaction.</summary>

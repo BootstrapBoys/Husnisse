@@ -28,7 +28,8 @@ namespace Husnisse.Core
 
             lines.Add("schema=" + SaveSchema.Read() +
                       " feeding_required=" + WorldPolicy.FeedingRequired +
-                      " claims=" + ClaimRegistry.Count);
+                      " claims=" + ClaimRegistry.Count +
+                      " nisses=" + Object.FindObjectsByType<NisseActor>(FindObjectsSortMode.None).Length);
 
             foreach (var claim in ClaimRegistry.All())
             {

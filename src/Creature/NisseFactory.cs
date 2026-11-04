@@ -60,5 +60,25 @@ namespace Husnisse.Creature
             Log.Info("nisse settled at bowl " + bowlId);
             return actor;
         }
+
+        /// <summary>A bowl without its spirit: the nisse is removed when its bowl is destroyed.</summary>
+        public static void Despawn(ZDOID bowlId)
+        {
+            NisseActor found;
+            if (!Bound.TryGetValue(bowlId, out found) || found == null)
+            {
+                foreach (var actor in Object.FindObjectsByType<NisseActor>(FindObjectsSortMode.None))
+                {
+                    if (actor != null && actor.BowlId == bowlId) found = actor;
+                }
+            }
+
+            Bound.Remove(bowlId);
+            if (found == null) return;
+
+            if (ZNetScene.instance != null) ZNetScene.instance.Destroy(found.gameObject);
+            else Object.Destroy(found.gameObject);
+            Log.Info("nisse left with bowl " + bowlId);
+        }
     }
 }

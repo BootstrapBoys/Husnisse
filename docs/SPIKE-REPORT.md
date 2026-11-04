@@ -70,6 +70,30 @@ leaves no corridor the navmesh builder will bridge. Husnisse must not design wal
 player doorways: walking is room-scale and outdoor, and a threshold fades. Re-test with a 4 m
 opening if walking through doorways ever becomes a requirement.
 
+## 0.1.0 headless smoke — 2026-11-04
+
+Tree: `V:\ValheimTest`, pack parked in `plugins.disabled`, only Jotunn 2.30.2,
+ConditionalConfigSync 1.0.11, SoftStop and Husnisse loaded (`4 loaded, 0 failed`).
+
+| Step | Result |
+|---|---|
+| Plugin loads with declared dependencies | pass — after fixing the CCS GUID (below) |
+| `CustomPiece` + `CustomCreature` register | pass — `bowl registered`, `creature registered` |
+| Bowl instantiated server-side (harness) | pass — claim registered, `r=20`, `satiety=25`, `mood=100`, `nisse=yes` |
+| Nisse spawns bound to the bowl | pass — `nisse settled at bowl <zdo>` |
+| Bowl destroyed | pass — claim removed, `nisses=0` (despawn works) |
+| Diagnostics + schema | pass — `BepInEx/BSBLogs/Husnisse.log`, `schema=1` |
+
+**Fixed by the smoke:**
+- ConditionalConfigSync's real GUID is **`_shudnal.ConditionalConfigSync`** (leading underscore); the
+  first boot refused with a clear "missing dependencies" error.
+- The cauldron clone still carried a `CraftingStation`; it is now stripped with `CookingStation` and
+  `Container`.
+- Destroying a bowl left its nisse behind; `NisseFactory.Despawn` now removes it.
+
+**Still unproven:** placement through the hammer (ghost validation), feeding by interact, a round
+that actually files an item, and WardIsLove binding with the mod present. Those need a client.
+
 ## What this means for the plan
 
 | Assumption | Status |

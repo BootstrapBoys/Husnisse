@@ -16,7 +16,7 @@ namespace Husnisse
     /// </summary>
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     [BepInDependency("com.jotunn.jotunn", BepInDependency.DependencyFlags.HardDependency)]
-    [BepInDependency("shudnal.ConditionalConfigSync", BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency("_shudnal.ConditionalConfigSync", BepInDependency.DependencyFlags.HardDependency)]
     public class HusnissePlugin : BaseUnityPlugin
     {
         public const string PluginGUID = "com.bootstrapboys.husnisse";

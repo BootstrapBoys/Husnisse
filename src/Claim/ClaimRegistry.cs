@@ -18,11 +18,16 @@ namespace Husnisse.Claims
             if (claim == null) return;
             Claims[claim.BowlId] = claim;
             Log.Debug("Claims", "registered " + claim.BowlId + " at " + claim.Center + " r=" + claim.Radius);
+            DiagnosticsFile.Dump("claim registered");
         }
 
         public static void Unregister(ZDOID bowlId)
         {
-            if (Claims.Remove(bowlId)) Log.Debug("Claims", "unregistered " + bowlId);
+            if (Claims.Remove(bowlId))
+            {
+                Log.Debug("Claims", "unregistered " + bowlId);
+                DiagnosticsFile.Dump("claim removed");
+            }
         }
 
         public static Claim Find(ZDOID bowlId)
