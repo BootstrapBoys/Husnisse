@@ -3,6 +3,7 @@
 ## 0.1.0
 
 - Porridge bowl: a placeable home piece that holds satiety, mood and the claim radius.
+- Feeding can be switched off entirely (`2. Nisse / Require Feeding`): satiety, mood decay and sulking are disabled and the nisse works unattended.
 - Nisse: a Greyling-derived creature that settles at a bowl and does not fight or wander.
 - Claims: one non-overlapping radius per bowl, rebuilt from the world on load.
 - Rounds: one bounded pass per interval, with collect and sort budgets.

@@ -19,7 +19,7 @@ namespace Husnisse.Bowl
         private Claim _claim;
 
         public Claim Claim => _claim;
-        public bool IsFed => Satiety > 0f;
+        public bool IsFed => !HusnisseConfig.RequireFeeding.Value || Satiety > 0f;
 
         public float Satiety
         {
@@ -115,10 +115,11 @@ namespace Husnisse.Bowl
             return false;
         }
 
-        /// <summary>Called by the round scheduler. Decay happens only while a player is present.</summary>
+        /// <summary>Called by the round scheduler. Decay happens only while a player is present,
+        /// and not at all when feeding is switched off.</summary>
         public void Decay(float hours)
         {
-            if (hours <= 0f) return;
+            if (hours <= 0f || !HusnisseConfig.RequireFeeding.Value) return;
             Satiety = Satiety - hours * 8f;
             Mood = Mood - hours * HusnisseConfig.MoodDecayPerHour.Value;
         }
@@ -126,6 +127,12 @@ namespace Husnisse.Bowl
         public bool Interact(Humanoid user, bool hold, bool alt)
         {
             if (hold) return false;
+
+            if (!HusnisseConfig.RequireFeeding.Value)
+            {
+                Message(user, "This nisse is content without offerings.");
+                return true;
+            }
 
             if (!IsOwner())
             {
@@ -155,6 +162,11 @@ namespace Husnisse.Bowl
 
         public string GetHoverText()
         {
+            if (!HusnisseConfig.RequireFeeding.Value)
+            {
+                return "Porridge Bowl\nThe nisse is content without offerings.";
+            }
+
             return string.Format("Porridge Bowl\nSatiety {0:0}/100   Mood {1:0}/100\n[E] offer food", Satiety, Mood);
         }
 

@@ -171,6 +171,10 @@ week of misfiling.
 Sulking is deliberately recoverable and never destructive — nothing is deleted, only misfiled. It is a
 consequence with a story, not a punishment.
 
+Feeding is a choice, not a tax: `2. Nisse / Require Feeding` can be turned off for players who want the
+sorting without the care loop. With it off, satiety and mood stop mattering, the bowl is decoration,
+and the nisse works indefinitely.
+
 ### Server authority
 
 All item movement is server-side, in loaded areas only. The same constraint Quartermaster documents,
