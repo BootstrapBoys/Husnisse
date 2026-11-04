@@ -38,6 +38,8 @@ namespace Husnisse.Rounds
             if (ZNet.instance == null || !ZNet.instance.IsServer()) return;
             if (ZNetScene.instance == null) return;
 
+            WorldPolicy.ApplyServerPolicy();
+
             if (_warmup > 0f)
             {
                 _warmup -= Time.deltaTime;

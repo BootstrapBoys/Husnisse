@@ -54,7 +54,8 @@ namespace Husnisse.Config
             FeedingPolicy = file.Bind("2. Nisse", "Feeding Mode", FeedingMode.Required,
                 new ConfigDescription(
                     "Required: every nisse must be fed. Optional: each player may switch feeding off at their own bowl. " +
-                    "Disabled: no nisse needs feeding and the bowl is decoration.",
+                    "Disabled: no nisse needs feeding and the bowl is decoration. The host writes this into the world on " +
+                    "load; clients cannot change it and a change takes effect on the next world load.",
                     null, "ServerPolicy"));
 
             RoundInterval = file.Bind("2. Nisse", "Round Interval", 30f,

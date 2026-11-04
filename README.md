@@ -171,10 +171,11 @@ week of misfiling.
 Sulking is deliberately recoverable and never destructive — nothing is deleted, only misfiled. It is a
 consequence with a story, not a punishment.
 
-Feeding is a policy, not a tax. `2. Nisse / Feeding Mode` is server-owned: **Required** makes every
-nisse demand offerings, **Disabled** removes the care loop entirely, and **Optional** lets each player
-decide at their own bowl with Alt-interact. That per-bowl choice lives in the bowl's ZDO — world state,
-not a client setting that would silently do nothing while the server kept simulating the opposite.
+Feeding is a policy, not a tax. The host's `2. Nisse / Feeding Mode` is written into the world as a
+global key on load — **Required**, **Optional**, **Disabled** — so every peer reads the same value and
+no client can disagree with what the server simulates. Under **Optional** each owner may switch feeding
+off at their own bowl with Alt-interact; that choice lives in the bowl's ZDO. Both decisions are world
+state, which is why the two halves can never drift apart.
 
 ### Server authority
 

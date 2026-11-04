@@ -28,7 +28,7 @@ namespace Husnisse.Bowl
         {
             get
             {
-                switch (HusnisseConfig.FeedingPolicy.Value)
+                switch (WorldPolicy.Feeding)
                 {
                     case FeedingMode.Disabled:
                         return false;
@@ -176,7 +176,7 @@ namespace Husnisse.Bowl
         /// <summary>The owner's own choice, only available while the server policy is Optional.</summary>
         private bool ToggleFeeding(Humanoid user)
         {
-            var policy = HusnisseConfig.FeedingPolicy.Value;
+            var policy = WorldPolicy.Feeding;
 
             if (policy == FeedingMode.Required)
             {
@@ -216,7 +216,7 @@ namespace Husnisse.Bowl
 
         public string GetHoverText()
         {
-            var policy = HusnisseConfig.FeedingPolicy.Value;
+            var policy = WorldPolicy.Feeding;
 
             if (policy == FeedingMode.Disabled)
             {
