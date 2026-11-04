@@ -1,0 +1,86 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyName>Husnisse</AssemblyName>
+    <Description>A household spirit that sorts, stores and keeps a Valheim base. Clean-room replacement for Quartermaster.</Description>
+    <Version>0.1.0</Version>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <FileVersion>0.1.0.0</FileVersion>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <RootNamespace>Husnisse</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Game and dependency locations. Override with environment variables on any machine. -->
+    <ValheimInstallDir Condition="'$(VALHEIM_DIR)' != ''">$(VALHEIM_DIR)</ValheimInstallDir>
+    <ValheimInstallDir Condition="'$(ValheimInstallDir)' == ''">$(MSBuildThisFileDirectory)../quartermaster_integrations/refs/game</ValheimInstallDir>
+
+    <BepInExDir Condition="'$(BEPINEX_DIR)' != ''">$(BEPINEX_DIR)</BepInExDir>
+    <BepInExDir Condition="'$(BepInExDir)' == ''">$(ValheimInstallDir)/BepInEx</BepInExDir>
+
+    <JotunnDir Condition="'$(JOTUNN_DIR)' != ''">$(JOTUNN_DIR)</JotunnDir>
+    <JotunnDir Condition="'$(JotunnDir)' == ''">$(MSBuildThisFileDirectory)../Mine Together/refs/mods/jotunn_pkg/plugins</JotunnDir>
+
+    <ConditionalConfigSyncDir Condition="'$(CCS_DIR)' != ''">$(CCS_DIR)</ConditionalConfigSyncDir>
+    <ConditionalConfigSyncDir Condition="'$(ConditionalConfigSyncDir)' == ''">$(MSBuildThisFileDirectory)../Mine Together/refs/mods</ConditionalConfigSyncDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- The runtime probe is a separate throwaway project and must not compile into the mod. -->
+    <Compile Remove="probe/**" />
+    <Compile Remove="tooling/**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExDir)/core/BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExDir)/core/0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="UnityEngine">
+      <HintPath>$(ValheimInstallDir)/valheim_Data/Managed/UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(ValheimInstallDir)/valheim_Data/Managed/UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>$(ValheimInstallDir)/valheim_Data/Managed/UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>$(ValheimInstallDir)/valheim_Data/Managed/UnityEngine.AIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>$(ValheimInstallDir)/valheim_Data/Managed/UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="assembly_valheim">
+      <HintPath>$(ValheimInstallDir)/valheim_Data/Managed/assembly_valheim.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="assembly_utils">
+      <HintPath>$(ValheimInstallDir)/valheim_Data/Managed/assembly_utils.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="Jotunn">
+      <HintPath>$(JotunnDir)/Jotunn.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="ConditionalConfigSync">
+      <HintPath>$(ConditionalConfigSyncDir)/ConditionalConfigSync.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>

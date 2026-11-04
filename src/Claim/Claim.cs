@@ -1,0 +1,41 @@
+using UnityEngine;
+
+namespace Husnisse.Claims
+{
+    /// <summary>
+    /// A nisse's territory: one bowl, one radius, one owner. Claims never overlap; a second bowl
+    /// placed inside one is refused by the placement check in <see cref="ClaimRegistry"/>.
+    /// </summary>
+    public class Claim
+    {
+        public ZDOID BowlId { get; }
+        public Vector3 Center { get; }
+        public float Radius { get; }
+        public long OwnerId { get; }
+        public Bowl.BowlPiece Bowl { get; }
+
+        public Claim(ZDOID bowlId, Vector3 center, float radius, long ownerId, Bowl.BowlPiece bowl)
+        {
+            BowlId = bowlId;
+            Center = center;
+            Radius = radius;
+            OwnerId = ownerId;
+            Bowl = bowl;
+        }
+
+        public bool Contains(Vector3 point)
+        {
+            var dx = point.x - Center.x;
+            var dz = point.z - Center.z;
+            return dx * dx + dz * dz <= Radius * Radius;
+        }
+
+        public bool Overlaps(Vector3 center, float radius)
+        {
+            var dx = center.x - Center.x;
+            var dz = center.z - Center.z;
+            var reach = Radius + radius;
+            return dx * dx + dz * dz < reach * reach;
+        }
+    }
+}
