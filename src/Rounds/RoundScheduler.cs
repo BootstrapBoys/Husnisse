@@ -24,6 +24,7 @@ namespace Husnisse.Rounds
         private float _timer;
         private float _warmup = 10f;
         private bool _catchUpDone;
+        private bool _dumped;
 
         public static void Attach(GameObject host)
         {
@@ -39,6 +40,12 @@ namespace Husnisse.Rounds
             if (ZNetScene.instance == null) return;
 
             WorldPolicy.ApplyServerPolicy();
+
+            if (!_dumped)
+            {
+                _dumped = true;
+                DiagnosticsFile.Dump("world ready");
+            }
 
             if (_warmup > 0f)
             {
@@ -67,6 +74,8 @@ namespace Husnisse.Rounds
             var claims = ClaimRegistry.All();
             if (claims.Count == 0) return;
 
+            Log.Debug("Rounds", "pass claims=" + claims.Count + " multiplier=" + multiplier);
+
             foreach (var claim in claims)
             {
                 if (claim == null || claim.Bowl == null) continue;
@@ -74,7 +83,13 @@ namespace Husnisse.Rounds
 
                 if (hours > 0f) claim.Bowl.Decay(hours);
 
-                if (!claim.Bowl.IsFed) continue;
+                Sulking.Step(claim);
+
+                if (!claim.Bowl.IsFed)
+                {
+                    if (claim.Bowl.RequiresFeeding) NisseVoice.Hungry(claim);
+                    continue;
+                }
 
                 var nisse = NisseFactory.EnsureNisse(claim.Bowl);
                 if (nisse == null) continue;
@@ -96,7 +111,8 @@ namespace Husnisse.Rounds
 
                 if (context.Collected > 0 || context.Sorted > 0)
                 {
-                    Log.Debug($"round {claim.BowlId}: collected={context.Collected} sorted={context.Sorted}");
+                    Log.Debug("Rounds", "claim " + claim.BowlId +
+                                        " collected=" + context.Collected + " sorted=" + context.Sorted);
                 }
             }
         }

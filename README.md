@@ -166,7 +166,8 @@ The home piece. It stores food, satiety and mood. Mood decays with time and work
 Below a threshold the nisse stops, sits by the bowl, and the ledger says why. Prolonged neglect and it
 starts a sulk: it hides one random stack per day in a wrong chest until it is fed again — never more
 than three stacks at once, and mood only decays while a player is online, so a week away is not a
-week of misfiling.
+week of misfiling. It complains about all of it to whoever is close enough to hear: a nisse voice is
+local, occasional, and never a global announcement.
 
 Sulking is deliberately recoverable and never destructive — nothing is deleted, only misfiled. It is a
 consequence with a story, not a punishment.
@@ -180,6 +181,15 @@ the server and its clients can never disagree about them.
 
 All item movement is server-side, in loaded areas only. The same constraint Quartermaster documents,
 and it has to be documented here too rather than papered over.
+
+### Diagnostics
+
+Every session writes `BepInEx/BSBLogs/Husnisse.log`: a header, then state dumps at world load, on
+demand and at shutdown — claims, owners, radius, suppression, satiety, mood, sulk level, container and
+stack counts, nisse presence. `husnisse_status` prints the same lines in the console and appends them
+to the file. `1. General / Write Diagnostics File` turns it off; `1. General / Debug Logging` adds the
+verbose round and container lines, each tagged with its module — `[Claims]`, `[Rounds]`, `[Bowl]`,
+`[Memory]`, `[Compat]`, `[Creature]`, `[Tasks]` — so a filter can isolate one.
 
 ## Technical architecture
 

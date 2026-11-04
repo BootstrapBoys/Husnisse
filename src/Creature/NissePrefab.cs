@@ -7,13 +7,19 @@ using UnityEngine;
 namespace Husnisse.Creature
 {
     /// <summary>
-    /// Registers the creature. A Greyling clone is the cheapest humanoid in the game; its hostile
-    /// AI is removed and replaced with <see cref="NisseActor"/>, so no new art is needed for v1.
+    /// Registers the creature. The body is a seam, not a commitment: set <see cref="BodyOverride"/> to
+    /// a prefab (vanilla or from an asset bundle) before registration and the nisse wears it instead of
+    /// the Greyling clone. Behaviour, faction, health and speeds are applied in code either way, so
+    /// re-arting the mod never touches the AI or the save data — the registered name stays constant.
     /// </summary>
     public static class NissePrefab
     {
         public const string PrefabName = "husnisse_nisse";
         private const string BasePrefabName = "Greyling";
+
+        /// <summary>Optional replacement body. Must carry Character, ZNetView, Rigidbody, a capsule
+        /// collider and a ZSyncAnimation. Null means the Greyling clone.</summary>
+        public static GameObject BodyOverride;
 
         private static bool _registered;
 
@@ -21,10 +27,14 @@ namespace Husnisse.Creature
         {
             if (_registered) return;
 
-            var prefab = PrefabManager.Instance.CreateClonedPrefab(PrefabName, BasePrefabName);
+            var prefab = BodyOverride != null
+                ? PrefabManager.Instance.CreateClonedPrefab(PrefabName, BodyOverride)
+                : PrefabManager.Instance.CreateClonedPrefab(PrefabName, BasePrefabName);
+
             if (prefab == null)
             {
-                Log.Error("nisse: base prefab not found: " + BasePrefabName);
+                Log.Error("nisse: no body prefab available (" +
+                          (BodyOverride != null ? BodyOverride.name : BasePrefabName) + ")");
                 return;
             }
 
@@ -34,7 +44,7 @@ namespace Husnisse.Creature
             var character = prefab.GetComponent<Character>();
             if (character == null)
             {
-                Log.Error("nisse: cloned prefab has no Character component");
+                Log.Error("nisse: body has no Character component");
                 return;
             }
 
@@ -51,7 +61,7 @@ namespace Husnisse.Creature
             CreatureManager.Instance.AddCreature(custom);
 
             _registered = true;
-            Log.Info("creature registered as " + PrefabName);
+            Log.Info("creature registered as " + PrefabName + " (body=" + prefab.name + ")");
         }
     }
 }

@@ -1,4 +1,5 @@
 using BepInEx.Logging;
+using Husnisse.Config;
 
 namespace Husnisse.Core
 {
@@ -31,7 +32,19 @@ namespace Husnisse.Core
 
         public static void Debug(string message)
         {
-            if (DebugEnabled) _source?.LogInfo("[debug] " + message);
+            var enabled = HusnisseConfig.DebugLogging != null
+                ? HusnisseConfig.DebugLogging.Value
+                : DebugEnabled;
+            if (enabled) _source?.LogInfo("[debug] " + message);
+        }
+
+        /// <summary>Tagged debug line: every module logs under its own name so a filter can isolate it.</summary>
+        public static void Debug(string module, string message)
+        {
+            var enabled = HusnisseConfig.DebugLogging != null
+                ? HusnisseConfig.DebugLogging.Value
+                : DebugEnabled;
+            if (enabled) _source?.LogInfo("[debug][" + module + "] " + message);
         }
     }
 }

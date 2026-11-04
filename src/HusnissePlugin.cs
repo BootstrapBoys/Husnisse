@@ -1,4 +1,5 @@
 using BepInEx;
+using HarmonyLib;
 using Husnisse.Config;
 using Husnisse.Compat;
 using Husnisse.Core;
@@ -29,6 +30,7 @@ namespace Husnisse
         private void Awake()
         {
             Log.Init(Logger);
+            DiagnosticsFile.Init(PluginName, PluginVersion);
             Log.Info(PluginName + " " + PluginVersion + " starting");
 
             var refusal = PluginGuards.RefusalReason();
@@ -41,6 +43,9 @@ namespace Husnisse
             HusnisseConfig.Bind(Config, PluginGUID);
             Log.DebugEnabled = HusnisseConfig.DebugLogging.Value;
 
+            new Harmony(PluginGUID).PatchAll();
+            RegisterStatusCommand();
+
             if (!HusnisseConfig.Enabled.Value)
             {
                 Log.Warn("disabled by configuration");
@@ -52,6 +57,26 @@ namespace Husnisse
             Running = true;
 
             Log.Info("core ready; waiting for vanilla prefabs");
+        }
+
+        private static void RegisterStatusCommand()
+        {
+            new Terminal.ConsoleCommand(
+                "husnisse_status",
+                "Print Husnisse claims, bowls and container counts.",
+                delegate(Terminal.ConsoleEventArgs args)
+                {
+                    foreach (var line in Diagnostics.Lines())
+                    {
+                        args.Context?.AddString(line);
+                        DiagnosticsFile.Line(line);
+                    }
+                });
+        }
+
+        private void OnApplicationQuit()
+        {
+            if (Running) DiagnosticsFile.Dump("shutdown");
         }
 
         private static void RegisterContent()

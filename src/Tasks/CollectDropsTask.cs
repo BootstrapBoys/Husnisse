@@ -46,7 +46,7 @@ namespace Husnisse.Tasks
                 worked = true;
             }
 
-            if (worked) Log.Debug($"{Name}: filed {context.Collected} item(s) in {context.Claim.BowlId}");
+            if (worked) Log.Debug("Tasks", Name + ": filed " + context.Collected + " item(s) in " + context.Claim.BowlId);
             return worked;
         }
 

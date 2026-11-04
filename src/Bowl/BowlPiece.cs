@@ -47,6 +47,28 @@ namespace Husnisse.Bowl
             private set { if (_zdo != null) _zdo.Set(ZdoKeys.BowlMood, Mathf.Clamp(value, 0f, 100f)); }
         }
 
+        public int SulkLevel
+        {
+            get { return _zdo == null ? 0 : _zdo.GetInt(ZdoKeys.BowlSulk, 0); }
+        }
+
+        /// <summary>True when enough time has passed since the last misfiling.</summary>
+        public bool SulkDue(float minutes)
+        {
+            if (_zdo == null) return false;
+            var last = _zdo.GetLong(ZdoKeys.BowlLastSulk, 0L);
+            if (last == 0L) return true;
+            var now = ZNet.instance != null ? ZNet.instance.GetTime().Ticks : 0L;
+            return now - last >= System.TimeSpan.FromMinutes(minutes).Ticks;
+        }
+
+        public void RegisterSulk()
+        {
+            if (_zdo == null) return;
+            _zdo.Set(ZdoKeys.BowlSulk, SulkLevel + 1);
+            _zdo.Set(ZdoKeys.BowlLastSulk, ZNet.instance != null ? ZNet.instance.GetTime().Ticks : 0L);
+        }
+
         public float Radius
         {
             get { return _zdo == null ? HusnisseConfig.ClaimRadius.Value : _zdo.GetFloat(ZdoKeys.BowlRadius, HusnisseConfig.ClaimRadius.Value); }
@@ -101,6 +123,9 @@ namespace Husnisse.Bowl
 
             _claim = new Claim(_zdo.m_uid, transform.position, Radius, owner, this, suppressed);
             ClaimRegistry.Register(_claim);
+            Log.Debug("Bowl", "ready " + _zdo.m_uid + " owner=" + owner + " r=" + Radius.ToString("0") +
+                               " satiety=" + Satiety.ToString("0") + " mood=" + Mood.ToString("0") +
+                               " suppressed=" + suppressed);
         }
 
         private void OnDestroy()
@@ -122,6 +147,15 @@ namespace Husnisse.Bowl
                 inventory.RemoveItem(item, 1);
                 Satiety += item.m_shared.m_food;
                 Mood = Mood + 10f;
+                Log.Debug("Bowl", "fed " + item.m_shared.m_name + " -> satiety=" + Satiety.ToString("0") +
+                                   " mood=" + Mood.ToString("0"));
+
+                if (SulkLevel > 0)
+                {
+                    if (_zdo != null) _zdo.Set(ZdoKeys.BowlSulk, 0);
+                    if (_claim != null) NisseVoice.Say(_claim, "The nisse accepts the offering.", true);
+                }
+
                 Log.Info($"bowl fed with {item.m_shared.m_name}: satiety={Satiety:0} mood={Mood:0}");
                 return true;
             }
@@ -136,6 +170,8 @@ namespace Husnisse.Bowl
             if (hours <= 0f || !RequiresFeeding) return;
             Satiety = Satiety - hours * 8f;
             Mood = Mood - hours * HusnisseConfig.MoodDecayPerHour.Value;
+
+            if (IsFed) Mood = Mood + hours * 10f;
         }
 
         public bool Interact(Humanoid user, bool hold, bool alt)

@@ -12,6 +12,7 @@ namespace Husnisse.Config
     {
         public static ConfigEntry<bool> Enabled;
         public static ConfigEntry<bool> DebugLogging;
+        public static ConfigEntry<bool> WriteDiagnosticsFile;
         public static ConfigEntry<bool> LockConfiguration;
         public static ConfigEntry<bool> CatchUpOnLoad;
         public static ConfigEntry<bool> ForceFeeding;
@@ -23,6 +24,7 @@ namespace Husnisse.Config
         public static ConfigEntry<int> MachineBudget;
         public static ConfigEntry<int> RefuelBudget;
         public static ConfigEntry<int> SulkMisfileCap;
+        public static ConfigEntry<int> SulkIntervalMinutes;
         public static ConfigEntry<bool> SkipMobileContainers;
         public static ConfigEntry<bool> SkipDisplayPiles;
         public static ConfigEntry<bool> RespectWards;
@@ -37,6 +39,9 @@ namespace Husnisse.Config
 
             DebugLogging = file.Bind("1. General", "Debug Logging", false,
                 "Verbose diagnostics for claims, rounds and container scans.");
+
+            WriteDiagnosticsFile = file.Bind("1. General", "Write Diagnostics File", true,
+                "Write BepInEx/BSBLogs/Husnisse.log: session header, claim and container dumps at startup, on demand and at shutdown.");
 
             LockConfiguration = file.Bind("1. General", "Lock Configuration", true,
                 "Server-authoritative settings: when the host locks this, clients use the host's values.");
@@ -72,6 +77,9 @@ namespace Husnisse.Config
 
             SulkMisfileCap = file.Bind("4. Storage", "Sulk Misfile Cap", 3,
                 new ConfigDescription("Maximum stacks a sulking nisse may hide. Nothing is ever deleted.", new AcceptableValueRange<int>(0, 20)));
+
+            SulkIntervalMinutes = file.Bind("4. Storage", "Sulk Interval Minutes", 60,
+                new ConfigDescription("Minutes between misfilings once a nisse is sulking.", new AcceptableValueRange<int>(1, 1440)));
 
             SkipMobileContainers = file.Bind("4. Storage", "Skip Carts and Ships", true,
                 "Never file items into a cart or ship hold; goods would sail away.");

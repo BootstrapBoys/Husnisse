@@ -61,25 +61,25 @@ namespace Husnisse.Compat
 
             if (HusnisseConfig.SkipMobileContainers.Value && IsMobile(container))
             {
-                Log.Debug("skip mobile container " + container.name);
+                Log.Debug("Compat", "skip mobile container " + container.name);
                 return false;
             }
 
             if (HusnisseConfig.SkipDisplayPiles.Value && IsDisplayPile(container))
             {
-                Log.Debug("skip display pile " + container.name);
+                Log.Debug("Compat", "skip display pile " + container.name);
                 return false;
             }
 
             if (HusnisseConfig.RespectWards.Value && !IsWardPermitted(claim, container))
             {
-                Log.Debug("skip ward-protected container " + container.name);
+                Log.Debug("Compat", "skip ward-protected container " + container.name);
                 return false;
             }
 
             if (HusnisseConfig.RespectWards.Value && HusnisseConfig.RequireWardOwnership.Value && !IsWardOwnedByClaim(claim, container))
             {
-                Log.Debug("skip container in a ward the claim owner did not place " + container.name);
+                Log.Debug("Compat", "skip container in a ward the claim owner did not place " + container.name);
                 return false;
             }
 

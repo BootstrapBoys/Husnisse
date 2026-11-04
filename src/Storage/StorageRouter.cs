@@ -1,4 +1,5 @@
 using Husnisse.Claims;
+using Husnisse.Core;
 using Husnisse.Memory;
 
 namespace Husnisse.Storage
@@ -44,6 +45,7 @@ namespace Husnisse.Storage
             var view = container.GetComponent<ZNetView>();
             if (view == null || view.GetZDO() == null) return;
             memory.Remember(itemName, view.GetZDO().m_uid);
+            Log.Debug("Memory", "learned " + itemName + " -> " + view.GetZDO().m_uid);
         }
     }
 }

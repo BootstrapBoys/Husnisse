@@ -66,6 +66,7 @@ namespace Husnisse.Compat
                         new[] { _wardType }, null);
 
                 Log.Info("WardIsLove permissions bound");
+                Log.Debug("Ward", "bound CheckAccess and ward owner lookup");
             }
             catch (Exception ex)
             {
