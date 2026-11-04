@@ -3,7 +3,7 @@
 ## 0.1.0
 
 - Porridge bowl: a placeable home piece that holds satiety, mood and the claim radius.
-- Feeding is the server owner's choice (`2. Nisse / Force Feeding`), written into the world as a global key on load. Forced: every nisse must be fed. Not forced: each player switches feeding on or off at their own bowl with Alt-interact, stored in the bowl's ZDO.
+- Feeding is the server owner's choice (`2. Nisse / Force Feeding`), written into the world as a global key on load. Forced: every nisse must be fed. Not forced: feeding is opt-in — new bowls ask for nothing, and Alt-interact at a bowl turns the care loop on, stored in its ZDO.
 - Sulking: neglect drops mood, and below the threshold the nisse misfiles one stack at a time (capped), complains to nearby players, and stops as soon as it is fed.
 - Bowls refuse to be placed on ground another claim covers, or inside a ward the placer cannot use.
 - Diagnostics: `BepInEx/BSBLogs/Husnisse.log` plus the `husnisse_status` console command.

@@ -50,9 +50,9 @@ namespace Husnisse.Config
                 "Run one bounded pass when a world loads, so a backlog is worked through once rather than fifty rounds.");
 
             ForceFeeding = file.Bind("2. Nisse", "Force Feeding", true,
-                "When on, every nisse must be fed and nobody can switch it off. When off, each player decides at " +
-                "their own bowl with Alt-interact. The host writes this into the world on load; clients cannot " +
-                "change it and a change takes effect on the next world load.");
+                "When on, every nisse must be fed and nobody can switch it off. When off, feeding is opt-in per bowl: " +
+                "a new bowl asks for nothing and its owner can turn the care loop on with Alt-interact. The host writes " +
+                "this into the world on load; clients cannot change it and a change takes effect on the next world load.");
 
             RoundInterval = file.Bind("2. Nisse", "Round Interval", 30f,
                 new ConfigDescription("Seconds between rounds.", new AcceptableValueRange<float>(5f, 600f)));

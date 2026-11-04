@@ -29,7 +29,9 @@ namespace Husnisse.Bowl
             get
             {
                 if (WorldPolicy.FeedingForced) return true;
-                return _zdo == null || _zdo.GetBool(ZdoKeys.BowlFeeding, true);
+
+                // Not forced means opt-in: a new bowl asks for nothing until its owner turns feeding on.
+                return _zdo != null && _zdo.GetBool(ZdoKeys.BowlFeeding, false);
             }
         }
 
@@ -223,9 +225,9 @@ namespace Husnisse.Bowl
 
             if (_zdo == null) return true;
 
-            var next = !_zdo.GetBool(ZdoKeys.BowlFeeding, true);
+            var next = !_zdo.GetBool(ZdoKeys.BowlFeeding, false);
             _zdo.Set(ZdoKeys.BowlFeeding, next);
-            Message(user, next ? "The nisse expects offerings again." : "The nisse will work without offerings.");
+            Message(user, next ? "The nisse will expect offerings." : "The nisse will work without offerings.");
             return true;
         }
 

@@ -173,9 +173,10 @@ Sulking is deliberately recoverable and never destructive — nothing is deleted
 consequence with a story, not a punishment.
 
 Feeding is the server owner's call. `2. Nisse / Force Feeding` is written into the world as a global
-key on load: **on**, every nisse must be fed and nobody can switch it off; **off**, each player decides
-at their own bowl with Alt-interact, and that choice lives in the bowl's ZDO. Both are world state, so
-the server and its clients can never disagree about them.
+key on load: **on**, every nisse must be fed and nobody can switch it off; **off**, feeding is opt-in —
+a new bowl asks for nothing, and its owner turns the care loop on at that bowl with Alt-interact. Both
+the server's choice and the per-bowl choice are world state, so the server and its clients can never
+disagree about them.
 
 ### Server authority
 
