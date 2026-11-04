@@ -8,14 +8,18 @@ namespace Husnisse.Creature
 {
     /// <summary>
     /// Registers the creature. A Greyling clone is the cheapest humanoid in the game; its hostile AI is
-    /// removed and replaced with <see cref="NisseActor"/>. To re-art the nisse later, change
-    /// <see cref="BasePrefabName"/> or pass a loaded prefab to CreateClonedPrefab; the registered
-    /// prefab name stays constant, so save data survives the swap.
+    /// removed and replaced with <see cref="NisseActor"/>. For custom art, set <see cref="BodyOverride"/>
+    /// to a prefab before registration (or change <see cref="BasePrefabName"/>); the registered prefab
+    /// name stays constant, so save data survives the swap.
     /// </summary>
     public static class NissePrefab
     {
         public const string PrefabName = "husnisse_nisse";
         private const string BasePrefabName = "Greyling";
+
+        /// <summary>Optional replacement body, used by the custom-model work. Must carry Character,
+        /// ZNetView, Rigidbody, a capsule collider and a ZSyncAnimation. Null means the Greyling clone.</summary>
+        public static GameObject BodyOverride;
 
         private static bool _registered;
 
@@ -23,11 +27,14 @@ namespace Husnisse.Creature
         {
             if (_registered) return;
 
-            var prefab = PrefabManager.Instance.CreateClonedPrefab(PrefabName, BasePrefabName);
+            var prefab = BodyOverride != null
+                ? PrefabManager.Instance.CreateClonedPrefab(PrefabName, BodyOverride)
+                : PrefabManager.Instance.CreateClonedPrefab(PrefabName, BasePrefabName);
 
             if (prefab == null)
             {
-                Log.Error("nisse: no body prefab available (" + BasePrefabName + ")");
+                Log.Error("nisse: no body prefab available (" +
+                          (BodyOverride != null ? BodyOverride.name : BasePrefabName) + ")");
                 return;
             }
 

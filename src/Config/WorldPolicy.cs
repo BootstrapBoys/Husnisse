@@ -44,5 +44,15 @@ namespace Husnisse.Config
             Log.Info("world feeding forced=" + FeedingForced);
             SaveSchema.Publish();
         }
+
+        /// <summary>Live policy change, for the admin command when it lands.</summary>
+        public static void Force(bool forced)
+        {
+            var zone = ZoneSystem.instance;
+            if (zone == null) return;
+
+            if (forced) zone.SetGlobalKey(ForcedKey);
+            else zone.RemoveGlobalKey(ForcedKey);
+        }
     }
 }

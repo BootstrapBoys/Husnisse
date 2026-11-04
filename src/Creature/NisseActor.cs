@@ -36,5 +36,11 @@ namespace Husnisse.Creature
         {
             if (m_animator != null) m_animator.SetTrigger("spawn");
         }
+
+        /// <summary>Idle charm pose, used by the 0.1.1 animation pass.</summary>
+        public void PlayIdle()
+        {
+            if (m_animator != null) m_animator.SetTrigger("idle");
+        }
     }
 }

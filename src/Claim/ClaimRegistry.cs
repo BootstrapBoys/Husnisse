@@ -25,6 +25,22 @@ namespace Husnisse.Claims
             if (Claims.Remove(bowlId)) Log.Debug("Claims", "unregistered " + bowlId);
         }
 
+        public static Claim Find(ZDOID bowlId)
+        {
+            Claim claim;
+            return Claims.TryGetValue(bowlId, out claim) ? claim : null;
+        }
+
+        /// <summary>Which claim owns a point; used by machines and point-based features from 0.4.</summary>
+        public static Claim FindFor(Vector3 point)
+        {
+            foreach (var claim in Claims.Values)
+            {
+                if (claim.Contains(point)) return claim;
+            }
+            return null;
+        }
+
         public static bool OverlapsAny(Vector3 center, float radius, ZDOID ignore = default(ZDOID))
         {
             foreach (var claim in Claims.Values)
