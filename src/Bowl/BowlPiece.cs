@@ -1,5 +1,6 @@
 using Husnisse.Claims;
 using Husnisse.Config;
+using Husnisse.Compat;
 using Husnisse.Core;
 using Husnisse.Creature;
 using Husnisse.Util;
@@ -61,7 +62,21 @@ namespace Husnisse.Bowl
                 NisseFactory.EnsureNisse(this);
             }
 
-            _claim = new Claim(_zdo.m_uid, transform.position, Radius, _zdo.GetLong(ZdoKeys.BowlOwner, 0L), this);
+            var owner = _zdo.GetLong(ZdoKeys.BowlOwner, 0L);
+
+            var suppressed = false;
+            if (ClaimRegistry.OverlapsAny(transform.position, Radius, _zdo.m_uid))
+            {
+                suppressed = true;
+                Log.Warn("bowl at " + transform.position + " overlaps an existing claim; it refuses to settle");
+            }
+            if (HusnisseConfig.RespectWards.Value && !WardIsLoveCompat.IsPermitted(owner, transform.position))
+            {
+                suppressed = true;
+                Log.Warn("bowl at " + transform.position + " is inside a ward its owner cannot use; it refuses to settle");
+            }
+
+            _claim = new Claim(_zdo.m_uid, transform.position, Radius, owner, this, suppressed);
             ClaimRegistry.Register(_claim);
         }
 

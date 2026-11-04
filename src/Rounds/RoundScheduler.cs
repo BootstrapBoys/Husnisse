@@ -68,6 +68,7 @@ namespace Husnisse.Rounds
             foreach (var claim in claims)
             {
                 if (claim == null || claim.Bowl == null) continue;
+                if (claim.Suppressed) continue;
 
                 if (hours > 0f) claim.Bowl.Decay(hours);
 

@@ -109,8 +109,10 @@ refuses to settle inside an existing claim and wanders to the nearest free spot.
 groups emerge without a "group" setting.
 
 Only the player who placed the bowl can feed or teach that nisse; everyone else can read the ledger.
-Wards add a second filter at 0.5, but the placer rule costs almost nothing and prevents the obvious
-grief on a shared world from day one.
+WardIsLove permissions filter every container from 0.1 — a bowl inside a ward its owner cannot use
+refuses to settle — and the rest of the ward integration lands at 0.5. The placer rule costs almost
+nothing and prevents the obvious grief on a shared world from day one. The full pack analysis lives in
+[`docs/COMPATIBILITY.md`](docs/COMPATIBILITY.md).
 
 ### Memory
 

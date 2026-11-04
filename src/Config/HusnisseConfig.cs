@@ -21,6 +21,9 @@ namespace Husnisse.Config
         public static ConfigEntry<int> MachineBudget;
         public static ConfigEntry<int> RefuelBudget;
         public static ConfigEntry<int> SulkMisfileCap;
+        public static ConfigEntry<bool> SkipMobileContainers;
+        public static ConfigEntry<bool> SkipDisplayPiles;
+        public static ConfigEntry<bool> RespectWards;
 
         private static ConfigSync _sync;
 
@@ -61,6 +64,15 @@ namespace Husnisse.Config
 
             SulkMisfileCap = file.Bind("4. Storage", "Sulk Misfile Cap", 3,
                 new ConfigDescription("Maximum stacks a sulking nisse may hide. Nothing is ever deleted.", new AcceptableValueRange<int>(0, 20)));
+
+            SkipMobileContainers = file.Bind("4. Storage", "Skip Carts and Ships", true,
+                "Never file items into a cart or ship hold; goods would sail away.");
+
+            SkipDisplayPiles = file.Bind("4. Storage", "Skip Display Piles", true,
+                "Never treat DynamicStoragePiles or the Muji DynamicStorage display containers as storage.");
+
+            RespectWards = file.Bind("6. Ward", "Respect WardIsLove", true,
+                "Ward permissions filter every container. A bowl inside a ward its owner cannot use refuses to settle.");
 
             _sync = new ConfigSync(pluginGuid);
             _sync.AddLockingConfigEntry(LockConfiguration);

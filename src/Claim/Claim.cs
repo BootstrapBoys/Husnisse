@@ -14,13 +14,17 @@ namespace Husnisse.Claims
         public long OwnerId { get; }
         public Bowl.BowlPiece Bowl { get; }
 
-        public Claim(ZDOID bowlId, Vector3 center, float radius, long ownerId, Bowl.BowlPiece bowl)
+        /// <summary>True when the bowl may not work: overlapping claim, or inside a ward its owner cannot use.</summary>
+        public bool Suppressed { get; }
+
+        public Claim(ZDOID bowlId, Vector3 center, float radius, long ownerId, Bowl.BowlPiece bowl, bool suppressed = false)
         {
             BowlId = bowlId;
             Center = center;
             Radius = radius;
             OwnerId = ownerId;
             Bowl = bowl;
+            Suppressed = suppressed;
         }
 
         public bool Contains(Vector3 point)
