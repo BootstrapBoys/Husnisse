@@ -265,8 +265,8 @@ order, spend order, ward filtering, all-or-nothing spending, reentrancy — that
 |---|---|---|
 | **0.1** | Creature (a nisse), bowl, claim, memory, sort-only rounds. **No navigation** — it fades between bowl and chest | Proves the fiction is playable. If feeding a spirit to get items sorted is not fun, stop here. |
 | **0.1.1** | "Legs": room-scale and outdoor walking, fade across thresholds | Only after 0.1 playtests well. Movement changes the feel without changing the loop. |
-| **0.2** | Teaching by demonstration, ledger panel, chest roles | The signature mechanic; needs 0.1's memory to build on. |
-| **0.3** | Pantries and craft-from-storage. Counts read straight from container ZDOs — no sync layer | First feature that touches another mod's flow; needs the supply rules settled. |
+| **0.2** | Teaching by demonstration, ledger panel, chest roles, MyLittleUI-aware readouts | The signature mechanic; needs 0.1's memory to build on. |
+| **0.3** | Pantries and craft-from-storage; AAA Crafting reads the claim. Counts come straight from container ZDOs — no sync layer | First feature that touches another mod's flow; needs the supply rules settled. |
 | **0.4** | Machines: fuel, feed, collect, caps | The nightly round earns its keep. |
 | **0.5** | Ward integration, multiplayer hardening, Quartermaster ZDO migration | Server authority and permissions, before anyone runs this on a shared world. Migration reads runtime data only, which the clean-room rules already allow. |
 | **1.0** | Stack sizes, ship unloading, comfort-based coverage | Parity, once the creature model is proven. |

@@ -35,6 +35,8 @@ objects is detected by component type name.
 | **Wizardry** — custom stations | 0.4, as machine targets with standing orders. |
 | **PlanBuild** — blueprints | The bowl is an ordinary `Piece` on the Hammer table, so blueprint copy should work. Verify at 0.2 when there is a bowl worth copying. |
 | **Quartermaster_Integrations** | 0.3, when craft-from-claim exists: our storage surface replaces its Quartermaster query, and QI ships a final release pointing here. |
+| **MyLittleUI** | 0.2, with the ledger: claim knowledge should surface in its tooltips and panels rather than competing with them. Until then, no interference — MLUI is UI-only and touches no container. |
+| **AAA Crafting** | 0.3, with craft-from-claim: its crafting UI must read the claim the same way QI makes it read Quartermaster today. The patch target is the same; only the data source changes. |
 
 ## No interaction needed
 
