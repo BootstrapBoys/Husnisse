@@ -75,6 +75,15 @@ namespace Husnisse.Bowl
                 suppressed = true;
                 Log.Warn("bowl at " + transform.position + " is inside a ward its owner cannot use; it refuses to settle");
             }
+            if (HusnisseConfig.RespectWards.Value && HusnisseConfig.RequireWardOwnership.Value)
+            {
+                long wardOwner;
+                if (WardIsLoveCompat.TryGetWardOwner(transform.position, out wardOwner) && wardOwner != 0L && wardOwner != owner)
+                {
+                    suppressed = true;
+                    Log.Warn("bowl at " + transform.position + " is inside another player's ward; it refuses to settle");
+                }
+            }
 
             _claim = new Claim(_zdo.m_uid, transform.position, Radius, owner, this, suppressed);
             ClaimRegistry.Register(_claim);

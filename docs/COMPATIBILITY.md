@@ -15,7 +15,7 @@ objects is detected by component type name.
 
 | Mod | Behaviour |
 |---|---|
-| **WardIsLove** | Every container is filtered through `WardIsLove.Util.CustomCheck.CheckAccess(ownerId, point, radius, flash)`. A container in a ward the claim owner cannot use is never targeted. A bowl placed inside such a ward **refuses to settle**: the claim registers as suppressed, does nothing, and says why. `6. Ward / Respect WardIsLove` turns the filter off for servers that want none. |
+| **WardIsLove** | Every container is filtered through `WardIsLove.Util.CustomCheck.CheckAccess(ownerId, point, radius, flash)`. A container in a ward the claim owner cannot use is never targeted. A bowl placed inside such a ward **refuses to settle**: the claim registers as suppressed, does nothing, and says why. `6. Ward / Respect WardIsLove` turns the filter off; `6. Ward / Require Ward Ownership` (default off) additionally restricts use to wards the claim owner placed, instead of any ward they are permitted on. |
 
 ## Storage semantics
 

@@ -24,6 +24,7 @@ namespace Husnisse.Config
         public static ConfigEntry<bool> SkipMobileContainers;
         public static ConfigEntry<bool> SkipDisplayPiles;
         public static ConfigEntry<bool> RespectWards;
+        public static ConfigEntry<bool> RequireWardOwnership;
 
         private static ConfigSync _sync;
 
@@ -73,6 +74,9 @@ namespace Husnisse.Config
 
             RespectWards = file.Bind("6. Ward", "Respect WardIsLove", true,
                 "Ward permissions filter every container. A bowl inside a ward its owner cannot use refuses to settle.");
+
+            RequireWardOwnership = file.Bind("6. Ward", "Require Ward Ownership", false,
+                "When on, a nisse may only use containers in wards its own player placed. Off by default: a permitted tribe member's nisse may use the ward owner's chests.");
 
             _sync = new ConfigSync(pluginGuid);
             _sync.AddLockingConfigEntry(LockConfiguration);

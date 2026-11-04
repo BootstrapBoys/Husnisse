@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Reflection;
 using BepInEx;
 using BepInEx.Bootstrap;
@@ -17,6 +18,8 @@ namespace Husnisse.Compat
         public const string PluginGuid = "Azumatt.WardIsLove";
 
         private static Func<long, Vector3, float, bool, bool> _checkAccess;
+        private static Type _wardType;
+        private static MethodInfo _getWardRadius;
         private static bool _resolved;
         private static float _lastWarn;
 
@@ -54,6 +57,14 @@ namespace Husnisse.Compat
 
                 _checkAccess = (Func<long, Vector3, float, bool, bool>)Delegate.CreateDelegate(
                     typeof(Func<long, Vector3, float, bool, bool>), method);
+
+                _wardType = assembly.GetType("WardIsLove.Util.WardMonoscript");
+                var extension = assembly.GetType("WardIsLove.Extensions.WardMonoscriptExt");
+                _getWardRadius = _wardType == null || extension == null
+                    ? null
+                    : extension.GetMethod("GetWardRadius", BindingFlags.Public | BindingFlags.Static, null,
+                        new[] { _wardType }, null);
+
                 Log.Info("WardIsLove permissions bound");
             }
             catch (Exception ex)
@@ -62,8 +73,7 @@ namespace Husnisse.Compat
             }
         }
 
-        /// <summary>
-        /// True when the claim owner may touch this position. With no WardIsLove installed, or no
+        /// <summary>True when the claim owner may touch this position. With no WardIsLove installed, or no
         /// known owner, everything is permitted — the mod must not invent restrictions.
         /// </summary>
         public static bool IsPermitted(long playerId, Vector3 point)
@@ -86,6 +96,59 @@ namespace Husnisse.Compat
                 }
                 return true;
             }
+        }
+
+        /// <summary>
+        /// Finds the ward covering a point and reports the player who placed it. False when there is no
+        /// ward there, or when WardIsLove is absent.
+        /// </summary>
+        public static bool TryGetWardOwner(Vector3 point, out long ownerId)
+        {
+            ownerId = 0L;
+            Resolve();
+            if (_wardType == null) return false;
+
+            var field = _wardType.GetField("m_wardInstances", BindingFlags.Public | BindingFlags.Static);
+            var wards = field != null ? field.GetValue(null) as IList : null;
+            if (wards == null) return false;
+
+            foreach (var ward in wards)
+            {
+                var mono = ward as MonoBehaviour;
+                if (mono == null) continue;
+
+                var radius = RadiusOf(ward);
+                var dx = point.x - mono.transform.position.x;
+                var dz = point.z - mono.transform.position.z;
+                if (dx * dx + dz * dz > radius * radius) continue;
+
+                ownerId = OwnerOf(ward);
+                return true;
+            }
+
+            return false;
+        }
+
+        private static float RadiusOf(object ward)
+        {
+            try
+            {
+                if (_getWardRadius != null) return Convert.ToSingle(_getWardRadius.Invoke(null, new[] { ward }));
+            }
+            catch
+            {
+                // fall through to the static maximum
+            }
+
+            var field = _wardType.GetField("m_maxShieldRadius", BindingFlags.Public | BindingFlags.Instance);
+            return field != null ? Convert.ToSingle(field.GetValue(ward)) : 0f;
+        }
+
+        private static long OwnerOf(object ward)
+        {
+            var field = _wardType.GetField("m_piece", BindingFlags.Public | BindingFlags.Instance);
+            var piece = field != null ? field.GetValue(ward) as Piece : null;
+            return piece != null ? piece.GetCreator() : 0L;
         }
     }
 }

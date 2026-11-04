@@ -43,6 +43,14 @@ namespace Husnisse.Compat
             return WardIsLoveCompat.IsPermitted(claim.OwnerId, container.transform.position);
         }
 
+        /// <summary>Optional stricter rule: only wards the claim owner placed themselves.</summary>
+        private static bool IsWardOwnedByClaim(Claim claim, Container container)
+        {
+            long wardOwner;
+            if (!WardIsLoveCompat.TryGetWardOwner(container.transform.position, out wardOwner)) return true;
+            return wardOwner == 0L || wardOwner == claim.OwnerId;
+        }
+
         public static bool CanUse(Claim claim, Container container)
         {
             if (claim == null || container == null) return false;
@@ -66,6 +74,12 @@ namespace Husnisse.Compat
             if (HusnisseConfig.RespectWards.Value && !IsWardPermitted(claim, container))
             {
                 Log.Debug("skip ward-protected container " + container.name);
+                return false;
+            }
+
+            if (HusnisseConfig.RespectWards.Value && HusnisseConfig.RequireWardOwnership.Value && !IsWardOwnedByClaim(claim, container))
+            {
+                Log.Debug("skip container in a ward the claim owner did not place " + container.name);
                 return false;
             }
 
