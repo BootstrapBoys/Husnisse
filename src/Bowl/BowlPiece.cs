@@ -19,7 +19,28 @@ namespace Husnisse.Bowl
         private Claim _claim;
 
         public Claim Claim => _claim;
-        public bool IsFed => !HusnisseConfig.RequireFeeding.Value || Satiety > 0f;
+
+        /// <summary>
+        /// Whether this particular nisse demands food. Server policy wins: Disabled turns the care loop
+        /// off for everyone, Required turns the per-bowl choice off, Optional reads the bowl's own flag.
+        /// </summary>
+        public bool RequiresFeeding
+        {
+            get
+            {
+                switch (HusnisseConfig.FeedingPolicy.Value)
+                {
+                    case FeedingMode.Disabled:
+                        return false;
+                    case FeedingMode.Required:
+                        return true;
+                    default:
+                        return _zdo == null || _zdo.GetBool(ZdoKeys.BowlFeeding, true);
+                }
+            }
+        }
+
+        public bool IsFed => !RequiresFeeding || Satiety > 0f;
 
         public float Satiety
         {
@@ -119,7 +140,7 @@ namespace Husnisse.Bowl
         /// and not at all when feeding is switched off.</summary>
         public void Decay(float hours)
         {
-            if (hours <= 0f || !HusnisseConfig.RequireFeeding.Value) return;
+            if (hours <= 0f || !RequiresFeeding) return;
             Satiety = Satiety - hours * 8f;
             Mood = Mood - hours * HusnisseConfig.MoodDecayPerHour.Value;
         }
@@ -128,7 +149,9 @@ namespace Husnisse.Bowl
         {
             if (hold) return false;
 
-            if (!HusnisseConfig.RequireFeeding.Value)
+            if (alt) return ToggleFeeding(user);
+
+            if (!RequiresFeeding)
             {
                 Message(user, "This nisse is content without offerings.");
                 return true;
@@ -150,6 +173,37 @@ namespace Husnisse.Bowl
             return true;
         }
 
+        /// <summary>The owner's own choice, only available while the server policy is Optional.</summary>
+        private bool ToggleFeeding(Humanoid user)
+        {
+            var policy = HusnisseConfig.FeedingPolicy.Value;
+
+            if (policy == FeedingMode.Required)
+            {
+                Message(user, "This server requires every nisse to be fed.");
+                return true;
+            }
+
+            if (policy == FeedingMode.Disabled)
+            {
+                Message(user, "Feeding is disabled on this server.");
+                return true;
+            }
+
+            if (!IsOwner())
+            {
+                Message(user, "Only the player who placed this bowl may change it.");
+                return true;
+            }
+
+            if (_zdo == null) return true;
+
+            var next = !_zdo.GetBool(ZdoKeys.BowlFeeding, true);
+            _zdo.Set(ZdoKeys.BowlFeeding, next);
+            Message(user, next ? "The nisse expects offerings again." : "The nisse will work without offerings.");
+            return true;
+        }
+
         public bool UseItem(Humanoid user, ItemDrop.ItemData item)
         {
             return false;
@@ -162,12 +216,21 @@ namespace Husnisse.Bowl
 
         public string GetHoverText()
         {
-            if (!HusnisseConfig.RequireFeeding.Value)
+            var policy = HusnisseConfig.FeedingPolicy.Value;
+
+            if (policy == FeedingMode.Disabled)
             {
-                return "Porridge Bowl\nThe nisse is content without offerings.";
+                return "Porridge Bowl\nFeeding is disabled on this server.";
             }
 
-            return string.Format("Porridge Bowl\nSatiety {0:0}/100   Mood {1:0}/100\n[E] offer food", Satiety, Mood);
+            if (!RequiresFeeding)
+            {
+                return "Porridge Bowl\nThis nisse asks for nothing.\n[Alt] require offerings";
+            }
+
+            var text = string.Format("Porridge Bowl\nSatiety {0:0}/100   Mood {1:0}/100\n[E] offer food", Satiety, Mood);
+            if (policy == FeedingMode.Optional) text += "\n[Alt] no offerings needed";
+            return text;
         }
 
         public float GetHoverOffset()

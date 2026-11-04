@@ -3,6 +3,14 @@ using ConditionalConfigSync;
 
 namespace Husnisse.Config
 {
+    /// <summary>Server policy for the care loop. The per-bowl choice only exists under Optional.</summary>
+    public enum FeedingMode
+    {
+        Required,
+        Optional,
+        Disabled
+    }
+
     /// <summary>
     /// All settings in one place, grouped into the numbered sections the family uses so BepInEx's
     /// alphabetical save order cannot scramble them.
@@ -13,7 +21,7 @@ namespace Husnisse.Config
         public static ConfigEntry<bool> DebugLogging;
         public static ConfigEntry<bool> LockConfiguration;
         public static ConfigEntry<bool> CatchUpOnLoad;
-        public static ConfigEntry<bool> RequireFeeding;
+        public static ConfigEntry<FeedingMode> FeedingPolicy;
         public static ConfigEntry<float> RoundInterval;
         public static ConfigEntry<float> ClaimRadius;
         public static ConfigEntry<float> MoodDecayPerHour;
@@ -43,8 +51,11 @@ namespace Husnisse.Config
             CatchUpOnLoad = file.Bind("2. Nisse", "Catch-up Pass on Load", true,
                 "Run one bounded pass when a world loads, so a backlog is worked through once rather than fifty rounds.");
 
-            RequireFeeding = file.Bind("2. Nisse", "Require Feeding", true,
-                "When off, the nisse works without being fed: satiety, mood decay and sulking are all disabled, and the bowl is decoration.");
+            FeedingPolicy = file.Bind("2. Nisse", "Feeding Mode", FeedingMode.Required,
+                new ConfigDescription(
+                    "Required: every nisse must be fed. Optional: each player may switch feeding off at their own bowl. " +
+                    "Disabled: no nisse needs feeding and the bowl is decoration.",
+                    null, "ServerPolicy"));
 
             RoundInterval = file.Bind("2. Nisse", "Round Interval", 30f,
                 new ConfigDescription("Seconds between rounds.", new AcceptableValueRange<float>(5f, 600f)));

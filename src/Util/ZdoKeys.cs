@@ -12,6 +12,7 @@ namespace Husnisse.Util
         public const string BowlMood = "husnisse_bowl_mood";
         public const string BowlOwner = "husnisse_bowl_owner";
         public const string BowlNisse = "husnisse_bowl_nisse";
+        public const string BowlFeeding = "husnisse_bowl_feeding";
 
         // Nisse
         public const string NisseBowl = "husnisse_nisse_bowl";
