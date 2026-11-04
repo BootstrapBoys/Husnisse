@@ -45,6 +45,7 @@ objects is detected by component type name.
 ## No interaction needed
 
 - **DropMoreLoot**, **CreatureLevelAndLootControl** — more ground items; the round budget bounds the work.
+- **MoreSlots** (Fang86) — player-inventory row expansion only; inventories are read dynamically, so no integration. Upstream is deprecated, so it is not a test target. Chest-size mods are the relevant case and are covered above.
 - **Seasonality**, **PlantEverything**, **MyDirtyHoe**, **HoneyPlus**, **PotionPlus** — farming and consumables; no storage surface.
 - **ImmersiveTrader**, **SellTrophies**, **OttoPay** — economy and trading; they price items, they do not store them.
 - **AdvancedPortals**, **RossPortals**, **TheGreatestMap**, **Get Up u Coward** — travel, map and animation.
