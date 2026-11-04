@@ -15,7 +15,7 @@ namespace Husnisse.Config
         public static ConfigEntry<bool> WriteDiagnosticsFile;
         public static ConfigEntry<bool> LockConfiguration;
         public static ConfigEntry<bool> CatchUpOnLoad;
-        public static ConfigEntry<bool> ForceFeeding;
+        public static ConfigEntry<bool> FeedingRequired;
         public static ConfigEntry<float> RoundInterval;
         public static ConfigEntry<float> ClaimRadius;
         public static ConfigEntry<float> MoodDecayPerHour;
@@ -49,7 +49,7 @@ namespace Husnisse.Config
             CatchUpOnLoad = file.Bind("2. Nisse", "Catch-up Pass on Load", true,
                 "Run one bounded pass when a world loads, so a backlog is worked through once rather than fifty rounds.");
 
-            ForceFeeding = file.Bind("2. Nisse", "Force Feeding", true,
+            FeedingRequired = file.Bind("2. Nisse", "Feeding Required", true,
                 "When on, every nisse must be fed and nobody can switch it off. When off, feeding is opt-in per bowl: " +
                 "a new bowl asks for nothing and its owner can turn the care loop on with Alt-interact. The host writes " +
                 "this into the world on load; clients cannot change it and a change takes effect on the next world load.");

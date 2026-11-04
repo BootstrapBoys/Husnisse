@@ -28,7 +28,7 @@ namespace Husnisse.Bowl
         {
             get
             {
-                if (WorldPolicy.FeedingForced) return true;
+                if (WorldPolicy.FeedingRequired) return true;
 
                 // Not forced means opt-in: a new bowl asks for nothing until its owner turns feeding on.
                 return _zdo != null && _zdo.GetBool(ZdoKeys.BowlFeeding, false);
@@ -209,7 +209,7 @@ namespace Husnisse.Bowl
         /// <summary>The owner's own choice, available only when the server does not force feeding.</summary>
         private bool ToggleFeeding(Humanoid user)
         {
-            var policy = WorldPolicy.FeedingForced;
+            var policy = WorldPolicy.FeedingRequired;
 
             if (policy)
             {
@@ -249,7 +249,7 @@ namespace Husnisse.Bowl
             }
 
             var text = string.Format("Porridge Bowl\nSatiety {0:0}/100   Mood {1:0}/100\n[E] offer food", Satiety, Mood);
-            if (!WorldPolicy.FeedingForced) text += "\n[Alt] no offerings needed";
+            if (!WorldPolicy.FeedingRequired) text += "\n[Alt] no offerings needed";
             return text;
         }
 

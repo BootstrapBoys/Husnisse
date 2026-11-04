@@ -13,17 +13,17 @@ namespace Husnisse.Config
     /// </summary>
     public static class WorldPolicy
     {
-        private const string ForcedKey = "husnisse_feeding_forced";
+        private const string RequiredKey = "husnisse_feeding_required";
 
         private static bool _applied;
 
         /// <summary>The policy every peer reads.</summary>
-        public static bool FeedingForced
+        public static bool FeedingRequired
         {
             get
             {
                 var zone = ZoneSystem.instance;
-                return zone != null && zone.GetGlobalKey(ForcedKey);
+                return zone != null && zone.GetGlobalKey(RequiredKey);
             }
         }
 
@@ -38,21 +38,21 @@ namespace Husnisse.Config
 
             _applied = true;
 
-            if (HusnisseConfig.ForceFeeding.Value) zone.SetGlobalKey(ForcedKey);
-            else zone.RemoveGlobalKey(ForcedKey);
+            if (HusnisseConfig.FeedingRequired.Value) zone.SetGlobalKey(RequiredKey);
+            else zone.RemoveGlobalKey(RequiredKey);
 
-            Log.Info("world feeding forced=" + FeedingForced);
+            Log.Info("world feeding required=" + FeedingRequired);
             SaveSchema.Publish();
         }
 
         /// <summary>Live policy change, for the admin command when it lands.</summary>
-        public static void Force(bool forced)
+        public static void Force(bool required)
         {
             var zone = ZoneSystem.instance;
             if (zone == null) return;
 
-            if (forced) zone.SetGlobalKey(ForcedKey);
-            else zone.RemoveGlobalKey(ForcedKey);
+            if (required) zone.SetGlobalKey(RequiredKey);
+            else zone.RemoveGlobalKey(RequiredKey);
         }
     }
 }

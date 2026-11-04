@@ -172,7 +172,7 @@ local, occasional, and never a global announcement.
 Sulking is deliberately recoverable and never destructive — nothing is deleted, only misfiled. It is a
 consequence with a story, not a punishment.
 
-Feeding is the server owner's call. `2. Nisse / Force Feeding` is written into the world as a global
+Feeding is the server owner's call. `2. Nisse / Feeding Required` is written into the world as a global
 key on load: **on**, every nisse must be fed and nobody can switch it off; **off**, feeding is opt-in —
 a new bowl asks for nothing, and its owner turns the care loop on at that bowl with Alt-interact. Both
 the server's choice and the per-bowl choice are world state, so the server and its clients can never

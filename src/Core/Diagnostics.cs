@@ -20,14 +20,14 @@ namespace Husnisse.Core
                       " diagnostics_file=" + HusnisseConfig.WriteDiagnosticsFile.Value +
                       " interval=" + HusnisseConfig.RoundInterval.Value +
                       " radius=" + HusnisseConfig.ClaimRadius.Value +
-                      " forced_feeding=" + WorldPolicy.FeedingForced);
+                      " feeding_required=" + WorldPolicy.FeedingRequired);
 
             lines.Add("[compat] wardislove=" + (WardIsLoveCompat.Installed ? "installed" : "absent") +
                       " require_ward_ownership=" + HusnisseConfig.RequireWardOwnership.Value +
                       " quartermaster=" + (PluginGuards.QuartermasterInstalled() ? "installed" : "absent"));
 
             lines.Add("schema=" + SaveSchema.Read() +
-                      " feeding_forced=" + WorldPolicy.FeedingForced +
+                      " feeding_required=" + WorldPolicy.FeedingRequired +
                       " claims=" + ClaimRegistry.Count);
 
             foreach (var claim in ClaimRegistry.All())
