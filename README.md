@@ -177,8 +177,8 @@ Every player-facing string — the piece name and description, hover texts, refu
 the nisse's voice — comes from YAML. English ships embedded and is written to
 `BepInEx/config/Husnisse/localization/en.yaml` on first run; a translator copies it, changes `language`
 to one of Valheim's names (e.g. `German`) and translates the values. All `*.yaml` files in that folder
-are loaded and registered through Jotunn, so the game's own language setting selects them. A missing
-key falls back to the shipped English line rather than showing a token.
+are loaded, and the game's language setting (`GetSelectedLanguage`) selects the table at lookup time. A
+missing key falls back to the shipped English line rather than showing a token.
 
 A malformed file is reported in the log and skipped; it never takes the mod down. YamlDotNet is the one
 shipped DLL besides Husnisse itself.

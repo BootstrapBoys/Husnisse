@@ -90,7 +90,6 @@ namespace Husnisse
 
             BowlPrefab.Register();
             NissePrefab.Register();
-            Loc.Apply();
 
             Log.Info("content registered");
         }

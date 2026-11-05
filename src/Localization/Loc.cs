@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using BepInEx;
 using Husnisse.Core;
-using Jotunn.Managers;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -67,43 +66,26 @@ namespace Husnisse.Localization
         {
             LoadEmbedded();
             LoadFromDisk();
+
+            Log.Info("localisation loaded: " + string.Join(", ", new List<string>(ByLanguage.Keys).ToArray()) +
+                     " (check: " + T(BowlName) + ")");
         }
 
-        /// <summary>Registers every loaded language with Jotunn; call once the managers are ready.</summary>
-        public static void Apply()
-        {
-            try
-            {
-                foreach (var pair in ByLanguage)
-                {
-                    LocalizationManager.Instance.AddLocalization(pair.Key, pair.Value);
-                }
-                Log.Info("localisation registered: " + string.Join(", ", new List<string>(ByLanguage.Keys).ToArray()));
-            }
-            catch (Exception ex)
-            {
-                Log.Warn("localisation registration failed: " + ex.Message);
-            }
-        }
-
-        /// <summary>Looks up a token, falling back to the shipped English string.</summary>
+        /// <summary>Looks up a token in the selected language, falling back to the shipped English string.</summary>
         public static string T(string key, params object[] args)
         {
             var value = null as string;
+            var language = global::Localization.instance != null
+                ? global::Localization.instance.GetSelectedLanguage()
+                : "English";
 
-            try
+            Dictionary<string, string> table;
+            if (!string.IsNullOrEmpty(language) && ByLanguage.TryGetValue(language, out table))
             {
-                if (global::Localization.instance != null)
-                {
-                    value = global::Localization.instance.Localize(key);
-                }
-            }
-            catch
-            {
-                // fall through to the English table
+                table.TryGetValue(key, out value);
             }
 
-            if (string.IsNullOrEmpty(value) || value == key)
+            if (string.IsNullOrEmpty(value))
             {
                 _english.TryGetValue(key, out value);
             }
