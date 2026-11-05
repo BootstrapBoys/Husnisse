@@ -21,12 +21,18 @@ it does not stack".
 
 **Settled 2026-11-05.** The ledger is **editable** — it sets roles and assignments and can classify
 unknown containers, so it is a chest UI by another name; the chest dock's gating half is moot but its
-sort-unowned half survives. Ward handover is **per bowl**: a bowl inside a ward uses that ward's range,
-owner and permissions as the claim; a bowl outside every ward keeps the native radius and owner. Ward
-handover gives the ward owner and permitted players feed/teach/order rights. A second bowl inside a claim is refused, not relocated. The pickup filter is per claim, edited
-in the ledger. The nisse cannot be damaged and enemies ignore it. Station coverage is the claim radius.
-Ship unloading covers any container on a ship inside the claim. A save schema newer than the build
-understands stops rounds and leaves the data untouched.
+sort-unowned half survives.
+
+Ward handover is **per bowl**: a bowl inside a ward uses that ward's range, owner and permissions as the
+claim; a bowl outside every ward keeps the native radius and owner. One bowl per ward — the second is
+refused. Overlapping wards: the ward owned by the bowl's placer wins, otherwise the smallest containing
+ward. A ward arriving over an existing native bowl records the native state, then takes over
+immediately; a claim is refused wherever two claims would overlap, across sources. Ward handover gives
+the ward owner and permitted players feed/teach/order rights.
+
+The pickup filter is per claim, edited in the ledger. The nisse cannot be damaged and enemies ignore
+it. Station coverage is the claim radius. Ship unloading covers any container on a ship inside the
+claim. A save schema newer than the build understands stops rounds and leaves the data untouched.
 
 **Coexistence with QI.** QI answers the same storage questions Husnisse does, so two providers would
 double-count. When QI is loaded, Husnisse detects its GUID and does not register its contract provider;

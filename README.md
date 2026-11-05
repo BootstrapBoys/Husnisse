@@ -150,6 +150,12 @@ outside it — the native rule resumes from the last recorded radius and owner. 
 ward never consults WardIsLove at all. The full pack analysis lives in
 [`docs/COMPATIBILITY.md`](docs/COMPATIBILITY.md).
 
+Claims never overlap, whatever their source. A second bowl placed inside the same ward is refused, and
+a native claim may not overlap a ward claim. If a bowl sits inside two overlapping wards, the ward
+owned by the bowl's placer wins; if neither is theirs, the smallest containing ward. When a ward is
+placed over an existing native bowl — or the bowl is moved into one — the native radius and owner are
+recorded first, then the ward takes over immediately.
+
 ### Memory
 
 Per nisse, persisted in its own ZDO:
