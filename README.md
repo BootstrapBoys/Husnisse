@@ -156,6 +156,10 @@ owned by the bowl's placer wins; if neither is theirs, the smallest containing w
 placed over an existing native bowl — or the bowl is moved into one — the native radius and owner are
 recorded first, then the ward takes over immediately.
 
+Where a ward overlaps a native claim without containing its bowl, the ward's ground wins: the native
+nisse excludes any container that sits inside a ward it does not own, so two nisses never touch one
+chest.
+
 ### Memory
 
 Per nisse, persisted in its own ZDO:

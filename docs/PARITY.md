@@ -27,8 +27,10 @@ Ward handover is **per bowl**: a bowl inside a ward uses that ward's range, owne
 claim; a bowl outside every ward keeps the native radius and owner. One bowl per ward — the second is
 refused. Overlapping wards: the ward owned by the bowl's placer wins, otherwise the smallest containing
 ward. A ward arriving over an existing native bowl records the native state, then takes over
-immediately; a claim is refused wherever two claims would overlap, across sources. Ward handover gives
-the ward owner and permitted players feed/teach/order rights.
+immediately; a claim is refused wherever two claims would overlap, across sources. Where a ward overlaps
+a native claim without containing its bowl, the ward's ground wins: the native nisse excludes containers
+inside a ward it does not own. Ward handover gives the ward owner and permitted players
+feed/teach/order rights.
 
 The pickup filter is per claim, edited in the ledger. The nisse cannot be damaged and enemies ignore
 it. Station coverage is the claim radius. Ship unloading covers any container on a ship inside the
