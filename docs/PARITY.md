@@ -45,7 +45,7 @@ fiction — decided in 0.4, before the first consuming surface lands.
 | 3 | Storage rules: preferred destination, overflow chest, base groups, copy settings | 0.3 chest roles | **partial** — overflow and base groups land in 0.3 |
 | 4 | Supply permissions per chest (crafting, production, fuel, feed) | 0.5 pantries | **partial** — one permission today, four in QM |
 | 5 | Deposit All · sort inventory · sort chest · combine compatible stacks | 0.1 orders | **partial** — pocket stack merge is QI's, see QI #13 |
-| 6 | Pickup controls, per item type | 0.1 rounds; 0.2 type filter | **partial** — per claim, edited in the ledger |
+| 6 | Pickup controls, per item type | 0.3 type filter | **partial** — per claim, edited in the ledger |
 | 7 | Configurable stack sizes (no weight change) | 1.0 | scheduled |
 | 8 | Craft from storage | 0.4 | scheduled |
 | 9 | Building coverage through the deposit chest's area | 1.0 comfort coverage | scheduled — coverage equals the claim radius |
@@ -124,8 +124,8 @@ UI integration must no-op when headless, because Husnisse is server-required and
 
 | Version | Add to the ladder |
 |---|---|
-| 0.2 | provider seam · WardIsLove claim handover and last-known fallback · range preview · pickup type filter · parity harness starts |
-| 0.3 | teaching · ledger · chest roles · overflow chests and base groups · pocket merge |
+| 0.2 | provider seam · WardIsLove claim handover and last-known fallback · range preview · parity harness starts |
+| 0.3 | teaching · editable ledger (roles, assignments, classification, pickup type filter) · overflow chests and base groups · pocket merge |
 | 0.4 | contract (queries + `TryConsume`) · craft-from-claim · ExtraSlots/AdventureBackpacks sources · EpicLoot provider · AAABuildMenu · PlanBuild · DropMoreLoot deferral · stack rule · craft repaint |
 | 0.5 | machines · four-way supply permissions · mailbox decision |
 | 0.6 | multiplayer hardening · migration mode (or the separate tool) |

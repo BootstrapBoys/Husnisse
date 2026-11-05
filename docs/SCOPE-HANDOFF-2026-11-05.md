@@ -63,7 +63,7 @@ Beyond the existing ladder, ten gaps are now in scope:
 | Pocket stack merge on sort | sorting the player inventory merges identical stacks | 0.3 |
 | Craft-list repaint after craft | recipe list does not keep a stale unaffordable tint | 0.4 |
 | Stack rule relaxations | ignore crafter, ignored tags and EpicLoot components when stacking, but never quality/level/durability | 0.4 |
-| Pickup type filter | per-item-type auto-collect inside a claim | 0.2 |
+| Pickup type filter | per-item-type auto-collect inside a claim | 0.3 |
 | Claim range preview | show the radius before placing / on aim | 0.2 |
 | Overflow chests and base groups | routing fallback and separate bases, not one flat claim | 0.3 |
 
@@ -81,8 +81,8 @@ The ladder was written for a storage mod. It is now a storage **and integration*
 | 0.1 | bowl, claim, memory, sort rounds, orders | unchanged — still the go/no-go on the fiction |
 | 0.1.1 | — | *shipped*: playtest fix, the bowl no longer demands a forge |
 | 0.1.2 | legs | unchanged (renumbered from 0.1.1) |
-| 0.2 | teaching, ledger, chest roles | **claim ownership: provider seam, WardIsLove handover, last-known fallback**, range preview, pickup type filter; parity harness starts |
-| 0.3 | pantries, craft-from-claim | teaching, ledger, chest roles, overflow/base groups, pocket stack merge |
+| 0.2 | teaching, ledger, chest roles | **claim ownership: provider seam, WardIsLove handover, last-known fallback**, range preview; parity harness starts |
+| 0.3 | pantries, craft-from-claim | teaching, editable ledger (roles, assignments, classification, pickup filter), overflow/base groups, pocket stack merge |
 | 0.4 | machines | contract + craft-from-claim + the QI port (sources, provider, counts, costs, stack rules, repaint) |
 | 0.5 | wards, multiplayer, migration | machines, four-way supply permissions, mailbox decision |
 | 0.6 | — | multiplayer hardening, migration route |
@@ -156,9 +156,9 @@ is chosen and tested on a copied world.
    this handoff makes sense if feeding a spirit to sort your base is not fun.
 2. **0.1.2 legs**, only after 0.1 passes.
 3. **0.2 claim ownership**: provider seam, WardIsLove full handover with last-known fallback, range
-   preview, pickup type filter. The parity harness starts here.
-4. **0.3 teaching, ledger, chest roles**: teaching by demonstration, ledger, roles, overflow/base
-   groups, pocket stack merge.
+   preview. The parity harness starts here.
+4. **0.3 teaching and the ledger**: teaching by demonstration, editable ledger (roles, assignments,
+   container classification, pickup filter), overflow/base groups, pocket stack merge.
 5. **0.4 the contract**: craft-from-claim and `TryConsume`, ExtraSlots and AdventureBackpacks as
    sources, EpicLoot provider, AAABuildMenu counts, PlanBuild costs, craft repaint, DropMoreLoot,
    stack rules. This is the biggest single release in the project.
