@@ -1,4 +1,5 @@
 using Husnisse.Claims;
+using Husnisse.Localization;
 using Husnisse.Orders;
 using UnityEngine;
 
@@ -19,12 +20,12 @@ namespace Husnisse.Creature
 
         public string GetHoverName()
         {
-            return "Nisse";
+            return Loc.T(Loc.HandName);
         }
 
         public string GetHoverText()
         {
-            return "[E] take my things";
+            return Loc.T(Loc.HandHover);
         }
 
         public float GetHoverOffset()
@@ -42,7 +43,7 @@ namespace Husnisse.Creature
             var claim = ClaimRegistry.Find(_actor.BowlId);
             if (claim == null)
             {
-                player.Message(MessageHud.MessageType.Center, "The nisse has no bowl.");
+                player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderNoClaim));
                 return true;
             }
 

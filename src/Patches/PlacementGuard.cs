@@ -3,6 +3,7 @@ using Husnisse.Bowl;
 using Husnisse.Claims;
 using Husnisse.Compat;
 using Husnisse.Config;
+using Husnisse.Localization;
 using UnityEngine;
 
 namespace Husnisse.Patches
@@ -25,7 +26,7 @@ namespace Husnisse.Patches
 
             if (ClaimRegistry.OverlapsAny(position, HusnisseConfig.ClaimRadius.Value))
             {
-                __instance.Message(MessageHud.MessageType.Center, "Another nisse already claims this ground.");
+                __instance.Message(MessageHud.MessageType.Center, Loc.T(Loc.PlaceOverlap));
                 return false;
             }
 
@@ -33,7 +34,7 @@ namespace Husnisse.Patches
 
             if (HusnisseConfig.RespectWards.Value && !WardIsLoveCompat.IsPermitted(playerId, position))
             {
-                __instance.Message(MessageHud.MessageType.Center, "You are not permitted to build here.");
+                __instance.Message(MessageHud.MessageType.Center, Loc.T(Loc.PlaceWard));
                 return false;
             }
 
@@ -42,7 +43,7 @@ namespace Husnisse.Patches
                 long wardOwner;
                 if (WardIsLoveCompat.TryGetWardOwner(position, out wardOwner) && wardOwner != 0L && wardOwner != playerId)
                 {
-                    __instance.Message(MessageHud.MessageType.Center, "Another player's ward holds this ground.");
+                    __instance.Message(MessageHud.MessageType.Center, Loc.T(Loc.PlaceOtherWard));
                     return false;
                 }
             }

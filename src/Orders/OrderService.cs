@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Husnisse.Claims;
 using Husnisse.Config;
 using Husnisse.Creature;
+using Husnisse.Localization;
 using Husnisse.Memory;
 using Husnisse.Rounds;
 using Husnisse.Storage;
@@ -53,7 +54,7 @@ namespace Husnisse.Orders
             }
 
             player.Message(MessageHud.MessageType.Center,
-                moved > 0 ? "The nisse takes " + moved + " stack(s)." : "The nisse has nowhere to put that.");
+                moved > 0 ? Loc.T(Loc.OrderTakes, moved) : Loc.T(Loc.OrderNowhere));
             return true;
         }
 
@@ -94,7 +95,7 @@ namespace Husnisse.Orders
             }
 
             player.Message(MessageHud.MessageType.Center,
-                moved > 0 ? "The nisse files " + moved + " stack(s)." : "The nisse leaves it as it is.");
+                moved > 0 ? Loc.T(Loc.OrderFiles, moved) : Loc.T(Loc.OrderLeaves));
             return true;
         }
 
@@ -117,32 +118,32 @@ namespace Husnisse.Orders
 
             if (claim == null || claim.Bowl == null)
             {
-                if (player != null) player.Message(MessageHud.MessageType.Center, "No nisse claims this place.");
+                if (player != null) player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderNoClaim));
                 return false;
             }
 
             if (claim.Suppressed)
             {
-                if (player != null) player.Message(MessageHud.MessageType.Center, "This nisse refuses to settle here.");
+                if (player != null) player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderRefuses));
                 return false;
             }
 
             if (player != null && Vector3.Distance(player.transform.position, claim.Center) > claim.Radius + 5f)
             {
-                player.Message(MessageHud.MessageType.Center, "The nisse is not nearby.");
+                player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderTooFar));
                 return false;
             }
 
             if (!claim.Bowl.IsFed)
             {
-                if (player != null) player.Message(MessageHud.MessageType.Center, "The nisse is not working. The bowl is empty.");
+                if (player != null) player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderNotWorking));
                 return false;
             }
 
             nisse = NisseFactory.EnsureNisse(claim.Bowl);
             if (nisse != null) return true;
 
-            if (player != null) player.Message(MessageHud.MessageType.Center, "The nisse is not here.");
+            if (player != null) player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderNotHere));
             return false;
         }
     }

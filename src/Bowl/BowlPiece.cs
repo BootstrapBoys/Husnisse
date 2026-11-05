@@ -3,6 +3,7 @@ using Husnisse.Config;
 using Husnisse.Compat;
 using Husnisse.Core;
 using Husnisse.Creature;
+using Husnisse.Localization;
 using Husnisse.Util;
 using UnityEngine;
 
@@ -158,7 +159,7 @@ namespace Husnisse.Bowl
                 if (SulkLevel > 0)
                 {
                     if (_zdo != null) _zdo.Set(ZdoKeys.BowlSulk, 0);
-                    if (_claim != null) NisseVoice.Say(_claim, "The nisse accepts the offering.", true);
+                    if (_claim != null) NisseVoice.Say(_claim, Loc.T(Loc.VoiceForgive), true);
                 }
 
                 Log.Info($"bowl fed with {item.m_shared.m_name}: satiety={Satiety:0} mood={Mood:0}");
@@ -187,23 +188,23 @@ namespace Husnisse.Bowl
 
             if (!RequiresFeeding)
             {
-                Message(user, "This nisse is content without offerings.");
+                Message(user, Loc.T(Loc.BowlNoFeed));
                 return true;
             }
 
             if (!IsOwner())
             {
-                Message(user, "The nisse's bowl is not yours to fill.");
+                Message(user, Loc.T(Loc.BowlNotYours));
                 return true;
             }
 
             if (FeedFrom(user))
             {
-                Message(user, "The nisse takes the offering.");
+                Message(user, Loc.T(Loc.BowlFed));
                 return true;
             }
 
-            Message(user, Satiety > 0f ? "The bowl is full enough." : "The nisse needs food.");
+            Message(user, Satiety > 0f ? Loc.T(Loc.BowlContent) : Loc.T(Loc.BowlNeedsFood));
             return true;
         }
 
@@ -214,13 +215,13 @@ namespace Husnisse.Bowl
 
             if (policy)
             {
-                Message(user, "This server requires every nisse to be fed.");
+                Message(user, Loc.T(Loc.BowlServerForced));
                 return true;
             }
 
             if (!IsOwner())
             {
-                Message(user, "Only the player who placed this bowl may change it.");
+                Message(user, Loc.T(Loc.BowlOnlyOwner));
                 return true;
             }
 
@@ -228,7 +229,7 @@ namespace Husnisse.Bowl
 
             var next = !_zdo.GetBool(ZdoKeys.BowlFeeding, false);
             _zdo.Set(ZdoKeys.BowlFeeding, next);
-            Message(user, next ? "The nisse will expect offerings." : "The nisse will work without offerings.");
+            Message(user, Loc.T(next ? Loc.BowlOfferOn : Loc.BowlOfferOff));
             return true;
         }
 
@@ -239,18 +240,24 @@ namespace Husnisse.Bowl
 
         public string GetHoverName()
         {
-            return "Porridge Bowl";
+            return Loc.T(Loc.BowlName);
         }
 
         public string GetHoverText()
         {
+            var name = Loc.T(Loc.BowlName);
+
             if (!RequiresFeeding)
             {
-                return "Porridge Bowl\nThis nisse asks for nothing.\n[Alt] require offerings";
+                return name + "\n" + Loc.T(Loc.BowlAltRequire);
             }
 
-            var text = string.Format("Porridge Bowl\nSatiety {0:0}/100   Mood {1:0}/100\n[E] offer food", Satiety, Mood);
-            if (!WorldPolicy.FeedingRequired) text += "\n[Alt] no offerings needed";
+            var body = Satiety > 0f
+                ? string.Format(Loc.T(Loc.BowlHover), Satiety, Mood)
+                : Loc.T(Loc.BowlHoverEmpty);
+
+            var text = name + "\n" + body;
+            if (!WorldPolicy.FeedingRequired) text += Loc.T(Loc.BowlAltOff);
             return text;
         }
 

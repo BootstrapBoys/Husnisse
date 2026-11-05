@@ -1,5 +1,6 @@
 using Husnisse.Config;
 using Husnisse.Core;
+using Husnisse.Localization;
 using Jotunn.Configs;
 using Jotunn.Entities;
 using Jotunn.Managers;
@@ -41,14 +42,14 @@ namespace Husnisse.Bowl
                 return;
             }
 
-            piece.m_name = "Porridge Bowl";
-            piece.m_description = "A nisse's home. Keep it fed and it keeps your base.";
+            piece.m_name = Loc.T(Loc.BowlName);
+            piece.m_description = Loc.T(Loc.BowlDesc);
             prefab.AddComponent<BowlPiece>();
 
             var config = new PieceConfig
             {
-                Name = "Porridge Bowl",
-                Description = "A nisse's home. Keep it fed and it keeps your base.",
+                Name = Loc.T(Loc.BowlName),
+                Description = Loc.T(Loc.BowlDesc),
                 PieceTable = "Hammer",
                 Category = "Misc",
                 Enabled = true,

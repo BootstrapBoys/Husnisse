@@ -9,5 +9,8 @@ export PATH="$DOTNET_ROOT:$PATH"
 dotnet build Husnisse.csproj -c Release
 mkdir -p artifacts/debug
 cp bin/Release/net48/Husnisse.dll artifacts/debug/Husnisse.dll
+if [ -f bin/Release/net48/YamlDotNet.dll ]; then
+  cp bin/Release/net48/YamlDotNet.dll artifacts/debug/YamlDotNet.dll
+fi
 
 echo "artifacts/debug/Husnisse.dll"

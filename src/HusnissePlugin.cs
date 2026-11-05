@@ -5,6 +5,7 @@ using Husnisse.Compat;
 using Husnisse.Core;
 using Husnisse.Bowl;
 using Husnisse.Creature;
+using Husnisse.Localization;
 using Husnisse.Rounds;
 using Jotunn.Managers;
 
@@ -42,6 +43,8 @@ namespace Husnisse
 
             HusnisseConfig.Bind(Config, PluginGUID);
             Log.DebugEnabled = HusnisseConfig.DebugLogging.Value;
+
+            Loc.Initialize();
 
             new Harmony(PluginGUID).PatchAll();
             RegisterStatusCommand();
@@ -87,6 +90,7 @@ namespace Husnisse
 
             BowlPrefab.Register();
             NissePrefab.Register();
+            Loc.Apply();
 
             Log.Info("content registered");
         }

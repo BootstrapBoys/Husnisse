@@ -171,6 +171,18 @@ Two direct commands, both still the nisse's work:
 Both refuse when the nisse is absent, when the bowl is empty and feeding is required, or when the
 player is outside the claim — and they say which. Combine stacks is not implemented yet.
 
+### Localisation
+
+Every player-facing string — the piece name and description, hover texts, refusals, order feedback and
+the nisse's voice — comes from YAML. English ships embedded and is written to
+`BepInEx/config/Husnisse/localization/en.yaml` on first run; a translator copies it, changes `language`
+to one of Valheim's names (e.g. `German`) and translates the values. All `*.yaml` files in that folder
+are loaded and registered through Jotunn, so the game's own language setting selects them. A missing
+key falls back to the shipped English line rather than showing a token.
+
+A malformed file is reported in the log and skipped; it never takes the mod down. YamlDotNet is the one
+shipped DLL besides Husnisse itself.
+
 ### The bowl
 
 The home piece. It stores food, satiety and mood. Mood decays with time and work; food restores it.

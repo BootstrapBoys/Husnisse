@@ -73,6 +73,11 @@
       <Private>false</Private>
     </Reference>
 
+    <Reference Include="assembly_guiutils">
+      <HintPath>$(ValheimInstallDir)/valheim_Data/Managed/assembly_guiutils.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
     <Reference Include="Jotunn">
       <HintPath>$(JotunnDir)/Jotunn.dll</HintPath>
       <Private>false</Private>
@@ -80,6 +85,11 @@
     <Reference Include="ConditionalConfigSync">
       <HintPath>$(ConditionalConfigSyncDir)/ConditionalConfigSync.dll</HintPath>
       <Private>false</Private>
+    </Reference>
+
+    <Reference Include="YamlDotNet">
+      <HintPath>$(MSBuildThisFileDirectory)refs/mods/YamlDotNet.dll</HintPath>
+      <Private>true</Private>
     </Reference>
   </ItemGroup>
 
