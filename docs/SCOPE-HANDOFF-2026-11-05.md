@@ -99,9 +99,14 @@ roughly doubles the mod. Plan for it as a module, not as a handful of patches.
   (`TryConsume`) is not exempt and needs a delivery fiction before 0.4. The one documented exception
   is the pockets-first spend order.
 - **Ownership hands over, it does not stack.** Every function has a native implementation; an
-  installed mod that owns a function replaces it, and the two never run together. The native path
-  resumes from the last recorded state when the owner disappears. Optional integrations are declared
-  soft dependencies for load order. See `README.md`, "Ownership hands over, it does not stack".
+  installed mod that owns a function replaces it, and the two never run together. For claims this is
+  decided per bowl: only a bowl standing inside a WardIsLove ward uses the ward as its claim; a bowl
+  outside every ward keeps the native radius and owner. The native path resumes from the last
+  recorded state when the owner disappears. Optional integrations are declared soft dependencies for
+  load order. See `README.md`, "Ownership hands over, it does not stack".
+- **QI coexistence stays guarded.** Even though testing runs without QI, when QI is loaded Husnisse
+  does not register its contract provider, so two storage answers never coexist. Diagnostics print
+  `provider=qi|native`.
 - **Standalone posture.** Jotunn + ConditionalConfigSync + YamlDotNet (and Newtonsoft from the game
   folder). No dependency on Housecarl, QI, or the server pack. The mod must load into a vanilla+
   profile.

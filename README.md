@@ -49,7 +49,7 @@ and not a parallel copy: the other mod answers, we consume or step aside.
 
 | Function | Native floor | Can take ownership | What changes |
 |---|---|---|---|
-| Claim authority | bowl claim: radius, owner, permits | **WardIsLove** | the ward's range, owner and permitted players *become* the claim; the bowl keeps no radius |
+| Claim authority | bowl claim: radius, owner, permits | **WardIsLove**, only for a bowl standing inside a ward | inside a ward: the ward's range, owner and permitted players become the claim; outside: the native radius and owner stand |
 | Storage sources | containers inside the claim | **ExtraSlots**, **AdventureBackpacks** | their slots and backpack join the contract's source list |
 | Inventory provider | Husnisse's own query | **EpicLoot** | EpicLoot's provider answers; Husnisse refuses to double-register beside it |
 | Stack policy | native merge rules | **DropMoreLoot** | stack sizes and merging defer to it |
@@ -140,12 +140,14 @@ A nisse claims a radius around its bowl (the home piece). Claims do not overlap,
 placed inside an existing claim is refused outright — the piece is not placed, so no materials are
 wasted. Base groups emerge from separate claims without a "group" setting.
 
-On a native claim, the player who placed the bowl feeds, teaches and gives orders; everyone else can
-read the ledger. When WardIsLove owns the claim (0.2), the ward's rules replace that: the ward owner
-and its permitted players can feed, teach and give orders, and anyone with ward access can read the
-ledger. A bowl inside a ward its owner cannot use refuses to settle, and an optional stricter mode
-limits a nisse to wards its own player placed. If the ward disappears, the native rule resumes from
-the last recorded range and owner. The full pack analysis lives in
+Authority is decided **per bowl, by where it stands**. Outside any ward, the native claim applies: the
+player who placed the bowl feeds, teaches and gives orders, and everyone else can read the ledger.
+Inside a WardIsLove ward (0.2), that ward's range, owner and permitted players become the claim: the
+ward owner and its permitted players can feed, teach and give orders, and anyone with ward access can
+read the ledger. A bowl inside a ward its owner cannot use refuses to settle, and an optional stricter
+mode limits a nisse to wards its own player placed. If the ward disappears — or the bowl is moved
+outside it — the native rule resumes from the last recorded radius and owner. A bowl outside every
+ward never consults WardIsLove at all. The full pack analysis lives in
 [`docs/COMPATIBILITY.md`](docs/COMPATIBILITY.md).
 
 ### Memory

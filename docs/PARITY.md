@@ -21,8 +21,9 @@ it does not stack".
 
 **Settled 2026-11-05.** The ledger is **editable** — it sets roles and assignments and can classify
 unknown containers, so it is a chest UI by another name; the chest dock's gating half is moot but its
-sort-unowned half survives. Ward handover gives the ward owner and permitted players feed/teach/order
-rights. A second bowl inside a claim is refused, not relocated. The pickup filter is per claim, edited
+sort-unowned half survives. Ward handover is **per bowl**: a bowl inside a ward uses that ward's range,
+owner and permissions as the claim; a bowl outside every ward keeps the native radius and owner. Ward
+handover gives the ward owner and permitted players feed/teach/order rights. A second bowl inside a claim is refused, not relocated. The pickup filter is per claim, edited
 in the ledger. The nisse cannot be damaged and enemies ignore it. Station coverage is the claim radius.
 Ship unloading covers any container on a ship inside the claim. A save schema newer than the build
 understands stops rounds and leaves the data untouched.
@@ -57,7 +58,7 @@ fiction — decided in 0.4, before the first consuming surface lands.
 | 15 | Searchable chest settings, range previews, controller navigation | 0.2 range preview; 0.3 ledger | **partial** — preview lands in 0.2 |
 | 16 | Mailboxes and the postal system (`Quartermaster.outgoingMail`, `PostalDirectory`) | — | **decision** — keep or drop, nothing in the ladder |
 | 17 | Shared-chest handshake and ownership revision | 0.6 multiplayer | scheduled |
-| 18 | Ward ownership and access filtering | 0.2 — WardIsLove handover | **scheduled** — the ward becomes the claim |
+| 18 | Ward ownership and access filtering | 0.2 — WardIsLove handover | **scheduled** — only for a bowl inside a ward |
 | 19 | Claim / revision semantics for chest ZDOs | 0.6 migration | scheduled |
 | 20 | Forget / remembered / forgotten lists | 0.2 teaching | replaced by demonstration |
 
@@ -73,7 +74,7 @@ fiction — decided in 0.4, before the first consuming surface lands.
 | 6 | EpicLoot: registered inventory provider, and refusing to double-register | 0.4 | **gap** |
 | 7 | PlanBuild: blueprint cost counts storage | 0.4 | **gap** |
 | 8 | DropMoreLoot: defer stack sizes to it when installed | 0.4 | **gap** |
-| 9 | WardIsLove: ward ownership and host range | 0.2 — handover | **scheduled** — the ward becomes the claim |
+| 9 | WardIsLove: ward ownership and host range | 0.2 — handover | **scheduled** — only for a bowl inside a ward |
 | 10 | Chest dock: gate "Chest Config", force-sort an unowned chest | 0.3 ledger | **decision** — gating is moot without QM's menu; the sort-unowned half survives as a ledger order |
 | 11 | Forget override (delete from both lists) | — | **moot** |
 | 12 | Mail watchdog: clear stale queued-mail links | 0.5 | **gap** if mailboxes are kept |
