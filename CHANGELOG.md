@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1
+
+- The bowl no longer demands a forge. It inherited the cauldron's crafting-station requirement, so its recipe was invisible unless you stood at a forge; it is now a station-free piece you can build anywhere.
+- The registration log states the bowl's category, crafting station, requirement count and piece table; `husnisse_status` reports whether the piece exists in the object database.
+
 ## 0.1.0
 
 - Porridge bowl: a placeable home piece that holds satiety, mood and the claim radius. The clone strips CookingStation, CraftingStation and Container, so the bowl is only ever a bowl.

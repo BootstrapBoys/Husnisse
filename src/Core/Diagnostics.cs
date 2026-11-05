@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Husnisse.Claims;
 using Husnisse.Config;
 using Husnisse.Core;
+using Husnisse.Bowl;
 using Husnisse.Storage;
 using Husnisse.Compat;
 using Husnisse.Creature;
@@ -29,7 +30,8 @@ namespace Husnisse.Core
             lines.Add("schema=" + SaveSchema.Read() +
                       " feeding_required=" + WorldPolicy.FeedingRequired +
                       " claims=" + ClaimRegistry.Count +
-                      " nisses=" + Object.FindObjectsByType<NisseActor>(FindObjectsSortMode.None).Length);
+                      " nisses=" + Object.FindObjectsByType<NisseActor>(FindObjectsSortMode.None).Length +
+                      " bowl_piece=" + BowlPieceState());
 
             foreach (var claim in ClaimRegistry.All())
             {
@@ -61,6 +63,26 @@ namespace Husnisse.Core
             }
 
             return lines;
+        }
+
+        private static string BowlPieceState()
+        {
+            var database = ObjectDB.instance;
+            if (database == null) return "no-objectdb";
+
+            var field = typeof(ObjectDB).GetField("m_pieces",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public |
+                System.Reflection.BindingFlags.NonPublic);
+            var pieces = field != null ? field.GetValue(database) as System.Collections.IEnumerable : null;
+            if (pieces == null) return "no-list";
+
+            foreach (var entry in pieces)
+            {
+                var piece = entry as Piece;
+                if (piece != null && piece.name == BowlPrefab.PrefabName) return "present";
+            }
+
+            return "missing";
         }
     }
 }

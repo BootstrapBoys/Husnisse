@@ -56,8 +56,17 @@ namespace Husnisse.Bowl
             };
             config.AddRequirement("Wood", 5, true);
 
+            // The cauldron demands a forge; a porridge bowl belongs anywhere in the house.
+            piece.m_craftingStation = null;
+
             var custom = new CustomPiece(prefab, false, config);
             PieceManager.Instance.AddPiece(custom);
+
+            Log.Info("bowl fields: category=" + piece.m_category +
+                     " station=" + (piece.m_craftingStation != null ? piece.m_craftingStation.name : "none") +
+                     " resources=" + (piece.m_resources == null ? 0 : piece.m_resources.Length) +
+                     " enabled=" + piece.m_enabled +
+                     " table=" + config.PieceTable);
 
             _registered = true;
             Log.Info("bowl registered as " + PrefabName);
