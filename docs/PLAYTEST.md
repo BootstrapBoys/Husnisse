@@ -7,7 +7,7 @@ only when the expected result happened; anything else is a finding, including "i
 
 - [ ] `BepInEx/plugins/BootstrapBoys-Husnisse/` contains **Husnisse.dll and YamlDotNet.dll**. Without the
       second the plugin will not load.
-- [ ] `LogOutput.log` shows `Husnisse 0.1.0 starting`, `localisation loaded: English (check: Porridge Bowl)`,
+- [ ] `LogOutput.log` shows `Husnisse 0.1.1 starting`, `localisation loaded: English (check: Porridge Bowl)`,
       `bowl registered`, `creature registered`, `content registered` — and no red lines from us.
 - [ ] `BepInEx/config/Husnisse/localization/en.yaml` exists after the first run.
 

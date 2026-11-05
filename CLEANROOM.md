@@ -87,6 +87,12 @@ Every requirement in the parity table, traced to where it came from.
 | Config section layout | Our own design. Numbered sections are a pack-wide habit (`1. General`, `2. Debug`, …), not copied from Quartermaster |
 | Wards block access to containers | Observed behaviour, plus `CONFLICTS.md` notes on ward supply |
 
+**Our own code.** `Quartermaster_Integrations` is ours, so its behaviour and code may be reused in
+Husnisse; when a file is lifted, record the source file and date in this table. QI's patches were
+written against Quartermaster's API, so every lifted file must be audited for QM type names, ZDO keys
+and config keys before it enters this tree. Ownership makes the copy lawful; it does not make a
+reference to Quartermaster's surface clean-room.
+
 The **creature model itself has no source in Quartermaster**. It comes from the folklore and from the
 design constraint in `README.md` — nothing moves unless the nisse moves it. That is the part that makes
 this a different mod rather than a reimplementation, and it is the part we should be able to defend

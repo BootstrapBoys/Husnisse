@@ -31,12 +31,43 @@ That single rule generates the whole design:
 The law governs **storage**, not hands. It says no item moves around the base unless the nisse moves
 it — it does not claim the player cannot spend what they are already holding.
 
-This matters at 0.3, when craft-from-claim arrives. The storage contract fixes the spend order as
+This matters at 0.4, when craft-from-claim arrives. The storage contract fixes the spend order as
 pockets → extra slots → equipped backpack → scoped storage, so a craft debits the player's own
 inventory before it touches a chest. That is not the nisse working: the nisse supplies only the leg
 that comes out of its claim, and the player's pockets are spent by the player's own craft action.
 Put plainly: **the nisse moves what is in the base; the player moves what is on the player.** Stating
 the exception here keeps the law from being quietly broken the first time a craft succeeds.
+
+## Ownership hands over, it does not stack
+
+Every function Husnisse needs has a native implementation that works with no other mod installed. That
+is the floor, and it never stops existing.
+
+When a supported mod is present and it **owns** that function, Husnisse hands the function over. There
+is exactly one authority per function, never two. A handed-over function is not a patch on top of ours
+and not a parallel copy: the other mod answers, we consume or step aside.
+
+| Function | Native floor | Can take ownership | What changes |
+|---|---|---|---|
+| Claim authority | bowl claim: radius, owner, permits | **WardIsLove** | the ward's range, owner and permitted players *become* the claim; the bowl keeps no radius |
+| Storage sources | containers inside the claim | **ExtraSlots**, **AdventureBackpacks** | their slots and backpack join the contract's source list |
+| Inventory provider | Husnisse's own query | **EpicLoot** | EpicLoot's provider answers; Husnisse refuses to double-register beside it |
+| Stack policy | native merge rules | **DropMoreLoot** | stack sizes and merging defer to it |
+| UI readouts | none — we do not draw panels | **AAA Crafting**, **AAABuildMenu**, **PlanBuild**, **MyLittleUI** | they query us; this is consumption, not handover |
+| Config locking | BepInEx config | **ConditionalConfigSync** (hard) | values are locked server-side |
+
+Two rules make this safe:
+
+- **Last-known fallback.** Before a function is handed over, Husnisse records the state it would need
+  to resume. If the authority disappears — ward removed, mod uninstalled — native ownership resumes
+  from that snapshot (for a claim: last known range and owner), rather than the bowl going dormant or
+  the claim dissolving.
+- **Soft means declared.** Every optional integration is a declared `SoftDependency` so load order is
+  deterministic, and every one is absent-safe: missing mod, missing assembly, missing state, no error.
+
+Whether a surface is handover-eligible is decided per integration when it lands. The test is whether
+the other mod can *answer* the question, not merely display it. A build menu that shows counts is a
+consumer; a ward that defines who may build is an owner.
 
 ## The creature
 
@@ -111,7 +142,7 @@ groups emerge without a "group" setting.
 Only the player who placed the bowl can feed or teach that nisse; everyone else can read the ledger.
 WardIsLove permissions filter every container from 0.1: a bowl inside a ward its owner cannot use
 refuses to settle, and an optional stricter mode limits a nisse to wards its own player placed. The
-rest of the ward integration lands at 0.5. The placer rule costs almost nothing and prevents the
+rest of the ward integration lands at 0.2. The placer rule costs almost nothing and prevents the
 obvious grief on a shared world from day one. The full pack analysis lives in
 [`docs/COMPATIBILITY.md`](docs/COMPATIBILITY.md).
 
@@ -234,6 +265,13 @@ and it does not require Quartermaster to be absent at install time.
 
 ## Relationship to Quartermaster_Integrations
 
+> **Revised 2026-11-05.** QI stays a live, independently maintained package — it is still developed
+> and used until Husnisse is finished, and this plan makes no changes to it. Husnisse's finished
+> scope is a complete replacement for **both** Quartermaster and QI: the QI integrations are
+> reimplemented here from 0.4 onward, and QI leaves the pack at parity. The
+> three-reasons table below still explains why the merge cannot happen at 0.1; the "retire to a shim"
+> column no longer applies. See `docs/SCOPE-HANDOFF-2026-11-05.md` and `docs/PARITY.md`.
+
 QI exists because Quartermaster has no API. If Husnisse replaces Quartermaster, QI's reason to exist goes
 with it — and that is the end state worth aiming at: the storage answer should live in the mod that owns
 the storage.
@@ -242,12 +280,12 @@ the storage.
 
 | Merge at 0.1 | Consequence |
 |---|---|
-| **Parity gap** | QI's job is making storage visible to craft UIs. Husnisse cannot do that until 0.3 (craft-from-claim). Folding QI in early leaves the pack with no working bridge for two releases. |
+| **Parity gap** | QI's job is making storage visible to craft UIs. Husnisse cannot do that until 0.4 (craft-from-claim). Folding QI in early leaves the pack with no working bridge for three releases. |
 | **Deployment** | QI is client-only. Husnisse is server-required. A merged plugin is server + clients, and every client-only UI patch has to no-op when headless. |
 | **Focus** | 0.1 exists to answer one question: is feeding a spirit to get your base sorted fun? Nine integrations and a public API are noise until that answer is yes. |
 
 What makes the merge attractive *later* is that **QI is our code**. Its nine integrations are the one
-thing in this whole project we may lift wholesale, because we own the copyright. At 0.3 the port is a
+thing in this whole project we may lift wholesale, because we own the copyright. At 0.4 the port is a
 data-source swap: the patch targets (AAA, MyLittleUI, EpicLoot, PlanBuild, ExtraSlots, AdventureBackpacks)
 all stay the same — only the query behind them changes from Quartermaster's storage to the nisse's claim.
 
@@ -256,11 +294,12 @@ all stay the same — only the query behind them changes from Quartermaster's st
 | Version | Storage API | QI |
 |---|---|---|
 | 0.1 | none | unchanged, still bridging Quartermaster |
-| 0.2 | read-only: `Count`, `CanAfford` within a claim, version handshake | unchanged |
-| 0.3 | adds `TryConsume`; craft-from-claim works | integrations ported into Husnisse; QI ships a final release pointing here, then unlists |
+| 0.2 | none — claim ownership and the provider seam only | unchanged |
+| 0.3 | none — teaching, ledger, roles | unchanged |
+| 0.4 | read-only `Count`/`CanAfford` plus `TryConsume`; craft-from-claim works | integrations ported into Husnisse; QI ships a final release pointing here, then unlists |
 | 1.0 | stable surface | retired to a shim or gone |
 
-0.3 is cheaper than it looked. Container contents already replicate inside the container's ZDO, so
+0.4 is cheaper than it looked. Container contents already replicate inside the container's ZDO, so
 `Count` and `CanAfford` are a client-side scan of instantiated containers; only `TryConsume` needs
 server-side work. No custom sync layer, no streaming design.
 
@@ -278,7 +317,7 @@ order, spend order, ward filtering, all-or-nothing spending, reentrancy — that
 - **Not a port.** See `CLEANROOM.md`. No Quartermaster code, no decompiled dumps in the tree, no
   line-by-line translation.
 - **Not a drop-in migration at v1.** Quartermaster's deposit chests are its own prefabs; removing it
-  removes them. A migration tool arrives at 0.5 and reads runtime ZDO data only, never its source.
+  removes them. A migration tool arrives at 0.6 and reads runtime ZDO data only, never its source.
 - **Not a Housecarl module.** Different domain, different users, server-side. It is its own project and
   its own release.
 
@@ -287,12 +326,14 @@ order, spend order, ward filtering, all-or-nothing spending, reentrancy — that
 | Version | Scope | Why |
 |---|---|---|
 | **0.1** | Creature (a nisse), bowl, claim, memory, sort-only rounds, Empty Pockets and Tidy orders. **No navigation** — it fades between bowl and chest | Proves the fiction is playable. If feeding a spirit to get items sorted is not fun, stop here. |
-| **0.1.1** | "Legs": room-scale and outdoor walking, fade across thresholds | Only after 0.1 playtests well. Movement changes the feel without changing the loop. |
-| **0.2** | Teaching by demonstration, ledger panel, chest roles, MyLittleUI-aware readouts | The signature mechanic; needs 0.1's memory to build on. |
-| **0.3** | Pantries and craft-from-storage; AAA Crafting reads the claim. Counts come straight from container ZDOs — no sync layer | First feature that touches another mod's flow; needs the supply rules settled. |
-| **0.4** | Machines: fuel, feed, collect, caps | The nightly round earns its keep. |
-| **0.5** | Ward integration, multiplayer hardening, Quartermaster ZDO migration | Server authority and permissions, before anyone runs this on a shared world. Migration reads runtime data only, which the clean-room rules already allow. |
-| **1.0** | Stack sizes, ship unloading, comfort-based coverage | Parity, once the creature model is proven. |
+| **0.1.1** | *Shipped.* Playtest fix: the bowl no longer demands a forge, and registration states its category, station and table | The build the first playtest runs on. |
+| **0.1.2** | "Legs": room-scale and outdoor walking, fade across thresholds | Only after 0.1 playtests well. Movement changes the feel without changing the loop. |
+| **0.2** | **Claim ownership**: provider seam, WardIsLove full handover with last-known fallback, range preview, pickup type filter, claim diagnostics. Parity harness begins | Claims are foundational — teaching and roles must be built on the claim that actually governs the base, not a radius we replace at 0.6. |
+| **0.3** | Teaching by demonstration, ledger panel, chest roles, overflow chests and base groups, pocket stack merge | The signature mechanic, plus the routing rules it teaches. Needs 0.2's claim authority. |
+| **0.4** | **The contract**: craft-from-claim and `TryConsume`, ExtraSlots and AdventureBackpacks as sources, EpicLoot as provider, AAABuildMenu counts, PlanBuild costs, craft-list repaint, DropMoreLoot deferral, stack rules | The biggest release; the QI port lands here, against a harness that already exists. |
+| **0.5** | Machines: fuel, feed, collect, caps; four-way supply permissions; mailbox decision | The nightly round earns its keep. Mail is decided before migration touches world data. |
+| **0.6** | Multiplayer hardening, Quartermaster ZDO migration — only after a route is chosen and proven on a copied world | The swap is atomic; migration is the one thing that cannot be promised in advance. |
+| **1.0** | Stack sizes, ship unloading, comfort-based coverage; parity sign-off against `PARITY.md` | Parity, surface by surface, on a copied world. |
 
 ## Risks
 
@@ -302,10 +343,11 @@ order, spend order, ward filtering, all-or-nothing spending, reentrancy — that
 - **Pathing is not free, and not universal.** Measured: 32 m navmesh tiles rebuild at most once per
   10 s, the first path request in a fresh tile always fails, and a 2 m doorway is not passable at all.
   The poke-ahead/retry/fade rule is the mitigation. The 200-container benchmark still has to happen
-  before 0.4.
-- **Dependency surface.** Jötunn on server and clients, plus ConditionalConfigSync. Both are common in
-  packs, but a version mismatch is a support burden — which is why the startup guard exists.
-- **Multiplayer.** Ownership, wards and desync are where storage mods die. 0.5 exists because of this.
-- **Migration.** Moved to 0.5. Replacing Quartermaster on a live world is a data problem, not a code
+  before 0.5.
+- **Dependency surface.** Jötunn and ConditionalConfigSync are hard dependencies, on server and clients.
+  Every other integration is a declared soft dependency with a native fallback, so a version mismatch
+  degrades that one function instead of stopping the mod.
+- **Multiplayer.** Ownership, wards and desync are where storage mods die. 0.6 exists because of this.
+- **Migration.** Moved to 0.6. Replacing Quartermaster on a live world is a data problem, not a code
   problem, and the only safe input is its runtime ZDO data — never its source.
 - **Scope.** Parity is 15 features. The creature model makes each one *different*, not cheaper.

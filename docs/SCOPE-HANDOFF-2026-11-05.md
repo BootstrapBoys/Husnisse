@@ -1,0 +1,183 @@
+# Husnisse — finished scope handoff
+
+**For:** the Husnisse implementation chat.
+**From:** the pack-consolidation thread, 2026-11-05.
+**Boundary:** the user's decision that the finished Husnisse is a complete replacement for
+Quartermaster **and** Quartermaster_Integrations, and that all other consolidation ideas are
+scrapped.
+
+> **Version note (2026-11-05, later the same day).** 0.1.1 was used for the playtest fix (the bowl
+> no longer demands a forge); "legs" is now **0.1.2**. WardIsLove claim handover moved from 0.5 to
+> **0.2** because claims are foundational, and machines/migration each moved back one release.
+> The ladder in §4 is updated; `docs/PARITY.md` carries the current per-surface versions.
+
+You know Husnisse. What you do not have is this thread's outcome, which changes what "finished"
+means.
+
+---
+
+## 1. What changed
+
+| Idea | State after 2026-11-05 |
+|---|---|
+| Pairwise merge study (C1–C12) | scrapped |
+| Housecarl umbrella absorbing 57 QoL mods | scrapped |
+| Housecarl as a **QoL mod** | survives as a name only; separate project, not a dependency, not a neighbour |
+| QI gaining a licence, facade, guard, or retirement release | not part of this plan — **QI keeps shipping independently** |
+| Husnisse | **the only active project**; finished scope is now QM + QI replacement |
+
+Two consequences of leaving QI alone that shape the whole plan:
+
+- QI's 18 surfaces get **reimplemented inside Husnisse**, not bridged to. Reading and copying our
+  own code is allowed; this plan does not edit the QI repo, its release train or its docs — it is
+  still developed and used independently while Husnisse is built.
+- The storage contract loses its first implementer. It stays binding as a description of
+  semantics, but its "QI 2.8.0 is implementation #1" framing is void. Do not edit that file — it
+  lives in QI's repo. If Husnisse needs the semantics locally, copy them into `nisse/docs/` and cite
+  the original.
+
+## 2. The finish line
+
+> `BootstrapBoys-Husnisse` installed alone provides every behaviour of `Vassteel-Quartermaster`
+> 0.1.66 and `BootstrapBoys-Quartermaster_Integrations` 2.7.6. Both are uninstalled. No shim, no
+> pointing release, no optional companion package.
+
+**Parity is pinned to that snapshot, not to whatever QI ships later.** QI keeps being developed and
+used in parallel, so it will move. Each new QI feature after 2.7.6 is a scope decision — include it
+or record it as a deliberate exclusion — not an automatic parity obligation that reopens 1.0.
+
+The parity matrix is `docs/PARITY.md`: 20 Quartermaster surfaces + 18 QI surfaces, each marked
+covered / partial / gap / moot / decision. That file is the definition of done. A feature that is
+not on it is out of scope; a gap that closes without a test is not closed.
+
+## 3. What 1.0 must contain
+
+Beyond the existing ladder, ten gaps are now in scope:
+
+| Gap | Behaviour it restores | Suggested version |
+|---|---|---|
+| AAABuildMenu pinned counts | build rows count claim storage | 0.4 |
+| EpicLoot inventory provider | enchanting can spend from the claim; refuse to double-register beside EpicLootContainerBridge | 0.4 |
+| PlanBuild blueprint cost | blueprint totals count claim storage | 0.4 |
+| DropMoreLoot stack deferral | do not fight DropMoreLoot's stack sizes when installed | 0.4 |
+| Pocket stack merge on sort | sorting the player inventory merges identical stacks | 0.3 |
+| Craft-list repaint after craft | recipe list does not keep a stale unaffordable tint | 0.4 |
+| Stack rule relaxations | ignore crafter, ignored tags and EpicLoot components when stacking, but never quality/level/durability | 0.4 |
+| Pickup type filter | per-item-type auto-collect inside a claim | 0.2 |
+| Claim range preview | show the radius before placing / on aim | 0.2 |
+| Overflow chests and base groups | routing fallback and separate bases, not one flat claim | 0.3 |
+
+Two QI features become **moot**, not work: the chest dock and the Forget override exist only because
+Quartermaster has a chest-config UI. Teaching by demonstration removes the UI, so there is nothing to
+patch. Keep one question open: whether the "sort a chest you do not own" half of the dock is still
+wanted.
+
+## 4. Resizing the ladder
+
+The ladder was written for a storage mod. It is now a storage **and integration** mod:
+
+| Version | Was | Now also carries |
+|---|---|---|
+| 0.1 | bowl, claim, memory, sort rounds, orders | unchanged — still the go/no-go on the fiction |
+| 0.1.1 | — | *shipped*: playtest fix, the bowl no longer demands a forge |
+| 0.1.2 | legs | unchanged (renumbered from 0.1.1) |
+| 0.2 | teaching, ledger, chest roles | **claim ownership: provider seam, WardIsLove handover, last-known fallback**, range preview, pickup type filter; parity harness starts |
+| 0.3 | pantries, craft-from-claim | teaching, ledger, chest roles, overflow/base groups, pocket stack merge |
+| 0.4 | machines | contract + craft-from-claim + the QI port (sources, provider, counts, costs, stack rules, repaint) |
+| 0.5 | wards, multiplayer, migration | machines, four-way supply permissions, mailbox decision |
+| 0.6 | — | multiplayer hardening, migration route |
+| 1.0 | stack sizes, ship unload, comfort coverage | final parity sign-off against `PARITY.md` |
+
+Sizing reality: QI is **5,834 lines** across 18 surfaces; Husnisse is **2,654** at 0.1.1. The port
+roughly doubles the mod. Plan for it as a module, not as a handful of patches.
+
+## 5. Non-negotiables
+
+- **The law.** Nothing happens unless the creature does it. Every new behaviour in §3 has to be an
+  action of the nisse, or a setting that describes *where* and *what*. Read-only contract queries
+  (`Count`, `CanAfford`) are exempt — they ask the claim a question and move nothing. Consumption
+  (`TryConsume`) is not exempt and needs a delivery fiction before 0.4. The one documented exception
+  is the pockets-first spend order.
+- **Ownership hands over, it does not stack.** Every function has a native implementation; an
+  installed mod that owns a function replaces it, and the two never run together. The native path
+  resumes from the last recorded state when the owner disappears. Optional integrations are declared
+  soft dependencies for load order. See `README.md`, "Ownership hands over, it does not stack".
+- **Standalone posture.** Jotunn + ConditionalConfigSync + YamlDotNet (and Newtonsoft from the game
+  folder). No dependency on Housecarl, QI, or the server pack. The mod must load into a vanilla+
+  profile.
+- **Clean-room.** No Quartermaster code, decompiled output, ZDO keys or config key names. Classes
+  must not mirror its shape. `CLEANROOM.md` is binding.
+- **The refusal guard stays.** Husnisse must not load beside Quartermaster. That is what stops two
+  storage systems from eating the same chests.
+- **Headless no-op.** Husnisse is server-required; every ported UI integration must do nothing when
+  there is no local player. Nine client patches running on a dedicated server is the failure mode to
+  design out.
+- **Policy is world state.** `Feeding Required` stays a global key; per-bowl choice stays in the
+  bowl's ZDO. A client-local policy value that disagrees with the simulation is a bug.
+- **Diagnostics from day one.** Each module gets its debug tag and, if it holds state, a line in
+  `Diagnostics.Lines()`. A playtest you cannot see is a vibe.
+- **One concern per file.** The module list is a list of files, not one large plugin class.
+
+## 6. Open decisions (settle before the version that needs them)
+
+| Decision | Needed by | Options |
+|---|---|---|
+| **Mailboxes** | 0.4 | Keep QM's postal system (own `outgoingMail`/`PostalDirectory` semantics + watchdog), or drop it explicitly and record the regression |
+| **Migration route** | 0.5 | (a) migration mode that permits Quartermaster present, read-only, rounds disabled; (b) separate one-shot tool run before removal; (c) accept the loss and document a fresh world |
+| **Chest dock** | 0.3 | Drop with the chest UI, or keep the "sort an unowned chest" half |
+| **QM config import** | 1.0 | Copy matching values from QM's `.cfg` on first run, or make users reconfigure by hand |
+
+Migration is the sharp one. QM's deposit chests are its own prefabs; converting them needs those
+prefabs to resolve, which needs QM loaded — which the guard forbids. Nothing in the current plan
+proves the ZDOs survive the mod's removal. Do not promise a migration until one of the three routes
+is chosen and tested on a copied world.
+
+## 7. What not to do
+
+- **Do not change QI for this plan.** QI stays a live, independently maintained package until
+  Husnisse is finished — it is still developed, released and used meanwhile. No edits, licence pass,
+  facade or deprecation notice are part of this work. Its behaviour is reimplemented here, and the
+  package leaves *this pack* at parity.
+- **Do not copy Quartermaster code, decompiled output, ZDO keys or config names.** Behaviour only.
+- **Do not build a craft UI.** AAA Crafting owns it, MyLittleUI yields to it automatically. Husnisse
+  asks the contract question; it does not draw the panel.
+- **Do not absorb content mods.** Prefabs and art stay separate; removing them deletes built objects.
+- **Do not add a third transpiler to `Player.AutoPickup`.** Hook ZenPlayer's `CanIntercept` when that
+  integration lands.
+- **Do not quote 57/58/64 absorbed mods.** The umbrella is scrapped; those numbers describe a plan
+  that no longer exists. `quartermaster_integrations/docs/HOUSECARL-HANDOFF-2026-11-04.md` is a
+  historical document from that plan — read it for QI's surface list, not for scope.
+- **Do not treat `docs/COMPATIBILITY.md` as the scope.** It describes what a correct container is,
+  not what must be replaced.
+
+## 8. Order of work
+
+1. **0.1 playtest.** Unchanged and still first — it is the go/no-go on the fiction, and nothing in
+   this handoff makes sense if feeding a spirit to sort your base is not fun.
+2. **0.1.2 legs**, only after 0.1 passes.
+3. **0.2 claim ownership**: provider seam, WardIsLove full handover with last-known fallback, range
+   preview, pickup type filter. The parity harness starts here.
+4. **0.3 teaching, ledger, chest roles**: teaching by demonstration, ledger, roles, overflow/base
+   groups, pocket stack merge.
+5. **0.4 the contract**: craft-from-claim and `TryConsume`, ExtraSlots and AdventureBackpacks as
+   sources, EpicLoot provider, AAABuildMenu counts, PlanBuild costs, craft repaint, DropMoreLoot,
+   stack rules. This is the biggest single release in the project.
+6. **0.5 machines + permissions + mailbox decision.**
+7. **0.6 multiplayer and the migration route.**
+8. **1.0 parity sign-off against `docs/PARITY.md`, surface by surface, on a copied world.**
+
+## 9. Still unverified
+
+- All of 0.1 in play — the only release that exists, and the playtest is unrun.
+- Doorways are not navmesh-passable (measured: `GetPath` stops 5.42 m short at a 2 m gap). 0.1
+  teleports; 0.1.1 fades across thresholds.
+- Whether QM's container ZDOs survive Quartermaster's removal — the block on any migration promise.
+- QI's 18 surfaces have README/source-level analysis only; no runtime parity has been measured, and
+  five of them (AAABuildMenu, EpicLoot, PlanBuild, DropMoreLoot, pocket merge) have never been
+  exercised outside the pack.
+- The 10 gaps are scoped, not estimated. Do not put a date on 1.0 without sizing 0.3 first.
+
+---
+
+**Read next:** `docs/PARITY.md` (definition of done), `README.md` (design law and ladder),
+`CLEANROOM.md` (provenance), `docs/PLAYTEST.md` (0.1 checklist).
