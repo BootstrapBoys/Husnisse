@@ -19,6 +19,17 @@ Husnisse's native implementation is the floor; it resumes from the last recorded
 disappears. UI-only surfaces are consumers, not handovers — see `README.md`, "Ownership hands over,
 it does not stack".
 
+**Settled 2026-11-05.** The ledger is **editable** — it sets roles and assignments and can classify
+unknown containers, so it is a chest UI by another name; the chest dock's gating half is moot but its
+sort-unowned half survives. Ward handover gives the ward owner and permitted players feed/teach/order
+rights. A second bowl inside a claim is refused, not relocated. The pickup filter is per claim, edited
+in the ledger.
+
+**Coexistence with QI.** QI answers the same storage questions Husnisse does, so two providers would
+double-count. When QI is loaded, Husnisse detects its GUID and does not register its contract provider;
+the rest of the mod runs. Diagnostics print `provider=qi|native`. Testing can skip this path, but the
+guard ships at 0.4: users will not remove QI cleanly on day one.
+
 **The law at the contract boundary.** Read-only queries (`Count`, `CanAfford`) are exempt: they ask the
 claim a question. Consumption (`TryConsume`, craft-from-claim) is the nisse's work and needs a delivery
 fiction — decided in 0.4, before the first consuming surface lands.
@@ -32,7 +43,7 @@ fiction — decided in 0.4, before the first consuming surface lands.
 | 3 | Storage rules: preferred destination, overflow chest, base groups, copy settings | 0.3 chest roles | **partial** — overflow and base groups land in 0.3 |
 | 4 | Supply permissions per chest (crafting, production, fuel, feed) | 0.5 pantries | **partial** — one permission today, four in QM |
 | 5 | Deposit All · sort inventory · sort chest · combine compatible stacks | 0.1 orders | **partial** — pocket stack merge is QI's, see QI #13 |
-| 6 | Pickup controls, per item type | 0.1 rounds; 0.2 type filter | **partial** — filter lands in 0.2 |
+| 6 | Pickup controls, per item type | 0.1 rounds; 0.2 type filter | **partial** — per claim, edited in the ledger |
 | 7 | Configurable stack sizes (no weight change) | 1.0 | scheduled |
 | 8 | Craft from storage | 0.4 | scheduled |
 | 9 | Building coverage through the deposit chest's area | 1.0 comfort coverage | scheduled |
@@ -61,7 +72,7 @@ fiction — decided in 0.4, before the first consuming surface lands.
 | 7 | PlanBuild: blueprint cost counts storage | 0.4 | **gap** |
 | 8 | DropMoreLoot: defer stack sizes to it when installed | 0.4 | **gap** |
 | 9 | WardIsLove: ward ownership and host range | 0.2 — handover | **scheduled** — the ward becomes the claim |
-| 10 | Chest dock: gate "Chest Config", force-sort an unowned chest | — | **moot/decision** — no chest config UI |
+| 10 | Chest dock: gate "Chest Config", force-sort an unowned chest | 0.3 ledger | **decision** — gating is moot without QM's menu; the sort-unowned half survives as a ledger order |
 | 11 | Forget override (delete from both lists) | — | **moot** |
 | 12 | Mail watchdog: clear stale queued-mail links | 0.5 | **gap** if mailboxes are kept |
 | 13 | Pocket merge: merge stacks in the player inventory on sort | 0.3 | **gap** |

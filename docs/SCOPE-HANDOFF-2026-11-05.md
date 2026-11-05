@@ -67,10 +67,10 @@ Beyond the existing ladder, ten gaps are now in scope:
 | Claim range preview | show the radius before placing / on aim | 0.2 |
 | Overflow chests and base groups | routing fallback and separate bases, not one flat claim | 0.3 |
 
-Two QI features become **moot**, not work: the chest dock and the Forget override exist only because
-Quartermaster has a chest-config UI. Teaching by demonstration removes the UI, so there is nothing to
-patch. Keep one question open: whether the "sort a chest you do not own" half of the dock is still
-wanted.
+Two QI features become **moot**, not work: the Forget override exists only because Quartermaster has
+a chest-config UI, and the dock's gating half has nothing to gate. The dock's "sort a chest you do not
+own" half survives: the ledger is editable, so it can carry that order. Teaching by demonstration
+remains the default path; the ledger is the precise one.
 
 ## 4. Resizing the ladder
 

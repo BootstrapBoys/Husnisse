@@ -135,15 +135,16 @@ the nisse moves it** — settings that describe *where* and *what*, not *how*, s
 
 ### Claim
 
-A nisse claims a radius around its bowl (the home piece). Claims do not overlap; a second nisse
-refuses to settle inside an existing claim and wanders to the nearest free spot. That is how base
-groups emerge without a "group" setting.
+A nisse claims a radius around its bowl (the home piece). Claims do not overlap, and a second bowl
+placed inside an existing claim is refused outright — the piece is not placed, so no materials are
+wasted. Base groups emerge from separate claims without a "group" setting.
 
-Only the player who placed the bowl can feed or teach that nisse; everyone else can read the ledger.
-WardIsLove permissions filter every container from 0.1: a bowl inside a ward its owner cannot use
-refuses to settle, and an optional stricter mode limits a nisse to wards its own player placed. The
-rest of the ward integration lands at 0.2. The placer rule costs almost nothing and prevents the
-obvious grief on a shared world from day one. The full pack analysis lives in
+On a native claim, the player who placed the bowl feeds, teaches and gives orders; everyone else can
+read the ledger. When WardIsLove owns the claim (0.2), the ward's rules replace that: the ward owner
+and its permitted players can feed, teach and give orders, and anyone with ward access can read the
+ledger. A bowl inside a ward its owner cannot use refuses to settle, and an optional stricter mode
+limits a nisse to wards its own player placed. If the ward disappears, the native rule resumes from
+the last recorded range and owner. The full pack analysis lives in
 [`docs/COMPATIBILITY.md`](docs/COMPATIBILITY.md).
 
 ### Memory
