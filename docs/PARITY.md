@@ -23,7 +23,9 @@ it does not stack".
 unknown containers, so it is a chest UI by another name; the chest dock's gating half is moot but its
 sort-unowned half survives. Ward handover gives the ward owner and permitted players feed/teach/order
 rights. A second bowl inside a claim is refused, not relocated. The pickup filter is per claim, edited
-in the ledger.
+in the ledger. The nisse cannot be damaged and enemies ignore it. Station coverage is the claim radius.
+Ship unloading covers any container on a ship inside the claim. A save schema newer than the build
+understands stops rounds and leaves the data untouched.
 
 **Coexistence with QI.** QI answers the same storage questions Husnisse does, so two providers would
 double-count. When QI is loaded, Husnisse detects its GUID and does not register its contract provider;
@@ -46,12 +48,12 @@ fiction — decided in 0.4, before the first consuming surface lands.
 | 6 | Pickup controls, per item type | 0.1 rounds; 0.2 type filter | **partial** — per claim, edited in the ledger |
 | 7 | Configurable stack sizes (no weight change) | 1.0 | scheduled |
 | 8 | Craft from storage | 0.4 | scheduled |
-| 9 | Building coverage through the deposit chest's area | 1.0 comfort coverage | scheduled |
+| 9 | Building coverage through the deposit chest's area | 1.0 comfort coverage | scheduled — coverage equals the claim radius |
 | 10 | Supply processors, fermenters, cooking racks; collect finished goods | 0.5 | scheduled |
 | 11 | Machine caps, pause automation, protect valuable wood | 0.5 | scheduled |
 | 12 | Refuel fires and torches, feed animals and taming creatures | 0.5 | scheduled |
 | 13 | Owl companion / base assistant | 0.1 nisse | replaced by the creature |
-| 14 | Helmsman ship unloading | 1.0 | scheduled |
+| 14 | Helmsman ship unloading | 1.0 | scheduled — any container on a ship inside the claim |
 | 15 | Searchable chest settings, range previews, controller navigation | 0.2 range preview; 0.3 ledger | **partial** — preview lands in 0.2 |
 | 16 | Mailboxes and the postal system (`Quartermaster.outgoingMail`, `PostalDirectory`) | — | **decision** — keep or drop, nothing in the ladder |
 | 17 | Shared-chest handshake and ownership revision | 0.6 multiplayer | scheduled |

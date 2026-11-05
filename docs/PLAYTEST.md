@@ -23,9 +23,8 @@ only when the expected result happened; anything else is a finding, including "i
 
 - [ ] It does not attack you, follow you, or wander out of the base.
 - [ ] Hover on the nisse shows "Nisse" and `[E] take my things`.
-- [ ] **Damage:** hit it. Decide whether it should be hurtable at all — 0.1 has no answer, so this is a
-      design finding either way.
-- [ ] **Raids/enemies:** does it fight, flee, or die? Note what happened.
+- [ ] **Damage:** hit it. It must not take damage (0.1.1 does not implement this yet — report what happens).
+- [ ] **Raids/enemies:** does anything attack it or does it stay ignored? Note what happened.
 - [ ] **Floors:** place a bowl on an upper floor. Does the nisse stand on the floor or fall through?
 
 ## 3. Feeding

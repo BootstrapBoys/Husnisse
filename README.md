@@ -78,6 +78,7 @@ than any UI we could design, because it explains *why* work happens while you sl
 | Trait | What it does |
 |---|---|
 | **Small and mundane** | Lives in the base, not on the battlefield. Not a combat pet. |
+| **Untouchable** | Cannot be damaged, and enemies ignore it. It is a spirit; killing it would only punish the player for a raid they already lost. |
 | **Works in passes** | A nightly round, or a round every N seconds while you are home. Visible if you watch. |
 | **Eats** | A porridge bowl is its home. Empty bowl, no work. Food quality sets its speed and reach. |
 | **Remembers** | Learns where things go, by being shown, not by being configured. |
@@ -119,12 +120,12 @@ Quartermaster's public feature list, and how each one becomes a creature action 
 | Pickup controls (auto-collect certain types) | The nisse collects drops inside its claim while working |
 | Stack sizes | Plain config, no creature angle — it is a number, not a behaviour |
 | Craft from storage | The nisse answers the call: crafting draws from its claim because it is the one holding the network together |
-| Building coverage (station range extension) | The hearth's warmth extends station coverage inside the claim |
+| Building coverage (station range extension) | Coverage is the claim radius — no separate setting |
 | Production (supply processors, collect output) | The nightly round feeds and empties machines in the claim |
 | Machine controls (caps, pause, protect valuable wood) | Standing orders per machine, set once, obeyed by the nisse |
 | Refuelling and feeding (fires, torches, animals, taming) | Part of the round: fuel in, ash out, troughs filled |
 | Owl companion | The creature itself — there is no separate mascot |
-| Helmsman ship unloading | A nisse whose claim reaches water unloads a docked ship's cargo into its chests |
+| Helmsman ship unloading | A nisse whose claim reaches water unloads any container on a ship inside the claim |
 | Searchable menus, range previews, controller | The ledger panel: one screen listing what the nisse knows, with the same range preview |
 | Config sections | `1. General`, `2. Nisse`, `3. Rounds`, `4. Storage`, `5. Production`, `6. Ward` |
 
@@ -255,7 +256,7 @@ verbose round and container lines, each tagged with its module — `[Claims]`, `
 | **Home piece** | A small build piece (bowl/hearth) registered as a Jötunn `CustomPiece`. Holds claim radius and bowl state. |
 | **Claim registry** | Rebuilt on world load from ZDOs, then maintained incrementally on `ZDO.SetOwner` and container changes. No per-frame scans. |
 | **Item movement** | `Inventory` APIs on the server. Every move checks ward access before touching a container. |
-| **Save data** | nisse state in its own ZDO (`radius`, `mood`, `satiety`, `assignments`); chest roles in the chest's ZDO; machine orders in the machine's ZDO. Nothing in config. |
+| **Save data** | nisse state in its own ZDO (`radius`, `mood`, `satiety`, `assignments`); chest roles in the chest's ZDO; machine orders in the machine's ZDO. Nothing in config. A schema newer than the build understands is refused: log it, stop rounds, leave the data untouched. |
 | **Config** | Numbered sections, host-owned for anything that changes world state, client-local for UI. Synced with ConditionalConfigSync, so each key can opt in or out of force-sync; Jötunn's own sync only covers `AdminOnly` entries. |
 | **Compatibility guard** | If Quartermaster is installed, refuse to run and say so. Two storage systems on one chest is how items vanish. |
 
