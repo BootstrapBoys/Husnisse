@@ -89,7 +89,7 @@
 
     <Reference Include="YamlDotNet">
       <HintPath>$(MSBuildThisFileDirectory)refs/mods/YamlDotNet.dll</HintPath>
-      <Private>true</Private>
+      <Private>false</Private>
     </Reference>
   </ItemGroup>
 

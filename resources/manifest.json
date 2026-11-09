@@ -6,6 +6,7 @@
   "dependencies": [
     "denikson-BepInExPack_Valheim-5.4.2202",
     "ValheimModding-Jotunn-2.30.2",
-    "shudnal-ConditionalConfigSync-1.0.11"
+    "shudnal-ConditionalConfigSync-1.0.11",
+    "ValheimModding-YamlDotNet-16.3.1"
   ]
 }

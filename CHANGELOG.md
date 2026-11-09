@@ -10,6 +10,7 @@
 - Alt-interact on a chest now logs why Tidy did or did not run, and the bowl's Alt toggle still controls per-bowl feeding.
 - `husnisse_prefabs` writes every loaded container prefab to `BepInEx/BSBLogs/Husnisse-prefabs.txt`.
 - `husnisse_status` reports queue depth, flow rate, bowl contents and drain interval.
+- Packaging: YamlDotNet is declared as a dependency (`ValheimModding-YamlDotNet`) and is no longer bundled in the zip.
 
 ## 0.1.1
 

@@ -262,8 +262,8 @@ to one of Valheim's names (e.g. `German`) and translates the values. All `*.yaml
 are loaded, and the game's language setting (`GetSelectedLanguage`) selects the table at lookup time. A
 missing key falls back to the shipped English line rather than showing a token.
 
-A malformed file is reported in the log and skipped; it never takes the mod down. YamlDotNet is the one
-shipped DLL besides Husnisse itself.
+A malformed file is reported in the log and skipped; it never takes the mod down. YamlDotNet is a
+declared dependency (`ValheimModding-YamlDotNet`), not a bundled assembly.
 
 ### The bowl
 

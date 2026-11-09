@@ -72,13 +72,14 @@ Not in this build. Order and detail are in the repository's `docs/ROADMAP.md`.
 
 ## Install
 
-1. Install **BepInEx 5.4.x**, **Jotunn 2.30.2** and **ConditionalConfigSync 1.0.11**.
+1. Install **BepInEx 5.4.x**, **Jotunn 2.30.2**, **ConditionalConfigSync 1.0.11** and
+   **YamlDotNet 16.3.1** (`ValheimModding-YamlDotNet`).
 2. Remove any other storage automation that manages the same chests before installing.
 3. Extract the package at the Valheim root so
-   `BepInEx/plugins/BootstrapBoys-Husnisse/Husnisse.dll` and `YamlDotNet.dll` appear.
+   `BepInEx/plugins/BootstrapBoys-Husnisse/Husnisse.dll` appears.
 4. Start the game. The log should say `Husnisse 0.1.2 starting` and `content registered`.
 
-Gale and other Thunderstore managers can install the package directly; YamlDotNet travels with it.
+Gale and other Thunderstore managers install the declared dependencies automatically.
 
 ## Config
 
