@@ -81,9 +81,20 @@ Removed: `Round Interval`, `Collect Budget`, `Sort Budget`, `Machine Budget`, `R
 ## Implementation status (2026-11-09)
 
 Built as `0.1.2`; the dev DLL is `artifacts/debug/Husnisse.dll` (final build SHA-256
-`e3ad7b69…`). Everything in this plan is implemented. Runtime proof is still outstanding: the rig was
-stopped at the user's request, so the bowl UI, food refusal, drain interval, order RPC and
-invulnerability have only been compile-checked.
+`3017578e…`). Runtime proof on the dedicated rig:
+
+| Check | Result |
+|---|---|
+| Plugin load, no Harmony failures | pass — `Husnisse 0.1.2`, `content registered`, `order RPC registered` |
+| Bowl prefab carries a Container | pass — `prefabs with Container matching 'husnisse_bowl': 1` |
+| Bowl spawn + claim | pass — `bowl_init=1`, `satiety=25`, `claims=1 nisses=1` |
+| Pantry dimensions | pass — `pantry=4x1`, 4 slots |
+| Interact opens the container | pass — `interact husnisse_bowl: Container=True` |
+| Flow files a real drop | pass — `Coal` spawned, chest `items` went absent → `bytes=19`, `drops=0` |
+| Piece diagnostic | pass — `bowl_piece=present` |
+
+Still client-only: refusing non-food in the UI, the drain interval, the Alt feeding toggle under an
+optional policy, order RPC from a real client, and invulnerability under a raid.
 
 Deliberate implementation notes:
 

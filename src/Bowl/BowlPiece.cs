@@ -155,6 +155,10 @@ namespace Husnisse.Bowl
             {
                 Log.Warn("bowl: inventory is " + inventory.GetWidth() + "x" + inventory.GetHeight() + ", expected 4x1");
             }
+            else
+            {
+                Log.Info("bowl: pantry ready 4x1 (" + inventory.GetWidth() * inventory.GetHeight() + " slots)");
+            }
 
             BowlFoodGuard.Register(_container);
         }
@@ -238,6 +242,12 @@ namespace Husnisse.Bowl
         public string DisplayName()
         {
             return Loc.T(Loc.BowlName);
+        }
+
+        public string PantrySize()
+        {
+            var inventory = _container != null ? _container.GetInventory() : null;
+            return inventory != null ? inventory.GetWidth() + "x" + inventory.GetHeight() : "none";
         }
 
         public string HoverText()

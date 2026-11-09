@@ -64,6 +64,7 @@ namespace Husnisse.Core
                                              bowl.GetComponent<Container>().GetInventory() != null
                               ? bowl.GetComponent<Container>().GetInventory().NrOfItems().ToString()
                               : "-") +
+                          " pantry=" + (bowl != null ? bowl.PantrySize() : "-") +
                           " queued=" + FlowQueue.Count(claim) +
                           " containers=" + containers.Count +
                           " stacks=" + stacks +
@@ -78,15 +79,11 @@ namespace Husnisse.Core
             var database = ObjectDB.instance;
             if (database == null) return "no-objectdb";
 
-            var field = typeof(ObjectDB).GetField("m_pieces",
-                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public |
-                System.Reflection.BindingFlags.NonPublic);
-            var pieces = field != null ? field.GetValue(database) as System.Collections.IEnumerable : null;
+            var pieces = database.GetAllBuildPieces(true);
             if (pieces == null) return "no-list";
 
-            foreach (var entry in pieces)
+            foreach (var piece in pieces)
             {
-                var piece = entry as Piece;
                 if (piece != null && piece.name == BowlPrefab.PrefabName) return "present";
             }
 
