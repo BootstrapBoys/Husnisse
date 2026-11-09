@@ -1,36 +1,43 @@
-# Suggested improvements — decisions pending
+# Improvements — decisions
 
-Each item is a proposal, not a commitment. Cost is against the release that would carry it.
-Say the number to accept, reject, or modify.
+Decided 2026-11-05. Accepted items are folded into the ladder at the version shown.
 
-| # | Improvement | Why it matters | Cost | Where | Recommendation |
-|---|---|---|---|---|---|
-| 1 | **Preferred + overflow per container** | A full or wrong chest currently blocks a category; overflow routing is QM's most-used storage rule | M | 0.3 | Add. Without it a single full chest stalls a category. |
-| 2 | **Uncategorised fallback container** | Any item whose type is not covered by a preset or list needs a home, or it is silently never sorted | S | 0.3 | Add. Pick one container per claim as "everything else". |
-| 3 | **Auto-suggest the preset on first toggle** | Opening a chest of iron and choosing "Metals" is obvious; inferring it from contents saves the step | S | 0.3 | Add. Pre-select the dominant category, still editable. |
-| 4 | **Snapshot preview before saving a custom list** | "Save contents" is irreversible otherwise; a mis-click fixes the wrong rule permanently | S | 0.3 | Add. Show the captured list with checkboxes. |
-| 5 | **Copy rule to nearby / all containers of this type** | 20 chests of the same rule is 20 menus | M | 0.3 | Add, behind a confirm. |
-| 6 | **Recent moves + undo in the ledger** | Mis-sorting is the top complaint about storage mods; an undo is cheaper than a bug report | M | 0.3–0.4 | Add if 0.3 has room. |
-| 7 | **Blacklist this mod** from a container | One bad mod container otherwise reappears every world load | M | 0.3 | Add, but see the caveat below. |
-| 8 | **Pause this container** (temporary) distinct from blacklist (permanent) | Moving a base should not require deleting rules | S | 0.3 | Add. |
-| 9 | **Animation LOD** — only animate the nisse within N metres; distant work stays in the background | Ten nisses animating across a big base is wasted frame time | S | 0.3 | Add. |
-| 10 | **Fair queue across containers** | One large dump must not starve machines or another category | M | 0.3 | Add. Round-robin per task type. |
-| 11 | **Read-only badge** for players without rule permission | Makes the permission model visible instead of mysterious | S | 0.3 | Add. |
-| 12 | **YAML rule export/import** | Backup, share a base's scheme, move a profile between worlds; YamlDotNet already ships | M | 0.4 | Consider. Cheap because the parser is already there. |
-| 13 | **YAML-editable presets** | The survival presets will not suit every pack; editing a file beats a code change | M | 0.4 | Consider with #12. |
-| 14 | **Rate presets** (2 / 5 / 10) with a per-claim override | One global number is blunt for a big base and a small hut | S | 0.1.2 | Add the presets; per-claim later. |
-| 15 | **"Deposit all" from the container UI** — pull the player's matching items into the network | Complements Empty Pockets and matches QM's tool | S | 0.3 | Consider. |
+## Accepted
 
-## Technical caveat on #7
+| # | Improvement | Where | Note |
+|---|---|---|---|
+| 1 | Priority among containers accepting the same category | 0.3 | Preferred first; no per-container overflow flag, Overflow is a category |
+| 2 | **Overflow as a container category**, one or many chests | 0.3 | Takes items whose category chests are full **and** items no rule matches |
+| 3 | Auto-suggest the preset from contents on first toggle | 0.3 | Pre-selects the dominant category, still editable |
+| 4 | Snapshot preview with checkboxes before saving a list | 0.3 | Stores item names, not stacks |
+| 5 | Copy a rule to nearby / same-type containers | 0.3 | Behind a confirm |
+| 7 | **`husnisse_prefabs` command** replaces mod blacklisting | 0.1.2 | Dumps every container prefab to `BepInEx/BSBLogs/Husnisse-prefabs.txt`; blacklisting stays per container |
+| 9 | Animation LOD by distance | 0.3 | Only the nearby nisse animates; distant work stays in the queue |
+| 10 | Fair queue across containers | 0.3 | Round-robin per task type; one dump cannot starve machines |
+| 11 | Read-only badge for players without rule permission | 0.3 | Same permission model as the rules |
+| 12 | YAML rule export / import | 0.4 | Uses YamlDotNet; import is all-or-nothing |
+| 13 | YAML-editable presets | 0.4 | Same file as the rules |
+| 14 | Rate presets 2 / 5 / 10 | 0.1.2 | Per-claim override later |
+| 15 | **Deposit chest** as a container category | 0.3 | Dump everything into it, the nisse sorts from it |
 
-Prefabs do not record which plugin registered them, so "blacklist this mod" cannot be fully automatic.
-The workable approach: keep a `containers.yaml` with prefab-name prefixes, ship defaults for the known
-mod containers, and when a player blacklists a mod from a container, derive the prefix from that
-prefab's name (everything before the first `_` or digit) and add it. It is a heuristic; the UI must say
-which prefabs it is blocking.
+## Deposit-all behaviour (from #15)
 
-## Rejected for now
+- On a **network** container: deposit-all hands the player's items to the nisse, which sorts them to their
+  proper containers at the configured rate.
+- On an **off-network** container: deposit-all dumps every pocket item into that container with no sorting.
+  That is the manual "dump it here and deal with it later" action.
+- A **Deposit chest** is a category, like Overflow: one or many, receives everything, and is a source the
+  nisse drains into the proper containers.
 
-- Per-container throughput — one rate per claim is easier to reason about and to explain.
-- A full chest settings panel — the two-button container UI is the point; anything bigger belongs in the
-  ledger.
+## Rejected
+
+| # | Improvement | Reason |
+|---|---|---|
+| 6 | Recent moves + undo | Not this project; the ledger stays informational |
+| 8 | Pause container | The network toggle already removes it; a second off state is redundant |
+| — | Per-mod blacklist | Prefabs carry no source plugin; replaced by the prefab dump command |
+
+## Rejected earlier
+
+- Per-container throughput — one rate per claim is easier to reason about.
+- A full chest settings panel — the two-button container UI plus the ledger stays the boundary.

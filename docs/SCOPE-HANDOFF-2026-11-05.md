@@ -80,9 +80,9 @@ The ladder was written for a storage mod. It is now a storage **and integration*
 |---|---|---|
 | 0.1 | bowl, claim, memory, sort rounds, orders | unchanged — still the go/no-go on the fiction |
 | 0.1.1 | — | *shipped*: playtest fix, the bowl no longer demands a forge |
-| 0.1.2 | legs | movement, continuous flow at `ItemsPerSecond` (default 5) with a 5 s reconciliation tick, invulnerability |
+| 0.1.2 | legs | movement, continuous flow at `ItemsPerSecond` (default 5, presets 2/5/10) with a 5 s reconciliation tick, invulnerability, `husnisse_prefabs` dump |
 | 0.2 | teaching, ledger, chest roles | **claim ownership: provider seam, WardIsLove handover, last-known fallback**, range preview; parity harness starts |
-| 0.3 | pantries, craft-from-claim | **container network**: opt-in UI toggle/settings, preset categories, saved-content lists, per-container and per-mod blacklists, teaching, editable ledger, overflow/base groups, pickup filter, pocket merge |
+| 0.3 | pantries, craft-from-claim | **container network**: opt-in UI toggle/settings, categories with priority, Overflow and Deposit chests, saved-content lists, per-container blacklist (plus `husnisse_prefabs` dump), teaching, editable ledger, pickup filter, pocket merge |
 | 0.4 | machines | contract + craft-from-claim + the QI port (sources, provider, counts, costs, stack rules, repaint) |
 | 0.5 | wards, multiplayer, migration | machines, four-way supply permissions, mailbox decision |
 | 0.6 | — | multiplayer hardening, migration route |

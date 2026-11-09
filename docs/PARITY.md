@@ -22,10 +22,11 @@ it does not stack".
 **Settled 2026-11-05, later.** The law is now "the creature is always the visible cause": the queue may
 run in the background, but the nisse is seen walking and transferring, and nothing moves while it is
 unfed or sulking. Containers join a claim's network **opt-in** from a toggle in the container UI; every
-container inside a claim is eligible (no whitelist), with per-container and per-mod blacklists hiding
-both buttons. Rules are a preset category (survival presets expanding to item types) or a saved-contents
-list; teaching writes the same list. Throughput is a hybrid — continuous drain at `ItemsPerSecond`
-(default 5) with a 5 s reconciliation tick and a bounded load catch-up. Claim owner and ward-permitted
+container inside a claim is eligible (no whitelist), with a per-container blacklist hiding both buttons.
+Rules are item categories with priority, a saved-contents list, or a special role — **Overflow** (one or
+many; full categories and unmatched items) or **Deposit** (one or many; dump everything in). Teaching
+writes the same list. Throughput is a hybrid — continuous drain at `ItemsPerSecond` (default 5, presets
+2/5/10) with a 5 s reconciliation tick and a bounded load catch-up. Claim owner and ward-permitted
 players change rules; anyone with container access reads them.
 
 Ward handover is **per bowl**: a bowl inside a ward uses that ward's range, owner and permissions as the

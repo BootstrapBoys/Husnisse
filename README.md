@@ -170,15 +170,20 @@ Every container inside a claim is eligible, whatever its prefab — vanilla ches
 crates. Nothing joins by default: a container is on the network only when it is opted in.
 
 - **Toggle** — a button in the top-right of the container UI adds or removes it. A settings button next
-  to it opens the rule: a preset category, a custom list, or the blacklist.
-- **Presets** — grouped by survival category (Metals, Wood, Food, Trophies, Valuables, Building,
-  Consumables, Tools), each expanding to Valheim item types. Selecting one routes every item of those
-  types to that container.
-- **Custom list** — "save contents" captures what the container holds now; only those items route
-  there. Teaching by demonstration writes the same list.
-- **Blacklist** — per container or per whole mod. A blacklisted container shows neither the toggle nor
-  the settings button. Carts, ships and display piles start blacklisted rather than hard-coded out of
-  the scan.
+  to it opens the rule: item categories, a custom list, or a special role.
+- **Categories** — grouped by survival category (Metals, Wood, Food, Trophies, Valuables, Building,
+  Consumables, Tools), each expanding to Valheim item types. A container may hold several item types;
+  where several containers accept the same type, priority decides which fills first.
+- **Special roles** — **Overflow** (one or many chests: catches items whose category chests are full and
+  items no rule matches) and **Deposit** (one or many chests: dump everything in, the nisse sorts out).
+- **Custom list** — "save contents" opens a preview of the captured item names with checkboxes; only the
+  ticked items route there. Teaching by demonstration writes the same list.
+- **Blacklist** — per container only. A blacklisted container shows neither the toggle nor the settings
+  button. Carts, ships and display piles start blacklisted rather than hard-coded out of the scan.
+  `husnisse_prefabs` writes every container prefab to `BepInEx/BSBLogs/Husnisse-prefabs.txt` so entries
+  can be identified without guessing.
+- **Deposit-all** — on a network container it hands the player's items to the nisse, which sorts them; on
+  an off-network container it dumps every pocket item into that container, unsorted.
 - **Permissions** — the claim owner and ward-permitted players change rules; anyone with container
   access can read them.
 - **Authority** — rules live in the container's ZDO and are written through the server; a client with
@@ -370,9 +375,9 @@ order, spend order, ward filtering, all-or-nothing spending, reentrancy — that
 |---|---|---|
 | **0.1** | Creature (a nisse), bowl, claim, memory, sort-only rounds, Empty Pockets and Tidy orders. **No navigation** — it fades between bowl and chest | Proves the fiction is playable. If feeding a spirit to get items sorted is not fun, stop here. |
 | **0.1.1** | *Shipped.* Playtest fix: the bowl no longer demands a forge, and registration states its category, station and table | The build the first playtest runs on. |
-| **0.1.2** | "Legs": room-scale and outdoor walking, fade across thresholds. **Flow**: continuous drain at items/second (default 5) with a 5 s reconciliation tick, and an invulnerable nisse | Movement plus throughput — the two things the playtest will judge first. |
+| **0.1.2** | "Legs": room-scale and outdoor walking, fade across thresholds. **Flow**: continuous drain at items/second (default 5; presets 2/5/10) with a 5 s reconciliation tick, an invulnerable nisse, and the `husnisse_prefabs` dump | Movement plus throughput — the two things the playtest will judge first. |
 | **0.2** | **Claim ownership**: provider seam, WardIsLove full handover with last-known fallback, range preview, claim diagnostics. Parity harness begins | Claims are foundational — teaching and roles must be built on the claim that actually governs the base, not a radius we replace at 0.6. |
-| **0.3** | **Container network**: opt-in toggle and settings on the container UI, preset categories, custom lists from saved contents, per-container and per-mod blacklists, teaching by demonstration, editable ledger, overflow/base groups, pickup filter, pocket stack merge | The signature release: the network, the UI and the teaching path all land together. Needs 0.2's claim authority. |
+| **0.3** | **Container network**: opt-in toggle and settings on the container UI, item categories with priority, Overflow and Deposit chest roles, custom lists from a checkbox preview, per-container blacklist, teaching by demonstration, editable ledger, pickup filter, pocket stack merge, animation LOD, fair queue | The signature release: the network, the UI and the teaching path all land together. Needs 0.2's claim authority. |
 | **0.4** | **The contract**: craft-from-claim and `TryConsume`, ExtraSlots and AdventureBackpacks as sources, EpicLoot as provider, AAABuildMenu counts, PlanBuild costs, craft-list repaint, DropMoreLoot deferral, stack rules | The biggest release; the QI port lands here, against a harness that already exists. |
 | **0.5** | Machines: fuel, feed, collect, caps; four-way supply permissions; mailbox decision | The nightly round earns its keep. Mail is decided before migration touches world data. |
 | **0.6** | Multiplayer hardening, Quartermaster ZDO migration — only after a route is chosen and proven on a copied world | The swap is atomic; migration is the one thing that cannot be promised in advance. |
