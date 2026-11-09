@@ -15,8 +15,8 @@ Decided 2026-11-05. Accepted items are folded into the ladder at the version sho
 | 9 | Animation LOD by distance | 0.3 | Only the nearby nisse animates; distant work stays in the queue |
 | 10 | Fair queue across containers | 0.3 | Round-robin per task type; one dump cannot starve machines |
 | 11 | Read-only badge for players without rule permission | 0.3 | Same permission model as the rules |
-| 12 | YAML rule export / import | 0.4 | Uses YamlDotNet; import is all-or-nothing |
-| 13 | YAML-editable presets | 0.4 | Same file as the rules |
+| 12 | YAML rule export / import | 0.3.1 | Uses YamlDotNet; import is all-or-nothing |
+| 13 | YAML-editable presets | 0.3.1 | Same file as the rules |
 | 14 | Rate presets 2 / 5 / 10 | 0.1.2 | Per-claim override later |
 | 15 | **Deposit chest** as a container category | 0.3 | Dump everything into it, the nisse sorts from it |
 

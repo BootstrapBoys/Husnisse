@@ -1,5 +1,9 @@
 # Absorption — what belongs in Husnisse instead of Housecarl
 
+> **Historical.** This file predates the 2026-11-05 scope handoff. The umbrella/Housecarl plan is
+> scrapped and the version numbers below belong to that plan, not to the current ladder in
+> `docs/ROADMAP.md`. Kept for the per-mod reasoning only.
+
 Husnisse owns storage and base automation. Housecarl owns the pack's QoL layer. The boundary is
 mostly clean, but three mods sit close enough to it that the wrong owner would create the
 double-ownership this project exists to remove.

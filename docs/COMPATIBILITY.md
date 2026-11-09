@@ -9,7 +9,7 @@ objects is detected by component type name.
 
 | Mod | Behaviour |
 |---|---|
-| **Quartermaster** | Hard refusal at startup. Two storage systems managing the same chests lose items. Migration to Husnisse arrives at 0.5 and reads runtime ZDO data only. |
+| **Quartermaster** | Hard refusal at startup. Two storage systems managing the same chests lose items. Migration to Husnisse arrives at 0.7 and reads runtime ZDO data only. |
 
 ## Access control
 
@@ -32,13 +32,13 @@ objects is detected by component type name.
 
 | Mod | When |
 |---|---|
-| **Wizardry** — custom stations | 0.4, as machine targets with standing orders. |
+| **Wizardry** — custom stations | 0.6, as machine targets with standing orders. |
 | **PlanBuild** — blueprints | The bowl is an ordinary `Piece` on the Hammer table, so blueprint copy should work. Verify at 0.2 when there is a bowl worth copying. |
-| **Quartermaster_Integrations** | 0.3, when craft-from-claim exists: our storage surface replaces its Quartermaster query, and QI ships a final release pointing here. |
-| **MyLittleUI** | 0.2, with the ledger: claim knowledge should surface in its tooltips and panels rather than competing with them. Until then, no interference — MLUI is UI-only and touches no container. |
-| **AAA Crafting** | 0.3, with craft-from-claim: its crafting UI must read the claim the same way QI makes it read Quartermaster today. The patch target is the same; only the data source changes. |
-| **OdinPlus Basements** | 0.1.1, movement: basements are exactly the indoor space where the doorway finding bites. Walking stays room-scale and outdoor; thresholds fade. |
-| **Forge of Potential Redux** | 0.4, as a machine target if it exposes input/output storage; verify its station surface before promising it. |
+| **Quartermaster_Integrations** | 0.4–0.5, when the contract exists: our storage surface replaces its Quartermaster query, and QI ships a final release pointing here. |
+| **MyLittleUI** | 0.3.1, with the ledger: claim knowledge should surface in its tooltips and panels rather than competing with them. Until then, no interference — MLUI is UI-only and touches no container. |
+| **AAA Crafting** | 0.4, with the read-only contract: its crafting UI must read the claim the same way QI makes it read Quartermaster today. The patch target is the same; only the data source changes. |
+| **OdinPlus Basements** | 0.1.3, movement: basements are exactly the indoor space where the doorway finding bites. Walking stays room-scale and outdoor; thresholds fade. |
+| **Forge of Potential Redux** | 0.6, as a machine target if it exposes input/output storage; verify its station surface before promising it. |
 | **Ross QoL** | Verify before 0.2: if it sorts or stacks inventories, two systems must not fight over the same containers. Check its patches for `Container`/`Inventory` before the ledger work. |
 | **Odin Campsite** | Verify before 0.2: tents and camp pieces may add containers. If they do, they are ordinary storage; if they are display or portable, they join the excluded list. |
 

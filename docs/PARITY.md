@@ -58,23 +58,23 @@ fiction — decided in 0.4, before the first consuming surface lands.
 | 1 | Deposit chest auto-sort | 0.3 container network (toggle + preset/list) | **covered, different mechanic** |
 | 2 | Chest remembers its item type when empty | 0.3 container rule lives in its ZDO | covered |
 | 3 | Storage rules: preferred destination, overflow chest, base groups, copy settings | 0.3 container rules | **partial** — categories and saved lists land in 0.3; priority/overflow pending |
-| 4 | Supply permissions per chest (crafting, production, fuel, feed) | 0.5 pantries | **partial** — one permission today, four in QM |
-| 5 | Deposit All · sort inventory · sort chest · combine compatible stacks | 0.1 orders | **partial** — pocket stack merge is QI's, see QI #13 |
-| 6 | Pickup controls, per item type | 0.3 type filter | **partial** — per claim, edited in the ledger |
+| 4 | Supply permissions per chest (crafting, production, fuel, feed) | 0.6 pantries | **partial** — one permission today, four in QM |
+| 5 | Deposit All · sort inventory · sort chest · combine compatible stacks | 0.1 orders; queue in 0.1.2; merge in 0.3.1 | **partial** |
+| 6 | Pickup controls, per item type | 0.3.1 type filter | **partial** — per claim, edited in the ledger |
 | 7 | Configurable stack sizes (no weight change) | 1.0 | scheduled |
-| 8 | Craft from storage | 0.4 | scheduled |
+| 8 | Craft from storage | 0.5 | scheduled |
 | 9 | Building coverage through the deposit chest's area | 1.0 comfort coverage | scheduled — coverage equals the claim radius |
-| 10 | Supply processors, fermenters, cooking racks; collect finished goods | 0.5 | scheduled |
-| 11 | Machine caps, pause automation, protect valuable wood | 0.5 | scheduled |
-| 12 | Refuel fires and torches, feed animals and taming creatures | 0.5 | scheduled |
+| 10 | Supply processors, fermenters, cooking racks; collect finished goods | 0.6 | scheduled |
+| 11 | Machine caps, pause automation, protect valuable wood | 0.6 | scheduled |
+| 12 | Refuel fires and torches, feed animals and taming creatures | 0.6 | scheduled |
 | 13 | Owl companion / base assistant | 0.1 nisse | replaced by the creature |
 | 14 | Helmsman ship unloading | 1.0 | scheduled — any container on a ship inside the claim |
-| 15 | Searchable chest settings, range previews, controller navigation | 0.2 range preview; 0.3 ledger | **partial** — preview lands in 0.2 |
-| 16 | Mailboxes and the postal system (`Quartermaster.outgoingMail`, `PostalDirectory`) | — | **decision** — keep or drop, nothing in the ladder |
-| 17 | Shared-chest handshake and ownership revision | 0.6 multiplayer | scheduled |
+| 15 | Searchable chest settings, range previews, controller navigation | 0.2 range preview; 0.3.1 ledger | **partial** — preview lands in 0.2 |
+| 16 | Mailboxes and the postal system (`Quartermaster.outgoingMail`, `PostalDirectory`) | — | **decision** — keep or drop, needed by 0.6 |
+| 17 | Shared-chest handshake and ownership revision | 0.7 multiplayer | scheduled |
 | 18 | Ward ownership and access filtering | 0.2 — WardIsLove handover | **scheduled** — only for a bowl inside a ward |
-| 19 | Claim / revision semantics for chest ZDOs | 0.6 migration | scheduled |
-| 20 | Forget / remembered / forgotten lists | 0.2 teaching | replaced by demonstration |
+| 19 | Claim / revision semantics for chest ZDOs | 0.7 migration | scheduled |
+| 20 | Forget / remembered / forgotten lists | 0.3.1 teaching | replaced by demonstration |
 
 ## QI surfaces
 
@@ -87,14 +87,14 @@ fiction — decided in 0.4, before the first consuming surface lands.
 | 5 | AAABuildMenu: pinned build-row counts | 0.4 | **gap** |
 | 6 | EpicLoot: registered inventory provider, and refusing to double-register | 0.4 | **gap** |
 | 7 | PlanBuild: blueprint cost counts storage | 0.4 | **gap** |
-| 8 | DropMoreLoot: defer stack sizes to it when installed | 0.4 | **gap** |
+| 8 | DropMoreLoot: defer stack sizes to it when installed | 0.5 | **gap** |
 | 9 | WardIsLove: ward ownership and host range | 0.2 — handover | **scheduled** — only for a bowl inside a ward |
-| 10 | Chest dock: gate "Chest Config", force-sort an unowned chest | 0.3 ledger | **decision** — gating is moot without QM's menu; the sort-unowned half survives as a ledger order |
+| 10 | Chest dock: gate "Chest Config", force-sort an unowned chest | 0.3.1 ledger | **decision** — gating is moot without QM's menu; the sort-unowned half survives as a ledger order |
 | 11 | Forget override (delete from both lists) | — | **moot** |
-| 12 | Mail watchdog: clear stale queued-mail links | 0.5 | **gap** if mailboxes are kept |
-| 13 | Pocket merge: merge stacks in the player inventory on sort | 0.3 | **gap** |
-| 14 | Craft repaint: repaint the recipe list after a craft | 0.4 | **gap**, needed the moment 0.4 lands |
-| 15 | Stack rule: ignore crafter, ignored tags, EpicLoot components | 0.4 | **gap** |
+| 12 | Mail watchdog: clear stale queued-mail links | 0.6 | **gap** if mailboxes are kept |
+| 13 | Pocket merge: merge stacks in the player inventory on sort | 0.3.1 | **gap** |
+| 14 | Craft repaint: repaint the recipe list after a craft | 0.5 | **gap**, needed the moment 0.5 lands |
+| 15 | Stack rule: ignore crafter, ignored tags, EpicLoot components | 0.5 | **gap** |
 | 16 | Ward host range / ownership modes | 0.2 — handover | **scheduled** |
 | 17 | Routing and stack diagnostics | 0.1 `Diagnostics` | **partial** — needs the same tags |
 | 18 | Refuse to run beside EpicLootContainerBridge | 0.4 | **gap** |
@@ -139,22 +139,26 @@ UI integration must no-op when headless, because Husnisse is server-required and
 
 | Version | Add to the ladder |
 |---|---|
+| 0.1.2 | flow queue and rate presets · orders on the queue · invulnerability · `husnisse_prefabs` |
+| 0.1.3 | legs: walking, fade across thresholds, trip animation |
 | 0.2 | provider seam · WardIsLove claim handover and last-known fallback · range preview · parity harness starts |
-| 0.3 | teaching · editable ledger (roles, assignments, classification, pickup type filter) · overflow chests and base groups · pocket merge |
-| 0.4 | contract (queries + `TryConsume`) · craft-from-claim · ExtraSlots/AdventureBackpacks sources · EpicLoot provider · AAABuildMenu · PlanBuild · DropMoreLoot deferral · stack rule · craft repaint |
-| 0.5 | machines · four-way supply permissions · mailbox decision |
-| 0.6 | multiplayer hardening · migration mode (or the separate tool) |
-| 1.0 | stack sizes · ship unloading · comfort coverage · final parity sign-off |
+| 0.3 | container network core: toggle/settings, categories with priority, Overflow and Deposit, list preview, auto-suggest, copy rule, blacklist, deposit-all, LOD, fair queue, read-only badge |
+| 0.3.1 | teaching · editable ledger · pickup type filter · pocket merge · YAML rules and presets |
+| 0.4 | read-only contract: `Count`/`CanAfford`, sources, EpicLoot provider, AAABuildMenu, PlanBuild, MyLittleUI readouts, QI stand-down |
+| 0.5 | `TryConsume`, craft-from-claim, delivery fiction, repaint, DropMoreLoot, stack rules |
+| 0.6 | machines · four-way permissions · mailbox decision |
+| 0.7 | multiplayer hardening · migration route |
+| 1.0 | stack sizes · ship unloading · comfort coverage · QM config import · parity sign-off |
 
 ## Open decisions
 
 - **Mailboxes.** QM ships a postal system. Dropping it silently is a feature regression; keeping it
-  means owning `outgoingMail`/`PostalDirectory` semantics and a watchdog. Decide before 0.5.
+  means owning `outgoingMail`/`PostalDirectory` semantics and a watchdog. Decide before 0.6.
 - **Chest dock.** If Husnisse has no chest-config UI, the dock's gating half is moot; the
   "sort an unowned chest" half may still be wanted. Decide by 0.3.
-- **Migration route.** One of the three above, chosen before 0.6.
+- **Migration route.** One of the three above, chosen before 0.7.
 - **Delivery fiction for consumption.** When a craft spends claim materials, what does the player see?
-  The nisse carrying, a fade at the bench, or requisition into the craft. Decide in 0.4, before
+  The nisse carrying, a fade at the bench, or requisition into the craft. Decide in 0.5, before
   `TryConsume` ships.
 - **QM's config surface.** 18,058 settings across the pack include QM's. A config import pass is the
   difference between "one launch" and "reconfigure everything by hand"; it is not in the ladder.

@@ -7,9 +7,11 @@ Quartermaster **and** Quartermaster_Integrations, and that all other consolidati
 scrapped.
 
 > **Version note (2026-11-05, later the same day).** 0.1.1 was used for the playtest fix (the bowl
-> no longer demands a forge); "legs" is now **0.1.2**. WardIsLove claim handover moved from 0.5 to
-> **0.2** because claims are foundational, and machines/migration each moved back one release.
-> The ladder in §4 is updated; `docs/PARITY.md` carries the current per-surface versions.
+> no longer demands a forge); "legs" is now **0.1.3**, after a separate 0.1.2 flow release.
+> WardIsLove claim handover moved from 0.5 to **0.2** because claims are foundational; the contract
+> split into read-only 0.4 and consuming 0.5; machines and migration each moved back one release.
+> The ladder in §4 is updated; `docs/PARITY.md` carries the current per-surface versions and
+> `docs/ROADMAP.md` the per-release acceptance criteria.
 
 You know Husnisse. What you do not have is this thread's outcome, which changes what "finished"
 means.
@@ -59,11 +61,11 @@ Beyond the existing ladder, ten gaps are now in scope:
 | AAABuildMenu pinned counts | build rows count claim storage | 0.4 |
 | EpicLoot inventory provider | enchanting can spend from the claim; refuse to double-register beside EpicLootContainerBridge | 0.4 |
 | PlanBuild blueprint cost | blueprint totals count claim storage | 0.4 |
-| DropMoreLoot stack deferral | do not fight DropMoreLoot's stack sizes when installed | 0.4 |
-| Pocket stack merge on sort | sorting the player inventory merges identical stacks | 0.3 |
-| Craft-list repaint after craft | recipe list does not keep a stale unaffordable tint | 0.4 |
-| Stack rule relaxations | ignore crafter, ignored tags and EpicLoot components when stacking, but never quality/level/durability | 0.4 |
-| Pickup type filter | per-item-type auto-collect inside a claim | 0.3 |
+| DropMoreLoot stack deferral | do not fight DropMoreLoot's stack sizes when installed | 0.5 |
+| Pocket stack merge on sort | sorting the player inventory merges identical stacks | 0.3.1 |
+| Craft-list repaint after craft | recipe list does not keep a stale unaffordable tint | 0.5 |
+| Stack rule relaxations | ignore crafter, ignored tags and EpicLoot components when stacking, but never quality/level/durability | 0.5 |
+| Pickup type filter | per-item-type auto-collect inside a claim | 0.3.1 |
 | Claim range preview | show the radius before placing / on aim | 0.2 |
 | Overflow chests and base groups | routing fallback and separate bases, not one flat claim | 0.3 |
 
@@ -80,13 +82,16 @@ The ladder was written for a storage mod. It is now a storage **and integration*
 |---|---|---|
 | 0.1 | bowl, claim, memory, sort rounds, orders | unchanged — still the go/no-go on the fiction |
 | 0.1.1 | — | *shipped*: playtest fix, the bowl no longer demands a forge |
-| 0.1.2 | legs | movement, continuous flow at `ItemsPerSecond` (default 5, presets 2/5/10) with a 5 s reconciliation tick, invulnerability, `husnisse_prefabs` dump |
+| 0.1.2 | legs | **flow and safety**: continuous queue at `ItemsPerSecond` (2/5/10), orders on the queue, invulnerability, `husnisse_prefabs` dump |
+| 0.1.3 | — | **legs**: walking, fade across thresholds, trip animation |
 | 0.2 | teaching, ledger, chest roles | **claim ownership: provider seam, WardIsLove handover, last-known fallback**, range preview; parity harness starts |
-| 0.3 | pantries, craft-from-claim | **container network**: opt-in UI toggle/settings, categories with priority, Overflow and Deposit chests, saved-content lists, per-container blacklist (plus `husnisse_prefabs` dump), teaching, editable ledger, pickup filter, pocket merge |
-| 0.4 | machines | contract + craft-from-claim + the QI port (sources, provider, counts, costs, stack rules, repaint) |
-| 0.5 | wards, multiplayer, migration | machines, four-way supply permissions, mailbox decision |
-| 0.6 | — | multiplayer hardening, migration route |
-| 1.0 | stack sizes, ship unload, comfort coverage | final parity sign-off against `PARITY.md` |
+| 0.3 | pantries, craft-from-claim | **network core**: toggle/settings UI, categories with priority, Overflow and Deposit, list preview, auto-suggest, copy rule, blacklist, deposit-all, LOD, fair queue, read-only badge |
+| 0.3.1 | — | **teaching and ledger**: teaching writes lists, editable ledger, pickup filter, pocket merge, YAML rules and presets |
+| 0.4 | machines | **read-only contract**: `Count`/`CanAfford`, sources, EpicLoot/AAA/PlanBuild/MLUI readouts, QI stand-down |
+| 0.5 | — | **craft from claim**: `TryConsume`, delivery fiction, repaint, DropMoreLoot, stack rules |
+| 0.6 | — | machines, four-way permissions, mailbox decision |
+| 0.7 | — | multiplayer hardening, migration route |
+| 1.0 | stack sizes, ship unload, comfort coverage | QM config import; final parity sign-off against `PARITY.md` |
 
 Sizing reality: QI is **5,834 lines** across 18 surfaces; Husnisse is **2,654** at 0.1.1. The port
 roughly doubles the mod. Plan for it as a module, not as a handful of patches.
@@ -97,7 +102,7 @@ roughly doubles the mod. Plan for it as a module, not as a handful of patches.
   or sulking, and every move is seen — walking, transferring, fading across thresholds — but the work
   itself may be simulated in a queue. Read-only contract queries (`Count`, `CanAfford`) are exempt:
   they ask the claim a question and move nothing. Consumption (`TryConsume`) is not exempt and needs a
-  delivery fiction before 0.4. The one documented exception is the pockets-first spend order.
+  delivery fiction before 0.5. The one documented exception is the pockets-first spend order.
 - **Ownership hands over, it does not stack.** Every function has a native implementation; an
   installed mod that owns a function replaces it, and the two never run together. For claims this is
   decided per bowl: only a bowl standing inside a WardIsLove ward uses the ward as its claim; a bowl
@@ -127,9 +132,9 @@ roughly doubles the mod. Plan for it as a module, not as a handful of patches.
 
 | Decision | Needed by | Options |
 |---|---|---|
-| **Mailboxes** | 0.4 | Keep QM's postal system (own `outgoingMail`/`PostalDirectory` semantics + watchdog), or drop it explicitly and record the regression |
-| **Migration route** | 0.5 | (a) migration mode that permits Quartermaster present, read-only, rounds disabled; (b) separate one-shot tool run before removal; (c) accept the loss and document a fresh world |
-| **Chest dock** | 0.3 | Drop with the chest UI, or keep the "sort an unowned chest" half |
+| **Mailboxes** | 0.6 | Keep QM's postal system (own `outgoingMail`/`PostalDirectory` semantics + watchdog), or drop it explicitly and record the regression |
+| **Migration route** | 0.7 | (a) migration mode that permits Quartermaster present, read-only, rounds disabled; (b) separate one-shot tool run before removal; (c) accept the loss and document a fresh world |
+| **Chest dock** | 0.3.1 | Drop with the chest UI, or keep the "sort an unowned chest" half |
 | **QM config import** | 1.0 | Copy matching values from QM's `.cfg` on first run, or make users reconfigure by hand |
 
 Migration is the sharp one. QM's deposit chests are its own prefabs; converting them needs those
@@ -159,17 +164,18 @@ is chosen and tested on a copied world.
 
 1. **0.1 playtest.** Unchanged and still first — it is the go/no-go on the fiction, and nothing in
    this handoff makes sense if feeding a spirit to sort your base is not fun.
-2. **0.1.2 legs**, only after 0.1 passes.
-3. **0.2 claim ownership**: provider seam, WardIsLove full handover with last-known fallback, range
+2. **0.1.2 flow and safety**: queue, rate presets, orders on the queue, invulnerability, prefab dump.
+3. **0.1.3 legs**: walking, fade across thresholds, trip animation.
+4. **0.2 claim ownership**: provider seam, WardIsLove full handover with last-known fallback, range
    preview. The parity harness starts here.
-4. **0.3 teaching and the ledger**: teaching by demonstration, editable ledger (roles, assignments,
-   container classification, pickup filter), overflow/base groups, pocket stack merge.
-5. **0.4 the contract**: craft-from-claim and `TryConsume`, ExtraSlots and AdventureBackpacks as
-   sources, EpicLoot provider, AAABuildMenu counts, PlanBuild costs, craft repaint, DropMoreLoot,
-   stack rules. This is the biggest single release in the project.
-6. **0.5 machines + permissions + mailbox decision.**
-7. **0.6 multiplayer and the migration route.**
-8. **1.0 parity sign-off against `docs/PARITY.md`, surface by surface, on a copied world.**
+5. **0.3 network core**: container UI, categories with priority, Overflow and Deposit, previews, copy
+   rule, blacklist, deposit-all, LOD, fair queue, badge.
+6. **0.3.1 teaching and ledger**: teaching, ledger, pickup filter, pocket merge, YAML rules.
+7. **0.4 read-only contract**: counts, sources, providers, readouts, QI stand-down.
+8. **0.5 craft from claim**: `TryConsume`, delivery fiction, repaint, stack rules.
+9. **0.6 machines, permissions and the mailbox decision.**
+10. **0.7 multiplayer and the migration route.**
+11. **1.0 parity sign-off against `docs/PARITY.md`, surface by surface, on a copied world.**
 
 ## 9. Still unverified
 
@@ -184,5 +190,6 @@ is chosen and tested on a copied world.
 
 ---
 
-**Read next:** `docs/PARITY.md` (definition of done), `README.md` (design law and ladder),
-`CLEANROOM.md` (provenance), `docs/PLAYTEST.md` (0.1 checklist).
+**Read next:** `docs/PARITY.md` (definition of done), `docs/ROADMAP.md` (sequence and acceptance
+criteria), `README.md` (design law and ladder), `CLEANROOM.md` (provenance), `docs/PLAYTEST.md` (0.1
+checklist).
