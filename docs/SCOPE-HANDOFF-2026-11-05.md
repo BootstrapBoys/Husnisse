@@ -191,5 +191,5 @@ is chosen and tested on a copied world.
 ---
 
 **Read next:** `docs/PARITY.md` (definition of done), `docs/ROADMAP.md` (sequence and acceptance
-criteria), `README.md` (design law and ladder), `CLEANROOM.md` (provenance), `docs/PLAYTEST.md` (0.1
-checklist).
+criteria), `docs/CODE-REVIEW.md` (what in the 0.1 code must change), `README.md` (design law and
+ladder), `CLEANROOM.md` (provenance), `docs/PLAYTEST.md` (0.1 checklist).
