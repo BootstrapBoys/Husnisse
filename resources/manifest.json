@@ -2,7 +2,7 @@
   "name": "Husnisse",
   "version_number": "0.1.2",
   "website_url": "https://github.com/zebz213/Husnisse",
-  "description": "A household spirit that sorts, stores and keeps a Valheim base. Clean-room replacement for Quartermaster.",
+  "description": "A household spirit that sorts and stores for your base. Stock its bowl; it keeps the chests in order.",
   "dependencies": [
     "denikson-BepInExPack_Valheim-5.4.2202",
     "ValheimModding-Jotunn-2.30.2",
