@@ -12,23 +12,27 @@ keep this independent of Quartermaster's code.
 
 ## The one law
 
-**Nothing happens unless the creature does it.**
+**The creature is always the visible cause.**
 
-There are no magic chests, no invisible item pipes, no automation that runs when nobody is home. If the
-nisse is unfed, asleep, sulking or dead, the base stops sorting, stops feeding the smelter, stops
-unloading the boat. Every automated action in the mod has an actor you can point at.
+No item moves while the nisse is unfed, asleep or sulking, and every move has an actor you can point
+at. The strict reading — that the nisse physically carries every item — is not the rule any more. Work
+is simulated in a queue at a configured rate, and the nisse is **seen** doing it: walking to the chest,
+playing the transfer, fading across thresholds. The background queue is an implementation detail; the
+cause is still the creature.
 
-That single rule generates the whole design:
+What survives from the strict version:
 
-- **Performance is bounded by fiction.** The creature works in passes, not instantly, so a 200-chest
-  base costs what a creature can carry, not what a loop can scan.
-- **Balance is a relationship, not a config slider.** Automation is gated by care, not by a checkbox.
-- **Failure is legible.** When something is not being sorted, you can see why: the bowl is empty, the
-  nisse is in the wrong room, or it is hiding your boots because you forgot it.
+- **Nothing happens while it is not working.** An unfed or sulking nisse stops the base: no sorting, no
+  machine feeding, no ship unloading.
+- **Performance is bounded by the rate, not by a scan.** A 200-chest base costs what the configured
+  items/second allows, not what a loop can touch.
+- **Balance is a relationship.** Automation is gated by care, not by a checkbox.
+- **Failure is legible.** When something is not being sorted you can see why: the bowl is empty, the
+  nisse cannot reach the room, or it is sulking.
 
 ### The law's boundary
 
-The law governs **storage**, not hands. It says no item moves around the base unless the nisse moves
+The law governs **storage**, not hands. It says no item moves around the base unless the nisse is doing
 it — it does not claim the player cannot spend what they are already holding.
 
 This matters at 0.4, when craft-from-claim arrives. The storage contract fixes the spend order as
@@ -79,7 +83,7 @@ than any UI we could design, because it explains *why* work happens while you sl
 |---|---|
 | **Small and mundane** | Lives in the base, not on the battlefield. Not a combat pet. |
 | **Untouchable** | Cannot be damaged, and enemies ignore it. It is a spirit; killing it would only punish the player for a raid they already lost. |
-| **Works in passes** | A nightly round, or a round every N seconds while you are home. Visible if you watch. |
+| **Works continuously** | Drains a queue at a configured rate while you are home, with a visible trip per batch. |
 | **Eats** | A porridge bowl is its home. Empty bowl, no work. Food quality sets its speed and reach. |
 | **Remembers** | Learns where things go, by being shown, not by being configured. |
 | **Sulks** | Unfed for long enough and it hides items in the wrong chests until you apologise with food. |
@@ -112,25 +116,25 @@ Quartermaster's public feature list, and how each one becomes a creature action 
 
 | Quartermaster feature | Husnisse equivalent |
 |---|---|
-| Deposit Chests (auto-sort into matching storage) | The nisse's rounds: it carries the deposit pile into the chests it has learned |
+| Deposit Chests (auto-sort into matching storage) | The container network: toggled containers receive items by preset category or a saved list |
 | Remembered items (chests remember types when empty) | The nisse remembers; the chest does not need to |
-| Storage rules (preferred, overflow, base groups, copy settings) | Rooms: a nisse claims a radius, multiple nisse = base groups. Preferred/overflow stay as settings |
+| Storage rules (preferred, overflow, base groups, copy settings) | Container rules: a preset category or a saved list, plus preferred/overflow priority. Rooms come from claims |
 | Supply permissions (which chests feed crafting/production) | Teaching a chest as a pantry; the nisse will fetch from pantries only |
 | Inventory tools (deposit all, sort, combine stacks) | Orders given to the nisse: Tidy, Combine, Empty Pockets |
 | Pickup controls (auto-collect certain types) | The nisse collects drops inside its claim while working |
 | Stack sizes | Plain config, no creature angle — it is a number, not a behaviour |
 | Craft from storage | The nisse answers the call: crafting draws from its claim because it is the one holding the network together |
 | Building coverage (station range extension) | Coverage is the claim radius — no separate setting |
-| Production (supply processors, collect output) | The nightly round feeds and empties machines in the claim |
+| Production (supply processors, collect output) | The queue feeds and empties machines in the claim |
 | Machine controls (caps, pause, protect valuable wood) | Standing orders per machine, set once, obeyed by the nisse |
-| Refuelling and feeding (fires, torches, animals, taming) | Part of the round: fuel in, ash out, troughs filled |
+| Refuelling and feeding (fires, torches, animals, taming) | Part of the queue: fuel in, ash out, troughs filled |
 | Owl companion | The creature itself — there is no separate mascot |
 | Helmsman ship unloading | A nisse whose claim reaches water unloads any container on a ship inside the claim |
 | Searchable menus, range previews, controller | The ledger panel: one screen listing what the nisse knows, with the same range preview |
-| Config sections | `1. General`, `2. Nisse`, `3. Rounds`, `4. Storage`, `5. Production`, `6. Ward` |
+| Config sections | `1. General`, `2. Nisse`, `3. Flow`, `4. Containers`, `5. Production`, `6. Ward` |
 
 Not everything should be a creature action. Numbers are numbers. The rule is that **no item moves unless
-the nisse moves it** — settings that describe *where* and *what*, not *how*, stay as config.
+the nisse is doing it** — settings that describe *where* and *what*, not *how*, stay as config.
 
 ## Core systems
 
@@ -160,33 +164,58 @@ Where a ward overlaps a native claim without containing its bowl, the ward's gro
 nisse excludes any container that sits inside a ward it does not own, so two nisses never touch one
 chest.
 
+### Container network
+
+Every container inside a claim is eligible, whatever its prefab — vanilla chests, modded barrels,
+crates. Nothing joins by default: a container is on the network only when it is opted in.
+
+- **Toggle** — a button in the top-right of the container UI adds or removes it. A settings button next
+  to it opens the rule: a preset category, a custom list, or the blacklist.
+- **Presets** — grouped by survival category (Metals, Wood, Food, Trophies, Valuables, Building,
+  Consumables, Tools), each expanding to Valheim item types. Selecting one routes every item of those
+  types to that container.
+- **Custom list** — "save contents" captures what the container holds now; only those items route
+  there. Teaching by demonstration writes the same list.
+- **Blacklist** — per container or per whole mod. A blacklisted container shows neither the toggle nor
+  the settings button. Carts, ships and display piles start blacklisted rather than hard-coded out of
+  the scan.
+- **Permissions** — the claim owner and ward-permitted players change rules; anyone with container
+  access can read them.
+- **Authority** — rules live in the container's ZDO and are written through the server; a client with
+  no local player changes nothing.
+- **Containers outside a claim** are not on any network and show no buttons.
+
 ### Memory
 
 Per nisse, persisted in its own ZDO:
 
-- `item → chest` assignments, learned by demonstration or set in the ledger.
-- `chest → role` (storage, pantry, overflow, machine input, machine output).
+- `item → container` assignments, learned by demonstration or set in the ledger.
+- `container → rule` (preset category, custom list, preferred/overflow priority, blacklist).
 - `machine → standing order` (fill to N, empty always, leave X wood).
 
 Memory is the nisse's, not the chest's. Move a chest and the nisse follows it because it tracks the
 container object, not a coordinate.
 
-### Rounds
+### Flow and rounds
 
-A round is a bounded pass, not a loop:
+Work is a continuous drain, not a burst. A cheap reconciliation tick refills the queue; the queue
+drains at a fixed rate:
 
 ```
-every RoundInterval (default 30 s):
+every ReconcileInterval (default 5 s):
     for each claim, if the nisse is awake, fed and in range:
-        collect drops           (budget 20 items)
-        sort the deposit pile   (budget 40 items)
-        service machines        (budget 10 actions)
-        refuel fires and troughs(budget 10)
-        report what it could not finish
+        refill the queue: drops, toggled containers, machine tasks, refuelling
+every tick:
+    drain up to ItemsPerSecond (default 5) × elapsed time
+    one visible trip per batch: walk to the container, play the transfer, fade if unreachable
+on world load:
+    one catch-up pass at 2× the rate, bounded
 ```
 
-Budgets are per round and configurable. The nisse never does more work than the budget, which is what
-keeps a large base from spiking the server and what makes the fiction honest.
+Batch size is the rate times the trip length: at 5 items/second and a two-second trip, one walk moves
+about ten items. The queue is what keeps a 200-container base bounded; the trip is what makes it
+watchable. A nisse that cannot path to a container fades, moves the batch, and reports it — the same
+legible failure as everything else.
 
 ### Movement
 
@@ -201,16 +230,16 @@ The nisse walks, but not everywhere. Measured against the live game rather than 
   then snaps immediately, so the first request in a fresh tile always fails.
 
 So walking is **room-scale and outdoors**, and a threshold fades. That is not a compromise bolted on
-at the end: a household spirit does not use doors, it steps through the wall. A round pokes the next
-destination, the following round walks it, and after one failed retry the nisse fades and reports that
+at the end: a household spirit does not use doors, it steps through the wall. A trip pokes the next
+destination, the next trip walks it, and after one failed retry the nisse fades and reports that
 it could not reach — legible failure, same as everything else.
 
 ### Orders
 
 Two direct commands, both still the nisse's work:
 
-- **Empty Pockets** — interact with the nisse. It takes what it can file from your inventory, up to one
-  sort budget; equipped items stay where they are.
+- **Empty Pockets** — interact with the nisse. It takes what it can file from your inventory, up to its
+  share of the queue; equipped items stay where they are.
 - **Tidy** — Alt-interact a chest inside a claim. The nisse files its contents into the right chests.
 
 Both refuse when the nisse is absent, when the bowl is empty and feeding is required, or when the
@@ -257,7 +286,7 @@ Every session writes `BepInEx/BSBLogs/Husnisse.log`: a header, then state dumps 
 demand and at shutdown — claims, owners, radius, suppression, satiety, mood, sulk level, container and
 stack counts, nisse presence. `husnisse_status` prints the same lines in the console and appends them
 to the file. `1. General / Write Diagnostics File` turns it off; `1. General / Debug Logging` adds the
-verbose round and container lines, each tagged with its module — `[Claims]`, `[Rounds]`, `[Bowl]`,
+verbose round and container lines, each tagged with its module — `[Claims]`, `[Flow]`, `[Bowl]`,
 `[Memory]`, `[Compat]`, `[Creature]`, `[Tasks]` — so a filter can isolate one.
 
 ## Technical architecture
@@ -268,7 +297,7 @@ verbose round and container lines, each tagged with its module — `[Claims]`, `
 | **Home piece** | A small build piece (bowl/hearth) registered as a Jötunn `CustomPiece`. Holds claim radius and bowl state. |
 | **Claim registry** | Rebuilt on world load from ZDOs, then maintained incrementally on `ZDO.SetOwner` and container changes. No per-frame scans. |
 | **Item movement** | `Inventory` APIs on the server. Every move checks ward access before touching a container. |
-| **Save data** | nisse state in its own ZDO (`radius`, `mood`, `satiety`, `assignments`); chest roles in the chest's ZDO; machine orders in the machine's ZDO. Nothing in config. A schema newer than the build understands is refused: log it, stop rounds, leave the data untouched. |
+| **Save data** | nisse state in its own ZDO (`radius`, `mood`, `satiety`, `assignments`); container rules in the container's ZDO; machine orders in the machine's ZDO. Nothing in config. A schema newer than the build understands is refused: log it, stop the queue, leave the data untouched. |
 | **Config** | Numbered sections, host-owned for anything that changes world state, client-local for UI. Synced with ConditionalConfigSync, so each key can opt in or out of force-sync; Jötunn's own sync only covers `AdminOnly` entries. |
 | **Compatibility guard** | If Quartermaster is installed, refuse to run and say so. Two storage systems on one chest is how items vanish. |
 
@@ -341,9 +370,9 @@ order, spend order, ward filtering, all-or-nothing spending, reentrancy — that
 |---|---|---|
 | **0.1** | Creature (a nisse), bowl, claim, memory, sort-only rounds, Empty Pockets and Tidy orders. **No navigation** — it fades between bowl and chest | Proves the fiction is playable. If feeding a spirit to get items sorted is not fun, stop here. |
 | **0.1.1** | *Shipped.* Playtest fix: the bowl no longer demands a forge, and registration states its category, station and table | The build the first playtest runs on. |
-| **0.1.2** | "Legs": room-scale and outdoor walking, fade across thresholds | Only after 0.1 playtests well. Movement changes the feel without changing the loop. |
+| **0.1.2** | "Legs": room-scale and outdoor walking, fade across thresholds. **Flow**: continuous drain at items/second (default 5) with a 5 s reconciliation tick, and an invulnerable nisse | Movement plus throughput — the two things the playtest will judge first. |
 | **0.2** | **Claim ownership**: provider seam, WardIsLove full handover with last-known fallback, range preview, claim diagnostics. Parity harness begins | Claims are foundational — teaching and roles must be built on the claim that actually governs the base, not a radius we replace at 0.6. |
-| **0.3** | Teaching by demonstration, editable ledger (roles, assignments, container classification, pickup filter), overflow chests and base groups, pocket stack merge | The signature mechanic, plus the routing rules it teaches. Needs 0.2's claim authority. |
+| **0.3** | **Container network**: opt-in toggle and settings on the container UI, preset categories, custom lists from saved contents, per-container and per-mod blacklists, teaching by demonstration, editable ledger, overflow/base groups, pickup filter, pocket stack merge | The signature release: the network, the UI and the teaching path all land together. Needs 0.2's claim authority. |
 | **0.4** | **The contract**: craft-from-claim and `TryConsume`, ExtraSlots and AdventureBackpacks as sources, EpicLoot as provider, AAABuildMenu counts, PlanBuild costs, craft-list repaint, DropMoreLoot deferral, stack rules | The biggest release; the QI port lands here, against a harness that already exists. |
 | **0.5** | Machines: fuel, feed, collect, caps; four-way supply permissions; mailbox decision | The nightly round earns its keep. Mail is decided before migration touches world data. |
 | **0.6** | Multiplayer hardening, Quartermaster ZDO migration — only after a route is chosen and proven on a copied world | The swap is atomic; migration is the one thing that cannot be promised in advance. |

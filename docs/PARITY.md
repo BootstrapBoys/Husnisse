@@ -19,9 +19,14 @@ Husnisse's native implementation is the floor; it resumes from the last recorded
 disappears. UI-only surfaces are consumers, not handovers — see `README.md`, "Ownership hands over,
 it does not stack".
 
-**Settled 2026-11-05.** The ledger is **editable** — it sets roles and assignments and can classify
-unknown containers, so it is a chest UI by another name; the chest dock's gating half is moot but its
-sort-unowned half survives.
+**Settled 2026-11-05, later.** The law is now "the creature is always the visible cause": the queue may
+run in the background, but the nisse is seen walking and transferring, and nothing moves while it is
+unfed or sulking. Containers join a claim's network **opt-in** from a toggle in the container UI; every
+container inside a claim is eligible (no whitelist), with per-container and per-mod blacklists hiding
+both buttons. Rules are a preset category (survival presets expanding to item types) or a saved-contents
+list; teaching writes the same list. Throughput is a hybrid — continuous drain at `ItemsPerSecond`
+(default 5) with a 5 s reconciliation tick and a bounded load catch-up. Claim owner and ward-permitted
+players change rules; anyone with container access reads them.
 
 Ward handover is **per bowl**: a bowl inside a ward uses that ward's range, owner and permissions as the
 claim; a bowl outside every ward keeps the native radius and owner. One bowl per ward — the second is
@@ -49,9 +54,9 @@ fiction — decided in 0.4, before the first consuming surface lands.
 
 | # | Feature | Husnisse | Status |
 |---|---|---|---|
-| 1 | Deposit chest auto-sort | 0.1 Tidy + Empty Pockets + `ItemMemory` | covered, different mechanic |
-| 2 | Chest remembers its item type when empty | 0.1 `ItemMemory` | covered |
-| 3 | Storage rules: preferred destination, overflow chest, base groups, copy settings | 0.3 chest roles | **partial** — overflow and base groups land in 0.3 |
+| 1 | Deposit chest auto-sort | 0.3 container network (toggle + preset/list) | **covered, different mechanic** |
+| 2 | Chest remembers its item type when empty | 0.3 container rule lives in its ZDO | covered |
+| 3 | Storage rules: preferred destination, overflow chest, base groups, copy settings | 0.3 container rules | **partial** — categories and saved lists land in 0.3; priority/overflow pending |
 | 4 | Supply permissions per chest (crafting, production, fuel, feed) | 0.5 pantries | **partial** — one permission today, four in QM |
 | 5 | Deposit All · sort inventory · sort chest · combine compatible stacks | 0.1 orders | **partial** — pocket stack merge is QI's, see QI #13 |
 | 6 | Pickup controls, per item type | 0.3 type filter | **partial** — per claim, edited in the ledger |
