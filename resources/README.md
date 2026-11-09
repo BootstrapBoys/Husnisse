@@ -1,7 +1,7 @@
 # Husnisse
 
-A household spirit that sorts, stores and keeps a Valheim base. A clean-room replacement for
-Quartermaster, built around one idea: the nisse is always the visible cause.
+A household spirit that sorts, stores and keeps a Valheim base, built around one idea: the nisse is
+always the visible cause.
 
 Place a **Porridge Bowl**, stock it with food, and a nisse settles beside it. It files what the base
 owns into the chests that hold it, remembers where each item lives, and refuses to work when its bowl
@@ -51,8 +51,8 @@ container network and the crafting integrations are still ahead. See *Planned fe
   `husnisse_status` console command.
 - **WardIsLove** access checks are respected where it is installed. Full per-bowl ward claim handover
   arrives in 0.2.
-- **Quartermaster is refused**: remove it before installing Husnisse. Two storage systems on one base
-  lose items.
+- **One storage system per base**: remove any other storage automation before installing. Two systems
+  managing the same chests lose items.
 
 ## Planned features
 
@@ -67,13 +67,13 @@ Not in this build. Order and detail are in the repository's `docs/ROADMAP.md`.
 | 0.4 | Read-only storage contract: craft and build UIs count claim storage (AAA Crafting, AAABuildMenu, PlanBuild, MyLittleUI), EpicLoot provider, ExtraSlots and AdventureBackpacks as sources |
 | 0.5 | Craft from claim: spending materials from storage with a visible delivery, recipe repaint, stack rules |
 | 0.6 | Machines: processors, fermenters, refuelling, animal feeding, four-way supply permissions, mailbox decision |
-| 0.7 | Multiplayer hardening and Quartermaster world migration |
+| 0.7 | Multiplayer hardening and legacy storage migration |
 | 1.0 | Full parity: configurable stack sizes, ship unloading, comfort coverage, sign-off against the parity matrix |
 
 ## Install
 
 1. Install **BepInEx 5.4.x**, **Jotunn 2.30.2** and **ConditionalConfigSync 1.0.11**.
-2. Remove **Quartermaster** if it is installed — Husnisse refuses to load beside it.
+2. Remove any other storage automation that manages the same chests before installing.
 3. Extract the package at the Valheim root so
    `BepInEx/plugins/BootstrapBoys-Husnisse/Husnisse.dll` and `YamlDotNet.dll` appear.
 4. Start the game. The log should say `Husnisse 0.1.2 starting` and `content registered`.
@@ -115,4 +115,4 @@ Bugs and suggestions: <https://github.com/zebz213/Husnisse/issues>. Please inclu
 
 ## Credits
 
-BootstrapBoys. Built clean-room on Jotunn; no Quartermaster source, assets or data keys are used.
+BootstrapBoys. Original code and assets, built clean-room on Jotunn.
