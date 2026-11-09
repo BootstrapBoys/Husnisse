@@ -111,7 +111,7 @@ Gale and other Thunderstore managers install the declared dependencies automatic
 
 ## Feedback
 
-Bugs and suggestions: <https://github.com/zebz213/Husnisse/issues>. Please include `LogOutput.log` and
+Bugs and suggestions: <https://github.com/BootstrapBoys/Husnisse/issues>. Please include `LogOutput.log` and
 `BepInEx/BSBLogs/Husnisse.log`.
 
 ## Credits
