@@ -6,8 +6,8 @@ using UnityEngine;
 namespace Husnisse.Creature
 {
     /// <summary>
-    /// Lets the player hand the nisse their pockets. Interact on the creature, and it files what it
-    /// can carry within one sort budget.
+    /// Lets the player hand the nisse their pockets. Interact on the creature, and it queues what it
+    /// can carry; the server does the moving.
     /// </summary>
     public class NisseHands : MonoBehaviour, Interactable, Hoverable
     {
@@ -47,7 +47,7 @@ namespace Husnisse.Creature
                 return true;
             }
 
-            return OrderService.EmptyPockets(player, claim);
+            return OrderService.RequestEmptyPockets(player, claim);
         }
 
         public bool UseItem(Humanoid user, ItemDrop.ItemData item)

@@ -49,8 +49,8 @@ namespace Husnisse.Creature
             }
 
             character.m_name = "Nisse";
-            character.m_faction = Character.Faction.PlayerSpawned;
-            character.m_health = 100f;
+            character.m_faction = Character.Faction.TrainingDummy;
+            character.m_health = 1000f;
             character.m_walkSpeed = 2f;
             character.m_runSpeed = 4f;
 

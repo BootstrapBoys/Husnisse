@@ -7,6 +7,7 @@ namespace Husnisse.Util
     public static class ZdoKeys
     {
         // Bowl
+        public const string BowlInit = "husnisse_bowl_init";
         public const string BowlRadius = "husnisse_bowl_radius";
         public const string BowlSatiety = "husnisse_bowl_satiety";
         public const string BowlMood = "husnisse_bowl_mood";

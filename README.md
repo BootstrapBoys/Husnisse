@@ -212,7 +212,7 @@ every ReconcileInterval (default 5 s):
         refill the queue: drops, toggled containers, machine tasks, refuelling
 every tick:
     drain up to ItemsPerSecond (default 5) × elapsed time
-    one visible trip per batch: walk to the container, play the transfer, fade if unreachable
+    one trip per batch: walk to the container, play the transfer, fade if unreachable
 on world load:
     one catch-up pass at 2× the rate, bounded
 ```
@@ -221,6 +221,8 @@ Batch size is the rate times the trip length: at 5 items/second and a two-second
 about ten items. The queue is what keeps a 200-container base bounded; the trip is what makes it
 watchable. A nisse that cannot path to a container fades, moves the batch, and reports it — the same
 legible failure as everything else.
+
+In 0.1.2 the trip is still a fade to the target; 0.1.3 adds the walk.
 
 ### Movement
 
@@ -243,12 +245,13 @@ it could not reach — legible failure, same as everything else.
 
 Two direct commands, both still the nisse's work:
 
-- **Empty Pockets** — interact with the nisse. It takes what it can file from your inventory, up to its
-  share of the queue; equipped items stay where they are.
-- **Tidy** — Alt-interact a chest inside a claim. The nisse files its contents into the right chests.
+- **Empty Pockets** — interact with the nisse. It queues what it can file from your inventory; the hotbar
+  and equipped items stay where they are.
+- **Tidy** — Alt-interact a chest inside a claim. The nisse queues its contents for the right chests.
 
 Both refuse when the nisse is absent, when the bowl is empty and feeding is required, or when the
-player is outside the claim — and they say which. Combine stacks is not implemented yet.
+player is outside the claim — and they say which. The client asks; the server validates and moves.
+Combine stacks is not implemented yet.
 
 ### Localisation
 
@@ -264,7 +267,10 @@ shipped DLL besides Husnisse itself.
 
 ### The bowl
 
-The home piece. It stores food, satiety and mood. Mood decays with time and work; food restores it.
+The home piece. Its container is a four-slot pantry that accepts food and nothing else; interacting
+with the bowl opens it like a chest. The nisse eats one item every `2. Nisse / Bowl Drain Minutes`
+(default 20) while satiety is below full, and an empty bowl is what makes it hungry. It stores satiety
+and mood. Mood decays with time and work; food restores it.
 Below a threshold the nisse stops, sits by the bowl, and the ledger says why. Prolonged neglect and it
 starts a sulk: it hides one random stack per day in a wrong chest until it is fed again — never more
 than three stacks at once, and mood only decays while a player is online, so a week away is not a
@@ -288,18 +294,19 @@ and it has to be documented here too rather than papered over.
 ### Diagnostics
 
 Every session writes `BepInEx/BSBLogs/Husnisse.log`: a header, then state dumps at world load, on
-demand and at shutdown — claims, owners, radius, suppression, satiety, mood, sulk level, container and
-stack counts, nisse presence. `husnisse_status` prints the same lines in the console and appends them
-to the file. `1. General / Write Diagnostics File` turns it off; `1. General / Debug Logging` adds the
-verbose round and container lines, each tagged with its module — `[Claims]`, `[Flow]`, `[Bowl]`,
-`[Memory]`, `[Compat]`, `[Creature]`, `[Tasks]` — so a filter can isolate one.
+demand and at shutdown — claims, owners, radius, suppression, satiety, mood, sulk level, bowl contents,
+queue depth, container and stack counts, nisse presence. `husnisse_status` prints the same lines in the
+console and appends them to the file. `1. General / Write Diagnostics File` turns it off;
+`1. General / Debug Logging` adds the verbose flow and container lines, each tagged with its module —
+`[Claims]`, `[Flow]`, `[Bowl]`, `[Memory]`, `[Compat]`, `[Creature]`, `[Orders]` — so a filter can
+isolate one. `husnisse_prefabs` exports every loaded container prefab to `Husnisse-prefabs.txt`.
 
 ## Technical architecture
 
 | Piece | Approach |
 |---|---|
 | **Creature** | A vanilla `Character` prefab cloned at runtime (Greyling is the cheapest humanoid) and re-tinted, wrapped in Jötunn's `CustomCreature` and registered through `CreatureManager`, with our own `BaseAI` subclass. No new art for v1 — this is the single biggest scope saving and it is legitimate: we are using Valheim's own assets at runtime, which is what the game gives every mod. |
-| **Home piece** | A small build piece (bowl/hearth) registered as a Jötunn `CustomPiece`. Holds claim radius and bowl state. |
+| **Home piece** | A small build piece (bowl/hearth) registered as a Jötunn `CustomPiece`. Its `Container` is the four-slot food pantry; the piece holds claim radius and bowl state. |
 | **Claim registry** | Rebuilt on world load from ZDOs, then maintained incrementally on `ZDO.SetOwner` and container changes. No per-frame scans. |
 | **Item movement** | `Inventory` APIs on the server. Every move checks ward access before touching a container. |
 | **Save data** | nisse state in its own ZDO (`radius`, `mood`, `satiety`, `assignments`); container rules in the container's ZDO; machine orders in the machine's ZDO. Nothing in config. A schema newer than the build understands is refused: log it, stop the queue, leave the data untouched. |
@@ -380,7 +387,7 @@ table is the summary.
 |---|---|---|
 | **0.1** | Creature (a nisse), bowl, claim, memory, sort-only rounds, Empty Pockets and Tidy orders. **No navigation** — it fades between bowl and chest | Proves the fiction is playable. If feeding a spirit to get items sorted is not fun, stop here. |
 | **0.1.1** | *Shipped.* Playtest fix: the bowl no longer demands a forge, and registration states its category, station and table | The build the first playtest runs on. |
-| **0.1.2** | **Flow and safety**: continuous queue at items/second (default 5; presets 2/5/10), orders move onto the queue, invulnerable nisse, `husnisse_prefabs` dump | Makes the loop measurable and safe before movement distracts from it. |
+| **0.1.2** | **Flow and safety, plus the pantry bowl**: the bowl becomes a four-slot food container with a configurable drain rate; continuous queue at items/second (default 5; presets 2/5/10), orders move onto the server queue, invulnerable nisse, `husnisse_prefabs` dump | Makes the loop measurable and safe before movement distracts from it. |
 | **0.1.3** | "Legs": room-scale and outdoor walking, fade across thresholds, visible trip animation | Movement on top of a queue that already works. |
 | **0.2** | **Claim ownership**: provider seam, WardIsLove full handover with last-known fallback, range preview, claim diagnostics, parity harness starts | Claims are foundational — teaching and container rules must be built on the claim that actually governs the base. |
 | **0.3** | **Network core**: container UI toggle/settings, item categories with priority, Overflow and Deposit roles, custom-list preview, auto-suggest, copy rule, blacklist, deposit-all, animation LOD, fair queue, read-only badge | The network and its routing model; the largest UI work in the project. |

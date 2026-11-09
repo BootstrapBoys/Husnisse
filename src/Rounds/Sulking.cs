@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Husnisse.Claims;
 using Husnisse.Config;
 using Husnisse.Core;
-using Husnisse.Tasks;
+using Husnisse.Localization;
 using UnityEngine;
 
 namespace Husnisse.Rounds
@@ -53,7 +53,7 @@ namespace Husnisse.Rounds
             fromInventory.RemoveItem(item, item.m_stack);
 
             bowl.RegisterSulk();
-            Creature.NisseVoice.Say(claim, "Something clatters into the wrong chest.", true);
+            Creature.NisseVoice.Say(claim, Loc.T(Loc.VoiceSulk), true);
             Log.Info("sulk: misfiled " + item.m_shared.m_name + " in claim " + claim.BowlId);
         }
     }

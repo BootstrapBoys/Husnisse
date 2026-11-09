@@ -1,150 +1,158 @@
-using System.Collections.Generic;
 using Husnisse.Claims;
 using Husnisse.Config;
+using Husnisse.Core;
 using Husnisse.Creature;
+using Husnisse.Flow;
 using Husnisse.Localization;
-using Husnisse.Memory;
-using Husnisse.Rounds;
+using Husnisse.Net;
 using Husnisse.Storage;
 using UnityEngine;
 
 namespace Husnisse.Orders
 {
+    public enum OrderKind : byte
+    {
+        EmptyPockets = 1,
+        Tidy = 2,
+        ToggleFeeding = 3,
+    }
+
     /// <summary>
-    /// Orders the player gives the nisse directly: empty my pockets, and tidy this chest. Both are
-    /// the nisse's work — they run only if it exists, is fed when feeding is on, and the player is
-    /// inside its claim.
+    /// Player requests become queue tickets. The client only asks; the server validates and enqueues,
+    /// so no item is moved by a client.
     /// </summary>
     public static class OrderService
     {
-        public static bool EmptyPockets(Player player, Claim claim)
+        public static bool RequestEmptyPockets(Player player, Claim claim)
         {
-            NisseActor nisse;
-            if (!Ready(claim, player, out nisse)) return true;
+            if (!Ready(claim, player, false)) return true;
+            OrderRpc.Send(OrderKind.EmptyPockets, claim.BowlId, ZDOID.None, player.GetPlayerID());
+            player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderQueued));
+            return true;
+        }
 
-            var memory = MemoryOf(nisse);
+        public static bool RequestTidy(Player player, Claim claim, Container source)
+        {
+            if (!Ready(claim, player, false)) return true;
+
+            var view = source != null ? source.GetComponent<ZNetView>() : null;
+            var id = view != null && view.GetZDO() != null ? view.GetZDO().m_uid : ZDOID.None;
+            if (id == ZDOID.None) return true;
+
+            OrderRpc.Send(OrderKind.Tidy, claim.BowlId, id, player.GetPlayerID());
+            player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderQueued));
+            return true;
+        }
+
+        /// <summary>Server entry point, called from the RPC handler (or directly on a host).</summary>
+        public static void ExecuteOnServer(long playerId, ZDOID bowlId, OrderKind kind, ZDOID containerId)
+        {
+            var player = Player.GetPlayer(playerId);
+            var claim = ClaimRegistry.Find(bowlId);
+            if (player == null || claim == null) return;
+
+            if (kind == OrderKind.ToggleFeeding)
+            {
+                claim.Bowl.ServerToggleFeeding(playerId);
+                return;
+            }
+
+            if (!Ready(claim, player, true)) return;
+
+            if (kind == OrderKind.EmptyPockets)
+            {
+                EnqueuePockets(player, claim);
+                return;
+            }
+
+            var source = ContainerIndex.ById(claim, containerId);
+            if (source == null) return;
+            EnqueueContainer(source, claim);
+        }
+
+        private static void EnqueuePockets(Player player, Claim claim)
+        {
             var inventory = player.GetInventory();
-            if (inventory == null) return true;
+            if (inventory == null) return;
 
-            var context = Context(claim, nisse);
-            var items = new List<ItemDrop.ItemData>();
+            var queued = 0;
             for (var i = 0; i < inventory.NrOfItems(); i++)
             {
                 var item = inventory.GetItem(i);
-                if (item == null || item.m_shared == null || item.m_equipped) continue;
-                items.Add(item);
+                if (item == null || item.m_shared == null) continue;
+                if (item.m_equipped || IsHotbar(item)) continue;
+
+                FlowQueue.EnqueuePockets(claim, inventory, item);
+                queued++;
             }
 
-            var moved = 0;
-            foreach (var item in items)
+            Log.Debug("Orders", "empty pockets queued=" + queued + " claim=" + claim.BowlId);
+        }
+
+        private static void EnqueueContainer(Container source, Claim claim)
+        {
+            var inventory = source.GetInventory();
+            if (inventory == null) return;
+
+            var queued = 0;
+            for (var i = 0; i < inventory.NrOfItems(); i++)
             {
-                if (!context.CanSort()) break;
+                var item = inventory.GetItem(i);
+                if (item == null || item.m_shared == null) continue;
 
-                var target = StorageRouter.FindTarget(claim, item.m_shared.m_name, memory);
-                if (target == null) continue;
-
-                var targetInventory = target.GetInventory();
-                if (targetInventory == null || !targetInventory.CanAddItem(item)) continue;
-                if (!targetInventory.AddItem(item.Clone())) continue;
-
-                inventory.RemoveItem(item, item.m_stack);
-                StorageRouter.Learn(target, item.m_shared.m_name, memory);
-                context.SpendSort();
-                moved++;
+                FlowQueue.EnqueueContainer(claim, source, item);
+                queued++;
             }
 
-            player.Message(MessageHud.MessageType.Center,
-                moved > 0 ? Loc.T(Loc.OrderTakes, moved) : Loc.T(Loc.OrderNowhere));
-            return true;
+            Log.Debug("Orders", "tidy queued=" + queued + " claim=" + claim.BowlId + " source=" + source.name);
         }
 
-        public static bool Tidy(Container source, Claim claim, Player player)
+        private static bool IsHotbar(ItemDrop.ItemData item)
         {
-            NisseActor nisse;
-            if (!Ready(claim, player, out nisse)) return true;
-
-            var sourceInventory = source != null ? source.GetInventory() : null;
-            if (sourceInventory == null) return true;
-
-            var memory = MemoryOf(nisse);
-            var context = Context(claim, nisse);
-
-            var items = new List<ItemDrop.ItemData>();
-            for (var i = 0; i < sourceInventory.NrOfItems(); i++)
-            {
-                var item = sourceInventory.GetItem(i);
-                if (item != null && item.m_shared != null) items.Add(item);
-            }
-
-            var moved = 0;
-            foreach (var item in items)
-            {
-                if (!context.CanSort()) break;
-
-                var target = StorageRouter.FindTarget(claim, item.m_shared.m_name, memory, source);
-                if (target == null) continue;
-
-                var targetInventory = target.GetInventory();
-                if (targetInventory == null || !targetInventory.CanAddItem(item)) continue;
-                if (!targetInventory.AddItem(item.Clone())) continue;
-
-                sourceInventory.RemoveItem(item, item.m_stack);
-                StorageRouter.Learn(target, item.m_shared.m_name, memory);
-                context.SpendSort();
-                moved++;
-            }
-
-            player.Message(MessageHud.MessageType.Center,
-                moved > 0 ? Loc.T(Loc.OrderFiles, moved) : Loc.T(Loc.OrderLeaves));
-            return true;
+            // The first inventory row is the hotbar; those stacks belong to the player's hands.
+            return item.m_gridPos.y == 0;
         }
 
-        private static RoundContext Context(Claim claim, NisseActor nisse)
+        private static bool Ready(Claim claim, Player player, bool server)
         {
-            return new RoundContext(claim, claim.Bowl, nisse, 0, HusnisseConfig.SortBudget.Value, 0, 0);
-        }
-
-        private static ItemMemory MemoryOf(NisseActor nisse)
-        {
-            var view = nisse != null ? nisse.GetComponent<ZNetView>() : null;
-            return view != null && view.GetZDO() != null ? new ItemMemory(view.GetZDO()) : null;
-        }
-
-        private static bool Ready(Claim claim, Player player, out NisseActor nisse)
-        {
-            nisse = null;
-
             if (!HusnisseConfig.AllowOrders.Value) return false;
 
             if (claim == null || claim.Bowl == null)
             {
-                if (player != null) player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderNoClaim));
+                if (!server && player != null) player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderNoClaim));
                 return false;
             }
 
             if (claim.Suppressed)
             {
-                if (player != null) player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderRefuses));
+                if (!server && player != null) player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderRefuses));
+                return false;
+            }
+
+            if (player != null && claim.OwnerId != 0L && player.GetPlayerID() != claim.OwnerId)
+            {
+                if (!server) player.Message(MessageHud.MessageType.Center, Loc.T(Loc.BowlNotYours));
                 return false;
             }
 
             if (player != null && Vector3.Distance(player.transform.position, claim.Center) > claim.Radius + 5f)
             {
-                player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderTooFar));
+                if (!server) player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderTooFar));
                 return false;
             }
 
             if (!claim.Bowl.IsFed)
             {
-                if (player != null) player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderNotWorking));
+                if (!server) player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderNotWorking));
                 return false;
             }
 
-            nisse = NisseFactory.EnsureNisse(claim.Bowl);
-            if (nisse != null) return true;
+            if (server)
+            {
+                if (NisseFactory.EnsureNisse(claim.Bowl) == null) return false;
+            }
 
-            if (player != null) player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderNotHere));
-            return false;
+            return true;
         }
     }
 }

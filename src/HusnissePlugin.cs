@@ -6,7 +6,8 @@ using Husnisse.Core;
 using Husnisse.Bowl;
 using Husnisse.Creature;
 using Husnisse.Localization;
-using Husnisse.Rounds;
+using Husnisse.Flow;
+using Husnisse.Net;
 using Jotunn.Managers;
 
 namespace Husnisse
@@ -22,7 +23,7 @@ namespace Husnisse
     {
         public const string PluginGUID = "com.bootstrapboys.husnisse";
         public const string PluginName = "Husnisse";
-        public const string PluginVersion = "0.1.1";
+        public const string PluginVersion = "0.1.2";
 
         internal static bool Running;
 
@@ -48,6 +49,7 @@ namespace Husnisse
 
             new Harmony(PluginGUID).PatchAll();
             RegisterStatusCommand();
+            RegisterPrefabCommand();
 
             if (!HusnisseConfig.Enabled.Value)
             {
@@ -56,7 +58,7 @@ namespace Husnisse
             }
 
             PrefabManager.OnVanillaPrefabsAvailable += RegisterContent;
-            RoundScheduler.Attach(gameObject);
+            FlowScheduler.Attach(gameObject);
             Running = true;
 
             Log.Info("core ready; waiting for vanilla prefabs");
@@ -77,6 +79,18 @@ namespace Husnisse
                 });
         }
 
+        private static void RegisterPrefabCommand()
+        {
+            new Terminal.ConsoleCommand(
+                "husnisse_prefabs",
+                "Write every loaded container prefab to BepInEx/BSBLogs/Husnisse-prefabs.txt.",
+                delegate(Terminal.ConsoleEventArgs args)
+                {
+                    var path = PrefabExport.Dump();
+                    args.Context?.AddString(path != null ? "wrote " + path : "no ZNetScene yet");
+                });
+        }
+
         private void OnApplicationQuit()
         {
             if (Running) DiagnosticsFile.Dump("shutdown");
@@ -90,6 +104,7 @@ namespace Husnisse
 
             BowlPrefab.Register();
             NissePrefab.Register();
+            OrderRpc.Register();
 
             Log.Info("content registered");
         }

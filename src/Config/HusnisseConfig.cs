@@ -17,13 +17,11 @@ namespace Husnisse.Config
         public static ConfigEntry<bool> CatchUpOnLoad;
         public static ConfigEntry<bool> FeedingRequired;
         public static ConfigEntry<bool> AllowOrders;
-        public static ConfigEntry<float> RoundInterval;
+        public static ConfigEntry<float> BowlDrainMinutes;
+        public static ConfigEntry<float> ItemsPerSecond;
+        public static ConfigEntry<float> ReconcileInterval;
         public static ConfigEntry<float> ClaimRadius;
         public static ConfigEntry<float> MoodDecayPerHour;
-        public static ConfigEntry<int> CollectBudget;
-        public static ConfigEntry<int> SortBudget;
-        public static ConfigEntry<int> MachineBudget;
-        public static ConfigEntry<int> RefuelBudget;
         public static ConfigEntry<int> SulkMisfileCap;
         public static ConfigEntry<int> SulkIntervalMinutes;
         public static ConfigEntry<bool> SkipMobileContainers;
@@ -58,8 +56,9 @@ namespace Husnisse.Config
             AllowOrders = file.Bind("2. Nisse", "Allow Orders", true,
                 "Empty Pockets (interact with the nisse) and Tidy (Alt-interact a chest inside a claim).");
 
-            RoundInterval = file.Bind("2. Nisse", "Round Interval", 30f,
-                new ConfigDescription("Seconds between rounds.", new AcceptableValueRange<float>(5f, 600f)));
+            BowlDrainMinutes = file.Bind("2. Nisse", "Bowl Drain Minutes", 20f,
+                new ConfigDescription("Minutes between eating one item from the bowl. Only drains while satiety is below 100.",
+                    new AcceptableValueRange<float>(1f, 240f)));
 
             ClaimRadius = file.Bind("2. Nisse", "Claim Radius", 20f,
                 new ConfigDescription("Radius a nisse claims around its bowl, in metres.", new AcceptableValueRange<float>(5f, 50f)));
@@ -67,17 +66,13 @@ namespace Husnisse.Config
             MoodDecayPerHour = file.Bind("2. Nisse", "Mood Decay Per Hour", 20f,
                 new ConfigDescription("Mood lost per hour of neglect while a player is online.", new AcceptableValueRange<float>(0f, 100f)));
 
-            CollectBudget = file.Bind("3. Rounds", "Collect Budget", 20,
-                new ConfigDescription("Ground items a nisse may pick up per round.", new AcceptableValueRange<int>(0, 200)));
+            ItemsPerSecond = file.Bind("3. Flow", "Items Per Second", 5f,
+                new ConfigDescription("Throughput of the nisse's queue. Presets: 2, 5 or 10 items per second.",
+                    new AcceptableValueList<float>(2f, 5f, 10f)));
 
-            SortBudget = file.Bind("3. Rounds", "Sort Budget", 40,
-                new ConfigDescription("Item stacks a nisse may file per round.", new AcceptableValueRange<int>(0, 400)));
-
-            MachineBudget = file.Bind("3. Rounds", "Machine Budget", 10,
-                new ConfigDescription("Machine actions per round. Unused until 0.4.", new AcceptableValueRange<int>(0, 100)));
-
-            RefuelBudget = file.Bind("3. Rounds", "Refuel Budget", 10,
-                new ConfigDescription("Fires and troughs serviced per round. Unused until 0.4.", new AcceptableValueRange<int>(0, 100)));
+            ReconcileInterval = file.Bind("3. Flow", "Reconcile Interval", 5f,
+                new ConfigDescription("Seconds between queue refills from ground drops and container work.",
+                    new AcceptableValueRange<float>(1f, 30f)));
 
             SulkMisfileCap = file.Bind("4. Storage", "Sulk Misfile Cap", 3,
                 new ConfigDescription("Maximum stacks a sulking nisse may hide. Nothing is ever deleted.", new AcceptableValueRange<int>(0, 20)));

@@ -132,17 +132,21 @@ JSON blob (Newtonsoft is already in the game folder).
    MyLittleUI or controller navigation.
 5. **Rule encoding.** Round-trip a 40-item custom list through ZDO and measure the key budget.
 
-### Phase 1 — 0.1.2 flow and safety
+### Phase 1 — 0.1.2 flow, pantry and safety *(implemented 2026-11-09)*
 
-- Replace `RoundScheduler`/`RoundContext` with `FlowQueue` + `FlowScheduler` (drain at rate, 5 s
+- Replaced `RoundScheduler`/`RoundContext` with `FlowQueue` + `FlowScheduler` (drain at rate, 5 s
   reconcile, bounded catch-up).
-- `OrderService` becomes `QueueRequest`: Empty Pockets and Tidy enqueue tickets; server executes.
-- Invulnerability via Damage prefix; faction set; no death state.
+- `OrderService` is a request surface: Empty Pockets and Tidy enqueue tickets; the server executes
+  them from `OrderRpc` (`ZRoutedRpc`, `Husnisse_Order`).
+- The bowl carries a real 4×1 `Container`; `BowlFoodGuard` refuses non-food; `BowlPiece.Tick` eats one
+  item per `BowlDrainMinutes` while satiety is below full.
+- Invulnerability via a `Character.Damage` prefix; `TrainingDummy` faction; no death state.
 - `husnisse_prefabs` command.
-- Config: `3. Flow` with `ItemsPerSecond` and rate preset; remove old budgets.
-- Diagnostics: queue depth, rate, skipped reasons.
-- Fix sulk localization and route sulk through the queue.
-- Schema gate: unknown newer schema stops the queue.
+- Config: `3. Flow` with `ItemsPerSecond` and `ReconcileInterval`; old budgets removed.
+- Diagnostics: queue depth, rate, bowl contents.
+- Hotbar and equipped slots excluded from Empty Pockets.
+- Not done here: routing sulk through the queue (it still moves directly), and the unknown-schema
+  gate (it reports but does not yet stop the queue). Both remain on the 0.1.3 list.
 
 **Done when** a 200-item drop drains at the configured rate, orders visibly enqueue, and hitting the
 nisse does nothing.

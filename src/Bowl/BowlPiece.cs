@@ -3,35 +3,39 @@ using Husnisse.Config;
 using Husnisse.Compat;
 using Husnisse.Core;
 using Husnisse.Creature;
+using Husnisse.Flow;
 using Husnisse.Localization;
+using Husnisse.Net;
+using Husnisse.Orders;
 using Husnisse.Util;
 using UnityEngine;
 
 namespace Husnisse.Bowl
 {
     /// <summary>
-    /// The home piece. It owns the claim, holds satiety and mood in its ZDO, and is the only way to
-    /// feed the nisse. Everything the nisse does is gated on this bowl being fed.
+    /// The home piece. It holds satiety and mood in its ZDO, and its Container is a four-slot pantry
+    /// that accepts food only. The nisse eats one item every BowlDrainMinutes while satiety is low.
     /// </summary>
-    public class BowlPiece : MonoBehaviour, Interactable, Hoverable
+    public class BowlPiece : MonoBehaviour
     {
         private ZNetView _nview;
         private ZDO _zdo;
         private Claim _claim;
+        private Container _container;
+        private float _drainTimer;
+        private float _tickAccum;
 
         public Claim Claim => _claim;
 
         /// <summary>
-        /// Whether this particular nisse demands food. Server policy wins: Disabled turns the care loop
-        /// off for everyone, Required turns the per-bowl choice off, Optional reads the bowl's own flag.
+        /// Whether this particular nisse demands food. Server policy wins: when feeding is required
+        /// every bowl is on; otherwise the bowl's own flag decides.
         /// </summary>
         public bool RequiresFeeding
         {
             get
             {
                 if (WorldPolicy.FeedingRequired) return true;
-
-                // Not forced means opt-in: a new bowl asks for nothing until its owner turns feeding on.
                 return _zdo != null && _zdo.GetBool(ZdoKeys.BowlFeeding, false);
             }
         }
@@ -55,7 +59,6 @@ namespace Husnisse.Bowl
             get { return _zdo == null ? 0 : _zdo.GetInt(ZdoKeys.BowlSulk, 0); }
         }
 
-        /// <summary>True when enough time has passed since the last misfiling.</summary>
         public bool SulkDue(float minutes)
         {
             if (_zdo == null) return false;
@@ -85,9 +88,11 @@ namespace Husnisse.Bowl
             _zdo = _nview.GetZDO();
             if (_zdo == null) return;
 
+            _container = GetComponent<Container>();
+
             if (_nview.IsOwner())
             {
-                if (!_zdo.GetBool("husnisse_bowl_init", false))
+                if (!_zdo.GetBool(ZdoKeys.BowlInit, false))
                 {
                     var piece = GetComponent<Piece>();
                     var creator = piece != null ? piece.GetCreator() : 0L;
@@ -95,7 +100,7 @@ namespace Husnisse.Bowl
                     _zdo.Set(ZdoKeys.BowlRadius, HusnisseConfig.ClaimRadius.Value);
                     _zdo.Set(ZdoKeys.BowlSatiety, 25f);
                     _zdo.Set(ZdoKeys.BowlMood, 100f);
-                    _zdo.Set("husnisse_bowl_init", true);
+                    _zdo.Set(ZdoKeys.BowlInit, true);
                 }
 
                 NisseFactory.EnsureNisse(this);
@@ -131,18 +136,79 @@ namespace Husnisse.Bowl
                                " suppressed=" + suppressed);
         }
 
+        private void Start()
+        {
+            if (_container == null)
+            {
+                Log.Error("bowl: no Container component; the pantry UI will not open");
+                return;
+            }
+
+            var inventory = _container.GetInventory();
+            if (inventory == null)
+            {
+                Log.Error("bowl: container has no inventory (width=" + _container.m_width + " height=" + _container.m_height + ")");
+                return;
+            }
+
+            if (inventory.GetWidth() != 4 || inventory.GetHeight() != 1)
+            {
+                Log.Warn("bowl: inventory is " + inventory.GetWidth() + "x" + inventory.GetHeight() + ", expected 4x1");
+            }
+
+            BowlFoodGuard.Register(_container);
+        }
+
         private void OnDestroy()
         {
+            if (_container != null) BowlFoodGuard.Unregister(_container);
             if (_claim == null) return;
+
+            FlowQueue.Forget(_claim.BowlId);
             ClaimRegistry.Unregister(_claim.BowlId);
             NisseVoice.Forget(_claim.BowlId);
             NisseFactory.Despawn(_claim.BowlId);
         }
 
-        /// <summary>Feed from a player's inventory. One food item per interaction.</summary>
-        public bool FeedFrom(Humanoid user)
+        /// <summary>
+        /// Server-side tick: decay satiety and mood, and eat one item from the bowl at the configured
+        /// interval while satiety is below full. An empty bowl decays into hunger.
+        /// </summary>
+        public void Tick(float dt)
         {
-            var inventory = user != null ? user.GetInventory() : null;
+            if (dt <= 0f || !RequiresFeeding) return;
+
+            // ZDO writes are network traffic; batch the slow simulation into ten-second steps.
+            _tickAccum += dt;
+            if (_tickAccum < 10f) return;
+
+            var step = _tickAccum;
+            _tickAccum = 0f;
+
+            Satiety = Satiety - step / 3600f * 8f;
+            Mood = Mood - step / 3600f * HusnisseConfig.MoodDecayPerHour.Value;
+            if (IsFed) Mood = Mood + step / 3600f * 10f;
+
+            if (Satiety >= 99.5f)
+            {
+                _drainTimer = 0f;
+                return;
+            }
+
+            if (Satiety <= 0f && TryEatOne()) return;
+
+            var interval = Mathf.Max(60f, HusnisseConfig.BowlDrainMinutes.Value * 60f);
+            _drainTimer += step;
+            while (_drainTimer >= interval)
+            {
+                _drainTimer -= interval;
+                if (!TryEatOne()) break;
+            }
+        }
+
+        private bool TryEatOne()
+        {
+            var inventory = _container != null ? _container.GetInventory() : null;
             if (inventory == null) return false;
 
             for (var i = 0; i < inventory.NrOfItems(); i++)
@@ -150,10 +216,11 @@ namespace Husnisse.Bowl
                 var item = inventory.GetItem(i);
                 if (item == null || item.m_shared == null || item.m_shared.m_food <= 0f) continue;
 
-                inventory.RemoveItem(item, 1);
-                Satiety += item.m_shared.m_food;
+                if (!inventory.RemoveItem(item, 1)) continue;
+
+                Satiety = Satiety + item.m_shared.m_food;
                 Mood = Mood + 10f;
-                Log.Debug("Bowl", "fed " + item.m_shared.m_name + " -> satiety=" + Satiety.ToString("0") +
+                Log.Debug("Bowl", "ate " + item.m_shared.m_name + " -> satiety=" + Satiety.ToString("0") +
                                    " mood=" + Mood.ToString("0"));
 
                 if (SulkLevel > 0)
@@ -162,90 +229,20 @@ namespace Husnisse.Bowl
                     if (_claim != null) NisseVoice.Say(_claim, Loc.T(Loc.VoiceForgive), true);
                 }
 
-                Log.Info($"bowl fed with {item.m_shared.m_name}: satiety={Satiety:0} mood={Mood:0}");
                 return true;
             }
 
             return false;
         }
 
-        /// <summary>Called by the round scheduler. Decay happens only while a player is present,
-        /// and not at all when feeding is switched off.</summary>
-        public void Decay(float hours)
-        {
-            if (hours <= 0f || !RequiresFeeding) return;
-            Satiety = Satiety - hours * 8f;
-            Mood = Mood - hours * HusnisseConfig.MoodDecayPerHour.Value;
-
-            if (IsFed) Mood = Mood + hours * 10f;
-        }
-
-        public bool Interact(Humanoid user, bool hold, bool alt)
-        {
-            if (hold) return false;
-
-            if (alt) return ToggleFeeding(user);
-
-            if (!RequiresFeeding)
-            {
-                Message(user, Loc.T(Loc.BowlNoFeed));
-                return true;
-            }
-
-            if (!IsOwner())
-            {
-                Message(user, Loc.T(Loc.BowlNotYours));
-                return true;
-            }
-
-            if (FeedFrom(user))
-            {
-                Message(user, Loc.T(Loc.BowlFed));
-                return true;
-            }
-
-            Message(user, Satiety > 0f ? Loc.T(Loc.BowlContent) : Loc.T(Loc.BowlNeedsFood));
-            return true;
-        }
-
-        /// <summary>The owner's own choice, available only when the server does not force feeding.</summary>
-        private bool ToggleFeeding(Humanoid user)
-        {
-            var policy = WorldPolicy.FeedingRequired;
-
-            if (policy)
-            {
-                Message(user, Loc.T(Loc.BowlServerForced));
-                return true;
-            }
-
-            if (!IsOwner())
-            {
-                Message(user, Loc.T(Loc.BowlOnlyOwner));
-                return true;
-            }
-
-            if (_zdo == null) return true;
-
-            var next = !_zdo.GetBool(ZdoKeys.BowlFeeding, false);
-            _zdo.Set(ZdoKeys.BowlFeeding, next);
-            Message(user, Loc.T(next ? Loc.BowlOfferOn : Loc.BowlOfferOff));
-            return true;
-        }
-
-        public bool UseItem(Humanoid user, ItemDrop.ItemData item)
-        {
-            return false;
-        }
-
-        public string GetHoverName()
+        public string DisplayName()
         {
             return Loc.T(Loc.BowlName);
         }
 
-        public string GetHoverText()
+        public string HoverText()
         {
-            var name = Loc.T(Loc.BowlName);
+            var name = DisplayName();
 
             if (!RequiresFeeding)
             {
@@ -261,17 +258,60 @@ namespace Husnisse.Bowl
             return text;
         }
 
-        public float GetHoverOffset()
+        /// <summary>Alt-interact requests the toggle from the server; the server owns the ZDO write.</summary>
+        public void ToggleFeeding(Humanoid user)
         {
-            return 0.3f;
+            var player = user as Player;
+            if (player == null) return;
+
+            if (WorldPolicy.FeedingRequired)
+            {
+                Message(user, Loc.T(Loc.BowlServerForced));
+                return;
+            }
+
+            if (!IsOwner(player.GetPlayerID()))
+            {
+                Message(user, Loc.T(Loc.BowlOnlyOwner));
+                return;
+            }
+
+            if (ZNet.instance == null || _claim == null)
+            {
+                ApplyFeedingToggle(player.GetPlayerID());
+                return;
+            }
+
+            OrderRpc.Send(OrderKind.ToggleFeeding, _claim.BowlId, ZDOID.None, player.GetPlayerID());
         }
 
-        private bool IsOwner()
+        /// <summary>Server-side write for a feeding toggle request.</summary>
+        public void ServerToggleFeeding(long playerId)
         {
-            var player = Player.m_localPlayer;
-            if (player == null) return true; // headless: no player, allow
+            if (WorldPolicy.FeedingRequired) return;
+            if (!IsOwner(playerId)) return;
+
+            var player = Player.GetPlayer(playerId);
+            ApplyFeedingToggle(playerId);
+            if (player != null)
+            {
+                Message(player, Loc.T(_zdo.GetBool(ZdoKeys.BowlFeeding, false) ? Loc.BowlOfferOn : Loc.BowlOfferOff));
+            }
+        }
+
+        private void ApplyFeedingToggle(long playerId)
+        {
+            if (_zdo == null) return;
+
+            var next = !_zdo.GetBool(ZdoKeys.BowlFeeding, false);
+            _zdo.Set(ZdoKeys.BowlFeeding, next);
+            Log.Debug("Bowl", "feeding=" + next + " by " + playerId);
+        }
+
+        private bool IsOwner(long playerId)
+        {
             var owner = _zdo != null ? _zdo.GetLong(ZdoKeys.BowlOwner, 0L) : 0L;
-            return owner == 0L || player.GetPlayerID() == owner;
+            return owner == 0L || playerId == owner;
         }
 
         private static void Message(Humanoid user, string text)

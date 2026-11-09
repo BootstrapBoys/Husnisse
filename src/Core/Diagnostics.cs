@@ -6,6 +6,7 @@ using Husnisse.Bowl;
 using Husnisse.Storage;
 using Husnisse.Compat;
 using Husnisse.Creature;
+using Husnisse.Flow;
 using UnityEngine;
 
 namespace Husnisse.Core
@@ -19,7 +20,9 @@ namespace Husnisse.Core
             lines.Add("[config] enabled=" + HusnisseConfig.Enabled.Value +
                       " debug=" + HusnisseConfig.DebugLogging.Value +
                       " diagnostics_file=" + HusnisseConfig.WriteDiagnosticsFile.Value +
-                      " interval=" + HusnisseConfig.RoundInterval.Value +
+                      " rate=" + HusnisseConfig.ItemsPerSecond.Value +
+                      " reconcile=" + HusnisseConfig.ReconcileInterval.Value +
+                      " bowl_drain=" + HusnisseConfig.BowlDrainMinutes.Value +
                       " radius=" + HusnisseConfig.ClaimRadius.Value +
                       " feeding_required=" + WorldPolicy.FeedingRequired);
 
@@ -57,6 +60,11 @@ namespace Husnisse.Core
                           " satiety=" + (bowl != null ? bowl.Satiety.ToString("0") : "-") +
                           " mood=" + (bowl != null ? bowl.Mood.ToString("0") : "-") +
                           " sulk=" + (bowl != null ? bowl.SulkLevel.ToString() : "-") +
+                          " bowl_items=" + (bowl != null && bowl.GetComponent<Container>() != null &&
+                                             bowl.GetComponent<Container>().GetInventory() != null
+                              ? bowl.GetComponent<Container>().GetInventory().NrOfItems().ToString()
+                              : "-") +
+                          " queued=" + FlowQueue.Count(claim) +
                           " containers=" + containers.Count +
                           " stacks=" + stacks +
                           " nisse=" + nisse);

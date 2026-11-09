@@ -41,7 +41,7 @@ Rejected: recent-moves undo (#6), pause (#8), per-mod blacklist (replaced by the
 | Version | Name | Scope | Depends on |
 |---|---|---|---|
 | 0.1.1 | Playtest fix | shipped: station-free bowl, registration facts | — |
-| 0.1.2 | Flow and safety | queue, rate, orders on the queue, invulnerability, prefab dump | 0.1.1 |
+| 0.1.2 | Flow, pantry and safety | four-slot food bowl with drain rate; queue, rate, server orders, invulnerability, prefab dump | 0.1.1 |
 | 0.1.3 | Legs | walking, fade across thresholds, trip animation | 0.1.2 |
 | 0.2 | Claim ownership | provider seam, WardIsLove handover, range preview, parity harness | 0.1.3 |
 | 0.3 | Network core | container UI, categories, roles, routing, deposit, LOD, fairness | 0.2 |
@@ -52,27 +52,34 @@ Rejected: recent-moves undo (#6), pause (#8), per-mod blacklist (replaced by the
 | 0.7 | Multiplayer and migration | shared chests, ownership revision, migration route | 0.6 |
 | 1.0 | Parity | stack sizes, ship unloading, coverage, config import, sign-off | 0.7 |
 
-## 0.1.2 — Flow and safety
+## 0.1.2 — Flow, pantry and safety
 
 **Scope**
 
+- Bowl pantry: a real `Container`, four slots, food only, opened by ordinary interact. The nisse eats
+  one item per `BowlDrainMinutes` (default 20, range 1–240) while satiety is below full.
 - Hybrid flow: continuous drain at `ItemsPerSecond` (default 5; presets 2/5/10), `ReconcileInterval`
   (5 s), bounded 2× catch-up on world load.
 - Move Empty Pockets and Tidy onto the same queue; no order moves items instantly any more.
+- Server authority: order requests travel over `ZRoutedRpc`; the server validates and enqueues.
+- Hotbar and equipped slots are excluded from Empty Pockets.
 - Invulnerability: no damage, enemies ignore the nisse, no death state.
-- `husnisse_prefabs`: dump every container prefab to `BepInEx/BSBLogs/Husnisse-prefabs.txt` (name,
-  components, source folder where known).
-- Diagnostics: queue depth, items/s, trips attempted/succeeded/faded, items skipped and why.
+- `husnisse_prefabs`: dump every container prefab (name, width, height, piece name) to
+  `BepInEx/BSBLogs/Husnisse-prefabs.txt`.
+- Diagnostics: queue depth, items/s, bowl contents, items skipped and why.
 
 **Done when**
 
+- Food goes into any of the four slots; a non-food item is refused.
+- One item leaves the bowl per configured interval; contents survive relog.
 - A 200-item ground drop drains at the configured rate, visibly, with no instant jumps.
-- An order enqueues instead of teleporting items.
+- An order enqueues instead of teleporting items, from a client against a dedicated server.
 - Hitting the nisse does nothing; a raid ignores it.
 - `husnisse_prefabs` produces a complete list on a dedicated server and on a client.
 
-**Risks** — rate too slow for cleanup; queue starving idle nisse; catch-up spiking on load. All three
-are measurable in the diagnostics this release adds.
+**Risks** — rate too slow for cleanup; queue starving idle nisse; catch-up spiking on load; container
+interaction and food filtering living on different peers. All four are measurable in the diagnostics
+this release adds.
 
 ## 0.1.3 — Legs
 

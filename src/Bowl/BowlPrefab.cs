@@ -33,7 +33,20 @@ namespace Husnisse.Bowl
             // The cauldron is a cooking station; none of that belongs to a porridge bowl.
             Strip<CookingStation>(prefab);
             Strip<CraftingStation>(prefab);
-            Strip<Container>(prefab);
+
+            var container = prefab.GetComponent<Container>();
+            if (container == null)
+            {
+                container = prefab.AddComponent<Container>();
+            }
+
+            container.m_name = Loc.T(Loc.BowlName);
+            container.m_width = 4;
+            container.m_height = 1;
+            container.m_privacy = Container.PrivacySetting.Private;
+            container.m_checkGuardStone = false;
+            container.m_autoDestroyEmpty = false;
+            container.m_defaultItems = new DropTable();
 
             var piece = prefab.GetComponent<Piece>();
             if (piece == null)

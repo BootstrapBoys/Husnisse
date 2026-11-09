@@ -37,6 +37,7 @@ namespace Husnisse.Localization
         public const string OrderTooFar = "$husnisse_order_too_far";
         public const string OrderNotWorking = "$husnisse_order_not_working";
         public const string OrderNotHere = "$husnisse_order_not_here";
+        public const string OrderQueued = "$husnisse_order_queued";
         public const string OrderTakes = "$husnisse_order_takes";
         public const string OrderNowhere = "$husnisse_order_nowhere";
         public const string OrderFiles = "$husnisse_order_files";
@@ -133,6 +134,12 @@ namespace Husnisse.Localization
                     return;
                 }
 
+                if (string.Equals(file.Language, "English", StringComparison.OrdinalIgnoreCase) && file.Version < 2)
+                {
+                    Log.Warn("outdated English localisation ignored; embedded strings are used: " + path);
+                    return;
+                }
+
                 Dictionary<string, string> target;
                 if (!ByLanguage.TryGetValue(file.Language, out target))
                 {
@@ -165,18 +172,20 @@ namespace Husnisse.Localization
 
         private class LocalizationDocument
         {
+            public int Version { get; set; }
             public string Language { get; set; }
             public Dictionary<string, string> Strings { get; set; }
         }
 
         private const string DefaultEnglish = @"
+version: 2
 language: English
 strings:
   $husnisse_bowl_name: Porridge Bowl
   $husnisse_bowl_desc: A nisse's home. Keep it fed and it keeps your base.
-  $husnisse_bowl_hover: ""Satiety {0:0}/100   Mood {1:0}/100\n[E] offer food""
+  $husnisse_bowl_hover: ""Satiety {0:0}/100   Mood {1:0}/100\n[E] open bowl""
   $husnisse_bowl_hover_nofeed: ""This nisse asks for nothing.\n[Alt] require offerings""
-  $husnisse_bowl_hover_empty: ""The bowl is empty.\n[E] offer food""
+  $husnisse_bowl_hover_empty: ""The bowl is empty.\n[E] open bowl""
   $husnisse_bowl_fed: The nisse takes the offering.
   $husnisse_bowl_not_yours: The nisse's bowl is not yours to fill.
   $husnisse_bowl_needs_food: The nisse needs food.
@@ -193,6 +202,7 @@ strings:
   $husnisse_order_too_far: The nisse is not nearby.
   $husnisse_order_not_working: The nisse is not working. The bowl is empty.
   $husnisse_order_not_here: The nisse is not here.
+  $husnisse_order_queued: The nisse will see to it.
   $husnisse_order_takes: The nisse takes {0} stack(s).
   $husnisse_order_nowhere: The nisse has nowhere to put that.
   $husnisse_order_files: The nisse files {0} stack(s).

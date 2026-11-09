@@ -139,7 +139,7 @@ UI integration must no-op when headless, because Husnisse is server-required and
 
 | Version | Add to the ladder |
 |---|---|
-| 0.1.2 | flow queue and rate presets · orders on the queue · invulnerability · `husnisse_prefabs` |
+| 0.1.2 | four-slot food pantry bowl with drain rate · flow queue and rate presets · server orders · invulnerability · `husnisse_prefabs` |
 | 0.1.3 | legs: walking, fade across thresholds, trip animation |
 | 0.2 | provider seam · WardIsLove claim handover and last-known fallback · range preview · parity harness starts |
 | 0.3 | container network core: toggle/settings, categories with priority, Overflow and Deposit, list preview, auto-suggest, copy rule, blacklist, deposit-all, LOD, fair queue, read-only badge |

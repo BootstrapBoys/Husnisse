@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Husnisse.Bowl;
 using Husnisse.Claims;
 using Husnisse.Compat;
 using Husnisse.Util;
@@ -19,6 +20,7 @@ namespace Husnisse.Storage
             foreach (var container in Object.FindObjectsByType<Container>(FindObjectsSortMode.None))
             {
                 if (container == null) continue;
+                if (container.GetComponent<BowlPiece>() != null) continue;
                 if (!claim.Contains(container.transform.position)) continue;
                 if (!ContainerFilter.CanUse(claim, container)) continue;
                 result.Add(container);
@@ -31,6 +33,7 @@ namespace Husnisse.Storage
             foreach (var container in Object.FindObjectsByType<Container>(FindObjectsSortMode.None))
             {
                 if (container == null || !claim.Contains(container.transform.position)) continue;
+                if (container.GetComponent<BowlPiece>() != null) continue;
                 if (!ContainerFilter.CanUse(claim, container)) continue;
                 var view = container.GetComponent<ZNetView>();
                 if (view != null && view.GetZDO() != null && view.GetZDO().m_uid == id) return container;

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.2
+
+- The bowl is now a pantry: interacting opens four slots that accept food only. The nisse eats one item every `2. Nisse / Bowl Drain Minutes` (default 20) while satiety is below full; an empty bowl decays into hunger as before.
+- Work is continuous instead of round-based. The queue drains at `3. Flow / Items Per Second` (2, 5 or 10), reconciles every five seconds and gives one bounded 2× catch-up after load.
+- Empty Pockets and Tidy are server requests now. The client asks; the server validates distance, feeding and the nisse, then queues the work.
+- Empty Pockets leaves the hotbar and equipped items alone.
+- The nisse is invulnerable and uses a non-combat faction; enemies no longer target it.
+- Alt-interact on a chest now logs why Tidy did or did not run, and the bowl's Alt toggle still controls per-bowl feeding.
+- `husnisse_prefabs` writes every loaded container prefab to `BepInEx/BSBLogs/Husnisse-prefabs.txt`.
+- `husnisse_status` reports queue depth, flow rate, bowl contents and drain interval.
+
 ## 0.1.1
 
 - The bowl no longer demands a forge. It inherited the cauldron's crafting-station requirement, so its recipe was invisible unless you stood at a forge; it is now a station-free piece you can build anywhere.

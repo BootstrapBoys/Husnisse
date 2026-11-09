@@ -14,6 +14,20 @@ namespace Husnisse.Creature
 
         public static NisseActor EnsureNisse(Bowl.BowlPiece bowl)
         {
+            var existing = Find(bowl);
+            if (existing != null) return existing;
+
+            var view = bowl.GetComponent<ZNetView>();
+            if (view == null || view.GetZDO() == null) return null;
+            var bowlId = view.GetZDO().m_uid;
+            return Spawn(bowl, bowlId);
+        }
+
+        /// <summary>Finds the bound nisse without spawning one; safe on clients.</summary>
+        public static NisseActor Find(Bowl.BowlPiece bowl)
+        {
+            if (bowl == null) return null;
+
             var view = bowl.GetComponent<ZNetView>();
             if (view == null || view.GetZDO() == null) return null;
             var bowlId = view.GetZDO().m_uid;
@@ -28,7 +42,7 @@ namespace Husnisse.Creature
                 return actor;
             }
 
-            return Spawn(bowl, bowlId);
+            return null;
         }
 
         private static NisseActor Spawn(Bowl.BowlPiece bowl, ZDOID bowlId)
