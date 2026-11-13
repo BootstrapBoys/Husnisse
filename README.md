@@ -222,7 +222,7 @@ about ten items. The queue is what keeps a 200-container base bounded; the trip 
 watchable. A nisse that cannot path to a container fades, moves the batch, and reports it — the same
 legible failure as everything else.
 
-In 0.1.2 the trip is still a fade to the target; 0.1.3 adds the walk.
+In 0.1.2 the trip is still a fade to the target; 0.1.4 adds the walk.
 
 ### Movement
 
@@ -388,7 +388,8 @@ table is the summary.
 | **0.1** | Creature (a nisse), bowl, claim, memory, sort-only rounds, Empty Pockets and Tidy orders. **No navigation** — it fades between bowl and chest | Proves the fiction is playable. If feeding a spirit to get items sorted is not fun, stop here. |
 | **0.1.1** | *Shipped.* Playtest fix: the bowl no longer demands a forge, and registration states its category, station and table | The build the first playtest runs on. |
 | **0.1.2** | **Flow and safety, plus the pantry bowl**: the bowl becomes a four-slot food container with a configurable drain rate; continuous queue at items/second (default 5; presets 2/5/10), orders move onto the server queue, invulnerable nisse, `husnisse_prefabs` dump | Makes the loop measurable and safe before movement distracts from it. |
-| **0.1.3** | "Legs": room-scale and outdoor walking, fade across thresholds, visible trip animation | Movement on top of a queue that already works. |
+| **0.1.3** | **Client startup hotfix**: localisation no longer reads `Localization.instance` before Steamworks is ready, so Harmony and content registration complete on a joining client | The released 0.1.2 client never reached `core ready`. |
+| **0.1.4** | "Legs": room-scale and outdoor walking, fade across thresholds, visible trip animation | Movement on top of a queue that already works. |
 | **0.2** | **Claim ownership**: provider seam, WardIsLove full handover with last-known fallback, range preview, claim diagnostics, parity harness starts | Claims are foundational — teaching and container rules must be built on the claim that actually governs the base. |
 | **0.3** | **Network core**: container UI toggle/settings, item categories with priority, Overflow and Deposit roles, custom-list preview, auto-suggest, copy rule, blacklist, deposit-all, animation LOD, fair queue, read-only badge | The network and its routing model; the largest UI work in the project. |
 | **0.3.1** | **Teaching and ledger**: teaching writes lists, editable ledger, pickup filter, pocket stack merge, YAML rule export/import and editable presets | The precise editing layer on top of 0.3's network. |

@@ -1,6 +1,6 @@
 {
   "name": "Husnisse",
-  "version_number": "0.1.2",
+  "version_number": "0.1.3",
   "website_url": "https://github.com/BootstrapBoys/Husnisse",
   "description": "A household spirit that sorts and stores for your base. Stock its bowl; it keeps the chests in order.",
   "dependencies": [

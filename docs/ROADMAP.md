@@ -42,8 +42,9 @@ Rejected: recent-moves undo (#6), pause (#8), per-mod blacklist (replaced by the
 |---|---|---|---|
 | 0.1.1 | Playtest fix | shipped: station-free bowl, registration facts | — |
 | 0.1.2 | Flow, pantry and safety | four-slot food bowl with drain rate; queue, rate, server orders, invulnerability, prefab dump | 0.1.1 |
-| 0.1.3 | Legs | walking, fade across thresholds, trip animation | 0.1.2 |
-| 0.2 | Claim ownership | provider seam, WardIsLove handover, range preview, parity harness | 0.1.3 |
+| 0.1.3 | Client startup hotfix | localisation no longer aborts before Harmony/content registration | 0.1.2 |
+| 0.1.4 | Legs | walking, fade across thresholds, trip animation | 0.1.3 |
+| 0.2 | Claim ownership | provider seam, WardIsLove handover, range preview, parity harness | 0.1.4 |
 | 0.3 | Network core | container UI, categories, roles, routing, deposit, LOD, fairness | 0.2 |
 | 0.3.1 | Teaching and ledger | teaching, ledger, pickup filter, pocket merge, YAML rules | 0.3 |
 | 0.4 | Read-only contract | Count/CanAfford, sources, EpicLoot/AAA/PlanBuild/MLUI readouts, QI stand-down | 0.3.1 |
@@ -81,7 +82,7 @@ Rejected: recent-moves undo (#6), pause (#8), per-mod blacklist (replaced by the
 interaction and food filtering living on different peers. All four are measurable in the diagnostics
 this release adds.
 
-## 0.1.3 — Legs
+## 0.1.4 — Legs
 
 **Scope**
 

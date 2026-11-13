@@ -76,9 +76,18 @@ namespace Husnisse.Localization
         public static string T(string key, params object[] args)
         {
             var value = null as string;
-            var language = global::Localization.instance != null
-                ? global::Localization.instance.GetSelectedLanguage()
-                : "English";
+            var language = "English";
+            try
+            {
+                var localization = global::Localization.instance;
+                if (localization != null) language = localization.GetSelectedLanguage();
+            }
+            catch (Exception)
+            {
+                // Steamworks is not initialized during the client's plugin Awake. The game is
+                // still in English at that point; use the embedded table and resolve the real
+                // language on the next lookup once Steamworks is ready.
+            }
 
             Dictionary<string, string> table;
             if (!string.IsNullOrEmpty(language) && ByLanguage.TryGetValue(language, out table))

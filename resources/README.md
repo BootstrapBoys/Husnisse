@@ -7,10 +7,10 @@ Place a **Porridge Bowl**, stock it with food, and a nisse settles beside it. It
 owns into the chests that hold it, remembers where each item lives, and refuses to work when its bowl
 is empty.
 
-**This is 0.1.2, an early test build.** It is playable and server-authoritative, but movement, the
+**This is 0.1.3, an early test build.** It is playable and server-authoritative, but movement, the
 container network and the crafting integrations are still ahead. See *Planned features* below.
 
-## Current features (0.1.2)
+## Current features (0.1.3)
 
 ### The bowl is a pantry
 
@@ -60,7 +60,8 @@ Not in this build. Order and detail are in the repository's `docs/ROADMAP.md`.
 
 | Version | Planned |
 |---|---|
-| 0.1.3 | Legs: walking indoors and outdoors, fading across thresholds, visible trips to containers |
+| 0.1.3 | Client startup hotfix: localisation no longer aborts before Harmony and content registration |
+| 0.1.4 | Legs: walking indoors and outdoors, fading across thresholds, visible trips to containers |
 | 0.2 | Claim ownership: WardIsLove per-bowl handover with last-known fallback, claim range preview |
 | 0.3 | Container network: opt-in toggle and settings on the container UI, item categories with priority, **Overflow** and **Deposit** chests, saved-content lists, per-container blacklist, deposit-all, animation LOD, fair queue |
 | 0.3.1 | Teaching by demonstration, editable ledger, pickup filter, pocket stack merge, YAML rule export/import |
@@ -77,7 +78,7 @@ Not in this build. Order and detail are in the repository's `docs/ROADMAP.md`.
 2. Remove any other storage automation that manages the same chests before installing.
 3. Extract the package at the Valheim root so
    `BepInEx/plugins/BootstrapBoys-Husnisse/Husnisse.dll` appears.
-4. Start the game. The log should say `Husnisse 0.1.2 starting` and `content registered`.
+4. Start the game. The log should say `Husnisse 0.1.3 starting` and `content registered`.
 
 Gale and other Thunderstore managers install the declared dependencies automatically.
 
