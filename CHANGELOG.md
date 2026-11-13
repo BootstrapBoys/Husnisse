@@ -3,7 +3,7 @@
 ## 0.1.3
 
 - Fixed the client failing to start: `Loc.T` read `Localization.instance` during plugin `Awake`, before Steamworks was initialized, throwing `InvalidOperationException` and aborting the plugin before localisation, Harmony patches and content registration. The lookup now falls back to English until the game is ready.
-- Verified on the client rig: the plugin reaches `localisation loaded`, `core ready`, `content registered`, `order RPC registered`; the food guard refuses coal and accepts food in the four-slot pantry.
+- Verified on the client rig: the plugin reaches `localisation loaded`, `core ready`, `content registered`; the food guard refuses coal and accepts food in the four-slot pantry.
 
 ## 0.1.2
 
