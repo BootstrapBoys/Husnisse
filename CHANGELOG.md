@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.4
+
+- The nisse walks. Work is a visible trip now: it collects a batch, walks to the chest that owns those items, stands at it while the transfer happens, and walks back to its bowl. It no longer appears next to the chest.
+- A leg that cannot be walked — a wall, a closed room, a floor with no route — is retried once and then faded across, and the nisse says the way is shut. A silent no-op is never the fallback.
+- The bowl's spirit returns home after every trip, and walks back to its bowl on load.
+- A free-standing 2 m doorway is walkable on this game build (measured); a closed room is not and fades. Movement is still room-scale and outdoor-first.
+- `3. Flow / Items Per Second` now bounds how much the nisse loads per trip; walking sets how often trips happen. The nisse may carry up to ten stacks.
+- Diagnostics: `husnisse_status` reports the active trip and its batch, and `[Creature]` debug lines cover every leg, retry, fade and stuck body.
+- Internal: the Greyling controller has no `spawn` trigger and its `idle` parameter is an int, so the settlement pose uses the idle variation instead of a trigger that never fired.
+
 ## 0.1.3
 
 - Fixed the client failing to start: `Loc.T` read `Localization.instance` during plugin `Awake`, before Steamworks was initialized, throwing `InvalidOperationException` and aborting the plugin before localisation, Harmony patches and content registration. The lookup now falls back to English until the game is ready.

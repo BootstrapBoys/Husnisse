@@ -54,6 +54,8 @@ namespace Husnisse.Creature
             character.m_walkSpeed = 2f;
             character.m_runSpeed = 4f;
 
+            prefab.AddComponent<NisseFade>();
+            prefab.AddComponent<NisseMotion>();
             prefab.AddComponent<NisseActor>();
             prefab.AddComponent<NisseHands>();
 

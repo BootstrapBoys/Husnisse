@@ -33,6 +33,7 @@ namespace Husnisse.Core
             lines.Add("schema=" + SaveSchema.Read() +
                       " feeding_required=" + WorldPolicy.FeedingRequired +
                       " claims=" + ClaimRegistry.Count +
+                      " trips=" + TripRunner.Count +
                       " nisses=" + Object.FindObjectsByType<NisseActor>(FindObjectsSortMode.None).Length +
                       " bowl_piece=" + BowlPieceState());
 
@@ -66,6 +67,7 @@ namespace Husnisse.Core
                               : "-") +
                           " pantry=" + (bowl != null ? bowl.PantrySize() : "-") +
                           " queued=" + FlowQueue.Count(claim) +
+                          " trip=" + (TripRunner.Get(claim) != null ? TripRunner.Get(claim).ShortState() : "idle") +
                           " containers=" + containers.Count +
                           " stacks=" + stacks +
                           " nisse=" + nisse);

@@ -10,8 +10,8 @@ namespace Husnisse.Flow
     /// </summary>
     public static class FlowQueue
     {
-        private static readonly Dictionary<ZDOID, Queue<FlowTicket>> Queues =
-            new Dictionary<ZDOID, Queue<FlowTicket>>();
+        private static readonly Dictionary<ZDOID, LinkedList<FlowTicket>> Queues =
+            new Dictionary<ZDOID, LinkedList<FlowTicket>>();
 
         private static readonly Dictionary<ZDOID, HashSet<int>> QueuedDrops =
             new Dictionary<ZDOID, HashSet<int>>();
@@ -45,25 +45,36 @@ namespace Husnisse.Flow
 
         public static void Enqueue(FlowTicket ticket)
         {
-            if (ticket == null || ticket.Claim == null) return;
+            QueueFor(ticket)?.AddLast(ticket);
+        }
 
-            Queue<FlowTicket> queue;
+        /// <summary>Puts a ticket back at the head: a trip that did not take it must not lose its place.</summary>
+        public static void EnqueueFront(FlowTicket ticket)
+        {
+            QueueFor(ticket)?.AddFirst(ticket);
+        }
+
+        private static LinkedList<FlowTicket> QueueFor(FlowTicket ticket)
+        {
+            if (ticket == null || ticket.Claim == null) return null;
+
+            LinkedList<FlowTicket> queue;
             if (!Queues.TryGetValue(ticket.Claim.BowlId, out queue))
             {
-                queue = new Queue<FlowTicket>();
+                queue = new LinkedList<FlowTicket>();
                 Queues[ticket.Claim.BowlId] = queue;
             }
-
-            queue.Enqueue(ticket);
+            return queue;
         }
 
         public static bool TryDequeue(Claim claim, out FlowTicket ticket)
         {
             ticket = null;
-            Queue<FlowTicket> queue;
+            LinkedList<FlowTicket> queue;
             if (claim == null || !Queues.TryGetValue(claim.BowlId, out queue) || queue.Count == 0) return false;
 
-            ticket = queue.Dequeue();
+            ticket = queue.First.Value;
+            queue.RemoveFirst();
             if (ticket != null && ticket.Source == FlowSource.Ground && ticket.Drop != null)
             {
                 HashSet<int> seen;
@@ -73,9 +84,17 @@ namespace Husnisse.Flow
             return true;
         }
 
+        /// <summary>The next ticket without taking it, for poking the tile it will need.</summary>
+        public static FlowTicket Peek(Claim claim)
+        {
+            LinkedList<FlowTicket> queue;
+            if (claim == null || !Queues.TryGetValue(claim.BowlId, out queue) || queue.Count == 0) return null;
+            return queue.First.Value;
+        }
+
         public static int Count(Claim claim)
         {
-            Queue<FlowTicket> queue;
+            LinkedList<FlowTicket> queue;
             return claim != null && Queues.TryGetValue(claim.BowlId, out queue) ? queue.Count : 0;
         }
 

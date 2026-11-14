@@ -2,16 +2,14 @@ using Husnisse.Claims;
 using Husnisse.Config;
 using Husnisse.Core;
 using Husnisse.Creature;
-using Husnisse.Memory;
 using Husnisse.Rounds;
-using Husnisse.Storage;
 using UnityEngine;
 
 namespace Husnisse.Flow
 {
     /// <summary>
-    /// Server-side work pump. Refills each claim's queue on a cheap tick and drains it at the
-    /// configured items/second. Replaces the old round scheduler.
+    /// Server-side work pump. Refills each claim's queue on a cheap tick and starts one visible trip
+    /// per batch. The token bucket bounds how much a trip may carry; walking sets how often it runs.
     /// </summary>
     public class FlowScheduler : MonoBehaviour
     {
@@ -21,6 +19,8 @@ namespace Husnisse.Flow
         private float _tokens;
         private float _elapsed;
         private bool _dumped;
+
+        public static FlowScheduler Instance => _instance;
 
         public static void Attach(GameObject host)
         {
@@ -43,6 +43,7 @@ namespace Husnisse.Flow
             {
                 _dumped = true;
                 _elapsed = 0f;
+                TripRunner.Reset();
                 DiagnosticsFile.Dump("world ready");
             }
 
@@ -54,6 +55,7 @@ namespace Husnisse.Flow
             TickClaims(dt);
             Reconcile(dt);
             Drain(dt);
+            TripRunner.Tick(dt);
         }
 
         private void Reconcile(float dt)
@@ -79,6 +81,9 @@ namespace Husnisse.Flow
                 if (nisse == null) continue;
 
                 EnqueueDrops(claim);
+                TripRunner.PokeNext(claim);
+
+                if (FlowQueue.Count(claim) == 0) TripRunner.GoHome(claim, nisse);
             }
         }
 
@@ -104,62 +109,35 @@ namespace Husnisse.Flow
                 : 1f;
             _tokens = Mathf.Min(_tokens + rate * catchUp * dt, Mathf.Max(1f, rate * catchUp));
 
-            var guard = 0;
-            while (_tokens >= 1f && guard++ < 500)
+            if (_tokens < 1f) return;
+
+            foreach (var claim in ClaimRegistry.All())
             {
-                var worked = false;
+                if (claim == null || claim.Bowl == null || claim.Suppressed) continue;
+                if (!claim.Bowl.IsFed) continue;
+                if (TripRunner.Has(claim)) continue;
 
-                foreach (var claim in ClaimRegistry.All())
-                {
-                    if (_tokens < 1f) break;
-                    if (claim == null || claim.Bowl == null || claim.Suppressed) continue;
-                    if (!claim.Bowl.IsFed) continue;
+                var nisse = NisseFactory.EnsureNisse(claim.Bowl);
+                if (nisse == null) continue;
 
-                    var nisse = NisseFactory.EnsureNisse(claim.Bowl);
-                    if (nisse == null) continue;
+                var budget = Mathf.Min(FloorTokens(), FlowQueue.Count(claim));
+                if (budget <= 0) continue;
 
-                    FlowTicket ticket;
-                    if (!FlowQueue.TryDequeue(claim, out ticket))
-                    {
-                        continue;
-                    }
-
-                    _tokens -= 1f;
-                    worked = true;
-
-                    if (!ticket.IsValid()) continue;
-                    Execute(claim, nisse, ticket);
-                }
-
-                if (!worked) break;
+                TripRunner.Start(claim, nisse, budget);
             }
         }
 
-        private static void Execute(Claim claim, NisseActor nisse, FlowTicket ticket)
+        /// <summary>How many stacks the nisse may load on the next trip.</summary>
+        private int FloorTokens()
         {
-            var item = ticket.Item;
-            var memory = MemoryOf(nisse);
-            var target = StorageRouter.FindTarget(claim, item.m_shared.m_name, memory, ticket.ExcludeContainer());
-            if (target == null) return;
+            return Mathf.Clamp(Mathf.FloorToInt(_tokens), 0, TripRunner.MaxCarry);
+        }
 
-            var inventory = target.GetInventory();
-            if (inventory == null || !inventory.CanAddItem(item)) return;
-
-            if (!inventory.AddItem(item.Clone())) return;
-
-            var source = ticket.SourceInventory();
-            if (ticket.Source == FlowSource.Ground)
-            {
-                if (ticket.Drop != null) ZNetScene.instance.Destroy(ticket.Drop.gameObject);
-            }
-            else if (source == null || !source.RemoveItem(item, ticket.Amount))
-            {
-                Log.Warn("flow: removed from source failed for " + item.m_shared.m_name);
-            }
-
-            StorageRouter.Learn(target, item.m_shared.m_name, memory);
-            nisse.WarpTo(target.transform.position + Vector3.up * 0.1f);
-            Log.Debug("Flow", "filed " + item.m_shared.m_name + " x" + ticket.Amount + " -> " + target.name);
+        /// <summary>Charged by a trip when its batch actually lands.</summary>
+        public void Spend(int stacks)
+        {
+            if (stacks <= 0) return;
+            _tokens = Mathf.Max(0f, _tokens - stacks);
         }
 
         private void TickClaims(float dt)
@@ -169,12 +147,6 @@ namespace Husnisse.Flow
                 if (claim == null || claim.Bowl == null) continue;
                 claim.Bowl.Tick(dt);
             }
-        }
-
-        private static ItemMemory MemoryOf(NisseActor nisse)
-        {
-            var view = nisse != null ? nisse.GetComponent<ZNetView>() : null;
-            return view != null && view.GetZDO() != null ? new ItemMemory(view.GetZDO()) : null;
         }
     }
 }

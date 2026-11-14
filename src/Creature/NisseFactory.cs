@@ -54,7 +54,7 @@ namespace Husnisse.Creature
                 return null;
             }
 
-            var position = bowl.transform.position + bowl.transform.forward * 1.5f + Vector3.up * 0.1f;
+            var position = SpawnPoint(bowl);
             var hash = prefab.name.GetStableHashCode();
             var zdo = ZDOMan.instance.CreateNewZDO(position, hash);
             zdo.SetPrefab(hash);
@@ -73,6 +73,27 @@ namespace Husnisse.Creature
             actor.PlaySpawn();
             Log.Info("nisse settled at bowl " + bowlId);
             return actor;
+        }
+
+        /// <summary>
+        /// Where the spirit appears: a step in front of the bowl, snapped to the navmesh. A bowl at
+        /// the edge of a floor would otherwise drop its nisse into the void, and a falling character
+        /// can neither path nor be found by the trip.
+        /// </summary>
+        private static Vector3 SpawnPoint(Bowl.BowlPiece bowl)
+        {
+            var forward = bowl.transform.forward;
+            forward.y = 0f;
+            if (forward.sqrMagnitude < 0.01f) forward = Vector3.forward;
+
+            var candidate = bowl.transform.position + forward.normalized * 1.2f + Vector3.up * 0.1f;
+            UnityEngine.AI.NavMeshHit hit;
+            if (UnityEngine.AI.NavMesh.SamplePosition(candidate, out hit, 3f, UnityEngine.AI.NavMesh.AllAreas))
+            {
+                return hit.position + Vector3.up * 0.05f;
+            }
+
+            return bowl.transform.position + Vector3.up * 0.1f;
         }
 
         /// <summary>A bowl without its spirit: the nisse is removed when its bowl is destroyed.</summary>

@@ -158,6 +158,17 @@ nisse does nothing.
 - Retry policy: one retry, then fade and report.
 - Basic distance culling for trips (full LOD in 0.3).
 
+*(Implemented as 0.1.4, 2026-11-14.)* Files: `Creature/NisseMotion` (path following, retry, fade RPC),
+`Creature/NisseFade` (renderer alpha + visual shrink, property discovered at runtime), `Flow/Trip`
+(collect → carry → transfer → home, all-or-nothing item moves with a returned stack on failure),
+`Flow/TripRunner` (one trip per claim, tile poke, go-home). `FlowScheduler` starts trips instead of
+executing tickets; tokens are spent only when a batch lands, so `ItemsPerSecond` is a loading bound.
+`FlowQueue` became a `LinkedList` for `Peek`/`EnqueueFront`. Two measured corrections are recorded in
+`SPIKE-REPORT.md` §4: a free-standing 2 m doorway is walkable (the 3×3 room's was not), and the
+dedicated server *does* bake player-built floors — the earlier failure was culling.
+Still open: the client visual pass (rig offline), and the transfer beat has no bespoke animation
+because the Greyling controller has none.
+
 ### Phase 3 — 0.2 claim ownership
 
 - `IClaimAuthority` + `NativeAuthority` + `WardAuthority`; `ClaimResolver` implements the per-bowl rules

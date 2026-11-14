@@ -217,27 +217,31 @@ on world load:
     one catch-up pass at 2× the rate, bounded
 ```
 
-Batch size is the rate times the trip length: at 5 items/second and a two-second trip, one walk moves
-about ten items. The queue is what keeps a 200-container base bounded; the trip is what makes it
-watchable. A nisse that cannot path to a container fades, moves the batch, and reports it — the same
-legible failure as everything else.
+The batch is what the nisse loads before setting off: at 5 items/second, a claim that has been waiting
+a few seconds fills its hands with up to five stacks (ten with the catch-up rate). The queue is what
+keeps a 200-container base bounded; the trip is what makes it watchable. A nisse that cannot path to a
+container fades, moves the batch, and says so — the same legible failure as everything else.
 
-In 0.1.2 the trip is still a fade to the target; 0.1.4 adds the walk.
+From 0.1.4 the trip is a real walk: out to the drops, on to the chest, a transfer beat while the items
+move, then home. `Items Per Second` is the loading rate now; walking sets how often a trip happens.
 
 ### Movement
 
 The nisse walks, but not everywhere. Measured against the live game rather than assumed:
 
 - **Built floors are navmesh.** `Pathfinding` bakes the `piece` layer, so a wood floor is walkable and
-  a path can end on it.
-- **A 2 m doorway is not.** On a 3×3 room with a 2 m gap between wall pieces, a path from the walkway
-  into the room stops 5.42 m short — at the threshold — once the tile rebuild includes the walls. A
-  0.4 m agent radius plus wall posts leaves no corridor the navmesh builder will bridge.
+  a path can end on it. This holds on a dedicated server too — the earlier "no server navmesh" reading
+  was the test pieces being culled before the tile baked, not a missing baker.
+- **Doorways are unpredictable.** A free-standing 2 m opening was walkable in the 0.1.4 smoke (seven
+  full paths after the rebuild), while the earlier 3×3 room with a single 2 m gap stopped a path
+  5.42 m short at the threshold. Same width, different shape; the safe reading is that a doorway may
+  or may not bridge, so walk it when the path exists and fade when it does not.
 - **Tiles build lazily.** They are 32 m and rebuild at most once per 10 s; `GetPath` pokes a tile and
   then snaps immediately, so the first request in a fresh tile always fails.
 
-So walking is **room-scale and outdoors**, and a threshold fades. That is not a compromise bolted on
-at the end: a household spirit does not use doors, it steps through the wall. A trip pokes the next
+So walking is **room-scale and outdoors**, and an unreachable threshold fades. That is not a
+compromise bolted on at the end: a household spirit does not use doors, it steps through the wall. A
+trip pokes the next
 destination, the next trip walks it, and after one failed retry the nisse fades and reports that
 it could not reach — legible failure, same as everything else.
 

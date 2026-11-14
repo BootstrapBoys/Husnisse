@@ -51,6 +51,7 @@ namespace Husnisse.Localization
         public const string VoiceHungry3 = "$husnisse_voice_hungry3";
         public const string VoiceSulk = "$husnisse_voice_sulk";
         public const string VoiceForgive = "$husnisse_voice_forgive";
+        public const string VoiceUnreachable = "$husnisse_voice_unreachable";
 
         public const string PlaceOverlap = "$husnisse_place_overlap";
         public const string PlaceWard = "$husnisse_place_ward";
@@ -187,7 +188,7 @@ namespace Husnisse.Localization
         }
 
         private const string DefaultEnglish = @"
-version: 2
+version: 3
 language: English
 strings:
   $husnisse_bowl_name: Porridge Bowl
@@ -223,6 +224,7 @@ strings:
   $husnisse_voice_hungry3: The nisse is watching the bowl, not the chests.
   $husnisse_voice_sulk: Something clatters into the wrong chest.
   $husnisse_voice_forgive: The nisse accepts the offering.
+  $husnisse_voice_unreachable: The way is shut. The nisse steps through.
   $husnisse_place_overlap: Another nisse already claims this ground.
   $husnisse_place_ward: You are not permitted to build here.
   $husnisse_place_other_ward: Another player's ward holds this ground.

@@ -99,6 +99,13 @@ this release adds.
 
 **Risks** — 32 m tiles and 10 s rebuild make the first path fail; the retry policy must hide that.
 
+**Status (2026-11-14)** — implemented. Headless proof on the rig: a 20 m walkway round trip at 1.94 m/s
+with no fades, a cold tile carried by the one retry, and a closed room producing `leg blocked` → fade →
+delivery. The doorway measurement was refined: a free-standing 2 m opening is walkable on this build,
+while the earlier enclosed 3×3 room stopped at the threshold — shape decides, so walking and fading are
+both correct outcomes and the fade is the fallback. **The client visual pass is still open**: the
+client VM was offline when the build was ready.
+
 ## 0.2 — Claim ownership
 
 **Scope**

@@ -169,6 +169,7 @@ namespace Husnisse.Bowl
             if (_claim == null) return;
 
             FlowQueue.Forget(_claim.BowlId);
+            TripRunner.Forget(_claim.BowlId);
             ClaimRegistry.Unregister(_claim.BowlId);
             NisseVoice.Forget(_claim.BowlId);
             NisseFactory.Despawn(_claim.BowlId);

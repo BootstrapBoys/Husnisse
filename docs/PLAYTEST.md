@@ -1,19 +1,42 @@
-# Playtest checklist — 0.1.2
+# Playtest checklist — 0.1.4
 
-Everything below is unverified on a client. Run in this order: each block assumes the previous one passed.
-Tick a box only when the expected result happened; anything else is a finding, including "it works but
-feels wrong".
+Everything below is unverified on a client unless marked proven. Run in this order: each block assumes
+the previous one passed. Tick a box only when the expected result happened; anything else is a finding,
+including "it works but feels wrong".
 
 ## Setup
 
-- [ ] `BepInEx/plugins/BootstrapBoys-Husnisse/` contains **Husnisse.dll and YamlDotNet.dll**. Without the
-      second the plugin will not load.
-- [ ] `LogOutput.log` shows `Husnisse 0.1.2 starting`, `localisation loaded: English (check: Porridge Bowl)`,
+- [ ] `BepInEx/plugins/BootstrapBoys-Husnisse/` contains **Husnisse.dll only**, and
+      `ValheimModding-YamlDotNet/` is a sibling folder (detector + `YamlDotNet.dll`). A copy of
+      `YamlDotNet.dll` inside the Husnisse folder is a finding.
+- [ ] `LogOutput.log` shows `Husnisse 0.1.4 starting`, `localisation loaded: English (check: Porridge Bowl)`,
       `bowl registered`, `creature registered`, `content registered`, `order RPC registered` — and no red
       lines from us.
-- [ ] `BepInEx/config/Husnisse/localization/en.yaml` exists after the first run.
+- [ ] `BepInEx/config/Husnisse/localization/en.yaml` exists after the first run, with `version: 3`.
 - [ ] `BepInEx/config/com.bootstrapboys.husnisse.cfg` has `3. Flow / Items Per Second` (2, 5 or 10) and
       `2. Nisse / Bowl Drain Minutes` (default 20).
+
+## 0. Legs (new in 0.1.4)
+
+Headless-proven on the rig; this block is the visual pass.
+
+- [ ] Build a bowl and a chest about 15 m apart on a floor or flat ground. Put one food item in the bowl,
+      then drop three items near the bowl.
+- [ ] The nisse **walks** to each drop in turn, then to the chest, stands at it for about a second, and
+      the items appear in the chest. Then it walks back to its bowl.
+- [ ] Watch the whole trip: the movement is continuous at walking pace (about 2 m/s). If it jumps more
+      than a stride, that is a finding.
+- [ ] The walk animation plays while it moves — legs moving, not sliding.
+- [ ] Log out and back in with the nisse away from its bowl: it walks back home.
+- [ ] Put the chest in a room or behind a wall it cannot walk to. Drop items: the nisse **fades** at the
+      threshold (about half a second out, half a second in) and the message
+      "The way is shut. The nisse steps through." appears. The items still reach the chest.
+- [ ] A doorway it *can* walk through produces a walk, not a fade — both outcomes are correct, and
+      which one happens depends on the shape of the opening.
+- [ ] With Debug Logging on, the log shows `[debug][Creature] leg -> …`, `leg blocked` / `fade across` for
+      the unreachable case, and no `leg waiting for navmesh` line repeats more than twice per leg.
+- [ ] `husnisse_status` shows `trip=Pickup/3`, `trip=ToTarget/3`, `trip=Transfer/3`, `trip=Home/3` in
+      order during a trip, and `trip=idle` between trips.
 
 ## 1. The bowl is a pantry
 

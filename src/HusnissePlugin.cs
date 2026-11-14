@@ -24,7 +24,7 @@ namespace Husnisse
     {
         public const string PluginGUID = "com.bootstrapboys.husnisse";
         public const string PluginName = "Husnisse";
-        public const string PluginVersion = "0.1.3";
+        public const string PluginVersion = "0.1.4";
 
         internal static bool Running;
 
