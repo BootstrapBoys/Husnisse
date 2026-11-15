@@ -1,7 +1,10 @@
 # 0.4 — the read-only storage contract, on a headless server and a real client
 
-**Build:** Husnisse 0.4.0, `Husnisse.dll` sha256 `269c6f1509b6…` (branch `husnisse/0.4-readonly`, based on
-`b7cf1f3`). Probe `HusnisseGateClientProbe.dll` sha256 `4fb5ba7b9ff2…`; harness `TestHarness.dll`
+**Build:** Husnisse 0.4.0. The client gate ran on the branch build `Husnisse.dll` sha256 `269c6f1509b6…`
+(`husnisse/0.4-readonly`, based on `b7cf1f3`); the merged `main` build — which adds card `t_ab336800`'s
+`ContainerWrite` persistence fix — is `473d2a6486aa…`, re-ran the headless scenario **PASS 15/15** and is the
+DLL in `artifacts/debug`. The contract code is identical in both; the difference is the flow/UI work that
+landed beside it. Probe `HusnisseGateClientProbe.dll` sha256 `4fb5ba7b9ff2…`; harness `TestHarness.dll`
 sha256 `b9ecd880f4ff…` (shared testrig + `nostruct`, `husnisse contract`).
 
 **Where:** dedicated tree `V:\Gate031`, port 2956, world `MTTest` (fresh: the previous world is kept as
