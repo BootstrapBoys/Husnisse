@@ -45,7 +45,7 @@ str='v1;k=cat;c=metals'`), the opt-in (`husnisse_net = int=1 bool=True`), all 20
 (`v1;k=none`, counts drop to 19), an unknown `v2` encoding ignored (`ruled=18`, stored value untouched),
 and the blacklist flag (`bool=True` on a flagged chest, `absent` on a clean one).
 
-## Client gate — UI works; the 20-container sweep is incomplete
+## Client gate — UI works; 20-container sweep signed off in `RESULT-SWEEP.md`
 
 Real client, real container windows, every click through the button's own `onClick`:
 
@@ -79,21 +79,21 @@ Screenshots: `client/gate-03a-chest-window.png` (two buttons at the top-right of
 20-chest deck), `client/gate-03a-rule-panel.png` (the panel: eight categories, Overflow/Deposit/No
 rule, Close). Client log: `client/client-bepinex.log`.
 
-### Why the 20-container UI sweep is not signed off
+### The 20-container UI sweep — signed off (card `t_d3176117`)
 
-The three attempts at "twenty chests, one after another, in one clean base" each lost their target:
+The literal gate sentence — a 20-container base opened, toggled and ruled one chest at a time through
+the UI, in one clean run — is proven in `RESULT-SWEEP.md`: a restored fixture, one built scene (bowl
+`-202584743` + 20 chests), the 20 chests clicked through in order, and the client's own line
 
-1. the fixture world already contains ~23 containers, so a position-sorted index N pointed at a
-   fixture chest, not the scene's;
-2. server-side `cleanup` destroys only the objects the *current* harness process spawned, so chests
-   from earlier scene builds survive as client-side objects and shift the order again;
-3. the shared rig was in use by the sibling card (`t_9dc34cce`) for most of the session, and the
-   client was stopped and re-launched under this run three times.
+```
+gc containers total=24 net=20 ruled=20
+```
 
-The UI path itself is proven (above): same handler, same RPC, same ZDO write, for several containers
-and across a relog. Scale is proven headlessly (20/20). What is **not** proven is the literal "20
-containers clicked through the UI" run; it needs a fixture with no pre-existing containers, or a
-position-addressed probe driver (the `stand`/`open` index pair is not enough on a shared world).
+before and after a full client relog (one chest read back as `v1;k=cat;c=valuables`). The three failed
+attempts lost the run for the reasons now documented there: a position-sorted index pointed at fixture
+chests, earlier scene builds survived a second `cleanup`, and — the decisive one — `Player.TeleportTo`
+holds `IsTeleporting()` true for at least 2 s while `InventoryGui.Update` hides the container window
+every frame, so a chest opened right after a teleport closes before it can be clicked.
 
 ## Not proven / known limits
 

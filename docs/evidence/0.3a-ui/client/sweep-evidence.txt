@@ -1,0 +1,86 @@
+0.3a UI gate — 20-container sweep, one chest at a time through the client's own UI
+================================================================================
+build      Husnisse 0.3.0, client+server sha256 e92f919a… ; probe ad20ed16… (gate client)
+scene      fixture restored, then one build: bowl creator -202584743 at (-4,-4), 20 chests
+           5 x 4 grid x=-2..6, z=-2..4 step 2, y=34.17, claim r=20, harness hold on
+driver     sweep-driver.sh: stand <chest i> (asserts the container's own coordinates),
+           open <chest i>, click HusnisseNet + HusnisseRules + HusnisseCat<X> +
+           HusnisseRulesClose, read the ZDO back; 20 chests, 8 categories cycling
+
+per-chest verification (final container list by position)
+---------------------------------------------------------
+#   chest at             wanted       final net/rule             stand line
+1   -2.00,34.17,-2.00    Metals       True v1;k=cat;c=metals     [0] at -2.00,34.17,-2.00  OK
+2   -2.00,34.17,0.00     Wood         True v1;k=cat;c=wood       [1] at -2.00,34.17,0.00  OK
+3   -2.00,34.17,2.00     Food         True v1;k=cat;c=food       [2] at -2.00,34.17,2.00  OK
+4   -2.00,34.17,4.00     Trophies     True v1;k=cat;c=trophies   [3] at -2.00,34.17,4.00  OK
+5   0.00,34.17,-2.00     Valuables    True v1;k=cat;c=valuables  [4] at 0.00,34.17,-2.00  OK
+6   0.00,34.17,0.00      Building     True v1;k=cat;c=building   [5] at 0.00,34.17,0.00  OK
+7   0.00,34.17,2.00      Consumables  True v1;k=cat;c=consumables [6] at 0.00,34.17,2.00  OK
+8   0.00,34.17,4.00      Tools        True v1;k=cat;c=tools      [7] at 0.00,34.17,4.00  OK
+9   2.00,34.17,-2.00     Metals       True v1;k=cat;c=metals     [8] at 2.00,34.17,-2.00  OK
+10  2.00,34.17,0.00      Wood         True v1;k=cat;c=wood       [9] at 2.00,34.17,0.00  OK
+11  2.00,34.17,2.00      Food         True v1;k=cat;c=food       [10] at 2.00,34.17,2.00  OK
+12  2.00,34.17,4.00      Trophies     True v1;k=cat;c=trophies   [11] at 2.00,34.17,4.00  OK
+13  4.00,34.17,-2.00     Valuables    True v1;k=cat;c=valuables  [12] at 4.00,34.17,-2.00  OK
+14  4.00,34.17,0.00      Building     True v1;k=cat;c=building   [13] at 4.00,34.17,0.00  OK
+15  4.00,34.17,2.00      Consumables  True v1;k=cat;c=consumables [14] at 4.00,34.17,2.00  OK
+16  4.00,34.17,4.00      Tools        True v1;k=cat;c=tools      [15] at 4.00,34.17,4.00  OK
+17  6.00,34.17,-2.00     Metals       True v1;k=cat;c=metals     [16] at 6.00,34.17,-2.00  OK
+18  6.00,34.17,0.00      Wood         True v1;k=cat;c=wood       [17] at 6.00,34.17,0.00  OK
+19  6.00,34.17,2.00      Food         True v1;k=cat;c=food       [18] at 6.00,34.17,2.00  OK
+20  6.00,34.17,4.00      Trophies     True v1;k=cat;c=trophies   [19] at 6.00,34.17,4.00  OK
+verified=20 failed=0 of 20
+gc containers total=24 net=20 ruled=20
+
+the base before the sweep: harness build of the scene (claim + zero rules)
+-----------------------------------------------------------------------
+11:42:13.251 husnisse claim 83557706:15563 source=native ward=0:0 owner=-202584743 r=20 native_r=20 native_owner=-202584743 suppressed=False refusal='' containers=20
+11:42:13.725   expect_claim 'owner=-202584743' in 'husnisse claim 83557706:15563 source=native ward=0:0 owner=-202584743 r=20 native_r=20 native_owner=-202584743 suppressed=False refusal='' containers=20': ok
+11:42:14.383 husnisse status [rules] containers=0 ruled=0
+11:42:15.734 scenario done: PASS (3 assertions, 0 failed)
+
+client's own container list AFTER the sweep (the acceptance line)
+----------------------------------------------------------------
+gc containers total=24 net=20 ruled=20
+
+client's own container list AFTER a full client relog
+----------------------------------------------------
+gc containers total=24 net=20 ruled=20
+
+server writes (last 20 [Rules] rule written lines = this sweep, in order)
+----------------------------------------------------------------------
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=metals by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=wood by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=food by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=trophies by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=valuables by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=building by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=consumables by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=tools by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=metals by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=wood by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=food by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=trophies by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=valuables by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=building by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=consumables by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=tools by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=metals by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=wood by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=food by player -202584743
+[Info   :  Husnisse] [debug][Rules] rule written piece_chest_wood v1;k=cat;c=trophies by player -202584743
+
+UI clicks the client actually invoked (button.onClick, counted over the 20 chests)
+--------------------------------------------------------------------------------
+  click HusnisseNet            invoked: 20
+  click HusnisseRules          invoked: 20
+  click HusnisseRulesClose     invoked: 20
+  click HusnisseCat<X>        invoked: 20
+  distinct categories clicked        : 8
+
+relog read-back (client quit, character saved, rejoined, one chest opened)
+------------------------------------------------------------------------
+gc stand piece_chest_wood(Clone)[12] at 4.00,34.17,-2.00 -> player 5.60,34.37,-2.00
+gc ui ui container=piece_chest_wood(Clone) strip=True net='On the network' netClickable=True rules='Rules: Valuables' rulesClickable=True panel=False win=True inUse=True dist=1.8
+gc ui zdo net=True rule='v1;k=cat;c=valuables' inUseFlag=False owner=True
