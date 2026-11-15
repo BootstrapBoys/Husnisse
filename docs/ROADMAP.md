@@ -155,9 +155,12 @@ benchmark is recorded; a blacklisted container never shows a button.
 **Progress** — 0.3a landed the container UI and rule storage (buttons, settings panel, `husnisse_rule`
 console path, ZDO encoding). 0.3b landed the preset table, priority, the saved list, the first-toggle
 suggestion, copy-rule and the rule-aware router, with a headless gate on every routing case
-(`docs/evidence/0.3b/`). Still to do in this release: overflow for a *full* category, deposit as a
-source, deposit-all, LOD, fair queue and the 200-container benchmark (0.3c/0.3d). The panel's new
-controls are built and wired but were not clicked on a client in 0.3b.
+(`docs/evidence/0.3b/`). 0.3c added the full-category case (a full chest does not claim a stack, the
+next chest of the category is tried before Overflow, and the reason names the rules that were full),
+Deposit chests as a **source** the nisse drains, and deposit-all on and off the network
+(`docs/evidence/0.3c/`). Still to do in this release: LOD, fair queue, the shipped blacklist defaults
+and the 200-container benchmark (0.3d). The panel's controls and the deposit-all button are built and
+wired but were not clicked on a client.
 
 **Risks** — vanilla container UI patching is the most compatibility-sensitive work in the project.
 MyLittleUI and other UI mods must be tested; the buttons must survive a controller and a narrow screen.

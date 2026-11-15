@@ -157,6 +157,17 @@ The panel itself, on a client — the headless gate proves the routing, not the 
       sets the neighbours' rules.
 - [ ] With a `Deposit` chest in the base, drop an item no rule claims: it goes to `Overflow` (or a
       plain networked chest), never into the deposit chest.
+- [ ] Put mixed items in the `Deposit` chest (a metal, timber, and something no rule claims): over a
+      few trips the chest empties itself into the metals chest, the wood chest and `Overflow`.
+- [ ] Fill a metals chest to the last slot, then drop a second metal: it goes to the next metals chest —
+      at any priority — before `Overflow`. Fill that one too and drop a third: `Overflow` takes it and
+      the log line reads `why=overflow (full: cat:metals)`.
+- [ ] `Deposit all` on a **networked** chest with a mixed pocket: the nisse takes the stacks and they
+      land in the chests whose rules claim them, not in the chest you pressed the button on.
+- [ ] `Deposit all` on an **off-network** chest: every pocket stack lands in that chest at once,
+      unsorted, and the message says `Deposited N stack(s)`. Nothing later moves them on.
+- [ ] Fill that off-network chest to the last slot and press `Deposit all` again: the overflow stays in
+      your pockets and the message says how many would not fit.
 - [ ] A blacklisted container (a cart, a ship, a display pile) shows no buttons.
 - [ ] A non-owner opens the same chest: the buttons are there, greyed, and the title says `read only`.
 - [ ] `husnisse_categories check` in the console lists what the presets do not cover; a gap item

@@ -1,0 +1,179 @@
+Husnisse 0.3.0
+started 2026-11-15 06:46:41
+
+
+== world ready @ 06:47:11 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=0 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0
+
+== claim registered @ 06:47:13 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0
+claim -1279604915:1383 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none
+husnisse rule piece_chest_wood[0] 2,3 net=on rule=none
+husnisse rule piece_chest_wood[1] 4,3 net=on rule=none
+husnisse rule piece_chest_wood[2] 6,3 net=on rule=none
+husnisse rule piece_chest_wood[3] 8,3 net=on rule=none
+husnisse rule piece_chest_wood[4] 10,3 net=on rule=none
+husnisse rule piece_chest_wood[5] 12,3 net=on rule=none
+husnisse rule piece_chest_wood[6] 14,3 net=on rule=none
+husnisse rule piece_chest_wood[0] 2,3 net=on rule=cat:metals
+husnisse rule piece_chest_wood[1] 4,3 net=on rule=cat:metals prio=1
+husnisse rule piece_chest_wood[2] 6,3 net=on rule=cat:wood
+husnisse rule piece_chest_wood[3] 8,3 net=on rule=overflow
+husnisse rule piece_chest_wood[5] 12,3 net=on rule=custom:1
+husnisse rule piece_chest_wood[6] 14,3 net=on rule=deposit
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(4,3) why=cat:metals p=1 claim=-1279604915:1383
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(4,3) why=cat:metals p=1
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(6,3) why=cat:wood claim=-1279604915:1383
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(6,3) why=cat:wood
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(12,3) why=custom:1 claim=-1279604915:1383
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(12,3) why=custom:1
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(8,3) why=overflow claim=-1279604915:1383
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(8,3) why=overflow
+husnisse rule piece_chest_wood[3] 8,3 net=off rule=overflow
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(10,3) why=no rule claim=-1279604915:1383
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(10,3) why=no rule
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(6,3) why=cat:wood claim=-1279604915:1383
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(6,3) why=cat:wood
+
+== claim removed @ 06:49:34 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=0 trips=0 nisses=1 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0
+
+== claim registered @ 06:49:35 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0
+claim -1279604915:1398 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none
+husnisse suggest piece_chest_wood[0] cat:metals stacks=3 metals=2 wood=1
+husnisse rule piece_chest_wood[0] 2,3 net=on rule=cat:metals
+husnisse rule piece_chest_wood[0] 2,3 net=on rule=cat:metals prio=2
+husnisse rule piece_chest_wood[1] 4,3 net=on rule=none
+husnisse rule piece_chest_wood[2] 6,3 net=on rule=none
+husnisse rule piece_chest_wood[1] 4,3 net=on rule=cat:wood
+husnisse copy piece_chest_wood[0] targets=2 written=2
+husnisse copy piece_chest_wood[0] targets=2 written=0
+
+== claim removed @ 06:50:18 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=0 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0
+
+== claim registered @ 06:50:19 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0
+claim -1279604915:1403 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none
+husnisse rule piece_chest_wood[0] 2,3 net=on rule=none
+husnisse rule piece_chest_wood[1] 4,3 net=on rule=none
+husnisse rule piece_chest_wood[2] 6,3 net=on rule=none
+husnisse rule piece_chest_wood[0] 2,3 net=on rule=cat:metals
+husnisse rule piece_chest_wood[1] 4,3 net=on rule=cat:metals prio=1
+husnisse rule piece_chest_wood[2] 6,3 net=on rule=overflow
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(4,3) why=cat:metals p=1 claim=-1279604915:1403
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(4,3) why=cat:metals p=1
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(2,3) why=cat:metals claim=-1279604915:1403
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(2,3) why=cat:metals
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(6,3) why=overflow (full: cat:metals) claim=-1279604915:1403
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(6,3) why=overflow (full: cat:metals)
+[Flow] unmatched $item_blackmetalscrap why=no chest has room for $item_blackmetalscrap (full: cat:metals+overflow) from=piece_chest_wood(Clone) claim=-1279604915:1403
+[Orders] tidy queued=0 unmatched=1 claim=-1279604915:1403 source=piece_chest_wood(Clone)
+
+== claim removed @ 06:51:52 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=0 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0
+
+== claim registered @ 06:51:53 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0
+claim -1279604915:1414 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none
+husnisse rule piece_chest_wood[0] 2,3 net=on rule=none
+husnisse rule piece_chest_wood[1] 4,3 net=on rule=none
+husnisse rule piece_chest_wood[2] 6,3 net=on rule=none
+husnisse rule piece_chest_wood[3] 8,3 net=on rule=none
+husnisse rule piece_chest_wood[0] 2,3 net=on rule=cat:metals
+husnisse rule piece_chest_wood[1] 4,3 net=on rule=cat:wood
+husnisse rule piece_chest_wood[2] 6,3 net=on rule=deposit
+husnisse rule piece_chest_wood[3] 8,3 net=on rule=overflow
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(2,3) why=cat:metals claim=-1279604915:1414
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(2,3) why=cat:metals
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(4,3) why=cat:wood claim=-1279604915:1414
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(4,3) why=cat:wood
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(8,3) why=overflow claim=-1279604915:1414
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(8,3) why=overflow
+[Orders] empty pockets queued=2 unmatched=0 claim=-1279604915:1414
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(2,3) why=cat:metals remembered claim=-1279604915:1414
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(2,3) why=cat:metals remembered
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(4,3) why=cat:wood remembered claim=-1279604915:1414
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(4,3) why=cat:wood remembered
+[Orders] deposit-all dumped=2 left=0 container=piece_chest_wood(Clone) at=(10,3)
+
+== claim removed @ 06:55:07 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=0 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0
+
+== claim registered @ 06:55:08 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0
+claim -1279604915:1423 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none
+husnisse rule piece_chest_wood[0] 3,3 net=off rule=cat:metals
+husnisse rule piece_chest_wood[0] 3,3 net=on rule=cat:metals
+husnisse rule piece_chest_wood[1] 3,6 net=off rule=cat:food
+husnisse rule piece_chest_wood[2] 3,9 net=off rule=cat:wood
+husnisse rule piece_chest_wood[3] 3,12 net=off rule=cat:building
+husnisse rule piece_chest_wood[4] 6,3 net=off rule=cat:consumables
+husnisse rule piece_chest_wood[5] 6,6 net=off rule=cat:tools
+husnisse rule piece_chest_wood[6] 6,9 net=off rule=cat:trophies
+husnisse rule piece_chest_wood[7] 6,12 net=off rule=cat:valuables
+husnisse rule piece_chest_wood[8] 9,3 net=off rule=overflow
+husnisse rule piece_chest_wood[9] 9,6 net=off rule=deposit
+husnisse rule piece_chest_wood[10] 9,9 net=off rule=cat:metals
+husnisse rule piece_chest_wood[11] 9,12 net=off rule=cat:food
+husnisse rule piece_chest_wood[12] 12,3 net=off rule=cat:wood
+husnisse rule piece_chest_wood[13] 12,6 net=off rule=cat:building
+husnisse rule piece_chest_wood[14] 12,9 net=off rule=cat:consumables
+husnisse rule piece_chest_wood[15] 12,12 net=off rule=cat:tools
+husnisse rule piece_chest_wood[16] 15,3 net=off rule=cat:trophies
+husnisse rule piece_chest_wood[17] 15,6 net=off rule=cat:valuables
+husnisse rule piece_chest_wood[18] 15,9 net=off rule=overflow
+husnisse rule piece_chest_wood[19] 15,12 net=off rule=deposit
+husnisse rule piece_chest_wood[0] 3,3 net=on rule=cat:metals
+husnisse rule piece_chest_wood[1] 3,6 net=off rule=cat:food
+husnisse rule piece_chest_wood[2] 3,9 net=off rule=cat:wood
+husnisse rule piece_chest_wood[3] 3,12 net=off rule=cat:building
+husnisse rule piece_chest_wood[4] 6,3 net=off rule=cat:consumables
+husnisse rule piece_chest_wood[5] 6,6 net=off rule=cat:tools
+husnisse rule piece_chest_wood[6] 6,9 net=off rule=cat:trophies
+husnisse rule piece_chest_wood[7] 6,12 net=off rule=cat:valuables
+husnisse rule piece_chest_wood[8] 9,3 net=off rule=overflow
+husnisse rule piece_chest_wood[9] 9,6 net=off rule=deposit
+husnisse rule piece_chest_wood[10] 9,9 net=off rule=cat:metals
+husnisse rule piece_chest_wood[11] 9,12 net=off rule=cat:food
+husnisse rule piece_chest_wood[12] 12,3 net=off rule=cat:wood
+husnisse rule piece_chest_wood[13] 12,6 net=off rule=cat:building
+husnisse rule piece_chest_wood[14] 12,9 net=off rule=cat:consumables
+husnisse rule piece_chest_wood[15] 12,12 net=off rule=cat:tools
+husnisse rule piece_chest_wood[16] 15,3 net=off rule=cat:trophies
+husnisse rule piece_chest_wood[17] 15,6 net=off rule=cat:valuables
+husnisse rule piece_chest_wood[18] 15,9 net=off rule=overflow
+husnisse rule piece_chest_wood[19] 15,12 net=off rule=deposit
+husnisse rules listed=20
+husnisse rule piece_chest_wood[2] 3,9 net=off rule=none

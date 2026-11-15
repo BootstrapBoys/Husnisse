@@ -55,11 +55,11 @@ fiction — decided in 0.4, before the first consuming surface lands.
 
 | # | Feature | Husnisse | Status |
 |---|---|---|---|
-| 1 | Deposit chest auto-sort | 0.3 container network (toggle + preset/list) | **covered, different mechanic** |
+| 1 | Deposit chest auto-sort | 0.3 container network (toggle + preset/list) | **covered, different mechanic** — a Deposit chest is a designated source: the nisse carries its contents to the chests whose rules claim them (0.3c) |
 | 2 | Chest remembers its item type when empty | 0.3 container rule lives in its ZDO | covered |
-| 3 | Storage rules: preferred destination, overflow chest, base groups, copy settings | 0.3 container rules | **covered** — 0.3a shipped the container UI, the eight categories and the roles in the chest's ZDO; 0.3b added the preset table with priority, the saved list with its checkbox preview, the first-toggle suggestion and copy-rule. Overflow's "full category" case and deposit-as-a-source are 0.3c |
+| 3 | Storage rules: preferred destination, overflow chest, base groups, copy settings | 0.3 container rules | **covered** — 0.3a shipped the container UI, the eight categories and the roles in the chest's ZDO; 0.3b added the preset table with priority, the saved list with its checkbox preview, the first-toggle suggestion and copy-rule; 0.3c added Overflow's "full category" case with a named reason and deposit-as-a-source. Base groups are the claim |
 | 4 | Supply permissions per chest (crafting, production, fuel, feed) | 0.6 pantries | **partial** — one permission today, four in QM |
-| 5 | Deposit All · sort inventory · sort chest · combine compatible stacks | 0.1 orders; queue in 0.1.2; merge in 0.3.1 | **partial** |
+| 5 | Deposit All · sort inventory · sort chest · combine compatible stacks | 0.1 orders; queue in 0.1.2; 0.3c deposit-all; merge in 0.3.1 | **partial** — deposit-all (network: the nisse files your pockets; off-network: dump into that chest, unsorted), Empty Pockets and Tidy are in; stack merge is 0.3.1 |
 | 6 | Pickup controls, per item type | 0.3.1 type filter | **partial** — per claim, edited in the ledger |
 | 7 | Configurable stack sizes (no weight change) | 1.0 | scheduled |
 | 8 | Craft from storage | 0.5 | scheduled |
