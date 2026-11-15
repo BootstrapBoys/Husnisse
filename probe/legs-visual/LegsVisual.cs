@@ -31,6 +31,7 @@ namespace Husnisse.LegsVisual
     ///   state           one status line
     ///   watch &lt;s&gt;      sample once a second for s seconds
     ///   probe           ask for a full path across the strip and report what came back
+    ///   route           report the visible players/peers, then push a marked HUD line to each peer
     ///   cleanup         destroy the scene this probe built
     /// Never shipped; lives in probe/.
     /// </summary>
@@ -150,6 +151,7 @@ namespace Husnisse.LegsVisual
                         case "state": State(); break;
                         case "watch": Watch(parts); break;
                         case "probe": Probe(); break;
+                        case "route": Route(); break;
                         case "cleanup": Cleanup(); break;
                         case "peers": Peers(); break;
                         default: Say("unknown command: " + line); break;
@@ -311,6 +313,47 @@ namespace Husnisse.LegsVisual
             var ok = Pathfinding.instance.GetPath(from, to, full, Pathfinding.AgentType.Humanoid,
                 requireFullPath: true, cleanup: true);
             Say("bake_probe full=" + ok + " corners=" + full.Count);
+        }
+
+        /// <summary>
+        /// The HUD-routing experiment, and the only reason this command exists: report what the
+        /// server can actually see, then push a marked line to every connected peer through the
+        /// game's own client-side "ShowMessage" handler. The client probe reports which markers
+        /// reached <c>MessageHud.GetLog()</c>, so delivery is measured on the client, not inferred
+        /// here.
+        /// </summary>
+        private void Route()
+        {
+            var players = Player.GetAllPlayers();
+            Say("route players=" + players.Count +
+                " peers=" + (ZNet.instance != null ? ZNet.instance.GetPeers().Count : -1) +
+                " isServer=" + (ZNet.instance != null && ZNet.instance.IsServer()));
+
+            // Kept deliberately: on a dedicated server this is 0, and that is the finding this
+            // command was added to record. Player.Message is unreachable when there are no players.
+            if (players.Count == 0) Say("route Player.GetAllPlayers() is empty on this peer");
+
+            if (ZNet.instance == null || ZRoutedRpc.instance == null)
+            {
+                Say("route: no ZNet / ZRoutedRpc");
+                return;
+            }
+
+            foreach (var peer in ZNet.instance.GetPeers())
+            {
+                if (peer == null) continue;
+                Say("route peer uid=" + peer.m_uid +
+                    " name=\"" + peer.m_playerName + "\"" +
+                    " ready=" + peer.IsReady() +
+                    " refpos=" + peer.GetRefPos().ToString("F2") +
+                    " character=" + peer.m_characterID);
+
+                if (!peer.IsReady()) { Say("route skipped: peer not ready"); continue; }
+
+                ZRoutedRpc.instance.InvokeRoutedRPC(peer.m_uid, "ShowMessage",
+                    (int)MessageHud.MessageType.TopLeft, "PROBE-B ShowMessage peer");
+                Say("route B sent to uid=" + peer.m_uid);
+            }
         }
 
         private void Cleanup()

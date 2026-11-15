@@ -247,7 +247,7 @@ namespace Husnisse.Flow
                     if (!_reported)
                     {
                         _reported = true;
-                        NisseVoice.Say(_claim, Loc.T(Loc.VoiceUnreachable));
+                        NisseVoice.Say(_claim, Loc.T(Loc.VoiceUnreachable), NisseVoice.Kind.Event);
                     }
                     _motion.FadeAcross(point);
                     return false;

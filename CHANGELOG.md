@@ -1,10 +1,18 @@
 # Changelog
 
+## 0.2.2
+
+Internal only — the nisse's warning line now reaches a player's HUD.
+
+- "The way is shut. The nisse steps through." now reaches the player who can hear the nisse. The line was addressed to `Player.GetAllPlayers()`, and a dedicated server simulates no player characters of its own, so that list is always empty there: the line was built, throttled and then handed to nobody. The audience is the connected peers now, each addressed through the game's own HUD entry point.
+- A line about something that just happened — a fade, a misfiled stack, a bowl refilled — keeps its own once-a-minute slot per claim. An idle remark about an empty bowl can no longer take that slot and leave the event silent.
+- Earshot is measured across the ground, so a player on another floor of the same house still hears the nisse.
+
 ## 0.2.1
 
 Internal only — the threshold fade is now played on peers.
 
-- A leg the nisse cannot walk now fades on **every** peer, not only where it was ordered. The fade RPC used the owner-addressed call, which on a dedicated server addresses the server itself: the body dissolved where nobody could see it and a connected client saw the nisse jump across the threshold instead of fading. Clients are addressed explicitly now, so the 0.45 s out / 0.45 s in dissolve and the "The way is shut" line arrive together.
+- A leg the nisse cannot walk now fades on **every** peer, not only where it was ordered. The fade RPC used the owner-addressed call, which on a dedicated server addresses the server itself: the body dissolved where nobody could see it and a connected client saw the nisse jump across the threshold instead of fading. Clients are addressed explicitly now.
 
 ## 0.2.0
 

@@ -258,7 +258,7 @@ namespace Husnisse.Bowl
                 if (SulkLevel > 0)
                 {
                     if (_zdo != null) _zdo.Set(ZdoKeys.BowlSulk, 0);
-                    if (_claim != null) NisseVoice.Say(_claim, Loc.T(Loc.VoiceForgive), true);
+                    if (_claim != null) NisseVoice.Say(_claim, Loc.T(Loc.VoiceForgive), NisseVoice.Kind.Event);
                 }
 
                 return true;

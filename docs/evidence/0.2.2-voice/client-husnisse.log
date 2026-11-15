@@ -1,0 +1,9 @@
+Husnisse 0.2.2
+started 2026-11-14 23:19:37
+
+
+== claim registered @ 23:20:16 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
+claim -821531199:39316 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none

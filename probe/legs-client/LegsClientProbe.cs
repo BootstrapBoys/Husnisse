@@ -21,6 +21,8 @@ namespace Husnisse.LegsClient
     ///   shot &lt;name&gt;
     ///   watch &lt;seconds&gt; [minShotInterval]
     ///   where
+    ///   hud [count]      dump the last HUD lines MessageHud actually showed
+    ///   revive [off]     god mode on (default) or off, and respawn if dead
     /// Never shipped; lives in probe/.
     /// </summary>
     [BepInPlugin(Guid, "Husnisse Legs Client Probe", "0.1.0")]
@@ -45,10 +47,101 @@ namespace Husnisse.LegsClient
         private float _commandTimer;
         private bool _watching;
 
+        private int _hudSeen = -1;
+        private string _hudText = string.Empty;
+        private static FieldInfo _messageTextField;
+        private static PropertyInfo _textProperty;
+
         private void Awake()
         {
             Logger.LogInfo("lc loaded " + Info.Metadata.Version);
+            StartCoroutine(HudWatch());
             StartCoroutine(Run());
+        }
+
+        // ------------------------------------------------------------------ HUD
+
+        /// <summary>
+        /// The HUD is where a "message" claim is decided, and a screenshot alone cannot prove the
+        /// absence of one. MessageHud keeps every shown line in m_messageLog (GetLog()) and the
+        /// TopLeft text currently on screen in m_messageText, so both are polled and logged: a line
+        /// the server sends either shows up here or does not.
+        /// </summary>
+        private IEnumerator HudWatch()
+        {
+            while (true)
+            {
+                try { PollHud(); }
+                catch (Exception e) { Logger.LogWarning("lc hud poll failed: " + e.Message); }
+                yield return null;
+            }
+        }
+
+        private void PollHud()
+        {
+            var hud = MessageHud.instance;
+            if (hud == null) return;
+
+            if (_hudSeen < 0)
+            {
+                _hudSeen = hud.GetLog().Count;
+                Logger.LogInfo("lc hud baseline entries=" + _hudSeen + " text=\"" + HudText(hud) + "\"");
+            }
+
+            var text = HudText(hud);
+            if (text != _hudText)
+            {
+                _hudText = text;
+                if (!string.IsNullOrEmpty(text)) Logger.LogInfo("lc hud text \"" + text + "\"");
+            }
+
+            var log = hud.GetLog();
+            if (log.Count < _hudSeen) _hudSeen = log.Count;
+            while (_hudSeen < log.Count)
+            {
+                Logger.LogInfo("lc hud msg \"" + log[_hudSeen] + "\"");
+                _hudSeen++;
+            }
+        }
+
+        /// <summary>
+        /// The TopLeft line currently on screen. Reflected rather than referenced: the field is a
+        /// TMP_Text, and referencing TextMeshPro from the probe drags in the whole UI assembly chain
+        /// for one string.
+        /// </summary>
+        private static string HudText(MessageHud hud)
+        {
+            try
+            {
+                if (_messageTextField == null)
+                    _messageTextField = typeof(MessageHud).GetField("m_messageText", Instance);
+                if (_messageTextField == null) return string.Empty;
+
+                var label = _messageTextField.GetValue(hud);
+                if (label == null) return string.Empty;
+
+                if (_textProperty == null) _textProperty = label.GetType().GetProperty("text", Instance);
+                return _textProperty != null ? (_textProperty.GetValue(label, null) as string) ?? string.Empty : string.Empty;
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
+
+        private void HudDump(string[] parts)
+        {
+            var hud = MessageHud.instance;
+            if (hud == null) { Logger.LogWarning("lc hud: no MessageHud"); return; }
+
+            var count = 10;
+            if (parts.Length > 1) int.TryParse(parts[1], out count);
+
+            var log = hud.GetLog();
+            var from = Mathf.Max(0, log.Count - count);
+            Logger.LogInfo("lc hud dump entries=" + log.Count + " hidden=" + Hud.IsUserHidden() +
+                           " text=\"" + HudText(hud) + "\"");
+            for (var i = from; i < log.Count; i++) Logger.LogInfo("lc hud[" + i + "] \"" + log[i] + "\"");
         }
 
         private IEnumerator Run()
@@ -77,6 +170,7 @@ namespace Husnisse.LegsClient
             Logger.LogInfo("lc ready player=" + player.GetPlayerName() +
                            " pos=" + player.transform.position.ToString("F2") +
                            " world=" + (ZNet.instance.GetWorldName() ?? "?") +
+                           " hudHidden=" + Hud.IsUserHidden() +
                            " types fade=" + (_fadeType != null) + " actor=" + (_actorType != null));
             Logger.LogInfo("lc command_file=" + CommandFile);
 
@@ -136,7 +230,33 @@ namespace Husnisse.LegsClient
                 case "watch": StartWatch(parts); break;
                 case "where": Where(); break;
                 case "claims": Claims(); break;
+                case "hud": HudDump(parts); break;
+                case "revive": Revive(parts); break;
                 default: Logger.LogWarning("lc unknown command: " + line); break;
+            }
+        }
+
+        /// <summary>
+        /// Keep the observer's character out of the death screen: a world spawn on a mountain kills
+        /// an idle client with cold in a couple of minutes, and a dead player cannot be teleported
+        /// or photographed. God mode is the least invasive way to hold the client still.
+        /// </summary>
+        private void Revive(string[] parts)
+        {
+            var player = Player.m_localPlayer;
+            if (player == null) { Logger.LogWarning("lc revive: no player"); return; }
+
+            var god = parts.Length > 1 ? parts[1].ToLowerInvariant() != "off" : true;
+            player.SetGodMode(god);
+
+            Logger.LogInfo("lc revive god=" + god + " dead=" + player.IsDead() +
+                           " health=" + player.GetHealth().ToString("0") +
+                           " pos=" + player.transform.position.ToString("F2"));
+
+            if (player.IsDead() && Game.instance != null)
+            {
+                Game.instance.RequestRespawn(0f);
+                Logger.LogInfo("lc revive requested respawn");
             }
         }
 

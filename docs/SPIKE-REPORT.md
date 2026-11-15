@@ -261,6 +261,44 @@ for f in native ward ward-removed second-bowl overlap; do ./rig.sh scenario "sce
 The tree's config must keep `2. Nisse / Claim Radius = 20`, `Respect WardIsLove = true` and
 `Require Ward Ownership = false`; the scenarios assume those values.
 
+## 6. Who the nisse can talk to — 2026-11-15
+
+**A dedicated server has no `Player` objects.** `Player.GetAllPlayers()` (which is
+`Player.s_players` filled by `Player.Awake`) is **empty** on the server, because the server
+simulates no player characters: a peer drives its own character ZDO and the server only holds the
+ZDO. Measured with the scene driver on `V:\ValheimTest`:
+
+```
+route players=0 peers=1 isServer=True
+route Player.GetAllPlayers() is empty on this peer
+route peer uid=265214798 name="Stranger" ready=True refpos=(2.01, 33.84, 2.01) character=265214798:1
+```
+
+**Consequence:** any code that addresses players by iterating `Player.GetAllPlayers()` on the
+server is a no-op — the loop runs zero times, and `Player.Message` is never reached. The audience
+is `ZNet.instance.GetPeers()`; `ZNetPeer.GetRefPos()` is the player's position as the server knows
+it (exact in x/z, and the same reference the zone system uses).
+
+**Delivery.** `Player.Message(type, msg)` shows on the local HUD when that character's ZDO is owned
+by this peer and otherwise sends `InvokeRPC("Message", …)` to the ZDO owner — and `Player.Awake`
+registers the `Message` handler **only on the owner**. That route is real but needs a `Player`
+object to call it on. The route that works from a dedicated server is the game's own HUD handler,
+which `MessageHud.MessageAll` uses as a broadcast and which takes a peer id for one target:
+
+```csharp
+ZRoutedRpc.instance.InvokeRoutedRPC(peer.m_uid, "ShowMessage",
+    (int)MessageHud.MessageType.TopLeft, text);
+```
+
+Proven on the client, not inferred: `lc hud msg "PROBE-B ShowMessage peer"` in the client's
+BepInEx log, then the real line twice in two separate trips
+(`docs/evidence/0.2.2-voice/RESULT.md`).
+
+**Asserting a HUD line.** `MessageHud` keeps every line it showed in `m_messageLog`
+(`GetLog()`) and the TopLeft text on screen in `m_messageText.text`; both are readable from a
+client probe, so "the player saw it" stops being a screenshot judgement. A message suppressed
+because the HUD is hidden (`Hud.IsUserHidden()`) is neither shown nor logged.
+
 ## What this means for the plan
 
 | Assumption | Status |

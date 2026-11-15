@@ -1,0 +1,302 @@
+[Message:   BepInEx] BepInEx 5.4.23.6 - valheim (11/13/2026 12:24:48 PM)
+[Message:   BepInEx] User is running BepInExPack Valheim version 5.4.2360
+[Info   :   BepInEx] Running under Unity v6000.0.75.2503836
+[Info   :   BepInEx] CLR runtime version: 4.0.30319.42000
+[Info   :   BepInEx] Supports SRE: True
+[Info   :   BepInEx] System platform: Bits64, Windows
+[Message:   BepInEx] Preloader started
+[Info   :   BepInEx] Loaded 1 patcher method from [BepInEx.Preloader 5.4.23.6]
+[Info   :   BepInEx] 1 patcher plugin loaded
+[Info   :   BepInEx] Patching [UnityEngine.CoreModule] with [BepInEx.Chainloader]
+[Message:   BepInEx] Preloader finished
+[Message:   BepInEx] Valheim Version: 1.0.21
+[Message:   BepInEx] Chainloader ready
+[Message:   BepInEx] Chainloader started
+[Info   :   BepInEx] 7 plugins to load
+[Info   :   BepInEx] Loading [Conditional Config Sync 1.0.11] (_shudnal.ConditionalConfigSync)
+[Info   :   BepInEx] Loading [Husnisse Legs Client Probe 0.1.0] (bootstrapboys.husnisse.legsclient)
+[Info   :Husnisse Legs Client Probe] lc loaded 0.1.0
+[Info   :   BepInEx] Loading [Jotunn 2.30.2] (com.jotunn.jotunn)
+[Info   :Jotunn.Main] Initializing ModCompatibility
+[Info   :Jotunn.Main] Initializing SynchronizationManager
+[Info   :Jotunn.Main] Initializing NetworkManager
+[Info   :   BepInEx] Loading [YamlDotNet Detector 1.0.0] (com.ValheimModding.YamlDotNetDetector)
+[Info   :YamlDotNet Detector] YamlDotNet 16.0.0.0 loaded from plugins\ValheimModding-YamlDotNet\YamlDotNet.dll
+[Info   :   BepInEx] Loading [Husnisse 0.2.2] (com.bootstrapboys.husnisse)
+[Info   :  Husnisse] Husnisse 0.2.2 starting
+[Warning:  Husnisse] outdated English localisation ignored; embedded strings are used: C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\config\Husnisse\localization\en.yaml
+[Info   :  Husnisse] localisation loaded: English (check: Porridge Bowl)
+[Info   :Jotunn.Main] Initializing PrefabManager
+[Info   :  Husnisse] core ready; waiting for vanilla prefabs
+[Info   :   BepInEx] Loading [Mine Together 0.2.1] (com.bootstrapboys.minetogether)
+[Info   :Mine Together] [env] C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\plugins\BootstrapBoys-MineTogether\MineTogether.dll sha256 f2e7d2bb4302adc0
+[Info   :Mine Together] Mine Together 0.2.1 loaded: master=True vein=True resources=True collapse=True aoe=True | yield x1/1/1/1 | diagnostics off
+[Info   :   BepInEx] Loading [Newtonsoft.Json Detector 1.0.0] (com.ValheimModding.NewtonsoftJsonDetector)
+[Info   :Newtonsoft.Json Detector] Newtonsoft.Json 13.0.0.0 assembly already loaded from C:\Program Files (x86)\Steam\steamapps\common\Valheim\valheim_Data\Managed\Newtonsoft.Json.dll
+[Message:   BepInEx] Chainloader startup complete (7 loaded, 0 skipped, 0 failed)
+[Info   :Jotunn.Main] Initializing AssetManager
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/stone/Stone1_huge.prefab, new: Assets/world/Props/DeepNorth/HotSpring/Stone1_huge.prefab, using old path
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/Caverocks/caverock_pillar.prefab, new: Assets/world/Props/DeepNorth/HotSpring/caverock_pillar.prefab, using old path
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/Rocks/highstone.prefab, new: Assets/world/Props/DeepNorth/HotSpring/highstone.prefab, using old path
+[Info   :Jotunn.Main] Initializing PieceManager
+[Info   :Jotunn.Main] Initializing MockManager
+[Info   :  Husnisse] bowl fields: category=Misc station=none resources=1 enabled=True table=_HammerPieceTable
+[Info   :  Husnisse] bowl registered as husnisse_bowl
+[Info   :Jotunn.Main] Initializing CreatureManager
+[Info   :  Husnisse] creature registered as husnisse_nisse (body=husnisse_nisse)
+[Info   :  Husnisse] content registered
+[Info   :Jotunn.Managers.PrefabManager] Adding 2 custom prefabs to the ZNetScene
+[Info   :Jotunn.Managers.CreatureManager] Adding 1 custom creatures
+[Info   :Jotunn.Managers.PieceManager] Adding 1 custom pieces to the PieceTables
+[Info   :Jotunn.Managers.NetworkManager] Registering 2 custom RPCs
+[Info   :ConditionalConfigSync] [com.bootstrapboys.husnisse][Client][Version] Received com.bootstrapboys.husnisse version 0.0.0, minimum version 0.0.0, ConditionalConfigSync protocol 1 from the server (0). Remote ConditionalConfigSync version 1.0.11; elapsed 219 ms.
+[Info   :ConditionalConfigSync] [Mine Together][Client][Version] Received Mine Together version 0.2.1, minimum version 0.2.1, ConditionalConfigSync protocol 1 from the server (0). Remote ConditionalConfigSync version 1.0.11; elapsed 221 ms.
+[Info   :Husnisse Legs Client Probe] lc hud baseline entries=0 text="You picked up an Axe"
+[Info   :Husnisse Legs Client Probe] lc hud text "You picked up an Axe"
+[Info   :ConditionalConfigSync] [com.bootstrapboys.husnisse][Client][Version] Received com.bootstrapboys.husnisse version 0.0.0, minimum version 0.0.0, ConditionalConfigSync protocol 1 from the server (90297504134874121). Remote ConditionalConfigSync version 1.0.11; elapsed 1258 ms.
+[Info   :ConditionalConfigSync] [Mine Together][Client][Version] Received Mine Together version 0.2.1, minimum version 0.2.1, ConditionalConfigSync protocol 1 from the server (90297504134874121). Remote ConditionalConfigSync version 1.0.11; elapsed 1258 ms.
+[Info   :ConditionalConfigSync] [com.bootstrapboys.husnisse][Client] Received 1 configs and 0 custom values from the server (config=1. General -> Lock Configuration)
+[Info   :ConditionalConfigSync] [Mine Together][Client] Received 21 configs and 0 custom values from the server
+[Info   :Jotunn.Managers.SynchronizationManager+<AdminRPC_OnClientReceive>d__49] Received admin status from server: No Admin
+[Info   :  Husnisse] bowl: pantry ready 4x1 (4 slots)
+[Info   :  Husnisse] fade: property=_Cutoff mode=Cutoff renderers=4 shader=Custom/Creature
+[Info   :Mine Together] Prefab audit written: C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\config\MineTogether.prefabs.tsv; 437 destructible prefabs examined.
+[Info   :Husnisse Legs Client Probe] lc ready player=Stranger pos=(2.01, 33.81, 2.01) world=MTTest hudHidden=False types fade=True actor=True
+[Info   :Husnisse Legs Client Probe] lc command_file=C:\Users\Hermes\husnisse-probe.cmd
+[Info   :Husnisse Legs Client Probe] lc cmd: revive
+[Info   :Husnisse Legs Client Probe] lc revive god=True dead=False health=25 pos=(2.01, 33.84, 2.01)
+[Info   :Husnisse Legs Client Probe] lc cmd: where
+[Info   :Husnisse Legs Client Probe] lc where player=(2.01, 33.84, 2.01) yaw=189 nisse=(0.00, 56.60, -0.14) peers=1
+[Info   :Husnisse Legs Client Probe] lc cmd: teleport 8 55.4 2
+[Info   :Husnisse Legs Client Probe] lc teleport from=(2.01, 33.84, 2.01) to=(2.01, 33.84, 2.01) requested=(8.00, 55.40, 2.00)
+[Info   :Husnisse Legs Client Probe] lc cmd: cam 8 58.6 -7 9 55.4 0
+[Info   :Husnisse Legs Client Probe] lc cam pos=(8.00, 58.60, -7.00) target=(9.00, 55.40, 0.00)
+[Info   :Husnisse Legs Client Probe] lc cmd: where
+[Info   :Husnisse Legs Client Probe] lc where player=(2.01, 33.84, 2.01) yaw=189 nisse=(0.00, 56.60, -0.14) peers=1
+[Info   :Husnisse Legs Client Probe] lc cmd: shot deck-lit
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\deck-lit.png
+[Info   :Husnisse Legs Client Probe] lc hud text "You are cold"
+[Info   :Husnisse Legs Client Probe] lc cmd: where
+[Info   :Husnisse Legs Client Probe] lc where player=(8.60, 55.10, 2.00) yaw=0 nisse=(0.00, 56.60, -0.14) peers=1
+[Info   :Husnisse Legs Client Probe] lc cmd: cam 6 60.5 -13 10 55.2 0
+[Info   :Husnisse Legs Client Probe] lc cam pos=(6.00, 60.50, -13.00) target=(10.00, 55.20, 0.00)
+[Info   :Husnisse Legs Client Probe] lc cmd: shot framing
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\framing.png
+[Info   :Husnisse Legs Client Probe] lc cmd: cam 4 58 -7 12.5 55.3 0
+[Info   :Husnisse Legs Client Probe] lc cam pos=(4.00, 58.00, -7.00) target=(12.50, 55.30, 0.00)
+[Info   :Husnisse Legs Client Probe] lc cmd: shot framing2
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\framing2.png
+[Info   :Husnisse Legs Client Probe] lc cmd: watch 45 0.15
+[Info   :Husnisse Legs Client Probe] lc watch start seconds=45 minShot=0.2
+[Info   :Husnisse Legs Client Probe] lc t=1 pos=(0.00, 56.60, -0.14) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=83
+[Info   :Husnisse Legs Client Probe] lc t=2 pos=(0.00, 56.60, -0.14) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=168
+[Info   :Husnisse Legs Client Probe] lc t=3 pos=(0.00, 56.60, -0.14) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=249
+[Info   :Husnisse Legs Client Probe] lc t=4 pos=(0.00, 56.60, -0.14) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=330
+[Info   :Husnisse Legs Client Probe] lc t=5 pos=(0.00, 56.60, -0.14) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=412
+[Info   :Husnisse Legs Client Probe] lc t=6 pos=(0.00, 56.60, -0.14) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=492
+[Info   :Husnisse Legs Client Probe] lc t=7 pos=(0.00, 56.60, -0.14) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=574
+[Info   :Husnisse Legs Client Probe] lc t=8 pos=(0.00, 56.60, -0.14) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=656
+[Info   :Husnisse Legs Client Probe] lc t=9 pos=(0.00, 56.60, -0.14) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=735
+[Info   :Husnisse Legs Client Probe] lc t=10 pos=(0.00, 56.60, -0.14) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=817
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-01.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-02.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-03.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-04.png
+[Info   :Husnisse Legs Client Probe] lc t=11 pos=(0.17, 56.13, -0.86) step_sum=0.05 anim=0.91 alpha=1.00 busy=False frames=891
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-05.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-06.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-07.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-08.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-09.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-10.png
+[Info   :Husnisse Legs Client Probe] lc t=12 pos=(1.92, 55.10, -0.77) step_sum=0.06 anim=0.50 alpha=1.00 busy=False frames=948
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-11.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-12.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-13.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-14.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-15.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-16.png
+[Info   :Husnisse Legs Client Probe] lc t=13 pos=(3.81, 55.10, -0.80) step_sum=0.06 anim=1.28 alpha=1.00 busy=False frames=999
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-17.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-18.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-19.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-20.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-21.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-22.png
+[Info   :Husnisse Legs Client Probe] lc t=14 pos=(5.57, 55.10, -0.59) step_sum=0.07 anim=1.61 alpha=1.00 busy=False frames=1048
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-23.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-24.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-25.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-26.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-27.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-28.png
+[Info   :Husnisse Legs Client Probe] lc t=15 pos=(7.54, 55.10, -0.36) step_sum=0.08 anim=1.76 alpha=1.00 busy=False frames=1093
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-29.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-30.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-31.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-32.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-33.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-34.png
+[Info   :Husnisse Legs Client Probe] lc t=16 pos=(9.09, 55.10, -0.15) step_sum=0.07 anim=0.46 alpha=1.00 busy=False frames=1139
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-35.png
+[Info   :Husnisse Legs Client Probe] lc hud text "Nisse: The way is shut. The nisse steps through."
+[Info   :Husnisse Legs Client Probe] lc hud msg "Nisse: The way is shut. The nisse steps through."
+[Info   :Husnisse Legs Client Probe] lc fade out start t=16.26 pos=(9.11, 55.10, -0.14) alpha=0.96
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-36.png
+[Info   :Husnisse Legs Client Probe] lc hud msg "World save in 30s"
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-37.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-38.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-39.png
+[Info   :Husnisse Legs Client Probe] lc fade in t=16.89 pos=(13.68, 55.10, -0.02) alpha=0.29
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-40.png
+[Info   :Husnisse Legs Client Probe] lc fade in t=17.04 pos=(13.68, 55.10, -0.02) alpha=0.78
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-41.png
+[Info   :Husnisse Legs Client Probe] lc fade in t=17.17 pos=(13.68, 55.10, -0.02) alpha=1.00
+[Info   :Husnisse Legs Client Probe] lc t=17 pos=(13.68, 55.10, -0.02) step_sum=4.60 anim=0.00 alpha=1.00 busy=True frames=1178
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-42.png
+[Info   :Husnisse Legs Client Probe] lc fade out start t=18.02 pos=(13.67, 55.10, 0.00) alpha=0.98
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-43.png
+[Info   :Husnisse Legs Client Probe] lc t=18 pos=(13.67, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=0.58 busy=True frames=1244
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-44.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-45.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-46.png
+[Info   :Husnisse Legs Client Probe] lc fade in t=18.68 pos=(1.36, 55.12, 0.00) alpha=0.56
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-47.png
+[Info   :Husnisse Legs Client Probe] lc fade in t=18.84 pos=(1.36, 55.11, 0.00) alpha=0.96
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-48.png
+[Info   :Husnisse Legs Client Probe] lc t=19 pos=(1.36, 55.10, 0.00) step_sum=12.31 anim=0.00 alpha=1.00 busy=False frames=1295
+[Info   :Husnisse Legs Client Probe] lc t=20 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1376
+[Info   :Husnisse Legs Client Probe] lc t=21 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1451
+[Info   :Husnisse Legs Client Probe] lc t=22 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1526
+[Info   :Husnisse Legs Client Probe] lc t=23 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1605
+[Info   :Husnisse Legs Client Probe] lc t=24 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1685
+[Info   :Husnisse Legs Client Probe] lc t=25 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1767
+[Info   :Husnisse Legs Client Probe] lc t=26 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1849
+[Info   :Husnisse Legs Client Probe] lc t=27 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1925
+[Info   :Husnisse Legs Client Probe] lc t=28 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2009
+[Info   :Husnisse Legs Client Probe] lc t=29 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2090
+[Info   :Husnisse Legs Client Probe] lc t=30 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2159
+[Info   :Husnisse Legs Client Probe] lc t=31 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2233
+[Info   :Husnisse Legs Client Probe] lc t=32 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2314
+[Info   :Husnisse Legs Client Probe] lc t=33 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2390
+[Info   :Husnisse Legs Client Probe] lc t=34 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2468
+[Info   :Husnisse Legs Client Probe] lc t=35 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2545
+[Info   :Husnisse Legs Client Probe] lc t=36 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2619
+[Info   :Husnisse Legs Client Probe] lc t=37 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2691
+[Info   :Husnisse Legs Client Probe] lc t=38 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2769
+[Info   :Husnisse Legs Client Probe] lc t=39 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2850
+[Info   :Husnisse Legs Client Probe] lc t=40 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2932
+[Info   :Husnisse Legs Client Probe] lc t=41 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=3010
+[Info   :Husnisse Legs Client Probe] lc t=42 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=3086
+[Info   :Husnisse Legs Client Probe] lc t=43 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=3168
+[Info   :Husnisse Legs Client Probe] lc t=44 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=3248
+[Info   :Husnisse Legs Client Probe] lc watch done seconds=45 frames=3299 max_step=12.313 max_anim=1.81 min_alpha=0.00 fades=2 shots=48
+[Info   :Husnisse Legs Client Probe] lc hud text "World saved ( 0.02+1.25s )"
+[Info   :Husnisse Legs Client Probe] lc hud msg "World saved ( 0.02+1.25s )"
+[Info   :Husnisse Legs Client Probe] lc hud text "You are cold"
+[Info   :Husnisse Legs Client Probe] lc cmd: watch 40 0.1
+[Info   :Husnisse Legs Client Probe] lc watch start seconds=40 minShot=0.1
+[Info   :Husnisse Legs Client Probe] lc t=1 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=73
+[Info   :Husnisse Legs Client Probe] lc t=2 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=149
+[Info   :Husnisse Legs Client Probe] lc t=3 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=230
+[Info   :Husnisse Legs Client Probe] lc t=4 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=309
+[Info   :Husnisse Legs Client Probe] lc t=5 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=385
+[Info   :Husnisse Legs Client Probe] lc t=6 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=461
+[Info   :Husnisse Legs Client Probe] lc t=7 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=535
+[Info   :Husnisse Legs Client Probe] lc t=8 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=610
+[Info   :Husnisse Legs Client Probe] lc t=9 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=689
+[Info   :Husnisse Legs Client Probe] lc hud text "You are getting warmer"
+[Info   :Husnisse Legs Client Probe] lc t=10 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=769
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-01.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-02.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-03.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-04.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-05.png
+[Info   :Husnisse Legs Client Probe] lc t=11 pos=(2.06, 55.10, 0.00) step_sum=0.07 anim=1.77 alpha=1.00 busy=False frames=824
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-06.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-07.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-08.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-09.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-10.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-11.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-12.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-13.png
+[Info   :Husnisse Legs Client Probe] lc t=12 pos=(3.93, 55.10, 0.00) step_sum=0.16 anim=1.91 alpha=1.00 busy=False frames=840
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-14.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-15.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-16.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-17.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-18.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-19.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-20.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-21.png
+[Info   :Husnisse Legs Client Probe] lc t=13 pos=(5.95, 55.10, 0.00) step_sum=0.18 anim=1.90 alpha=1.00 busy=False frames=855
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-22.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-23.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-24.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-25.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-26.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-27.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-28.png
+[Info   :Husnisse Legs Client Probe] lc t=14 pos=(8.00, 55.10, 0.00) step_sum=0.16 anim=1.94 alpha=1.00 busy=False frames=870
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-29.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-30.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-31.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-32.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-33.png
+[Info   :Husnisse Legs Client Probe] lc hud text "Nisse: The way is shut. The nisse steps through."
+[Info   :Husnisse Legs Client Probe] lc hud msg "Nisse: The way is shut. The nisse steps through."
+[Info   :Husnisse Legs Client Probe] lc fade out start t=15.04 pos=(9.00, 55.10, 0.00) alpha=0.83
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-34.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-35.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-36.png
+[Info   :Husnisse Legs Client Probe] lc t=15 pos=(9.10, 55.10, 0.00) step_sum=0.14 anim=0.09 alpha=0.02 busy=True frames=884
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-37.png
+[Info   :Husnisse Legs Client Probe] lc fade in t=15.60 pos=(12.98, 55.10, 0.00) alpha=0.24
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-38.png
+[Info   :Husnisse Legs Client Probe] lc fade in t=15.73 pos=(13.12, 55.10, 0.00) alpha=0.67
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-39.png
+[Info   :Husnisse Legs Client Probe] lc fade in t=15.86 pos=(13.23, 55.10, 0.00) alpha=0.98
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-40.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-41.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-42.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-43.png
+[Info   :Husnisse Legs Client Probe] lc t=16 pos=(13.58, 55.10, 0.00) step_sum=4.61 anim=0.00 alpha=1.00 busy=False frames=896
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-44.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-45.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-46.png
+[Info   :Husnisse Legs Client Probe] lc fade out start t=16.85 pos=(13.65, 55.10, 0.00) alpha=0.84
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-47.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-48.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-49.png
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-50.png
+[Info   :Husnisse Legs Client Probe] lc fade in t=17.39 pos=(13.67, 55.10, 0.00) alpha=0.23
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-51.png
+[Info   :Husnisse Legs Client Probe] lc fade in t=17.52 pos=(1.36, 55.04, 0.00) alpha=0.66
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-52.png
+[Info   :Husnisse Legs Client Probe] lc t=18 pos=(1.36, 55.04, 0.00) step_sum=12.31 anim=0.00 alpha=0.66 busy=True frames=910
+[Info   :Husnisse Legs Client Probe] lc fade in t=17.66 pos=(1.36, 55.05, 0.00) alpha=0.98
+[Info   :Husnisse Legs Client Probe] lc shot C:\Users\Hermes\Desktop\husnisse-captures\lc-walk-53.png
+[Info   :Husnisse Legs Client Probe] lc t=19 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=960
+[Info   :Husnisse Legs Client Probe] lc t=20 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1046
+[Info   :Husnisse Legs Client Probe] lc t=21 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1125
+[Info   :Husnisse Legs Client Probe] lc t=22 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1212
+[Info   :Husnisse Legs Client Probe] lc t=23 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1296
+[Info   :Husnisse Legs Client Probe] lc t=24 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1378
+[Info   :Husnisse Legs Client Probe] lc t=25 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1463
+[Info   :Husnisse Legs Client Probe] lc t=26 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1549
+[Info   :Husnisse Legs Client Probe] lc t=27 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1633
+[Info   :Husnisse Legs Client Probe] lc t=28 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1715
+[Info   :Husnisse Legs Client Probe] lc t=29 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1799
+[Info   :Husnisse Legs Client Probe] lc t=30 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1878
+[Info   :Husnisse Legs Client Probe] lc t=31 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=1963
+[Info   :Husnisse Legs Client Probe] lc t=32 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2051
+[Info   :Husnisse Legs Client Probe] lc t=33 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2136
+[Info   :Husnisse Legs Client Probe] lc t=34 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2222
+[Info   :Husnisse Legs Client Probe] lc t=35 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2309
+[Info   :Husnisse Legs Client Probe] lc t=36 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2393
+[Info   :Husnisse Legs Client Probe] lc t=37 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2477
+[Info   :Husnisse Legs Client Probe] lc t=38 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2555
+[Info   :Husnisse Legs Client Probe] lc t=39 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2633
+[Info   :Husnisse Legs Client Probe] lc t=40 pos=(1.36, 55.10, 0.00) step_sum=0.00 anim=0.00 alpha=1.00 busy=False frames=2712
+[Info   :Husnisse Legs Client Probe] lc watch done seconds=40 frames=2741 max_step=12.312 max_anim=1.94 min_alpha=0.00 fades=2 shots=53

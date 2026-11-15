@@ -53,7 +53,7 @@ namespace Husnisse.Rounds
             fromInventory.RemoveItem(item, item.m_stack);
 
             bowl.RegisterSulk();
-            Creature.NisseVoice.Say(claim, Loc.T(Loc.VoiceSulk), true);
+            Creature.NisseVoice.Say(claim, Loc.T(Loc.VoiceSulk), Creature.NisseVoice.Kind.Event);
             Log.Info("sulk: misfiled " + item.m_shared.m_name + " in claim " + claim.BowlId);
         }
     }
