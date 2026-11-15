@@ -1,0 +1,53 @@
+Husnisse 0.3.1
+started 2026-11-15 13:38:07
+
+
+== world ready @ 13:38:36 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=0 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+
+== claim registered @ 13:38:47 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+claim -1812166505:10325 source=native ward=0:0 owner=-202584743 r=20 center=-6,2 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=1 stacks=0 pickup=all unknown=1 lod=- nisse=none
+[flow] claim=-1812166505:10325 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+
+== claim removed @ 13:39:29 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=0 trips=0 nisses=1 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+
+== claim registered @ 13:43:13 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+claim -1812166505:10328 source=native ward=0:0 owner=-202584743 r=20 center=-6,2 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=1 stacks=0 pickup=all unknown=1 lod=- nisse=none
+[flow] claim=-1812166505:10328 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+
+== claim removed @ 13:43:44 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=0 trips=0 nisses=1 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+
+== claim registered @ 13:48:04 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+claim -1812166505:10356 source=native ward=0:0 owner=-202584743 r=20 center=-6,1 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 pickup=all unknown=0 lod=- nisse=none
+[flow] claim=-1812166505:10356 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+
+== claim removed @ 14:00:03 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=0 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+husnisse rules listed=0
+

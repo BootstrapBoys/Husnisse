@@ -200,11 +200,13 @@ spare tree: `husnisse-031-teach` (three taught types route by name, a control ch
 no rule, 19 assertions), `husnisse-031-ledger` (classify/rule/priority/net/blacklist via the ledger
 layer, pickup filter live both ways, pocket merge, 25 assertions), `husnisse-031-rules` (preset narrowed
 and restored, export → mutate → apply restores every rule, one destroyed chest refuses the whole import,
-26 assertions). The **UI/ledger client proof** (the gate this card names) is **not recorded**: the one
-client rig was driven by a concurrent card for the whole run, so the panel was not exercised on a
-client. The exact sequence to finish it is `docs/evidence/0.3.1/client-gate.md`; the probe already
-carries the commands (`ledger`, `ledgerpanel`, `click`, `alt`, `move`) and `docs/PLAYTEST.md` §5c is
-the checklist.
+26 assertions). The **UI/ledger client proof** (the gate this card names) is recorded on a real client
+the same day (`Stranger`, build `31ddbd35…`, `docs/evidence/0.3.1/RESULT.md`): Alt plus a sample taught
+two chests (`[Teach] learned … rule=custom:1`) while an unwatched move wrote nothing, the ledger listed
+the claim (`4 container(s) · 1 unclassified`), its `Metals` click showed up as `Rules: Metals` in the
+chest's own window, its Net click put the chest on the network, its Blacklist click removed the chest's
+strip, and its pickup click wrote the claim filter — and the server's `husnisse status` reads back every
+one of those writes.
 
 **Risks** — two editing paths (teaching and ledger) writing the same state must share one writer, or
 they will drift. They do: teaching sends through `RuleRpc`, the ledger through `LedgerActions` →

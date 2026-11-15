@@ -1,0 +1,30 @@
+11/15/2026 13:13:27: Load world: MTTest (MTTest)
+11/15/2026 13:13:27:   missing V:\Gate031\saves/worlds_local/MTTest.db
+11/15/2026 13:13:37: Setting up generating loading indicator
+The shader Hidden/Dof/DepthOfFieldHdr (UnityEngine.Shader) on effect Main Camera (UnityStandardAssets.ImageEffects.DepthOfField) is not supported on this platform!
+The image effect Main Camera (UnityStandardAssets.ImageEffects.DepthOfField) has been disabled as it's not supported on the current platform.
+The shader Hidden/SunShaftsComposite (UnityEngine.Shader) on effect Main Camera (UnityStandardAssets.ImageEffects.SunShafts) is not supported on this platform!
+The shader Hidden/SimpleClear (UnityEngine.Shader) on effect Main Camera (UnityStandardAssets.ImageEffects.SunShafts) is not supported on this platform!
+The image effect Main Camera (UnityStandardAssets.ImageEffects.SunShafts) has been disabled as it's not supported on the current platform.
+11/15/2026 13:13:38: Game server connected
+[AmplifyOcclusion] GBuffer Normals only available in Camera Deferred Shading mode. Switched to Camera source.
+11/15/2026 13:13:38: Loading: Generating locations
+[Harness] harness patch: object culling gated by HoldObjects
+=== mod diagnostics (BSBLogs) ===
+--- Harness.log (0 bytes) ---
+18:13:09.255 harness ready - write commands to V:\Gate031\BepInEx\config\harness.cmd
+18:13:09.256 scene: not ready  server: False
+18:13:38.573 harness patch: object culling gated by HoldObjects
+--- Husnisse.log (481 bytes) ---
+Husnisse 0.3.1
+started 2026-11-15 13:13:08
+
+
+== world ready @ 13:13:38 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=0 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+=== verdict ===
+bepinex_error_lines: 0
+server_reached_ready: yes

@@ -1,0 +1,36 @@
+--- testrig/harness/HarnessPlugin.cs	2026-11-15 11:47:43.287364815 -0500
++++ /home/hermes/.hermes/cache/scratch/harness031/HarnessPlugin.cs	2026-11-15 13:32:33.536628509 -0500
+@@ -271,6 +271,7 @@
+                 case "globalkey": GlobalKey(parts); break;
+                 case "interact": InteractCmd(parts); break;
+                 case "hold": HoldCmd(parts); break;
++                case "nostruct": NoStruct(); break;
+                 case "event": EventCmd(parts); break;
+                 case "damage": DamageCmd(parts); break;
+                 case "fill": FillCmd(parts); break;
+@@ -2289,6 +2290,25 @@
+             Say("tagtest epicloot on gear: " + stackable.Invoke(null, new object[] { wa, wb }));
+         }
+ 
++        /// <summary>
++        /// Test-only: remove WearNTear from every standing object. Harness pieces are spawned into
++        /// thin air — the dedicated server has no terrain colliders, so nothing is "supported" and
++        /// WearNTear damages an unsupported piece away in ~20 s, which kills a client-gate scene
++        /// while it is being driven. The mod never reads WearNTear, so removing it changes nothing
++        /// the gate is testing.
++        /// </summary>
++        private void NoStruct()
++        {
++            var count = 0;
++            foreach (var wnt in UnityEngine.Object.FindObjectsOfType<WearNTear>(true))
++            {
++                if (wnt == null) continue;
++                UnityEngine.Object.DestroyImmediate(wnt);
++                count++;
++            }
++            Say("nostruct: removed WearNTear from " + count + " object(s)");
++        }
++
+         private void WnSkip()
+         {
+             var pos = GroundAt(new Vector3(40f, 0f, 40f));

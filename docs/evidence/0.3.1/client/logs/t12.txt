@@ -1,0 +1,4 @@
+gc cmd: move piece_chest_wood Coal 5
+gc move: 'Coal' not in player
+gc cmd: inv
+gc inv stacks=4 items=60 [obsidianx4,deerhidex4,copperscrapx5,woodx47]

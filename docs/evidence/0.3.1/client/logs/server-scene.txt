@@ -1,0 +1,50 @@
+18:48:05.796 > spawn piece_chest_wood -6 34.20 3
+18:48:05.796 spawned piece_chest_wood(Clone) at (-6.00, 34.20, 3.00)  zdo=-1812166505:10360  owner=-1812166505  activeSelf=True  mineRock5=False  mineRock=False  character=False
+18:48:05.796   comp Transform on piece_chest_wood(Clone)
+18:48:05.796   comp ZNetView on piece_chest_wood(Clone)
+18:48:05.796   comp Container on piece_chest_wood(Clone)
+18:48:05.796   comp Piece on piece_chest_wood(Clone)
+18:48:05.796   comp WearNTear on piece_chest_wood(Clone)
+18:48:05.796   comp Transform on floor_2x2_snow
+18:48:05.796   comp MeshFilter on floor_2x2_snow
+18:48:05.796   comp MeshRenderer on floor_2x2_snow
+18:48:05.796   comp LODGroup on floor_2x2_snow
+18:48:05.796   comp Transform on New
+18:48:05.796   comp LODGroup on New
+18:48:05.797   comp Transform on woodchest
+18:48:06.298 > spawn piece_chest_wood -6 34.20 -1
+18:48:06.298 spawned piece_chest_wood(Clone) at (-6.00, 34.20, -1.00)  zdo=-1812166505:10361  owner=-1812166505  activeSelf=True  mineRock5=False  mineRock=False  character=False
+18:48:06.298   comp Transform on piece_chest_wood(Clone)
+18:48:06.298   comp ZNetView on piece_chest_wood(Clone)
+18:48:06.298   comp Container on piece_chest_wood(Clone)
+18:48:06.298   comp Piece on piece_chest_wood(Clone)
+18:48:06.298   comp WearNTear on piece_chest_wood(Clone)
+18:48:06.298   comp Transform on floor_2x2_snow
+18:48:06.298   comp MeshFilter on floor_2x2_snow
+18:48:06.298   comp MeshRenderer on floor_2x2_snow
+18:48:06.298   comp LODGroup on floor_2x2_snow
+18:48:06.298   comp Transform on New
+18:48:06.299   comp LODGroup on New
+18:48:06.299   comp Transform on woodchest
+18:48:06.801 > wait 6
+18:48:06.801 wait: 6s (server keeps ticking)
+18:48:12.834 > nostruct
+18:48:12.845 nostruct: removed WearNTear from 29 object(s)
+18:48:13.335 > zdo husnisse_bowl husnisse_bowl_init
+18:48:13.348 zdo husnisse_bowl.husnisse_bowl_init = int=1 bool=True
+18:48:13.838 > husnisse claims
+18:48:14.261 husnisse claim -1812166505:10356 source=native ward=0:0 owner=-202584743 r=20 native_r=20 native_owner=-202584743 suppressed=False refusal='' containers=4
+18:48:14.406 husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=4 wards=0 ward_api=False
+18:48:14.710 > expect_claim owner=-202584743
+18:48:14.711   expect_claim 'owner=-202584743' in 'husnisse claim -1812166505:10356 source=native ward=0:0 owner=-202584743 r=20 native_r=20 native_owner=-202584743 suppressed=False refusal='' containers=4': ok
+18:48:15.212 > husnisse status
+18:48:15.383 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+18:48:15.383 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+18:48:15.383 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
+18:48:15.383 husnisse status [rules] containers=0 ruled=0 deposits=0 blacklisted=0
+18:48:15.384 husnisse status claim -1812166505:10356 source=native ward=0:0 owner=-202584743 r=20 center=-6,1 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=4 stacks=0 pickup=all unknown=4 lod=near:1.8 nisse=yes
+18:48:15.384 husnisse status [flow] claim=-1812166505:10356 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+18:48:15.384 husnisse status lines=6
+18:48:15.722 > expect_ge containers=(\d+) 4
+18:48:15.724   expect>= /containers=(\d+)/ 4 >= 4: ok
+18:48:16.224 scenario done: PASS (2 assertions, 0 failed)

@@ -1,0 +1,4 @@
+gc cmd: click HusnisseLedgerNet
+gc click HusnisseLedgerNet label='On the network' interactable=True
+gc click HusnisseLedgerNet invoked
+gc after HusnisseLedgerNet ui container=none strip=False net='On the network' netClickable=True rules='Rules: Metals' rulesClickable=True panel=False win=False inUse=- dist=-

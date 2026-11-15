@@ -1,0 +1,9 @@
+gc cmd: give Coal 5
+gc give Coalx5 slot=(0,1) item=False stacks=4 items=58 [obsidianx4,deerhidex4,copperscrapx5,woodx45]
+gc cmd: stand piece_chest_wood 2
+gc stand piece_chest_wood(Clone)[2] at -6.00,34.20,3.00 -> player -4.40,34.40,3.00
+gc cmd: open piece_chest_wood 2
+gc interact piece_chest_wood(Clone) alt=False -> True
+gc hud top='Added Wood'
+gc hud top='Added Wood x2'
+gc open gui=piece_chest_wood(Clone) stacks=0 items=0 [] inUse=True owner=True

@@ -1,0 +1,4 @@
+gc cmd: click HusnisseLedgerBlacklist
+gc click HusnisseLedgerBlacklist label='Blacklist: off' interactable=True
+gc click HusnisseLedgerBlacklist invoked
+gc after HusnisseLedgerBlacklist ui container=none strip=False net='On the network' netClickable=True rules='Rules: Metals' rulesClickable=True panel=False win=False inUse=- dist=-

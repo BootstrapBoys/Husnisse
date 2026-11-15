@@ -1,0 +1,4 @@
+gc cmd: click HusnisseLedgerPickupMetals
+gc click HusnisseLedgerPickupMetals label='Metals' interactable=True
+gc click HusnisseLedgerPickupMetals invoked
+gc after HusnisseLedgerPickupMetals ui container=none strip=False net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=False inUse=- dist=-

@@ -1,0 +1,4 @@
+gc cmd: click HusnisseLedgerRow3
+gc click HusnisseLedgerRow3 label='? piece_chest_wood  -4,1  Save contents (1)' interactable=True
+gc click HusnisseLedgerRow3 invoked
+gc after HusnisseLedgerRow3 ui container=none strip=False net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=False inUse=- dist=-

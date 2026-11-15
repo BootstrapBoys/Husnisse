@@ -1,0 +1,5 @@
+gc cmd: state
+gc state player=Stranger id=-202584743 pos=-5.77,33.85,0.42 hp=25/25 dead=False nisse=absent
+gc state bowl=-
+gc cmd: god on
+gc god=True

@@ -1,0 +1,32 @@
+#< CLIXML
+Husnisse 0.3.1
+started 2026-11-15 10:46:30
+
+
+== claim registered @ 10:48:03 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+claim -1812166505:10356 source=native ward=0:0 owner=-202584743 r=20 center=-6,1 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 pickup=all unknown=0 lod=- nisse=none
+[flow] claim=-1812166505:10356 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+[Teach] watching player=-202584743 name=Stranger claim=-1812166505:10356 for=120s
+[Teach] learned name=$item_copperscrap chest=piece_chest_wood@-4,1 rule=custom:1
+[Teach] learned name=$item_wood chest=piece_chest_wood@-8,1 rule=custom:1
+[Teach] stopped watching player=-202584743
+[Ledger] pickup wood,food,trophies,valuables,building,consumables,tools claim=-1812166505:10356
+
+== shutdown @ 11:00:33 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+claim -1812166505:10356 source=native ward=0:0 owner=-202584743 r=20 center=-6,1 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=0 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=4 stacks=3 pickup=all unknown=4 lod=- nisse=none
+[flow] claim=-1812166505:10356 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+
+== claim removed @ 11:00:34 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=0 feeding_required=False claims=0 trips=0 nisses=0 bowl_piece=no-objectdb
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"><Obj S="progress" RefId="0"><TN RefId="0"><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj></Objs>

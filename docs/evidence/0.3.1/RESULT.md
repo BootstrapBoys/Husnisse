@@ -74,13 +74,51 @@ rules apply refused: plan has 1 unmapped
 - **Importing an unedited export turned every preset into a file override.** A set identical to the
   shipped one is no longer stored.
 
-## Client gate
+## Client gate — teaching and the ledger on a real client
 
-The UI/ledger client proof needs the one client rig, which a concurrent card was driving on port 2556
-for the whole of this run (its client stayed connected and its probe kept issuing commands). The client
-half therefore could not be recorded from this card; the exact checklist it must cover is
-`docs/PLAYTEST.md` §5c, and the probe already carries the commands it needs (`ledger`,
-`ledgerpanel`, `click <button>`, `alt <prefab>`, `move <prefab> <item> <amount>`). Everything the
-client would click reaches the same `LedgerActions` the headless scenarios exercised, and the actions'
-effects are read back from the ZDO in those runs — but a click on the panel itself is not yet proven
-on screen.
+Run 2026-11-15 on the same gate build (`31ddbd35…`) with probe `367cbd99…`: client `Stranger`
+(`-202584743`) joined to a dedicated gate tree `V:\Gate031` (port 2956, fresh world `MTTest`, the same
+seven-plugin set), one compact fixture built at the client's feet — a bowl with the joining player as
+creator and four wooden chests (`client/scene-031.sh` writes the role → index map) — then everything
+below driven from the client process.
+
+| # | Action, on the client | Result |
+|---|---|---|
+| 1 | Alt the nisse | **PASS** — hud `Show me where things go. Put a sample in the chest it belongs in.` + `The nisse leans closer to watch.`; client diagnostics `[Teach] watching player=-202584743 name=Stranger claim=-1812166505:10356 for=120s` |
+| 2 | Carry a CopperScrap sample into `@-4,1` | **PASS** — hud `The nisse will keep Copper Scrap here.`; `[Teach] learned name=$item_copperscrap chest=piece_chest_wood@-4,1 rule=custom:1`; that chest reads `net=True rule='v1;k=custom;i=%24item_copperscrap' stacks=1 items=5` |
+| 3 | Carry a Wood sample into `@-8,1`, same watching window | **PASS** — `[Teach] learned name=$item_wood chest=piece_chest_wood@-8,1 rule=custom:1`; `net=True` |
+| 4 | Alt again (stop), then move Wood into `@-6,3` | **PASS** — hud `The nisse stops watching.`, `[Teach] stopped watching`; that chest keeps `net=False rule=''` with the wood inside (the control) |
+| 5 | Open the ledger (inventory + `LedgerUi.Toggle`) | **PASS** — `HUSNISSE LEDGER`, claim line `Claim 20 m (native) · owner -202584743 · 4 container(s) · 1 unclassified`, four rows with the unclassified ones marked, and the Net/Blacklist/Tidy/category/Overflow/Deposit/No rule/priority/pickup controls (`client/captures/ledger.jpg`) |
+| 6 | Select row `-4,1`, click `Metals` | **PASS** — the row label becomes `Metals`; the chest's ZDO becomes `v1;k=cat;c=metals`; the same chest's own window shows `Rules: Metals` (`client/captures/ledger-rule.jpg` — one writer, two surfaces) |
+| 7 | Select row `-6,3`, click `Net` | **PASS** — the chest is `net=True` when opened right after (its strip reads `On the network`; the strip click then flips it back off). The panel label catches up on the next 0.5 s rebuild after the server's ack, so a reading taken inside that round trip still shows the old value |
+| 8 | Click `Blacklist` on that row | **PASS** — panel label `Blacklist: on`; the same chest's window opens with no Husnisse strip at all (`strip=False`, `win=True`) (`client/captures/ledger-blacklist.jpg`); server `[rules] … blacklisted=1` |
+| 9 | Click `Pickup / Metals` | **PASS** — `[Ledger] pickup wood,food,trophies,valuables,building,consumables,tools claim=-1812166505:10356`, the same value the server's `husnisse status` reads |
+| 10 | Server-side read-back of everything the client wrote | **PASS** — `husnisse status`: `rule … -8,1 net=on rule=custom:1`, `rule … -4,1 net=on rule=cat:metals`, `[rules] containers=2 ruled=2 deposits=0 blacklisted=1`, `containers=4 … unknown=1 pickup=wood,food,…` |
+
+Raw client evidence: `client/captures/client-bepinex.log` (the probe's own lines),
+`client/client-husnisse.log` (the mod's diagnostics: `[Teach] watching`, the three `[Teach] learned`
+lines, `[Teach] stopped watching`, `[Ledger] pickup`), `client/server-husnisse.log`,
+`client/server-bepinex.log`, `client/server-harness.log`, and the screenshots as JPEGs.
+
+## Rig notes (what it took, for the next gate)
+
+- **The canary tree could not be joined at all.** Client → `V:\ValheimTest2:2656` failed with
+  `Lost connection to server:ErrorConnectFailed` every 13 s. The host firewall has per-port rules for
+  2556-2557 and 2856-2857 but none for 2656, and the program-scoped `valheim_server` rule does not
+  cover the canary copy of the exe. Added inbound UDP `Valheim canary rig UDP 2656` (2656-2657, Any) —
+  rig state, kept.
+- **`rig.ps1` matches the tree path as a substring.** `Get-TestProc` filters command lines containing
+  `V:\ValheimTest`, which also matches `V:\ValheimTest2`; a second card's `rig down/up` therefore
+  killed the canary server mid-gate. This run used a dedicated tree `V:\Gate031` (port 2956,
+  `rig.sh provision` + the four plugin folders copied from the canary tree) and drove scenarios by
+  writing `BepInEx\config\harness.cmd` directly (`client/s031.sh`) rather than taking the host rig
+  lock — the tree is written by this card only.
+- **Harness-spawned pieces die in ~20-60 s on their own.** The dedicated server has no terrain
+  colliders, so a spawned piece has no support and `WearNTear` damages it away; with no client near,
+  the zone unloads as well. Build the fixture *after* the client joins, inside its radius, and call
+  the new test-only `nostruct` (destroys every `WearNTear`) before waiting. With that the scene held
+  for the whole phase; without it the first attempt lost bowl and chests 37 s after the build and the
+  client's ledger had nothing to list.
+- The harness deployed to the gate tree is built from `testrig/harness` at the time of this run plus
+  `nostruct` (`client/harness-nostruct.patch`, `TestHarness.dll` sha256 `57c4e48f…`). The shared 2556
+  tree and its harness were not touched.

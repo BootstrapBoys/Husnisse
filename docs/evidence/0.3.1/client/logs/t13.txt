@@ -1,0 +1,3 @@
+gc cmd: close
+gc close was=piece_chest_wood(Clone)
+gc close after: gui=none localZdoOwner=True stacks=0 items=0 []

@@ -1,0 +1,10 @@
+gc cmd: containers
+gc container piece_chest_wood(Clone) at -6.00,34.20,3.00 net=False rule='' stacks=0 items=0 []
+gc container TreasureChest_meadows_buried(Clone) at -8.32,53.51,114.11 net=False rule='' stacks=2 items=59 [arrow_firex11,coinsx48]
+gc container TreasureChest_meadows(Clone) at 60.19,35.52,-49.21 net=False rule='' stacks=2 items=16 [feathersx1,coinsx15]
+gc container TreasureChest_meadows_buried(Clone) at -2.11,30.42,-56.72 net=False rule='' stacks=3 items=54 [rubyx3,arrow_firex13,coinsx38]
+gc container piece_chest_wood(Clone) at -6.00,34.20,-1.00 net=False rule='' stacks=0 items=0 []
+gc container piece_chest_wood(Clone) at -4.00,34.20,1.00 net=False rule='' stacks=0 items=0 []
+gc container piece_chest_wood(Clone) at -8.00,34.20,1.00 net=False rule='' stacks=0 items=0 []
+gc container TreasureChest_meadows(Clone) at 59.58,33.12,-133.16 net=False rule='' stacks=2 items=2 [amberx1,feathersx1]
+gc containers total=8 net=0 ruled=0

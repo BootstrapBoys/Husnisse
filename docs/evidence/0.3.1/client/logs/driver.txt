@@ -1,0 +1,88 @@
+
+== prep: stop the spare tree, side-line its world, boot the gate build
+
+== install: stop the client, push the gate build and the probe, verify the hashes
+
+== launch: point the join task at 2656, start it, wait for this launch's ready line
+
+== launch: point the join task at 2656, start it, wait for this launch's ready line
+
+== prep: stop the spare tree, side-line its world, boot the gate build
+
+== install: stop the client, push the gate build and the probe, verify the hashes
+
+== launch: point the join task at 2956, start it, wait for this launch's ready line
+--- launch-state
+
+== scene: wipe the last card's scene, then build the 0.3.1 fixture at the client's feet
+--- scene-where
+--- scene-containers
+
+== teach: Alt the nisse, show it a metal and a wood, then prove it stops watching
+--- t0
+--- t1
+--- t2
+--- t3
+--- t4
+--- t5
+--- t6
+--- t7
+--- t8
+--- t9
+--- t10
+--- t11
+--- t12
+--- t13
+--- t14
+
+== scene: wipe the last card's scene, then build the 0.3.1 fixture at the client's feet
+--- pre-clean
+--- scene-where
+--- scene
+--- scene-containers
+
+== teach: Alt the nisse, show it a metal and a wood, then prove it stops watching
+--- t0
+--- t1
+--- t2
+--- t3
+--- t4
+--- t5
+--- t6
+--- t7
+--- t8
+--- t9
+--- t10
+--- t11
+--- t12
+--- t13
+--- t14
+
+== ledger: open it, classify, open the chest it edited, then net/blacklist/pickup
+--- l0
+--- l1
+--- l2
+--- l3
+--- l4
+--- l5
+--- l6
+--- l7
+--- shot-ledger-rule
+--- l8
+--- l9
+--- l10
+--- l11
+--- l12
+--- l13
+--- l14
+--- l15
+--- l16
+--- l17
+--- l18
+--- l19
+--- l20
+--- l21
+--- shot-ledger
+
+== collect: client evidence, server logs, and hand the rig back
+--- quit

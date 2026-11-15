@@ -1,0 +1,4 @@
+gc cmd: ledgerpanel
+gc ledgerpanel rows=4 | > ? piece_chest_wood  -8,1  Save contents (1) | 	 piece_chest_wood  -6,-1  No rule  ? | 	 piece_chest_wood  -6,3  No rule  ? | ? piece_chest_wood  -4,1  Metals
+gc ledgerpanel controls Net='On the network' Blacklist='Blacklist: off' Tidy='Tidy' CatMetals='Metals' CatWood='Wood' CatFood='Food' Overflow='Overflow' Deposit='Deposit' NoRule='No rule' PriorityValue='0' PickupMetals='Metals' PickupWood='Wood' PickupFood='Food'
+grep: (standard input): binary file matches

@@ -1,0 +1,5 @@
+gc cmd: move piece_chest_wood Wood 5
+gc move into piece_chest_wood(Clone) 'Wood'x5 ok=True container[stacks=1 items=5 [woodx5]] player[stacks=4 items=58 [obsidianx4,deerhidex4,copperscrapx5,woodx45]]
+gc cmd: inv
+gc inv stacks=4 items=58 [obsidianx4,deerhidex4,copperscrapx5,woodx45]
+gc hud center='The nisse will keep Wood here.'

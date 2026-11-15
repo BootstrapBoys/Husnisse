@@ -1,0 +1,2 @@
+gc cmd: quit
+gc quit requested (character saves on OnApplicationQuit)

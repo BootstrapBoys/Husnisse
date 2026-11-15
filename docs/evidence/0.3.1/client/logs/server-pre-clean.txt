@@ -1,0 +1,50 @@
+18:45:18.560        890 Bush01
+18:45:18.560        555 Rock_3
+18:45:18.560        443 Pickable_Branch
+18:45:18.560        296 Pickable_Dandelion
+18:45:18.560        220 Pickable_Flint
+18:45:18.560        162 _ZoneCtrl
+18:45:18.560        135 Birch1
+18:45:19.057 > zdo piece_chest_wood husnisse_net
+18:45:19.067 zdo piece_chest_wood.husnisse_net = absent
+18:45:19.561 > wait 40
+18:45:19.561 wait: 40s (server keeps ticking)
+18:45:59.810 > zdostats
+18:45:59.815 zdostats: total=10330 distinct_prefabs=79
+18:45:59.815       1566 Rock_4
+18:45:59.815       1439 Beech_small2
+18:45:59.815       1432 Beech_small1
+18:45:59.815       1105 Beech1
+18:45:59.815       1016 Pickable_Stone
+18:45:59.815        890 Bush01
+18:45:59.815        555 Rock_3
+18:45:59.815        443 Pickable_Branch
+18:45:59.815        296 Pickable_Dandelion
+18:45:59.815        220 Pickable_Flint
+18:45:59.815        162 _ZoneCtrl
+18:45:59.815        135 Birch1
+18:46:00.314 > zdo piece_chest_wood husnisse_net
+18:46:00.326   zdo piece_chest_wood (no object): FAIL
+18:46:00.326 zdo: no live object for piece_chest_wood
+18:46:00.815 > husnisse status
+18:46:00.965 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+18:46:00.965 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+18:46:00.965 husnisse status schema=2 feeding_required=True claims=0 trips=0 nisses=0 bowl_piece=present
+18:46:00.965 husnisse status [rules] containers=0 ruled=0 deposits=0 blacklisted=0
+18:46:00.965 husnisse status lines=4
+18:46:01.335 scenario done: FAIL (1 assertions, 1 failed)
+18:46:01.335   FAILED EXPECTATION: zdo piece_chest_wood (no object)
+18:47:30.554 mt master: no plugin instance
+18:47:30.554 scenario loaded: 3 command(s)
+18:47:30.554 > cleanup
+18:47:30.703 mt master: no plugin instance
+18:47:30.704 cleanup done
+18:47:31.008 > wait 3
+18:47:31.009 wait: 3s (server keeps ticking)
+18:47:34.025 > husnisse status
+18:47:34.190 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+18:47:34.190 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+18:47:34.190 husnisse status schema=2 feeding_required=True claims=0 trips=0 nisses=0 bowl_piece=present
+18:47:34.190 husnisse status [rules] containers=0 ruled=0 deposits=0 blacklisted=0
+18:47:34.190 husnisse status lines=4
+18:47:34.527 scenario done: PASS (0 assertions, 0 failed)

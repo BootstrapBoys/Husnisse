@@ -1,0 +1,6 @@
+gc cmd: move piece_chest_wood CopperScrap 5
+[Info   :  Husnisse] rule RPC registered
+gc move into piece_chest_wood(Clone) 'CopperScrap'x5 ok=True container[stacks=1 items=5 [copperscrapx5]] player[stacks=4 items=59 [obsidianx4,deerhidex4,copperscrapx5,woodx46]]
+gc cmd: inv
+gc inv stacks=4 items=59 [obsidianx4,deerhidex4,copperscrapx5,woodx46]
+gc hud center='The nisse will keep Copper Scrap here.'

@@ -1,0 +1,5 @@
+gc cmd: close
+gc close was=piece_chest_wood(Clone)
+gc cmd: ledger
+gc ledger toggled visible=True
+gc close after: gui=none localZdoOwner=True stacks=0 items=0 []

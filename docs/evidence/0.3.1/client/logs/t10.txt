@@ -1,0 +1,3 @@
+gc cmd: alt husnisse_nisse
+gc interact NisseHands alt=True -> True
+gc hud center='The nisse stops watching.'

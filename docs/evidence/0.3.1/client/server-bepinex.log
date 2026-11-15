@@ -1,0 +1,66 @@
+[Message:   BepInEx] BepInEx 5.4.23.6 - valheim_server (10/29/2026 9:56:51 AM)
+[Message:   BepInEx] User is running BepInExPack Valheim version 5.4.2360
+[Info   :   BepInEx] Running under Unity v6000.0.75.2503836
+[Info   :   BepInEx] CLR runtime version: 4.0.30319.42000
+[Info   :   BepInEx] Supports SRE: True
+[Info   :   BepInEx] System platform: Bits64, Windows
+[Message:   BepInEx] Preloader started
+[Info   :   BepInEx] Loaded 1 patcher method from [BepInEx.Preloader 5.4.23.6]
+[Info   :   BepInEx] 1 patcher plugin loaded
+[Info   :   BepInEx] Patching [UnityEngine.CoreModule] with [BepInEx.Chainloader]
+[Message:   BepInEx] Preloader finished
+[Message:   BepInEx] Valheim Version: 1.0.21
+[Message:   BepInEx] Chainloader ready
+[Message:   BepInEx] Chainloader started
+[Info   :   BepInEx] 6 plugins to load
+[Info   :   BepInEx] Loading [Conditional Config Sync 1.0.11] (_shudnal.ConditionalConfigSync)
+[Info   :   BepInEx] Loading [Jotunn 2.30.2] (com.jotunn.jotunn)
+[Info   :Jotunn.Main] Initializing ModCompatibility
+[Info   :Jotunn.Main] Initializing SynchronizationManager
+[Info   :Jotunn.Main] Initializing NetworkManager
+[Info   :   BepInEx] Loading [YamlDotNet Detector 1.0.0] (com.ValheimModding.YamlDotNetDetector)
+[Info   :YamlDotNet Detector] YamlDotNet 16.0.0.0 loaded from plugins\ValheimModding-YamlDotNet\YamlDotNet.dll
+[Info   :   BepInEx] Loading [Husnisse 0.3.1] (com.bootstrapboys.husnisse)
+[Info   :  Husnisse] Husnisse 0.3.1 starting
+[Warning:  Husnisse] outdated English localisation ignored; embedded strings are used: V:\Gate031\BepInEx\config\Husnisse\localization\en.yaml
+[Info   :  Husnisse] localisation loaded: English (check: Porridge Bowl)
+[Info   :Jotunn.Main] Initializing PrefabManager
+[Info   :  Husnisse] core ready; waiting for vanilla prefabs
+[Info   :   BepInEx] Loading [Server Soft Stop 1.0.0] (com.bootstrapboys.softstop)
+[Info   :Server Soft Stop] Server Soft Stop 1.0.0 ready - create V:\Gate031\BepInEx\config\softstop.flag to save and shut down
+[Info   :   BepInEx] Loading [Test Harness 1.0.0] (com.bootstrapboys.testharness)
+[Message:   BepInEx] Chainloader startup complete (6 loaded, 0 skipped, 0 failed)
+[Info   :Jotunn.Main] Initializing AssetManager
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/stone/Stone1_huge.prefab, new: Assets/world/Props/DeepNorth/HotSpring/Stone1_huge.prefab, using old path
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/Caverocks/caverock_pillar.prefab, new: Assets/world/Props/DeepNorth/HotSpring/caverock_pillar.prefab, using old path
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/Rocks/highstone.prefab, new: Assets/world/Props/DeepNorth/HotSpring/highstone.prefab, using old path
+[Info   :Jotunn.Main] Initializing PieceManager
+[Info   :Jotunn.Main] Initializing MockManager
+[Info   :  Husnisse] bowl fields: category=Misc station=none resources=1 enabled=True table=_HammerPieceTable
+[Info   :  Husnisse] bowl registered as husnisse_bowl
+[Info   :Jotunn.Main] Initializing CreatureManager
+[Info   :  Husnisse] creature registered as husnisse_nisse (body=husnisse_nisse)
+[Info   :  Husnisse] content registered
+[Info   :Jotunn.Managers.PrefabManager] Adding 2 custom prefabs to the ZNetScene
+[Info   :Jotunn.Managers.CreatureManager] Adding 1 custom creatures
+[Info   :Jotunn.Managers.PieceManager] Adding 1 custom pieces to the PieceTables
+[Info   :Jotunn.Managers.NetworkManager] Registering 2 custom RPCs
+[Info   :  Husnisse] order RPC registered
+[Info   :  Husnisse] rule RPC registered
+[Info   :  Husnisse] presets read from V:\Gate031\BepInEx\config\Husnisse\rules.yaml: 7 categor(ies) at world load
+[Info   :  Husnisse] presets published: v1;metals=$item_blackmetal,$item_blackmetalscrap,$item_bronze,$item_bronzenails,$item_bronzescrap,$item_chain,$item_coal,$item_copper,$item_copperore,$item_copperscrap,$item_flametal,$item_flametalore,$item_flametalore_old,$item_flametal_old,$item_gold,$item_goldore,$item_iron,$item_ironnails,$item_ironore,$item_ironscrap,$item_moltencore,$item_silver,$item_silverore,$item_tin,$item_tinore;wood=$item_blackwood,$item_elderbark,$item_finewood,$item_frostwood,$item_guck,$item_resin,$item_root,$item_roundlog,$item_sap,$item_wood,$item_yggdrasilwood;food=$item_ancientseed,$item_barley,$item_barleyflour,$item_beechseeds,$item_birchseeds,$item_carrotseeds,$item_dandelion,$item_feastashlands,$item_feastblackforest,$item_feastdeepnorth,$item_feastmeadows,$item_feastmistlands,$item_feastmountains,$item_feastoceans,$item_feastplains,$item_feastswamps,$item_fircone,$item_fircone_big,$item_flax,$item_oakseeds,$item_oatflour,$item_oatseeds,$item_onionseeds,$item_pinecone,$item_poteitrseeds,$item_spiceashlands,$item_spicedeepnorth,$item_spiceforests,$item_spicemistlands,$item_spicemountains,$item_spiceoceans,$item_spiceplains,$item_thistle,$item_turnipseeds,$item_vineberryseeds,$item_vinegreenseeds;valuables=$item_amber,$item_amberpearl,$item_ancientcoin,$item_ancientgemstone_black,$item_ancientgemstone_green,$item_ancientgemstone_orange,$item_ancientgemstone_purple,$item_coins,$item_crownjewel,$item_gemstone_blue,$item_gemstone_green,$item_gemstone_red,$item_pungentpebbles,$item_ruby,$item_silvernecklace;building=$item_barrelrings,$item_blackmarble,$item_ceramicplate,$item_charredbone,$item_crystal,$item_grausten,$item_stone,$item_stonerock,$item_tar;consumables=$item_barleywinebase,$item_fireworkrocket_blue,$item_fireworkrocket_cyan,$item_fireworkrocket_green,$item_fireworkrocket_purple,$item_fireworkrocket_red,$item_fireworkrocket_white,$item_fireworkrocket_yellow,$item_meadbasebugrepellent,$item_meadbasebzerker,$item_meadbaseeitr,$item_meadbaseeitr_lingering,$item_meadbasefrostresist,$item_meadbasehasty,$item_meadbasehealth,$item_meadbasehealth_lingering,$item_meadbasehealth_major,$item_meadbasehealth_medium,$item_meadbaselightfoot,$item_meadbasepoisonresist,$item_meadbasestamina,$item_meadbasestamina_lingering,$item_meadbasestamina_medium,$item_meadbasestrength,$item_meadbaseswimmer,$item_meadbasetamer,$item_meadbasetasty;tools=$item_axe2h_gold,$item_axe2h_gold_bloodlightning,$item_axe2h_gold_frostfire,$item_axehead1,$item_axehead2,$item_axe_berzerkr,$item_axe_berzerkr_blood,$item_axe_berzerkr_lightning,$item_axe_berzerkr_nature,$item_axe_blackmetal,$item_axe_bronze,$item_axe_early,$item_axe_flint,$item_axe_gold,$item_axe_gold_bloodlightning,$item_axe_gold_frostfire,$item_axe_gold_uncooked,$item_axe_iron,$item_axe_jotunbane,$item_axe_stone,$item_axe_wood,$item_fishingbait,$item_fishingrod,$item_pickaxe_antler,$item_pickaxe_blackmetal,$item_pickaxe_bronze,$item_pickaxe_iron,$item_pickaxe_stone
+[Info   :  Husnisse] world feeding required=True
+[Info   :Jotunn.Managers.SynchronizationManager+<SynchronizeInitialData>d__44] Sending initial data to peer #-449420077
+[Warning:  Husnisse] fade: no alpha property on this body; hiding it outright between steps
+[Info   :  Husnisse] nisse settled at bowl -1812166505:10325
+[Info   :  Husnisse] bowl: pantry ready 4x1 (4 slots)
+[Info   :  Husnisse] nisse left with bowl -1812166505:10325
+[Warning:  Husnisse] fade: no alpha property on this body; hiding it outright between steps
+[Info   :  Husnisse] nisse settled at bowl -1812166505:10328
+[Info   :  Husnisse] bowl: pantry ready 4x1 (4 slots)
+[Info   :  Husnisse] nisse left with bowl -1812166505:10328
+[Info   :Jotunn.Managers.SynchronizationManager+<SynchronizeInitialData>d__44] Sending initial data to peer #389079554
+[Warning:  Husnisse] fade: no alpha property on this body; hiding it outright between steps
+[Info   :  Husnisse] nisse settled at bowl -1812166505:10356
+[Info   :  Husnisse] bowl: pantry ready 4x1 (4 slots)
+

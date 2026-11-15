@@ -1,0 +1,452 @@
+[Message:   BepInEx] BepInEx 5.4.23.6 - valheim (11/13/2026 12:24:48 PM)
+[Message:   BepInEx] User is running BepInExPack Valheim version 5.4.2360
+[Info   :   BepInEx] Running under Unity v6000.0.75.2503836
+[Info   :   BepInEx] CLR runtime version: 4.0.30319.42000
+[Info   :   BepInEx] Supports SRE: True
+[Info   :   BepInEx] System platform: Bits64, Windows
+[Message:   BepInEx] Preloader started
+[Info   :   BepInEx] Loaded 1 patcher method from [BepInEx.Preloader 5.4.23.6]
+[Info   :   BepInEx] 1 patcher plugin loaded
+[Info   :   BepInEx] Patching [UnityEngine.CoreModule] with [BepInEx.Chainloader]
+[Message:   BepInEx] Preloader finished
+[Message:   BepInEx] Valheim Version: 1.0.21
+[Message:   BepInEx] Chainloader ready
+[Message:   BepInEx] Chainloader started
+[Info   :   BepInEx] 6 plugins to load
+[Info   :   BepInEx] Loading [Conditional Config Sync 1.0.11] (_shudnal.ConditionalConfigSync)
+[Info   :   BepInEx] Loading [Husnisse Gate Client Probe 0.1.0] (bootstrapboys.husnisse.gateclient)
+[Info   :Husnisse Gate Client Probe] gc loaded 0.1.0
+[Info   :   BepInEx] Loading [Jotunn 2.30.2] (com.jotunn.jotunn)
+[Info   :Jotunn.Main] Initializing ModCompatibility
+[Info   :Jotunn.Main] Initializing SynchronizationManager
+[Info   :Jotunn.Main] Initializing NetworkManager
+[Info   :   BepInEx] Loading [YamlDotNet Detector 1.0.0] (com.ValheimModding.YamlDotNetDetector)
+[Info   :YamlDotNet Detector] YamlDotNet 16.0.0.0 loaded from plugins\ValheimModding-YamlDotNet\YamlDotNet.dll
+[Info   :   BepInEx] Loading [Husnisse 0.3.1] (com.bootstrapboys.husnisse)
+[Info   :  Husnisse] Husnisse 0.3.1 starting
+[Warning:  Husnisse] outdated English localisation ignored; embedded strings are used: C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\config\Husnisse\localization\en.yaml
+[Info   :  Husnisse] localisation loaded: English (check: Porridge Bowl)
+[Info   :Jotunn.Main] Initializing PrefabManager
+[Info   :  Husnisse] core ready; waiting for vanilla prefabs
+[Info   :   BepInEx] Loading [Newtonsoft.Json Detector 1.0.0] (com.ValheimModding.NewtonsoftJsonDetector)
+[Info   :Newtonsoft.Json Detector] Newtonsoft.Json 13.0.0.0 assembly already loaded from C:\Program Files (x86)\Steam\steamapps\common\Valheim\valheim_Data\Managed\Newtonsoft.Json.dll
+[Message:   BepInEx] Chainloader startup complete (6 loaded, 0 skipped, 0 failed)
+[Info   :Jotunn.Main] Initializing AssetManager
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/stone/Stone1_huge.prefab, new: Assets/world/Props/DeepNorth/HotSpring/Stone1_huge.prefab, using old path
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/Caverocks/caverock_pillar.prefab, new: Assets/world/Props/DeepNorth/HotSpring/caverock_pillar.prefab, using old path
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/Rocks/highstone.prefab, new: Assets/world/Props/DeepNorth/HotSpring/highstone.prefab, using old path
+[Info   :Jotunn.Main] Initializing PieceManager
+[Info   :Jotunn.Main] Initializing MockManager
+[Info   :  Husnisse] bowl fields: category=Misc station=none resources=1 enabled=True table=_HammerPieceTable
+[Info   :  Husnisse] bowl registered as husnisse_bowl
+[Info   :Jotunn.Main] Initializing CreatureManager
+[Info   :  Husnisse] creature registered as husnisse_nisse (body=husnisse_nisse)
+[Info   :  Husnisse] content registered
+[Info   :Jotunn.Managers.PrefabManager] Adding 2 custom prefabs to the ZNetScene
+[Info   :Jotunn.Managers.CreatureManager] Adding 1 custom creatures
+[Info   :Jotunn.Managers.PieceManager] Adding 1 custom pieces to the PieceTables
+[Info   :Jotunn.Managers.NetworkManager] Registering 2 custom RPCs
+[Info   :ConditionalConfigSync] [com.bootstrapboys.husnisse][Client][Version] Received com.bootstrapboys.husnisse version 0.0.0, minimum version 0.0.0, ConditionalConfigSync protocol 1 from the server (0). Remote ConditionalConfigSync version 1.0.11; elapsed 257 ms.
+[Info   :ConditionalConfigSync] [com.bootstrapboys.husnisse][Client][Version] Received com.bootstrapboys.husnisse version 0.0.0, minimum version 0.0.0, ConditionalConfigSync protocol 1 from the server (90297536178315273). Remote ConditionalConfigSync version 1.0.11; elapsed 1477 ms.
+[Info   :ConditionalConfigSync] [com.bootstrapboys.husnisse][Client] Received 1 configs and 0 custom values from the server (config=1. General -> Lock Configuration)
+[Info   :Jotunn.Managers.SynchronizationManager+<AdminRPC_OnClientReceive>d__49] Received admin status from server: No Admin
+[Info   :Husnisse Gate Client Probe] gc ready player=Stranger id=-202584743 pos=-5.54,33.85,0.87 world=MTTest peers=1
+[Info   :Husnisse Gate Client Probe] gc command_file=C:\Users\Hermes\husnisse-probe.cmd
+[Info   :Husnisse Gate Client Probe] gc hud center='Center message'
+[Info   :Husnisse Gate Client Probe] gc hud top='You picked up an Axe'
+[Info   :Husnisse Gate Client Probe] gc cmd: god on
+[Info   :Husnisse Gate Client Probe] gc god=True
+[Info   :Husnisse Gate Client Probe] gc cmd: heal
+[Info   :Husnisse Gate Client Probe] gc heal hp=25/25
+[Info   :Husnisse Gate Client Probe] gc cmd: where
+[Info   :Husnisse Gate Client Probe] gc where player=-5.54,33.85,0.87 nisse=- peers=1
+[Info   :  Husnisse] fade: property=_Cutoff mode=Cutoff renderers=4 shader=Custom/Creature
+[Info   :  Husnisse] bowl: pantry ready 4x1 (4 slots)
+[Info   :Husnisse Gate Client Probe] gc cmd: containers
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -6.00,34.20,3.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -8.32,53.51,114.11 net=False rule='' stacks=2 items=59 [arrow_firex11,coinsx48]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 60.19,35.52,-49.21 net=False rule='' stacks=2 items=16 [feathersx1,coinsx15]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -2.11,30.42,-56.72 net=False rule='' stacks=3 items=54 [rubyx3,arrow_firex13,coinsx38]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -6.00,34.20,-1.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -4.00,34.20,1.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -8.00,34.20,1.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 59.58,33.12,-133.16 net=False rule='' stacks=2 items=2 [amberx1,feathersx1]
+[Info   :Husnisse Gate Client Probe] gc containers total=8 net=0 ruled=0
+[Info   :Husnisse Gate Client Probe] gc cmd: containers
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -6.00,34.20,3.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -8.32,53.51,114.11 net=False rule='' stacks=2 items=59 [arrow_firex11,coinsx48]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 60.19,35.52,-49.21 net=False rule='' stacks=2 items=16 [feathersx1,coinsx15]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -2.11,30.42,-56.72 net=False rule='' stacks=3 items=54 [rubyx3,arrow_firex13,coinsx38]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -6.00,34.20,-1.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -4.00,34.20,1.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -8.00,34.20,1.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 59.58,33.12,-133.16 net=False rule='' stacks=2 items=2 [amberx1,feathersx1]
+[Info   :Husnisse Gate Client Probe] gc containers total=8 net=0 ruled=0
+[Info   :Husnisse Gate Client Probe] gc cmd: hover husnisse_nisse
+[Info   :Husnisse Gate Client Probe] gc hover nisse=''
+[Info   :Husnisse Gate Client Probe] gc cmd: alt husnisse_nisse
+[Info   :Husnisse Gate Client Probe] gc interact NisseHands alt=True -> True
+[Info   :Husnisse Gate Client Probe] gc hud center='Show me where things go. Put a sample in the chest it belongs in.'
+[Info   :Husnisse Gate Client Probe] gc hud top='Nisse: The nisse leans closer to watch.'
+[Info   :Husnisse Gate Client Probe] gc cmd: hover husnisse_nisse
+[Info   :Husnisse Gate Client Probe] gc hover nisse=''
+[Info   :Husnisse Gate Client Probe] gc cmd: give CopperScrap 5
+[Info   :Husnisse Gate Client Probe] gc give CopperScrapx5 slot=(0,1) item=True stacks=4 items=62 [obsidianx4,deerhidex4,copperscrapx10,woodx44]
+[Info   :Husnisse Gate Client Probe] gc cmd: stand piece_chest_wood 3
+[Info   :Husnisse Gate Client Probe] gc stand piece_chest_wood(Clone)[3] at -4.00,34.20,1.00 -> player -2.40,34.40,1.00
+[Info   :Husnisse Gate Client Probe] gc cmd: open piece_chest_wood 3
+[Info   :Husnisse Gate Client Probe] gc interact piece_chest_wood(Clone) alt=False -> True
+[Info   :Husnisse Gate Client Probe] gc hud top='Added Wood'
+[Info   :Husnisse Gate Client Probe] gc hud top='Added Wood x2'
+[Info   :Husnisse Gate Client Probe] gc open gui=piece_chest_wood(Clone) stacks=0 items=0 [] inUse=True owner=True
+[Info   :Husnisse Gate Client Probe] gc cmd: ui
+[Info   :Husnisse Gate Client Probe] gc ui ui container=piece_chest_wood(Clone) strip=True net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=True inUse=True dist=1.6
+[Info   :Husnisse Gate Client Probe] gc ui zdo net=False rule='' inUseFlag=False owner=True
+[Info   :Husnisse Gate Client Probe] gc ui panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False
+[Info   :Husnisse Gate Client Probe] gc cmd: move piece_chest_wood CopperScrap 5
+[Info   :  Husnisse] rule RPC registered
+[Info   :Husnisse Gate Client Probe] gc move into piece_chest_wood(Clone) 'CopperScrap'x5 ok=True container[stacks=1 items=5 [copperscrapx5]] player[stacks=4 items=59 [obsidianx4,deerhidex4,copperscrapx5,woodx46]]
+[Info   :Husnisse Gate Client Probe] gc cmd: inv
+[Info   :Husnisse Gate Client Probe] gc inv stacks=4 items=59 [obsidianx4,deerhidex4,copperscrapx5,woodx46]
+[Info   :Husnisse Gate Client Probe] gc hud center='The nisse will keep Copper Scrap here.'
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=piece_chest_wood(Clone)
+[Info   :Husnisse Gate Client Probe] gc close after: gui=none localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: give Wood 5
+[Info   :Husnisse Gate Client Probe] gc give Woodx5 slot=(0,1) item=False stacks=4 items=63 [obsidianx4,deerhidex4,copperscrapx5,woodx50]
+[Info   :Husnisse Gate Client Probe] gc cmd: stand piece_chest_wood 0
+[Info   :Husnisse Gate Client Probe] gc stand piece_chest_wood(Clone)[0] at -8.00,34.20,1.00 -> player -6.40,34.40,1.00
+[Info   :Husnisse Gate Client Probe] gc cmd: open piece_chest_wood 0
+[Info   :Husnisse Gate Client Probe] gc interact piece_chest_wood(Clone) alt=False -> True
+[Info   :Husnisse Gate Client Probe] gc open gui=piece_chest_wood(Clone) stacks=0 items=0 [] inUse=True owner=True
+[Info   :Husnisse Gate Client Probe] gc cmd: move piece_chest_wood Wood 5
+[Info   :Husnisse Gate Client Probe] gc move into piece_chest_wood(Clone) 'Wood'x5 ok=True container[stacks=1 items=5 [woodx5]] player[stacks=4 items=58 [obsidianx4,deerhidex4,copperscrapx5,woodx45]]
+[Info   :Husnisse Gate Client Probe] gc cmd: inv
+[Info   :Husnisse Gate Client Probe] gc inv stacks=4 items=58 [obsidianx4,deerhidex4,copperscrapx5,woodx45]
+[Info   :Husnisse Gate Client Probe] gc hud center='The nisse will keep Wood here.'
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=piece_chest_wood(Clone)
+[Info   :Husnisse Gate Client Probe] gc close after: gui=none localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: containers
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -6.00,34.20,3.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -8.32,53.51,114.11 net=False rule='' stacks=2 items=59 [arrow_firex11,coinsx48]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 60.19,35.52,-49.21 net=False rule='' stacks=2 items=16 [feathersx1,coinsx15]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -2.11,30.42,-56.72 net=False rule='' stacks=3 items=54 [rubyx3,arrow_firex13,coinsx38]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -6.00,34.20,-1.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -4.00,34.20,1.00 net=True rule='v1;k=custom;i=%24item_copperscrap' stacks=1 items=5 [copperscrapx5]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -8.00,34.20,1.00 net=True rule='v1;k=custom;i=%24item_wood' stacks=1 items=5 [woodx5]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 59.58,33.12,-133.16 net=False rule='' stacks=2 items=2 [amberx1,feathersx1]
+[Info   :Husnisse Gate Client Probe] gc containers total=8 net=2 ruled=2
+[Info   :Husnisse Gate Client Probe] gc cmd: alt husnisse_nisse
+[Info   :Husnisse Gate Client Probe] gc interact NisseHands alt=True -> True
+[Info   :Husnisse Gate Client Probe] gc hud center='The nisse stops watching.'
+[Info   :Husnisse Gate Client Probe] gc cmd: give Coal 5
+[Info   :Husnisse Gate Client Probe] gc give Coalx5 slot=(0,1) item=False stacks=4 items=58 [obsidianx4,deerhidex4,copperscrapx5,woodx45]
+[Info   :Husnisse Gate Client Probe] gc cmd: stand piece_chest_wood 2
+[Info   :Husnisse Gate Client Probe] gc stand piece_chest_wood(Clone)[2] at -6.00,34.20,3.00 -> player -4.40,34.40,3.00
+[Info   :Husnisse Gate Client Probe] gc cmd: open piece_chest_wood 2
+[Info   :Husnisse Gate Client Probe] gc interact piece_chest_wood(Clone) alt=False -> True
+[Info   :Husnisse Gate Client Probe] gc hud top='Added Wood'
+[Info   :Husnisse Gate Client Probe] gc hud top='Added Wood x2'
+[Info   :Husnisse Gate Client Probe] gc open gui=piece_chest_wood(Clone) stacks=0 items=0 [] inUse=True owner=True
+[Info   :Husnisse Gate Client Probe] gc cmd: move piece_chest_wood Coal 5
+[Info   :Husnisse Gate Client Probe] gc move: 'Coal' not in player
+[Info   :Husnisse Gate Client Probe] gc cmd: inv
+[Info   :Husnisse Gate Client Probe] gc inv stacks=4 items=60 [obsidianx4,deerhidex4,copperscrapx5,woodx47]
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=piece_chest_wood(Clone)
+[Info   :Husnisse Gate Client Probe] gc close after: gui=none localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: containers
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -6.00,34.20,3.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -8.32,53.51,114.11 net=False rule='' stacks=2 items=59 [arrow_firex11,coinsx48]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 60.19,35.52,-49.21 net=False rule='' stacks=2 items=16 [feathersx1,coinsx15]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -2.11,30.42,-56.72 net=False rule='' stacks=3 items=54 [rubyx3,arrow_firex13,coinsx38]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -6.00,34.20,-1.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -4.00,34.20,1.00 net=True rule='v1;k=custom;i=%24item_copperscrap' stacks=1 items=5 [copperscrapx5]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -8.00,34.20,1.00 net=True rule='v1;k=custom;i=%24item_wood' stacks=1 items=5 [woodx5]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 59.58,33.12,-133.16 net=False rule='' stacks=2 items=2 [amberx1,feathersx1]
+[Info   :Husnisse Gate Client Probe] gc containers total=8 net=2 ruled=2
+[Info   :Husnisse Gate Client Probe] gc hud center='You feel cold'
+[Info   :Husnisse Gate Client Probe] gc cmd: give Coal 5 3
+[Info   :Husnisse Gate Client Probe] gc give Coalx5 slot=(0,3) item=False stacks=4 items=60 [obsidianx4,deerhidex4,copperscrapx5,woodx47]
+[Info   :Husnisse Gate Client Probe] gc cmd: stand piece_chest_wood 2
+[Info   :Husnisse Gate Client Probe] gc stand piece_chest_wood(Clone)[2] at -6.00,34.20,3.00 -> player -4.40,34.40,3.00
+[Info   :Husnisse Gate Client Probe] gc cmd: open piece_chest_wood 2
+[Info   :Husnisse Gate Client Probe] gc interact piece_chest_wood(Clone) alt=False -> True
+[Info   :Husnisse Gate Client Probe] gc open gui=piece_chest_wood(Clone) stacks=0 items=0 [] inUse=True owner=True
+[Info   :Husnisse Gate Client Probe] gc cmd: move piece_chest_wood Coal 5
+[Info   :Husnisse Gate Client Probe] gc move: 'Coal' not in player
+[Info   :Husnisse Gate Client Probe] gc cmd: inv
+[Info   :Husnisse Gate Client Probe] gc inv stacks=4 items=60 [obsidianx4,deerhidex4,copperscrapx5,woodx47]
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=piece_chest_wood(Clone)
+[Info   :Husnisse Gate Client Probe] gc cmd: containers
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -6.00,34.20,3.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -8.32,53.51,114.11 net=False rule='' stacks=2 items=59 [arrow_firex11,coinsx48]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 60.19,35.52,-49.21 net=False rule='' stacks=2 items=16 [feathersx1,coinsx15]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -2.11,30.42,-56.72 net=False rule='' stacks=3 items=54 [rubyx3,arrow_firex13,coinsx38]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -6.00,34.20,-1.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -4.00,34.20,1.00 net=True rule='v1;k=custom;i=%24item_copperscrap' stacks=1 items=5 [copperscrapx5]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -8.00,34.20,1.00 net=True rule='v1;k=custom;i=%24item_wood' stacks=1 items=5 [woodx5]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 59.58,33.12,-133.16 net=False rule='' stacks=2 items=2 [amberx1,feathersx1]
+[Info   :Husnisse Gate Client Probe] gc containers total=8 net=2 ruled=2
+[Info   :Husnisse Gate Client Probe] gc close after: gui=none localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: give Coal 5 2
+[Info   :Husnisse Gate Client Probe] gc give Coalx5 slot=(0,2) item=False stacks=4 items=60 [obsidianx4,deerhidex4,copperscrapx5,woodx47]
+[Info   :Husnisse Gate Client Probe] gc cmd: give Resin 5 2
+[Info   :Husnisse Gate Client Probe] gc give Resinx5 slot=(0,2) item=False stacks=4 items=60 [obsidianx4,deerhidex4,copperscrapx5,woodx47]
+[Info   :Husnisse Gate Client Probe] gc cmd: inv
+[Info   :Husnisse Gate Client Probe] gc inv stacks=4 items=60 [obsidianx4,deerhidex4,copperscrapx5,woodx47]
+[Info   :Husnisse Gate Client Probe] gc hud top='You are cold'
+[Info   :Husnisse Gate Client Probe] gc cmd: stand piece_chest_wood 0
+[Info   :Husnisse Gate Client Probe] gc stand piece_chest_wood(Clone)[0] at -8.00,34.20,1.00 -> player -6.40,34.40,1.00
+[Info   :Husnisse Gate Client Probe] gc cmd: open piece_chest_wood 0
+[Info   :Husnisse Gate Client Probe] gc interact piece_chest_wood(Clone) alt=False -> True
+[Info   :Husnisse Gate Client Probe] gc open gui=piece_chest_wood(Clone) stacks=1 items=5 [woodx5] inUse=True owner=True
+[Info   :Husnisse Gate Client Probe] gc cmd: take piece_chest_wood Wood 5
+[Info   :Husnisse Gate Client Probe] gc move out of piece_chest_wood(Clone) 'Wood'x5 ok=False container[stacks=1 items=5 [woodx5]] player[stacks=4 items=60 [obsidianx4,deerhidex4,copperscrapx5,woodx47]]
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=piece_chest_wood(Clone)
+[Info   :Husnisse Gate Client Probe] gc close after: gui=none localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: stand piece_chest_wood 2
+[Info   :Husnisse Gate Client Probe] gc stand piece_chest_wood(Clone)[2] at -6.00,34.20,3.00 -> player -4.40,34.40,3.00
+[Info   :Husnisse Gate Client Probe] gc cmd: open piece_chest_wood 2
+[Info   :Husnisse Gate Client Probe] gc interact piece_chest_wood(Clone) alt=False -> True
+[Info   :Husnisse Gate Client Probe] gc open gui=piece_chest_wood(Clone) stacks=0 items=0 [] inUse=True owner=True
+[Info   :Husnisse Gate Client Probe] gc cmd: move piece_chest_wood Wood 5
+[Info   :Husnisse Gate Client Probe] gc move into piece_chest_wood(Clone) 'Wood'x5 ok=True container[stacks=1 items=5 [woodx5]] player[stacks=4 items=55 [obsidianx4,deerhidex4,copperscrapx5,woodx42]]
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=piece_chest_wood(Clone)
+[Info   :Husnisse Gate Client Probe] gc close after: gui=none localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: containers
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -6.00,34.20,3.00 net=False rule='' stacks=1 items=5 [woodx5]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -8.32,53.51,114.11 net=False rule='' stacks=2 items=59 [arrow_firex11,coinsx48]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 60.19,35.52,-49.21 net=False rule='' stacks=2 items=16 [feathersx1,coinsx15]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -2.11,30.42,-56.72 net=False rule='' stacks=3 items=54 [rubyx3,arrow_firex13,coinsx38]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -6.00,34.20,-1.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -4.00,34.20,1.00 net=True rule='v1;k=custom;i=%24item_copperscrap' stacks=1 items=5 [copperscrapx5]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -8.00,34.20,1.00 net=True rule='v1;k=custom;i=%24item_wood' stacks=1 items=5 [woodx5]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 59.58,33.12,-133.16 net=False rule='' stacks=2 items=2 [amberx1,feathersx1]
+[Info   :Husnisse Gate Client Probe] gc containers total=8 net=2 ruled=2
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=none
+[Info   :Husnisse Gate Client Probe] gc cmd: ledger
+[Info   :Husnisse Gate Client Probe] gc ledger toggled visible=True
+[Info   :Husnisse Gate Client Probe] gc close after: gui=none localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: ledgerpanel
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel active=True claim='Claim 20 m (native) · owner -202584743 · 4 container(s) · 2 unclassified' status='' selected='Selected: piece_chest_wood -8,1' page='Page 1/1'
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel rows=4 | > ● piece_chest_wood  -8,1  Save contents (1) | ○ piece_chest_wood  -6,-1  No rule  ? | ○ piece_chest_wood  -6,3  No rule  ? | ● piece_chest_wood  -4,1  Save contents (1)
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel controls Net='On the network' Blacklist='Blacklist: off' Tidy='Tidy' CatMetals='Metals' CatWood='Wood' CatFood='Food' Overflow='Overflow' Deposit='Deposit' NoRule='No rule' PriorityValue='0' PickupMetals='Metals' PickupWood='Wood' PickupFood='Food'
+[Info   :Husnisse Gate Client Probe] gc cmd: click HusnisseLedgerRow3
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerRow3 label='● piece_chest_wood  -4,1  Save contents (1)' interactable=True
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerRow3 invoked
+[Info   :Husnisse Gate Client Probe] gc after HusnisseLedgerRow3 ui container=none strip=False net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=False inUse=- dist=-
+[Info   :Husnisse Gate Client Probe] gc cmd: ledgerpanel
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel active=True claim='Claim 20 m (native) · owner -202584743 · 4 container(s) · 2 unclassified' status='' selected='Selected: piece_chest_wood -4,1' page='Page 1/1'
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel rows=4 | ● piece_chest_wood  -8,1  Save contents (1) | ○ piece_chest_wood  -6,-1  No rule  ? | ○ piece_chest_wood  -6,3  No rule  ? | > ● piece_chest_wood  -4,1  Save contents (1)
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel controls Net='On the network' Blacklist='Blacklist: off' Tidy='Tidy' CatMetals='Metals' CatWood='Wood' CatFood='Food' Overflow='Overflow' Deposit='Deposit' NoRule='No rule' PriorityValue='0' PickupMetals='Metals' PickupWood='Wood' PickupFood='Food'
+[Info   :Husnisse Gate Client Probe] gc cmd: click HusnisseLedgerCatMetals
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerCatMetals label='Metals' interactable=True
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerCatMetals invoked
+[Info   :Husnisse Gate Client Probe] gc after HusnisseLedgerCatMetals ui container=none strip=False net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=False inUse=- dist=-
+[Info   :Husnisse Gate Client Probe] gc cmd: ledgerpanel
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel active=True claim='Claim 20 m (native) · owner -202584743 · 4 container(s) · 2 unclassified' status='The nisse will see to it.' selected='Selected: piece_chest_wood -4,1' page='Page 1/1'
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel rows=4 | ● piece_chest_wood  -8,1  Save contents (1) | ○ piece_chest_wood  -6,-1  No rule  ? | ○ piece_chest_wood  -6,3  No rule  ? | > ● piece_chest_wood  -4,1  Metals
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel controls Net='On the network' Blacklist='Blacklist: off' Tidy='Tidy' CatMetals='Metals' CatWood='Wood' CatFood='Food' Overflow='Overflow' Deposit='Deposit' NoRule='No rule' PriorityValue='0' PickupMetals='Metals' PickupWood='Wood' PickupFood='Food'
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=none
+[Info   :Husnisse Gate Client Probe] gc cmd: stand piece_chest_wood 3
+[Info   :Husnisse Gate Client Probe] gc stand piece_chest_wood(Clone)[3] at -4.00,34.20,1.00 -> player -2.40,34.40,1.00
+[Info   :Husnisse Gate Client Probe] gc cmd: open piece_chest_wood 3
+[Info   :Husnisse Gate Client Probe] gc interact piece_chest_wood(Clone) alt=False -> True
+[Info   :Husnisse Gate Client Probe] gc close after: gui=piece_chest_wood(Clone) localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: ui
+[Info   :Husnisse Gate Client Probe] gc ui ui container=piece_chest_wood(Clone) strip=True net='On the network' netClickable=True rules='Rules: Metals' rulesClickable=True panel=False win=True inUse=True dist=1.6
+[Info   :Husnisse Gate Client Probe] gc ui zdo net=True rule='v1;k=cat;c=metals' inUseFlag=False owner=True
+[Info   :Husnisse Gate Client Probe] gc ui panel title='Storage rule' priority='0' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=True custom='Save contents' customOpen=False
+[Info   :Husnisse Gate Client Probe] gc cmd: shot ledger-rule
+[Info   :Husnisse Gate Client Probe] gc shot C:\Users\Hermes\Desktop\husnisse-captures\ledger-rule.png
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=piece_chest_wood(Clone)
+[Info   :Husnisse Gate Client Probe] gc cmd: ledger
+[Info   :Husnisse Gate Client Probe] gc ledger toggled visible=True
+[Info   :Husnisse Gate Client Probe] gc close after: gui=none localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: click HusnisseLedgerRow2
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerRow2 label='○ piece_chest_wood  -6,3  No rule  ?' interactable=True
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerRow2 invoked
+[Info   :Husnisse Gate Client Probe] gc after HusnisseLedgerRow2 ui container=none strip=False net='On the network' netClickable=True rules='Rules: Metals' rulesClickable=True panel=False win=False inUse=- dist=-
+[Info   :Husnisse Gate Client Probe] gc cmd: ledgerpanel
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel active=False claim='No nisse claims this place.' status='' selected='Selected: piece_chest_wood -8,1' page='Page 1/1'
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel rows=4 | > ● piece_chest_wood  -8,1  Save contents (1) | ○ piece_chest_wood  -6,-1  No rule  ? | ○ piece_chest_wood  -6,3  No rule  ? | ● piece_chest_wood  -4,1  Metals
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel controls Net='On the network' Blacklist='Blacklist: off' Tidy='Tidy' CatMetals='Metals' CatWood='Wood' CatFood='Food' Overflow='Overflow' Deposit='Deposit' NoRule='No rule' PriorityValue='0' PickupMetals='Metals' PickupWood='Wood' PickupFood='Food'
+[Info   :Husnisse Gate Client Probe] gc cmd: click HusnisseLedgerNet
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerNet label='On the network' interactable=True
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerNet invoked
+[Info   :Husnisse Gate Client Probe] gc after HusnisseLedgerNet ui container=none strip=False net='On the network' netClickable=True rules='Rules: Metals' rulesClickable=True panel=False win=False inUse=- dist=-
+[Info   :Husnisse Gate Client Probe] gc cmd: ledgerpanel
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel active=False claim='No nisse claims this place.' status='' selected='Selected: piece_chest_wood -8,1' page='Page 1/1'
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel rows=4 | > ● piece_chest_wood  -8,1  Save contents (1) | ○ piece_chest_wood  -6,-1  No rule  ? | ○ piece_chest_wood  -6,3  No rule  ? | ● piece_chest_wood  -4,1  Metals
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel controls Net='On the network' Blacklist='Blacklist: off' Tidy='Tidy' CatMetals='Metals' CatWood='Wood' CatFood='Food' Overflow='Overflow' Deposit='Deposit' NoRule='No rule' PriorityValue='0' PickupMetals='Metals' PickupWood='Wood' PickupFood='Food'
+[Info   :Husnisse Gate Client Probe] gc cmd: containers
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -6.00,34.20,3.00 net=False rule='' stacks=1 items=5 [woodx5]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -8.32,53.51,114.11 net=False rule='' stacks=2 items=59 [arrow_firex11,coinsx48]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 60.19,35.52,-49.21 net=False rule='' stacks=2 items=16 [feathersx1,coinsx15]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -2.11,30.42,-56.72 net=False rule='' stacks=3 items=54 [rubyx3,arrow_firex13,coinsx38]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -6.00,34.20,-1.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -4.00,34.20,1.00 net=True rule='v1;k=cat;c=metals' stacks=1 items=5 [copperscrapx5]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -8.00,34.20,1.00 net=True rule='v1;k=custom;i=%24item_wood' stacks=1 items=5 [woodx5]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 59.58,33.12,-133.16 net=False rule='' stacks=2 items=2 [amberx1,feathersx1]
+[Info   :Husnisse Gate Client Probe] gc containers total=8 net=2 ruled=2
+[Info   :Husnisse Gate Client Probe] gc cmd: click HusnisseLedgerBlacklist
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerBlacklist label='Blacklist: off' interactable=True
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerBlacklist invoked
+[Info   :Husnisse Gate Client Probe] gc after HusnisseLedgerBlacklist ui container=none strip=False net='On the network' netClickable=True rules='Rules: Metals' rulesClickable=True panel=False win=False inUse=- dist=-
+[Info   :Husnisse Gate Client Probe] gc cmd: ledgerpanel
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel active=False claim='No nisse claims this place.' status='' selected='Selected: piece_chest_wood -8,1' page='Page 1/1'
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel rows=4 | > ● piece_chest_wood  -8,1  Save contents (1) | ○ piece_chest_wood  -6,-1  No rule  ? | ○ piece_chest_wood  -6,3  No rule  ? | ● piece_chest_wood  -4,1  Metals
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel controls Net='On the network' Blacklist='Blacklist: off' Tidy='Tidy' CatMetals='Metals' CatWood='Wood' CatFood='Food' Overflow='Overflow' Deposit='Deposit' NoRule='No rule' PriorityValue='0' PickupMetals='Metals' PickupWood='Wood' PickupFood='Food'
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=none
+[Info   :Husnisse Gate Client Probe] gc cmd: stand piece_chest_wood 2
+[Info   :Husnisse Gate Client Probe] gc stand piece_chest_wood(Clone)[2] at -6.00,34.20,3.00 -> player -4.40,34.40,3.00
+[Info   :Husnisse Gate Client Probe] gc cmd: open piece_chest_wood 2
+[Info   :Husnisse Gate Client Probe] gc interact piece_chest_wood(Clone) alt=False -> True
+[Info   :Husnisse Gate Client Probe] gc close after: gui=piece_chest_wood(Clone) localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: ui
+[Info   :Husnisse Gate Client Probe] gc ui ui container=piece_chest_wood(Clone) strip=True net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=True inUse=True dist=1.6
+[Info   :Husnisse Gate Client Probe] gc ui zdo net=False rule='' inUseFlag=False owner=True
+[Info   :Husnisse Gate Client Probe] gc ui panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=piece_chest_wood(Clone)
+[Info   :Husnisse Gate Client Probe] gc cmd: ledger
+[Info   :Husnisse Gate Client Probe] gc ledger toggled visible=True
+[Info   :Husnisse Gate Client Probe] gc close after: gui=none localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: click HusnisseLedgerPickupMetals
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerPickupMetals label='Metals' interactable=True
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerPickupMetals invoked
+[Info   :Husnisse Gate Client Probe] gc after HusnisseLedgerPickupMetals ui container=none strip=False net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=False inUse=- dist=-
+[Info   :Husnisse Gate Client Probe] gc cmd: click HusnisseLedgerPickupMetals
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerPickupMetals label='Metals' interactable=True
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerPickupMetals invoked
+[Info   :Husnisse Gate Client Probe] gc after HusnisseLedgerPickupMetals ui container=none strip=False net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=False inUse=- dist=-
+[Info   :Husnisse Gate Client Probe] gc cmd: ledgerpanel
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel active=False claim='Claim 20 m (native) · owner -202584743 · 4 container(s) · 2 unclassified' status='' selected='Selected: piece_chest_wood -8,1' page='Page 1/1'
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel rows=4 | > ● piece_chest_wood  -8,1  Save contents (1) | ○ piece_chest_wood  -6,-1  No rule  ? | ○ piece_chest_wood  -6,3  No rule  ? | ● piece_chest_wood  -4,1  Metals
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel controls Net='On the network' Blacklist='Blacklist: off' Tidy='Tidy' CatMetals='Metals' CatWood='Wood' CatFood='Food' Overflow='Overflow' Deposit='Deposit' NoRule='No rule' PriorityValue='0' PickupMetals='Metals' PickupWood='Wood' PickupFood='Food'
+[Info   :Husnisse Gate Client Probe] gc cmd: shot ledger
+[Info   :Husnisse Gate Client Probe] gc shot C:\Users\Hermes\Desktop\husnisse-captures\ledger.png
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=none
+[Info   :Husnisse Gate Client Probe] gc close after: gui=none localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: ledger
+[Info   :Husnisse Gate Client Probe] gc ledger toggled visible=True
+[Info   :Husnisse Gate Client Probe] gc cmd: ledgerpanel
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel active=True claim='Claim 20 m (native) · owner -202584743 · 4 container(s) · 2 unclassified' status='' selected='Selected: piece_chest_wood -8,1' page='Page 1/1'
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel rows=4 | > ● piece_chest_wood  -8,1  Save contents (1) | ○ piece_chest_wood  -6,-1  No rule  ? | ○ piece_chest_wood  -6,3  No rule  ? | ● piece_chest_wood  -4,1  Metals
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel controls Net='On the network' Blacklist='Blacklist: off' Tidy='Tidy' CatMetals='Metals' CatWood='Wood' CatFood='Food' Overflow='Overflow' Deposit='Deposit' NoRule='No rule' PriorityValue='0' PickupMetals='Metals' PickupWood='Wood' PickupFood='Food'
+[Info   :Husnisse Gate Client Probe] gc cmd: click HusnisseLedgerRow2
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerRow2 label='○ piece_chest_wood  -6,3  No rule  ?' interactable=True
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerRow2 invoked
+[Info   :Husnisse Gate Client Probe] gc cmd: ledgerpanel
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel active=True claim='Claim 20 m (native) · owner -202584743 · 4 container(s) · 2 unclassified' status='' selected='Selected: piece_chest_wood -6,3' page='Page 1/1'
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel rows=4 | ● piece_chest_wood  -8,1  Save contents (1) | ○ piece_chest_wood  -6,-1  No rule  ? | > ○ piece_chest_wood  -6,3  No rule  ? | ● piece_chest_wood  -4,1  Metals
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel controls Net='Off the network' Blacklist='Blacklist: off' Tidy='Tidy' CatMetals='Metals' CatWood='Wood' CatFood='Food' Overflow='Overflow' Deposit='Deposit' NoRule='No rule' PriorityValue='-' PickupMetals='Metals' PickupWood='Wood' PickupFood='Food'
+[Info   :Husnisse Gate Client Probe] gc after HusnisseLedgerRow2 ui container=none strip=False net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=False inUse=- dist=-
+[Info   :Husnisse Gate Client Probe] gc cmd: click HusnisseLedgerNet
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerNet label='Off the network' interactable=True
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerNet invoked
+[Info   :Husnisse Gate Client Probe] gc cmd: ledgerpanel
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel active=True claim='Claim 20 m (native) · owner -202584743 · 4 container(s) · 2 unclassified' status='The nisse will see to it.' selected='Selected: piece_chest_wood -6,3' page='Page 1/1'
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel rows=4 | ● piece_chest_wood  -8,1  Save contents (1) | ○ piece_chest_wood  -6,-1  No rule  ? | > ○ piece_chest_wood  -6,3  No rule  ? | ● piece_chest_wood  -4,1  Metals
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel controls Net='Off the network' Blacklist='Blacklist: off' Tidy='Tidy' CatMetals='Metals' CatWood='Wood' CatFood='Food' Overflow='Overflow' Deposit='Deposit' NoRule='No rule' PriorityValue='-' PickupMetals='Metals' PickupWood='Wood' PickupFood='Food'
+[Info   :Husnisse Gate Client Probe] gc cmd: containers
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -6.00,34.20,3.00 net=False rule='' stacks=1 items=5 [woodx5]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -8.32,53.51,114.11 net=False rule='' stacks=2 items=59 [arrow_firex11,coinsx48]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 60.19,35.52,-49.21 net=False rule='' stacks=2 items=16 [feathersx1,coinsx15]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -2.11,30.42,-56.72 net=False rule='' stacks=3 items=54 [rubyx3,arrow_firex13,coinsx38]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -6.00,34.20,-1.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -4.00,34.20,1.00 net=True rule='v1;k=cat;c=metals' stacks=1 items=5 [copperscrapx5]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -8.00,34.20,1.00 net=True rule='v1;k=custom;i=%24item_wood' stacks=1 items=5 [woodx5]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 59.58,33.12,-133.16 net=False rule='' stacks=2 items=2 [amberx1,feathersx1]
+[Info   :Husnisse Gate Client Probe] gc containers total=8 net=2 ruled=2
+[Info   :Husnisse Gate Client Probe] gc after HusnisseLedgerNet ui container=none strip=False net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=False inUse=- dist=-
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=none
+[Info   :Husnisse Gate Client Probe] gc cmd: stand piece_chest_wood 2
+[Info   :Husnisse Gate Client Probe] gc stand piece_chest_wood(Clone)[2] at -6.00,34.20,3.00 -> player -4.40,34.40,3.00
+[Info   :Husnisse Gate Client Probe] gc cmd: open piece_chest_wood 2
+[Info   :Husnisse Gate Client Probe] gc interact piece_chest_wood(Clone) alt=False -> True
+[Info   :Husnisse Gate Client Probe] gc close after: gui=piece_chest_wood(Clone) localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: click HusnisseNet
+[Info   :Husnisse Gate Client Probe] gc click HusnisseNet label='On the network' interactable=True
+[Info   :Husnisse Gate Client Probe] gc click HusnisseNet invoked
+[Info   :Husnisse Gate Client Probe] gc cmd: ui
+[Info   :Husnisse Gate Client Probe] gc ui ui container=piece_chest_wood(Clone) strip=True net='On the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=True inUse=True dist=1.6
+[Info   :Husnisse Gate Client Probe] gc ui zdo net=True rule='' inUseFlag=False owner=True
+[Info   :Husnisse Gate Client Probe] gc ui panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False
+[Info   :Husnisse Gate Client Probe] gc after HusnisseNet ui container=piece_chest_wood(Clone) strip=True net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=True inUse=True dist=1.6
+[Info   :Husnisse Gate Client Probe] gc after HusnisseNet zdo net=False rule='' inUseFlag=False owner=True
+[Info   :Husnisse Gate Client Probe] gc after HusnisseNet panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=piece_chest_wood(Clone)
+[Info   :Husnisse Gate Client Probe] gc close after: gui=none localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: ledger
+[Info   :Husnisse Gate Client Probe] gc ledger toggled visible=True
+[Info   :Husnisse Gate Client Probe] gc cmd: click HusnisseLedgerRow2
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerRow2 label='○ piece_chest_wood  -6,3  No rule  ?' interactable=True
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerRow2 invoked
+[Info   :Husnisse Gate Client Probe] gc cmd: ledgerpanel
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel active=True claim='Claim 20 m (native) · owner -202584743 · 4 container(s) · 2 unclassified' status='The nisse will see to it.' selected='Selected: piece_chest_wood -6,3' page='Page 1/1'
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel rows=4 | ● piece_chest_wood  -8,1  Save contents (1) | ○ piece_chest_wood  -6,-1  No rule  ? | > ○ piece_chest_wood  -6,3  No rule  ? | ● piece_chest_wood  -4,1  Metals
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel controls Net='Off the network' Blacklist='Blacklist: off' Tidy='Tidy' CatMetals='Metals' CatWood='Wood' CatFood='Food' Overflow='Overflow' Deposit='Deposit' NoRule='No rule' PriorityValue='-' PickupMetals='Metals' PickupWood='Wood' PickupFood='Food'
+[Info   :Husnisse Gate Client Probe] gc after HusnisseLedgerRow2 ui container=none strip=False net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=False inUse=- dist=-
+[Info   :Husnisse Gate Client Probe] gc cmd: click HusnisseLedgerBlacklist
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerBlacklist label='Blacklist: off' interactable=True
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerBlacklist invoked
+[Info   :Husnisse Gate Client Probe] gc after HusnisseLedgerBlacklist ui container=none strip=False net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=False inUse=- dist=-
+[Info   :Husnisse Gate Client Probe] gc cmd: ledgerpanel
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel active=True claim='Claim 20 m (native) · owner -202584743 · 4 container(s) · 1 unclassified' status='The nisse will see to it.' selected='Selected: piece_chest_wood -6,3' page='Page 1/1'
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel rows=4 | ● piece_chest_wood  -8,1  Save contents (1) | ○ piece_chest_wood  -6,-1  No rule  ? | > ○ piece_chest_wood  -6,3  No rule  ⊘ | ● piece_chest_wood  -4,1  Metals
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel controls Net='Off the network' Blacklist='Blacklist: on' Tidy='Tidy' CatMetals='Metals' CatWood='Wood' CatFood='Food' Overflow='Overflow' Deposit='Deposit' NoRule='No rule' PriorityValue='-' PickupMetals='Metals' PickupWood='Wood' PickupFood='Food'
+[Info   :Husnisse Gate Client Probe] gc cmd: containers
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -6.00,34.20,3.00 net=False rule='' stacks=1 items=5 [woodx5]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -8.32,53.51,114.11 net=False rule='' stacks=2 items=59 [arrow_firex11,coinsx48]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 60.19,35.52,-49.21 net=False rule='' stacks=2 items=16 [feathersx1,coinsx15]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -2.11,30.42,-56.72 net=False rule='' stacks=3 items=54 [rubyx3,arrow_firex13,coinsx38]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -6.00,34.20,-1.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -4.00,34.20,1.00 net=True rule='v1;k=cat;c=metals' stacks=1 items=5 [copperscrapx5]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at -8.00,34.20,1.00 net=True rule='v1;k=custom;i=%24item_wood' stacks=1 items=5 [woodx5]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 59.58,33.12,-133.16 net=False rule='' stacks=2 items=2 [amberx1,feathersx1]
+[Info   :Husnisse Gate Client Probe] gc containers total=8 net=2 ruled=2
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=none
+[Info   :Husnisse Gate Client Probe] gc cmd: stand piece_chest_wood 2
+[Info   :Husnisse Gate Client Probe] gc stand piece_chest_wood(Clone)[2] at -6.00,34.20,3.00 -> player -4.40,34.40,3.00
+[Info   :Husnisse Gate Client Probe] gc cmd: open piece_chest_wood 2
+[Info   :Husnisse Gate Client Probe] gc interact piece_chest_wood(Clone) alt=False -> True
+[Info   :Husnisse Gate Client Probe] gc close after: gui=piece_chest_wood(Clone) localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: ui
+[Info   :Husnisse Gate Client Probe] gc ui ui container=piece_chest_wood(Clone) strip=False net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=True inUse=True dist=1.6
+[Info   :Husnisse Gate Client Probe] gc ui zdo net=False rule='' inUseFlag=False owner=True
+[Info   :Husnisse Gate Client Probe] gc ui panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False
+[Info   :Husnisse Gate Client Probe] gc cmd: shot ledger-blacklist
+[Info   :Husnisse Gate Client Probe] gc shot C:\Users\Hermes\Desktop\husnisse-captures\ledger-blacklist.png
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=piece_chest_wood(Clone)
+[Info   :Husnisse Gate Client Probe] gc close after: gui=none localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: ledger
+[Info   :Husnisse Gate Client Probe] gc ledger toggled visible=True
+[Info   :Husnisse Gate Client Probe] gc cmd: click HusnisseLedgerPickupMetals
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerPickupMetals label='Metals' interactable=True
+[Info   :Husnisse Gate Client Probe] gc click HusnisseLedgerPickupMetals invoked
+[Info   :Husnisse Gate Client Probe] gc cmd: ledgerpanel
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel active=True claim='Claim 20 m (native) · owner -202584743 · 4 container(s) · 1 unclassified' status='The nisse will see to it.' selected='Selected: piece_chest_wood -8,1' page='Page 1/1'
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel rows=4 | > ● piece_chest_wood  -8,1  Save contents (1) | ○ piece_chest_wood  -6,-1  No rule  ? | ○ piece_chest_wood  -6,3  No rule  ⊘ | ● piece_chest_wood  -4,1  Metals
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel controls Net='On the network' Blacklist='Blacklist: off' Tidy='Tidy' CatMetals='Metals' CatWood='Wood' CatFood='Food' Overflow='Overflow' Deposit='Deposit' NoRule='No rule' PriorityValue='0' PickupMetals='Metals' PickupWood='Wood' PickupFood='Food'
+[Info   :Husnisse Gate Client Probe] gc after HusnisseLedgerPickupMetals ui container=none strip=False net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=False inUse=- dist=-
+[Info   :Husnisse Gate Client Probe] gc cmd: shot ledger
+[Info   :Husnisse Gate Client Probe] gc shot C:\Users\Hermes\Desktop\husnisse-captures\ledger.png
+[Info   :Husnisse Gate Client Probe] gc cmd: ledgerpanel
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel active=True claim='Claim 20 m (native) · owner -202584743 · 4 container(s) · 1 unclassified' status='The nisse will see to it.' selected='Selected: piece_chest_wood -8,1' page='Page 1/1'
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel rows=4 | > ● piece_chest_wood  -8,1  Save contents (1) | ○ piece_chest_wood  -6,-1  No rule  ? | ○ piece_chest_wood  -6,3  No rule  ⊘ | ● piece_chest_wood  -4,1  Metals
+[Info   :Husnisse Gate Client Probe] gc ledgerpanel controls Net='On the network' Blacklist='Blacklist: off' Tidy='Tidy' CatMetals='Metals' CatWood='Wood' CatFood='Food' Overflow='Overflow' Deposit='Deposit' NoRule='No rule' PriorityValue='0' PickupMetals='Metals' PickupWood='Wood' PickupFood='Food'

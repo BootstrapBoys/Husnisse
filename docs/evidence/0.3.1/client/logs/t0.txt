@@ -1,0 +1,6 @@
+gc cmd: hover husnisse_nisse
+gc hover nisse=''
+gc cmd: alt husnisse_nisse
+gc interact NisseHands alt=True -> True
+gc hud center='Show me where things go. Put a sample in the chest it belongs in.'
+gc hud top='Nisse: The nisse leans closer to watch.'

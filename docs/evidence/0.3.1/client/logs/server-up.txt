@@ -1,0 +1,8 @@
+start request accepted (pid 8056), poll with: rig.ps1 -Action wait
+wait: READY  chainloader=True  game_server_connected=True
+process: running pid 6084  rss_mb 1426  started 11/15/2026 13:13:02
+udp_bound: 2957
+bepinex_log: 6818 bytes, 11/15/2026 1:13:38 PM
+game_log: 14318 bytes, 11/15/2026 1:13:38 PM
+live_server: untouched pid 8368
+build_parity: MATCH E5E761C58099

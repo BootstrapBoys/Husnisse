@@ -1,57 +1,54 @@
-# 0.3.1 client gate — the runbook
+# 0.3.1 client gate — what ran, and how to run it again
 
-The one thing the headless runs cannot prove: that the ledger panel and the teaching gesture work on a
-real client's screen. This is the exact sequence; it is the same rig pattern the 0.3b panel gate uses
-(`../0.3b-client/driver.sh`, `run.sh`, `pc.sh`, `tools.ps1`), pointed at the spare tree.
+The gate is **recorded**: `RESULT.md` §"Client gate" has the ten checks and their results, and
+`client/captures/` has the screenshots and the client log of the session. This file is the recipe that
+produced it, kept so a rerun is a script rather than a rediscovery.
 
-## Preconditions
+## The shape
 
-- The client rig (`Hermes@192.168.1.172`, key `~/.ssh/husnisse_client_ed25519`) is **free**: no
-  `valheim.exe` running, no other card's probe writing `husnisse-probe.cmd`.
-- A server is up on `V:\ValheimTest2` (port **2656**) with the gate build deployed:
-  `Husnisse.dll` sha256 `31ddbd35…` from `~/projects/valheim/nisse-031-gate/artifacts/debug/`.
-- The probe DLL from the same worktree (`probe/gate-client/artifacts/`, sha256 `367cbd99…`).
+One dedicated tree, one fixture, one client session, everything driven from the client process:
 
-## Steps
+- Tree `V:\Gate031` on port **2956** — `RIG_DST='V:\Gate031' RIG_PORT=2956 rig.sh provision`, then the
+  four plugin folders copied from the canary tree (Husnisse `31ddbd35…`, TestHarness `57c4e48f…`,
+  ConditionalConfigSync, ValheimModding-YamlDotNet; Jotunn comes from the live install as a junction).
+  A dedicated tree was needed because `rig.ps1`'s `Get-TestProc` matches the tree path as a substring:
+  while another card drives `V:\ValheimTest`, its `rig down/up` also kills `V:\ValheimTest2`. The host
+  firewall needs an inbound UDP rule per tree (`Valheim canary rig UDP 2656` 2656-2657,
+  `Valheim gate031 UDP 2956` 2956-2957) — without it the client fails with
+  `Lost connection to server:ErrorConnectFailed`.
+- Scenario driving without the host rig lock: `client/s031.sh <file.cmd>` copies the scenario to
+  `V:\Gate031\BepInEx\config\harness.cmd` and polls `Harness.log`. Safe only because this tree is
+  written by this card alone.
+- Client: `client/gate.sh install` (kill the client, push the two DLLs to `C:\Users\Hermes\stage\`,
+  hash-verify the installed copies), then `gate.sh launch` — it points the `HusnisseLegsLaunch`
+  scheduled task at the gate port, starts it, waits for `gc ready` and saves the player id. The task is
+  restored to 2556 at the end (`gate.sh collect`).
+- Fixture: `client/scene-031.sh <x> <deckY> <z> <playerId> <out.cmd> <out.env>` — a bowl with the
+  joining player as creator and four chests within 4 m. Built **after** the client is in world (the
+  zone has to be loaded or the pieces are gone within a minute), and the scenario calls `nostruct`
+  first: harness pieces are spawned into thin air on a server with no terrain colliders, so
+  `WearNTear` damages them away in ~20 s otherwise (`client/harness-nostruct.patch`).
+- Phases: `gate.sh scene`, `gate.sh teach`, `gate.sh ledger`, then one server-side `final-state.cmd`
+  (a scenario load wipes the standing scene, so it is last), then `gate.sh collect` — client evidence
+  zip + server logs, quit the client, restore the task.
 
-1. Install: copy the two DLLs to `C:/Users/Hermes/stage/`, then `run.sh install` (verify the hashes it
-   prints) and `run.sh reset` (the probe replays its command file on launch).
-2. Launch the client against **2656**, not the default 2556 task: start
-   `valheim.exe -console -joinserverwithcharacter 192.168.1.136:2656 nissetester -password mtest`
-   (kill any running client first). Wait for `gc ready`.
-3. Scene: build the fixture at the client's own position — one bowl with the joining player's id as
-   creator and four chests on a deck around it (the harness `spawn` at `ground` needs a surface; the
-   0.3b `scene.sh` does exactly this and writes the role → index map). Then `container piece_chest_wood 0..3`
-   to confirm `claim=True ui=True`.
-4. **Teaching, on the client:**
-   - `give CopperScrap 5` (the probe's `give` puts it in the player's pockets),
-   - `alt husnisse_nisse` → the log must show `[Teach] watching` on the server and the nisse's hover
-     must read "The nisse is watching…",
-   - `open piece_chest_wood 3` then `move piece_chest_wood CopperScrap 5` (the probe's `move` is a real
-     `MoveItemToThis`, the same call a drag makes),
-   - `close`, then `husnisse container piece_chest_wood 3` on the server must read
-     `claim=True … ui=True` and the client's `containers` dump must show `net=on rule=custom:1`.
-   - `alt husnisse_nisse` again, `move` a stack into chest 2: its rule must stay `none` (the control).
-5. **The ledger, on the client:**
-   - `close`, `ledger` (the probe opens the inventory and calls `LedgerUi.Toggle`), `ledgerpanel` —
-     assert `active=True`, the claim line carries `container(s)` and `unclassified`, and one row is
-     marked `?` (the unclassified chest),
-   - `click HusnisseLedgerRow0` (select the first chest), `click HusnisseLedgerCatMetals` — the row
-     label becomes `cat:metals`, and `open piece_chest_wood <same>` + `ui` must show the container
-     window's rule label reading `Metals` (one writer, two surfaces),
-   - `click HusnisseLedgerNet` → the row's dot fills and `husnisse_rule list` agrees,
-   - `click HusnisseLedgerBlacklist` → `husnisse container … blacklisted=True ui=False`,
-   - `click HusnisseLedgerPickupMetals` (twice: off, on) → `husnisse status` `pickup=` changes,
-   - `shot ledger` for the panel, `shot ledger-rule` for the chest window after the ledger edit.
-6. Copy the evidence: `run.sh stage` then `scp` the zip; keep the client's `LogOutput.log` gate lines,
-   the server's `Husnisse.log`, and the screenshots next to this file.
-7. Record the results here (a table like `RESULT.md`'s headless one) and update `docs/ROADMAP.md`
-   0.3.1's "Met …" sentence with the client proof.
+## What each check needs
 
-## What a pass looks like
+| Check | Probe commands |
+|---|---|
+| teaching | `alt husnisse_nisse`, `give <item> <n>`, `stand piece_chest_wood <idx>`, `open …`, `move …`, `close`, `containers` |
+| ledger open | `close`, `ledger`, `ledgerpanel` |
+| classify | `click HusnisseLedgerRow<idx>`, `click HusnisseLedgerCatMetals`, `ledgerpanel`, then `close`, `open …`, `ui` |
+| network | `click HusnisseLedgerNet` — read it back on the **chest strip**, not in the panel: the panel redraws only after the server's ack (about a second) |
+| blacklist | `click HusnisseLedgerBlacklist`, then `open …` → `ui` must show `strip=False` with `win=True` |
+| pickup | `click HusnisseLedgerPickupMetals` → `[Ledger] pickup …` in the client diagnostics, and `pickup=` in the server's `husnisse status` |
 
-- The ledger opens and closes with the inventory, lists the claim's containers, and the buttons change
-  the same rule the chest's own window shows.
-- Alt on the nisse + a sample in a chest writes `net=on rule=custom:1`; the same move with nobody
-  watching writes nothing.
-- Screenshots of the panel and of the chest window carrying the ledger's edit.
+## Traps that cost time
+
+- A `close` while a container is open leaves the inventory in a state where the next `ledger` opens and
+  is hidden again within a second. Close first, wait ~5 s, then `ledger`, and read the panel in the
+  same batch as the click you want to verify.
+- Anything spawned before the client is in world is thrown away by the zone system. Build the fixture
+  after `gc ready`.
+- The probe's `give` can answer `item=False` when the slot it is told to use is occupied; carry a
+  sample out of a chest (`take`) or pick a free slot when a phase needs an item in the pockets.

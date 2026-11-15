@@ -1,0 +1,3 @@
+copied server-husnisse.log
+copied server-bepinex.log
+copied server-harness.log

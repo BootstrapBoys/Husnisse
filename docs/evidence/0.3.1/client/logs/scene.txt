@@ -1,0 +1,14 @@
+gc where player=-5.77,33.85,0.42 nisse=- peers=1
+base x=-5.77 y=33.85 z=0.42 -> deck 34.10
+wrote /home/hermes/.hermes/cache/scratch/gate-031-scene.cmd (25 floor pieces, 4 chests)
+IDX_wood=0 CHEST_wood="-8 0"
+IDX_spare=1 CHEST_spare="-6 -2"
+IDX_control=2 CHEST_control="-6 2"
+IDX_copper=3 CHEST_copper="-4 0"
+gc where player=-5.54,33.85,0.87 nisse=- peers=1
+base x=-5.54 y=33.85 z=0.87 -> deck 34.10
+wrote /home/hermes/.hermes/cache/scratch/gate-031-scene.cmd (25 floor pieces, 4 chests)
+IDX_wood=0 CHEST_wood="-8 1"
+IDX_spare=1 CHEST_spare="-6 -1"
+IDX_control=2 CHEST_control="-6 3"
+IDX_copper=3 CHEST_copper="-4 1"
