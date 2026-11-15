@@ -27,7 +27,7 @@ mod list does not match; a seven-plugin client against the 19-plugin pack is ref
 | Nisse walks the deck, continuous, ~2 m/s | **PASS** | client positions once a second: 1.37 → 3.06 → 4.94 → 6.87 → 8.77 (1.9 m/s); no step above 0.13 m in a frame |
 | Walk animation plays (legs, not sliding) | **PASS** | animator `forward_speed` 1.77–1.92 while moving, 0.00 idle; `walk-nisse-0.2.1.jpg` mid-stride |
 | Closed room: the nisse fades instead of sticking | **PASS** | client `NisseFade.Alpha` 1.00 → 0.24 → warp → 0.33 → 0.83 → 1.00; `fade-threshold-0.2.1.jpg` |
-| Items still reach the chest through the fade | **PASS** | server chest coal 0 → 3 → 4 → 5 → 6 while the doorway stayed closed; `fades=4` |
+| Items still reach the chest through the fade | **PASS** | with the doorway closed the chest kept filling: 3 → 5 coal in the session at y = 41 and 2 → 4 at y = 55, with `fades=2` and `fades=4` on the server |
 | Walkable doorway is walked, not faded | **PASS (0.2.0 build)** | doorway open, three coal delivered, client logged no fade; the walking code is unchanged in 0.2.1 |
 | Debug log covers the legs | **PASS** | 13 `leg ->`, 12 `leg blocked`, 12 `fade across to`, 3 `leg waiting for navmesh` in `server-bepinex-live.log` |
 | "The way is shut. The nisse steps through." on the client HUD | **NOT OBSERVED** | three separate fades photographed at 0.15–0.3 s intervals, no HUD line in any frame (see below) |

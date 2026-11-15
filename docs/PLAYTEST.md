@@ -27,8 +27,8 @@ exercised.
       then drop three items near the bowl. *(deck, bowl and chest built by the scene driver; the bowl
       starts at satiety 25, so it worked without a food item being placed)*
 - [x] The nisse **walks** to each drop in turn, then to the chest, stands at it for about a second, and
-      the items appear in the chest. Then it walks back to its bowl. *(chest coal 0 → 3 → 6; the
-      transfer pause is 1 s by code and was not timed separately)*
+      the items appear in the chest. Then it walks back to its bowl. *(chest filled while the doorway was
+      closed: 3 → 5 and 2 → 4; the transfer pause is 1 s by code and was not timed separately)*
 - [x] Watch the whole trip: the movement is continuous at walking pace (about 2 m/s). If it jumps more
       than a stride, that is a finding. *(1.9 m/s per-second positions, largest single-frame step
       0.13 m while walking)*
