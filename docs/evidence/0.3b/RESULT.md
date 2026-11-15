@@ -3,14 +3,17 @@
 Run 2026-11-15 on the rig's spare tree `V:\ValheimTest2` (port 2656, world `MTTest`), dedicated
 server, no client. Same game build as the live server (`build_parity: MATCH E5E761C58099`).
 
-- `Husnisse.dll` sha256 `3298e3b640c01c1e8ecdcf89c1dd1b81035afbd34180bad7dddd9fd3d6e73174`
+- `Husnisse.dll` sha256 `35306282c4b0071041e201c729d93840ff790027dc9eb9bd04596075333c75f9`
 - plugins in the tree: Husnisse, TestHarness, Jotunn 2.30.2, ConditionalConfigSync 1.0.11,
   ValheimModding-YamlDotNet (detector + 16.3.1), ServerSoftStop, MineTogether
+- the whole log of the run is `raw.log`: the 0.3a rule scenario first (no regression), then both
+  0.3b scenarios, then `Husnisse.log`
 
 ## What was run
 
 | Scenario | Result | Proves |
 |---|---|---|
+| `testrig/scenarios/husnisse-03a-rules.cmd` | **PASS 16/16** | 0.3a's rule storage still behaves: 20 containers, 20 rules, `none`, an unknown `v2`, the blacklist |
 | `testrig/scenarios/husnisse-03b-routing.cmd` | **PASS 21/21** | a metal lands in the priority-1 metals chest and not the priority-0 one; wood lands in the wood chest and a second wood stack joins it; an item on a saved list lands there; an item no rule claims lands in Overflow; with the overflow chest off the network it lands in the plain networked chest; the deposit chest receives nothing; every landing names its reason |
 | `testrig/scenarios/husnisse-03b-rules-edit.cmd` | **PASS 10/10** | the suggestion reads contents (2 metals stacks to 1 wood → metals); the first toggle writes it (`v1;k=cat;c=metals`); priority is stored in the rule (`p=2`); copy writes both neighbours and is idempotent (`targets=2 written=2`, then `written=0`) |
 
