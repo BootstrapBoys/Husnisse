@@ -169,7 +169,7 @@ the server-side half.
 cd /home/hermes/projects/valheim/testrig
 RIG_DST='V:\ValheimOrders' RIG_PORT=2856 ./rig.sh provision
 # copy CCS/YamlDotNet/JsonDotNet from the live install, the fixture from V:\ValheimTest, and the
-# Husnisse cfg with Feeding Required=false + Debug Logging=true (see the card's setup-orders-tree.ps1)
+# Husnisse cfg with Feeding Required=false + Debug Logging=true (see setup-orders-tree.ps1 in this folder)
 RIG_DST='V:\ValheimOrders' RIG_PORT=2856 ./rig.sh deploy <build>/Husnisse.dll BootstrapBoys-Husnisse
 RIG_DST='V:\ValheimOrders' RIG_PORT=2856 ./rig.sh deploy artifacts/harness/TestHarness.dll BootstrapBoys-TestHarness
 RIG_DST='V:\ValheimOrders' RIG_PORT=2856 ./rig.sh fixture restore
