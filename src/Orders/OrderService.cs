@@ -270,6 +270,7 @@ namespace Husnisse.Orders
 
             var queued = 0;
             var total = Mathf.Clamp(count, 0, MaxHandover);
+            var network = StorageRouter.NetworkCandidates(claim);
 
             for (var i = 0; i < total; i++)
             {
@@ -316,7 +317,7 @@ namespace Husnisse.Orders
                 // The drop exists either way — the player handed it over and can see it — but only
                 // one the network accepts is queued, so an unstorable stack lies by the bowl instead
                 // of cycling through the queue for ever.
-                if (StorageRouter.Decide(claim, item, null, null).Found) FlowQueue.EnqueueDrop(claim, drop);
+                if (StorageRouter.Decide(claim, network, item, null, null).Found) FlowQueue.EnqueueDrop(claim, drop);
                 else Note("empty pockets left on the ground: " + item.m_shared.m_name + " (no chest accepts it)");
                 queued++;
             }
@@ -365,6 +366,7 @@ namespace Husnisse.Orders
             if (inventory == null) return 0;
 
             var items = PocketItems(player);
+            var network = StorageRouter.NetworkCandidates(claim);
             var queued = 0;
             var unwanted = 0;
             foreach (var item in items)
@@ -372,7 +374,7 @@ namespace Husnisse.Orders
                 // Only stacks with somewhere to go are queued: a stack nothing accepts would be a
                 // promise the nisse cannot keep, so it stays in the player's pocket and the answer
                 // says how many really move.
-                if (!StorageRouter.Decide(claim, item, null, null).Found)
+                if (!StorageRouter.Decide(claim, network, item, null, null).Found)
                 {
                     unwanted++;
                     continue;
@@ -391,6 +393,7 @@ namespace Husnisse.Orders
             var inventory = source.GetInventory();
             if (inventory == null) return 0;
 
+            var network = StorageRouter.NetworkCandidates(claim);
             var queued = 0;
             var unwanted = 0;
             for (var i = 0; i < inventory.NrOfItems(); i++)
@@ -398,7 +401,7 @@ namespace Husnisse.Orders
                 var item = inventory.GetItem(i);
                 if (item == null || item.m_shared == null) continue;
 
-                if (!StorageRouter.Decide(claim, item, null, source).Found)
+                if (!StorageRouter.Decide(claim, network, item, null, source).Found)
                 {
                     unwanted++;
                     continue;
