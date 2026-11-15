@@ -242,3 +242,73 @@ this client the chest was addressed through a ghost object, so the order never l
 
 These are rig/scene constraints; the follow-up card is filed with them so the Tidy client check and
 the landing check are cheap next time.
+
+## Client gate — Tidy and the landing, proven (card `t_fa64f594`, 2026-11-15 08:52–08:58)
+
+Second session. Same build (`165f728b`), same probe (`c00c6bd4`), same tree (`V:\ValheimOrders`,
+2856), fixture restored and the client relaunched for the scene (a relaunch is the only thing that
+clears the ghost containers the first session left behind).
+
+**Why the first session's landing moved 0 — settled, not guessed.** The server's own debug line was
+`[debug][Flow] trip deposit … moved=0 target=piece_chest_wood(Clone) at=(2.8,-0.5) why=no rule
+remaining=0`. `remaining=0` means the tickets were *removed*, not requeued, and for an Empty Pockets
+trip the tickets are `FlowSource.Ground`, whose `IsValid()` is `Drop != null`
+(`src/Flow/FlowTicket.cs`). The drops had been destroyed because the player stood **1.95 m** from the
+nisse (`state player=0.88,34.35,1.44`, `state nisse pos=-0.99,34.35,2.00`) and re-picked its own
+handover. Nothing in `Land()` is wrong. The fix is geometry: the handover drops spawn at the nisse's
+feet (`origin = nisse.transform.position` in `OrderService.MaterialisePockets`), which is the bowl
+plus 1.5 m, so the bowl must stand **≥ 4.5 m from the player**.
+
+**The scene** (`make-scene-at.py`, generated for the position the client reported at `gc ready`,
+player `-202584743` at `-3.06, 34.17, -0.65`; the player is never moved):
+
+| Piece | Where | Why |
+|---|---|---|
+| bowl | player + (-4.60, -0.40) = `-7.66, -1.05` | 4.6 m away, so the drop zone stays out of pickup range |
+| chest A, source, 6 coal | player + (1.50, 1.70) = `-1.56, 1.05` | 2.3 m away and therefore the **nearest** container — `alt <prefab>` on the client resolves the nearest one |
+| chest B, destination | player + (-0.90, 3.20) = `-3.96, 2.55` | **smaller x than chest A**, so it is index 0 for `console husnisse_rule net piece_chest_wood on 0`, `fill` and `container` (all of which index containers sorted by x then z) |
+| 12 wood_floor tiles | player's own y, pieces 0.10 above | the dedicated server has no terrain colliders |
+
+Server-side state at scene build: `container piece_chest_wood 0` → `stacks=0 items=0`;
+`container piece_chest_wood[1]` → `stacks=1 items=6`; `rule -302931902:15531 -4,2.6 net=on rule=none`.
+
+**Results, second pass** (witnessed in `client/logs/client-bepinex-orders.log`,
+`client/logs/server-husnisse-orders.log`, `client/logs/server-harness-orders.log`):
+
+| Check | Result | Evidence (client) | Evidence (server) |
+|---|---|---|---|
+| **Tidy from the client** | **PASS** | `interact piece_chest_wood(Clone) alt=True -> True`; `hud center='The nisse files 1 stack(s).'` | `[Orders] tidy queued=1 unmatched=0 claim=-302931902:15531 source=piece_chest_wood(Clone)`; `[Flow] trip stacks=1 target=… at=(-4,2.6)`; `[Flow] landed moved=1 … at=(-4,2.6)` |
+| **Items landing in the destination chest** | **PASS** | `use husnisse_nisse` → `interact NisseHands alt=False -> True`; `hud center='The nisse takes 2 stack(s).'`; `inv stacks=2 items=18` → `inv stacks=0 items=0` | `[Orders] empty pockets queued=2`; `[Flow] trip stacks=2 … at=(-4,2.6) why=no rule remembered`; `[Flow] landed moved=2 …` |
+| **Source empty, destination holds the items** | **PASS** | (the client's own `containers` line reads 0 — see below) | in-scene dump 120 s later: `container piece_chest_wood 0` → **`stacks=2 items=24`**; `container piece_chest_wood[1]` → **`stacks=0 items=0`** |
+
+24 items in the destination = 6 coal (Tidy) + 6 coal + 12 wood (Empty Pockets): every stack that was
+queued was filed, and the source chest emptied to nothing.
+
+A first pass on the same geometry (08:47, destination `11.7, 9.2`) also passed with one stack each way
+(`tidy queued=1` / `landed moved=1`, `empty pockets queued=1` / `landed moved=1`); it seeded only one
+stack because the probe's `give <item> <amount> <slotY>` puts the stack in an explicit grid row and the
+second `give` reused row 1, which the coal already occupied. `t04-give.cmd` now seeds rows 1 and 2.
+
+**Two rig notes that made the difference, both worth carrying forward:**
+
+- **A client-spawned copy of a server-spawned chest reads its contents stale.** The client's
+  `containers` line shows `stacks=0 items=0` for both chests even *after* the server has 24 items in
+  the destination — the client owns its copy of the piece and never loads the server's `items` blob.
+  So the chest contents must be read **on the server**, from an in-scene `container` dump inside the
+  scene's hold; the client's own read is not that evidence. (The client's *positions* and `net=` flags
+  are correct, so it still proves which chest is which.)
+- **The stage folder's canonical names are shared between cards.** `C:\Users\Hermes\stage\Husnisse.dll`
+  and `HusnisseGateClientProbe.dll` were overwritten by another card's build (91b9af22) between this
+  card's first and second attempts; an install that reads them installs the wrong build. Install from
+  the uniquely named `Husnisse-orders-165f728b.dll` / `HusnisseGateClientProbe-orders-c00c6bd4.dll`
+  (`client/install-orders-165f728b.ps1`), and verify the SHA-256 before launching.
+- **One Valheim client at a time.** Two instances share `BepInEx/LogOutput.log`; the second launch
+  truncates the first one's log and only one process survives. The 0.3d card's run took the client at
+  07:59 (it launches `valheim.exe -joinserverwithcharacter …:2556`) and killed this card's instance
+  mid-run. Check the running client's `joinserverwithcharacter` port and the rig's command lock before
+  installing.
+
+**Verdict:** both previously unproven checks now pass from a real client, and the destination chest's
+contents are proven server-side. The order channel is closed: Alt on the bowl, Alt on a chest (Tidy)
+and interact with the nisse (Empty Pockets) all reach the server and are executed there.
+

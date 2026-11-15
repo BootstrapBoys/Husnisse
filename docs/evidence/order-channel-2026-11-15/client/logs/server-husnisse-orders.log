@@ -1,0 +1,26 @@
+Husnisse 0.3.0
+started 2026-11-15 08:52:18
+
+
+== world ready @ 08:52:48 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=False claims=0 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0
+
+== claim registered @ 08:53:58 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=False claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0
+claim -302931902:15531 source=native ward=0:0 owner=-202584743 r=20 center=-7.7,-1.1 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none
+husnisse rule piece_chest_wood[0] -4,2.6 net=on rule=none
+husnisse rule piece_chest_wood[0] -4,2.6 net=on rule=none
+husnisse rule piece_chest_wood[1] -1.6,1.1 net=off rule=none
+husnisse rules listed=2
+[Orders] tidy queued=1 unmatched=0 claim=-302931902:15531 source=piece_chest_wood(Clone)
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(-4,2.6) why=no rule claim=-302931902:15531
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(-4,2.6) why=no rule
+[Orders] empty pockets queued=2 claim=-302931902:15531
+[Flow] trip stacks=2 target=piece_chest_wood(Clone) at=(-4,2.6) why=no rule remembered claim=-302931902:15531
+[Flow] landed moved=2 target=piece_chest_wood(Clone) at=(-4,2.6) why=no rule remembered

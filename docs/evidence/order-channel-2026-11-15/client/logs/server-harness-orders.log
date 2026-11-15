@@ -1,0 +1,275 @@
+13:52:19.593 harness ready - write commands to V:\ValheimOrders\BepInEx\config\harness.cmd
+13:52:19.593 scene: not ready  server: False
+13:52:48.888 harness patch: object culling gated by HoldObjects
+13:53:51.931 mt master: no plugin instance
+13:53:51.931 scenario loaded: 37 command(s)
+13:53:51.932 > cleanup
+13:53:52.095 mt master: no plugin instance
+13:53:52.095 cleanup done
+13:53:52.399 > hold on
+13:53:52.400 hold: on (culling suppressed)
+13:53:52.903 > spawn wood_floor -7.06 34.07 -0.65
+13:53:52.910 spawned wood_floor(Clone) at (-7.06, 34.07, -0.65)  zdo=-302931902:15519  owner=-302931902  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:53:52.911   comp Transform on wood_floor(Clone)
+13:53:52.912   comp Piece on wood_floor(Clone)
+13:53:52.912   comp ZNetView on wood_floor(Clone)
+13:53:52.912   comp WearNTear on wood_floor(Clone)
+13:53:52.912   comp LODGroup on wood_floor(Clone)
+13:53:52.912   comp Transform on floor_2x2_snow
+13:53:52.912   comp MeshFilter on floor_2x2_snow
+13:53:52.912   comp MeshRenderer on floor_2x2_snow
+13:53:52.912   comp Transform on collider
+13:53:52.912   comp BoxCollider on collider
+13:53:52.912   comp Transform on WET
+13:53:52.912   comp ParticleSystem on WET
+13:53:53.404 > spawn wood_floor -7.06 34.07 1.35
+13:53:53.406 spawned wood_floor(Clone) at (-7.06, 34.07, 1.35)  zdo=-302931902:15520  owner=-302931902  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:53:53.406   comp Transform on wood_floor(Clone)
+13:53:53.406   comp Piece on wood_floor(Clone)
+13:53:53.406   comp ZNetView on wood_floor(Clone)
+13:53:53.406   comp WearNTear on wood_floor(Clone)
+13:53:53.406   comp LODGroup on wood_floor(Clone)
+13:53:53.406   comp Transform on floor_2x2_snow
+13:53:53.406   comp MeshFilter on floor_2x2_snow
+13:53:53.406   comp MeshRenderer on floor_2x2_snow
+13:53:53.406   comp Transform on collider
+13:53:53.406   comp BoxCollider on collider
+13:53:53.406   comp Transform on WET
+13:53:53.406   comp ParticleSystem on WET
+13:53:53.908 > spawn wood_floor -7.06 34.07 3.35
+13:53:53.910 spawned wood_floor(Clone) at (-7.06, 34.07, 3.35)  zdo=-302931902:15521  owner=-302931902  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:53:53.910   comp Transform on wood_floor(Clone)
+13:53:53.910   comp Piece on wood_floor(Clone)
+13:53:53.910   comp ZNetView on wood_floor(Clone)
+13:53:53.910   comp WearNTear on wood_floor(Clone)
+13:53:53.910   comp LODGroup on wood_floor(Clone)
+13:53:53.910   comp Transform on floor_2x2_snow
+13:53:53.910   comp MeshFilter on floor_2x2_snow
+13:53:53.910   comp MeshRenderer on floor_2x2_snow
+13:53:53.910   comp Transform on collider
+13:53:53.910   comp BoxCollider on collider
+13:53:53.910   comp Transform on WET
+13:53:53.910   comp ParticleSystem on WET
+13:53:54.409 > spawn wood_floor -5.06 34.07 -0.65
+13:53:54.410 spawned wood_floor(Clone) at (-5.06, 34.07, -0.65)  zdo=-302931902:15522  owner=-302931902  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:53:54.410   comp Transform on wood_floor(Clone)
+13:53:54.410   comp Piece on wood_floor(Clone)
+13:53:54.410   comp ZNetView on wood_floor(Clone)
+13:53:54.410   comp WearNTear on wood_floor(Clone)
+13:53:54.410   comp LODGroup on wood_floor(Clone)
+13:53:54.410   comp Transform on floor_2x2_snow
+13:53:54.410   comp MeshFilter on floor_2x2_snow
+13:53:54.410   comp MeshRenderer on floor_2x2_snow
+13:53:54.410   comp Transform on collider
+13:53:54.410   comp BoxCollider on collider
+13:53:54.410   comp Transform on WET
+13:53:54.410   comp ParticleSystem on WET
+13:53:54.913 > spawn wood_floor -5.06 34.07 1.35
+13:53:54.914 spawned wood_floor(Clone) at (-5.06, 34.07, 1.35)  zdo=-302931902:15523  owner=-302931902  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:53:54.914   comp Transform on wood_floor(Clone)
+13:53:54.914   comp Piece on wood_floor(Clone)
+13:53:54.914   comp ZNetView on wood_floor(Clone)
+13:53:54.914   comp WearNTear on wood_floor(Clone)
+13:53:54.914   comp LODGroup on wood_floor(Clone)
+13:53:54.914   comp Transform on floor_2x2_snow
+13:53:54.914   comp MeshFilter on floor_2x2_snow
+13:53:54.914   comp MeshRenderer on floor_2x2_snow
+13:53:54.914   comp Transform on collider
+13:53:54.914   comp BoxCollider on collider
+13:53:54.914   comp Transform on WET
+13:53:54.915   comp ParticleSystem on WET
+13:53:55.414 > spawn wood_floor -5.06 34.07 3.35
+13:53:55.415 spawned wood_floor(Clone) at (-5.06, 34.07, 3.35)  zdo=-302931902:15524  owner=-302931902  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:53:55.415   comp Transform on wood_floor(Clone)
+13:53:55.415   comp Piece on wood_floor(Clone)
+13:53:55.415   comp ZNetView on wood_floor(Clone)
+13:53:55.415   comp WearNTear on wood_floor(Clone)
+13:53:55.415   comp LODGroup on wood_floor(Clone)
+13:53:55.415   comp Transform on floor_2x2_snow
+13:53:55.415   comp MeshFilter on floor_2x2_snow
+13:53:55.415   comp MeshRenderer on floor_2x2_snow
+13:53:55.415   comp Transform on collider
+13:53:55.415   comp BoxCollider on collider
+13:53:55.415   comp Transform on WET
+13:53:55.415   comp ParticleSystem on WET
+13:53:55.918 > spawn wood_floor -3.06 34.07 -0.65
+13:53:55.920 spawned wood_floor(Clone) at (-3.06, 34.07, -0.65)  zdo=-302931902:15525  owner=-302931902  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:53:55.920   comp Transform on wood_floor(Clone)
+13:53:55.920   comp Piece on wood_floor(Clone)
+13:53:55.920   comp ZNetView on wood_floor(Clone)
+13:53:55.920   comp WearNTear on wood_floor(Clone)
+13:53:55.920   comp LODGroup on wood_floor(Clone)
+13:53:55.920   comp Transform on floor_2x2_snow
+13:53:55.920   comp MeshFilter on floor_2x2_snow
+13:53:55.920   comp MeshRenderer on floor_2x2_snow
+13:53:55.920   comp Transform on collider
+13:53:55.920   comp BoxCollider on collider
+13:53:55.920   comp Transform on WET
+13:53:55.920   comp ParticleSystem on WET
+13:53:56.419 > spawn wood_floor -3.06 34.07 1.35
+13:53:56.420 spawned wood_floor(Clone) at (-3.06, 34.07, 1.35)  zdo=-302931902:15526  owner=-302931902  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:53:56.420   comp Transform on wood_floor(Clone)
+13:53:56.420   comp Piece on wood_floor(Clone)
+13:53:56.420   comp ZNetView on wood_floor(Clone)
+13:53:56.420   comp WearNTear on wood_floor(Clone)
+13:53:56.420   comp LODGroup on wood_floor(Clone)
+13:53:56.420   comp Transform on floor_2x2_snow
+13:53:56.420   comp MeshFilter on floor_2x2_snow
+13:53:56.420   comp MeshRenderer on floor_2x2_snow
+13:53:56.420   comp Transform on collider
+13:53:56.420   comp BoxCollider on collider
+13:53:56.420   comp Transform on WET
+13:53:56.420   comp ParticleSystem on WET
+13:53:56.924 > spawn wood_floor -3.06 34.07 3.35
+13:53:56.925 spawned wood_floor(Clone) at (-3.06, 34.07, 3.35)  zdo=-302931902:15527  owner=-302931902  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:53:56.925   comp Transform on wood_floor(Clone)
+13:53:56.925   comp Piece on wood_floor(Clone)
+13:53:56.925   comp ZNetView on wood_floor(Clone)
+13:53:56.925   comp WearNTear on wood_floor(Clone)
+13:53:56.925   comp LODGroup on wood_floor(Clone)
+13:53:56.925   comp Transform on floor_2x2_snow
+13:53:56.925   comp MeshFilter on floor_2x2_snow
+13:53:56.925   comp MeshRenderer on floor_2x2_snow
+13:53:56.925   comp Transform on collider
+13:53:56.925   comp BoxCollider on collider
+13:53:56.925   comp Transform on WET
+13:53:56.926   comp ParticleSystem on WET
+13:53:57.425 > spawn wood_floor -1.06 34.07 -0.65
+13:53:57.426 spawned wood_floor(Clone) at (-1.06, 34.07, -0.65)  zdo=-302931902:15528  owner=-302931902  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:53:57.427   comp Transform on wood_floor(Clone)
+13:53:57.427   comp Piece on wood_floor(Clone)
+13:53:57.427   comp ZNetView on wood_floor(Clone)
+13:53:57.427   comp WearNTear on wood_floor(Clone)
+13:53:57.427   comp LODGroup on wood_floor(Clone)
+13:53:57.427   comp Transform on floor_2x2_snow
+13:53:57.427   comp MeshFilter on floor_2x2_snow
+13:53:57.427   comp MeshRenderer on floor_2x2_snow
+13:53:57.427   comp Transform on collider
+13:53:57.427   comp BoxCollider on collider
+13:53:57.427   comp Transform on WET
+13:53:57.427   comp ParticleSystem on WET
+13:53:57.929 > spawn wood_floor -1.06 34.07 1.35
+13:53:57.930 spawned wood_floor(Clone) at (-1.06, 34.07, 1.35)  zdo=-302931902:15529  owner=-302931902  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:53:57.931   comp Transform on wood_floor(Clone)
+13:53:57.931   comp Piece on wood_floor(Clone)
+13:53:57.931   comp ZNetView on wood_floor(Clone)
+13:53:57.931   comp WearNTear on wood_floor(Clone)
+13:53:57.931   comp LODGroup on wood_floor(Clone)
+13:53:57.931   comp Transform on floor_2x2_snow
+13:53:57.931   comp MeshFilter on floor_2x2_snow
+13:53:57.931   comp MeshRenderer on floor_2x2_snow
+13:53:57.931   comp Transform on collider
+13:53:57.931   comp BoxCollider on collider
+13:53:57.931   comp Transform on WET
+13:53:57.931   comp ParticleSystem on WET
+13:53:58.432 > spawn wood_floor -1.06 34.07 3.35
+13:53:58.433 spawned wood_floor(Clone) at (-1.06, 34.07, 3.35)  zdo=-302931902:15530  owner=-302931902  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:53:58.433   comp Transform on wood_floor(Clone)
+13:53:58.433   comp Piece on wood_floor(Clone)
+13:53:58.433   comp ZNetView on wood_floor(Clone)
+13:53:58.433   comp WearNTear on wood_floor(Clone)
+13:53:58.433   comp LODGroup on wood_floor(Clone)
+13:53:58.433   comp Transform on floor_2x2_snow
+13:53:58.433   comp MeshFilter on floor_2x2_snow
+13:53:58.433   comp MeshRenderer on floor_2x2_snow
+13:53:58.433   comp Transform on collider
+13:53:58.433   comp BoxCollider on collider
+13:53:58.433   comp Transform on WET
+13:53:58.433   comp ParticleSystem on WET
+13:53:58.935 > spawn husnisse_bowl -7.66 34.17 -1.05 -202584743
+13:53:58.983 spawned husnisse_bowl(Clone) at (-7.66, 34.17, -1.05)  zdo=-302931902:15531  owner=-302931902  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:53:58.983   comp Transform on husnisse_bowl(Clone)
+13:53:58.983   comp Piece on husnisse_bowl(Clone)
+13:53:58.983   comp ZNetView on husnisse_bowl(Clone)
+13:53:58.983   comp WearNTear on husnisse_bowl(Clone)
+13:53:58.983   comp LODGroup on husnisse_bowl(Clone)
+13:53:58.983   comp Container on husnisse_bowl(Clone)
+13:53:58.983   comp BowlPiece on husnisse_bowl(Clone)
+13:53:58.983   comp Transform on roof_check_pint
+13:53:58.983   comp Transform on connectionEffectPoint
+13:53:58.983   comp Transform on Capsule_blockplayer
+13:53:58.983   comp CapsuleCollider on Capsule_blockplayer
+13:53:58.983   comp Transform on Capsule_interact
+13:53:59.466 > spawn piece_chest_wood -1.56 34.17 1.05
+13:53:59.466 spawned piece_chest_wood(Clone) at (-1.56, 34.17, 1.05)  zdo=-302931902:15533  owner=-302931902  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:53:59.467   comp Transform on piece_chest_wood(Clone)
+13:53:59.467   comp ZNetView on piece_chest_wood(Clone)
+13:53:59.467   comp Container on piece_chest_wood(Clone)
+13:53:59.467   comp Piece on piece_chest_wood(Clone)
+13:53:59.467   comp WearNTear on piece_chest_wood(Clone)
+13:53:59.467   comp Transform on floor_2x2_snow
+13:53:59.467   comp MeshFilter on floor_2x2_snow
+13:53:59.467   comp MeshRenderer on floor_2x2_snow
+13:53:59.467   comp LODGroup on floor_2x2_snow
+13:53:59.467   comp Transform on New
+13:53:59.467   comp LODGroup on New
+13:53:59.467   comp Transform on woodchest
+13:53:59.967 > spawn piece_chest_wood -3.96 34.17 2.55
+13:53:59.967 spawned piece_chest_wood(Clone) at (-3.96, 34.17, 2.55)  zdo=-302931902:15534  owner=-302931902  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:53:59.967   comp Transform on piece_chest_wood(Clone)
+13:53:59.967   comp ZNetView on piece_chest_wood(Clone)
+13:53:59.967   comp Container on piece_chest_wood(Clone)
+13:53:59.967   comp Piece on piece_chest_wood(Clone)
+13:53:59.967   comp WearNTear on piece_chest_wood(Clone)
+13:53:59.967   comp Transform on floor_2x2_snow
+13:53:59.967   comp MeshFilter on floor_2x2_snow
+13:53:59.968   comp MeshRenderer on floor_2x2_snow
+13:53:59.968   comp LODGroup on floor_2x2_snow
+13:53:59.968   comp Transform on New
+13:53:59.968   comp LODGroup on New
+13:53:59.968   comp Transform on woodchest
+13:54:00.470 > wait 3
+13:54:00.470 wait: 3s (server keeps ticking)
+13:54:03.488 > husnisse claims
+13:54:03.904 husnisse claim -302931902:15531 source=native ward=0:0 owner=-202584743 r=20 native_r=20 native_owner=-202584743 suppressed=False refusal='' containers=2
+13:54:04.043 husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=2 wards=0 ward_api=False
+13:54:04.348 > fill husnisse_bowl CookedMeat 3
+13:54:04.363 fill husnisse_bowl CookedMeatx3 added=True stacks=1 items=3
+13:54:04.852 > console husnisse_rule net piece_chest_wood on 0
+13:54:04.854 console > husnisse_rule net piece_chest_wood on 0
+13:54:05.355 > console husnisse_rule list
+13:54:05.357 console > husnisse_rule list
+13:54:05.857 > fill piece_chest_wood Coal 6 1
+13:54:05.868 fill piece_chest_wood Coalx6 added=True stacks=1 items=6
+13:54:06.360 > zdo husnisse_bowl husnisse_bowl_init
+13:54:06.375 zdo husnisse_bowl.husnisse_bowl_init = int=1 bool=True
+13:54:06.861 > zdo husnisse_bowl husnisse_bowl_satiety
+13:54:06.871 zdo husnisse_bowl.husnisse_bowl_satiety = float=25
+13:54:07.366 > zdo piece_chest_wood husnisse_net 0
+13:54:07.378 zdo piece_chest_wood.husnisse_net = int=1 bool=True
+13:54:07.866 > zdo piece_chest_wood husnisse_net 1
+13:54:07.879 zdo piece_chest_wood[1].husnisse_net = absent
+13:54:08.371 > container piece_chest_wood 0
+13:54:08.384 container piece_chest_wood stacks=0 items=0
+13:54:08.871 > container piece_chest_wood 1
+13:54:08.881 container piece_chest_wood[1] stacks=1 items=6
+13:54:09.375 > husnisse claims
+13:54:09.773 husnisse claim -302931902:15531 source=native ward=0:0 owner=-202584743 r=20 native_r=20 native_owner=-202584743 suppressed=False refusal='' containers=2
+13:54:09.914 husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=2 wards=0 ward_api=False
+13:54:10.221 > husnisse status
+13:54:10.372 husnisse status [config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=False
+13:54:10.372 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+13:54:10.372 husnisse status schema=2 feeding_required=False claims=1 trips=0 nisses=1 bowl_piece=present
+13:54:10.372 husnisse status rule -302931902:15531 -4,2.6 net=on rule=none
+13:54:10.372 husnisse status [rules] containers=1 ruled=0
+13:54:10.372 husnisse status claim -302931902:15531 source=native ward=0:0 owner=-202584743 r=20 center=-7.7,-1.1 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=1 pantry=4x1 queued=0 trip=idle containers=2 stacks=1 nisse=yes
+13:54:10.372 husnisse status lines=6
+13:54:10.745 > wait 120
+13:54:10.745 wait: 120s (server keeps ticking)
+13:56:10.905 > container piece_chest_wood 0
+13:56:10.916 container piece_chest_wood stacks=2 items=24
+13:56:11.409 > container piece_chest_wood 1
+13:56:11.418 container piece_chest_wood[1] stacks=0 items=0
+13:56:11.910 > husnisse queue
+13:56:11.910 usage: husnisse claims | husnisse containers | husnisse status | husnisse preview <x> <z> [radius] [player]
+13:56:12.413 > husnisse status
+13:56:12.569 husnisse status [config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=False
+13:56:12.569 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+13:56:12.569 husnisse status schema=2 feeding_required=False claims=1 trips=0 nisses=1 bowl_piece=present
+13:56:12.569 husnisse status rule -302931902:15531 -4,2.6 net=on rule=none
+13:56:12.569 husnisse status [rules] containers=1 ruled=0
+13:56:12.569 husnisse status claim -302931902:15531 source=native ward=0:0 owner=-202584743 r=20 center=-7.7,-1.1 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=1 pantry=4x1 queued=0 trip=idle containers=2 stacks=2 nisse=yes
+13:56:12.570 husnisse status lines=6
+13:56:12.942 > wait 120
+13:56:12.942 wait: 120s (server keeps ticking)
+13:58:13.117 scenario done: PASS (0 assertions, 0 failed)

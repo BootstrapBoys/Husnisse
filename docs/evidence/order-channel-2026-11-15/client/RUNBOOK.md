@@ -86,3 +86,35 @@ Send one batch at a time and read the probe's log lines (`gc ...`) plus the serv
 A client sitting in world is **not** evidence: the hover line, the HUD lines and these server lines are.
 If a line is missing, read the server's `BsbLogs` and `LogOutput.log` for
 `order RPC dropped: sender=... claimed=...` — that is the identity path refusing, not a UI problem.
+
+## The scripted path (used on 2026-11-15, both checks PASS)
+
+The manual batches above were replaced by two scripts; both are in this folder and both were run
+against build `165f728b`:
+
+```bash
+# tree: reset to the fixture and booted first
+cd /home/hermes/projects/valheim/testrig
+RIG_DST='V:\ValheimOrders' RIG_PORT=2856 ./rig.sh fixture restore && \
+RIG_DST='V:\ValheimOrders' RIG_PORT=2856 ./rig.sh up
+
+# one unattended attempt: quit the client if it is up, install this card's build + probe,
+# join 2856, build the scene at the reported `gc ready` position, run the batches
+bash docs/evidence/order-channel-2026-11-15/client/full-pass.sh        # log: /tmp/full-pass.log
+```
+
+`full-pass.sh` refuses if the installed `Husnisse.dll` is not `165f728b` (the stage folder's canonical
+file names are shared with other cards — install from `Husnisse-orders-165f728b.dll` and
+`HusnisseGateClientProbe-orders-c00c6bd4.dll`). `run-tidy-gate.sh` is the inner half: generate the
+scene from a position, run it, drive `batches/t01…t06`.
+
+Two things the scripted path depends on:
+
+- **the client must be free.** Two Valheim processes share `BepInEx/LogOutput.log` and only one
+  survives, so check `(Get-CimInstance Win32_Process -Filter "Name='valheim.exe'").CommandLine` and the
+  rig command lock first; another card's run on `V:\ValheimTest` (2556) will kill this one.
+- **the chest contents are read on the server.** A client-spawned copy of a server-spawned chest
+  reports `stacks=0` even after the server has the items; the scene therefore dumps
+  `container piece_chest_wood 0/1` 120 s in (`make-scene-at.py`), and that dump is the evidence for
+  "the source emptied / the destination gained the coal".
+
