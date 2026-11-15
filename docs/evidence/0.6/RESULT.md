@@ -1,6 +1,6 @@
 # 0.6 — machines and four-way permissions: evidence
 
-Build: **Husnisse 0.6.0**, `artifacts/debug/Husnisse.dll` sha256 `2b0337920298`.
+Build: **Husnisse 0.6.0**, `artifacts/debug/Husnisse.dll` sha256 `31e0bd153aa3` (the 0.6.0 build; all three gates were re-run on it).
 Rig: `V:\ValheimTest` (dedicated server, port 2556, Jotunn 2.30.2, ConditionalConfigSync 1.0.11,
 YamlDotNet 16.3.1, TestHarness). No client was connected; nothing was released.
 
