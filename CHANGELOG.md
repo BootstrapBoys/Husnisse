@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+Internal only — the threshold fade is now played on peers.
+
+- A leg the nisse cannot walk now fades on **every** peer, not only where it was ordered. The fade RPC used the owner-addressed call, which on a dedicated server addresses the server itself: the body dissolved where nobody could see it and a connected client saw the nisse jump across the threshold instead of fading. Clients are addressed explicitly now, so the 0.45 s out / 0.45 s in dissolve and the "The way is shut" line arrive together.
+
 ## 0.2.0
 
 Internal only — claim ownership and its range preview; 0.2 is not released.

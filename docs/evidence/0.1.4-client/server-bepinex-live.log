@@ -1,0 +1,341 @@
+[Message:   BepInEx] BepInEx 5.4.23.6 - valheim_server (10/29/2026 9:56:51 AM)
+[Message:   BepInEx] User is running BepInExPack Valheim version 5.4.2360
+[Info   :   BepInEx] Running under Unity v6000.0.75.2503836
+[Info   :   BepInEx] CLR runtime version: 4.0.30319.42000
+[Info   :   BepInEx] Supports SRE: True
+[Info   :   BepInEx] System platform: Bits64, Windows
+[Message:   BepInEx] Preloader started
+[Info   :   BepInEx] Loaded 1 patcher method from [BepInEx.Preloader 5.4.23.6]
+[Info   :   BepInEx] 1 patcher plugin loaded
+[Info   :   BepInEx] Patching [UnityEngine.CoreModule] with [BepInEx.Chainloader]
+[Message:   BepInEx] Preloader finished
+[Message:   BepInEx] Valheim Version: 1.0.21
+[Message:   BepInEx] Chainloader ready
+[Message:   BepInEx] Chainloader started
+[Info   :   BepInEx] 9 plugins to load
+[Info   :   BepInEx] Loading [Conditional Config Sync 1.0.11] (_shudnal.ConditionalConfigSync)
+[Info   :   BepInEx] Loading [Husnisse Legs Visual 0.1.0] (bootstrapboys.husnisse.legsvisual)
+[Info   :Husnisse Legs Visual] lv loading 0.1.0
+[Info   :   BepInEx] Loading [Jotunn 2.30.2] (com.jotunn.jotunn)
+[Info   :Jotunn.Main] Initializing ModCompatibility
+[Info   :Jotunn.Main] Initializing SynchronizationManager
+[Info   :Jotunn.Main] Initializing NetworkManager
+[Info   :   BepInEx] Loading [YamlDotNet Detector 1.0.0] (com.ValheimModding.YamlDotNetDetector)
+[Info   :YamlDotNet Detector] YamlDotNet 16.0.0.0 loaded from plugins\ValheimModding-YamlDotNet\YamlDotNet.dll
+[Info   :   BepInEx] Loading [Husnisse 0.2.1] (com.bootstrapboys.husnisse)
+[Info   :  Husnisse] Husnisse 0.2.1 starting
+[Warning:  Husnisse] outdated English localisation ignored; embedded strings are used: V:\ValheimTest\BepInEx\config\Husnisse\localization\en.yaml
+[Info   :  Husnisse] localisation loaded: English (check: Porridge Bowl)
+[Info   :Jotunn.Main] Initializing PrefabManager
+[Info   :  Husnisse] core ready; waiting for vanilla prefabs
+[Info   :   BepInEx] Loading [Mine Together 0.2.1] (com.bootstrapboys.minetogether)
+[Info   :Mine Together] [env] V:\ValheimTest\BepInEx\plugins\BootstrapBoys-MineTogether\MineTogether.dll sha256 f2e7d2bb4302adc0
+[Info   :Mine Together] [Env] master=True vein=True resources=True collapse=True aoe=True
+[Info   :Mine Together] [Awake] harmony created
+[Info   :Mine Together] [Patch] applied SwingBatch
+[Info   :Mine Together] [Patch] applied CaptureHit
+[Info   :Mine Together] [Patch] applied CaptureNativeStage
+[Info   :Mine Together] [Patch] applied ObserveNativeMining
+[Info   :Mine Together] [Patch] applied ServerInstances
+[Info   :Mine Together] [Patch] applied KeepServerOwnership
+[Info   :Mine Together] [Patch] applied MineRock5Damage
+[Info   :Mine Together] [Patch] applied MineRockDamage
+[Info   :Mine Together] [Patch] applied TagMineRock
+[Info   :Mine Together] [Patch] applied TagMineRock5
+[Info   :Mine Together] [Patch] applied TagTreeBase
+[Info   :Mine Together] [Patch] applied TagTreeLog
+[Info   :Mine Together] [Patch] applied TagDropOnDestroyed
+[Info   :Mine Together] [Patch] applied TagLootSpawner
+[Info   :Mine Together] [Patch] applied ScaleNodeDrops
+[Info   :Mine Together] [Patch] applied ScaleOnSpawn
+[Info   :Mine Together] [Patch] applied ScalePickableDrop
+[Info   :Mine Together] [Patch] applied AfterPieceBroken
+[Info   :Mine Together] [Patch] 18 patch classes applied
+[Info   :Mine Together] [Awake] patched
+[Info   :Mine Together] [Awake] compat initialised
+[Info   :Mine Together] [Bindings] 22 resolved, 0 missing
+[Info   :Mine Together] [Patch] prefix Prefix(Attack, Humanoid) -> DoMeleeAttack()
+[Info   :Mine Together] [Patch] finalizer Finalizer(Attack, Exception) -> DoMeleeAttack()
+[Info   :Mine Together] [Patch] prefix Prefix(Component, HitData) -> Damage(HitData)
+[Info   :Mine Together] [Patch] prefix Prefix(MineRock5, HitData) -> Damage(HitData)
+[Info   :Mine Together] [Patch] prefix Prefix(Component, HitData) -> Damage(HitData)
+[Info   :Mine Together] [Patch] prefix Prefix(MineRock, HitData) -> Damage(HitData)
+[Info   :Mine Together] [Patch] prefix Prefix(Component, HitData) -> Damage(HitData)
+[Info   :Mine Together] [Patch] postfix Postfix(ZNetView) -> AddInstance(ZDO, ZNetView)
+[Info   :Mine Together] [Patch] prefix Prefix(Component, HitData, Snapshot&) -> RPC_Damage(Int64, HitData, Int32)
+[Info   :Mine Together] [Patch] finalizer Finalizer(Snapshot) -> RPC_Damage(Int64, HitData, Int32)
+[Info   :Mine Together] [Patch] prefix Prefix(Component, HitData, Snapshot&) -> RPC_Hit(Int64, HitData, Int32)
+[Info   :Mine Together] [Patch] prefix Prefix(MineRock) -> RPC_Hit(Int64, HitData, Int32)
+[Info   :Mine Together] [Patch] finalizer Finalizer(Snapshot) -> RPC_Hit(Int64, HitData, Int32)
+[Info   :Mine Together] [Patch] prefix Prefix(Component, HitData, Snapshot&) -> RPC_Damage(Int64, HitData)
+[Info   :Mine Together] [Patch] finalizer Finalizer(Snapshot) -> RPC_Damage(Int64, HitData)
+[Info   :Mine Together] [Patch] prefix Prefix(List`1) -> RemoveObjects(List`1, List`1)
+[Info   :Mine Together] [Patch] prefix Prefix(ZDO, Int64&) -> SetOwner(Int64)
+[Info   :Mine Together] [Patch] prefix Prefix(MineRock5) -> DamageArea(Int32, HitData)
+[Info   :Mine Together] [Patch] postfix Postfix(MineRock5) -> DamageArea(Int32, HitData)
+[Info   :Mine Together] [Patch] prefix Prefix(TreeBase) -> RPC_Damage(Int64, HitData)
+[Info   :Mine Together] [Patch] prefix Prefix(TreeLog) -> Destroy(HitData, Boolean)
+[Info   :Mine Together] [Patch] prefix Prefix(DropOnDestroyed) -> OnDestroyed()
+[Info   :Mine Together] [Patch] prefix Prefix(LootSpawner) -> UpdateSpawner()
+[Info   :Mine Together] [Patch] postfix Postfix(DropTable, List`1) -> GetDropList()
+[Info   :Mine Together] [Patch] postfix Postfix(ItemDrop) -> OnCreateNew(ItemDrop, Boolean)
+[Info   :Mine Together] [Patch] prefix Prefix(Int32&) -> Drop(GameObject, Int32, Int32)
+[Info   :Mine Together] [Patches] 26 of ours across 18 patched methods
+[Info   :Mine Together] [Config] 1. General/Enabled = True
+[Info   :Mine Together] [Config] 1. General/ToggleKey = B + LeftAlt
+[Info   :Mine Together] [Config] 2. Vein Mining/VeinMine = True
+[Info   :Mine Together] [Config] 2. Vein Mining/MiningSpeedMultiplierPerPlayer = 0.5
+[Info   :Mine Together] [Config] 2. Vein Mining/MultiplierPlayerRange = 10
+[Info   :Mine Together] [Config] 2. Vein Mining/MaximumDistance = 6
+[Info   :Mine Together] [Config] 2. Vein Mining/AdditionalPrefabs = 
+[Info   :Mine Together] [Config] 2. Vein Mining/ExcludedPrefabs = MineRock_Tin
+[Info   :Mine Together] [Config] 3. Resources/ResourceMultiplier = True
+[Info   :Mine Together] [Config] 4. Rock Collapse/FallingDeposits = True
+[Info   :Mine Together] [Config] 5. AOE Mining/AreaMining = True
+[Info   :Mine Together] [Config] 3. Resources/MiningMultiplier = 1
+[Info   :Mine Together] [Config] 3. Resources/LumberMultiplier = 1
+[Info   :Mine Together] [Config] 3. Resources/PickableMultiplier = 1
+[Info   :Mine Together] [Config] 3. Resources/StructureMultiplier = 1
+[Info   :Mine Together] [Config] 4. Rock Collapse/PercentFootingNeeded = 15
+[Info   :Mine Together] [Config] 4. Rock Collapse/PercentSupportBoxSize = 100
+[Info   :Mine Together] [Config] 5. AOE Mining/ScaleWithSkill = True
+[Info   :Mine Together] [Config] 5. AOE Mining/RadiusMin = 1
+[Info   :Mine Together] [Config] 5. AOE Mining/RadiusMax = 4
+[Info   :Mine Together] [Config] 5. AOE Mining/BonusDamage = 0
+[Info   :Mine Together] [Config] 5. AOE Mining/MaxTargets = 16
+[Info   :Mine Together] [Config] 5. AOE Mining/AOEExcludedPrefabs = blackmetal,obsidian,muddy,scrapiron
+[Info   :Mine Together] [Config] 6. Debug/Enable Debug = True
+[Info   :Mine Together] [State] master=True vein=True resources=True collapse=True aoe=True
+[Info   :Mine Together] [Stats] sessions=0 completed=0 stopped=0 drops=0 collapses=0 aoe=0 errors=0
+[Info   :Mine Together] [Sync] conditional-config-sync: locked=False sourceOfTruth=True initialSync=False
+[Info   :Mine Together] [Awake] startup dumps done
+[Info   :Mine Together] Mine Together 0.2.1 loaded: master=True vein=True resources=True collapse=True aoe=True | yield x1/1/1/1 | diagnostics V:\ValheimTest\BepInEx\BSBLogs\MineTogether.log
+[Info   :   BepInEx] Loading [Server Soft Stop 1.0.0] (com.bootstrapboys.softstop)
+[Info   :Server Soft Stop] Server Soft Stop 1.0.0 ready - create V:\ValheimTest\BepInEx\config\softstop.flag to save and shut down
+[Info   :   BepInEx] Loading [Test Harness 1.0.0] (com.bootstrapboys.testharness)
+[Info   :   BepInEx] Loading [Newtonsoft.Json Detector 1.0.0] (com.ValheimModding.NewtonsoftJsonDetector)
+[Info   :Newtonsoft.Json Detector] Newtonsoft.Json 13.0.0.0 assembly already loaded from V:\ValheimTest\valheim_server_Data\Managed\Newtonsoft.Json.dll
+[Message:   BepInEx] Chainloader startup complete (9 loaded, 0 skipped, 0 failed)
+[Info   :Mine Together] [Tick] plugin update running
+[Info   :Mine Together] [Tick] client update running
+[Info   :Jotunn.Main] Initializing AssetManager
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/stone/Stone1_huge.prefab, new: Assets/world/Props/DeepNorth/HotSpring/Stone1_huge.prefab, using old path
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/Caverocks/caverock_pillar.prefab, new: Assets/world/Props/DeepNorth/HotSpring/caverock_pillar.prefab, using old path
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/Rocks/highstone.prefab, new: Assets/world/Props/DeepNorth/HotSpring/highstone.prefab, using old path
+[Info   :Jotunn.Main] Initializing PieceManager
+[Info   :Jotunn.Main] Initializing MockManager
+[Info   :  Husnisse] bowl fields: category=Misc station=none resources=1 enabled=True table=_HammerPieceTable
+[Info   :  Husnisse] bowl registered as husnisse_bowl
+[Info   :Jotunn.Main] Initializing CreatureManager
+[Info   :  Husnisse] creature registered as husnisse_nisse (body=husnisse_nisse)
+[Info   :  Husnisse] content registered
+[Info   :ConditionalConfigSync] [ModRequirements][Mine Together] com.bootstrapboys.minetogether: ForceOptional is ignored because ModRequirementMode is Fixed
+[Warning:ConditionalConfigSync] [ModRequirements] com.bootstrapboys.quartermaster_integrations: can not find mod by GUID
+[Warning:ConditionalConfigSync] [ModRequirements] local.valheim.quartermaster: can not find mod by GUID
+[Warning:ConditionalConfigSync] [ModRequirements] Azumatt.AAABuildMenu: can not find mod by GUID
+[Warning:ConditionalConfigSync] [ModRequirements] Azumatt.AzuAntiArthriticCrafting: can not find mod by GUID
+[Warning:ConditionalConfigSync] [ModRequirements] Azumatt.WardIsLove: can not find mod by GUID
+[Warning:ConditionalConfigSync] [ModRequirements] marcopogo.PlanBuild: can not find mod by GUID
+[Warning:ConditionalConfigSync] [ModRequirements] randyknapp.mods.epicloot: can not find mod by GUID
+[Warning:ConditionalConfigSync] [ModRequirements] shudnal.ExtraSlots: can not find mod by GUID
+[Warning:ConditionalConfigSync] [ModRequirements] shudnal.MyLittleUI: can not find mod by GUID
+[Warning:ConditionalConfigSync] [ModRequirements] TastyChickenLegs.DropMoreLoot: can not find mod by GUID
+[Warning:ConditionalConfigSync] [ModRequirements] Therzie.Wizardry: can not find mod by GUID
+[Warning:ConditionalConfigSync] [ModRequirements] vapok.mods.adventurebackpacks: can not find mod by GUID
+[Info   :Jotunn.Managers.PrefabManager] Adding 2 custom prefabs to the ZNetScene
+[Info   :Jotunn.Managers.CreatureManager] Adding 1 custom creatures
+[Info   :Jotunn.Managers.PieceManager] Adding 1 custom pieces to the PieceTables
+[Info   :Jotunn.Managers.NetworkManager] Registering 2 custom RPCs
+[Info   :  Husnisse] order RPC registered
+[Info   :  Husnisse] world feeding required=True
+[Info   :Husnisse Legs Visual] lv culling suppressed
+[Info   :Husnisse Legs Visual] lv ready command_file=V:\ValheimTest\BepInEx\config\legs-visual.cmd
+[Info   :Husnisse Legs Visual] lv peer gone; peers=0
+[Info   :Husnisse Legs Visual] lv cmd: drop2 f1
+[Info   :Husnisse Legs Visual] lv drop before build
+[Info   :Mine Together] Prefab audit written: V:\ValheimTest\BepInEx\config\MineTogether.prefabs.tsv; 437 destructible prefabs examined.
+[Info   :Mine Together] [State] master=True vein=True resources=True collapse=True aoe=True
+[Info   :Mine Together] [Stats] sessions=0 completed=0 stopped=0 drops=0 collapses=0 aoe=0 errors=0
+[Info   :Mine Together] [Sync] conditional-config-sync: locked=False sourceOfTruth=True initialSync=True
+[Info   :ConditionalConfigSync] [Mine Together][Server][Version] Received Mine Together version 0.2.1, minimum version 0.2.1, ConditionalConfigSync protocol 1 from the client (76561198604619232). Remote ConditionalConfigSync version 1.0.11; elapsed 18 ms.
+[Info   :ConditionalConfigSync] [Mine Together][Server][Version] Received Mine Together version 0.2.1, minimum version 0.2.1, ConditionalConfigSync protocol 1 from the client (76561198604619232). Remote ConditionalConfigSync version 1.0.11; elapsed 207 ms.
+[Info   :Jotunn.Managers.SynchronizationManager+<SynchronizeInitialData>d__44] Sending initial data to peer #-1299823195
+[Info   :Husnisse Legs Visual] lv peer joined; peers=1 refpos=(0.00, 0.00, 0.00)
+[Info   :Husnisse Legs Visual] lv cmd: peers
+[Info   :Husnisse Legs Visual] lv peers=1 (9.1, 33.7, 1.2)
+[Info   :Husnisse Legs Visual] lv cmd: build 60 41 0 x
+[Info   :  Husnisse] [debug][Claims] registered -452458943:37744 source=native ward=0:0 r=20 owner=0 suppressed=False
+[Warning:  Husnisse] fade: no alpha property on this body; hiding it outright between steps
+[Info   :  Husnisse] nisse settled at bowl -452458943:37744
+[Info   :  Husnisse] [debug][Bowl] ready -452458943:37744 owner=0 source=native ward=0:0 r=20 satiety=25 mood=100 suppressed=False
+[Info   :Husnisse Legs Visual] lv built origin=(60.0, 41.0, 0.0) floors=63 bowl=True chest=True
+[Info   :  Husnisse] bowl: pantry ready 4x1 (4 slots)
+[Info   :Husnisse Legs Visual] lv cmd: probe n1
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe n2
+[Info   :Husnisse Legs Visual] lv bake_probe full=True corners=2
+[Info   :Husnisse Legs Visual] lv cmd: probe n3
+[Info   :Husnisse Legs Visual] lv bake_probe full=True corners=2
+[Info   :Husnisse Legs Visual] lv cmd: probe n4
+[Info   :Husnisse Legs Visual] lv bake_probe full=True corners=2
+[Info   :Husnisse Legs Visual] lv cmd: probe n5
+[Info   :Husnisse Legs Visual] lv bake_probe full=True corners=2
+[Info   :Husnisse Legs Visual] lv cmd: probe n6
+[Info   :Husnisse Legs Visual] lv bake_probe full=True corners=2
+[Info   :Husnisse Legs Visual] lv cmd: probe n7
+[Info   :Husnisse Legs Visual] lv bake_probe full=True corners=2
+[Info   :Husnisse Legs Visual] lv cmd: drop w1
+[Info   :Husnisse Legs Visual] lv drop count=3 at (60.0, 41.0, 0.0)
+[Info   :  Husnisse] [debug][Flow] trip start claim=-452458943:37744 stacks=3 pickups=3 target=piece_chest_wood(Clone) leg_m=13.9
+[Info   :  Husnisse] [debug][Creature] leg -> (62.0, 41.4, 0.0) from (60.0, 42.6, 0.0) corners=5 attempt=1
+[Info   :  Husnisse] [debug][Creature] leg -> (63.5, 41.4, 0.0) from (61.0, 41.1, -0.4) corners=2 attempt=1
+[Info   :  Husnisse] [debug][Creature] leg -> (65.0, 41.4, 0.0) from (62.4, 41.1, -0.2) corners=2 attempt=1
+[Info   :  Husnisse] [debug][Creature] leg -> (73.9, 41.1, 0.0) from (63.9, 41.1, -0.1) corners=2 attempt=1
+[Info   :  Husnisse] [debug][Memory] learned $item_coal -> -452458943:37746
+[Info   :  Husnisse] [debug][Memory] learned $item_coal -> -452458943:37746
+[Info   :  Husnisse] [debug][Memory] learned $item_coal -> -452458943:37746
+[Info   :  Husnisse] [debug][Flow] trip deposit claim=-452458943:37744 moved=3 target=piece_chest_wood(Clone) remaining=0
+[Info   :  Husnisse] [debug][Creature] leg -> (61.5, 41.2, 0.0) from (72.8, 41.1, 0.0) corners=2 attempt=1
+[Info   :Husnisse Legs Visual] lv cmd: room
+[Info   :Husnisse Legs Visual] lv room floors=5
+[Info   :Husnisse Legs Visual] lv room walls=11
+[Info   :Husnisse Legs Visual] lv cmd: close
+[Info   :Husnisse Legs Visual] lv doorway closed pieces=1
+[Info   :Husnisse Legs Visual] lv cmd: probe k1
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe k2
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe k3
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe k4
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe k5
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe k6
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe k7
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: drop2 f2
+[Info   :Husnisse Legs Visual] lv drop count=2 at (60.0, 41.0, 0.0)
+[Info   :  Husnisse] [debug][Flow] trip start claim=-452458943:37744 stacks=2 pickups=2 target=piece_chest_wood(Clone) leg_m=11.5
+[Info   :  Husnisse] [debug][Creature] leg -> (62.0, 41.4, 0.0) from (62.3, 41.1, 0.0) corners=2 attempt=1
+[Info   :  Husnisse] [debug][Creature] leg -> (63.5, 41.4, 0.0) from (62.3, 41.1, 0.0) corners=2 attempt=1
+[Info   :  Husnisse] [debug][Creature] leg blocked -> (73.9, 41.1, 0.0)
+[Info   :  Husnisse] [debug][Creature] fade across to (73.9, 41.1, 0.0)
+[Info   :  Husnisse] [debug][Memory] learned $item_coal -> -452458943:37746
+[Info   :  Husnisse] [debug][Memory] learned $item_coal -> -452458943:37746
+[Info   :  Husnisse] [debug][Flow] trip deposit claim=-452458943:37744 moved=2 target=piece_chest_wood(Clone) remaining=0
+[Info   :  Husnisse] [debug][Creature] leg blocked -> (61.5, 41.2, 0.0)
+[Info   :  Husnisse] [debug][Creature] fade across to (61.5, 41.2, 0.0)
+[Info   :ConditionalConfigSync] [Mine Together][Server][Version] Received Mine Together version 0.2.1, minimum version 0.2.1, ConditionalConfigSync protocol 1 from the client (76561198604619232). Remote ConditionalConfigSync version 1.0.11; elapsed 0 ms.
+[Info   :ConditionalConfigSync] [Mine Together][Server][Version] Received Mine Together version 0.2.1, minimum version 0.2.1, ConditionalConfigSync protocol 1 from the client (76561198604619232). Remote ConditionalConfigSync version 1.0.11; elapsed 268 ms.
+[Info   :Jotunn.Managers.SynchronizationManager+<SynchronizeInitialData>d__44] Sending initial data to peer #7449799
+[Info   :Husnisse Legs Visual] lv peer joined; peers=2 refpos=(69.00, 41.10, -2.40)
+[Info   :Husnisse Legs Visual] lv peer joined; peers=2 refpos=(0.00, 0.00, 0.00)
+[Info   :Husnisse Legs Visual] lv peer joined; peers=1 refpos=(0.00, 0.00, 0.00)
+[Info   :Husnisse Legs Visual] lv cmd: state
+[Info   :Husnisse Legs Visual] lv state nisse=(61.50, 41.10, 0.00) motion=Arrived fades=2 trip=idle chest=5 queued=0 trips=0 bowls=1 claims=1 peers=1 (69.0, 41.1, -2.4)
+[Info   :Husnisse Legs Visual] lv cmd: build 0 55 0 x
+[Info   :Husnisse Legs Visual] lv destroying existing bowl at (60.0, 41.1, 0.0)
+[Info   :Husnisse Legs Visual] lv cleanup done bowls=1
+[Info   :Husnisse Legs Visual] lv destroying existing bowl at (60.0, 41.1, 0.0)
+[Info   :  Husnisse] [debug][Claims] registered -452458943:39414 source=native ward=0:0 r=20 owner=0 suppressed=False
+[Warning:  Husnisse] fade: no alpha property on this body; hiding it outright between steps
+[Info   :  Husnisse] nisse settled at bowl -452458943:39414
+[Info   :  Husnisse] [debug][Bowl] ready -452458943:39414 owner=0 source=native ward=0:0 r=20 satiety=25 mood=100 suppressed=False
+[Info   :Husnisse Legs Visual] lv built origin=(0.0, 55.0, 0.0) floors=63 bowl=True chest=True
+[Info   :  Husnisse] bowl: pantry ready 4x1 (4 slots)
+[Info   :  Husnisse] [debug][Claims] unregistered -452458943:37744
+[Info   :  Husnisse] nisse left with bowl -452458943:37744
+[Info   :Husnisse Legs Visual] lv cmd: room
+[Info   :Husnisse Legs Visual] lv room floors=5
+[Info   :Husnisse Legs Visual] lv room walls=11
+[Info   :Husnisse Legs Visual] lv cmd: close
+[Info   :Husnisse Legs Visual] lv doorway closed pieces=1
+[Info   :Husnisse Legs Visual] lv cmd: probe m1
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe m2
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe m3
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe m4
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe m5
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe m6
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe m7
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe m8
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: drop2 g1
+[Info   :Husnisse Legs Visual] lv drop count=2 at (0.0, 55.0, 0.0)
+[Info   :  Husnisse] [debug][Flow] trip start claim=-452458943:39414 stacks=2 pickups=2 target=piece_chest_wood(Clone) leg_m=13.9
+[Info   :  Husnisse] [debug][Creature] leg -> (2.0, 55.4, 0.0) from (0.0, 56.6, 0.0) corners=7 attempt=1
+[Info   :  Husnisse] [debug][Creature] leg -> (3.5, 55.4, 0.0) from (1.0, 55.1, -0.5) corners=2 attempt=1
+[Info   :  Husnisse] [debug][Creature] leg blocked -> (13.9, 55.1, 0.0)
+[Info   :  Husnisse] [debug][Creature] fade across to (13.9, 55.1, 0.0)
+[Info   :  Husnisse] [debug][Memory] learned $item_coal -> -452458943:39416
+[Info   :  Husnisse] [debug][Memory] learned $item_coal -> -452458943:39416
+[Info   :  Husnisse] [debug][Flow] trip deposit claim=-452458943:39414 moved=2 target=piece_chest_wood(Clone) remaining=0
+[Info   :  Husnisse] [debug][Creature] leg blocked -> (1.5, 55.2, 0.0)
+[Info   :  Husnisse] [debug][Creature] fade across to (1.5, 55.2, 0.0)
+[Info   :Husnisse Legs Visual] lv cmd: probe y1
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe y2
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe y3
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe y4
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe y5
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe y6
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe y7
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe y8
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :Husnisse Legs Visual] lv cmd: probe y9
+[Info   :Husnisse Legs Visual] lv bake_probe full=False corners=0
+[Info   :  Husnisse] [debug][Flow] trip start claim=-452458943:39414 stacks=2 pickups=1 target=piece_chest_wood(Clone) leg_m=12.4
+[Info   :  Husnisse] [debug][Creature] leg -> (11.0, 55.5, 0.4) from (1.5, 55.1, 0.0) corners=2 attempt=1
+[Info   :  Husnisse] [debug][Creature] leg blocked -> (13.9, 55.1, 0.0)
+[Info   :  Husnisse] [debug][Creature] fade across to (13.9, 55.1, 0.0)
+[Info   :  Husnisse] [debug][Memory] learned $item_coal -> -452458943:39416
+[Info   :  Husnisse] [debug][Memory] learned $item_coal -> -452458943:39416
+[Info   :  Husnisse] [debug][Flow] trip deposit claim=-452458943:39414 moved=2 target=piece_chest_wood(Clone) remaining=0
+[Info   :  Husnisse] [debug][Creature] leg blocked -> (1.5, 55.2, 0.0)
+[Info   :  Husnisse] [debug][Creature] fade across to (1.5, 55.2, 0.0)
+[Info   :Husnisse Legs Visual] lv cmd: state
+[Info   :Husnisse Legs Visual] lv state nisse=(1.50, 55.10, 0.00) motion=Arrived fades=4 trip=idle chest=4 queued=0 trips=0 bowls=1 claims=1 peers=1 (2.0, 55.1, 2.0)
+[Info   :  Husnisse] [debug][Flow] trip start claim=-452458943:39414 stacks=2 pickups=1 target=piece_chest_wood(Clone) leg_m=12.4
+[Info   :  Husnisse] [debug][Creature] leg waiting for navmesh -> (10.4, 55.5, 0.0)
+[Info   :  Husnisse] [debug][Creature] leg -> (10.4, 55.5, 0.0) from (1.5, 55.1, 0.0) corners=2 attempt=2
+[Info   :  Husnisse] [debug][Creature] leg blocked -> (13.9, 55.1, 0.0)
+[Info   :  Husnisse] [debug][Creature] fade across to (13.9, 55.1, 0.0)
+[Info   :  Husnisse] [debug][Memory] learned $item_coal -> -452458943:39416
+[Info   :  Husnisse] [debug][Memory] learned $item_coal -> -452458943:39416
+[Info   :  Husnisse] [debug][Flow] trip deposit claim=-452458943:39414 moved=2 target=piece_chest_wood(Clone) remaining=0
+[Info   :  Husnisse] [debug][Creature] leg blocked -> (1.5, 55.2, 0.0)
+[Info   :  Husnisse] [debug][Creature] fade across to (1.5, 55.2, 0.0)
+[Info   :  Husnisse] [debug][Flow] trip start claim=-452458943:39414 stacks=2 pickups=1 target=piece_chest_wood(Clone) leg_m=12.4
+[Info   :  Husnisse] [debug][Creature] leg waiting for navmesh -> (10.4, 55.5, 0.0)
+[Info   :  Husnisse] [debug][Creature] leg -> (10.4, 55.5, 0.0) from (1.5, 55.1, 0.0) corners=2 attempt=2
+[Info   :  Husnisse] [debug][Creature] leg blocked -> (13.9, 55.1, 0.0)
+[Info   :  Husnisse] [debug][Creature] fade across to (13.9, 55.1, 0.0)
+[Info   :  Husnisse] [debug][Memory] learned $item_coal -> -452458943:39416
+[Info   :  Husnisse] [debug][Memory] learned $item_coal -> -452458943:39416
+[Info   :  Husnisse] [debug][Flow] trip deposit claim=-452458943:39414 moved=2 target=piece_chest_wood(Clone) remaining=0
+[Info   :  Husnisse] [debug][Creature] leg blocked -> (1.5, 55.2, 0.0)
+[Info   :  Husnisse] [debug][Creature] fade across to (1.5, 55.2, 0.0)
+[Info   :  Husnisse] [debug][Flow] trip start claim=-452458943:39414 stacks=2 pickups=1 target=piece_chest_wood(Clone) leg_m=12.4
+[Info   :  Husnisse] [debug][Creature] leg waiting for navmesh -> (10.4, 55.5, 0.0)
+[Info   :  Husnisse] [debug][Creature] leg -> (10.4, 55.5, 0.0) from (1.5, 55.1, 0.0) corners=2 attempt=2
+[Info   :  Husnisse] [debug][Creature] leg blocked -> (13.9, 55.1, 0.0)
+[Info   :  Husnisse] [debug][Creature] fade across to (13.9, 55.1, 0.0)
+[Info   :  Husnisse] [debug][Memory] learned $item_coal -> -452458943:39416
+[Info   :  Husnisse] [debug][Memory] learned $item_coal -> -452458943:39416
+[Info   :  Husnisse] [debug][Flow] trip deposit claim=-452458943:39414 moved=2 target=piece_chest_wood(Clone) remaining=0
+[Info   :  Husnisse] [debug][Creature] leg blocked -> (1.5, 55.2, 0.0)
+[Info   :  Husnisse] [debug][Creature] fade across to (1.5, 55.2, 0.0)

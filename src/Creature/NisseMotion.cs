@@ -270,7 +270,24 @@ namespace Husnisse.Creature
             Log.Debug("Creature", "fade across to " + destination.ToString("F1"));
 
             BeginFade(destination);
-            if (IsOwner && _nview != null) _nview.InvokeRPC(FadeRpc, destination);
+            if (IsOwner && _nview != null) BroadcastFade(destination);
+        }
+
+        /// <summary>
+        /// The fade has to play on every peer, not just where it was ordered. InvokeRPC(method)
+        /// asks the ZDO owner, which on a dedicated server is the server itself: the fade ran
+        /// where nobody can see it and a client only saw the body snap to its new place. Address
+        /// every peer instead.
+        /// </summary>
+        private void BroadcastFade(Vector3 destination)
+        {
+            if (ZNet.instance == null) return;
+
+            foreach (var peer in ZNet.instance.GetPeers())
+            {
+                if (peer == null || peer.m_rpc == null) continue;
+                _nview.InvokeRPC(peer.m_uid, FadeRpc, new object[] { destination });
+            }
         }
 
         private void BeginFade(Vector3 destination)

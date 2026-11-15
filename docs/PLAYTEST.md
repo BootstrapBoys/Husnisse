@@ -18,25 +18,35 @@ including "it works but feels wrong".
 
 ## 0. Legs (new in 0.1.4)
 
-Headless-proven on the rig; this block is the visual pass.
+Headless-proven on the rig; this block is the visual pass. **Client pass 2026-11-15** on 0.2.1
+(`docs/evidence/0.1.4-client/RESULT.md`): the walk and the fade were watched and photographed
+from a real client. Ticked boxes carry the evidence there; the two unticked ones were not
+exercised.
 
-- [ ] Build a bowl and a chest about 15 m apart on a floor or flat ground. Put one food item in the bowl,
-      then drop three items near the bowl.
-- [ ] The nisse **walks** to each drop in turn, then to the chest, stands at it for about a second, and
-      the items appear in the chest. Then it walks back to its bowl.
-- [ ] Watch the whole trip: the movement is continuous at walking pace (about 2 m/s). If it jumps more
-      than a stride, that is a finding.
-- [ ] The walk animation plays while it moves — legs moving, not sliding.
-- [ ] Log out and back in with the nisse away from its bowl: it walks back home.
-- [ ] Put the chest in a room or behind a wall it cannot walk to. Drop items: the nisse **fades** at the
+- [x] Build a bowl and a chest about 15 m apart on a floor or flat ground. Put one food item in the bowl,
+      then drop three items near the bowl. *(deck, bowl and chest built by the scene driver; the bowl
+      starts at satiety 25, so it worked without a food item being placed)*
+- [x] The nisse **walks** to each drop in turn, then to the chest, stands at it for about a second, and
+      the items appear in the chest. Then it walks back to its bowl. *(chest coal 0 → 3 → 6; the
+      transfer pause is 1 s by code and was not timed separately)*
+- [x] Watch the whole trip: the movement is continuous at walking pace (about 2 m/s). If it jumps more
+      than a stride, that is a finding. *(1.9 m/s per-second positions, largest single-frame step
+      0.13 m while walking)*
+- [x] The walk animation plays while it moves — legs moving, not sliding. *(animator `forward_speed`
+      1.77–1.92 moving, 0.00 idle; `walk-nisse-0.2.1.jpg`)*
+- [ ] Log out and back in with the nisse away from its bowl: it walks back home. *(not exercised)*
+- [x] Put the chest in a room or behind a wall it cannot walk to. Drop items: the nisse **fades** at the
       threshold (about half a second out, half a second in) and the message
       "The way is shut. The nisse steps through." appears. The items still reach the chest.
-- [ ] A doorway it *can* walk through produces a walk, not a fade — both outcomes are correct, and
-      which one happens depends on the shape of the opening.
-- [ ] With Debug Logging on, the log shows `[debug][Creature] leg -> …`, `leg blocked` / `fade across` for
+      *(fade and delivery proven, `fade-threshold-0.2.1.jpg`; **the HUD line was never observed** —
+      see the open finding in RESULT.md)*
+- [x] A doorway it *can* walk through produces a walk, not a fade — both outcomes are correct, and
+      which one happens depends on the shape of the opening. *(proven on 0.2.0, doorway open, no fade)*
+- [x] With Debug Logging on, the log shows `[debug][Creature] leg -> …`, `leg blocked` / `fade across` for
       the unreachable case, and no `leg waiting for navmesh` line repeats more than twice per leg.
+      *(13 `leg ->`, 12 `leg blocked`, 12 `fade across`, 3 `leg waiting` in one session)*
 - [ ] `husnisse_status` shows `trip=Pickup/3`, `trip=ToTarget/3`, `trip=Transfer/3`, `trip=Home/3` in
-      order during a trip, and `trip=idle` between trips.
+      order during a trip, and `trip=idle` between trips. *(not sampled mid-trip)*
 
 ## 0.2 Claim authority (client pass)
 
