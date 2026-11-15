@@ -340,24 +340,26 @@ namespace Husnisse.Bowl
             if (ZNet.instance == null || _claim == null)
             {
                 ApplyFeedingToggle(player.GetPlayerID());
+                Message(user, Loc.T(_zdo.GetBool(ZdoKeys.BowlFeeding, false) ? Loc.BowlOfferOn : Loc.BowlOfferOff));
                 return;
             }
 
-            OrderRpc.Send(OrderKind.ToggleFeeding, _claim.BowlId, ZDOID.None, player.GetPlayerID());
+            // The server owns the ZDO write; on a host this answers at once and on a client the
+            // verdict comes back as an acknowledgment, so the toggle is spoken for in both cases.
+            var answer = OrderRpc.Send(OrderKind.ToggleFeeding, _claim.BowlId, ZDOID.None, player.GetPlayerID());
+            if (answer.HasValue) OrderService.Report(player, OrderKind.ToggleFeeding, answer.Value);
         }
 
-        /// <summary>Server-side write for a feeding toggle request.</summary>
-        public void ServerToggleFeeding(long playerId)
+        /// <summary>Server-side write for a feeding toggle request; returns the state it left the bowl in.</summary>
+        public bool ServerToggleFeeding(long playerId)
         {
-            if (WorldPolicy.FeedingRequired) return;
-            if (!IsOwner(playerId)) return;
-
-            var player = Player.GetPlayer(playerId);
-            ApplyFeedingToggle(playerId);
-            if (player != null)
+            if (WorldPolicy.FeedingRequired || !IsOwner(playerId))
             {
-                Message(player, Loc.T(_zdo.GetBool(ZdoKeys.BowlFeeding, false) ? Loc.BowlOfferOn : Loc.BowlOfferOff));
+                return _zdo != null && _zdo.GetBool(ZdoKeys.BowlFeeding, false);
             }
+
+            ApplyFeedingToggle(playerId);
+            return _zdo != null && _zdo.GetBool(ZdoKeys.BowlFeeding, false);
         }
 
         private void ApplyFeedingToggle(long playerId)
@@ -367,6 +369,7 @@ namespace Husnisse.Bowl
             var next = !_zdo.GetBool(ZdoKeys.BowlFeeding, false);
             _zdo.Set(ZdoKeys.BowlFeeding, next);
             Log.Debug("Bowl", "feeding=" + next + " by " + playerId);
+            DiagnosticsFile.Line("[Bowl] feeding=" + next + " by " + playerId);
         }
 
         private bool IsOwner(long playerId)

@@ -265,6 +265,14 @@ Two direct commands, both still the nisse's work:
 
 Both refuse when the nisse is absent, when the bowl is empty and feeding is required, or when the
 player is outside the claim — and they say which. The client asks; the server validates and moves.
+You are told the verdict after the server decides, with the number of stacks it took ("The nisse takes
+6 stack(s)").
+
+A player's inventory only exists on that player's own machine, so Empty Pockets is the one order the
+server cannot perform alone on a dedicated server: the server accepts it, asks the client for the
+stacks, the client hands over exactly the ones it may give up, and the server drops them by its bowl
+and files them like any other pile. Everything after the handover — the pile, the trip, the chest —
+is the server's.
 Combine stacks is not implemented yet.
 
 ### Localisation

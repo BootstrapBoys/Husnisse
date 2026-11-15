@@ -10,6 +10,10 @@ build proves that a base can be configured and that the rules are world state.
 - The claim owner and the players a ward permits change rules; anyone else sees the buttons disabled and is told why. A client writes nothing: the request goes to the server, which validates the claim, the sender's identity and the container before writing.
 - `husnisse_rule list | net <prefab> <on|off> [index] | set <prefab> <rule> [index]` reads and writes the same state from the server console. `husnisse_status` gains one line per network container and a `[rules]` count.
 - A rule encoding this build does not understand reads as "no rule" instead of breaking the chest.
+- **Orders from a client now reach the server.** The order channel dropped every request on a dedicated server: it named the caller by `ZNetPeer.m_playerID`, which this game build never fills (it registers `RPC_PlayerID` and nothing invokes it), and it expected a `Player` object that a dedicated server does not simulate. The caller is now named by the character ZDO the connection is driving — the same `playerID` the client computes locally — and a request naming a different player is refused rather than obeyed.
+- Alt on the bowl, Alt on a chest and interacting with the nisse now answer the player only after the server has accepted the order: "The nisse takes 6 stack(s)" / "The nisse files 3 stack(s)" instead of a promise made before anything happened.
+- An order given on the host or in single-player no longer dies with `Unable to read beyond the end of the stream`: the server rewinds the package it built before reading it.
+- Empty Pockets works from a client on a dedicated server. The player's inventory only exists on the player's own machine, so the order is now two steps: the server accepts it and asks for the stacks, the client hands them over, and the server puts them on the ground by its bowl as real drops and lets the ordinary trip file them — from that moment the server owns them, and a dropped handover is visible rather than lost in a list.
 
 ## 0.2.2
 
