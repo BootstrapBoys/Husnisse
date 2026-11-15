@@ -1,0 +1,58 @@
+Husnisse 0.2.2
+started 2026-11-15 02:46:16
+
+
+== world ready @ 02:46:44 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=False claims=0 trips=0 nisses=0 bowl_piece=present
+
+== claim registered @ 02:48:46 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=False claims=1 trips=0 nisses=0 bowl_piece=present
+claim 81827723:39334 source=native ward=0:0 owner=-202584743 r=20 center=-32.2,-1 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none
+
+== claim removed @ 02:54:01 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=False claims=0 trips=0 nisses=1 bowl_piece=present
+
+== claim registered @ 02:57:45 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=False claims=1 trips=0 nisses=0 bowl_piece=present
+claim 81827723:39449 source=native ward=0:0 owner=-202584743 r=20 center=-62.2,19 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none
+
+== claim removed @ 03:00:10 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=False claims=0 trips=0 nisses=1 bowl_piece=present
+
+== claim registered @ 03:01:00 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=False claims=1 trips=0 nisses=0 bowl_piece=present
+claim 81827723:39621 source=native ward=0:0 owner=-202584743 r=20 center=-59.1,15.3 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none
+
+== claim removed @ 03:01:02 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=False claims=0 trips=0 nisses=1 bowl_piece=present
+
+== claim registered @ 03:03:03 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=False claims=1 trips=0 nisses=0 bowl_piece=present
+claim 81827723:39791 source=native ward=0:0 owner=-202584743 r=20 center=58.1,59.2 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none
+
+== claim removed @ 03:04:17 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=False claims=0 trips=0 nisses=1 bowl_piece=present
+
+== claim registered @ 03:07:02 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=False claims=1 trips=0 nisses=0 bowl_piece=present
+claim 81827723:39795 source=native ward=0:0 owner=-202584743 r=20 center=58.1,59.2 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=2 stacks=0 nisse=none
