@@ -3,6 +3,7 @@ using Husnisse.Bowl;
 using Husnisse.Claims;
 using Husnisse.Config;
 using Husnisse.Core;
+using Husnisse.Localization;
 using Husnisse.Orders;
 using UnityEngine;
 
@@ -55,6 +56,22 @@ namespace Husnisse.Patches
 
             __result = bowl.HoverText();
             return false;
+        }
+
+        /// <summary>
+        /// While the nisse is watching, the chest says so: the player has to know which interact
+        /// completes the demonstration before they drop a stack in it.
+        /// </summary>
+        private static void Postfix(Container __instance, ref string __result)
+        {
+            if (__instance == null || !Teaching.Teach.Active) return;
+            if (__instance.GetComponent<BowlPiece>() != null) return;
+
+            var claim = ClaimRegistry.FindFor(__instance.transform.position);
+            if (claim == null) return;
+            if (!Storage.ContainerNetwork.OffersUi(claim, __instance)) return;
+
+            __result = (__result ?? string.Empty) + "\n" + Loc.T(Loc.TeachHover);
         }
     }
 }

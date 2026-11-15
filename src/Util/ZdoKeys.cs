@@ -26,6 +26,10 @@ namespace Husnisse.Util
         public const string ClaimRadius = "husnisse_claim_radius";
         public const string ClaimOwner = "husnisse_claim_owner";
 
+        /// <summary>Per-claim pickup filter (0.3.1): the item types the nisse collects off the floor.
+        /// Absent means all eight presets.</summary>
+        public const string ClaimPickup = "husnisse_pickup";
+
         // Nisse
         public const string NisseBowl = "husnisse_nisse_bowl";
         public const string MemoryPrefix = "husnisse_mem_";

@@ -1,4 +1,5 @@
 using Husnisse.Core;
+using Husnisse.Storage;
 using UnityEngine;
 
 namespace Husnisse.Config
@@ -40,6 +41,11 @@ namespace Husnisse.Config
 
             if (HusnisseConfig.FeedingRequired.Value) zone.SetGlobalKey(RequiredKey);
             else zone.RemoveGlobalKey(RequiredKey);
+
+            // Editable presets are world state too: the file's table is published once per world,
+            // and every peer applies it from the key (see PresetStore). A server whose file has no
+            // presets section removes the key, so the built-in table stays in force.
+            PresetStore.PublishFromFile();
 
             Log.Info("world feeding required=" + FeedingRequired);
             SaveSchema.Publish();

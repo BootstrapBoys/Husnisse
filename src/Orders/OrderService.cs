@@ -111,6 +111,11 @@ namespace Husnisse.Orders
                 return true;
             }
 
+            // Pocket stack merge on sort: two half stacks of coal are one stack before the nisse
+            // starts carrying them, so it does not spend a trip slot on each half.
+            var merged = MergePockets(player);
+            if (merged > 0) Note("pockets merged units=" + merged + " claim=" + claim.BowlId);
+
             if (PocketItems(player).Count == 0)
             {
                 Report(player, OrderKind.EmptyPockets, OrderVerdict.Of(OrderResult.Nothing));
@@ -119,6 +124,64 @@ namespace Husnisse.Orders
 
             var answer = OrderRpc.Send(OrderKind.EmptyPockets, claim.BowlId, ZDOID.None, caller.PlayerId);
             if (answer.HasValue) Report(player, OrderKind.EmptyPockets, answer.Value);
+            return true;
+        }
+
+        /// <summary>
+        /// Merges identical partial stacks among the stacks an order may carry, before anything is
+        /// queued. Only the orderable stacks are merged: the hotbar belongs to the player's hands,
+        /// and merging a pocket stack into a hotbar one would hide it from the order that just ran.
+        ///
+        /// Two stacks merge only when the game itself would stack them — same shared data, world
+        /// level, quality, variant and durability — because a merge that changed a quality or a
+        /// durability would be the one lossy thing a sort can do.
+        /// </summary>
+        public static int MergePockets(Player player)
+        {
+            var inventory = player != null ? player.GetInventory() : null;
+            if (inventory == null) return 0;
+
+            var items = PocketItems(player);
+            var moved = 0;
+
+            for (var i = 0; i < items.Count; i++)
+            {
+                var target = items[i];
+                if (target == null || target.m_stack <= 0) continue;
+                if (target.m_shared.m_maxStackSize <= 1) continue;
+
+                for (var j = i + 1; j < items.Count; j++)
+                {
+                    var source = items[j];
+                    if (source == null || source.m_stack <= 0 || ReferenceEquals(source, target)) continue;
+                    if (!SameStack(target, source)) continue;
+
+                    var room = target.m_shared.m_maxStackSize - target.m_stack;
+                    if (room <= 0) break;
+
+                    var take = Mathf.Min(room, source.m_stack);
+                    if (take <= 0) continue;
+
+                    target.m_stack += take;
+                    source.m_stack -= take;
+                    moved += take;
+
+                    if (source.m_stack <= 0) inventory.RemoveItem(source);
+                }
+            }
+
+            if (moved > 0 && inventory.m_onChanged != null) inventory.m_onChanged();
+            return moved;
+        }
+
+        private static bool SameStack(ItemDrop.ItemData first, ItemDrop.ItemData second)
+        {
+            if (first.m_shared == null || second.m_shared == null) return false;
+            if (!ReferenceEquals(first.m_shared, second.m_shared)) return false;
+            if (first.m_quality != second.m_quality) return false;
+            if (first.m_variant != second.m_variant) return false;
+            if (first.m_worldLevel != second.m_worldLevel) return false;
+            if (Mathf.Abs(first.m_durability - second.m_durability) > 0.01f) return false;
             return true;
         }
 
@@ -302,6 +365,13 @@ namespace Husnisse.Orders
         public static void Report(Player player, OrderKind kind, OrderVerdict verdict)
         {
             if (player == null) return;
+
+            // Every verdict is worth a line in the diagnostics file: an order that "did nothing" is
+            // the hardest thing to debug from a player's report, and the reason is one word.
+            Note("order " + kind + " -> " + verdict.Result +
+                 " player=" + player.GetPlayerID() +
+                 " count=" + verdict.Count +
+                 (kind == OrderKind.ToggleFeeding ? " feeding=" + verdict.Feeding : string.Empty));
 
             switch (verdict.Result)
             {

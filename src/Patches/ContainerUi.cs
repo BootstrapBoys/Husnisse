@@ -18,12 +18,28 @@ namespace Husnisse.Patches
         }
     }
 
+    /// <summary>
+    /// The ledger lives in the inventory window, so it follows the inventory: the key is read only
+    /// while the inventory is visible (world input never sees it), and the panel is a child of the
+    /// inventory root so it cannot outlive it.
+    /// </summary>
+    [HarmonyPatch(typeof(InventoryGui), "Update")]
+    public static class LedgerUiPatch
+    {
+        private static void Postfix(InventoryGui __instance)
+        {
+            LedgerUi.KeyTick(__instance);
+            LedgerUi.Refresh(__instance);
+        }
+    }
+
     [HarmonyPatch(typeof(InventoryGui), nameof(InventoryGui.Hide))]
     public static class ContainerUiHidePatch
     {
         private static void Postfix()
         {
             ContainerRulesUi.ClosePanel();
+            LedgerUi.Close();
         }
     }
 }

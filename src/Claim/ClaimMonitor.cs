@@ -30,6 +30,10 @@ namespace Husnisse.Claims
             if (_timer < Interval) return;
             _timer = 0f;
 
+            // Presets are world state: a client that connected after the key was published has to
+            // apply the table before it draws a suggestion, and this is the one pass every peer runs.
+            Storage.PresetStore.Ensure();
+
             var changed = ClaimRegistry.RevalidateAll();
             if (changed > 0)
             {

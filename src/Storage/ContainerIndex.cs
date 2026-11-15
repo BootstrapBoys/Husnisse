@@ -41,6 +41,24 @@ namespace Husnisse.Storage
             return null;
         }
 
+        /// <summary>
+        /// The container an inventory belongs to. Teaching sees a move land in an <see cref="Inventory"/>
+        /// and has to name the chest behind it; the game keeps no back-reference, so the comparison is
+        /// by reference against the live containers. Player moves are rare, so the scan is free.
+        /// </summary>
+        public static Container ByInventory(Inventory inventory)
+        {
+            if (inventory == null) return null;
+
+            foreach (var container in Object.FindObjectsByType<Container>(FindObjectsSortMode.None))
+            {
+                if (container == null) continue;
+                if (!ReferenceEquals(container.GetInventory(), inventory)) continue;
+                return container;
+            }
+            return null;
+        }
+
         public static string Role(Container container)
         {
             var view = container != null ? container.GetComponent<ZNetView>() : null;

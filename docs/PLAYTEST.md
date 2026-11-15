@@ -179,6 +179,36 @@ The panel itself, on a client — the headless gate proves the routing, not the 
 - [ ] `husnisse_categories check` in the console lists what the presets do not cover; a gap item
       (a pelt, a bone, a boss drop) lands in Overflow rather than in a ruled chest.
 
+## 5c. Teaching and the ledger (0.3.1)
+
+- [ ] Alt on the nisse: it says it is watching and its hover says so; Alt again stops it.
+- [ ] While it watches, put one stack into a chest that had no rule: the chest joins the network
+      (`husnisse_rule list` shows `net=on rule=custom:1`), the nisse says it will keep that item here,
+      and the item stays in the chest.
+- [ ] Put a second kind of item into a second chest without pressing Alt again: it learns that too.
+- [ ] Stop watching (Alt), then put a stack into a third chest: its rule stays `none` and it stays off
+      the network.
+- [ ] Throw three of the taught items on the floor inside the claim: each lands in the chest that was
+      taught, not merely in a chest that accepts the category.
+- [ ] Teach a chest that already has a category rule it does not accept: the nisse refuses in words and
+      the rule is unchanged.
+- [ ] Open the ledger (Tab, then H): the claim line, the rows and the unclassified count match
+      `husnisse status`; the panel closes with the inventory.
+- [ ] Select an unclassified chest, press a category: the row shows the rule, `husnisse_rule list`
+      agrees, and opening that chest shows the same rule in its own panel (one writer, two surfaces).
+- [ ] Change priority, net and blacklist from the ledger: each is reflected in the container window and
+      in `husnisse_rule list`; Tidy on a chest you are not standing at still sends the nisse.
+- [ ] Untick Metals in the pickup filter and drop copper and wood in the claim: only the wood is
+      collected; tick Metals again and the copper is collected on the next pass.
+- [ ] With two partial stacks of the same item in your pockets, Empty Pockets: the stacks merge first
+      and the nisse carries one stack.
+- [ ] On the host, `husnisse_rules export`, change two rules, `husnisse_rules apply`: both come back.
+      Destroy a chest and `apply` again: it refuses and nothing changes.
+- [ ] `husnisse_rules preset metals $item_coal` narrows Metals to coal (a copper drop stops being
+      picked up); `husnisse_rules preset metals builtin` restores it.
+- [ ] A client that is not the claim's owner sees the ledger read-only: buttons disabled, "read only" in
+      the title, no message spam when clicked.
+
 ## 6. Persistence and diagnostics
 
 - [ ] Log out and back in: claim, bowl owner, satiety, mood, bowl contents and memory survive.

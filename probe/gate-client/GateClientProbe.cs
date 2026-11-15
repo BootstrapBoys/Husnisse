@@ -194,7 +194,11 @@ namespace Husnisse.GateClient
                 case "setpos": SetPos(parts); break;
                 case "stand": Stand(parts); break;
                 case "ui": UiState("ui"); break;
+                case "panel": Panel(); break;
+                case "res": Res(parts); break;
                 case "click": ClickUi(parts.Length > 1 ? parts[1] : "HusnisseNet"); break;
+                case "ledger": LedgerToggle(); break;
+                case "ledgerpanel": LedgerPanel(); break;
                 case "god": God(parts); break;
                 case "heal": Heal(); break;
                 case "quit": Quit(); break;
@@ -607,12 +611,220 @@ namespace Husnisse.GateClient
                     " inUseFlag=" + zdo.GetBool("inUse", false) +
                     " owner=" + (view != null && view.IsOwner()));
             }
+
+            // The panel's own state, one line: what a player reads on every control the 0.3b
+            // panel added. `suggest` is only drawn when the rule is empty and the contents
+            // classify, so its active flag is part of the reading.
+            var title = FindUnder(root, "HusnisseRulesTitle");
+            var status = FindUnder(root, "HusnisseStatus");
+            var suggest = FindUnder(root, "HusnisseSuggest");
+            var priority = FindUnder(root, "HusnissePriorityValue");
+            var custom = FindUnder(root, "HusnisseCustom");
+            var copy = FindUnder(root, "HusnisseCopy");
+            var customPanel = FindUnder(root, "HusnisseCustomPanel");
+            Say(prefix + " panel title='" + LabelOf(title) + "'" +
+                " priority='" + LabelOf(priority) + "'" +
+                " status='" + LabelOf(status) + "'" +
+                " suggestActive=" + (suggest != null && suggest.activeSelf) +
+                " suggest='" + LabelOf(suggest) + "'" +
+                " copyClickable=" + InteractableOf(copy) +
+                " custom='" + LabelOf(custom) + "'" +
+                " customOpen=" + (customPanel != null && customPanel.activeSelf));
+        }
+
+        /// <summary>
+        /// The whole drawn UI as rectangles: the container window, the vanilla container grid, and
+        /// every element the mod adds (name, active, clickable, label, label colour, world rect).
+        /// Then the judgements the gate needs — does a panel cover the grid, does the panel leave
+        /// the window, do two of the mod's own elements overlap — computed here so the numbers are
+        /// the client's own rects rather than a screenshot eyeball.
+        /// </summary>
+        private void Panel()
+        {
+            var gui = InventoryGui.instance;
+            if (gui == null) { Say("panel: no gui"); return; }
+
+            var root = gui.m_container;
+            if (root == null) { Say("panel: no container window"); return; }
+
+            var window = WorldRect(root);
+            Say("panel root=" + root.gameObject.name + " win=" + root.gameObject.activeInHierarchy +
+                " screen=" + Screen.width + "x" + Screen.height +
+                " rect=" + RectText(window));
+
+            var grid = gui.ContainerGrid;
+            var gridRect = grid != null ? WorldRect(grid.GetComponent<RectTransform>()) : new UiRect();
+            Say("panel grid name=" + (grid != null ? grid.gameObject.name : "-") +
+                " active=" + (grid != null && grid.gameObject.activeInHierarchy) +
+                " rect=" + RectText(gridRect));
+
+            var elements = new List<GameObject>();
+            foreach (var child in root.GetComponentsInChildren<Transform>(true))
+            {
+                if (child == null) continue;
+                var name = child.gameObject.name;
+                if (!name.StartsWith("Husnisse", StringComparison.Ordinal)) continue;
+                elements.Add(child.gameObject);
+
+                var rect = child as RectTransform;
+                var button = child.GetComponent<Button>();
+                var label = child.GetComponentInChildren<TMP_Text>(true);
+                Say("panel el name=" + name +
+                    " active=" + child.gameObject.activeSelf +
+                    " vis=" + child.gameObject.activeInHierarchy +
+                    " clickable=" + (button != null ? button.interactable.ToString() : "-") +
+                    " label='" + (label != null ? label.text : "-") + "'" +
+                    " color=#" + (label != null ? Hex(label.color) : "-") +
+                    " rect=" + RectText(rect != null ? WorldRect(rect) : new UiRect()));
+            }
+
+            foreach (var name in new[] { "HusnisseNetworkStrip", "HusnisseRulesPanel", "HusnisseCustomPanel" })
+            {
+                var element = FindUnder(root, name);
+                if (element == null) continue;
+                var rect = WorldRect(element.GetComponent<RectTransform>());
+                Say("panel overlap " + name + " vs grid = " + Overlap(rect, gridRect).ToString("0.0") +
+                    " vs window = " + Overlap(rect, window).ToString("0.0") +
+                    " inside=" + (Inside(window, rect) ? "True" : "False") +
+                    " area=" + Area(rect).ToString("0"));
+            }
+
+            foreach (var name in new[] { "HusnisseNetworkStrip", "HusnisseRulesPanel", "HusnisseCustomPanel" })
+            {
+                var panel = FindUnder(root, name);
+                if (panel == null || !panel.activeInHierarchy) continue;
+                var leaves = new List<GameObject>();
+                foreach (var child in panel.GetComponentsInChildren<Transform>(true))
+                {
+                    if (child == null || !child.gameObject.activeInHierarchy) continue;
+                    if (child.gameObject == panel) continue;
+                    var name2 = child.gameObject.name;
+                    if (!name2.StartsWith("Husnisse", StringComparison.Ordinal)) continue;
+                    var hasChild = false;
+                    foreach (var grand in child.GetComponentsInChildren<Transform>(true))
+                    {
+                        if (grand == null || grand.gameObject == child.gameObject) continue;
+                        if (grand.gameObject.name.StartsWith("Husnisse", StringComparison.Ordinal)) { hasChild = true; break; }
+                    }
+                    if (!hasChild) leaves.Add(child.gameObject);
+                }
+
+                var pairs = 0;
+                for (var i = 0; i < leaves.Count; i++)
+                {
+                    for (var j = i + 1; j < leaves.Count; j++)
+                    {
+                        var area = Overlap(WorldRect(leaves[i].GetComponent<RectTransform>()),
+                                           WorldRect(leaves[j].GetComponent<RectTransform>()));
+                        if (area <= 1f) continue;
+                        pairs++;
+                        Say("panel pairoverlap " + name + " " + leaves[i].gameObject.name +
+                            " x " + leaves[j].gameObject.name + " = " + area.ToString("0.0"));
+                    }
+                }
+                Say("panel pairs " + name + " leaves=" + leaves.Count + " overlapping=" + pairs);
+            }
+
+            var visible = 0;
+            foreach (var element in elements) if (element.activeInHierarchy) visible++;
+            Say("panel counts elements=" + elements.Count + " visible=" + visible);
+        }
+
+        private void Res(string[] parts)
+        {
+            var modes = string.Empty;
+            foreach (var mode in Screen.resolutions)
+            {
+                var text = mode.width + "x" + mode.height;
+                if (modes.IndexOf(text, StringComparison.Ordinal) >= 0) continue;
+                modes += text + ",";
+            }
+            Say("res before screen=" + Screen.width + "x" + Screen.height + " modes=[" + modes.TrimEnd(',') + "]");
+            if (parts.Length < 3) return;
+
+            var width = ParseInt(parts[1], 0);
+            var height = ParseInt(parts[2], 0);
+            if (width <= 0 || height <= 0) { Say("res: bad size"); return; }
+
+            Screen.SetResolution(width, height, FullScreenMode.Windowed);
+            StartCoroutine(ResReport(width, height));
+        }
+
+        private IEnumerator ResReport(int width, int height)
+        {
+            yield return new WaitForSeconds(2f);
+            Say("res after requested=" + width + "x" + height + " screen=" + Screen.width + "x" + Screen.height);
+        }
+
+        private struct UiRect
+        {
+            public float X, Y, W, H;
+        }
+
+        private static UiRect WorldRect(RectTransform rect)
+        {
+            var result = new UiRect();
+            if (rect == null) return result;
+
+            var corners = new Vector3[4];
+            rect.GetWorldCorners(corners);
+            var minX = corners[0].x; var minY = corners[0].y;
+            var maxX = corners[0].x; var maxY = corners[0].y;
+            for (var i = 1; i < 4; i++)
+            {
+                if (corners[i].x < minX) minX = corners[i].x;
+                if (corners[i].y < minY) minY = corners[i].y;
+                if (corners[i].x > maxX) maxX = corners[i].x;
+                if (corners[i].y > maxY) maxY = corners[i].y;
+            }
+            result.X = minX; result.Y = minY; result.W = maxX - minX; result.H = maxY - minY;
+            return result;
+        }
+
+        private static string RectText(UiRect rect)
+        {
+            return rect.X.ToString("0.0") + "," + rect.Y.ToString("0.0") + "," +
+                   rect.W.ToString("0.0") + "x" + rect.H.ToString("0.0");
+        }
+
+        private static float Area(UiRect rect) { return Mathf.Max(0f, rect.W) * Mathf.Max(0f, rect.H); }
+
+        private static float Overlap(UiRect a, UiRect b)
+        {
+            var width = Mathf.Min(a.X + a.W, b.X + b.W) - Mathf.Max(a.X, b.X);
+            var height = Mathf.Min(a.Y + a.H, b.Y + b.H) - Mathf.Max(a.Y, b.Y);
+            if (width <= 0f || height <= 0f) return 0f;
+            return width * height;
+        }
+
+        private static bool Inside(UiRect outer, UiRect inner)
+        {
+            const float tolerance = 0.6f;
+            return inner.X >= outer.X - tolerance && inner.Y >= outer.Y - tolerance &&
+                   inner.X + inner.W <= outer.X + outer.W + tolerance &&
+                   inner.Y + inner.H <= outer.Y + outer.H + tolerance;
+        }
+
+        private static string Hex(Color color)
+        {
+            var r = Mathf.RoundToInt(Mathf.Clamp01(color.r) * 255f);
+            var g = Mathf.RoundToInt(Mathf.Clamp01(color.g) * 255f);
+            var b = Mathf.RoundToInt(Mathf.Clamp01(color.b) * 255f);
+            return r.ToString("X2") + g.ToString("X2") + b.ToString("X2");
+        }
+
+        private static string InteractableOf(GameObject go)
+        {
+            if (go == null) return "-";
+            var button = go.GetComponent<Button>();
+            return button != null ? button.interactable.ToString() : "-";
         }
 
         private void ClickUi(string name)
         {
             var gui = InventoryGui.instance;
             var target = gui != null ? FindUnder(gui.m_container, name) : null;
+            if (target == null && gui != null) target = FindUnder(gui.m_inventoryRoot, name);
             if (target == null) { Say("click " + name + ": missing"); return; }
 
             var button = target.GetComponent<Button>();
@@ -647,6 +859,81 @@ namespace Husnisse.GateClient
             if (go == null) return "-";
             var label = go.GetComponentInChildren<TMP_Text>(true);
             return label != null ? label.text : "-";
+        }
+
+        // ------------------------------------------------------------------ ledger (0.3.1)
+
+        /// <summary>
+        /// Opens the mod's own ledger: the real entry point a player reaches with the ledger key,
+        /// minus the key itself (a synthetic key press is not something this probe can do reliably).
+        /// The panel is a child of the inventory root, so the inventory is opened first.
+        /// </summary>
+        private void LedgerToggle()
+        {
+            var gui = InventoryGui.instance;
+            if (gui == null) { Say("ledger: no gui"); return; }
+            if (Player.m_localPlayer == null) { Say("ledger: no player"); return; }
+
+            if (!InventoryGui.IsVisible()) gui.Show(null);
+
+            var type = Type.GetType("Husnisse.UI.LedgerUi, Husnisse");
+            var toggle = type != null ? type.GetMethod("Toggle", new[] { typeof(InventoryGui) }) : null;
+            if (toggle == null) { Say("ledger: LedgerUi.Toggle not found"); return; }
+
+            toggle.Invoke(null, new object[] { gui });
+            Say("ledger toggled visible=" + ReadStatic(type, "Visible"));
+        }
+
+        private static object ReadStatic(Type type, string property)
+        {
+            var info = type.GetProperty(property, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+            return info != null ? info.GetValue(null, null) : "-";
+        }
+
+        /// <summary>
+        /// The ledger's drawn state, one line per control family: every named child's label, so an
+        /// assertion is about what a player reads, not about an internal field.
+        /// </summary>
+        private void LedgerPanel()
+        {
+            var gui = InventoryGui.instance;
+            var panel = gui != null ? FindUnder(gui.m_inventoryRoot, "HusnisseLedgerPanel") : null;
+            if (panel == null) { Say("ledgerpanel missing"); return; }
+
+            Say("ledgerpanel active=" + panel.activeSelf +
+                " claim='" + LabelNamed(panel, "HusnisseLedgerClaim") + "'" +
+                " status='" + LabelNamed(panel, "HusnisseLedgerStatus") + "'" +
+                " selected='" + LabelNamed(panel, "HusnisseLedgerSelected") + "'" +
+                " page='" + LabelNamed(panel, "HusnisseLedgerPage") + "'");
+
+            var rows = new List<string>();
+            for (var i = 0; i < 8; i++)
+            {
+                var row = FindUnder(panel.transform, "HusnisseLedgerRow" + i);
+                if (row == null || !row.activeSelf) continue;
+                rows.Add(LabelOf(row));
+            }
+            Say("ledgerpanel rows=" + rows.Count + " | " + string.Join(" | ", rows.ToArray()));
+
+            var labels = new List<string>();
+            foreach (var name in new[]
+                     {
+                         "HusnisseLedgerNet", "HusnisseLedgerBlacklist", "HusnisseLedgerTidy",
+                         "HusnisseLedgerCatMetals", "HusnisseLedgerCatWood", "HusnisseLedgerCatFood",
+                         "HusnisseLedgerOverflow", "HusnisseLedgerDeposit", "HusnisseLedgerNoRule",
+                         "HusnisseLedgerPriorityValue", "HusnisseLedgerPickupMetals",
+                         "HusnisseLedgerPickupWood", "HusnisseLedgerPickupFood",
+                     })
+            {
+                labels.Add(name.Replace("HusnisseLedger", "") + "='" + LabelNamed(panel, name) + "'");
+            }
+            Say("ledgerpanel controls " + string.Join(" ", labels.ToArray()));
+        }
+
+        private static string LabelNamed(GameObject panel, string name)
+        {
+            var target = FindUnder(panel.transform, name);
+            return target != null ? LabelOf(target) : "-";
         }
 
         private void Shot(string name)

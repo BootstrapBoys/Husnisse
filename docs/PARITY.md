@@ -59,8 +59,8 @@ fiction — decided in 0.4, before the first consuming surface lands.
 | 2 | Chest remembers its item type when empty | 0.3 container rule lives in its ZDO | covered |
 | 3 | Storage rules: preferred destination, overflow chest, base groups, copy settings | 0.3 container rules | **covered** — 0.3a shipped the container UI, the eight categories and the roles in the chest's ZDO; 0.3b added the preset table with priority, the saved list with its checkbox preview, the first-toggle suggestion and copy-rule; 0.3c added Overflow's "full category" case with a named reason and deposit-as-a-source. Base groups are the claim |
 | 4 | Supply permissions per chest (crafting, production, fuel, feed) | 0.6 pantries | **partial** — one permission today, four in QM |
-| 5 | Deposit All · sort inventory · sort chest · combine compatible stacks | 0.1 orders; queue in 0.1.2; 0.3c deposit-all; merge in 0.3.1 | **partial** — deposit-all (network: the nisse files your pockets; off-network: dump into that chest, unsorted), Empty Pockets and Tidy are in; stack merge is 0.3.1 |
-| 6 | Pickup controls, per item type | 0.3.1 type filter | **partial** — per claim, edited in the ledger |
+| 5 | Deposit All · sort inventory · sort chest · combine compatible stacks | 0.1 orders; queue in 0.1.2; 0.3c deposit-all; merge in 0.3.1 | **covered** — deposit-all (network: the nisse files your pockets; off-network: dump into that chest, unsorted), Empty Pockets and Tidy are in; 0.3.1 merges partial pocket stacks before an Empty Pockets order queues | 
+| 6 | Pickup controls, per item type | 0.3.1 type filter | **covered** — per claim, one toggle per preset in the ledger; the ground scan honours it, orders do not |
 | 7 | Configurable stack sizes (no weight change) | 1.0 | scheduled |
 | 8 | Craft from storage | 0.5 | scheduled |
 | 9 | Building coverage through the deposit chest's area | 1.0 comfort coverage | scheduled — coverage equals the claim radius |
@@ -69,12 +69,12 @@ fiction — decided in 0.4, before the first consuming surface lands.
 | 12 | Refuel fires and torches, feed animals and taming creatures | 0.6 | scheduled |
 | 13 | Owl companion / base assistant | 0.1 nisse | replaced by the creature |
 | 14 | Helmsman ship unloading | 1.0 | scheduled — any container on a ship inside the claim |
-| 15 | Searchable chest settings, range previews, controller navigation | 0.2 range preview; 0.3.1 ledger | **partial** — preview lands in 0.2 |
+| 15 | Searchable chest settings, range previews, controller navigation | 0.2 range preview; 0.3.1 ledger | **partial** — the ledger lists every container and shows the ring; search and controller navigation are not built |
 | 16 | Mailboxes and the postal system (`Quartermaster.outgoingMail`, `PostalDirectory`) | — | **decision** — keep or drop, needed by 0.6 |
 | 17 | Shared-chest handshake and ownership revision | 0.7 multiplayer | scheduled |
 | 18 | Ward ownership and access filtering | 0.2 — WardIsLove handover | **scheduled** — only for a bowl inside a ward |
 | 19 | Claim / revision semantics for chest ZDOs | 0.7 migration | scheduled |
-| 20 | Forget / remembered / forgotten lists | 0.3.1 teaching | replaced by demonstration |
+| 20 | Forget / remembered / forgotten lists | 0.3.1 teaching | **covered, different mechanic** — demonstration replaces Forget: teaching a chest again rewrites its list, and the ledger's No-rule button forgets a container outright |
 
 ## QI surfaces
 
@@ -89,10 +89,10 @@ fiction — decided in 0.4, before the first consuming surface lands.
 | 7 | PlanBuild: blueprint cost counts storage | 0.4 | **gap** |
 | 8 | DropMoreLoot: defer stack sizes to it when installed | 0.5 | **gap** |
 | 9 | WardIsLove: ward ownership and host range | 0.2 — handover | **scheduled** — only for a bowl inside a ward |
-| 10 | Chest dock: gate "Chest Config", force-sort an unowned chest | 0.3.1 ledger | **decision** — gating is moot without QM's menu; the sort-unowned half survives as a ledger order |
+| 10 | Chest dock: gate "Chest Config", force-sort an unowned chest | 0.3.1 ledger | **covered** — gating is moot without QM's menu; the sort-unowned half is the ledger's **Tidy** row action |
 | 11 | Forget override (delete from both lists) | — | **moot** |
 | 12 | Mail watchdog: clear stale queued-mail links | 0.6 | **gap** if mailboxes are kept |
-| 13 | Pocket merge: merge stacks in the player inventory on sort | 0.3.1 | **gap** |
+| 13 | Pocket merge: merge stacks in the player inventory on sort | 0.3.1 | **covered** — `OrderService.MergePockets`, run by an Empty Pockets order before it queues |
 | 14 | Craft repaint: repaint the recipe list after a craft | 0.5 | **gap**, needed the moment 0.5 lands |
 | 15 | Stack rule: ignore crafter, ignored tags, EpicLoot components | 0.5 | **gap** |
 | 16 | Ward host range / ownership modes | 0.2 — handover | **scheduled** |
@@ -105,11 +105,11 @@ fiction — decided in 0.4, before the first consuming surface lands.
 2. EpicLoot inventory provider + double-register refusal
 3. PlanBuild blueprint cost
 4. DropMoreLoot stack deferral
-5. Pocket stack merge on sort
+5. ~~Pocket stack merge on sort~~ — **closed in 0.3.1**
 6. Craft-list repaint after craft
 7. Stack rule relaxations (crafter, tags, EpicLoot components)
-8. Pickup type filter
-9. Range preview for the nisse's claim
+8. ~~Pickup type filter~~ — **closed in 0.3.1**
+9. ~~Range preview for the nisse's claim~~ — **closed in 0.2b** (placement ghost, bowl hover, and the ledger's Show range)
 10. Mailbox parity — or an explicit decision to drop the postal system
 
 ## Three structural consequences

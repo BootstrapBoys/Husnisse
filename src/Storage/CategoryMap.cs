@@ -114,6 +114,60 @@ namespace Husnisse.Storage
             return new HashSet<string>(names, StringComparer.OrdinalIgnoreCase);
         }
 
+        /// <summary>
+        /// The editable half of the table: a `presets:` section in the rules file replaces the named
+        /// set for a category. Published as world state (see <see cref="PresetStore"/>), never read
+        /// from a client's own file, so the server's routing and a client's suggestion agree.
+        /// </summary>
+        private static Dictionary<ItemCategory, HashSet<string>> _overrides;
+
+        public static Dictionary<ItemCategory, HashSet<string>> Overrides
+        {
+            get { return _overrides; }
+        }
+
+        public static void SetOverrides(Dictionary<ItemCategory, List<string>> presets)
+        {
+            if (presets == null || presets.Count == 0)
+            {
+                _overrides = null;
+                return;
+            }
+
+            var table = new Dictionary<ItemCategory, HashSet<string>>();
+            foreach (var pair in presets)
+            {
+                if (pair.Key == ItemCategory.None || pair.Value == null || pair.Value.Count == 0) continue;
+
+                var set = new HashSet<string>(pair.Value, StringComparer.OrdinalIgnoreCase);
+
+                // A set identical to the shipped one is not an override: importing an export nobody
+                // edited must leave the built-in table in force (and `presets=` reading `builtin`).
+                HashSet<string> builtin;
+                if (Named.TryGetValue(pair.Key, out builtin) && builtin.SetEquals(set)) continue;
+
+                table[pair.Key] = set;
+            }
+            _overrides = table.Count > 0 ? table : null;
+        }
+
+        /// <summary>The names a category carries by name right now (file override or built-in).</summary>
+        public static IEnumerable<string> NamesOf(ItemCategory category)
+        {
+            HashSet<string> names;
+            if (_overrides != null && _overrides.TryGetValue(category, out names)) return names;
+
+            return Named.TryGetValue(category, out names) ? (IEnumerable<string>)names : new string[0];
+        }
+
+        /// <summary>The shipped table, for an export that wants to show a starting point.</summary>
+        public static IEnumerable<string> BuiltInNamesOf(ItemCategory category)
+        {
+            HashSet<string> names;
+            return Named.TryGetValue(category, out names) ? (IEnumerable<string>)names : new string[0];
+        }
+
+
         private static ItemDrop.ItemData.ItemType TypeOf(ItemDrop.ItemData item)
         {
             return item.m_shared.m_itemType;
@@ -124,13 +178,18 @@ namespace Husnisse.Storage
         {
             if (category == ItemCategory.None || item == null || item.m_shared == null) return false;
 
+            PresetStore.Ensure();
+
             var shared = item.m_shared;
             switch (category)
             {
                 case ItemCategory.Food:
-                    // Anything with satiety is food, whatever type the game files it under:Valheim
-                    // marks most raw meat and every uncooked meal as Material, not Consumable.
-                    return shared.m_food > 0f;
+                    // Anything with satiety is food, whatever type the game files it under: Valheim
+                    // marks most raw meat and every uncooked meal as Material, not Consumable. The
+                    // named set is the pantry side of the preset — seeds, crops, flour, spices — and
+                    // those have no satiety until they are cooked, so the type alone would leave
+                    // them unclassified (0.3.1 fixed that).
+                    return shared.m_food > 0f || InSet(category, shared.m_name);
 
                 case ItemCategory.Consumables:
                     return shared.m_itemType == ItemDrop.ItemData.ItemType.Consumable && shared.m_food <= 0f;
@@ -149,6 +208,10 @@ namespace Husnisse.Storage
         private static bool InSet(ItemCategory category, string name)
         {
             if (string.IsNullOrEmpty(name)) return false;
+
+            HashSet<string> overridden;
+            if (_overrides != null && _overrides.TryGetValue(category, out overridden)) return overridden.Contains(name);
+
             HashSet<string> names;
             return Named.TryGetValue(category, out names) && names.Contains(name);
         }
@@ -198,13 +261,6 @@ namespace Husnisse.Storage
             }
 
             return bestCount > 0 ? best : ItemCategory.None;
-        }
-
-        /// <summary>The names a preset carries by name, for the ledger and for diagnostics.</summary>
-        public static IEnumerable<string> NamesOf(ItemCategory category)
-        {
-            HashSet<string> names;
-            return Named.TryGetValue(category, out names) ? (IEnumerable<string>)names : new string[0];
         }
 
         /// <summary>

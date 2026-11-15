@@ -180,11 +180,32 @@ MyLittleUI and other UI mods must be tested; the buttons must survive a controll
 - Pocket stack merge on sort.
 - YAML export/import of rules and editable presets (all-or-nothing import; container mapping screen).
 
+**Progress** — implemented 2026-11-15. Teaching is the deposit itself: Alt-interact the nisse (it
+watches for two minutes, `[Teach]` diagnostics), then move a sample into a chest; the move is observed
+where the game performs it (`Inventory.MoveItemToThis`, both overloads = drag and shift-click), and the
+chest's rule becomes a custom list with that item, joined to the network in one server write
+(`RuleOp.SetRuleAndNetwork`). A move made while the nisse is not watching changes nothing. The ledger
+(`Husnisse / Ledger Key`, default **H**, inside the inventory) lists every container with its rule,
+priority, network flag and blacklist, marks the unclassified ones, and offers classify / rule / priority
+/ network / blacklist / Tidy / pickup-filter / range — every button one call into `LedgerActions`, the
+same layer the `husnisse_ledger` console command uses. The pickup filter is per claim, stored in the
+bowl's ZDO and applied by the ground scan only. Empty Pockets merges partial pocket stacks first. The
+rules file (`husnisse_rules export|plan|map|apply|preset`) round-trips every rule, refuses the whole
+import when one entry does not fit, and publishes editable presets as a global key so routing and
+suggestions agree. Evidence: `docs/evidence/0.3.1/`.
+
 **Done when** — teach three item types and they route; ledger edits match the UI; a YAML export imports
-into a copied world with every rule intact or nothing applied.
+into a copied world with every rule intact or nothing applied. **Met 2026-11-15** headlessly on the
+spare tree: `husnisse-031-teach` (three taught types route by name, a control chest left unwatched keeps
+no rule, 19 assertions), `husnisse-031-ledger` (classify/rule/priority/net/blacklist via the ledger
+layer, pickup filter live both ways, pocket merge, 29 assertions), `husnisse-031-rules` (preset narrowed
+and restored, export → mutate → apply restores every rule, one destroyed chest refuses the whole import,
+20 assertions). The **UI/ledger client proof** (the gate this card names) is recorded in the same
+evidence folder from a real client.
 
 **Risks** — two editing paths (teaching and ledger) writing the same state must share one writer, or
-they will drift.
+they will drift. They do: teaching sends through `RuleRpc`, the ledger through `LedgerActions` →
+`RuleRpc`, and both land on `ContainerNetwork.WriteRule`.
 
 ## 0.4 — Read-only contract
 

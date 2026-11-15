@@ -124,13 +124,26 @@ namespace Husnisse.Flow
 
             if (drops.Count == 0) return;
 
+            // The per-claim pickup filter (0.3.1): a type the owner switched off stays on the
+            // floor. Reading it once per pass, not per drop, keeps a 200-drop floor cheap.
+            var filter = PickupFilter.Of(claim);
+
             // One scan of the claim's network for the whole pile, and one routing question per
             // stack: a drop nothing accepts stays on the ground without being queued and retried
             // every tick, which is what a broken rule would otherwise look like in the log.
             var network = StorageRouter.NetworkCandidates(claim, containers);
             foreach (var drop in drops)
             {
-                if (!StorageRouter.Decide(claim, network, drop.m_itemData, null, null).Found) continue;
+                var item = drop.m_itemData;
+                var category = CategoryMap.Of(item);
+                if (!filter.Allows(category))
+                {
+                    Log.Debug("Flow", "pickup skips " + item.m_shared.m_name + " cat=" +
+                                      ContainerRule.CategoryToken(category) + " claim=" + claim.BowlId);
+                    continue;
+                }
+
+                if (!StorageRouter.Decide(claim, network, item, null, null).Found) continue;
                 FlowQueue.EnqueueDrop(claim, drop);
             }
         }

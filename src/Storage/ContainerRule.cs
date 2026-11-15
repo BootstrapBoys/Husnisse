@@ -91,6 +91,41 @@ namespace Husnisse.Storage
             }
         }
 
+        /// <summary>
+        /// The round-trippable shape: what <see cref="ParseShorthand"/> reads back, so an export can
+        /// be imported. Unlike <see cref="Describe"/> (display: `custom:3`), a custom list is spelled
+        /// out, and the priority rides as `@n`.
+        /// </summary>
+        public string ToShorthand()
+        {
+            var text = new StringBuilder();
+            switch (Kind)
+            {
+                case RuleKind.Category:
+                    text.Append("cat:").Append(CategoryToken(Category));
+                    break;
+                case RuleKind.Custom:
+                    text.Append("custom:");
+                    for (var i = 0; i < (Items != null ? Items.Count : 0); i++)
+                    {
+                        if (i > 0) text.Append(',');
+                        text.Append(Items[i]);
+                    }
+                    break;
+                case RuleKind.Overflow:
+                    text.Append("overflow");
+                    break;
+                case RuleKind.Deposit:
+                    text.Append("deposit");
+                    break;
+                default:
+                    return "none";
+            }
+
+            if (Priority != 0) text.Append('@').Append(Priority);
+            return text.ToString();
+        }
+
         public bool SameAs(ContainerRule other)
         {
             if (other == null) return false;

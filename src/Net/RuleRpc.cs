@@ -12,6 +12,16 @@ namespace Husnisse.Net
     {
         SetNetwork = 1,
         SetRule = 2,
+
+        /// <summary>Rule plus the network opt-in in one write: a container the player classifies
+        /// from the ledger or teaches must end up on the network, never half-configured.</summary>
+        SetRuleAndNetwork = 3,
+
+        /// <summary>The per-container blacklist flag (0.3.1: the ledger's blacklist management).</summary>
+        SetBlacklist = 4,
+
+        /// <summary>The claim's pickup filter, addressed by the bowl's position (0.3.1).</summary>
+        SetPickup = 5,
     }
 
     /// <summary>
@@ -63,6 +73,25 @@ namespace Husnisse.Net
             Send(RuleOp.SetRule, containerPosition, playerId, (rule ?? ContainerRule.None()).Encode());
         }
 
+        /// <summary>A rule and the network opt-in together: the ledger's "classify" and every
+        /// teaching write. One request so the server cannot apply half of it.</summary>
+        public static void SendRuleAndNetwork(Vector3 containerPosition, long playerId, ContainerRule rule)
+        {
+            Send(RuleOp.SetRuleAndNetwork, containerPosition, playerId, (rule ?? ContainerRule.None()).Encode());
+        }
+
+        public static void SendBlacklist(Vector3 containerPosition, long playerId, bool blacklisted)
+        {
+            Send(RuleOp.SetBlacklist, containerPosition, playerId, blacklisted ? "1" : "0");
+        }
+
+        /// <summary>The claim's pickup filter: addressed by the bowl's position, because a claim is
+        /// a piece and its ZDO is where the filter lives.</summary>
+        public static void SendPickup(Vector3 bowlPosition, long playerId, PickupFilter filter)
+        {
+            Send(RuleOp.SetPickup, bowlPosition, playerId, (filter ?? PickupFilter.All()).Encode());
+        }
+
         private static void Send(RuleOp op, Vector3 containerPosition, long playerId, string payload)
         {
             if (ZNet.instance == null) return;
@@ -101,6 +130,15 @@ namespace Husnisse.Net
                 var position = package.ReadVector3();
                 var claimed = package.ReadLong();
                 var payload = package.ReadString();
+
+                // The pickup filter is the one op addressed by the bowl, not by a container: a
+                // claim's filter belongs to the claim. Resolved before ContainerAt, which refuses
+                // the bowl on purpose (it is never a rule target).
+                if (op == RuleOp.SetPickup)
+                {
+                    HandlePickup(sender, claimed, position, payload);
+                    return;
+                }
 
                 var container = ContainerAt(position);
                 if (container == null)
@@ -160,12 +198,79 @@ namespace Husnisse.Net
                     Log.Debug("Rules", "rule " + name + " " + rule.Describe() +
                                        " claim=" + claim.BowlId + " player=" + who);
                     Ack(sender, op, position, payload);
+                    return;
+                }
+
+                if (op == RuleOp.SetRuleAndNetwork)
+                {
+                    var rule = ContainerRule.Decode(payload);
+                    if (rule.Kind == RuleKind.None && payload != ContainerRule.None().Encode())
+                    {
+                        Log.Debug("Rules", "refused: rule payload not understood: " + payload);
+                        return;
+                    }
+                    if (rule.IsNone)
+                    {
+                        Log.Debug("Rules", "refused: SetRuleAndNetwork with an empty rule");
+                        return;
+                    }
+
+                    if (!ContainerNetwork.WriteNetwork(container, true, "player " + who)) return;
+                    if (!ContainerNetwork.WriteRule(container, rule, "player " + who)) return;
+                    Log.Debug("Rules", "rule+net " + name + " " + rule.Describe() +
+                                       " claim=" + claim.BowlId + " player=" + who);
+                    Ack(sender, op, position, payload);
+                    return;
+                }
+
+                if (op == RuleOp.SetBlacklist)
+                {
+                    var blacklisted = payload == "1";
+                    if (!ContainerNetwork.WriteBlacklist(container, blacklisted, "player " + who)) return;
+                    Log.Debug("Rules", "blacklist " + (blacklisted ? "on" : "off") + " " + name +
+                                       " claim=" + claim.BowlId + " player=" + who);
+                    Ack(sender, op, position, payload);
                 }
             }
             catch (Exception ex)
             {
                 Log.Warn("rule RPC failed: " + ex.Message);
             }
+        }
+
+        /// <summary>
+        /// The claim's pickup filter. Validated against the claim at the bowl's own position — a
+        /// request cannot name a claim from somewhere else — and written to the bowl's ZDO, which is
+        /// the copy every peer reads.
+        /// </summary>
+        private static void HandlePickup(long sender, long claimed, Vector3 bowlPosition, string payload)
+        {
+            var claim = ClaimRegistry.FindFor(bowlPosition);
+            if (claim == null || claim.Bowl == null)
+            {
+                Log.Debug("Rules", "pickup refused: no claim at " + bowlPosition);
+                return;
+            }
+
+            if (Vector3.Distance(claim.BowlPosition, bowlPosition) > 3f)
+            {
+                Log.Debug("Rules", "pickup refused: " + bowlPosition + " is not claim " + claim.BowlId + "'s bowl");
+                return;
+            }
+
+            var who = sender == 0L ? claimed : PeerIdentity.PlayerId(sender);
+            if (sender != 0L && who == 0L) return;
+            if (!claim.Allows(who))
+            {
+                Log.Debug("Rules", "pickup refused: player " + who + " does not hold claim " + claim.BowlId);
+                return;
+            }
+
+            var filter = PickupFilter.Decode(payload);
+            if (!PickupFilter.Write(claim, filter, "player " + who)) return;
+
+            Log.Debug("Rules", "pickup " + filter.Describe() + " claim=" + claim.BowlId + " player=" + who);
+            Ack(sender, RuleOp.SetPickup, bowlPosition, payload);
         }
 
         /// <summary>Tells the peer that asked which value the server accepted.</summary>
@@ -198,6 +303,15 @@ namespace Husnisse.Net
                 var position = package.ReadVector3();
                 var payload = package.ReadString();
 
+                if (op == RuleOp.SetPickup)
+                {
+                    var claim = ClaimRegistry.FindFor(position);
+                    if (claim == null || claim.Bowl == null) return;
+                    PickupFilter.Write(claim, PickupFilter.Decode(payload), "server ack");
+                    Log.Debug("Rules", "ack applied pickup " + PickupFilter.Decode(payload).Describe());
+                    return;
+                }
+
                 var container = ContainerAt(position);
                 if (container == null) return;
 
@@ -211,6 +325,15 @@ namespace Husnisse.Net
                 else if (op == RuleOp.SetRule)
                 {
                     ContainerNetwork.WriteRule(container, ContainerRule.Decode(payload), "server ack");
+                }
+                else if (op == RuleOp.SetRuleAndNetwork)
+                {
+                    ContainerNetwork.WriteNetwork(container, true, "server ack");
+                    ContainerNetwork.WriteRule(container, ContainerRule.Decode(payload), "server ack");
+                }
+                else if (op == RuleOp.SetBlacklist)
+                {
+                    ContainerNetwork.WriteBlacklist(container, payload == "1", "server ack");
                 }
                 Log.Debug("Rules", "ack applied " + payload + " (local owner)");
             }

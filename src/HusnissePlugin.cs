@@ -26,7 +26,7 @@ namespace Husnisse
     {
         public const string PluginGUID = "com.bootstrapboys.husnisse";
         public const string PluginName = "Husnisse";
-        public const string PluginVersion = "0.3.0";
+        public const string PluginVersion = "0.3.1";
 
         internal static bool Running;
 
@@ -57,6 +57,8 @@ namespace Husnisse
             Commands.RuleCommand.Register();
             Commands.CategoryCommand.Register();
             Commands.BenchCommand.Register();
+            Commands.LedgerCommand.Register();
+            Commands.RulesCommand.Register();
 
             if (!HusnisseConfig.Enabled.Value)
             {

@@ -104,6 +104,44 @@ namespace Husnisse.Localization
         public const string CatConsumables = "$husnisse_cat_consumables";
         public const string CatTools = "$husnisse_cat_tools";
 
+        // Teaching (0.3.1)
+        public const string TeachBegin = "$husnisse_teach_begin";
+        public const string TeachStop = "$husnisse_teach_stop";
+        public const string TeachWatching = "$husnisse_teach_watching";
+        public const string TeachHover = "$husnisse_teach_hover";
+        public const string TeachLearned = "$husnisse_teach_learned";
+        public const string TeachKnown = "$husnisse_teach_known";
+        public const string TeachRefused = "$husnisse_teach_refused";
+        public const string TeachNotHere = "$husnisse_teach_not_here";
+        public const string HandTeach = "$husnisse_hand_teach";
+        public const string VoiceWatch = "$husnisse_voice_watch";
+
+        // Ledger (0.3.1)
+        public const string LedgerTitle = "$husnisse_ledger_title";
+        public const string LedgerClaim = "$husnisse_ledger_claim";
+        public const string LedgerRange = "$husnisse_ledger_range";
+        public const string LedgerRangeShown = "$husnisse_ledger_range_shown";
+        public const string LedgerExport = "$husnisse_ledger_export";
+        public const string LedgerImport = "$husnisse_ledger_import";
+        public const string LedgerExportDone = "$husnisse_ledger_export_done";
+        public const string LedgerExportFailed = "$husnisse_ledger_export_failed";
+        public const string LedgerImportDone = "$husnisse_ledger_import_done";
+        public const string LedgerImportRefused = "$husnisse_ledger_import_refused";
+        public const string LedgerImportUnmapped = "$husnisse_ledger_import_unmapped";
+        public const string LedgerServerOnly = "$husnisse_ledger_server_only";
+        public const string LedgerNoClaim = "$husnisse_ledger_no_claim";
+        public const string LedgerNoFile = "$husnisse_ledger_no_file";
+        public const string LedgerPickup = "$husnisse_ledger_pickup";
+        public const string LedgerBlacklist = "$husnisse_ledger_blacklist";
+        public const string LedgerOn = "$husnisse_ledger_on";
+        public const string LedgerOff = "$husnisse_ledger_off";
+        public const string LedgerSelected = "$husnisse_ledger_selected";
+        public const string LedgerNothingSelected = "$husnisse_ledger_nothing_selected";
+        public const string LedgerPage = "$husnisse_ledger_page";
+        public const string LedgerTidy = "$husnisse_ledger_tidy";
+        public const string LedgerTidySent = "$husnisse_ledger_tidy_sent";
+        public const string LedgerSent = "$husnisse_ledger_sent";
+
         private const string FolderName = "localization";
 
         private static readonly Dictionary<string, Dictionary<string, string>> ByLanguage =
@@ -235,7 +273,7 @@ namespace Husnisse.Localization
         }
 
         private const string DefaultEnglish = @"
-version: 7
+version: 8
 language: English
 strings:
   $husnisse_bowl_name: Porridge Bowl
@@ -319,6 +357,40 @@ strings:
   $husnisse_cat_building: Building
   $husnisse_cat_consumables: Consumables
   $husnisse_cat_tools: Tools
+  $husnisse_teach_begin: Show me where things go. Put a sample in the chest it belongs in.
+  $husnisse_teach_stop: The nisse stops watching.
+  $husnisse_teach_watching: The nisse is watching where things go. Press [Alt] to stop it.
+  $husnisse_teach_hover: The nisse is watching. Put a sample here to teach it.
+  $husnisse_teach_learned: The nisse will keep {0} here.
+  $husnisse_teach_known: The nisse already knows where {0} goes.
+  $husnisse_teach_refused: This chest keeps {1}; it cannot also learn {0} until its rule is cleared.
+  $husnisse_teach_not_here: Show the nisse a chest inside its claim.
+  $husnisse_hand_teach: ""[Alt] show me where things go""
+  $husnisse_voice_watch: The nisse leans closer to watch.
+  $husnisse_ledger_title: Husnisse ledger
+  $husnisse_ledger_claim: Claim {0} m ({1}) · owner {2} · {3} container(s) · {4} unclassified
+  $husnisse_ledger_range: Show range
+  $husnisse_ledger_range_shown: Claim {0} m.
+  $husnisse_ledger_export: Export rules
+  $husnisse_ledger_import: Import rules
+  $husnisse_ledger_export_done: ""Wrote {0} container rule(s) to {1}""
+  $husnisse_ledger_export_failed: ""Export failed: {0}""
+  $husnisse_ledger_import_done: Applied {0} rule(s) from the file.
+  $husnisse_ledger_import_refused: ""Import refused: {0}""
+  $husnisse_ledger_import_unmapped: ""{0} entr(y/ies) have no container; map them with husnisse_rules map.""
+  $husnisse_ledger_server_only: ""This runs on the server: husnisse_rules export | plan | apply.""
+  $husnisse_ledger_no_claim: No nisse claims this place.
+  $husnisse_ledger_no_file: ""No rules file yet: export first.""
+  $husnisse_ledger_pickup: Pickup
+  $husnisse_ledger_blacklist: Blacklist
+  $husnisse_ledger_on: on
+  $husnisse_ledger_off: off
+  $husnisse_ledger_selected: Selected
+  $husnisse_ledger_nothing_selected: Pick a container
+  $husnisse_ledger_page: Page {0}/{1}
+  $husnisse_ledger_tidy: Tidy
+  $husnisse_ledger_tidy_sent: The nisse will sort this chest.
+  $husnisse_ledger_sent: The nisse will see to it.
 ";
     }
 }

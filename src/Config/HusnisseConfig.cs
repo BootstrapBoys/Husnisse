@@ -1,5 +1,6 @@
 using BepInEx.Configuration;
 using ConditionalConfigSync;
+using UnityEngine;
 
 namespace Husnisse.Config
 {
@@ -13,6 +14,7 @@ namespace Husnisse.Config
         public static ConfigEntry<bool> Enabled;
         public static ConfigEntry<bool> DebugLogging;
         public static ConfigEntry<bool> WriteDiagnosticsFile;
+        public static ConfigEntry<KeyboardShortcut> LedgerKey;
         public static ConfigEntry<bool> LockConfiguration;
         public static ConfigEntry<bool> CatchUpOnLoad;
         public static ConfigEntry<bool> FeedingRequired;
@@ -42,6 +44,10 @@ namespace Husnisse.Config
 
             WriteDiagnosticsFile = file.Bind("1. General", "Write Diagnostics File", true,
                 "Write BepInEx/BSBLogs/Husnisse.log: session header, claim and container dumps at startup, on demand and at shutdown.");
+
+            LedgerKey = file.Bind("1. General", "Ledger Key", new KeyboardShortcut(KeyCode.H),
+                "Opens the claim ledger while the inventory is open. The ledger lists every container in the claim, " +
+                "its rule, the unclassified ones, the pickup filter and the blacklist.");
 
             LockConfiguration = file.Bind("1. General", "Lock Configuration", true,
                 "Server-authoritative settings: when the host locks this, clients use the host's values.");

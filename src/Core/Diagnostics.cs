@@ -7,6 +7,7 @@ using Husnisse.Storage;
 using Husnisse.Compat;
 using Husnisse.Creature;
 using Husnisse.Flow;
+using Husnisse.Ledger;
 using UnityEngine;
 
 namespace Husnisse.Core
@@ -29,6 +30,8 @@ namespace Husnisse.Core
                       " bowl_drain=" + HusnisseConfig.BowlDrainMinutes.Value +
                       " radius=" + HusnisseConfig.ClaimRadius.Value +
                       " lod_distance=" + HusnisseConfig.LodDistance.Value +
+                      " ledger_key=" + HusnisseConfig.LedgerKey.Value +
+                      " presets=" + PresetStore.Describe() +
                       " feeding_required=" + WorldPolicy.FeedingRequired);
 
             lines.Add("[compat] wardislove=" + (WardIsLoveCompat.Installed ? "installed" : "absent") +
@@ -121,6 +124,8 @@ namespace Husnisse.Core
                           " trip=" + (TripRunner.Get(claim) != null ? TripRunner.Get(claim).ShortState() : "idle") +
                           " containers=" + containers.Count +
                           " stacks=" + stacks +
+                          " pickup=" + PickupFilter.Of(claim).Describe() +
+                          " unknown=" + LedgerModel.UnknownCount(claim) +
                           " lod=" + lod +
                           " nisse=" + nisse);
 

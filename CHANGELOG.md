@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.3.1
+
+Internal only — teaching and the ledger.
+
+- **Teaching by demonstration.** Alt-interact the nisse and it leans in to watch; put a sample into the chest where that kind of thing belongs and the chest learns it — its rule becomes a list holding that item and the chest joins the network if it was not on it. The nisse watches for two minutes, so three chests are three samples and one gesture. It only learns while it is watching: a stack put into a chest at any other time changes no rule.
+- **The ledger.** `1. General / Ledger Key` (default **H**) opens it from the inventory: every container in the claim with its rule, priority, network flag and blacklist, the containers nobody has classified yet, and the claim's pickup filter. From one screen you can classify an unknown chest, change a rule or its priority, join or leave the network, blacklist a container, **Tidy** a chest you do not own, set the pickup filter and draw the claim ring. A player the claim does not permit sees the same screen read-only.
+- **Pickup filter, per claim and per item type.** Untick a category in the ledger and the nisse stops collecting that kind of thing off the floor of its claim; a bowl nobody configured still collects everything. The filter is about pickup only — what a player hands over or empties out of a chest always moves.
+- **Pocket stacks merge on sort.** An Empty Pockets order merges identical partial stacks in your pockets before it queues anything, so the nisse carries one full stack instead of three halves. Stacks merge only when the game would stack them (same item, level, quality, variant and durability); the hotbar is left alone.
+- **Rules as a file.** `husnisse_rules export` writes every container rule in the world to `BepInEx/config/Husnisse/rules.yaml`; `plan` resolves it against the live world and prints the mapping; `map` re-points an entry the file cannot place; `apply` imports it. The import is all-or-nothing: one entry that does not fit and nothing is written. A copied world with the same base imports with every rule intact.
+- **Editable presets.** The rules file carries the named half of the eight categories, so an admin can say what "Metals" means for their world; `husnisse_rules preset <category> <names|builtin>` edits one live. The table is world state — the host publishes it and every client applies it — so a suggestion and a routed stack cannot disagree.
+- Seeds, crops, flour and spices are classified as **Food** now; they were in the table but the type rule never consulted it, so they routed nowhere.
+- A refused order now says why in the diagnostics file (`order EmptyPockets -> TooFar`).
+
 ## 0.3.0
 
 Internal only — the container network's controls, its rule storage and its router. This build proves a

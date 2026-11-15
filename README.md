@@ -101,14 +101,21 @@ destination and overflow. It is precise and it is tedious.
 
 Husnisse replaces the common case with a gesture:
 
-1. Pick up an item.
-2. Look at the nisse, press the interact key. It takes the item and asks where it goes.
-3. Walk to a chest and interact. The nisse files the item there, and remembers *this kind of thing goes
-   here*.
+1. Look at the nisse and press **Alt**-interact. It leans in and watches.
+2. Put a sample into the chest where that kind of thing belongs.
+3. It remembers *this kind of thing goes here* — the chest's rule becomes a list holding that item, and
+   the chest joins the storage network if it was not on it.
 
-Three inputs, no menus, controller-friendly, and it is exactly the kind of thing a household spirit
-would do. The menu still exists for bulk editing and for players who want precision — but the default
-path is a demonstration.
+Two inputs, no menus, controller-friendly, and it is exactly the kind of thing a household spirit
+would do. The window stays open for two minutes, so three chests are three samples and one gesture.
+The menu still exists for bulk editing and for players who want precision — but the default path is a
+demonstration.
+
+*Why a sample in the chest rather than handing the nisse an item?* Valheim lets a player hold weapons,
+tools and shields — not a material stack — and `Humanoid.UseItem` only reaches an interactable from the
+inventory GUI, never from the world. So the item's resting place is the only place a demonstration can
+happen, and it is the model Quartermaster players already know: putting a sample back teaches the
+chest again. The nisse only learns while it is watching; a move made at another time changes nothing.
 
 The same gesture in reverse teaches supply: hand the nisse a crafting material while standing at a
 workbench and it marks the chest it came from as a supply source.
@@ -228,6 +235,52 @@ crates. Nothing joins by default: a container is on the network only when it is 
   string (`v1;k=cat;c=metals;p=1;i=…`) so no peer ever reads half a rule. A version or field this build
   does not understand reads as "no rule", never as a broken chest. The server is the only writer.
 - **Containers outside a claim** are not on any network and show no buttons.
+- **Pickup filter** — per claim, one toggle per preset, set in the ledger: the nisse collects ground
+  drops of the ticked types and leaves the rest lying where they are. Absent means all eight, so a bowl
+  that never touched the ledger behaves exactly as before. The filter decides *pickup* only: a stack a
+  player hands over or a chest a player empties always moves.
+- **Pocket merge on sort** — an Empty Pockets order merges identical partial stacks in the player's
+  pockets before it queues anything, so the nisse carries one full stack instead of three halves. Only
+  stacks that would stack in the game merge (same item, world level, quality, variant and durability),
+  and the hotbar is left alone.
+
+### The ledger
+
+The precise editing layer: one panel, opened from the inventory (`1. General / Ledger Key`, default
+**H**), listing every container in the claim — its prefab, where it stands, its rule and priority,
+whether it is on the network and whether it is blacklisted — plus the containers nobody has classified
+yet. From it you can:
+
+- give an unknown chest a category and put it on the network in one action;
+- change a rule, its priority, the network flag or the blacklist without opening the chest;
+- **Tidy** a chest you do not own (the surviving half of Quartermaster's chest dock);
+- set the claim's pickup filter;
+- see the claim ring (`Show range`);
+- export or import the rules file when this machine is the server.
+
+Every button is one call into the same action layer the console command (`husnisse_ledger`) uses, and
+the writes are the ones the container window already had — one writer, two surfaces. A player the claim
+does not permit sees the same screen read-only. `husnisse_ledger list` prints the model; its edits are
+in `BepInEx/BSBLogs/Husnisse.log`.
+
+### The rules file
+
+`BepInEx/config/Husnisse/rules.yaml` is every container rule in the world as editable YAML: per claim,
+the bowl position, the pickup filter and one entry per container (prefab, position, network flag,
+rule shorthand, blacklist), plus a `presets:` section holding the named half of the categories.
+
+- `husnisse_rules export` writes it (server-side: a client has only the zones it has loaded).
+- `husnisse_rules plan` resolves each entry back to a live container and prints the mapping.
+- `husnisse_rules map <n> <prefab> [index]` re-points an entry the file could not resolve — the mapping
+  step for a rebuilt base.
+- `husnisse_rules apply` writes the validated plan. **All-or-nothing**: every entry is resolved and every
+  rule parsed before the first ZDO is written, so a file that does not fit the world changes nothing.
+- `husnisse_rules preset <category> <names|builtin>` edits one preset live.
+
+The presets are world state, like the feeding policy: the server publishes the file's table into a
+global key on world load, and every peer applies it, so a client's suggestion and the server's routing
+cannot disagree about what "Metals" means. A set identical to the shipped one is not stored as an
+override, so re-importing an unedited export leaves the built-in table in force.
 
 ### Memory
 

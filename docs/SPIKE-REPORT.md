@@ -370,6 +370,33 @@ The cost side is recorded separately: **one reconcile pass over 200 networked co
 stacks costs ~20 ms** (0.4 % of the 5 s tick), and one routing answer against that network costs
 0.33 ms — `docs/evidence/0.3d/BENCH.md`.
 
+## 9. Teaching, global-key values, and the player move path — 2026-11-15
+
+Three engine facts from the 0.3.1 work that the design record now depends on:
+
+- **`Inventory.MoveItemToThis` is the only path a player-driven move takes**, in two overloads: the
+  two-argument one for shift-click/take and the five-argument one for drag-and-drop (the grid's
+  `DropItem` ends there). It is therefore the one place a demonstration can be observed without
+  watching the diff of an inventory — and it cannot fire for the nisse's own work, which uses
+  `AddItem`. Verified headlessly: a `MoveItemToThis` made while the nisse is watching writes
+  `v1;k=custom;i=…` and `net=on`; the same move after `teachoff` writes nothing.
+- **A material stack cannot be held.** `Humanoid.UseItem` is called only from the inventory GUI
+  (`fromInventoryGui: true`, which skips the interactable branch) and from `UseHotbarItem`, which
+  equips; `Player.Interact` only ever calls `Interactable.Interact`. So there is no in-world "use the
+  nisse with this item" gesture for a non-equippable item, and the demonstration has to happen where
+  the sample lands. This is why teaching is a watched deposit rather than a handover.
+- **Global keys carry a value.** `ZoneSystem.SetGlobalKey("name value")` stores the key and the value
+  (`GetGlobalKey(name, out value)` reads it back), the key replicates to every peer and is saved with
+  the world — but `GlobalKeyAdd` lower-cases the whole string, so a value must be case-insensitive.
+  Shared item names are lower-case already, which makes this the right carrier for the editable preset
+  table (`husnisse_presets v1;metals=…`). Keys whose name is not a `GlobalKeys` enum member are
+  `NonServerOption` and are kept in the save.
+
+A fourth fact is about the harness, not the engine: **a `Player` spawned on the dedicated server falls
+through the world** (no zones, no terrain colliders) and ended 90 m below the bowl, so every order was
+refused `TooFar`. The harness now pins the synthetic player at the bowl and turns gravity off; on the
+client rig a real player stands on real terrain.
+
 ## What this means for the plan
 
 | Assumption | Status |
