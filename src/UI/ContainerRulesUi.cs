@@ -227,7 +227,7 @@ namespace Husnisse.UI
         private static void OnNetworkClicked()
         {
             if (!Ready()) return;
-            RuleRpc.SendNetwork(_claim.BowlId, ZdoIdOf(_container), _playerId,
+            RuleRpc.SendNetwork(_container.transform.position, _playerId,
                                 !ContainerNetwork.IsOnNetwork(_container));
         }
 
@@ -257,7 +257,7 @@ namespace Husnisse.UI
             var rule = ContainerNetwork.RuleOf(_container);
             rule.Kind = RuleKind.Category;
             rule.Category = category;
-            RuleRpc.SendRule(_claim.BowlId, ZdoIdOf(_container), _playerId, rule);
+            RuleRpc.SendRule(_container.transform.position, _playerId, rule);
         }
 
         private static void OnRoleClicked(RuleKind kind)
@@ -267,7 +267,7 @@ namespace Husnisse.UI
             rule.Kind = kind;
             if (kind != RuleKind.Category) rule.Category = ItemCategory.None;
             if (kind == RuleKind.None) rule.Items.Clear();
-            RuleRpc.SendRule(_claim.BowlId, ZdoIdOf(_container), _playerId, rule);
+            RuleRpc.SendRule(_container.transform.position, _playerId, rule);
         }
 
         private static bool Ready()
@@ -343,12 +343,6 @@ namespace Husnisse.UI
         private static TMP_Text LabelOf(Button button)
         {
             return button != null ? button.GetComponentInChildren<TMP_Text>(true) : null;
-        }
-
-        private static ZDOID ZdoIdOf(Container container)
-        {
-            var zdo = ContainerNetwork.Zdo(container);
-            return zdo != null ? zdo.m_uid : ZDOID.None;
         }
 
         // --- construction helpers -----------------------------------------
