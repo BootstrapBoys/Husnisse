@@ -1,1062 +1,1062 @@
-10:56:51.436 harness ready - write commands to V:\ValheimTest2\BepInEx\config\harness.cmd
-10:56:51.436 scene: not ready  server: False
-10:57:22.375 harness patch: object culling gated by HoldObjects
-10:57:24.763 mt master: Enabled=True (session none)
-10:57:24.764 scenario loaded: 87 command(s)
-10:57:24.764 > cleanup
-10:57:25.040 mt master: Enabled=True (session none)
-10:57:25.040 cleanup done
-10:57:25.359 > hold on
-10:57:25.359 hold: on (culling suppressed)
-10:57:25.848 > spawn husnisse_bowl 0 ground 0
-10:57:25.923 spawned husnisse_bowl(Clone) at (0.00, 1.00, 0.00)  zdo=-882586447:1295  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:25.924   comp Transform on husnisse_bowl(Clone)
-10:57:25.924   comp Piece on husnisse_bowl(Clone)
-10:57:25.924   comp ZNetView on husnisse_bowl(Clone)
-10:57:25.924   comp WearNTear on husnisse_bowl(Clone)
-10:57:25.924   comp LODGroup on husnisse_bowl(Clone)
-10:57:25.924   comp Container on husnisse_bowl(Clone)
-10:57:25.924   comp BowlPiece on husnisse_bowl(Clone)
-10:57:25.924   comp Transform on roof_check_pint
-10:57:25.924   comp Transform on connectionEffectPoint
-10:57:25.924   comp Transform on Capsule_blockplayer
-10:57:25.924   comp CapsuleCollider on Capsule_blockplayer
-10:57:25.924   comp Transform on Capsule_interact
-10:57:26.375 > wait 4
-10:57:26.375 wait: 4s (server keeps ticking)
-10:57:30.396 > zdo husnisse_bowl husnisse_bowl_init
-10:57:30.415 zdo husnisse_bowl.husnisse_bowl_init = int=1 bool=True
-10:57:30.899 > husnisse claims
-10:57:31.337 husnisse claim -882586447:1295 source=native ward=0:0 owner=0 r=20 native_r=20 native_owner=0 suppressed=False refusal='' containers=0
-10:57:31.485 husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=False
-10:57:31.789 > expect_last total=1 working=1
-10:57:31.789   expect_last 'total=1 working=1' in 'husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=False': ok
-10:57:32.294 > spawn piece_chest_wood 3 ground 3
-10:57:32.295 spawned piece_chest_wood(Clone) at (3.00, 1.00, 3.00)  zdo=-882586447:1297  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:32.295   comp Transform on piece_chest_wood(Clone)
-10:57:32.295   comp ZNetView on piece_chest_wood(Clone)
-10:57:32.295   comp Container on piece_chest_wood(Clone)
-10:57:32.295   comp Piece on piece_chest_wood(Clone)
-10:57:32.295   comp WearNTear on piece_chest_wood(Clone)
-10:57:32.295   comp Transform on floor_2x2_snow
-10:57:32.295   comp MeshFilter on floor_2x2_snow
-10:57:32.295   comp MeshRenderer on floor_2x2_snow
-10:57:32.295   comp LODGroup on floor_2x2_snow
-10:57:32.295   comp Transform on New
-10:57:32.295   comp LODGroup on New
-10:57:32.295   comp Transform on woodchest
-10:57:32.797 > spawn piece_chest_wood 3 ground 6
-10:57:32.797 spawned piece_chest_wood(Clone) at (3.00, 1.00, 6.00)  zdo=-882586447:1298  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:32.797   comp Transform on piece_chest_wood(Clone)
-10:57:32.797   comp ZNetView on piece_chest_wood(Clone)
-10:57:32.797   comp Container on piece_chest_wood(Clone)
-10:57:32.797   comp Piece on piece_chest_wood(Clone)
-10:57:32.797   comp WearNTear on piece_chest_wood(Clone)
-10:57:32.797   comp Transform on floor_2x2_snow
-10:57:32.797   comp MeshFilter on floor_2x2_snow
-10:57:32.797   comp MeshRenderer on floor_2x2_snow
-10:57:32.797   comp LODGroup on floor_2x2_snow
-10:57:32.797   comp Transform on New
-10:57:32.797   comp LODGroup on New
-10:57:32.797   comp Transform on woodchest
-10:57:33.299 > spawn piece_chest_wood 3 ground 9
-10:57:33.299 spawned piece_chest_wood(Clone) at (3.00, 1.00, 9.00)  zdo=-882586447:1299  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:33.300   comp Transform on piece_chest_wood(Clone)
-10:57:33.300   comp ZNetView on piece_chest_wood(Clone)
-10:57:33.300   comp Container on piece_chest_wood(Clone)
-10:57:33.300   comp Piece on piece_chest_wood(Clone)
-10:57:33.300   comp WearNTear on piece_chest_wood(Clone)
-10:57:33.300   comp Transform on floor_2x2_snow
-10:57:33.300   comp MeshFilter on floor_2x2_snow
-10:57:33.300   comp MeshRenderer on floor_2x2_snow
-10:57:33.300   comp LODGroup on floor_2x2_snow
-10:57:33.300   comp Transform on New
-10:57:33.300   comp LODGroup on New
-10:57:33.300   comp Transform on woodchest
-10:57:33.801 > spawn piece_chest_wood 3 ground 12
-10:57:33.802 spawned piece_chest_wood(Clone) at (3.00, 1.00, 12.00)  zdo=-882586447:1300  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:33.802   comp Transform on piece_chest_wood(Clone)
-10:57:33.802   comp ZNetView on piece_chest_wood(Clone)
-10:57:33.802   comp Container on piece_chest_wood(Clone)
-10:57:33.802   comp Piece on piece_chest_wood(Clone)
-10:57:33.802   comp WearNTear on piece_chest_wood(Clone)
-10:57:33.802   comp Transform on floor_2x2_snow
-10:57:33.802   comp MeshFilter on floor_2x2_snow
-10:57:33.802   comp MeshRenderer on floor_2x2_snow
-10:57:33.802   comp LODGroup on floor_2x2_snow
-10:57:33.802   comp Transform on New
-10:57:33.802   comp LODGroup on New
-10:57:33.802   comp Transform on woodchest
-10:57:34.304 > spawn piece_chest_wood 6 ground 3
-10:57:34.304 spawned piece_chest_wood(Clone) at (6.00, 1.00, 3.00)  zdo=-882586447:1301  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:34.304   comp Transform on piece_chest_wood(Clone)
-10:57:34.304   comp ZNetView on piece_chest_wood(Clone)
-10:57:34.305   comp Container on piece_chest_wood(Clone)
-10:57:34.305   comp Piece on piece_chest_wood(Clone)
-10:57:34.305   comp WearNTear on piece_chest_wood(Clone)
-10:57:34.305   comp Transform on floor_2x2_snow
-10:57:34.305   comp MeshFilter on floor_2x2_snow
-10:57:34.305   comp MeshRenderer on floor_2x2_snow
-10:57:34.305   comp LODGroup on floor_2x2_snow
-10:57:34.305   comp Transform on New
-10:57:34.305   comp LODGroup on New
-10:57:34.305   comp Transform on woodchest
-10:57:34.806 > spawn piece_chest_wood 6 ground 6
-10:57:34.807 spawned piece_chest_wood(Clone) at (6.00, 1.00, 6.00)  zdo=-882586447:1302  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:34.807   comp Transform on piece_chest_wood(Clone)
-10:57:34.807   comp ZNetView on piece_chest_wood(Clone)
-10:57:34.807   comp Container on piece_chest_wood(Clone)
-10:57:34.807   comp Piece on piece_chest_wood(Clone)
-10:57:34.807   comp WearNTear on piece_chest_wood(Clone)
-10:57:34.807   comp Transform on floor_2x2_snow
-10:57:34.807   comp MeshFilter on floor_2x2_snow
-10:57:34.807   comp MeshRenderer on floor_2x2_snow
-10:57:34.807   comp LODGroup on floor_2x2_snow
-10:57:34.807   comp Transform on New
-10:57:34.807   comp LODGroup on New
-10:57:34.807   comp Transform on woodchest
-10:57:35.309 > spawn piece_chest_wood 6 ground 9
-10:57:35.310 spawned piece_chest_wood(Clone) at (6.00, 1.00, 9.00)  zdo=-882586447:1303  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:35.310   comp Transform on piece_chest_wood(Clone)
-10:57:35.310   comp ZNetView on piece_chest_wood(Clone)
-10:57:35.310   comp Container on piece_chest_wood(Clone)
-10:57:35.310   comp Piece on piece_chest_wood(Clone)
-10:57:35.310   comp WearNTear on piece_chest_wood(Clone)
-10:57:35.310   comp Transform on floor_2x2_snow
-10:57:35.310   comp MeshFilter on floor_2x2_snow
-10:57:35.310   comp MeshRenderer on floor_2x2_snow
-10:57:35.310   comp LODGroup on floor_2x2_snow
-10:57:35.310   comp Transform on New
-10:57:35.310   comp LODGroup on New
-10:57:35.310   comp Transform on woodchest
-10:57:35.812 > spawn piece_chest_wood 6 ground 12
-10:57:35.812 spawned piece_chest_wood(Clone) at (6.00, 1.00, 12.00)  zdo=-882586447:1304  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:35.812   comp Transform on piece_chest_wood(Clone)
-10:57:35.812   comp ZNetView on piece_chest_wood(Clone)
-10:57:35.812   comp Container on piece_chest_wood(Clone)
-10:57:35.812   comp Piece on piece_chest_wood(Clone)
-10:57:35.812   comp WearNTear on piece_chest_wood(Clone)
-10:57:35.812   comp Transform on floor_2x2_snow
-10:57:35.812   comp MeshFilter on floor_2x2_snow
-10:57:35.812   comp MeshRenderer on floor_2x2_snow
-10:57:35.812   comp LODGroup on floor_2x2_snow
-10:57:35.812   comp Transform on New
-10:57:35.812   comp LODGroup on New
-10:57:35.812   comp Transform on woodchest
-10:57:36.314 > spawn piece_chest_wood 9 ground 3
-10:57:36.315 spawned piece_chest_wood(Clone) at (9.00, 1.00, 3.00)  zdo=-882586447:1305  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:36.315   comp Transform on piece_chest_wood(Clone)
-10:57:36.315   comp ZNetView on piece_chest_wood(Clone)
-10:57:36.315   comp Container on piece_chest_wood(Clone)
-10:57:36.315   comp Piece on piece_chest_wood(Clone)
-10:57:36.315   comp WearNTear on piece_chest_wood(Clone)
-10:57:36.315   comp Transform on floor_2x2_snow
-10:57:36.315   comp MeshFilter on floor_2x2_snow
-10:57:36.315   comp MeshRenderer on floor_2x2_snow
-10:57:36.315   comp LODGroup on floor_2x2_snow
-10:57:36.315   comp Transform on New
-10:57:36.315   comp LODGroup on New
-10:57:36.315   comp Transform on woodchest
-10:57:36.816 > spawn piece_chest_wood 9 ground 6
-10:57:36.817 spawned piece_chest_wood(Clone) at (9.00, 1.00, 6.00)  zdo=-882586447:1306  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:36.817   comp Transform on piece_chest_wood(Clone)
-10:57:36.817   comp ZNetView on piece_chest_wood(Clone)
-10:57:36.817   comp Container on piece_chest_wood(Clone)
-10:57:36.817   comp Piece on piece_chest_wood(Clone)
-10:57:36.817   comp WearNTear on piece_chest_wood(Clone)
-10:57:36.817   comp Transform on floor_2x2_snow
-10:57:36.817   comp MeshFilter on floor_2x2_snow
-10:57:36.817   comp MeshRenderer on floor_2x2_snow
-10:57:36.817   comp LODGroup on floor_2x2_snow
-10:57:36.817   comp Transform on New
-10:57:36.817   comp LODGroup on New
-10:57:36.817   comp Transform on woodchest
-10:57:37.319 > spawn piece_chest_wood 9 ground 9
-10:57:37.319 spawned piece_chest_wood(Clone) at (9.00, 1.00, 9.00)  zdo=-882586447:1307  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:37.319   comp Transform on piece_chest_wood(Clone)
-10:57:37.320   comp ZNetView on piece_chest_wood(Clone)
-10:57:37.320   comp Container on piece_chest_wood(Clone)
-10:57:37.320   comp Piece on piece_chest_wood(Clone)
-10:57:37.320   comp WearNTear on piece_chest_wood(Clone)
-10:57:37.320   comp Transform on floor_2x2_snow
-10:57:37.320   comp MeshFilter on floor_2x2_snow
-10:57:37.320   comp MeshRenderer on floor_2x2_snow
-10:57:37.320   comp LODGroup on floor_2x2_snow
-10:57:37.320   comp Transform on New
-10:57:37.320   comp LODGroup on New
-10:57:37.320   comp Transform on woodchest
-10:57:37.823 > spawn piece_chest_wood 9 ground 12
-10:57:37.824 spawned piece_chest_wood(Clone) at (9.00, 1.00, 12.00)  zdo=-882586447:1308  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:37.824   comp Transform on piece_chest_wood(Clone)
-10:57:37.824   comp ZNetView on piece_chest_wood(Clone)
-10:57:37.824   comp Container on piece_chest_wood(Clone)
-10:57:37.824   comp Piece on piece_chest_wood(Clone)
-10:57:37.824   comp WearNTear on piece_chest_wood(Clone)
-10:57:37.824   comp Transform on floor_2x2_snow
-10:57:37.824   comp MeshFilter on floor_2x2_snow
-10:57:37.824   comp MeshRenderer on floor_2x2_snow
-10:57:37.824   comp LODGroup on floor_2x2_snow
-10:57:37.824   comp Transform on New
-10:57:37.824   comp LODGroup on New
-10:57:37.824   comp Transform on woodchest
-10:57:38.325 > spawn piece_chest_wood 12 ground 3
-10:57:38.326 spawned piece_chest_wood(Clone) at (12.00, 1.00, 3.00)  zdo=-882586447:1309  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:38.326   comp Transform on piece_chest_wood(Clone)
-10:57:38.326   comp ZNetView on piece_chest_wood(Clone)
-10:57:38.326   comp Container on piece_chest_wood(Clone)
-10:57:38.326   comp Piece on piece_chest_wood(Clone)
-10:57:38.326   comp WearNTear on piece_chest_wood(Clone)
-10:57:38.326   comp Transform on floor_2x2_snow
-10:57:38.326   comp MeshFilter on floor_2x2_snow
-10:57:38.326   comp MeshRenderer on floor_2x2_snow
-10:57:38.326   comp LODGroup on floor_2x2_snow
-10:57:38.326   comp Transform on New
-10:57:38.326   comp LODGroup on New
-10:57:38.326   comp Transform on woodchest
-10:57:38.828 > spawn piece_chest_wood 12 ground 6
-10:57:38.828 spawned piece_chest_wood(Clone) at (12.00, 1.00, 6.00)  zdo=-882586447:1310  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:38.828   comp Transform on piece_chest_wood(Clone)
-10:57:38.828   comp ZNetView on piece_chest_wood(Clone)
-10:57:38.828   comp Container on piece_chest_wood(Clone)
-10:57:38.828   comp Piece on piece_chest_wood(Clone)
-10:57:38.828   comp WearNTear on piece_chest_wood(Clone)
-10:57:38.828   comp Transform on floor_2x2_snow
-10:57:38.828   comp MeshFilter on floor_2x2_snow
-10:57:38.828   comp MeshRenderer on floor_2x2_snow
-10:57:38.828   comp LODGroup on floor_2x2_snow
-10:57:38.828   comp Transform on New
-10:57:38.828   comp LODGroup on New
-10:57:38.828   comp Transform on woodchest
-10:57:39.330 > spawn piece_chest_wood 12 ground 9
-10:57:39.331 spawned piece_chest_wood(Clone) at (12.00, 1.00, 9.00)  zdo=-882586447:1311  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:39.331   comp Transform on piece_chest_wood(Clone)
-10:57:39.331   comp ZNetView on piece_chest_wood(Clone)
-10:57:39.331   comp Container on piece_chest_wood(Clone)
-10:57:39.331   comp Piece on piece_chest_wood(Clone)
-10:57:39.331   comp WearNTear on piece_chest_wood(Clone)
-10:57:39.331   comp Transform on floor_2x2_snow
-10:57:39.331   comp MeshFilter on floor_2x2_snow
-10:57:39.331   comp MeshRenderer on floor_2x2_snow
-10:57:39.331   comp LODGroup on floor_2x2_snow
-10:57:39.331   comp Transform on New
-10:57:39.331   comp LODGroup on New
-10:57:39.331   comp Transform on woodchest
-10:57:39.834 > spawn piece_chest_wood 12 ground 12
-10:57:39.834 spawned piece_chest_wood(Clone) at (12.00, 1.00, 12.00)  zdo=-882586447:1312  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:39.834   comp Transform on piece_chest_wood(Clone)
-10:57:39.834   comp ZNetView on piece_chest_wood(Clone)
-10:57:39.834   comp Container on piece_chest_wood(Clone)
-10:57:39.835   comp Piece on piece_chest_wood(Clone)
-10:57:39.835   comp WearNTear on piece_chest_wood(Clone)
-10:57:39.835   comp Transform on floor_2x2_snow
-10:57:39.835   comp MeshFilter on floor_2x2_snow
-10:57:39.835   comp MeshRenderer on floor_2x2_snow
-10:57:39.835   comp LODGroup on floor_2x2_snow
-10:57:39.835   comp Transform on New
-10:57:39.835   comp LODGroup on New
-10:57:39.835   comp Transform on woodchest
-10:57:40.340 > spawn piece_chest_wood 15 ground 3
-10:57:40.340 spawned piece_chest_wood(Clone) at (15.00, 1.00, 3.00)  zdo=-882586447:1313  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:40.340   comp Transform on piece_chest_wood(Clone)
-10:57:40.340   comp ZNetView on piece_chest_wood(Clone)
-10:57:40.340   comp Container on piece_chest_wood(Clone)
-10:57:40.340   comp Piece on piece_chest_wood(Clone)
-10:57:40.340   comp WearNTear on piece_chest_wood(Clone)
-10:57:40.340   comp Transform on floor_2x2_snow
-10:57:40.340   comp MeshFilter on floor_2x2_snow
-10:57:40.340   comp MeshRenderer on floor_2x2_snow
-10:57:40.340   comp LODGroup on floor_2x2_snow
-10:57:40.340   comp Transform on New
-10:57:40.340   comp LODGroup on New
-10:57:40.341   comp Transform on woodchest
-10:57:40.843 > spawn piece_chest_wood 15 ground 6
-10:57:40.843 spawned piece_chest_wood(Clone) at (15.00, 1.00, 6.00)  zdo=-882586447:1314  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:40.843   comp Transform on piece_chest_wood(Clone)
-10:57:40.843   comp ZNetView on piece_chest_wood(Clone)
-10:57:40.843   comp Container on piece_chest_wood(Clone)
-10:57:40.843   comp Piece on piece_chest_wood(Clone)
-10:57:40.843   comp WearNTear on piece_chest_wood(Clone)
-10:57:40.843   comp Transform on floor_2x2_snow
-10:57:40.843   comp MeshFilter on floor_2x2_snow
-10:57:40.843   comp MeshRenderer on floor_2x2_snow
-10:57:40.844   comp LODGroup on floor_2x2_snow
-10:57:40.844   comp Transform on New
-10:57:40.844   comp LODGroup on New
-10:57:40.844   comp Transform on woodchest
-10:57:41.345 > spawn piece_chest_wood 15 ground 9
-10:57:41.345 spawned piece_chest_wood(Clone) at (15.00, 1.00, 9.00)  zdo=-882586447:1315  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:41.345   comp Transform on piece_chest_wood(Clone)
-10:57:41.345   comp ZNetView on piece_chest_wood(Clone)
-10:57:41.345   comp Container on piece_chest_wood(Clone)
-10:57:41.345   comp Piece on piece_chest_wood(Clone)
-10:57:41.345   comp WearNTear on piece_chest_wood(Clone)
-10:57:41.345   comp Transform on floor_2x2_snow
-10:57:41.345   comp MeshFilter on floor_2x2_snow
-10:57:41.345   comp MeshRenderer on floor_2x2_snow
-10:57:41.345   comp LODGroup on floor_2x2_snow
-10:57:41.345   comp Transform on New
-10:57:41.345   comp LODGroup on New
-10:57:41.345   comp Transform on woodchest
-10:57:41.847 > spawn piece_chest_wood 15 ground 12
-10:57:41.848 spawned piece_chest_wood(Clone) at (15.00, 1.00, 12.00)  zdo=-882586447:1316  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:57:41.848   comp Transform on piece_chest_wood(Clone)
-10:57:41.848   comp ZNetView on piece_chest_wood(Clone)
-10:57:41.848   comp Container on piece_chest_wood(Clone)
-10:57:41.848   comp Piece on piece_chest_wood(Clone)
-10:57:41.848   comp WearNTear on piece_chest_wood(Clone)
-10:57:41.848   comp Transform on floor_2x2_snow
-10:57:41.848   comp MeshFilter on floor_2x2_snow
-10:57:41.848   comp MeshRenderer on floor_2x2_snow
-10:57:41.848   comp LODGroup on floor_2x2_snow
-10:57:41.848   comp Transform on New
-10:57:41.848   comp LODGroup on New
-10:57:41.848   comp Transform on woodchest
-10:57:42.350 > wait 3
-10:57:42.350 wait: 3s (server keeps ticking)
-10:57:45.367 > husnisse status
-10:57:45.536 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
-10:57:45.537 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
-10:57:45.537 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
-10:57:45.537 husnisse status [rules] containers=0 ruled=0
-10:57:45.537 husnisse status claim -882586447:1295 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=20 stacks=0 nisse=yes
-10:57:45.537 husnisse status lines=5
-10:57:45.876 > expect_ge containers=(\d+) 20
-10:57:45.878   expect>= /containers=(\d+)/ 20 >= 20: ok
-10:57:46.382 > console husnisse_rule set piece_chest_wood cat:metals 0
-10:57:46.385 console > husnisse_rule set piece_chest_wood cat:metals 0
-10:57:46.884 > console husnisse_rule net piece_chest_wood on 0
-10:57:46.886 console > husnisse_rule net piece_chest_wood on 0
-10:57:47.387 > wait 1
-10:57:47.387 wait: 1s (server keeps ticking)
-10:57:48.392 > zdo piece_chest_wood husnisse_rule 0
-10:57:48.403 zdo piece_chest_wood.husnisse_rule = str='v1;k=cat;c=metals'
-10:57:48.896 > expect_last str='v1;k=cat;c=metals'
-10:57:48.896   expect_last 'str='v1;k=cat;c=metals'' in 'zdo piece_chest_wood.husnisse_rule = str='v1;k=cat;c=metals'': ok
-10:57:49.398 > zdo piece_chest_wood husnisse_net 0
-10:57:49.410 zdo piece_chest_wood.husnisse_net = int=1 bool=True
-10:57:49.901 > expect_last bool=True
-10:57:49.901   expect_last 'bool=True' in 'zdo piece_chest_wood.husnisse_net = int=1 bool=True': ok
-10:57:50.403 > husnisse status
-10:57:50.560 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
-10:57:50.560 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
-10:57:50.560 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
-10:57:50.560 husnisse status rule -882586447:1295 3,3 net=on rule=cat:metals
-10:57:50.560 husnisse status [rules] containers=1 ruled=1
-10:57:50.560 husnisse status claim -882586447:1295 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=20 stacks=0 nisse=yes
-10:57:50.560 husnisse status lines=6
-10:57:50.931 > expect [rules] containers=1 ruled=1
-10:57:50.932   expect '[rules] containers=1 ruled=1': ok
-10:57:51.434 > console husnisse_rule set piece_chest_wood cat:food 1
-10:57:51.436 console > husnisse_rule set piece_chest_wood cat:food 1
-10:57:51.936 > console husnisse_rule set piece_chest_wood cat:wood 2
-10:57:51.938 console > husnisse_rule set piece_chest_wood cat:wood 2
-10:57:52.439 > console husnisse_rule set piece_chest_wood cat:building 3
-10:57:52.441 console > husnisse_rule set piece_chest_wood cat:building 3
-10:57:52.941 > console husnisse_rule set piece_chest_wood cat:consumables 4
-10:57:52.943 console > husnisse_rule set piece_chest_wood cat:consumables 4
-10:57:53.443 > console husnisse_rule set piece_chest_wood cat:tools 5
-10:57:53.446 console > husnisse_rule set piece_chest_wood cat:tools 5
-10:57:53.946 > console husnisse_rule set piece_chest_wood cat:trophies 6
-10:57:53.948 console > husnisse_rule set piece_chest_wood cat:trophies 6
-10:57:54.448 > console husnisse_rule set piece_chest_wood cat:valuables 7
-10:57:54.450 console > husnisse_rule set piece_chest_wood cat:valuables 7
-10:57:54.951 > console husnisse_rule set piece_chest_wood overflow 8
-10:57:54.954 console > husnisse_rule set piece_chest_wood overflow 8
-10:57:55.454 > console husnisse_rule set piece_chest_wood deposit 9
-10:57:55.456 console > husnisse_rule set piece_chest_wood deposit 9
-10:57:55.956 > console husnisse_rule set piece_chest_wood cat:metals 10
-10:57:55.958 console > husnisse_rule set piece_chest_wood cat:metals 10
-10:57:56.459 > console husnisse_rule set piece_chest_wood cat:food 11
-10:57:56.461 console > husnisse_rule set piece_chest_wood cat:food 11
-10:57:56.961 > console husnisse_rule set piece_chest_wood cat:wood 12
-10:57:56.975 console > husnisse_rule set piece_chest_wood cat:wood 12
-10:57:57.464 > console husnisse_rule set piece_chest_wood cat:building 13
-10:57:57.467 console > husnisse_rule set piece_chest_wood cat:building 13
-10:57:57.967 > console husnisse_rule set piece_chest_wood cat:consumables 14
-10:57:57.969 console > husnisse_rule set piece_chest_wood cat:consumables 14
-10:57:58.470 > console husnisse_rule set piece_chest_wood cat:tools 15
-10:57:58.472 console > husnisse_rule set piece_chest_wood cat:tools 15
-10:57:58.972 > console husnisse_rule set piece_chest_wood cat:trophies 16
-10:57:58.975 console > husnisse_rule set piece_chest_wood cat:trophies 16
-10:57:59.475 > console husnisse_rule set piece_chest_wood cat:valuables 17
-10:57:59.477 console > husnisse_rule set piece_chest_wood cat:valuables 17
-10:57:59.979 > console husnisse_rule set piece_chest_wood overflow 18
-10:57:59.981 console > husnisse_rule set piece_chest_wood overflow 18
-10:58:00.481 > console husnisse_rule set piece_chest_wood deposit 19
-10:58:00.483 console > husnisse_rule set piece_chest_wood deposit 19
-10:58:00.983 > wait 1
-10:58:00.984 wait: 1s (server keeps ticking)
-10:58:01.989 > husnisse status
-10:58:02.130 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
-10:58:02.130 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
-10:58:02.130 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
-10:58:02.130 husnisse status rule -882586447:1295 15,3 net=off rule=cat:trophies
-10:58:02.130 husnisse status rule -882586447:1295 9,12 net=off rule=cat:food
-10:58:02.131 husnisse status rule -882586447:1295 12,3 net=off rule=cat:wood
-10:58:02.131 husnisse status rule -882586447:1295 15,9 net=off rule=overflow
-10:58:02.131 husnisse status rule -882586447:1295 9,6 net=off rule=deposit
-10:58:02.131 husnisse status rule -882586447:1295 15,6 net=off rule=cat:valuables
-10:58:02.131 husnisse status rule -882586447:1295 15,12 net=off rule=deposit
-10:58:02.131 husnisse status rule -882586447:1295 3,12 net=off rule=cat:building
-10:58:02.131 husnisse status rule -882586447:1295 3,3 net=on rule=cat:metals
-10:58:02.131 husnisse status rule -882586447:1295 9,9 net=off rule=cat:metals
-10:58:02.131 husnisse status rule -882586447:1295 6,9 net=off rule=cat:trophies
-10:58:02.131 husnisse status rule -882586447:1295 3,6 net=off rule=cat:food
-10:58:02.131 husnisse status rule -882586447:1295 9,3 net=off rule=overflow
-10:58:02.131 husnisse status rule -882586447:1295 12,12 net=off rule=cat:tools
-10:58:02.131 husnisse status rule -882586447:1295 6,3 net=off rule=cat:consumables
-10:58:02.131 husnisse status rule -882586447:1295 6,12 net=off rule=cat:valuables
-10:58:02.131 husnisse status rule -882586447:1295 3,9 net=off rule=cat:wood
-10:58:02.131 husnisse status rule -882586447:1295 6,6 net=off rule=cat:tools
-10:58:02.131 husnisse status rule -882586447:1295 12,9 net=off rule=cat:consumables
-10:58:02.131 husnisse status rule -882586447:1295 12,6 net=off rule=cat:building
-10:58:02.131 husnisse status [rules] containers=20 ruled=20
-10:58:02.131 husnisse status claim -882586447:1295 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=20 stacks=0 nisse=yes
-10:58:02.131 husnisse status lines=25
-10:58:02.502 > expect_ge ruled=(\d+) 20
-10:58:02.502   expect>= /ruled=(\d+)/ 20 >= 20: ok
-10:58:03.006 > expect [rules] containers=20 ruled=20
-10:58:03.006   expect '[rules] containers=20 ruled=20': ok
-10:58:03.507 > console husnisse_rule list
-10:58:03.510 console > husnisse_rule list
-10:58:04.010 > wait 1
-10:58:04.010 wait: 1s (server keeps ticking)
-10:58:05.015 > logcheck BSBLogs/Husnisse.log husnisse rules listed=\d+
-10:58:05.016   logcheck BSBLogs/Husnisse.log /husnisse rules listed=\d+/: ok 'husnisse rules listed=20'
-10:58:05.518 > console husnisse_rule set piece_chest_wood none 2
-10:58:05.520 console > husnisse_rule set piece_chest_wood none 2
-10:58:06.021 > wait 1
-10:58:06.021 wait: 1s (server keeps ticking)
-10:58:07.046 > zdo piece_chest_wood husnisse_rule 2
-10:58:07.056 zdo piece_chest_wood[2].husnisse_rule = str='v1;k=none'
-10:58:07.548 > expect_last str='v1;k=none'
-10:58:07.548   expect_last 'str='v1;k=none'' in 'zdo piece_chest_wood[2].husnisse_rule = str='v1;k=none'': ok
-10:58:08.051 > husnisse status
-10:58:08.239 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
-10:58:08.239 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
-10:58:08.239 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
-10:58:08.239 husnisse status rule -882586447:1295 15,3 net=off rule=cat:trophies
-10:58:08.239 husnisse status rule -882586447:1295 9,12 net=off rule=cat:food
-10:58:08.239 husnisse status rule -882586447:1295 12,3 net=off rule=cat:wood
-10:58:08.239 husnisse status rule -882586447:1295 15,9 net=off rule=overflow
-10:58:08.239 husnisse status rule -882586447:1295 9,6 net=off rule=deposit
-10:58:08.239 husnisse status rule -882586447:1295 15,6 net=off rule=cat:valuables
-10:58:08.239 husnisse status rule -882586447:1295 15,12 net=off rule=deposit
-10:58:08.239 husnisse status rule -882586447:1295 3,12 net=off rule=cat:building
-10:58:08.239 husnisse status rule -882586447:1295 3,3 net=on rule=cat:metals
-10:58:08.239 husnisse status rule -882586447:1295 9,9 net=off rule=cat:metals
-10:58:08.239 husnisse status rule -882586447:1295 6,9 net=off rule=cat:trophies
-10:58:08.239 husnisse status rule -882586447:1295 3,6 net=off rule=cat:food
-10:58:08.239 husnisse status rule -882586447:1295 9,3 net=off rule=overflow
-10:58:08.239 husnisse status rule -882586447:1295 12,12 net=off rule=cat:tools
-10:58:08.239 husnisse status rule -882586447:1295 6,3 net=off rule=cat:consumables
-10:58:08.239 husnisse status rule -882586447:1295 6,12 net=off rule=cat:valuables
-10:58:08.239 husnisse status rule -882586447:1295 6,6 net=off rule=cat:tools
-10:58:08.239 husnisse status rule -882586447:1295 12,9 net=off rule=cat:consumables
-10:58:08.239 husnisse status rule -882586447:1295 12,6 net=off rule=cat:building
-10:58:08.239 husnisse status [rules] containers=19 ruled=19
-10:58:08.239 husnisse status claim -882586447:1295 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=20 stacks=0 nisse=yes
-10:58:08.239 husnisse status lines=24
-10:58:08.577 > expect_ge ruled=(\d+) 19
-10:58:08.577   expect>= /ruled=(\d+)/ 19 >= 19: ok
-10:58:09.079 > zdoset piece_chest_wood husnisse_rule string v2;k=cat;c=metals 3
-10:58:09.090 zdoset piece_chest_wood[3].husnisse_rule = string:v2;k=cat;c=metals
-10:58:09.581 > wait 1
-10:58:09.582 wait: 1s (server keeps ticking)
-10:58:10.586 > husnisse status
-10:58:10.749 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
-10:58:10.750 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
-10:58:10.750 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
-10:58:10.750 husnisse status rule -882586447:1295 15,3 net=off rule=cat:trophies
-10:58:10.750 husnisse status rule -882586447:1295 9,12 net=off rule=cat:food
-10:58:10.750 husnisse status rule -882586447:1295 12,3 net=off rule=cat:wood
-10:58:10.750 husnisse status rule -882586447:1295 15,9 net=off rule=overflow
-10:58:10.750 husnisse status rule -882586447:1295 9,6 net=off rule=deposit
-10:58:10.750 husnisse status rule -882586447:1295 15,6 net=off rule=cat:valuables
-10:58:10.750 husnisse status rule -882586447:1295 15,12 net=off rule=deposit
-10:58:10.750 husnisse status rule -882586447:1295 3,3 net=on rule=cat:metals
-10:58:10.750 husnisse status rule -882586447:1295 9,9 net=off rule=cat:metals
-10:58:10.750 husnisse status rule -882586447:1295 6,9 net=off rule=cat:trophies
-10:58:10.750 husnisse status rule -882586447:1295 3,6 net=off rule=cat:food
-10:58:10.750 husnisse status rule -882586447:1295 9,3 net=off rule=overflow
-10:58:10.750 husnisse status rule -882586447:1295 12,12 net=off rule=cat:tools
-10:58:10.750 husnisse status rule -882586447:1295 6,3 net=off rule=cat:consumables
-10:58:10.750 husnisse status rule -882586447:1295 6,12 net=off rule=cat:valuables
-10:58:10.750 husnisse status rule -882586447:1295 6,6 net=off rule=cat:tools
-10:58:10.750 husnisse status rule -882586447:1295 12,9 net=off rule=cat:consumables
-10:58:10.750 husnisse status rule -882586447:1295 12,6 net=off rule=cat:building
-10:58:10.750 husnisse status [rules] containers=18 ruled=18
-10:58:10.750 husnisse status claim -882586447:1295 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=20 stacks=0 nisse=yes
-10:58:10.750 husnisse status lines=23
-10:58:11.087 > expect_ge ruled=(\d+) 18
-10:58:11.087   expect>= /ruled=(\d+)/ 18 >= 18: ok
-10:58:11.589 > expect [rules] containers=18 ruled=18
-10:58:11.590   expect '[rules] containers=18 ruled=18': ok
-10:58:12.093 > zdo piece_chest_wood husnisse_rule 3
-10:58:12.103 zdo piece_chest_wood[3].husnisse_rule = str='v2;k=cat;c=metals'
-10:58:12.595 > expect_last str='v2;k=cat;c=metals'
-10:58:12.596   expect_last 'str='v2;k=cat;c=metals'' in 'zdo piece_chest_wood[3].husnisse_rule = str='v2;k=cat;c=metals'': ok
-10:58:13.098 > zdoset piece_chest_wood husnisse_blacklist bool 1 4
-10:58:13.108 zdoset piece_chest_wood[4].husnisse_blacklist = bool:1
-10:58:13.601 > wait 1
-10:58:13.601 wait: 1s (server keeps ticking)
-10:58:14.607 > zdo piece_chest_wood husnisse_blacklist 4
-10:58:14.621 zdo piece_chest_wood[4].husnisse_blacklist = int=1 bool=True
-10:58:15.109 > expect_last bool=True
-10:58:15.109   expect_last 'bool=True' in 'zdo piece_chest_wood[4].husnisse_blacklist = int=1 bool=True': ok
-10:58:15.612 > husnisse status
-10:58:15.772 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
-10:58:15.772 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
-10:58:15.772 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
-10:58:15.772 husnisse status rule -882586447:1295 15,3 net=off rule=cat:trophies
-10:58:15.772 husnisse status rule -882586447:1295 9,12 net=off rule=cat:food
-10:58:15.772 husnisse status rule -882586447:1295 12,3 net=off rule=cat:wood
-10:58:15.772 husnisse status rule -882586447:1295 15,9 net=off rule=overflow
-10:58:15.772 husnisse status rule -882586447:1295 9,6 net=off rule=deposit
-10:58:15.772 husnisse status rule -882586447:1295 15,6 net=off rule=cat:valuables
-10:58:15.772 husnisse status rule -882586447:1295 15,12 net=off rule=deposit
-10:58:15.772 husnisse status rule -882586447:1295 3,3 net=on rule=cat:metals
-10:58:15.772 husnisse status rule -882586447:1295 9,9 net=off rule=cat:metals
-10:58:15.772 husnisse status rule -882586447:1295 6,9 net=off rule=cat:trophies
-10:58:15.772 husnisse status rule -882586447:1295 3,6 net=off rule=cat:food
-10:58:15.772 husnisse status rule -882586447:1295 9,3 net=off rule=overflow
-10:58:15.772 husnisse status rule -882586447:1295 12,12 net=off rule=cat:tools
-10:58:15.772 husnisse status rule -882586447:1295 6,3 net=off rule=cat:consumables blacklisted
-10:58:15.772 husnisse status rule -882586447:1295 6,12 net=off rule=cat:valuables
-10:58:15.772 husnisse status rule -882586447:1295 6,6 net=off rule=cat:tools
-10:58:15.772 husnisse status rule -882586447:1295 12,9 net=off rule=cat:consumables
-10:58:15.772 husnisse status rule -882586447:1295 12,6 net=off rule=cat:building
-10:58:15.772 husnisse status [rules] containers=18 ruled=18
-10:58:15.772 husnisse status claim -882586447:1295 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=20 stacks=0 nisse=yes
-10:58:15.772 husnisse status lines=23
-10:58:16.143 > expect blacklisted
-10:58:16.143   expect 'blacklisted': ok
-10:58:16.648 > zdo piece_chest_wood husnisse_blacklist 5
-10:58:16.660 zdo piece_chest_wood[5].husnisse_blacklist = absent
-10:58:17.151 > expect_last absent
-10:58:17.151   expect_last 'absent' in 'zdo piece_chest_wood[5].husnisse_blacklist = absent': ok
-10:58:17.653 > state
-10:58:17.685 server=True rocks5=0 rocks1=0 drops=0 players=0 zdos=1316 instances=103
-10:58:18.157 scenario done: PASS (16 assertions, 0 failed)
-10:58:21.941 mt master: Enabled=True (session none)
-10:58:21.941 scenario loaded: 78 command(s)
-10:58:21.941 > cleanup
-10:58:22.207 mt master: Enabled=True (session none)
-10:58:22.207 cleanup done
-10:58:22.510 > hold on
-10:58:22.510 hold: on (culling suppressed)
-10:58:23.013 > spawn husnisse_bowl 0 ground 0
-10:58:23.026 spawned husnisse_bowl(Clone) at (0.00, 1.00, 0.00)  zdo=-882586447:1317  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:58:23.026   comp Transform on husnisse_bowl(Clone)
-10:58:23.026   comp Piece on husnisse_bowl(Clone)
-10:58:23.026   comp ZNetView on husnisse_bowl(Clone)
-10:58:23.026   comp WearNTear on husnisse_bowl(Clone)
-10:58:23.026   comp LODGroup on husnisse_bowl(Clone)
-10:58:23.026   comp Container on husnisse_bowl(Clone)
-10:58:23.026   comp BowlPiece on husnisse_bowl(Clone)
-10:58:23.026   comp Transform on roof_check_pint
-10:58:23.026   comp Transform on connectionEffectPoint
-10:58:23.026   comp Transform on Capsule_blockplayer
-10:58:23.026   comp CapsuleCollider on Capsule_blockplayer
-10:58:23.026   comp Transform on Capsule_interact
-10:58:23.515 > wait 4
-10:58:23.516 wait: 4s (server keeps ticking)
-10:58:27.539 > zdo husnisse_bowl husnisse_bowl_init
-10:58:27.549 zdo husnisse_bowl.husnisse_bowl_init = int=1 bool=True
-10:58:28.042 > husnisse claims
-10:58:28.471 husnisse claim -882586447:1317 source=native ward=0:0 owner=0 r=20 native_r=20 native_owner=0 suppressed=False refusal='' containers=0
-10:58:28.618 husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=False
-10:58:28.921 > expect_last total=1 working=1
-10:58:28.921   expect_last 'total=1 working=1' in 'husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=False': ok
-10:58:29.424 > spawn piece_chest_wood 2 ground 3
-10:58:29.425 spawned piece_chest_wood(Clone) at (2.00, 1.00, 3.00)  zdo=-882586447:1319  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:58:29.425   comp Transform on piece_chest_wood(Clone)
-10:58:29.425   comp ZNetView on piece_chest_wood(Clone)
-10:58:29.425   comp Container on piece_chest_wood(Clone)
-10:58:29.425   comp Piece on piece_chest_wood(Clone)
-10:58:29.425   comp WearNTear on piece_chest_wood(Clone)
-10:58:29.425   comp Transform on floor_2x2_snow
-10:58:29.425   comp MeshFilter on floor_2x2_snow
-10:58:29.425   comp MeshRenderer on floor_2x2_snow
-10:58:29.425   comp LODGroup on floor_2x2_snow
-10:58:29.425   comp Transform on New
-10:58:29.425   comp LODGroup on New
-10:58:29.425   comp Transform on woodchest
-10:58:29.927 > spawn piece_chest_wood 4 ground 3
-10:58:29.927 spawned piece_chest_wood(Clone) at (4.00, 1.00, 3.00)  zdo=-882586447:1320  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:58:29.927   comp Transform on piece_chest_wood(Clone)
-10:58:29.927   comp ZNetView on piece_chest_wood(Clone)
-10:58:29.927   comp Container on piece_chest_wood(Clone)
-10:58:29.927   comp Piece on piece_chest_wood(Clone)
-10:58:29.927   comp WearNTear on piece_chest_wood(Clone)
-10:58:29.927   comp Transform on floor_2x2_snow
-10:58:29.927   comp MeshFilter on floor_2x2_snow
-10:58:29.927   comp MeshRenderer on floor_2x2_snow
-10:58:29.927   comp LODGroup on floor_2x2_snow
-10:58:29.927   comp Transform on New
-10:58:29.927   comp LODGroup on New
-10:58:29.927   comp Transform on woodchest
-10:58:30.430 > spawn piece_chest_wood 6 ground 3
-10:58:30.430 spawned piece_chest_wood(Clone) at (6.00, 1.00, 3.00)  zdo=-882586447:1321  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:58:30.430   comp Transform on piece_chest_wood(Clone)
-10:58:30.430   comp ZNetView on piece_chest_wood(Clone)
-10:58:30.430   comp Container on piece_chest_wood(Clone)
-10:58:30.430   comp Piece on piece_chest_wood(Clone)
-10:58:30.430   comp WearNTear on piece_chest_wood(Clone)
-10:58:30.430   comp Transform on floor_2x2_snow
-10:58:30.430   comp MeshFilter on floor_2x2_snow
-10:58:30.430   comp MeshRenderer on floor_2x2_snow
-10:58:30.430   comp LODGroup on floor_2x2_snow
-10:58:30.430   comp Transform on New
-10:58:30.430   comp LODGroup on New
-10:58:30.430   comp Transform on woodchest
-10:58:30.932 > spawn piece_chest_wood 8 ground 3
-10:58:30.933 spawned piece_chest_wood(Clone) at (8.00, 1.00, 3.00)  zdo=-882586447:1322  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:58:30.933   comp Transform on piece_chest_wood(Clone)
-10:58:30.933   comp ZNetView on piece_chest_wood(Clone)
-10:58:30.933   comp Container on piece_chest_wood(Clone)
-10:58:30.933   comp Piece on piece_chest_wood(Clone)
-10:58:30.933   comp WearNTear on piece_chest_wood(Clone)
-10:58:30.933   comp Transform on floor_2x2_snow
-10:58:30.933   comp MeshFilter on floor_2x2_snow
-10:58:30.933   comp MeshRenderer on floor_2x2_snow
-10:58:30.933   comp LODGroup on floor_2x2_snow
-10:58:30.933   comp Transform on New
-10:58:30.933   comp LODGroup on New
-10:58:30.933   comp Transform on woodchest
-10:58:31.435 > spawn piece_chest_wood 10 ground 3
-10:58:31.435 spawned piece_chest_wood(Clone) at (10.00, 1.00, 3.00)  zdo=-882586447:1323  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:58:31.435   comp Transform on piece_chest_wood(Clone)
-10:58:31.435   comp ZNetView on piece_chest_wood(Clone)
-10:58:31.435   comp Container on piece_chest_wood(Clone)
-10:58:31.435   comp Piece on piece_chest_wood(Clone)
-10:58:31.435   comp WearNTear on piece_chest_wood(Clone)
-10:58:31.435   comp Transform on floor_2x2_snow
-10:58:31.435   comp MeshFilter on floor_2x2_snow
-10:58:31.435   comp MeshRenderer on floor_2x2_snow
-10:58:31.435   comp LODGroup on floor_2x2_snow
-10:58:31.435   comp Transform on New
-10:58:31.435   comp LODGroup on New
-10:58:31.435   comp Transform on woodchest
-10:58:31.937 > spawn piece_chest_wood 12 ground 3
-10:58:31.938 spawned piece_chest_wood(Clone) at (12.00, 1.00, 3.00)  zdo=-882586447:1324  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:58:31.938   comp Transform on piece_chest_wood(Clone)
-10:58:31.938   comp ZNetView on piece_chest_wood(Clone)
-10:58:31.938   comp Container on piece_chest_wood(Clone)
-10:58:31.938   comp Piece on piece_chest_wood(Clone)
-10:58:31.938   comp WearNTear on piece_chest_wood(Clone)
-10:58:31.938   comp Transform on floor_2x2_snow
-10:58:31.938   comp MeshFilter on floor_2x2_snow
-10:58:31.938   comp MeshRenderer on floor_2x2_snow
-10:58:31.938   comp LODGroup on floor_2x2_snow
-10:58:31.938   comp Transform on New
-10:58:31.938   comp LODGroup on New
-10:58:31.938   comp Transform on woodchest
-10:58:32.441 > spawn piece_chest_wood 14 ground 3
-10:58:32.441 spawned piece_chest_wood(Clone) at (14.00, 1.00, 3.00)  zdo=-882586447:1325  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:58:32.441   comp Transform on piece_chest_wood(Clone)
-10:58:32.441   comp ZNetView on piece_chest_wood(Clone)
-10:58:32.441   comp Container on piece_chest_wood(Clone)
-10:58:32.441   comp Piece on piece_chest_wood(Clone)
-10:58:32.441   comp WearNTear on piece_chest_wood(Clone)
-10:58:32.441   comp Transform on floor_2x2_snow
-10:58:32.441   comp MeshFilter on floor_2x2_snow
-10:58:32.441   comp MeshRenderer on floor_2x2_snow
-10:58:32.441   comp LODGroup on floor_2x2_snow
-10:58:32.441   comp Transform on New
-10:58:32.441   comp LODGroup on New
-10:58:32.441   comp Transform on woodchest
-10:58:32.943 > wait 3
-10:58:32.943 wait: 3s (server keeps ticking)
-10:58:35.961 > husnisse status
-10:58:36.118 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
-10:58:36.118 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
-10:58:36.118 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
-10:58:36.118 husnisse status [rules] containers=0 ruled=0
-10:58:36.118 husnisse status claim -882586447:1317 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=7 stacks=0 nisse=yes
-10:58:36.118 husnisse status lines=5
-10:58:36.488 > expect_ge containers=(\d+) 7
-10:58:36.489   expect>= /containers=(\d+)/ 7 >= 7: ok
-10:58:36.992 > console husnisse_rule net piece_chest_wood on 0
-10:58:36.994 console > husnisse_rule net piece_chest_wood on 0
-10:58:37.496 > console husnisse_rule net piece_chest_wood on 1
-10:58:37.499 console > husnisse_rule net piece_chest_wood on 1
-10:58:37.998 > console husnisse_rule net piece_chest_wood on 2
-10:58:38.001 console > husnisse_rule net piece_chest_wood on 2
-10:58:38.504 > console husnisse_rule net piece_chest_wood on 3
-10:58:38.506 console > husnisse_rule net piece_chest_wood on 3
-10:58:39.007 > console husnisse_rule net piece_chest_wood on 4
-10:58:39.009 console > husnisse_rule net piece_chest_wood on 4
-10:58:39.509 > console husnisse_rule net piece_chest_wood on 5
-10:58:39.511 console > husnisse_rule net piece_chest_wood on 5
-10:58:40.011 > console husnisse_rule net piece_chest_wood on 6
-10:58:40.014 console > husnisse_rule net piece_chest_wood on 6
-10:58:40.515 > console husnisse_rule set piece_chest_wood cat:metals 0
-10:58:40.517 console > husnisse_rule set piece_chest_wood cat:metals 0
-10:58:41.017 > console husnisse_rule set piece_chest_wood cat:metals@1 1
-10:58:41.019 console > husnisse_rule set piece_chest_wood cat:metals@1 1
-10:58:41.519 > console husnisse_rule set piece_chest_wood cat:wood 2
-10:58:41.521 console > husnisse_rule set piece_chest_wood cat:wood 2
-10:58:42.022 > console husnisse_rule set piece_chest_wood overflow 3
-10:58:42.025 console > husnisse_rule set piece_chest_wood overflow 3
-10:58:42.525 > console husnisse_rule set piece_chest_wood custom:$item_bonefragments 5
-10:58:42.528 console > husnisse_rule set piece_chest_wood custom:$item_bonefragments 5
-10:58:43.031 > console husnisse_rule set piece_chest_wood deposit 6
-10:58:43.034 console > husnisse_rule set piece_chest_wood deposit 6
-10:58:43.536 > wait 2
-10:58:43.536 wait: 2s (server keeps ticking)
-10:58:45.548 > spawn CopperScrap 2 ground 6
-10:58:45.549 spawned CopperScrap(Clone) at (2.00, 1.00, 6.00)  zdo=-882586447:1326  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:58:45.549   comp Transform on CopperScrap(Clone)
-10:58:45.549   comp Rigidbody on CopperScrap(Clone)
-10:58:45.549   comp ZNetView on CopperScrap(Clone)
-10:58:45.549   comp ZSyncTransform on CopperScrap(Clone)
-10:58:45.549   comp ItemDrop on CopperScrap(Clone)
-10:58:45.549   comp ParticleSystemRenderer on CopperScrap(Clone)
-10:58:45.549   comp ParticleSystem on CopperScrap(Clone)
-10:58:45.549   comp LODGroup on CopperScrap(Clone)
-10:58:45.549   comp Transform on model
-10:58:45.549   comp MeshFilter on model
-10:58:45.549   comp MeshRenderer on model
-10:58:45.549   comp BoxCollider on model
-10:58:46.051 > wait 15
-10:58:46.057 wait: 15s (server keeps ticking)
-10:59:01.154 > container piece_chest_wood 1
-10:59:01.165 container piece_chest_wood[1] stacks=1 items=1
-10:59:01.657 > expect_last stacks=1
-10:59:01.657   expect_last 'stacks=1' in 'container piece_chest_wood[1] stacks=1 items=1': ok
-10:59:02.159 > container piece_chest_wood 0
-10:59:02.169 container piece_chest_wood stacks=0 items=0
-10:59:02.662 > expect_last stacks=0
-10:59:02.662   expect_last 'stacks=0' in 'container piece_chest_wood stacks=0 items=0': ok
-10:59:03.164 > logcheck BSBLogs/Husnisse.log \[Flow\] landed .* at=\(4,3\) why=cat:metals p=1
-10:59:03.165   logcheck BSBLogs/Husnisse.log /\[Flow\] landed .* at=\(4,3\) why=cat:metals p=1/: ok '[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(4,3) why=cat:metals p=1'
-10:59:03.667 > spawn Wood 4 ground 6
-10:59:03.668 spawned Wood(Clone) at (4.00, 1.00, 6.00)  zdo=-882586447:1327  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:59:03.668   comp Transform on Wood(Clone)
-10:59:03.668   comp Rigidbody on Wood(Clone)
-10:59:03.668   comp ZNetView on Wood(Clone)
-10:59:03.668   comp ZSyncTransform on Wood(Clone)
-10:59:03.668   comp ItemDrop on Wood(Clone)
-10:59:03.668   comp Floating on Wood(Clone)
-10:59:03.668   comp ParticleSystemRenderer on Wood(Clone)
-10:59:03.668   comp ParticleSystem on Wood(Clone)
-10:59:03.668   comp LODGroup on Wood(Clone)
-10:59:03.668   comp Transform on log (1)
-10:59:03.668   comp MeshFilter on log (1)
-10:59:03.669   comp MeshRenderer on log (1)
-10:59:04.169 > wait 15
-10:59:04.169 wait: 15s (server keeps ticking)
-10:59:19.253 > container piece_chest_wood 2
-10:59:19.265 container piece_chest_wood[2] stacks=1 items=1
-10:59:19.756 > expect_last stacks=1
-10:59:19.756   expect_last 'stacks=1' in 'container piece_chest_wood[2] stacks=1 items=1': ok
-10:59:20.258 > logcheck BSBLogs/Husnisse.log \[Flow\] landed .* at=\(6,3\) why=cat:wood
-10:59:20.259   logcheck BSBLogs/Husnisse.log /\[Flow\] landed .* at=\(6,3\) why=cat:wood/: ok '[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(6,3) why=cat:wood'
-10:59:20.761 > spawn BoneFragments 6 ground 6
-10:59:20.761 spawned BoneFragments(Clone) at (6.00, 1.00, 6.00)  zdo=-882586447:1328  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:59:20.761   comp Transform on BoneFragments(Clone)
-10:59:20.761   comp Rigidbody on BoneFragments(Clone)
-10:59:20.761   comp ZNetView on BoneFragments(Clone)
-10:59:20.761   comp ZSyncTransform on BoneFragments(Clone)
-10:59:20.761   comp ItemDrop on BoneFragments(Clone)
-10:59:20.761   comp ParticleSystemRenderer on BoneFragments(Clone)
-10:59:20.761   comp ParticleSystem on BoneFragments(Clone)
-10:59:20.762   comp Transform on attach
-10:59:20.762   comp MeshFilter on attach
-10:59:20.762   comp MeshRenderer on attach
-10:59:20.762   comp LODGroup on attach
-10:59:20.762   comp BoxCollider on attach
-10:59:21.263 > wait 15
-10:59:21.263 wait: 15s (server keeps ticking)
-10:59:36.365 > container piece_chest_wood 5
-10:59:36.375 container piece_chest_wood[5] stacks=1 items=1
-10:59:36.868 > expect_last stacks=1
-10:59:36.868   expect_last 'stacks=1' in 'container piece_chest_wood[5] stacks=1 items=1': ok
-10:59:37.370 > container piece_chest_wood 3
-10:59:37.379 container piece_chest_wood[3] stacks=0 items=0
-10:59:37.873 > expect_last stacks=0
-10:59:37.873   expect_last 'stacks=0' in 'container piece_chest_wood[3] stacks=0 items=0': ok
-10:59:38.376 > logcheck BSBLogs/Husnisse.log \[Flow\] landed .* at=\(12,3\) why=custom:1
-10:59:38.376   logcheck BSBLogs/Husnisse.log /\[Flow\] landed .* at=\(12,3\) why=custom:1/: ok '[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(12,3) why=custom:1'
-10:59:38.878 > spawn Feathers 8 ground 6
-10:59:38.879 spawned Feathers(Clone) at (8.00, 1.00, 6.00)  zdo=-882586447:1329  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:59:38.879   comp Transform on Feathers(Clone)
-10:59:38.879   comp Rigidbody on Feathers(Clone)
-10:59:38.879   comp ZNetView on Feathers(Clone)
-10:59:38.879   comp ZSyncTransform on Feathers(Clone)
-10:59:38.879   comp ItemDrop on Feathers(Clone)
-10:59:38.879   comp ParticleSystemRenderer on Feathers(Clone)
-10:59:38.879   comp ParticleSystem on Feathers(Clone)
-10:59:38.879   comp LODGroup on Feathers(Clone)
-10:59:38.879   comp Transform on model
-10:59:38.879   comp BoxCollider on model
-10:59:38.879   comp Transform on Quad
-10:59:38.879   comp MeshFilter on Quad
-10:59:39.381 > wait 15
-10:59:39.381 wait: 15s (server keeps ticking)
-10:59:54.462 > container piece_chest_wood 3
-10:59:54.470 container piece_chest_wood[3] stacks=1 items=1
-10:59:54.964 > expect_last stacks=1
-10:59:54.964   expect_last 'stacks=1' in 'container piece_chest_wood[3] stacks=1 items=1': ok
-10:59:55.468 > container piece_chest_wood 4
-10:59:55.480 container piece_chest_wood[4] stacks=0 items=0
-10:59:55.971 > expect_last stacks=0
-10:59:55.971   expect_last 'stacks=0' in 'container piece_chest_wood[4] stacks=0 items=0': ok
-10:59:56.473 > container piece_chest_wood 6
-10:59:56.483 container piece_chest_wood[6] stacks=0 items=0
-10:59:56.976 > expect_last stacks=0
-10:59:56.976   expect_last 'stacks=0' in 'container piece_chest_wood[6] stacks=0 items=0': ok
-10:59:57.478 > logcheck BSBLogs/Husnisse.log \[Flow\] landed .* at=\(8,3\) why=overflow
-10:59:57.479   logcheck BSBLogs/Husnisse.log /\[Flow\] landed .* at=\(8,3\) why=overflow/: ok '[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(8,3) why=overflow'
-10:59:57.981 > console husnisse_rule net piece_chest_wood off 3
-10:59:57.984 console > husnisse_rule net piece_chest_wood off 3
-10:59:58.484 > wait 1
-10:59:58.484 wait: 1s (server keeps ticking)
-10:59:59.489 > spawn SurtlingCore 10 ground 6
-10:59:59.489 spawned SurtlingCore(Clone) at (10.00, 1.00, 6.00)  zdo=-882586447:1330  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-10:59:59.489   comp Transform on SurtlingCore(Clone)
-10:59:59.489   comp Rigidbody on SurtlingCore(Clone)
-10:59:59.490   comp ZNetView on SurtlingCore(Clone)
-10:59:59.490   comp ZSyncTransform on SurtlingCore(Clone)
-10:59:59.490   comp ItemDrop on SurtlingCore(Clone)
-10:59:59.490   comp ParticleSystemRenderer on SurtlingCore(Clone)
-10:59:59.490   comp ParticleSystem on SurtlingCore(Clone)
-10:59:59.490   comp Transform on attach
-10:59:59.490   comp LODGroup on attach
-10:59:59.490   comp Transform on Point light
-10:59:59.490   comp Light on Point light
-10:59:59.490   comp Transform on core
-10:59:59.991 > wait 15
-10:59:59.991 wait: 15s (server keeps ticking)
-11:00:15.074 > container piece_chest_wood 4
-11:00:15.087 container piece_chest_wood[4] stacks=1 items=1
-11:00:15.573 > expect_last stacks=1
-11:00:15.574   expect_last 'stacks=1' in 'container piece_chest_wood[4] stacks=1 items=1': ok
-11:00:16.074 > container piece_chest_wood 3
-11:00:16.085 container piece_chest_wood[3] stacks=1 items=1
-11:00:16.578 > expect_last stacks=1
-11:00:16.578   expect_last 'stacks=1' in 'container piece_chest_wood[3] stacks=1 items=1': ok
-11:00:17.081 > container piece_chest_wood 6
-11:00:17.090 container piece_chest_wood[6] stacks=0 items=0
-11:00:17.585 > expect_last stacks=0
-11:00:17.586   expect_last 'stacks=0' in 'container piece_chest_wood[6] stacks=0 items=0': ok
-11:00:18.088 > logcheck BSBLogs/Husnisse.log \[Flow\] landed .* at=\(10,3\) why=no rule
-11:00:18.090   logcheck BSBLogs/Husnisse.log /\[Flow\] landed .* at=\(10,3\) why=no rule/: ok '[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(10,3) why=no rule'
-11:00:18.590 > spawn Resin 12 ground 6
-11:00:18.591 spawned Resin(Clone) at (12.00, 1.00, 6.00)  zdo=-882586447:1331  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-11:00:18.591   comp Transform on Resin(Clone)
-11:00:18.591   comp Rigidbody on Resin(Clone)
-11:00:18.591   comp ZNetView on Resin(Clone)
-11:00:18.591   comp ZSyncTransform on Resin(Clone)
-11:00:18.591   comp ItemDrop on Resin(Clone)
-11:00:18.591   comp ParticleSystemRenderer on Resin(Clone)
-11:00:18.591   comp ParticleSystem on Resin(Clone)
-11:00:18.591   comp LODGroup on Resin(Clone)
-11:00:18.591   comp Transform on model
-11:00:18.591   comp MeshFilter on model
-11:00:18.592   comp MeshRenderer on model
-11:00:18.592   comp BoxCollider on model
-11:00:19.093 > wait 15
-11:00:19.093 wait: 15s (server keeps ticking)
-11:00:34.199 > container piece_chest_wood 2
-11:00:34.213 container piece_chest_wood[2] stacks=2 items=2
-11:00:34.705 > expect_last stacks=2
-11:00:34.705   expect_last 'stacks=2' in 'container piece_chest_wood[2] stacks=2 items=2': ok
-11:00:35.208 > logcheck BSBLogs/Husnisse.log \[Flow\] landed .* at=\(6,3\) why=cat:wood
-11:00:35.210   logcheck BSBLogs/Husnisse.log /\[Flow\] landed .* at=\(6,3\) why=cat:wood/: ok '[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(6,3) why=cat:wood'
-11:00:35.711 > husnisse status
-11:00:35.870 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
-11:00:35.870 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
-11:00:35.870 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
-11:00:35.870 husnisse status rule -882586447:1317 10,3 net=on rule=none
-11:00:35.870 husnisse status rule -882586447:1317 6,3 net=on rule=cat:wood
-11:00:35.870 husnisse status rule -882586447:1317 8,3 net=off rule=overflow
-11:00:35.870 husnisse status rule -882586447:1317 14,3 net=on rule=deposit
-11:00:35.870 husnisse status rule -882586447:1317 4,3 net=on rule=cat:metals prio=1
-11:00:35.870 husnisse status rule -882586447:1317 2,3 net=on rule=cat:metals
-11:00:35.870 husnisse status rule -882586447:1317 12,3 net=on rule=custom:1
-11:00:35.870 husnisse status [rules] containers=7 ruled=6
-11:00:35.870 husnisse status claim -882586447:1317 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=7 stacks=6 nisse=yes
-11:00:35.870 husnisse status lines=12
-11:00:36.240 > expect_ge ruled=(\d+) 4
-11:00:36.241   expect>= /ruled=(\d+)/ 6 >= 4: ok
-11:00:36.743 > state
-11:00:36.779 server=True rocks5=0 rocks1=0 drops=0 players=0 zdos=1324 instances=90
-11:00:37.251 scenario done: PASS (21 assertions, 0 failed)
-11:00:42.583 mt master: Enabled=True (session none)
-11:00:42.583 scenario loaded: 45 command(s)
-11:00:42.583 > cleanup
-11:00:42.883 mt master: Enabled=True (session none)
-11:00:42.883 cleanup done
-11:00:43.186 > hold on
-11:00:43.186 hold: on (culling suppressed)
-11:00:43.686 > spawn husnisse_bowl 0 ground 0
-11:00:43.700 spawned husnisse_bowl(Clone) at (0.00, 1.00, 0.00)  zdo=-882586447:1332  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-11:00:43.700   comp Transform on husnisse_bowl(Clone)
-11:00:43.700   comp Piece on husnisse_bowl(Clone)
-11:00:43.700   comp ZNetView on husnisse_bowl(Clone)
-11:00:43.700   comp WearNTear on husnisse_bowl(Clone)
-11:00:43.700   comp LODGroup on husnisse_bowl(Clone)
-11:00:43.700   comp Container on husnisse_bowl(Clone)
-11:00:43.700   comp BowlPiece on husnisse_bowl(Clone)
-11:00:43.700   comp Transform on roof_check_pint
-11:00:43.700   comp Transform on connectionEffectPoint
-11:00:43.700   comp Transform on Capsule_blockplayer
-11:00:43.700   comp CapsuleCollider on Capsule_blockplayer
-11:00:43.700   comp Transform on Capsule_interact
-11:00:44.190 > wait 4
-11:00:44.191 wait: 4s (server keeps ticking)
-11:00:48.214 > zdo husnisse_bowl husnisse_bowl_init
-11:00:48.224 zdo husnisse_bowl.husnisse_bowl_init = int=1 bool=True
-11:00:48.716 > husnisse claims
-11:00:49.144 husnisse claim -882586447:1332 source=native ward=0:0 owner=0 r=20 native_r=20 native_owner=0 suppressed=False refusal='' containers=0
-11:00:49.293 husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=False
-11:00:49.597 > expect_last total=1 working=1
-11:00:49.597   expect_last 'total=1 working=1' in 'husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=False': ok
-11:00:50.102 > spawn piece_chest_wood 2 ground 3
-11:00:50.112 spawned piece_chest_wood(Clone) at (2.00, 1.00, 3.00)  zdo=-882586447:1334  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-11:00:50.124   comp Transform on piece_chest_wood(Clone)
-11:00:50.124   comp ZNetView on piece_chest_wood(Clone)
-11:00:50.124   comp Container on piece_chest_wood(Clone)
-11:00:50.124   comp Piece on piece_chest_wood(Clone)
-11:00:50.124   comp WearNTear on piece_chest_wood(Clone)
-11:00:50.124   comp Transform on floor_2x2_snow
-11:00:50.124   comp MeshFilter on floor_2x2_snow
-11:00:50.124   comp MeshRenderer on floor_2x2_snow
-11:00:50.124   comp LODGroup on floor_2x2_snow
-11:00:50.124   comp Transform on New
-11:00:50.124   comp LODGroup on New
-11:00:50.125   comp Transform on woodchest
-11:00:50.604 > spawn piece_chest_wood 4 ground 3
-11:00:50.604 spawned piece_chest_wood(Clone) at (4.00, 1.00, 3.00)  zdo=-882586447:1335  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-11:00:50.604   comp Transform on piece_chest_wood(Clone)
-11:00:50.604   comp ZNetView on piece_chest_wood(Clone)
-11:00:50.604   comp Container on piece_chest_wood(Clone)
-11:00:50.605   comp Piece on piece_chest_wood(Clone)
-11:00:50.605   comp WearNTear on piece_chest_wood(Clone)
-11:00:50.605   comp Transform on floor_2x2_snow
-11:00:50.605   comp MeshFilter on floor_2x2_snow
-11:00:50.605   comp MeshRenderer on floor_2x2_snow
-11:00:50.605   comp LODGroup on floor_2x2_snow
-11:00:50.605   comp Transform on New
-11:00:50.605   comp LODGroup on New
-11:00:50.605   comp Transform on woodchest
-11:00:51.106 > spawn piece_chest_wood 6 ground 3
-11:00:51.108 spawned piece_chest_wood(Clone) at (6.00, 1.00, 3.00)  zdo=-882586447:1336  owner=-882586447  activeSelf=True  mineRock5=False  mineRock=False  character=False
-11:00:51.108   comp Transform on piece_chest_wood(Clone)
-11:00:51.108   comp ZNetView on piece_chest_wood(Clone)
-11:00:51.108   comp Container on piece_chest_wood(Clone)
-11:00:51.108   comp Piece on piece_chest_wood(Clone)
-11:00:51.108   comp WearNTear on piece_chest_wood(Clone)
-11:00:51.108   comp Transform on floor_2x2_snow
-11:00:51.108   comp MeshFilter on floor_2x2_snow
-11:00:51.108   comp MeshRenderer on floor_2x2_snow
-11:00:51.108   comp LODGroup on floor_2x2_snow
-11:00:51.108   comp Transform on New
-11:00:51.108   comp LODGroup on New
-11:00:51.108   comp Transform on woodchest
-11:00:51.609 > wait 3
-11:00:51.609 wait: 3s (server keeps ticking)
-11:00:54.624 > husnisse status
-11:00:54.779 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
-11:00:54.779 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
-11:00:54.779 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
-11:00:54.779 husnisse status [rules] containers=0 ruled=0
-11:00:54.779 husnisse status claim -882586447:1332 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=3 stacks=0 nisse=yes
-11:00:54.779 husnisse status lines=5
-11:00:55.151 > expect_ge containers=(\d+) 3
-11:00:55.151   expect>= /containers=(\d+)/ 3 >= 3: ok
-11:00:55.657 > fill piece_chest_wood Coal 1 0
-11:00:55.677 fill piece_chest_wood Coalx1 added=True stacks=1 items=1
-11:00:56.161 > fill piece_chest_wood CopperScrap 1 0
-11:00:56.170 fill piece_chest_wood CopperScrapx1 added=True stacks=2 items=2
-11:00:56.663 > fill piece_chest_wood Wood 1 0
-11:00:56.674 fill piece_chest_wood Woodx1 added=True stacks=3 items=3
-11:00:57.166 > wait 1
-11:00:57.166 wait: 1s (server keeps ticking)
-11:00:58.171 > console husnisse_rule suggest piece_chest_wood 0
-11:00:58.173 console > husnisse_rule suggest piece_chest_wood 0
-11:00:58.674 > wait 1
-11:00:58.674 wait: 1s (server keeps ticking)
-11:00:59.680 > logcheck BSBLogs/Husnisse.log husnisse suggest piece_chest_wood\[0\] cat:metals stacks=3 metals=2 wood=1
-11:00:59.681   logcheck BSBLogs/Husnisse.log /husnisse suggest piece_chest_wood\[0\] cat:metals stacks=3 metals=2 wood=1/: ok 'husnisse suggest piece_chest_wood[0] cat:metals stacks=3 metals=2 wood=1'
-11:01:00.184 > console husnisse_rule net piece_chest_wood on 0
-11:01:00.186 console > husnisse_rule net piece_chest_wood on 0
-11:01:00.686 > wait 1
-11:01:00.687 wait: 1s (server keeps ticking)
-11:01:01.692 > zdo piece_chest_wood husnisse_rule 0
-11:01:01.701 zdo piece_chest_wood.husnisse_rule = str='v1;k=cat;c=metals'
-11:01:02.194 > expect_last str='v1;k=cat;c=metals'
-11:01:02.194   expect_last 'str='v1;k=cat;c=metals'' in 'zdo piece_chest_wood.husnisse_rule = str='v1;k=cat;c=metals'': ok
-11:01:02.697 > console husnisse_rule prio piece_chest_wood 2 0
-11:01:02.699 console > husnisse_rule prio piece_chest_wood 2 0
-11:01:03.199 > wait 1
-11:01:03.199 wait: 1s (server keeps ticking)
-11:01:04.207 > zdo piece_chest_wood husnisse_rule 0
-11:01:04.217 zdo piece_chest_wood.husnisse_rule = str='v1;k=cat;c=metals;p=2'
-11:01:04.709 > expect_last str='v1;k=cat;c=metals;p=2'
-11:01:04.709   expect_last 'str='v1;k=cat;c=metals;p=2'' in 'zdo piece_chest_wood.husnisse_rule = str='v1;k=cat;c=metals;p=2'': ok
-11:01:05.211 > console husnisse_rule net piece_chest_wood on 1
-11:01:05.213 console > husnisse_rule net piece_chest_wood on 1
-11:01:05.713 > console husnisse_rule net piece_chest_wood on 2
-11:01:05.716 console > husnisse_rule net piece_chest_wood on 2
-11:01:06.213 > console husnisse_rule set piece_chest_wood cat:wood 1
-11:01:06.216 console > husnisse_rule set piece_chest_wood cat:wood 1
-11:01:06.718 > wait 1
-11:01:06.718 wait: 1s (server keeps ticking)
-11:01:07.725 > console husnisse_rule copy piece_chest_wood 0
-11:01:07.727 console > husnisse_rule copy piece_chest_wood 0
-11:01:08.227 > wait 1
-11:01:08.227 wait: 1s (server keeps ticking)
-11:01:09.232 > zdo piece_chest_wood husnisse_rule 1
-11:01:09.245 zdo piece_chest_wood[1].husnisse_rule = str='v1;k=cat;c=metals;p=2'
-11:01:09.735 > expect_last str='v1;k=cat;c=metals;p=2'
-11:01:09.735   expect_last 'str='v1;k=cat;c=metals;p=2'' in 'zdo piece_chest_wood[1].husnisse_rule = str='v1;k=cat;c=metals;p=2'': ok
-11:01:10.238 > zdo piece_chest_wood husnisse_rule 2
-11:01:10.252 zdo piece_chest_wood[2].husnisse_rule = str='v1;k=cat;c=metals;p=2'
-11:01:10.742 > expect_last str='v1;k=cat;c=metals;p=2'
-11:01:10.742   expect_last 'str='v1;k=cat;c=metals;p=2'' in 'zdo piece_chest_wood[2].husnisse_rule = str='v1;k=cat;c=metals;p=2'': ok
-11:01:11.243 > logcheck BSBLogs/Husnisse.log husnisse copy piece_chest_wood\[0\] targets=2 written=2
-11:01:11.243   logcheck BSBLogs/Husnisse.log /husnisse copy piece_chest_wood\[0\] targets=2 written=2/: ok 'husnisse copy piece_chest_wood[0] targets=2 written=2'
-11:01:11.746 > console husnisse_rule copy piece_chest_wood 0
-11:01:11.748 console > husnisse_rule copy piece_chest_wood 0
-11:01:12.249 > wait 1
-11:01:12.249 wait: 1s (server keeps ticking)
-11:01:13.256 > logcheck BSBLogs/Husnisse.log husnisse copy piece_chest_wood\[0\] targets=2 written=0
-11:01:13.257   logcheck BSBLogs/Husnisse.log /husnisse copy piece_chest_wood\[0\] targets=2 written=0/: ok 'husnisse copy piece_chest_wood[0] targets=2 written=0'
-11:01:13.759 > husnisse status
-11:01:13.912 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
-11:01:13.913 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
-11:01:13.913 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
-11:01:13.913 husnisse status rule -882586447:1332 4,3 net=on rule=cat:metals prio=2
-11:01:13.913 husnisse status rule -882586447:1332 2,3 net=on rule=cat:metals prio=2
-11:01:13.913 husnisse status rule -882586447:1332 6,3 net=on rule=cat:metals prio=2
-11:01:13.913 husnisse status [rules] containers=3 ruled=3
-11:01:13.913 husnisse status claim -882586447:1332 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=3 stacks=3 nisse=yes
-11:01:13.913 husnisse status lines=8
-11:01:14.283 > expect_ge ruled=(\d+) 3
-11:01:14.284   expect>= /ruled=(\d+)/ 3 >= 3: ok
-11:01:14.786 > state
-11:01:14.822 server=True rocks5=0 rocks1=0 drops=0 players=0 zdos=1328 instances=86
-11:01:15.294 scenario done: PASS (10 assertions, 0 failed)
+11:06:27.804 harness ready - write commands to V:\ValheimTest2\BepInEx\config\harness.cmd
+11:06:27.804 scene: not ready  server: False
+11:06:57.020 harness patch: object culling gated by HoldObjects
+11:06:57.462 mt master: Enabled=True (session none)
+11:06:57.462 scenario loaded: 87 command(s)
+11:06:57.462 > cleanup
+11:06:57.750 mt master: Enabled=True (session none)
+11:06:57.750 cleanup done
+11:06:58.062 > hold on
+11:06:58.062 hold: on (culling suppressed)
+11:06:58.565 > spawn husnisse_bowl 0 ground 0
+11:06:58.648 spawned husnisse_bowl(Clone) at (0.00, 1.00, 0.00)  zdo=-708057996:1328  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:06:58.649   comp Transform on husnisse_bowl(Clone)
+11:06:58.649   comp Piece on husnisse_bowl(Clone)
+11:06:58.649   comp ZNetView on husnisse_bowl(Clone)
+11:06:58.649   comp WearNTear on husnisse_bowl(Clone)
+11:06:58.649   comp LODGroup on husnisse_bowl(Clone)
+11:06:58.649   comp Container on husnisse_bowl(Clone)
+11:06:58.649   comp BowlPiece on husnisse_bowl(Clone)
+11:06:58.649   comp Transform on roof_check_pint
+11:06:58.649   comp Transform on connectionEffectPoint
+11:06:58.650   comp Transform on Capsule_blockplayer
+11:06:58.650   comp CapsuleCollider on Capsule_blockplayer
+11:06:58.650   comp Transform on Capsule_interact
+11:06:59.070 > wait 4
+11:06:59.071 wait: 4s (server keeps ticking)
+11:07:03.095 > zdo husnisse_bowl husnisse_bowl_init
+11:07:03.109 zdo husnisse_bowl.husnisse_bowl_init = int=1 bool=True
+11:07:03.597 > husnisse claims
+11:07:04.035 husnisse claim -708057996:1328 source=native ward=0:0 owner=0 r=20 native_r=20 native_owner=0 suppressed=False refusal='' containers=0
+11:07:04.184 husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=False
+11:07:04.488 > expect_last total=1 working=1
+11:07:04.488   expect_last 'total=1 working=1' in 'husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=False': ok
+11:07:04.990 > spawn piece_chest_wood 3 ground 3
+11:07:04.991 spawned piece_chest_wood(Clone) at (3.00, 1.00, 3.00)  zdo=-708057996:1330  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:04.991   comp Transform on piece_chest_wood(Clone)
+11:07:04.991   comp ZNetView on piece_chest_wood(Clone)
+11:07:04.992   comp Container on piece_chest_wood(Clone)
+11:07:04.992   comp Piece on piece_chest_wood(Clone)
+11:07:04.992   comp WearNTear on piece_chest_wood(Clone)
+11:07:04.992   comp Transform on floor_2x2_snow
+11:07:04.992   comp MeshFilter on floor_2x2_snow
+11:07:04.992   comp MeshRenderer on floor_2x2_snow
+11:07:04.992   comp LODGroup on floor_2x2_snow
+11:07:04.992   comp Transform on New
+11:07:04.992   comp LODGroup on New
+11:07:04.992   comp Transform on woodchest
+11:07:05.522 > spawn piece_chest_wood 3 ground 6
+11:07:05.522 spawned piece_chest_wood(Clone) at (3.00, 1.00, 6.00)  zdo=-708057996:1331  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:05.522   comp Transform on piece_chest_wood(Clone)
+11:07:05.522   comp ZNetView on piece_chest_wood(Clone)
+11:07:05.522   comp Container on piece_chest_wood(Clone)
+11:07:05.522   comp Piece on piece_chest_wood(Clone)
+11:07:05.522   comp WearNTear on piece_chest_wood(Clone)
+11:07:05.522   comp Transform on floor_2x2_snow
+11:07:05.522   comp MeshFilter on floor_2x2_snow
+11:07:05.523   comp MeshRenderer on floor_2x2_snow
+11:07:05.523   comp LODGroup on floor_2x2_snow
+11:07:05.523   comp Transform on New
+11:07:05.523   comp LODGroup on New
+11:07:05.523   comp Transform on woodchest
+11:07:05.995 > spawn piece_chest_wood 3 ground 9
+11:07:05.995 spawned piece_chest_wood(Clone) at (3.00, 1.00, 9.00)  zdo=-708057996:1332  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:05.996   comp Transform on piece_chest_wood(Clone)
+11:07:05.996   comp ZNetView on piece_chest_wood(Clone)
+11:07:05.996   comp Container on piece_chest_wood(Clone)
+11:07:05.996   comp Piece on piece_chest_wood(Clone)
+11:07:05.996   comp WearNTear on piece_chest_wood(Clone)
+11:07:05.996   comp Transform on floor_2x2_snow
+11:07:05.996   comp MeshFilter on floor_2x2_snow
+11:07:05.996   comp MeshRenderer on floor_2x2_snow
+11:07:05.996   comp LODGroup on floor_2x2_snow
+11:07:05.996   comp Transform on New
+11:07:05.996   comp LODGroup on New
+11:07:05.996   comp Transform on woodchest
+11:07:06.497 > spawn piece_chest_wood 3 ground 12
+11:07:06.498 spawned piece_chest_wood(Clone) at (3.00, 1.00, 12.00)  zdo=-708057996:1333  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:06.498   comp Transform on piece_chest_wood(Clone)
+11:07:06.498   comp ZNetView on piece_chest_wood(Clone)
+11:07:06.498   comp Container on piece_chest_wood(Clone)
+11:07:06.498   comp Piece on piece_chest_wood(Clone)
+11:07:06.498   comp WearNTear on piece_chest_wood(Clone)
+11:07:06.498   comp Transform on floor_2x2_snow
+11:07:06.498   comp MeshFilter on floor_2x2_snow
+11:07:06.498   comp MeshRenderer on floor_2x2_snow
+11:07:06.498   comp LODGroup on floor_2x2_snow
+11:07:06.498   comp Transform on New
+11:07:06.498   comp LODGroup on New
+11:07:06.498   comp Transform on woodchest
+11:07:07.000 > spawn piece_chest_wood 6 ground 3
+11:07:07.000 spawned piece_chest_wood(Clone) at (6.00, 1.00, 3.00)  zdo=-708057996:1334  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:07.001   comp Transform on piece_chest_wood(Clone)
+11:07:07.001   comp ZNetView on piece_chest_wood(Clone)
+11:07:07.001   comp Container on piece_chest_wood(Clone)
+11:07:07.001   comp Piece on piece_chest_wood(Clone)
+11:07:07.001   comp WearNTear on piece_chest_wood(Clone)
+11:07:07.001   comp Transform on floor_2x2_snow
+11:07:07.001   comp MeshFilter on floor_2x2_snow
+11:07:07.001   comp MeshRenderer on floor_2x2_snow
+11:07:07.001   comp LODGroup on floor_2x2_snow
+11:07:07.001   comp Transform on New
+11:07:07.001   comp LODGroup on New
+11:07:07.001   comp Transform on woodchest
+11:07:07.503 > spawn piece_chest_wood 6 ground 6
+11:07:07.503 spawned piece_chest_wood(Clone) at (6.00, 1.00, 6.00)  zdo=-708057996:1335  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:07.503   comp Transform on piece_chest_wood(Clone)
+11:07:07.503   comp ZNetView on piece_chest_wood(Clone)
+11:07:07.503   comp Container on piece_chest_wood(Clone)
+11:07:07.503   comp Piece on piece_chest_wood(Clone)
+11:07:07.503   comp WearNTear on piece_chest_wood(Clone)
+11:07:07.503   comp Transform on floor_2x2_snow
+11:07:07.503   comp MeshFilter on floor_2x2_snow
+11:07:07.503   comp MeshRenderer on floor_2x2_snow
+11:07:07.503   comp LODGroup on floor_2x2_snow
+11:07:07.503   comp Transform on New
+11:07:07.503   comp LODGroup on New
+11:07:07.503   comp Transform on woodchest
+11:07:08.009 > spawn piece_chest_wood 6 ground 9
+11:07:08.009 spawned piece_chest_wood(Clone) at (6.00, 1.00, 9.00)  zdo=-708057996:1336  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:08.009   comp Transform on piece_chest_wood(Clone)
+11:07:08.009   comp ZNetView on piece_chest_wood(Clone)
+11:07:08.009   comp Container on piece_chest_wood(Clone)
+11:07:08.009   comp Piece on piece_chest_wood(Clone)
+11:07:08.009   comp WearNTear on piece_chest_wood(Clone)
+11:07:08.009   comp Transform on floor_2x2_snow
+11:07:08.009   comp MeshFilter on floor_2x2_snow
+11:07:08.009   comp MeshRenderer on floor_2x2_snow
+11:07:08.009   comp LODGroup on floor_2x2_snow
+11:07:08.009   comp Transform on New
+11:07:08.009   comp LODGroup on New
+11:07:08.009   comp Transform on woodchest
+11:07:08.509 > spawn piece_chest_wood 6 ground 12
+11:07:08.510 spawned piece_chest_wood(Clone) at (6.00, 1.00, 12.00)  zdo=-708057996:1337  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:08.510   comp Transform on piece_chest_wood(Clone)
+11:07:08.510   comp ZNetView on piece_chest_wood(Clone)
+11:07:08.510   comp Container on piece_chest_wood(Clone)
+11:07:08.510   comp Piece on piece_chest_wood(Clone)
+11:07:08.510   comp WearNTear on piece_chest_wood(Clone)
+11:07:08.510   comp Transform on floor_2x2_snow
+11:07:08.510   comp MeshFilter on floor_2x2_snow
+11:07:08.510   comp MeshRenderer on floor_2x2_snow
+11:07:08.510   comp LODGroup on floor_2x2_snow
+11:07:08.510   comp Transform on New
+11:07:08.510   comp LODGroup on New
+11:07:08.510   comp Transform on woodchest
+11:07:09.012 > spawn piece_chest_wood 9 ground 3
+11:07:09.012 spawned piece_chest_wood(Clone) at (9.00, 1.00, 3.00)  zdo=-708057996:1338  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:09.012   comp Transform on piece_chest_wood(Clone)
+11:07:09.012   comp ZNetView on piece_chest_wood(Clone)
+11:07:09.012   comp Container on piece_chest_wood(Clone)
+11:07:09.012   comp Piece on piece_chest_wood(Clone)
+11:07:09.012   comp WearNTear on piece_chest_wood(Clone)
+11:07:09.012   comp Transform on floor_2x2_snow
+11:07:09.012   comp MeshFilter on floor_2x2_snow
+11:07:09.012   comp MeshRenderer on floor_2x2_snow
+11:07:09.012   comp LODGroup on floor_2x2_snow
+11:07:09.012   comp Transform on New
+11:07:09.013   comp LODGroup on New
+11:07:09.013   comp Transform on woodchest
+11:07:09.515 > spawn piece_chest_wood 9 ground 6
+11:07:09.515 spawned piece_chest_wood(Clone) at (9.00, 1.00, 6.00)  zdo=-708057996:1339  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:09.515   comp Transform on piece_chest_wood(Clone)
+11:07:09.515   comp ZNetView on piece_chest_wood(Clone)
+11:07:09.515   comp Container on piece_chest_wood(Clone)
+11:07:09.515   comp Piece on piece_chest_wood(Clone)
+11:07:09.515   comp WearNTear on piece_chest_wood(Clone)
+11:07:09.515   comp Transform on floor_2x2_snow
+11:07:09.515   comp MeshFilter on floor_2x2_snow
+11:07:09.515   comp MeshRenderer on floor_2x2_snow
+11:07:09.516   comp LODGroup on floor_2x2_snow
+11:07:09.516   comp Transform on New
+11:07:09.516   comp LODGroup on New
+11:07:09.516   comp Transform on woodchest
+11:07:10.017 > spawn piece_chest_wood 9 ground 9
+11:07:10.018 spawned piece_chest_wood(Clone) at (9.00, 1.00, 9.00)  zdo=-708057996:1340  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:10.018   comp Transform on piece_chest_wood(Clone)
+11:07:10.018   comp ZNetView on piece_chest_wood(Clone)
+11:07:10.018   comp Container on piece_chest_wood(Clone)
+11:07:10.018   comp Piece on piece_chest_wood(Clone)
+11:07:10.018   comp WearNTear on piece_chest_wood(Clone)
+11:07:10.018   comp Transform on floor_2x2_snow
+11:07:10.018   comp MeshFilter on floor_2x2_snow
+11:07:10.018   comp MeshRenderer on floor_2x2_snow
+11:07:10.018   comp LODGroup on floor_2x2_snow
+11:07:10.018   comp Transform on New
+11:07:10.018   comp LODGroup on New
+11:07:10.018   comp Transform on woodchest
+11:07:10.519 > spawn piece_chest_wood 9 ground 12
+11:07:10.520 spawned piece_chest_wood(Clone) at (9.00, 1.00, 12.00)  zdo=-708057996:1341  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:10.520   comp Transform on piece_chest_wood(Clone)
+11:07:10.520   comp ZNetView on piece_chest_wood(Clone)
+11:07:10.520   comp Container on piece_chest_wood(Clone)
+11:07:10.520   comp Piece on piece_chest_wood(Clone)
+11:07:10.520   comp WearNTear on piece_chest_wood(Clone)
+11:07:10.520   comp Transform on floor_2x2_snow
+11:07:10.520   comp MeshFilter on floor_2x2_snow
+11:07:10.520   comp MeshRenderer on floor_2x2_snow
+11:07:10.520   comp LODGroup on floor_2x2_snow
+11:07:10.520   comp Transform on New
+11:07:10.520   comp LODGroup on New
+11:07:10.520   comp Transform on woodchest
+11:07:11.022 > spawn piece_chest_wood 12 ground 3
+11:07:11.023 spawned piece_chest_wood(Clone) at (12.00, 1.00, 3.00)  zdo=-708057996:1342  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:11.023   comp Transform on piece_chest_wood(Clone)
+11:07:11.023   comp ZNetView on piece_chest_wood(Clone)
+11:07:11.023   comp Container on piece_chest_wood(Clone)
+11:07:11.023   comp Piece on piece_chest_wood(Clone)
+11:07:11.023   comp WearNTear on piece_chest_wood(Clone)
+11:07:11.023   comp Transform on floor_2x2_snow
+11:07:11.023   comp MeshFilter on floor_2x2_snow
+11:07:11.023   comp MeshRenderer on floor_2x2_snow
+11:07:11.023   comp LODGroup on floor_2x2_snow
+11:07:11.023   comp Transform on New
+11:07:11.023   comp LODGroup on New
+11:07:11.023   comp Transform on woodchest
+11:07:11.525 > spawn piece_chest_wood 12 ground 6
+11:07:11.526 spawned piece_chest_wood(Clone) at (12.00, 1.00, 6.00)  zdo=-708057996:1343  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:11.526   comp Transform on piece_chest_wood(Clone)
+11:07:11.526   comp ZNetView on piece_chest_wood(Clone)
+11:07:11.526   comp Container on piece_chest_wood(Clone)
+11:07:11.526   comp Piece on piece_chest_wood(Clone)
+11:07:11.526   comp WearNTear on piece_chest_wood(Clone)
+11:07:11.526   comp Transform on floor_2x2_snow
+11:07:11.526   comp MeshFilter on floor_2x2_snow
+11:07:11.526   comp MeshRenderer on floor_2x2_snow
+11:07:11.526   comp LODGroup on floor_2x2_snow
+11:07:11.526   comp Transform on New
+11:07:11.526   comp LODGroup on New
+11:07:11.526   comp Transform on woodchest
+11:07:12.027 > spawn piece_chest_wood 12 ground 9
+11:07:12.028 spawned piece_chest_wood(Clone) at (12.00, 1.00, 9.00)  zdo=-708057996:1344  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:12.028   comp Transform on piece_chest_wood(Clone)
+11:07:12.028   comp ZNetView on piece_chest_wood(Clone)
+11:07:12.028   comp Container on piece_chest_wood(Clone)
+11:07:12.028   comp Piece on piece_chest_wood(Clone)
+11:07:12.028   comp WearNTear on piece_chest_wood(Clone)
+11:07:12.028   comp Transform on floor_2x2_snow
+11:07:12.028   comp MeshFilter on floor_2x2_snow
+11:07:12.028   comp MeshRenderer on floor_2x2_snow
+11:07:12.028   comp LODGroup on floor_2x2_snow
+11:07:12.028   comp Transform on New
+11:07:12.028   comp LODGroup on New
+11:07:12.028   comp Transform on woodchest
+11:07:12.530 > spawn piece_chest_wood 12 ground 12
+11:07:12.530 spawned piece_chest_wood(Clone) at (12.00, 1.00, 12.00)  zdo=-708057996:1345  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:12.530   comp Transform on piece_chest_wood(Clone)
+11:07:12.530   comp ZNetView on piece_chest_wood(Clone)
+11:07:12.530   comp Container on piece_chest_wood(Clone)
+11:07:12.530   comp Piece on piece_chest_wood(Clone)
+11:07:12.530   comp WearNTear on piece_chest_wood(Clone)
+11:07:12.530   comp Transform on floor_2x2_snow
+11:07:12.530   comp MeshFilter on floor_2x2_snow
+11:07:12.530   comp MeshRenderer on floor_2x2_snow
+11:07:12.530   comp LODGroup on floor_2x2_snow
+11:07:12.530   comp Transform on New
+11:07:12.530   comp LODGroup on New
+11:07:12.531   comp Transform on woodchest
+11:07:13.032 > spawn piece_chest_wood 15 ground 3
+11:07:13.033 spawned piece_chest_wood(Clone) at (15.00, 1.00, 3.00)  zdo=-708057996:1346  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:13.033   comp Transform on piece_chest_wood(Clone)
+11:07:13.033   comp ZNetView on piece_chest_wood(Clone)
+11:07:13.033   comp Container on piece_chest_wood(Clone)
+11:07:13.033   comp Piece on piece_chest_wood(Clone)
+11:07:13.033   comp WearNTear on piece_chest_wood(Clone)
+11:07:13.033   comp Transform on floor_2x2_snow
+11:07:13.033   comp MeshFilter on floor_2x2_snow
+11:07:13.033   comp MeshRenderer on floor_2x2_snow
+11:07:13.033   comp LODGroup on floor_2x2_snow
+11:07:13.033   comp Transform on New
+11:07:13.033   comp LODGroup on New
+11:07:13.033   comp Transform on woodchest
+11:07:13.535 > spawn piece_chest_wood 15 ground 6
+11:07:13.536 spawned piece_chest_wood(Clone) at (15.00, 1.00, 6.00)  zdo=-708057996:1347  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:13.536   comp Transform on piece_chest_wood(Clone)
+11:07:13.536   comp ZNetView on piece_chest_wood(Clone)
+11:07:13.536   comp Container on piece_chest_wood(Clone)
+11:07:13.536   comp Piece on piece_chest_wood(Clone)
+11:07:13.536   comp WearNTear on piece_chest_wood(Clone)
+11:07:13.536   comp Transform on floor_2x2_snow
+11:07:13.536   comp MeshFilter on floor_2x2_snow
+11:07:13.536   comp MeshRenderer on floor_2x2_snow
+11:07:13.536   comp LODGroup on floor_2x2_snow
+11:07:13.536   comp Transform on New
+11:07:13.536   comp LODGroup on New
+11:07:13.536   comp Transform on woodchest
+11:07:14.038 > spawn piece_chest_wood 15 ground 9
+11:07:14.039 spawned piece_chest_wood(Clone) at (15.00, 1.00, 9.00)  zdo=-708057996:1348  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:14.039   comp Transform on piece_chest_wood(Clone)
+11:07:14.039   comp ZNetView on piece_chest_wood(Clone)
+11:07:14.039   comp Container on piece_chest_wood(Clone)
+11:07:14.039   comp Piece on piece_chest_wood(Clone)
+11:07:14.039   comp WearNTear on piece_chest_wood(Clone)
+11:07:14.039   comp Transform on floor_2x2_snow
+11:07:14.039   comp MeshFilter on floor_2x2_snow
+11:07:14.039   comp MeshRenderer on floor_2x2_snow
+11:07:14.039   comp LODGroup on floor_2x2_snow
+11:07:14.039   comp Transform on New
+11:07:14.039   comp LODGroup on New
+11:07:14.039   comp Transform on woodchest
+11:07:14.540 > spawn piece_chest_wood 15 ground 12
+11:07:14.540 spawned piece_chest_wood(Clone) at (15.00, 1.00, 12.00)  zdo=-708057996:1349  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:14.541   comp Transform on piece_chest_wood(Clone)
+11:07:14.541   comp ZNetView on piece_chest_wood(Clone)
+11:07:14.541   comp Container on piece_chest_wood(Clone)
+11:07:14.541   comp Piece on piece_chest_wood(Clone)
+11:07:14.541   comp WearNTear on piece_chest_wood(Clone)
+11:07:14.541   comp Transform on floor_2x2_snow
+11:07:14.541   comp MeshFilter on floor_2x2_snow
+11:07:14.541   comp MeshRenderer on floor_2x2_snow
+11:07:14.541   comp LODGroup on floor_2x2_snow
+11:07:14.541   comp Transform on New
+11:07:14.541   comp LODGroup on New
+11:07:14.541   comp Transform on woodchest
+11:07:15.043 > wait 3
+11:07:15.043 wait: 3s (server keeps ticking)
+11:07:18.062 > husnisse status
+11:07:18.235 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+11:07:18.235 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+11:07:18.235 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
+11:07:18.235 husnisse status [rules] containers=0 ruled=0
+11:07:18.235 husnisse status claim -708057996:1328 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=20 stacks=0 nisse=yes
+11:07:18.236 husnisse status lines=5
+11:07:18.574 > expect_ge containers=(\d+) 20
+11:07:18.576   expect>= /containers=(\d+)/ 20 >= 20: ok
+11:07:19.077 > console husnisse_rule set piece_chest_wood cat:metals 0
+11:07:19.080 console > husnisse_rule set piece_chest_wood cat:metals 0
+11:07:19.579 > console husnisse_rule net piece_chest_wood on 0
+11:07:19.581 console > husnisse_rule net piece_chest_wood on 0
+11:07:20.082 > wait 1
+11:07:20.082 wait: 1s (server keeps ticking)
+11:07:21.087 > zdo piece_chest_wood husnisse_rule 0
+11:07:21.097 zdo piece_chest_wood.husnisse_rule = str='v1;k=cat;c=metals'
+11:07:21.589 > expect_last str='v1;k=cat;c=metals'
+11:07:21.589   expect_last 'str='v1;k=cat;c=metals'' in 'zdo piece_chest_wood.husnisse_rule = str='v1;k=cat;c=metals'': ok
+11:07:22.095 > zdo piece_chest_wood husnisse_net 0
+11:07:22.106 zdo piece_chest_wood.husnisse_net = int=1 bool=True
+11:07:22.598 > expect_last bool=True
+11:07:22.598   expect_last 'bool=True' in 'zdo piece_chest_wood.husnisse_net = int=1 bool=True': ok
+11:07:23.100 > husnisse status
+11:07:23.249 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+11:07:23.249 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+11:07:23.249 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
+11:07:23.249 husnisse status rule -708057996:1328 3,3 net=on rule=cat:metals
+11:07:23.249 husnisse status [rules] containers=1 ruled=1
+11:07:23.249 husnisse status claim -708057996:1328 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=20 stacks=0 nisse=yes
+11:07:23.249 husnisse status lines=6
+11:07:23.620 > expect [rules] containers=1 ruled=1
+11:07:23.621   expect '[rules] containers=1 ruled=1': ok
+11:07:24.122 > console husnisse_rule set piece_chest_wood cat:food 1
+11:07:24.125 console > husnisse_rule set piece_chest_wood cat:food 1
+11:07:24.625 > console husnisse_rule set piece_chest_wood cat:wood 2
+11:07:24.627 console > husnisse_rule set piece_chest_wood cat:wood 2
+11:07:25.131 > console husnisse_rule set piece_chest_wood cat:building 3
+11:07:25.134 console > husnisse_rule set piece_chest_wood cat:building 3
+11:07:25.634 > console husnisse_rule set piece_chest_wood cat:consumables 4
+11:07:25.636 console > husnisse_rule set piece_chest_wood cat:consumables 4
+11:07:26.136 > console husnisse_rule set piece_chest_wood cat:tools 5
+11:07:26.139 console > husnisse_rule set piece_chest_wood cat:tools 5
+11:07:26.640 > console husnisse_rule set piece_chest_wood cat:trophies 6
+11:07:26.642 console > husnisse_rule set piece_chest_wood cat:trophies 6
+11:07:27.143 > console husnisse_rule set piece_chest_wood cat:valuables 7
+11:07:27.145 console > husnisse_rule set piece_chest_wood cat:valuables 7
+11:07:27.647 > console husnisse_rule set piece_chest_wood overflow 8
+11:07:27.649 console > husnisse_rule set piece_chest_wood overflow 8
+11:07:28.149 > console husnisse_rule set piece_chest_wood deposit 9
+11:07:28.151 console > husnisse_rule set piece_chest_wood deposit 9
+11:07:28.651 > console husnisse_rule set piece_chest_wood cat:metals 10
+11:07:28.653 console > husnisse_rule set piece_chest_wood cat:metals 10
+11:07:29.154 > console husnisse_rule set piece_chest_wood cat:food 11
+11:07:29.156 console > husnisse_rule set piece_chest_wood cat:food 11
+11:07:29.656 > console husnisse_rule set piece_chest_wood cat:wood 12
+11:07:29.659 console > husnisse_rule set piece_chest_wood cat:wood 12
+11:07:30.159 > console husnisse_rule set piece_chest_wood cat:building 13
+11:07:30.161 console > husnisse_rule set piece_chest_wood cat:building 13
+11:07:30.662 > console husnisse_rule set piece_chest_wood cat:consumables 14
+11:07:30.664 console > husnisse_rule set piece_chest_wood cat:consumables 14
+11:07:31.164 > console husnisse_rule set piece_chest_wood cat:tools 15
+11:07:31.166 console > husnisse_rule set piece_chest_wood cat:tools 15
+11:07:31.667 > console husnisse_rule set piece_chest_wood cat:trophies 16
+11:07:31.669 console > husnisse_rule set piece_chest_wood cat:trophies 16
+11:07:32.169 > console husnisse_rule set piece_chest_wood cat:valuables 17
+11:07:32.171 console > husnisse_rule set piece_chest_wood cat:valuables 17
+11:07:32.672 > console husnisse_rule set piece_chest_wood overflow 18
+11:07:32.674 console > husnisse_rule set piece_chest_wood overflow 18
+11:07:33.176 > console husnisse_rule set piece_chest_wood deposit 19
+11:07:33.179 console > husnisse_rule set piece_chest_wood deposit 19
+11:07:33.682 > wait 1
+11:07:33.682 wait: 1s (server keeps ticking)
+11:07:34.687 > husnisse status
+11:07:34.869 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+11:07:34.869 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+11:07:34.869 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
+11:07:34.869 husnisse status rule -708057996:1328 3,12 net=off rule=cat:building
+11:07:34.869 husnisse status rule -708057996:1328 3,9 net=off rule=cat:wood
+11:07:34.869 husnisse status rule -708057996:1328 15,12 net=off rule=deposit
+11:07:34.870 husnisse status rule -708057996:1328 9,12 net=off rule=cat:food
+11:07:34.870 husnisse status rule -708057996:1328 9,3 net=off rule=overflow
+11:07:34.870 husnisse status rule -708057996:1328 3,3 net=on rule=cat:metals
+11:07:34.870 husnisse status rule -708057996:1328 3,6 net=off rule=cat:food
+11:07:34.870 husnisse status rule -708057996:1328 6,3 net=off rule=cat:consumables
+11:07:34.870 husnisse status rule -708057996:1328 6,6 net=off rule=cat:tools
+11:07:34.870 husnisse status rule -708057996:1328 15,9 net=off rule=overflow
+11:07:34.870 husnisse status rule -708057996:1328 9,9 net=off rule=cat:metals
+11:07:34.870 husnisse status rule -708057996:1328 12,6 net=off rule=cat:building
+11:07:34.870 husnisse status rule -708057996:1328 12,12 net=off rule=cat:tools
+11:07:34.870 husnisse status rule -708057996:1328 12,3 net=off rule=cat:wood
+11:07:34.870 husnisse status rule -708057996:1328 12,9 net=off rule=cat:consumables
+11:07:34.870 husnisse status rule -708057996:1328 15,3 net=off rule=cat:trophies
+11:07:34.870 husnisse status rule -708057996:1328 6,9 net=off rule=cat:trophies
+11:07:34.870 husnisse status rule -708057996:1328 6,12 net=off rule=cat:valuables
+11:07:34.870 husnisse status rule -708057996:1328 15,6 net=off rule=cat:valuables
+11:07:34.870 husnisse status rule -708057996:1328 9,6 net=off rule=deposit
+11:07:34.870 husnisse status [rules] containers=20 ruled=20
+11:07:34.870 husnisse status claim -708057996:1328 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=20 stacks=0 nisse=yes
+11:07:34.870 husnisse status lines=25
+11:07:35.207 > expect_ge ruled=(\d+) 20
+11:07:35.208   expect>= /ruled=(\d+)/ 20 >= 20: ok
+11:07:35.709 > expect [rules] containers=20 ruled=20
+11:07:35.710   expect '[rules] containers=20 ruled=20': ok
+11:07:36.214 > console husnisse_rule list
+11:07:36.216 console > husnisse_rule list
+11:07:36.716 > wait 1
+11:07:36.716 wait: 1s (server keeps ticking)
+11:07:37.721 > logcheck BSBLogs/Husnisse.log husnisse rules listed=\d+
+11:07:37.723   logcheck BSBLogs/Husnisse.log /husnisse rules listed=\d+/: ok 'husnisse rules listed=20'
+11:07:38.224 > console husnisse_rule set piece_chest_wood none 2
+11:07:38.226 console > husnisse_rule set piece_chest_wood none 2
+11:07:38.726 > wait 1
+11:07:38.726 wait: 1s (server keeps ticking)
+11:07:39.731 > zdo piece_chest_wood husnisse_rule 2
+11:07:39.742 zdo piece_chest_wood[2].husnisse_rule = str='v1;k=none'
+11:07:40.233 > expect_last str='v1;k=none'
+11:07:40.233   expect_last 'str='v1;k=none'' in 'zdo piece_chest_wood[2].husnisse_rule = str='v1;k=none'': ok
+11:07:40.736 > husnisse status
+11:07:40.914 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+11:07:40.914 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+11:07:40.914 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
+11:07:40.914 husnisse status rule -708057996:1328 3,12 net=off rule=cat:building
+11:07:40.914 husnisse status rule -708057996:1328 15,12 net=off rule=deposit
+11:07:40.914 husnisse status rule -708057996:1328 9,12 net=off rule=cat:food
+11:07:40.914 husnisse status rule -708057996:1328 9,3 net=off rule=overflow
+11:07:40.914 husnisse status rule -708057996:1328 3,3 net=on rule=cat:metals
+11:07:40.914 husnisse status rule -708057996:1328 3,6 net=off rule=cat:food
+11:07:40.914 husnisse status rule -708057996:1328 6,3 net=off rule=cat:consumables
+11:07:40.914 husnisse status rule -708057996:1328 6,6 net=off rule=cat:tools
+11:07:40.914 husnisse status rule -708057996:1328 15,9 net=off rule=overflow
+11:07:40.914 husnisse status rule -708057996:1328 9,9 net=off rule=cat:metals
+11:07:40.914 husnisse status rule -708057996:1328 12,6 net=off rule=cat:building
+11:07:40.914 husnisse status rule -708057996:1328 12,12 net=off rule=cat:tools
+11:07:40.914 husnisse status rule -708057996:1328 12,3 net=off rule=cat:wood
+11:07:40.914 husnisse status rule -708057996:1328 12,9 net=off rule=cat:consumables
+11:07:40.914 husnisse status rule -708057996:1328 15,3 net=off rule=cat:trophies
+11:07:40.914 husnisse status rule -708057996:1328 6,9 net=off rule=cat:trophies
+11:07:40.914 husnisse status rule -708057996:1328 6,12 net=off rule=cat:valuables
+11:07:40.914 husnisse status rule -708057996:1328 15,6 net=off rule=cat:valuables
+11:07:40.914 husnisse status rule -708057996:1328 9,6 net=off rule=deposit
+11:07:40.914 husnisse status [rules] containers=19 ruled=19
+11:07:40.914 husnisse status claim -708057996:1328 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=20 stacks=0 nisse=yes
+11:07:40.914 husnisse status lines=24
+11:07:41.252 > expect_ge ruled=(\d+) 19
+11:07:41.252   expect>= /ruled=(\d+)/ 19 >= 19: ok
+11:07:41.755 > zdoset piece_chest_wood husnisse_rule string v2;k=cat;c=metals 3
+11:07:41.768 zdoset piece_chest_wood[3].husnisse_rule = string:v2;k=cat;c=metals
+11:07:42.258 > wait 1
+11:07:42.258 wait: 1s (server keeps ticking)
+11:07:43.263 > husnisse status
+11:07:43.431 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+11:07:43.431 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+11:07:43.431 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
+11:07:43.431 husnisse status rule -708057996:1328 15,12 net=off rule=deposit
+11:07:43.431 husnisse status rule -708057996:1328 9,12 net=off rule=cat:food
+11:07:43.431 husnisse status rule -708057996:1328 9,3 net=off rule=overflow
+11:07:43.431 husnisse status rule -708057996:1328 3,3 net=on rule=cat:metals
+11:07:43.431 husnisse status rule -708057996:1328 3,6 net=off rule=cat:food
+11:07:43.431 husnisse status rule -708057996:1328 6,3 net=off rule=cat:consumables
+11:07:43.431 husnisse status rule -708057996:1328 6,6 net=off rule=cat:tools
+11:07:43.431 husnisse status rule -708057996:1328 15,9 net=off rule=overflow
+11:07:43.431 husnisse status rule -708057996:1328 9,9 net=off rule=cat:metals
+11:07:43.431 husnisse status rule -708057996:1328 12,6 net=off rule=cat:building
+11:07:43.431 husnisse status rule -708057996:1328 12,12 net=off rule=cat:tools
+11:07:43.431 husnisse status rule -708057996:1328 12,3 net=off rule=cat:wood
+11:07:43.431 husnisse status rule -708057996:1328 12,9 net=off rule=cat:consumables
+11:07:43.432 husnisse status rule -708057996:1328 15,3 net=off rule=cat:trophies
+11:07:43.432 husnisse status rule -708057996:1328 6,9 net=off rule=cat:trophies
+11:07:43.432 husnisse status rule -708057996:1328 6,12 net=off rule=cat:valuables
+11:07:43.432 husnisse status rule -708057996:1328 15,6 net=off rule=cat:valuables
+11:07:43.432 husnisse status rule -708057996:1328 9,6 net=off rule=deposit
+11:07:43.432 husnisse status [rules] containers=18 ruled=18
+11:07:43.432 husnisse status claim -708057996:1328 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=20 stacks=0 nisse=yes
+11:07:43.432 husnisse status lines=23
+11:07:43.770 > expect_ge ruled=(\d+) 18
+11:07:43.770   expect>= /ruled=(\d+)/ 18 >= 18: ok
+11:07:44.276 > expect [rules] containers=18 ruled=18
+11:07:44.276   expect '[rules] containers=18 ruled=18': ok
+11:07:44.779 > zdo piece_chest_wood husnisse_rule 3
+11:07:44.796 zdo piece_chest_wood[3].husnisse_rule = str='v2;k=cat;c=metals'
+11:07:45.281 > expect_last str='v2;k=cat;c=metals'
+11:07:45.282   expect_last 'str='v2;k=cat;c=metals'' in 'zdo piece_chest_wood[3].husnisse_rule = str='v2;k=cat;c=metals'': ok
+11:07:45.784 > zdoset piece_chest_wood husnisse_blacklist bool 1 4
+11:07:45.795 zdoset piece_chest_wood[4].husnisse_blacklist = bool:1
+11:07:46.286 > wait 1
+11:07:46.286 wait: 1s (server keeps ticking)
+11:07:47.292 > zdo piece_chest_wood husnisse_blacklist 4
+11:07:47.307 zdo piece_chest_wood[4].husnisse_blacklist = int=1 bool=True
+11:07:47.795 > expect_last bool=True
+11:07:47.795   expect_last 'bool=True' in 'zdo piece_chest_wood[4].husnisse_blacklist = int=1 bool=True': ok
+11:07:48.297 > husnisse status
+11:07:48.462 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+11:07:48.462 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+11:07:48.462 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
+11:07:48.462 husnisse status rule -708057996:1328 15,12 net=off rule=deposit
+11:07:48.462 husnisse status rule -708057996:1328 9,12 net=off rule=cat:food
+11:07:48.462 husnisse status rule -708057996:1328 9,3 net=off rule=overflow
+11:07:48.462 husnisse status rule -708057996:1328 3,3 net=on rule=cat:metals
+11:07:48.462 husnisse status rule -708057996:1328 3,6 net=off rule=cat:food
+11:07:48.462 husnisse status rule -708057996:1328 6,3 net=off rule=cat:consumables blacklisted
+11:07:48.462 husnisse status rule -708057996:1328 6,6 net=off rule=cat:tools
+11:07:48.462 husnisse status rule -708057996:1328 15,9 net=off rule=overflow
+11:07:48.462 husnisse status rule -708057996:1328 9,9 net=off rule=cat:metals
+11:07:48.462 husnisse status rule -708057996:1328 12,6 net=off rule=cat:building
+11:07:48.463 husnisse status rule -708057996:1328 12,12 net=off rule=cat:tools
+11:07:48.463 husnisse status rule -708057996:1328 12,3 net=off rule=cat:wood
+11:07:48.463 husnisse status rule -708057996:1328 12,9 net=off rule=cat:consumables
+11:07:48.463 husnisse status rule -708057996:1328 15,3 net=off rule=cat:trophies
+11:07:48.463 husnisse status rule -708057996:1328 6,9 net=off rule=cat:trophies
+11:07:48.463 husnisse status rule -708057996:1328 6,12 net=off rule=cat:valuables
+11:07:48.463 husnisse status rule -708057996:1328 15,6 net=off rule=cat:valuables
+11:07:48.463 husnisse status rule -708057996:1328 9,6 net=off rule=deposit
+11:07:48.463 husnisse status [rules] containers=18 ruled=18
+11:07:48.463 husnisse status claim -708057996:1328 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=20 stacks=0 nisse=yes
+11:07:48.463 husnisse status lines=23
+11:07:48.800 > expect blacklisted
+11:07:48.800   expect 'blacklisted': ok
+11:07:49.303 > zdo piece_chest_wood husnisse_blacklist 5
+11:07:49.314 zdo piece_chest_wood[5].husnisse_blacklist = absent
+11:07:49.809 > expect_last absent
+11:07:49.809   expect_last 'absent' in 'zdo piece_chest_wood[5].husnisse_blacklist = absent': ok
+11:07:50.312 > state
+11:07:50.354 server=True rocks5=0 rocks1=0 drops=0 players=0 zdos=1349 instances=22
+11:07:50.829 scenario done: PASS (16 assertions, 0 failed)
+11:07:55.639 mt master: Enabled=True (session none)
+11:07:55.639 scenario loaded: 78 command(s)
+11:07:55.639 > cleanup
+11:07:55.919 mt master: Enabled=True (session none)
+11:07:55.919 cleanup done
+11:07:56.222 > hold on
+11:07:56.222 hold: on (culling suppressed)
+11:07:56.724 > spawn husnisse_bowl 0 ground 0
+11:07:56.737 spawned husnisse_bowl(Clone) at (0.00, 1.00, 0.00)  zdo=-708057996:1350  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:07:56.738   comp Transform on husnisse_bowl(Clone)
+11:07:56.738   comp Piece on husnisse_bowl(Clone)
+11:07:56.738   comp ZNetView on husnisse_bowl(Clone)
+11:07:56.738   comp WearNTear on husnisse_bowl(Clone)
+11:07:56.738   comp LODGroup on husnisse_bowl(Clone)
+11:07:56.738   comp Container on husnisse_bowl(Clone)
+11:07:56.738   comp BowlPiece on husnisse_bowl(Clone)
+11:07:56.738   comp Transform on roof_check_pint
+11:07:56.738   comp Transform on connectionEffectPoint
+11:07:56.738   comp Transform on Capsule_blockplayer
+11:07:56.738   comp CapsuleCollider on Capsule_blockplayer
+11:07:56.738   comp Transform on Capsule_interact
+11:07:57.227 > wait 4
+11:07:57.228 wait: 4s (server keeps ticking)
+11:08:01.252 > zdo husnisse_bowl husnisse_bowl_init
+11:08:01.264 zdo husnisse_bowl.husnisse_bowl_init = int=1 bool=True
+11:08:01.754 > husnisse claims
+11:08:02.151 husnisse claim -708057996:1350 source=native ward=0:0 owner=0 r=20 native_r=20 native_owner=0 suppressed=False refusal='' containers=0
+11:08:02.281 husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=False
+11:08:02.585 > expect_last total=1 working=1
+11:08:02.585   expect_last 'total=1 working=1' in 'husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=False': ok
+11:08:03.089 > spawn piece_chest_wood 2 ground 3
+11:08:03.089 spawned piece_chest_wood(Clone) at (2.00, 1.00, 3.00)  zdo=-708057996:1352  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:08:03.089   comp Transform on piece_chest_wood(Clone)
+11:08:03.089   comp ZNetView on piece_chest_wood(Clone)
+11:08:03.090   comp Container on piece_chest_wood(Clone)
+11:08:03.090   comp Piece on piece_chest_wood(Clone)
+11:08:03.090   comp WearNTear on piece_chest_wood(Clone)
+11:08:03.090   comp Transform on floor_2x2_snow
+11:08:03.090   comp MeshFilter on floor_2x2_snow
+11:08:03.090   comp MeshRenderer on floor_2x2_snow
+11:08:03.090   comp LODGroup on floor_2x2_snow
+11:08:03.090   comp Transform on New
+11:08:03.090   comp LODGroup on New
+11:08:03.090   comp Transform on woodchest
+11:08:03.592 > spawn piece_chest_wood 4 ground 3
+11:08:03.593 spawned piece_chest_wood(Clone) at (4.00, 1.00, 3.00)  zdo=-708057996:1353  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:08:03.593   comp Transform on piece_chest_wood(Clone)
+11:08:03.593   comp ZNetView on piece_chest_wood(Clone)
+11:08:03.593   comp Container on piece_chest_wood(Clone)
+11:08:03.593   comp Piece on piece_chest_wood(Clone)
+11:08:03.593   comp WearNTear on piece_chest_wood(Clone)
+11:08:03.593   comp Transform on floor_2x2_snow
+11:08:03.593   comp MeshFilter on floor_2x2_snow
+11:08:03.593   comp MeshRenderer on floor_2x2_snow
+11:08:03.593   comp LODGroup on floor_2x2_snow
+11:08:03.593   comp Transform on New
+11:08:03.593   comp LODGroup on New
+11:08:03.593   comp Transform on woodchest
+11:08:04.094 > spawn piece_chest_wood 6 ground 3
+11:08:04.095 spawned piece_chest_wood(Clone) at (6.00, 1.00, 3.00)  zdo=-708057996:1354  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:08:04.095   comp Transform on piece_chest_wood(Clone)
+11:08:04.095   comp ZNetView on piece_chest_wood(Clone)
+11:08:04.095   comp Container on piece_chest_wood(Clone)
+11:08:04.095   comp Piece on piece_chest_wood(Clone)
+11:08:04.095   comp WearNTear on piece_chest_wood(Clone)
+11:08:04.095   comp Transform on floor_2x2_snow
+11:08:04.095   comp MeshFilter on floor_2x2_snow
+11:08:04.095   comp MeshRenderer on floor_2x2_snow
+11:08:04.095   comp LODGroup on floor_2x2_snow
+11:08:04.095   comp Transform on New
+11:08:04.095   comp LODGroup on New
+11:08:04.095   comp Transform on woodchest
+11:08:04.597 > spawn piece_chest_wood 8 ground 3
+11:08:04.597 spawned piece_chest_wood(Clone) at (8.00, 1.00, 3.00)  zdo=-708057996:1355  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:08:04.597   comp Transform on piece_chest_wood(Clone)
+11:08:04.597   comp ZNetView on piece_chest_wood(Clone)
+11:08:04.597   comp Container on piece_chest_wood(Clone)
+11:08:04.597   comp Piece on piece_chest_wood(Clone)
+11:08:04.597   comp WearNTear on piece_chest_wood(Clone)
+11:08:04.597   comp Transform on floor_2x2_snow
+11:08:04.597   comp MeshFilter on floor_2x2_snow
+11:08:04.597   comp MeshRenderer on floor_2x2_snow
+11:08:04.597   comp LODGroup on floor_2x2_snow
+11:08:04.597   comp Transform on New
+11:08:04.597   comp LODGroup on New
+11:08:04.597   comp Transform on woodchest
+11:08:05.100 > spawn piece_chest_wood 10 ground 3
+11:08:05.100 spawned piece_chest_wood(Clone) at (10.00, 1.00, 3.00)  zdo=-708057996:1356  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:08:05.100   comp Transform on piece_chest_wood(Clone)
+11:08:05.100   comp ZNetView on piece_chest_wood(Clone)
+11:08:05.100   comp Container on piece_chest_wood(Clone)
+11:08:05.100   comp Piece on piece_chest_wood(Clone)
+11:08:05.100   comp WearNTear on piece_chest_wood(Clone)
+11:08:05.100   comp Transform on floor_2x2_snow
+11:08:05.100   comp MeshFilter on floor_2x2_snow
+11:08:05.100   comp MeshRenderer on floor_2x2_snow
+11:08:05.100   comp LODGroup on floor_2x2_snow
+11:08:05.100   comp Transform on New
+11:08:05.100   comp LODGroup on New
+11:08:05.100   comp Transform on woodchest
+11:08:05.602 > spawn piece_chest_wood 12 ground 3
+11:08:05.602 spawned piece_chest_wood(Clone) at (12.00, 1.00, 3.00)  zdo=-708057996:1357  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:08:05.602   comp Transform on piece_chest_wood(Clone)
+11:08:05.603   comp ZNetView on piece_chest_wood(Clone)
+11:08:05.603   comp Container on piece_chest_wood(Clone)
+11:08:05.603   comp Piece on piece_chest_wood(Clone)
+11:08:05.603   comp WearNTear on piece_chest_wood(Clone)
+11:08:05.603   comp Transform on floor_2x2_snow
+11:08:05.603   comp MeshFilter on floor_2x2_snow
+11:08:05.603   comp MeshRenderer on floor_2x2_snow
+11:08:05.603   comp LODGroup on floor_2x2_snow
+11:08:05.603   comp Transform on New
+11:08:05.603   comp LODGroup on New
+11:08:05.603   comp Transform on woodchest
+11:08:06.107 > spawn piece_chest_wood 14 ground 3
+11:08:06.107 spawned piece_chest_wood(Clone) at (14.00, 1.00, 3.00)  zdo=-708057996:1358  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:08:06.107   comp Transform on piece_chest_wood(Clone)
+11:08:06.107   comp ZNetView on piece_chest_wood(Clone)
+11:08:06.107   comp Container on piece_chest_wood(Clone)
+11:08:06.107   comp Piece on piece_chest_wood(Clone)
+11:08:06.107   comp WearNTear on piece_chest_wood(Clone)
+11:08:06.107   comp Transform on floor_2x2_snow
+11:08:06.107   comp MeshFilter on floor_2x2_snow
+11:08:06.108   comp MeshRenderer on floor_2x2_snow
+11:08:06.108   comp LODGroup on floor_2x2_snow
+11:08:06.108   comp Transform on New
+11:08:06.108   comp LODGroup on New
+11:08:06.108   comp Transform on woodchest
+11:08:06.609 > wait 3
+11:08:06.609 wait: 3s (server keeps ticking)
+11:08:09.625 > husnisse status
+11:08:09.837 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+11:08:09.837 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+11:08:09.837 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
+11:08:09.837 husnisse status [rules] containers=0 ruled=0
+11:08:09.837 husnisse status claim -708057996:1350 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=7 stacks=0 nisse=yes
+11:08:09.837 husnisse status lines=5
+11:08:10.141 > expect_ge containers=(\d+) 7
+11:08:10.141   expect>= /containers=(\d+)/ 7 >= 7: ok
+11:08:10.643 > console husnisse_rule net piece_chest_wood on 0
+11:08:10.645 console > husnisse_rule net piece_chest_wood on 0
+11:08:11.146 > console husnisse_rule net piece_chest_wood on 1
+11:08:11.148 console > husnisse_rule net piece_chest_wood on 1
+11:08:11.648 > console husnisse_rule net piece_chest_wood on 2
+11:08:11.650 console > husnisse_rule net piece_chest_wood on 2
+11:08:12.151 > console husnisse_rule net piece_chest_wood on 3
+11:08:12.153 console > husnisse_rule net piece_chest_wood on 3
+11:08:12.653 > console husnisse_rule net piece_chest_wood on 4
+11:08:12.656 console > husnisse_rule net piece_chest_wood on 4
+11:08:13.156 > console husnisse_rule net piece_chest_wood on 5
+11:08:13.158 console > husnisse_rule net piece_chest_wood on 5
+11:08:13.658 > console husnisse_rule net piece_chest_wood on 6
+11:08:13.661 console > husnisse_rule net piece_chest_wood on 6
+11:08:14.161 > console husnisse_rule set piece_chest_wood cat:metals 0
+11:08:14.163 console > husnisse_rule set piece_chest_wood cat:metals 0
+11:08:14.664 > console husnisse_rule set piece_chest_wood cat:metals@1 1
+11:08:14.666 console > husnisse_rule set piece_chest_wood cat:metals@1 1
+11:08:15.166 > console husnisse_rule set piece_chest_wood cat:wood 2
+11:08:15.168 console > husnisse_rule set piece_chest_wood cat:wood 2
+11:08:15.669 > console husnisse_rule set piece_chest_wood overflow 3
+11:08:15.671 console > husnisse_rule set piece_chest_wood overflow 3
+11:08:16.171 > console husnisse_rule set piece_chest_wood custom:$item_bonefragments 5
+11:08:16.174 console > husnisse_rule set piece_chest_wood custom:$item_bonefragments 5
+11:08:16.674 > console husnisse_rule set piece_chest_wood deposit 6
+11:08:16.676 console > husnisse_rule set piece_chest_wood deposit 6
+11:08:17.179 > wait 2
+11:08:17.179 wait: 2s (server keeps ticking)
+11:08:19.193 > spawn CopperScrap 2 ground 6
+11:08:19.195 spawned CopperScrap(Clone) at (2.00, 1.00, 6.00)  zdo=-708057996:1359  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:08:19.195   comp Transform on CopperScrap(Clone)
+11:08:19.195   comp Rigidbody on CopperScrap(Clone)
+11:08:19.195   comp ZNetView on CopperScrap(Clone)
+11:08:19.195   comp ZSyncTransform on CopperScrap(Clone)
+11:08:19.195   comp ItemDrop on CopperScrap(Clone)
+11:08:19.195   comp ParticleSystemRenderer on CopperScrap(Clone)
+11:08:19.195   comp ParticleSystem on CopperScrap(Clone)
+11:08:19.195   comp LODGroup on CopperScrap(Clone)
+11:08:19.196   comp Transform on model
+11:08:19.196   comp MeshFilter on model
+11:08:19.196   comp MeshRenderer on model
+11:08:19.196   comp BoxCollider on model
+11:08:19.696 > wait 15
+11:08:19.696 wait: 15s (server keeps ticking)
+11:08:34.791 > container piece_chest_wood 1
+11:08:34.801 container piece_chest_wood[1] stacks=1 items=1
+11:08:35.293 > expect_last stacks=1
+11:08:35.294   expect_last 'stacks=1' in 'container piece_chest_wood[1] stacks=1 items=1': ok
+11:08:35.796 > container piece_chest_wood 0
+11:08:35.807 container piece_chest_wood stacks=0 items=0
+11:08:36.299 > expect_last stacks=0
+11:08:36.299   expect_last 'stacks=0' in 'container piece_chest_wood stacks=0 items=0': ok
+11:08:36.801 > logcheck BSBLogs/Husnisse.log \[Flow\] landed .* at=\(4,3\) why=cat:metals p=1
+11:08:36.801   logcheck BSBLogs/Husnisse.log /\[Flow\] landed .* at=\(4,3\) why=cat:metals p=1/: ok '[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(4,3) why=cat:metals p=1'
+11:08:37.303 > spawn Wood 4 ground 6
+11:08:37.305 spawned Wood(Clone) at (4.00, 1.00, 6.00)  zdo=-708057996:1360  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:08:37.305   comp Transform on Wood(Clone)
+11:08:37.305   comp Rigidbody on Wood(Clone)
+11:08:37.305   comp ZNetView on Wood(Clone)
+11:08:37.305   comp ZSyncTransform on Wood(Clone)
+11:08:37.305   comp ItemDrop on Wood(Clone)
+11:08:37.305   comp Floating on Wood(Clone)
+11:08:37.305   comp ParticleSystemRenderer on Wood(Clone)
+11:08:37.305   comp ParticleSystem on Wood(Clone)
+11:08:37.305   comp LODGroup on Wood(Clone)
+11:08:37.305   comp Transform on log (1)
+11:08:37.305   comp MeshFilter on log (1)
+11:08:37.305   comp MeshRenderer on log (1)
+11:08:37.806 > wait 15
+11:08:37.806 wait: 15s (server keeps ticking)
+11:08:52.884 > container piece_chest_wood 2
+11:08:52.894 container piece_chest_wood[2] stacks=1 items=1
+11:08:53.387 > expect_last stacks=1
+11:08:53.387   expect_last 'stacks=1' in 'container piece_chest_wood[2] stacks=1 items=1': ok
+11:08:53.891 > logcheck BSBLogs/Husnisse.log \[Flow\] landed .* at=\(6,3\) why=cat:wood
+11:08:53.891   logcheck BSBLogs/Husnisse.log /\[Flow\] landed .* at=\(6,3\) why=cat:wood/: ok '[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(6,3) why=cat:wood'
+11:08:54.394 > spawn BoneFragments 6 ground 6
+11:08:54.394 spawned BoneFragments(Clone) at (6.00, 1.00, 6.00)  zdo=-708057996:1361  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:08:54.395   comp Transform on BoneFragments(Clone)
+11:08:54.395   comp Rigidbody on BoneFragments(Clone)
+11:08:54.395   comp ZNetView on BoneFragments(Clone)
+11:08:54.395   comp ZSyncTransform on BoneFragments(Clone)
+11:08:54.395   comp ItemDrop on BoneFragments(Clone)
+11:08:54.395   comp ParticleSystemRenderer on BoneFragments(Clone)
+11:08:54.395   comp ParticleSystem on BoneFragments(Clone)
+11:08:54.395   comp Transform on attach
+11:08:54.395   comp MeshFilter on attach
+11:08:54.395   comp MeshRenderer on attach
+11:08:54.395   comp LODGroup on attach
+11:08:54.395   comp BoxCollider on attach
+11:08:54.896 > wait 15
+11:08:54.896 wait: 15s (server keeps ticking)
+11:09:09.972 > container piece_chest_wood 5
+11:09:09.984 container piece_chest_wood[5] stacks=1 items=1
+11:09:10.474 > expect_last stacks=1
+11:09:10.474   expect_last 'stacks=1' in 'container piece_chest_wood[5] stacks=1 items=1': ok
+11:09:10.978 > container piece_chest_wood 3
+11:09:10.989 container piece_chest_wood[3] stacks=0 items=0
+11:09:11.480 > expect_last stacks=0
+11:09:11.481   expect_last 'stacks=0' in 'container piece_chest_wood[3] stacks=0 items=0': ok
+11:09:11.983 > logcheck BSBLogs/Husnisse.log \[Flow\] landed .* at=\(12,3\) why=custom:1
+11:09:11.984   logcheck BSBLogs/Husnisse.log /\[Flow\] landed .* at=\(12,3\) why=custom:1/: ok '[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(12,3) why=custom:1'
+11:09:12.485 > spawn Feathers 8 ground 6
+11:09:12.486 spawned Feathers(Clone) at (8.00, 1.00, 6.00)  zdo=-708057996:1362  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:09:12.486   comp Transform on Feathers(Clone)
+11:09:12.486   comp Rigidbody on Feathers(Clone)
+11:09:12.486   comp ZNetView on Feathers(Clone)
+11:09:12.486   comp ZSyncTransform on Feathers(Clone)
+11:09:12.486   comp ItemDrop on Feathers(Clone)
+11:09:12.486   comp ParticleSystemRenderer on Feathers(Clone)
+11:09:12.486   comp ParticleSystem on Feathers(Clone)
+11:09:12.486   comp LODGroup on Feathers(Clone)
+11:09:12.486   comp Transform on model
+11:09:12.486   comp BoxCollider on model
+11:09:12.486   comp Transform on Quad
+11:09:12.486   comp MeshFilter on Quad
+11:09:12.990 > wait 15
+11:09:12.990 wait: 15s (server keeps ticking)
+11:09:28.071 > container piece_chest_wood 3
+11:09:28.082 container piece_chest_wood[3] stacks=1 items=1
+11:09:28.573 > expect_last stacks=1
+11:09:28.574   expect_last 'stacks=1' in 'container piece_chest_wood[3] stacks=1 items=1': ok
+11:09:29.076 > container piece_chest_wood 4
+11:09:29.086 container piece_chest_wood[4] stacks=0 items=0
+11:09:29.579 > expect_last stacks=0
+11:09:29.579   expect_last 'stacks=0' in 'container piece_chest_wood[4] stacks=0 items=0': ok
+11:09:30.081 > container piece_chest_wood 6
+11:09:30.090 container piece_chest_wood[6] stacks=0 items=0
+11:09:30.584 > expect_last stacks=0
+11:09:30.584   expect_last 'stacks=0' in 'container piece_chest_wood[6] stacks=0 items=0': ok
+11:09:31.088 > logcheck BSBLogs/Husnisse.log \[Flow\] landed .* at=\(8,3\) why=overflow
+11:09:31.088   logcheck BSBLogs/Husnisse.log /\[Flow\] landed .* at=\(8,3\) why=overflow/: ok '[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(8,3) why=overflow'
+11:09:31.590 > console husnisse_rule net piece_chest_wood off 3
+11:09:31.592 console > husnisse_rule net piece_chest_wood off 3
+11:09:32.093 > wait 1
+11:09:32.093 wait: 1s (server keeps ticking)
+11:09:33.098 > spawn SurtlingCore 10 ground 6
+11:09:33.098 spawned SurtlingCore(Clone) at (10.00, 1.00, 6.00)  zdo=-708057996:1363  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:09:33.098   comp Transform on SurtlingCore(Clone)
+11:09:33.099   comp Rigidbody on SurtlingCore(Clone)
+11:09:33.099   comp ZNetView on SurtlingCore(Clone)
+11:09:33.099   comp ZSyncTransform on SurtlingCore(Clone)
+11:09:33.099   comp ItemDrop on SurtlingCore(Clone)
+11:09:33.099   comp ParticleSystemRenderer on SurtlingCore(Clone)
+11:09:33.099   comp ParticleSystem on SurtlingCore(Clone)
+11:09:33.099   comp Transform on attach
+11:09:33.099   comp LODGroup on attach
+11:09:33.099   comp Transform on Point light
+11:09:33.099   comp Light on Point light
+11:09:33.099   comp Transform on core
+11:09:33.601 > wait 15
+11:09:33.601 wait: 15s (server keeps ticking)
+11:09:48.688 > container piece_chest_wood 4
+11:09:48.700 container piece_chest_wood[4] stacks=1 items=1
+11:09:49.194 > expect_last stacks=1
+11:09:49.194   expect_last 'stacks=1' in 'container piece_chest_wood[4] stacks=1 items=1': ok
+11:09:49.696 > container piece_chest_wood 3
+11:09:49.705 container piece_chest_wood[3] stacks=1 items=1
+11:09:50.199 > expect_last stacks=1
+11:09:50.200   expect_last 'stacks=1' in 'container piece_chest_wood[3] stacks=1 items=1': ok
+11:09:50.701 > container piece_chest_wood 6
+11:09:50.712 container piece_chest_wood[6] stacks=0 items=0
+11:09:51.204 > expect_last stacks=0
+11:09:51.204   expect_last 'stacks=0' in 'container piece_chest_wood[6] stacks=0 items=0': ok
+11:09:51.708 > logcheck BSBLogs/Husnisse.log \[Flow\] landed .* at=\(10,3\) why=no rule
+11:09:51.711   logcheck BSBLogs/Husnisse.log /\[Flow\] landed .* at=\(10,3\) why=no rule/: ok '[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(10,3) why=no rule'
+11:09:52.211 > spawn Resin 12 ground 6
+11:09:52.211 spawned Resin(Clone) at (12.00, 1.00, 6.00)  zdo=-708057996:1364  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:09:52.211   comp Transform on Resin(Clone)
+11:09:52.211   comp Rigidbody on Resin(Clone)
+11:09:52.211   comp ZNetView on Resin(Clone)
+11:09:52.211   comp ZSyncTransform on Resin(Clone)
+11:09:52.211   comp ItemDrop on Resin(Clone)
+11:09:52.211   comp ParticleSystemRenderer on Resin(Clone)
+11:09:52.211   comp ParticleSystem on Resin(Clone)
+11:09:52.211   comp LODGroup on Resin(Clone)
+11:09:52.211   comp Transform on model
+11:09:52.211   comp MeshFilter on model
+11:09:52.211   comp MeshRenderer on model
+11:09:52.211   comp BoxCollider on model
+11:09:52.713 > wait 15
+11:09:52.714 wait: 15s (server keeps ticking)
+11:10:07.794 > container piece_chest_wood 2
+11:10:07.804 container piece_chest_wood[2] stacks=2 items=2
+11:10:08.297 > expect_last stacks=2
+11:10:08.297   expect_last 'stacks=2' in 'container piece_chest_wood[2] stacks=2 items=2': ok
+11:10:08.801 > logcheck BSBLogs/Husnisse.log \[Flow\] landed .* at=\(6,3\) why=cat:wood
+11:10:08.803   logcheck BSBLogs/Husnisse.log /\[Flow\] landed .* at=\(6,3\) why=cat:wood/: ok '[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(6,3) why=cat:wood'
+11:10:09.306 > husnisse status
+11:10:09.462 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+11:10:09.462 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+11:10:09.462 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
+11:10:09.462 husnisse status rule -708057996:1350 4,3 net=on rule=cat:metals prio=1
+11:10:09.462 husnisse status rule -708057996:1350 10,3 net=on rule=none
+11:10:09.462 husnisse status rule -708057996:1350 14,3 net=on rule=deposit
+11:10:09.462 husnisse status rule -708057996:1350 12,3 net=on rule=custom:1
+11:10:09.462 husnisse status rule -708057996:1350 2,3 net=on rule=cat:metals
+11:10:09.462 husnisse status rule -708057996:1350 6,3 net=on rule=cat:wood
+11:10:09.462 husnisse status rule -708057996:1350 8,3 net=off rule=overflow
+11:10:09.462 husnisse status [rules] containers=7 ruled=6
+11:10:09.463 husnisse status claim -708057996:1350 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=7 stacks=6 nisse=yes
+11:10:09.463 husnisse status lines=12
+11:10:09.833 > expect_ge ruled=(\d+) 4
+11:10:09.834   expect>= /ruled=(\d+)/ 6 >= 4: ok
+11:10:10.336 > state
+11:10:10.363 server=True rocks5=0 rocks1=0 drops=0 players=0 zdos=1357 instances=90
+11:10:10.838 scenario done: PASS (21 assertions, 0 failed)
+11:10:14.137 mt master: Enabled=True (session none)
+11:10:14.137 scenario loaded: 45 command(s)
+11:10:14.137 > cleanup
+11:10:14.411 mt master: Enabled=True (session none)
+11:10:14.411 cleanup done
+11:10:14.715 > hold on
+11:10:14.715 hold: on (culling suppressed)
+11:10:15.217 > spawn husnisse_bowl 0 ground 0
+11:10:15.230 spawned husnisse_bowl(Clone) at (0.00, 1.00, 0.00)  zdo=-708057996:1365  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:10:15.230   comp Transform on husnisse_bowl(Clone)
+11:10:15.231   comp Piece on husnisse_bowl(Clone)
+11:10:15.231   comp ZNetView on husnisse_bowl(Clone)
+11:10:15.231   comp WearNTear on husnisse_bowl(Clone)
+11:10:15.231   comp LODGroup on husnisse_bowl(Clone)
+11:10:15.231   comp Container on husnisse_bowl(Clone)
+11:10:15.231   comp BowlPiece on husnisse_bowl(Clone)
+11:10:15.231   comp Transform on roof_check_pint
+11:10:15.231   comp Transform on connectionEffectPoint
+11:10:15.231   comp Transform on Capsule_blockplayer
+11:10:15.231   comp CapsuleCollider on Capsule_blockplayer
+11:10:15.231   comp Transform on Capsule_interact
+11:10:15.720 > wait 4
+11:10:15.720 wait: 4s (server keeps ticking)
+11:10:19.742 > zdo husnisse_bowl husnisse_bowl_init
+11:10:19.754 zdo husnisse_bowl.husnisse_bowl_init = int=1 bool=True
+11:10:20.245 > husnisse claims
+11:10:20.659 husnisse claim -708057996:1365 source=native ward=0:0 owner=0 r=20 native_r=20 native_owner=0 suppressed=False refusal='' containers=0
+11:10:20.801 husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=False
+11:10:21.105 > expect_last total=1 working=1
+11:10:21.105   expect_last 'total=1 working=1' in 'husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=False': ok
+11:10:21.608 > spawn piece_chest_wood 2 ground 3
+11:10:21.608 spawned piece_chest_wood(Clone) at (2.00, 1.00, 3.00)  zdo=-708057996:1367  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:10:21.608   comp Transform on piece_chest_wood(Clone)
+11:10:21.608   comp ZNetView on piece_chest_wood(Clone)
+11:10:21.608   comp Container on piece_chest_wood(Clone)
+11:10:21.608   comp Piece on piece_chest_wood(Clone)
+11:10:21.608   comp WearNTear on piece_chest_wood(Clone)
+11:10:21.608   comp Transform on floor_2x2_snow
+11:10:21.608   comp MeshFilter on floor_2x2_snow
+11:10:21.608   comp MeshRenderer on floor_2x2_snow
+11:10:21.608   comp LODGroup on floor_2x2_snow
+11:10:21.608   comp Transform on New
+11:10:21.608   comp LODGroup on New
+11:10:21.608   comp Transform on woodchest
+11:10:22.112 > spawn piece_chest_wood 4 ground 3
+11:10:22.112 spawned piece_chest_wood(Clone) at (4.00, 1.00, 3.00)  zdo=-708057996:1368  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:10:22.113   comp Transform on piece_chest_wood(Clone)
+11:10:22.113   comp ZNetView on piece_chest_wood(Clone)
+11:10:22.113   comp Container on piece_chest_wood(Clone)
+11:10:22.113   comp Piece on piece_chest_wood(Clone)
+11:10:22.113   comp WearNTear on piece_chest_wood(Clone)
+11:10:22.113   comp Transform on floor_2x2_snow
+11:10:22.113   comp MeshFilter on floor_2x2_snow
+11:10:22.113   comp MeshRenderer on floor_2x2_snow
+11:10:22.113   comp LODGroup on floor_2x2_snow
+11:10:22.113   comp Transform on New
+11:10:22.113   comp LODGroup on New
+11:10:22.113   comp Transform on woodchest
+11:10:22.615 > spawn piece_chest_wood 6 ground 3
+11:10:22.615 spawned piece_chest_wood(Clone) at (6.00, 1.00, 3.00)  zdo=-708057996:1369  owner=-708057996  activeSelf=True  mineRock5=False  mineRock=False  character=False
+11:10:22.615   comp Transform on piece_chest_wood(Clone)
+11:10:22.615   comp ZNetView on piece_chest_wood(Clone)
+11:10:22.615   comp Container on piece_chest_wood(Clone)
+11:10:22.615   comp Piece on piece_chest_wood(Clone)
+11:10:22.615   comp WearNTear on piece_chest_wood(Clone)
+11:10:22.615   comp Transform on floor_2x2_snow
+11:10:22.615   comp MeshFilter on floor_2x2_snow
+11:10:22.615   comp MeshRenderer on floor_2x2_snow
+11:10:22.615   comp LODGroup on floor_2x2_snow
+11:10:22.615   comp Transform on New
+11:10:22.615   comp LODGroup on New
+11:10:22.615   comp Transform on woodchest
+11:10:23.117 > wait 3
+11:10:23.117 wait: 3s (server keeps ticking)
+11:10:26.135 > husnisse status
+11:10:26.289 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+11:10:26.289 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+11:10:26.289 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
+11:10:26.289 husnisse status [rules] containers=0 ruled=0
+11:10:26.289 husnisse status claim -708057996:1365 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=3 stacks=0 nisse=yes
+11:10:26.290 husnisse status lines=5
+11:10:26.661 > expect_ge containers=(\d+) 3
+11:10:26.661   expect>= /containers=(\d+)/ 3 >= 3: ok
+11:10:27.164 > fill piece_chest_wood Coal 1 0
+11:10:27.178 fill piece_chest_wood Coalx1 added=True stacks=1 items=1
+11:10:27.666 > fill piece_chest_wood CopperScrap 1 0
+11:10:27.678 fill piece_chest_wood CopperScrapx1 added=True stacks=2 items=2
+11:10:28.169 > fill piece_chest_wood Wood 1 0
+11:10:28.180 fill piece_chest_wood Woodx1 added=True stacks=3 items=3
+11:10:28.672 > wait 1
+11:10:28.672 wait: 1s (server keeps ticking)
+11:10:29.677 > console husnisse_rule suggest piece_chest_wood 0
+11:10:29.680 console > husnisse_rule suggest piece_chest_wood 0
+11:10:30.180 > wait 1
+11:10:30.180 wait: 1s (server keeps ticking)
+11:10:31.185 > logcheck BSBLogs/Husnisse.log husnisse suggest piece_chest_wood\[0\] cat:metals stacks=3 metals=2 wood=1
+11:10:31.185   logcheck BSBLogs/Husnisse.log /husnisse suggest piece_chest_wood\[0\] cat:metals stacks=3 metals=2 wood=1/: ok 'husnisse suggest piece_chest_wood[0] cat:metals stacks=3 metals=2 wood=1'
+11:10:31.688 > console husnisse_rule net piece_chest_wood on 0
+11:10:31.691 console > husnisse_rule net piece_chest_wood on 0
+11:10:32.191 > wait 1
+11:10:32.191 wait: 1s (server keeps ticking)
+11:10:33.199 > zdo piece_chest_wood husnisse_rule 0
+11:10:33.211 zdo piece_chest_wood.husnisse_rule = str='v1;k=cat;c=metals'
+11:10:33.701 > expect_last str='v1;k=cat;c=metals'
+11:10:33.702   expect_last 'str='v1;k=cat;c=metals'' in 'zdo piece_chest_wood.husnisse_rule = str='v1;k=cat;c=metals'': ok
+11:10:34.204 > console husnisse_rule prio piece_chest_wood 2 0
+11:10:34.206 console > husnisse_rule prio piece_chest_wood 2 0
+11:10:34.707 > wait 1
+11:10:34.707 wait: 1s (server keeps ticking)
+11:10:35.712 > zdo piece_chest_wood husnisse_rule 0
+11:10:35.723 zdo piece_chest_wood.husnisse_rule = str='v1;k=cat;c=metals;p=2'
+11:10:36.215 > expect_last str='v1;k=cat;c=metals;p=2'
+11:10:36.215   expect_last 'str='v1;k=cat;c=metals;p=2'' in 'zdo piece_chest_wood.husnisse_rule = str='v1;k=cat;c=metals;p=2'': ok
+11:10:36.718 > console husnisse_rule net piece_chest_wood on 1
+11:10:36.720 console > husnisse_rule net piece_chest_wood on 1
+11:10:37.220 > console husnisse_rule net piece_chest_wood on 2
+11:10:37.223 console > husnisse_rule net piece_chest_wood on 2
+11:10:37.723 > console husnisse_rule set piece_chest_wood cat:wood 1
+11:10:37.725 console > husnisse_rule set piece_chest_wood cat:wood 1
+11:10:38.226 > wait 1
+11:10:38.226 wait: 1s (server keeps ticking)
+11:10:39.234 > console husnisse_rule copy piece_chest_wood 0
+11:10:39.236 console > husnisse_rule copy piece_chest_wood 0
+11:10:39.735 > wait 1
+11:10:39.735 wait: 1s (server keeps ticking)
+11:10:40.740 > zdo piece_chest_wood husnisse_rule 1
+11:10:40.767 zdo piece_chest_wood[1].husnisse_rule = str='v1;k=cat;c=metals;p=2'
+11:10:41.244 > expect_last str='v1;k=cat;c=metals;p=2'
+11:10:41.244   expect_last 'str='v1;k=cat;c=metals;p=2'' in 'zdo piece_chest_wood[1].husnisse_rule = str='v1;k=cat;c=metals;p=2'': ok
+11:10:41.745 > zdo piece_chest_wood husnisse_rule 2
+11:10:41.755 zdo piece_chest_wood[2].husnisse_rule = str='v1;k=cat;c=metals;p=2'
+11:10:42.247 > expect_last str='v1;k=cat;c=metals;p=2'
+11:10:42.247   expect_last 'str='v1;k=cat;c=metals;p=2'' in 'zdo piece_chest_wood[2].husnisse_rule = str='v1;k=cat;c=metals;p=2'': ok
+11:10:42.750 > logcheck BSBLogs/Husnisse.log husnisse copy piece_chest_wood\[0\] targets=2 written=2
+11:10:42.751   logcheck BSBLogs/Husnisse.log /husnisse copy piece_chest_wood\[0\] targets=2 written=2/: ok 'husnisse copy piece_chest_wood[0] targets=2 written=2'
+11:10:43.253 > console husnisse_rule copy piece_chest_wood 0
+11:10:43.255 console > husnisse_rule copy piece_chest_wood 0
+11:10:43.760 > wait 1
+11:10:43.760 wait: 1s (server keeps ticking)
+11:10:44.764 > logcheck BSBLogs/Husnisse.log husnisse copy piece_chest_wood\[0\] targets=2 written=0
+11:10:44.765   logcheck BSBLogs/Husnisse.log /husnisse copy piece_chest_wood\[0\] targets=2 written=0/: ok 'husnisse copy piece_chest_wood[0] targets=2 written=0'
+11:10:45.270 > husnisse status
+11:10:45.429 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+11:10:45.429 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+11:10:45.429 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
+11:10:45.430 husnisse status rule -708057996:1365 6,3 net=on rule=cat:metals prio=2
+11:10:45.430 husnisse status rule -708057996:1365 4,3 net=on rule=cat:metals prio=2
+11:10:45.430 husnisse status rule -708057996:1365 2,3 net=on rule=cat:metals prio=2
+11:10:45.430 husnisse status [rules] containers=3 ruled=3
+11:10:45.430 husnisse status claim -708057996:1365 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=3 stacks=3 nisse=yes
+11:10:45.430 husnisse status lines=8
+11:10:45.801 > expect_ge ruled=(\d+) 3
+11:10:45.801   expect>= /ruled=(\d+)/ 3 >= 3: ok
+11:10:46.303 > state
+11:10:46.332 server=True rocks5=0 rocks1=0 drops=0 players=0 zdos=1361 instances=86
+11:10:46.806 scenario done: PASS (10 assertions, 0 failed)
 ===HUSNISSE===
 Husnisse 0.3.0
-started 2026-11-15 05:56:49
+started 2026-11-15 06:06:26
 
 
-== world ready @ 05:57:21 ==
+== world ready @ 06:06:56 ==
 [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
 [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
 schema=2 feeding_required=True claims=0 trips=0 nisses=0 bowl_piece=present
 [rules] containers=0 ruled=0
 
-== claim registered @ 05:57:25 ==
+== claim registered @ 06:06:58 ==
 [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
 [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
 schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
 [rules] containers=0 ruled=0
-claim -882586447:1295 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none
+claim -708057996:1328 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none
 husnisse rule piece_chest_wood[0] 3,3 net=off rule=cat:metals
 husnisse rule piece_chest_wood[0] 3,3 net=on rule=cat:metals
 husnisse rule piece_chest_wood[1] 3,6 net=off rule=cat:food
@@ -1101,18 +1101,18 @@ husnisse rule piece_chest_wood[19] 15,12 net=off rule=deposit
 husnisse rules listed=20
 husnisse rule piece_chest_wood[2] 3,9 net=off rule=none
 
-== claim removed @ 05:58:22 ==
+== claim removed @ 06:07:55 ==
 [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
 [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
 schema=2 feeding_required=True claims=0 trips=0 nisses=1 bowl_piece=present
 [rules] containers=0 ruled=0
 
-== claim registered @ 05:58:23 ==
+== claim registered @ 06:07:56 ==
 [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
 [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
 schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
 [rules] containers=0 ruled=0
-claim -882586447:1317 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none
+claim -708057996:1350 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none
 husnisse rule piece_chest_wood[0] 2,3 net=on rule=none
 husnisse rule piece_chest_wood[1] 4,3 net=on rule=none
 husnisse rule piece_chest_wood[2] 6,3 net=on rule=none
@@ -1126,32 +1126,32 @@ husnisse rule piece_chest_wood[2] 6,3 net=on rule=cat:wood
 husnisse rule piece_chest_wood[3] 8,3 net=on rule=overflow
 husnisse rule piece_chest_wood[5] 12,3 net=on rule=custom:1
 husnisse rule piece_chest_wood[6] 14,3 net=on rule=deposit
-[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(4,3) why=cat:metals p=1 claim=-882586447:1317
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(4,3) why=cat:metals p=1 claim=-708057996:1350
 [Flow] landed moved=1 target=piece_chest_wood(Clone) at=(4,3) why=cat:metals p=1
-[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(6,3) why=cat:wood claim=-882586447:1317
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(6,3) why=cat:wood claim=-708057996:1350
 [Flow] landed moved=1 target=piece_chest_wood(Clone) at=(6,3) why=cat:wood
-[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(12,3) why=custom:1 claim=-882586447:1317
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(12,3) why=custom:1 claim=-708057996:1350
 [Flow] landed moved=1 target=piece_chest_wood(Clone) at=(12,3) why=custom:1
-[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(8,3) why=overflow claim=-882586447:1317
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(8,3) why=overflow claim=-708057996:1350
 [Flow] landed moved=1 target=piece_chest_wood(Clone) at=(8,3) why=overflow
 husnisse rule piece_chest_wood[3] 8,3 net=off rule=overflow
-[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(10,3) why=no rule claim=-882586447:1317
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(10,3) why=no rule claim=-708057996:1350
 [Flow] landed moved=1 target=piece_chest_wood(Clone) at=(10,3) why=no rule
-[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(6,3) why=cat:wood claim=-882586447:1317
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(6,3) why=cat:wood claim=-708057996:1350
 [Flow] landed moved=1 target=piece_chest_wood(Clone) at=(6,3) why=cat:wood
 
-== claim removed @ 06:00:42 ==
+== claim removed @ 06:10:14 ==
 [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
 [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
 schema=2 feeding_required=True claims=0 trips=0 nisses=0 bowl_piece=present
 [rules] containers=0 ruled=0
 
-== claim registered @ 06:00:43 ==
+== claim registered @ 06:10:15 ==
 [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
 [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
 schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
 [rules] containers=0 ruled=0
-claim -882586447:1332 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none
+claim -708057996:1365 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none
 husnisse suggest piece_chest_wood[0] cat:metals stacks=3 metals=2 wood=1
 husnisse rule piece_chest_wood[0] 2,3 net=on rule=cat:metals
 husnisse rule piece_chest_wood[0] 2,3 net=on rule=cat:metals prio=2

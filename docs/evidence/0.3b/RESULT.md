@@ -3,7 +3,11 @@
 Run 2026-11-15 on the rig's spare tree `V:\ValheimTest2` (port 2656, world `MTTest`), dedicated
 server, no client. Same game build as the live server (`build_parity: MATCH E5E761C58099`).
 
-- `Husnisse.dll` sha256 `35306282c4b0071041e201c729d93840ff790027dc9eb9bd04596075333c75f9`
+- `Husnisse.dll` sha256 `ceef65632f3ef81b7523c486020ef17ee18b42a4f63581cb1f133af9b7597303` — the build
+  that ran these three scenarios. `HEAD` after it removes two helpers with no callers
+  (`StorageRouter.FindTarget`, `ContainerNetwork.OnNetwork`) and builds clean as
+  `e748e90733d8b2f5c287d417df08cda2492815dd5d90178d981412e6e76dcea9`; neither change can alter a
+  routing decision, so the gate was not re-run for it.
 - plugins in the tree: Husnisse, TestHarness, Jotunn 2.30.2, ConditionalConfigSync 1.0.11,
   ValheimModding-YamlDotNet (detector + 16.3.1), ServerSoftStop, MineTogether
 - the whole log of the run is `raw.log`: the 0.3a rule scenario first (no regression), then both

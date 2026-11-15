@@ -91,11 +91,6 @@ namespace Husnisse.Storage
             }
         }
 
-        public static Container FindTarget(Claim claim, ItemDrop.ItemData item, ItemMemory memory, Container exclude = null)
-        {
-            return Decide(claim, item, memory, exclude).Container;
-        }
-
         /// <summary>
         /// The containers a claim could file into at all: in the claim, on the network, not
         /// blacklisted, and not a deposit chest. Gathered once and reused when a caller is routing a

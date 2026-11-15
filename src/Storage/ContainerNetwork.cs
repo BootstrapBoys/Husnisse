@@ -59,19 +59,6 @@ namespace Husnisse.Storage
             return claim.Allows(playerId);
         }
 
-        /// <summary>Every container in the claim that is opted in, for diagnostics and the router.</summary>
-        public static List<Container> OnNetwork(Claim claim)
-        {
-            var result = new List<Container>();
-            if (claim == null) return result;
-
-            foreach (var container in ContainerIndex.InClaim(claim))
-            {
-                if (IsOnNetwork(container)) result.Add(container);
-            }
-            return result;
-        }
-
         /// <summary>One line per container for `husnisse_status`: position, opt-in and rule.</summary>
         public static string Describe(Container container)
         {
