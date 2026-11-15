@@ -258,6 +258,12 @@ namespace Husnisse.Orders
             var target = container.GetInventory();
             if (inventory == null || target == null) return false;
 
+            // The open chest's owner is the writing peer, so this is already the owner in the window
+            // path. The harness (and a host) calls the same entry point from the server, where the
+            // chest's ZDO may belong to a player: take it before the first add, or every stack lands
+            // in memory and the owner's next write drops it.
+            var claimed = ContainerWrite.EnsureOwned(container, "deposit-all");
+
             var moved = 0;
             var spilled = 0;
 
@@ -276,6 +282,8 @@ namespace Husnisse.Orders
                 moved++;
             }
 
+            var persisted = moved == 0 || (claimed && ContainerWrite.Persist(container, "deposit-all"));
+
             if (moved > 0 && spilled > 0)
                 player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderDepositFull, moved, spilled));
             else if (moved > 0)
@@ -286,7 +294,7 @@ namespace Husnisse.Orders
                 player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderPocketsEmpty));
 
             Note("deposit-all dumped=" + moved + " left=" + spilled + " container=" + container.name +
-                 " at=" + Where(container.transform.position));
+                 " at=" + Where(container.transform.position) + " zdo=" + (persisted ? 1 : 0));
             return true;
         }
 

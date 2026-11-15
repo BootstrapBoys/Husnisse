@@ -313,6 +313,18 @@ namespace Husnisse.Flow
             var memory = MemoryOf(_nisse);
             var moved = 0;
 
+            // The target's ZDO may belong to whoever last opened this chest — on a server that is a
+            // player, because opening a container hands it to the opener. Container.Save only fires
+            // for the owner, so the ZDO is taken before the first add and the packed inventory is
+            // read back out of it afterwards.
+            var touched = new List<Container>();
+            var claimed = true;
+            if (_pending.Count > 0)
+            {
+                if (!ContainerWrite.EnsureOwned(_target, "trip deposit")) claimed = false;
+                touched.Add(_target);
+            }
+
             foreach (var ticket in _pending.ToArray())
             {
                 if (!ticket.IsValid())
@@ -352,7 +364,15 @@ namespace Husnisse.Flow
                 }
 
                 // Container and pocket stacks: take from the source, then add; put it back if the
-                // add fails, because the source is the only copy.
+                // add fails, because the source is the only copy. A source chest's ZDO has the same
+                // problem as the target's, and its removal has to be taken away from the items too:
+                // an unsaved removal would leave the stack in the chest *and* in the destination.
+                if (ticket.Source == FlowSource.Container && ticket.Container != null && !touched.Contains(ticket.Container))
+                {
+                    if (!ContainerWrite.EnsureOwned(ticket.Container, "trip pickup")) claimed = false;
+                    touched.Add(ticket.Container);
+                }
+
                 var source = ticket.SourceInventory();
                 if (source == null || !source.RemoveItem(ticket.Item, ticket.Amount))
                 {
@@ -373,14 +393,28 @@ namespace Husnisse.Flow
                 moved++;
             }
 
+            var persisted = claimed;
+            if (moved > 0)
+            {
+                foreach (var container in touched)
+                {
+                    if (!ContainerWrite.Persist(container, "trip")) persisted = false;
+                }
+            }
+
             Landed += moved;
             if (moved > 0) FlowScheduler.Instance?.Spend(moved);
             Log.Debug("Flow", "trip deposit claim=" + _claim.BowlId + " moved=" + moved + " target=" + _target.name +
                               " at=" + Where(_target.transform.position) + " why=" + _why +
                               " remaining=" + _pending.Count);
+            if (moved > 0 && !persisted)
+            {
+                Log.Error("flow: deposit into " + _target.name + " at=" + Where(_target.transform.position) +
+                          " did not reach the ZDO");
+            }
             DiagnosticsFile.Line("[Flow] landed moved=" + moved + " target=" + _target.name +
                                  " at=" + Where(_target.transform.position) + " why=" + _why +
-                                 " src=" + SourceToken());
+                                 " src=" + SourceToken() + " zdo=" + (persisted ? 1 : 0));
         }
 
         /// <summary>Which task types this batch came from: ground, container, pockets, or a mix.</summary>

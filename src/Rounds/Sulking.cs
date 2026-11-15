@@ -49,8 +49,22 @@ namespace Husnisse.Rounds
             }
             if (target == null) return;
 
+            // Both chests are moved on the server, so neither ZDO is necessarily this machine's:
+            // take each one before the write and put the packed inventory back afterwards, or the
+            // sulk looks like it happened and the next owner write undoes it.
+            var claimed = Storage.ContainerWrite.EnsureOwned(from, "sulk source");
+            claimed &= Storage.ContainerWrite.EnsureOwned(target, "sulk target");
+
             if (!target.GetInventory().AddItem(item.Clone())) return;
             fromInventory.RemoveItem(item, item.m_stack);
+
+            var persisted = Storage.ContainerWrite.Persist(target, "sulk target");
+            persisted &= Storage.ContainerWrite.Persist(from, "sulk source");
+            if (!claimed || !persisted)
+            {
+                Log.Warn("sulk: the move from " + from.name + " to " + target.name +
+                         " may not have reached the ZDO (claimed=" + claimed + " persisted=" + persisted + ")");
+            }
 
             bowl.RegisterSulk();
             Creature.NisseVoice.Say(claim, Loc.T(Loc.VoiceSulk), Creature.NisseVoice.Kind.Event);

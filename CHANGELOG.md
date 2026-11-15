@@ -11,6 +11,7 @@ Internal only — teaching and the ledger.
 - **Rules as a file.** `husnisse_rules export` writes every container rule in the world to `BepInEx/config/Husnisse/rules.yaml`; `plan` resolves it against the live world and prints the mapping; `map` re-points an entry the file cannot place; `apply` imports it. The import is all-or-nothing: one entry that does not fit and nothing is written. A copied world with the same base imports with every rule intact.
 - **Editable presets.** The rules file carries the named half of the eight categories, so an admin can say what "Metals" means for their world; `husnisse_rules preset <category> <names|builtin>` edits one live. The table is world state — the host publishes it and every client applies it — so a suggestion and a routed stack cannot disagree.
 - Seeds, crops, flour and spices are classified as **Food** now; they were in the table but the type rule never consulted it, so they routed nowhere.
+- **A filed stack now survives the trip.** The nisse writes into a chest through the chest's own save, which only its owner may perform: on a dedicated server that is the player who last opened it — exactly how a chest gets configured. The nisse takes the chest first and verifies the packed contents reached it, for a trip's destination and its source (an unsaved removal would duplicate a stack), for **Deposit all**, and for a sulk's tidy-up. A deposit that did not reach the chest is logged instead of being reported as filed.
 - A refused order now says why in the diagnostics file (`order EmptyPockets -> TooFar`).
 
 ## 0.3.0
