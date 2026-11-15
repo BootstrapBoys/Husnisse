@@ -5,7 +5,7 @@ world state in the container's ZDO, written by the server.
 
 | | |
 |---|---|
-| Build | Husnisse 0.3.0 (`PluginVersion`/csproj/manifest), sha256 `551459c1…` (the ack build) and `e92f919a…` (client) |
+| Build | Husnisse 0.3.0 (`PluginVersion`/csproj/manifest), sha256 `e92f919a…` on both server and client (the ack build that ran the UI gate; `551459c1…` was the position-fix build before the ack, tested once and superseded) |
 | Tree | `~/projects/valheim/nisse` at `8be7f7a` + the ack fix; the checkout also carried the sibling card's in-progress order-channel edits (one checkout, two runs) |
 | Server | `V:\ValheimTest`, port 2556, world `MTTest`, minimal set (Husnisse, Jotunn, ConditionalConfigSync, JsonDotNET, YamlDotNet, ServerSoftStop, TestHarness) |
 | Client | `DESKTOP-PAOVLP7`, Steam Valheim, character `Stranger`, player id `-202584743`, probe `BootstrapBoys-GateClientProbe` |
