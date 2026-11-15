@@ -8,18 +8,29 @@ for the reason and the exact commands.
 
 | | |
 |---|---|
-| Build under test | `Husnisse.dll` 0.3.0 + the order-channel fix, sha256 `3a9b4e09ae2f` (final build; `544eba090dc4`, `570d80aa6c09` and `f68892326280` were the same code as it converged), identical on both rig trees it ran on |
+| Build under test | `Husnisse.dll` 0.3.0 on HEAD `a9e0e1d` (0.3b merged) + the identity refactor, sha256 `165f728beb32`, built from a clean worktree so no other card's uncommitted work is in it |
 | Harness | `TestHarness.dll` sha256 `a082605d6b98` |
-| Tree | `V:\ValheimOrders`, port 2856, world `MTTest` (fixture), `build_parity: MATCH E5E761C58099`, live server untouched (pid 7284) |
+| Tree | `V:\ValheimOrders`, port 2856, world `MTTest` (fixture), `build_parity: MATCH E5E761C58099`, live server untouched |
 | Config | `Feeding Required = false` (per-bowl opt-in), `Debug Logging = true`, `Allow Orders = true`, `Bowl Drain Minutes = 20` |
-| Drivers | `TestHarness` commands `orderid`, `pocketorder`, `pockets`, `handover`, `container`, `interact`, `zdo`, `logcheck` |
+| Drivers | `TestHarness` commands `orderid`, `pocketorder`, `pockets`, `handover`, `container`, `interact`, `zdo`, `zdoset`, `logcheck` |
 | Scenarios | `tests/10-husnisse-orders.cmd` (PASS 15/15), `scenarios/husnisse-orders-toggle.cmd` (PASS 6/6), `scenarios/husnisse-orders-handover.cmd` (PASS 4/4) |
 
-The proof is against `3a9b4e09ae2f`. Between that run and this note landing, card `t_fed257f1` committed
-two 0.3a fixes (`a2ce928`, `8be7f7a`) into the same tree, so a rebuild of the same commit no longer
-produces that byte-identical DLL (the surrounding 0.3a code changed). The order-channel files are
-unchanged — `0f9244d` carries exactly what was tested — but the next run should rebuild and re-run the
-three scenarios rather than quote these numbers as current.
+Earlier runs of the same code produced `3a9b4e09ae2f` (on `86a9f45`) and `2da40c5002da`; the numbers
+below are the **re-run on current HEAD** after 0.3b merged, because 0.3b changed the order path (see
+"0.3b changed what a destination is" below). Rebuilding the same commit does not reproduce a
+byte-identical DLL while sibling cards keep merging; quote the build hash with the commit.
+
+## 0.3b changed what a destination is — the fixtures had to follow
+
+0.3b's router only files into a container that is **on the storage network**
+(`husnisse_net = true`); a bare chest is not a destination. On HEAD the order path therefore queued
+**0** stacks and said so — `[Orders] tidy queued=0 unmatched=2` — where the 0.3.0 fixtures still
+expected `queued=2`. That is the new behaviour working, not a regression: the fixtures were stale.
+
+`tests/10-husnisse-orders.cmd`, `scenarios/husnisse-orders-handover.cmd` and the client scene
+(`make-scene.py`) now mark their destination chests `husnisse_net` before the order
+(`zdoset piece_chest_wood husnisse_net bool true <index>`). With that, the same scenarios pass
+unchanged on HEAD. Anyone writing a Tidy / Empty Pockets fixture after 0.3b needs the same line.
 
 ## The three faults and what changed
 
@@ -117,7 +128,7 @@ All in `testrig/harness/HarnessPlugin.cs`, all generic:
 - `logcheck` now opens its target with `FileShare.ReadWrite`, so `BepInEx/LogOutput.log` can be asserted
   on while the server runs (it used to fail with a sharing violation and read as MISSING).
 
-## Client gate — not run
+## Client gate — the plan (superseded by the results at the end of this file)
 
 The acceptance for a real client (Alt on the bowl with the hover line, Alt on a chest, interact the
 nisse) needs the Windows client, and that machine was held by card `t_fed257f1` (0.3a container UI) for
@@ -185,3 +196,49 @@ RIG_DST='V:\ValheimOrders' RIG_PORT=2856 ./rig.sh down
 `OrderRpc.PlayerIdOf(ZNetPeer)`. The order seam keeps its own copy only because the headless test needs
 a peer object ZNet does not know; when the two cards merge, `PeerIdentity` should own the rule and
 `OrderRpc` should delegate to it.
+
+## Client gate — results (2026-11-15 07:04–07:48, build 165f728b)
+
+Run on the real client (`DESKTOP-PAOVLP7`, 192.168.1.172, character `Stranger`, player id
+`-202584743`) joined to `V:\ValheimOrders` (port 2856) with the same build and probe. Logs are
+`client/logs/client-bepinex.log`, `client/logs/server-husnisse.log`, `client/logs/server-harness.log`.
+
+| Check | Result | Evidence (client) | Evidence (server) |
+|---|---|---|---|
+| **Alt on the bowl, feeding on** | **PASS** | `interact husnisse_bowl(Clone) alt=True -> True`; `hud center='The nisse will expect offerings.'`; `state bowl feeding=True`; hover `Porridge Bowl \| Satiety 25/100   Mood 100/100 \| [E] open bowl \| [Alt] no offerings needed \| Claim 20 m (native)` | `[Bowl] feeding=True by -202584743` |
+| **Alt again, feeding off** | **PASS** | `hud center='The nisse will work without offerings.'`; `state bowl feeding=False`; hover back to `This nisse asks for nothing. \| [Alt] require offerings` | `[Bowl] feeding=False by -202584743` |
+| **Empty Pockets from the client** | **PASS (order channel)** | `use husnisse_nisse` → `interact NisseHands alt=False -> True`; `hud center='The nisse takes 2 stack(s).'`; inventory went 2 stacks/36 items → 0 | `[Orders] empty pockets queued=2 claim=-1327346010:15577`; `[Flow] trip stacks=2 target=piece_chest_wood … at=(2.8,-0.5)` |
+| **Tidy from the client** | **NOT PROVEN** | `interact piece_chest_wood(Clone) alt=True -> True` but no HUD line and no order; the client's nearest-chest lookup resolved a *ghost* chest left over from an earlier scene (the mod's `ContainerTidy` prefix is silent when its position has no claim) | no `[Orders] tidy` line |
+| **Items landing in the destination chest** | **NOT PROVEN** | — | `[Flow] landed moved=0 target=piece_chest_wood(Clone) at=(2.8,-0.5)` — the nisse picked the 2 stacks up but moved none on landing |
+
+So the defect this card set out to fix is fixed: **a client's order now reaches the server and is
+executed.** The per-bowl Alt toggle is proven end to end including the hover line (the exact
+acceptance wording), and Empty Pockets reaches the server, is accepted, round-trips the handover and
+queues with a truthful HUD count. Tidy is exercised as a *channel* only in the headless scenarios; on
+this client the chest was addressed through a ghost object, so the order never left.
+
+### Rig findings that blocked the remaining two checks (not mod defects)
+
+1. **A client-owned ZDO is never destroyed for that client.** Every scene run leaves the client
+   holding the previous scene's chests; `cleanup` unregisters them server-side but the client keeps
+   the GameObjects, so `stand <prefab> <index>` and `alt <prefab>` (nearest) address ghosts. After
+   four scenes the client's list held 12 containers, 3 of them ghosts. A relog clears it; nothing
+   short of a client restart did.
+2. **A server-spawned chest's window does not open on this client.** `Container.Interact` returns
+   true but `InventoryGui` never shows (`open gui=none`), which is also what the 0.3a sweep hit. The
+   network toggle therefore has to be set by the mod's own `husnisse_rule net … on` console command
+   through the harness (`console`), which works and is what this gate used.
+3. **A floating deck decays and takes the bowl with it** (WearNTear support), and **a character with
+   no collider under it falls through the server's empty world** (the nisse was seen at y=-4496). The
+   working shape is a ground-level platform at the fixture's spawn terrain, pieces at 34.17–34.37.
+4. **`setpos` and `Player.TeleportTo` fight the server's copy of the player position.** TeleportTo
+   did not apply at all in some calls (`now=` unchanged) and a transform set can snap back to the
+   character ZDO's position seconds later, which puts the caller out of the claim's radius and makes
+   the order fail with `The nisse is not nearby.` The reliable shape is to build the scene around the
+   position the client reports at `gc ready` and not move the player at all.
+5. A client standing within auto-pickup range of the nisse's drop point picks its own handed-over
+   stacks back up (`hud top='Added Coal x12'`), which masks the landing. Leave 3 m between the player
+   and the bowl.
+
+These are rig/scene constraints; the follow-up card is filed with them so the Tidy client check and
+the landing check are cheap next time.
