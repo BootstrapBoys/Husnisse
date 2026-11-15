@@ -59,6 +59,7 @@ namespace Husnisse.Creature
             prefab.AddComponent<NisseLod>();
             prefab.AddComponent<NisseActor>();
             prefab.AddComponent<NisseHands>();
+            prefab.AddComponent<NisseBundle>();
 
             var config = new CreatureConfig { Name = "Nisse" };
             var custom = new CustomCreature(prefab, false, config);

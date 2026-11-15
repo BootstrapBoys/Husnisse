@@ -142,6 +142,15 @@ namespace Husnisse.Localization
         public const string LedgerTidySent = "$husnisse_ledger_tidy_sent";
         public const string LedgerSent = "$husnisse_ledger_sent";
 
+        // Craft from the claim (0.5)
+        public const string SupplyFetching = "$husnisse_supply_fetching";
+        public const string SupplyFetched = "$husnisse_supply_fetched";
+        public const string SupplyNoRoom = "$husnisse_supply_no_room";
+        public const string SupplyMissing = "$husnisse_supply_missing";
+        public const string SupplyBusy = "$husnisse_supply_busy";
+        public const string SupplyOff = "$husnisse_supply_off";
+        public const string SupplyWaiting = "$husnisse_supply_waiting";
+
         private const string FolderName = "localization";
 
         private static readonly Dictionary<string, Dictionary<string, string>> ByLanguage =
@@ -273,7 +282,7 @@ namespace Husnisse.Localization
         }
 
         private const string DefaultEnglish = @"
-version: 8
+version: 9
 language: English
 strings:
   $husnisse_bowl_name: Porridge Bowl
@@ -391,6 +400,13 @@ strings:
   $husnisse_ledger_tidy: Tidy
   $husnisse_ledger_tidy_sent: The nisse will sort this chest.
   $husnisse_ledger_sent: The nisse will see to it.
+  $husnisse_supply_fetching: The nisse fetches what the base can spare.
+  $husnisse_supply_fetched: The nisse brings the materials.
+  $husnisse_supply_no_room: ""Make room: the nisse has to put the materials in your hands first.""
+  $husnisse_supply_missing: The base cannot cover what this recipe still needs.
+  $husnisse_supply_busy: The nisse is already carrying something.
+  $husnisse_supply_off: Crafting from the claim is switched off here.
+  $husnisse_supply_waiting: The nisse is on its way with the materials.
 ";
     }
 }

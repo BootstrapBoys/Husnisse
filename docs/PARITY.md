@@ -48,10 +48,13 @@ the rest of the mod runs. Diagnostics print `provider=qi|native`. Testing can sk
 guard ships at 0.4: users will not remove QI cleanly on day one.
 
 **The law at the contract boundary.** Read-only queries (`Count`, `CanAfford`) are exempt: they ask the
-claim a question. Consumption (`TryConsume`, craft-from-claim) is the nisse's work and needs a delivery
-fiction — decided in 0.4 (a visible bundle carried to the bench), shipping in 0.5. 0.4 therefore answers
-and does not spend, and the two consumer seams that are read *and* spent (EpicLoot's provider, PlanBuild's
-inventory list) wait for 0.5 rather than counting stock they cannot pay with.
+claim a question. Consumption (`TryConsume`, craft-from-claim) is the nisse's work: **0.5 ships it as a
+fetch before the pay.** A craft the pockets cannot cover sends the nisse to the claim's chests, it takes
+the missing stacks while it stands at each one and puts them in the player's hands, and the game's own
+craft then spends the pockets. `TryConsume` never returns `true` for an amount it has not debited: the
+claim leg it cannot perform synchronously is started as that errand, and the answer is `false` until the
+load is held. EpicLoot and PlanBuild take their costs through the same fetch rather than through a
+provider that counts a chest it cannot take from.
 
 ## Quartermaster surfaces
 
@@ -64,7 +67,7 @@ inventory list) wait for 0.5 rather than counting stock they cannot pay with.
 | 5 | Deposit All · sort inventory · sort chest · combine compatible stacks | 0.1 orders; queue in 0.1.2; 0.3c deposit-all; merge in 0.3.1 | **covered** — deposit-all (network: the nisse files your pockets; off-network: dump into that chest, unsorted), Empty Pockets and Tidy are in; 0.3.1 merges partial pocket stacks before an Empty Pockets order queues | 
 | 6 | Pickup controls, per item type | 0.3.1 type filter | **covered** — per claim, one toggle per preset in the ledger; the ground scan honours it, orders do not |
 | 7 | Configurable stack sizes (no weight change) | 1.0 | scheduled |
-| 8 | Craft from storage | 0.5 | scheduled |
+| 8 | Craft from storage | 0.5 | **covered** — a recipe the pockets cannot pay for becomes a visible supply errand: the nisse takes the missing materials from the claim's chests, carries them to the bench and puts them in the player's hands, and the game's own craft spends them from the pockets. AAA batches fetch for the whole batch and the deferred craft keeps its size |
 | 9 | Building coverage through the deposit chest's area | 1.0 comfort coverage | scheduled — coverage equals the claim radius |
 | 10 | Supply processors, fermenters, cooking racks; collect finished goods | 0.6 | scheduled |
 | 11 | Machine caps, pause automation, protect valuable wood | 0.6 | scheduled |
@@ -87,16 +90,16 @@ inventory list) wait for 0.5 rather than counting stock they cannot pay with.
 | 3 | ExtraSlots: slot protection + slot as a source | 0.4 contract source 2 | **covered** — extra rows are source 2 and are partitioned out of the pocket count; protection is moot because the only thing that moves pocket items is an Empty Pockets order, which already skips the hotbar and equipped rows |
 | 4 | AdventureBackpacks: equipped container as a source | 0.4 contract source 3 | **covered** — `ABAPI.TryGetEquippedBackpackInventory`, counted beside the pockets and never filed into |
 | 5 | AAABuildMenu: pinned build-row counts | 0.4 | **covered** — `PinnedRecipeTracker.CountItem` postfix adds the claim to the player's own row |
-| 6 | EpicLoot: registered inventory provider, and refusing to double-register | 0.5 (refusal at 0.4) | **partial** — the double-register refusal is in; the provider itself is carried to 0.5 because EpicLoot spends the player's pockets before it asks a provider, so a read-only provider would lose the pocket half of a cost it cannot finish |
-| 7 | PlanBuild: blueprint cost counts storage | 0.5 | **gap, carried to 0.5** — `GetInventories` feeds both the colour and a `void` take; a read-only entry places blueprints for free |
-| 8 | DropMoreLoot: defer stack sizes to it when installed | 0.5 | **gap** |
+| 6 | EpicLoot: registered inventory provider, and refusing to double-register | 0.5 | **covered, different mechanic** — no provider is registered, deliberately: EpicLoot pays through the same list it counts and ignores the remove return, so a provider counting the claim would make an enchant look affordable and leave the cost unpaid. Its affordability check (`LocalPlayerCanAffordCost`, which every cost path goes through) starts the fetch instead, and EpicLoot pays from the pockets once the load lands. The double-register refusal stays live for the day a provider could be honoured |
+| 7 | PlanBuild: blueprint cost counts storage | 0.5 | **covered, different mechanic** — same reasoning: `GetInventories` feeds a colour and a `void` take, so no claim entry is added. `PlanPiece.GetInventories` is hooked to start the fetch for a plan's missing materials, and the plan's own clicks pay into it from the pockets |
+| 8 | DropMoreLoot: defer stack sizes to it when installed | 0.5 | **covered by construction** — Husnisse never writes a stack size, so there is nothing to disable; the diagnostics report `stacks=dropmoreloot xN` when it owns them |
 | 9 | WardIsLove: ward ownership and host range | 0.2 — handover | **scheduled** — only for a bowl inside a ward |
 | 10 | Chest dock: gate "Chest Config", force-sort an unowned chest | 0.3.1 ledger | **covered** — gating is moot without QM's menu; the sort-unowned half is the ledger's **Tidy** row action |
 | 11 | Forget override (delete from both lists) | — | **moot** |
 | 12 | Mail watchdog: clear stale queued-mail links | 0.6 | **gap** if mailboxes are kept |
 | 13 | Pocket merge: merge stacks in the player inventory on sort | 0.3.1 | **covered** — `OrderService.MergePockets`, run by an Empty Pockets order before it queues |
-| 14 | Craft repaint: repaint the recipe list after a craft | 0.5 | **gap**, needed the moment 0.5 lands |
-| 15 | Stack rule: ignore crafter, ignored tags, EpicLoot components | 0.5 | **gap** |
+| 14 | Craft repaint: repaint the recipe list after a craft | 0.5 | **covered** — `CraftRepaint` marks the list stale after `DoCrafting` and rebuilds it on the next idle frame; needed because a craft from the claim empties a chest and the pockets in one action |
+| 15 | Stack rule: ignore crafter, ignored tags, EpicLoot components | 0.5 | **covered by construction** — stack identity is vanilla's (shared data, quality, world level), plus variant and durability in the mod's own pocket merge. The crafter and EpicLoot's material stamps are not part of it, so nothing has to be relaxed; quality, world level and durability are never ignored. There is no config because there is no stricter rule to relax |
 | 16 | Ward host range / ownership modes | 0.2 — handover | **scheduled** |
 | 17 | Routing and stack diagnostics | 0.1 `Diagnostics` | **partial** — needs the same tags |
 | 18 | Refuse to run beside EpicLootContainerBridge | 0.4 | **covered** — logged as a refusal with the reason; there is no provider yet to double-register, and the guard is what keeps one from being added beside the bridge |
@@ -104,16 +107,19 @@ inventory list) wait for 0.5 rather than counting stock they cannot pay with.
 ## The ten gaps
 
 1. ~~AAABuildMenu pinned counts~~ — **closed in 0.4**
-2. EpicLoot inventory provider — **carried to 0.5** (needs a spend it can finish; the refusal beside
-   EpicLootContainerBridge ships now)
-3. PlanBuild blueprint cost — **carried to 0.5** (its take is `void`, so a read-only entry is free builds)
-4. DropMoreLoot stack deferral
+2. ~~EpicLoot inventory provider~~ — **closed in 0.5, as a fetch instead of a provider**: the cost
+   question starts the nisse's errand and EpicLoot pays from the pockets. A provider would have
+   advertised a claim it could not debit.
+3. ~~PlanBuild blueprint cost~~ — **closed in 0.5, as a fetch instead of a list entry**: `GetInventories`
+   starts the errand; the plan's clicks pay from the pockets.
+4. ~~DropMoreLoot stack deferral~~ — **closed in 0.5 by construction**: no stack-size writes to defer.
 5. ~~Pocket stack merge on sort~~ — **closed in 0.3.1**
-6. Craft-list repaint after craft
-7. Stack rule relaxations (crafter, tags, EpicLoot components)
+6. ~~Craft-list repaint after craft~~ — **closed in 0.5**
+7. ~~Stack rule relaxations (crafter, tags, EpicLoot components)~~ — **closed in 0.5**: stack identity is
+   vanilla's relaxed rule already; the stricter one it relaxed never existed here.
 8. ~~Pickup type filter~~ — **closed in 0.3.1**
 9. ~~Range preview for the nisse's claim~~ — **closed in 0.2b** (placement ghost, bowl hover, and the ledger's Show range)
-10. Mailbox parity — or an explicit decision to drop the postal system
+10. Mailbox parity — or an explicit decision to drop the postal system (0.6: **dropped**, 2026-11-13)
 
 ## Three structural consequences
 

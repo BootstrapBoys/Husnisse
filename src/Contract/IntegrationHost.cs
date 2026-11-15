@@ -42,13 +42,6 @@ namespace Husnisse.Contract
                 return;
             }
 
-            if (HusnisseConfig.RequirementReadouts == null || !HusnisseConfig.RequirementReadouts.Value)
-            {
-                Log.Info("[Contract] requirement readouts are off by configuration; the contract still answers " +
-                         "Count and CanAfford, and no crafting UI is touched.");
-                return;
-            }
-
             if (PluginGuards.IntegrationsInstalled())
             {
                 State = "qi";
@@ -58,17 +51,25 @@ namespace Husnisse.Contract
                 return;
             }
 
+            // The two seams that are read *and* spent land at 0.5, with the supply path behind them.
+            // They follow Craft from Claim rather than the readout toggle: a disabled supply path
+            // must not leave a provider counting stock it cannot pay with.
+            EpicLootSupply.Bind(harmony);
+            PlanBuildSupply.Bind(harmony);
+
+            if (HusnisseConfig.RequirementReadouts == null || !HusnisseConfig.RequirementReadouts.Value)
+            {
+                Log.Info("[Contract] requirement readouts are off by configuration; the contract still answers " +
+                         "Count and CanAfford, and no crafting UI is touched.");
+                return;
+            }
+
             // MyLittleUI's own pocket-only row number goes first, so the row below has one writer.
             MluiReadout.Suppress();
 
             _rows = RequirementRowReadout.Bind(harmony);
             _aaa = AaaCraftingReadout.Bind(harmony);
             _buildMenu = AaaBuildMenuReadout.Bind(harmony);
-
-            // These two are detected and explained rather than registered: both spend through the
-            // list they read, and a read-only entry in those lists loses items (see their docs).
-            EpicLootProvider.Bind();
-            PlanBuildBridge.Bind();
 
             State = ReadoutsRegistered ? "native" : "none";
             Log.Info("[Contract] readouts " + Describe());
@@ -82,8 +83,8 @@ namespace Husnisse.Contract
                    " aaacrafting=" + AaaCraftingReadout.State +
                    " aaabuildmenu=" + AaaBuildMenuReadout.State +
                    " mylittleui=" + MluiReadout.State +
-                   " epicloot=" + EpicLootProvider.State +
-                   " planbuild=" + PlanBuildBridge.State;
+                   " epicloot=" + EpicLootSupply.State +
+                   " planbuild=" + PlanBuildSupply.State;
         }
     }
 }

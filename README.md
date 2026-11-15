@@ -45,6 +45,13 @@ that comes out of its claim, and the player's pockets are spent by the player's 
 Put plainly: **the nisse moves what is in the base; the player moves what is on the player.** Stating
 the exception here keeps the law from being quietly broken the first time a craft succeeds.
 
+0.5 makes that literal rather than a figure of speech. A client cannot debit a chest it does not own,
+so `TryConsume` never promises one: when an amount would need the claim, the nisse walks to the chest,
+takes the planned stacks while it stands there, carries them to the bench and puts them in the
+player's hands. The craft that asked then runs — vanilla's own — and spends the pockets, which hold
+the materials because the nisse delivered them. The order of sources is therefore kept (the pockets
+are what the craft spends) and the claim leg has a cause the player watches happen.
+
 ## Ownership hands over, it does not stack
 
 Every function Husnisse needs has a native implementation that works with no other mod installed. That
@@ -505,7 +512,7 @@ table is the summary.
 | **0.3** | **Network core**: container UI toggle/settings, item categories with priority, Overflow and Deposit roles, custom-list preview, auto-suggest, copy rule, blacklist, deposit-all, animation LOD, fair queue, read-only badge | The network and its routing model; the largest UI work in the project. |
 | **0.3.1** | **Teaching and ledger**: teaching writes lists, editable ledger, pickup filter, pocket stack merge, YAML rule export/import and editable presets | The precise editing layer on top of 0.3's network. |
 | **0.4** | **Read-only contract**: `Count`/`CanAfford` and sources (ExtraSlots, AdventureBackpacks), AAABuildMenu and AAA Crafting readouts, MyLittleUI's row, QI stand-down. EpicLoot's provider and PlanBuild's adapter carried to 0.5 (both seams count *and* spend) | QI's queries, before any consumption needs a fiction. |
-| **0.5** | **Craft from claim**: `TryConsume`, delivery fiction, craft-list repaint, DropMoreLoot deferral, stack rules | The first consuming surface; needs 0.4's contract. |
+| **0.5** | **Craft from claim**: `TryConsume` (all-or-nothing, reentrancy-safe, claim leg delivered by the nisse), the visible supply errand and its bundle, craft-list repaint, AAA batches, EpicLoot and PlanBuild costs, DropMoreLoot deferral, stack rules | The first consuming surface; needs 0.4's contract. |
 | **0.6** | Machines: fuel, feed, collect, caps; four-way supply permissions; mailbox decision | The nightly queue earns its keep. |
 | **0.7** | Multiplayer hardening, Quartermaster ZDO migration — only after a route is proven on a copied world | Two clients and a live world are where storage mods die. |
 | **1.0** | Stack sizes, ship unloading, comfort-based coverage, QM config import; parity sign-off against `PARITY.md` | Parity, surface by surface, on a copied world. |

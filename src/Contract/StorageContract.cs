@@ -9,15 +9,19 @@ using UnityEngine;
 namespace Husnisse.Contract
 {
     /// <summary>
-    /// The storage contract as Husnisse answers it: a read-only surface over the sources the player
-    /// can reach right now — pockets, ExtraSlots rows, the equipped backpack, and the containers of
-    /// the claim the player is standing in.
+    /// The storage contract as Husnisse answers it: a surface over the sources the player can reach
+    /// right now — pockets, ExtraSlots rows, the equipped backpack, and the containers of the claim
+    /// the player is standing in.
     ///
-    /// **This build is read-only.** `Count` and `CanAfford` answer; `TryConsume` refuses, because
-    /// consumption is the nisse's work and needs a visible delivery before it ships. A consumer must
-    /// therefore check <see cref="CanConsume"/> (or treat a false from `TryConsume` as "I cannot
-    /// pay") rather than counting on a spend. `ApiVersion` is the contract's own version and moves
-    /// with the semantics in STORAGE-CONTRACT.md, never with the plugin version.
+    /// **Reading is direct; spending is the nisse's work.** `Count` and `CanAfford` scan the
+    /// instantiated containers. `TryConsume` debits the three sources a client can write — pockets,
+    /// ExtraSlots rows, the equipped pack — and, when the amount needs the claim, it does not return
+    /// a promise: a claim chest's contents belong to its ZDO owner, so a client cannot debit one
+    /// inside a synchronous call. Instead it asks the nisse for the shortfall (the visible supply
+    /// errand) and answers false; the caller retries once the load is in its hands. That keeps the
+    /// contract's all-or-nothing rule literally true: false means nothing was mutated.
+    /// `ApiVersion` is the contract's own version and moves with the semantics in
+    /// STORAGE-CONTRACT.md, never with the plugin version.
     /// </summary>
     public static class StorageContract
     {
@@ -36,6 +40,8 @@ namespace Husnisse.Contract
         private static float _scopeAt = -100f;
         private static bool _dirty = true;
         private static bool _consumeLogged;
+        private static bool _consuming;
+        private static bool _fetchLogged;
 
         /// <summary>"qi" when Quartermaster_Integrations is loaded and owns the answers, else "native".</summary>
         public static string Provider
@@ -43,10 +49,45 @@ namespace Husnisse.Contract
             get { return PluginGuards.IntegrationsInstalled() ? ProviderQi : ProviderNative; }
         }
 
-        /// <summary>False in 0.4: the contract answers questions, it does not spend.</summary>
+        /// <summary>True when a spend can be attempted: the supply path exists and the mod is running.</summary>
         public static bool CanConsume
         {
-            get { return false; }
+            get
+            {
+                try
+                {
+                    return HusnissePlugin.Running &&
+                           HusnisseConfig.CraftSupply != null && HusnisseConfig.CraftSupply.Value;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// The contract's reentrancy rule: a spend during one of the implementation's own operations
+        /// answers false and mutates nothing. A supply errand is such an operation — it is moving the
+        /// same materials the contract is counting.
+        /// </summary>
+        public static bool Busy
+        {
+            get
+            {
+                if (_consuming) return true;
+
+                try
+                {
+                    var player = Player.m_localPlayer;
+                    if (player == null) return false;
+                    return Flow.FetchRunner.ForPlayer(player.GetPlayerID()) != null;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
         }
 
         /// <summary>Read, player present, world loaded. A dedicated server has no player and is not ready.</summary>
@@ -153,20 +194,161 @@ namespace Husnisse.Contract
         }
 
         /// <summary>
-        /// Not implemented in 0.4, and it says so rather than half-working: an all-or-nothing spend
-        /// that debited pockets and then could not take the claim leg is how items vanish.
+        /// Take an amount out of what the player carries, in the contract's source order. An amount
+        /// that needs the claim cannot be taken here: the claim leg is a chest, the chest belongs to
+        /// its ZDO owner, and a synchronous client call cannot debit it without lying. So the nisse
+        /// is asked to bring the shortfall, nothing is mutated, and the caller retries when the load
+        /// is in its hands.
         /// </summary>
         public static bool TryConsume(string itemName, int amount)
         {
-            if (!_consumeLogged)
+            if (_consuming) return false;
+
+            try
             {
-                _consumeLogged = true;
-                Log.Info("[Contract] TryConsume refused: this build reads the claim but does not spend it " +
-                         "(0.4 is read-only; consumption carries a visible delivery and lands in 0.5).");
+                _consuming = true;
+
+                if (!CanConsume) return false;
+                if (!IsReady) return false;
+                if (amount <= 0) return false;
+
+                var name = SharedName(itemName);
+                if (string.IsNullOrEmpty(name)) return false;
+
+                var scope = Scope();
+                if (scope == null) return false;
+
+                if (scope.Carried(name) < amount) return AskForClaim(scope, name, amount);
+                return TakeCarried(scope, name, amount);
+            }
+            catch (Exception ex)
+            {
+                Log.Debug("Contract", "TryConsume failed: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                _consuming = false;
+            }
+        }
+
+        /// <summary>
+        /// The claim leg, honestly: ask the nisse for the shortfall and answer false now. Nothing is
+        /// debited, which is what the contract's all-or-nothing rule requires of a false answer.
+        /// </summary>
+        private static bool AskForClaim(ContractScope scope, string name, int amount)
+        {
+            var carried = scope.Carried(name);
+            var shortage = amount - carried;
+
+            if (scope.Claim == null || !SupplyService.CanCover(scope.Player, new List<KeyValuePair<string, int>>
+                {
+                    new KeyValuePair<string, int>(name, shortage),
+                }))
+            {
+                if (!_consumeLogged)
+                {
+                    _consumeLogged = true;
+                    Log.Info("[Contract] TryConsume(" + name + ", " + amount + ") -> false: the player carries " +
+                             carried + " and the claim cannot cover the rest.");
+                }
+                return false;
             }
 
-            Log.Debug("Contract", "TryConsume('" + itemName + "', " + amount + ") -> false (read-only build)");
+            long token;
+            var answer = SupplyService.Request(scope.Player, scope.Claim,
+                new List<KeyValuePair<string, int>> { new KeyValuePair<string, int>(name, shortage) }, out token);
+
+            if (!_fetchLogged || answer.HasValue && answer.Value != Net.FetchResult.Accepted)
+            {
+                _fetchLogged = true;
+                Log.Info("[Contract] TryConsume(" + name + ", " + amount + ") -> false: asked the nisse for the " +
+                         shortage + " the player lacks (token=" + token + ", answer=" +
+                         (answer.HasValue ? answer.Value.ToString() : "sent") + ").");
+            }
+
+            DiagnosticsFile.Line("[Contract] consume deferred item=" + name + " carried=" + carried +
+                                 " shortage=" + shortage + " token=" + token);
             return false;
+        }
+
+        /// <summary>
+        /// Debits pockets, then ExtraSlots rows, then the equipped backpack. Counted first, then
+        /// taken, on one thread: a removal that still fails puts everything back so the answer is
+        /// all-or-nothing in practice as well as in the contract.
+        /// </summary>
+        private static bool TakeCarried(ContractScope scope, string name, int amount)
+        {
+            var removed = new List<ItemDrop.ItemData>();
+            var left = amount;
+
+            var sources = new[] { "pockets", "slots", "backpack" };
+            for (var i = 0; i < sources.Length && left > 0; i++)
+            {
+                var take = Math.Min(left, scope.CountIn(sources[i], name));
+                if (take <= 0) continue;
+
+                var inventory = sources[i] == "backpack"
+                    ? SourceBindings.EquippedBackpack(scope.Player)
+                    : scope.Player.GetInventory();
+                if (inventory == null) break;
+
+                var slots = sources[i] == "slots";
+                var got = Remove(inventory, name, take, slots, removed);
+                left -= got;
+                if (got < take) break;
+            }
+
+            if (left > 0)
+            {
+                for (var i = 0; i < removed.Count; i++)
+                {
+                    var inventory = scope.Player.GetInventory();
+                    if (inventory != null) inventory.AddItem(removed[i]);
+                }
+
+                Log.Debug("Contract", "TryConsume(" + name + ", " + amount + ") rolled back; " + left + " short");
+                return false;
+            }
+
+            MarkDirty();
+            Log.Debug("Contract", "TryConsume(" + name + ", " + amount + ") -> true (" + removed.Count + " stack(s))");
+            DiagnosticsFile.Line("[Contract] consumed item=" + name + " amount=" + amount +
+                                 " stacks=" + removed.Count + " carried=" + scope.Carried(name));
+            return true;
+        }
+
+        /// <summary>
+        /// Removes up to <paramref name="amount"/> from one inventory, restricted to the rows that
+        /// source owns: ExtraSlots rows for the slot source, ordinary rows for the pocket source.
+        /// Clones of what left are collected so a later failure can put them back.
+        /// </summary>
+        private static int Remove(Inventory inventory, string name, int amount, bool slots,
+                                  List<ItemDrop.ItemData> removed)
+        {
+            var taken = 0;
+            var items = new List<ItemDrop.ItemData>(inventory.GetAllItems());
+
+            for (var i = 0; i < items.Count && taken < amount; i++)
+            {
+                var item = items[i];
+                if (item == null || item.m_shared == null) continue;
+                if (item.m_shared.m_name != name) continue;
+                if (SourceBindings.IsExtraSlotItem(item) != slots) continue;
+
+                var take = Math.Min(item.m_stack, amount - taken);
+                if (take <= 0) continue;
+
+                var clone = item.Clone();
+                clone.m_stack = take;
+
+                if (!inventory.RemoveItem(item, take)) continue;
+
+                removed.Add(clone);
+                taken += take;
+            }
+
+            return taken;
         }
 
         /// <summary>Drops the resolved scope, so the next query sees a write that just landed.</summary>
@@ -222,6 +404,7 @@ namespace Husnisse.Contract
             lines.Add("[contract] api=" + ApiVersion +
                       " provider=" + Provider +
                       " can_consume=" + CanConsume +
+                      " busy=" + Busy +
                       " ready=" + ready);
 
             var scope = Scope();

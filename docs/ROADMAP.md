@@ -48,7 +48,7 @@ Rejected: recent-moves undo (#6), pause (#8), per-mod blacklist (replaced by the
 | 0.3 | Network core | container UI, categories, roles, routing, deposit, LOD, fairness | 0.2 |
 | 0.3.1 | Teaching and ledger | teaching, ledger, pickup filter, pocket merge, YAML rules | 0.3 |
 | 0.4 | Read-only contract | Count/CanAfford, sources, EpicLoot/AAA/PlanBuild/MLUI readouts, QI stand-down | 0.3.1 |
-| 0.5 | Craft from claim | TryConsume, delivery fiction, repaint, DropMoreLoot, stack rules | 0.4 |
+| 0.5 | Craft from claim | `TryConsume`, the visible supply errand, craft repaint, DropMoreLoot deferral, stack rules | 0.4 |
 | 0.6 | Machines and permissions | processors, refuel, feed, caps, four-way permissions, mailbox decision | 0.5 |
 | 0.7 | Multiplayer and migration | shared chests, ownership revision, migration route | 0.6 |
 | 1.0 | Parity | stack sizes, ship unloading, coverage, config import, sign-off | 0.7 |
@@ -277,6 +277,42 @@ duplication; the recipe list is correct immediately after the craft.
 **Risks** — consumption is the first place the law and the contract can contradict each other. The
 delivery fiction must be decided before code, not during.
 
+**Status (2026-11-15)** — implemented, unreleased (internal only). **The decision that shaped it:** the
+delivery fiction is a **fetch before the pay**, not a fade, a requisition, or a provider that counts stock
+it cannot take.
+
+- The claim leg is a *transfer*, performed by the nisse: a craft the pockets cannot pay for sends the
+  nisse to the chests the plan named, it takes the planned stacks while it stands at each one, walks a
+  visible load to the bench and puts it in the player's hands, and the game's own craft then spends the
+  pockets. Nothing leaves a chest at request time and the craft cannot run before the materials are held,
+  which is what "no silent consumption" means in practice.
+- `TryConsume` is honest about the split: it debits pockets → ExtraSlots rows → equipped pack, and when
+  an amount would need the claim it asks the nisse for the shortfall and answers `false` with nothing
+  mutated. A claim chest's contents belong to its ZDO owner, so a synchronous client call cannot debit
+  one; returning `true` on a promise is how a craft gets paid for by a deletion. `CanConsume` is true and
+  `can_consume=True` appears in the contract report from this build.
+- Reentrancy: `TryConsume` answers `false` while a supply errand for that player is in flight, and the
+  claim runs one errand at a time (a second request is `Busy`). The deposit queue yields to an errand
+  the same way it yields to a trip.
+- **EpicLoot and PlanBuild are not registered as count-plus-pay providers**, and that is the correction
+  this release makes to their 0.4 deferral: both APIs pay through the same list they count and neither
+  checks the remainder (EpicLoot's pay path ignores the return; PlanBuild's take returns `void`), so a
+  provider counting the claim would make the UI say affordable and leave the cost unpaid — a free
+  enchant or a free blueprint. Both instead hook the *affordability* question that precedes every one of
+  their costs, and start the same fetch; the mod's own pay path then takes the materials from the
+  pockets. Same patch targets, same data source, different order of events.
+- DropMoreLoot: Husnisse never writes a stack size, so there is nothing to disable — the diagnostics say
+  whether DropMoreLoot owns them (`stacks=dropmoreloot xN`). The merge rule is vanilla's plus nothing:
+  crafter and EpicLoot's material stamps are not part of stack identity, while quality, world level,
+  variant and durability are.
+- Proof: `testrig/scenarios/husnisse-05-supply.cmd` — **PASS, 20 assertions** on a dedicated server: a
+  request larger than the claim holds is refused whole with the chest untouched, the chest still reads
+  20 wood in the same tick the accepted request is made, a second request is `Busy`, the nisse's pickup
+  is logged at the chest, the load lands in the player's pockets (`pockets stacks=1 items=10`), the
+  chest's packed ZDO drops 20 → 10, the errand ends idle, and `husnisse contract Wood` reads 20 with
+  `can_consume=True`. The client gate (visible bundle, the craft itself, the repaint, AAA's batch and the
+  two consumers' fetch-on-afford) is `docs/evidence/0.5`.
+
 ## 0.6 — Machines and permissions
 
 **Scope** — processors, fermenters, cooking racks; collect finished goods; caps, pause, protect valuable
@@ -305,5 +341,6 @@ against `PARITY.md` on a copied world.
 - **Benchmarks**: 200 containers at 0.3; 10 nisses at 0.7; queue catch-up at 0.1.2.
 - **Every release**: changelog entry, four version fields, updated PARITY statuses, updated this file if
   scope moved.
-- **Open decisions**: delivery fiction (0.5), mailbox (0.6), migration route (0.7), QM config import
-  (1.0).
+- **Open decisions**: mailbox (0.6), migration route (0.7), QM config import (1.0). The delivery
+  fiction is settled: the nisse fetches the shortfall and hands it over before the craft spends the
+  pockets.

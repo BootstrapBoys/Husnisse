@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.5.0
+
+Internal only — craft from the claim.
+
+- **The nisse brings what the base owes a craft.** A recipe the pockets cannot pay for becomes a supply errand: the nisse walks to the chests holding the missing materials, takes the planned stacks while it stands at each one, carries a visible load back to the bench and puts it in your hands. The craft then runs exactly as vanilla does — it spends your pockets, which by then hold the materials — so the pockets-first order the storage contract fixes is kept and nothing is ever taken out of a chest on a promise. `5. Contract / Craft from Claim` turns the whole path off.
+- **The load is visible on every peer.** The nisse carries two or three of the actual materials, built on each machine from the item prefabs (mesh only, no second networked object), shown when it lifts the load at the chest and cleared when it hands it over.
+- **All-or-nothing, and never a promise.** A request for more than the claim holds is refused whole and no chest is touched; a second request while the nisse is carrying is refused as busy. `TryConsume` debits pockets, ExtraSlots rows and the equipped backpack, and when an amount would need the claim it asks the nisse for the shortfall and answers `false` with nothing mutated — the caller retries once the load is in its hands.
+- **AAA Crafting's batch fetches for the whole batch**, and the deferred craft runs with the batch's size. The recipe list repaints after a craft, so the rows agree with the pockets the craft just emptied.
+- **EpicLoot costs** ask the nisse before they are paid instead of registering a provider that cannot take from a chest: the affordability check every enchanting, augmenting, rune and upgrade cost goes through starts a fetch, and EpicLoot pays from the pockets once the load lands. No count is advertised that the mod cannot pay, and no enchant is free.
+- **PlanBuild blueprint costs** do the same: a plan whose materials the pockets lack asks the nisse for the shortfall and pays from the pockets one unit at a time. No inventory entry is added to PlanBuild's list, because its take returns nothing and an entry that could not remove would place the blueprint for free.
+- **Stack sizes defer to DropMoreLoot by not competing.** Husnisse never writes a stack size, and the diagnostics say whether DropMoreLoot owns them. Bench-crafted and looted stacks merge (the crafter is not part of the identity), EpicLoot's material stamps do not split a stack, and quality, world level, variant and durability still keep stacks apart.
+- The bowl's pantry is not a supply chest: it is the nisse's own food. Every other container in the claim is a source.
+
 ## 0.4.0
 
 Internal only — the read-only storage contract.

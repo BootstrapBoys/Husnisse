@@ -58,6 +58,9 @@ namespace Husnisse.Flow
             TickClaims(dt);
             Reconcile(dt);
             Drain(dt);
+            // A supply errand is one more kind of visible work, so it ticks beside the deposit trips
+            // and the queue yields to it: a claim has one pair of hands.
+            FetchRunner.Tick(dt);
             TripRunner.Tick(dt);
         }
 
@@ -196,6 +199,10 @@ namespace Husnisse.Flow
                 if (claim == null || claim.Bowl == null || claim.Suppressed) continue;
                 if (!claim.Bowl.IsFed) continue;
                 if (TripRunner.Has(claim)) continue;
+
+                // The nisse is carrying a supply load; the queue waits for its hands like it waits
+                // for a trip.
+                if (FetchRunner.Has(claim)) continue;
 
                 var nisse = NisseFactory.EnsureNisse(claim.Bowl);
                 if (nisse == null) continue;

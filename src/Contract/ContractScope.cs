@@ -217,6 +217,23 @@ namespace Husnisse.Contract
             return 0;
         }
 
+        /// <summary>
+        /// One named source on its own — the spend path needs to know how much of an amount the
+        /// pockets can pay before the slots, and the slots before the pack.
+        /// </summary>
+        public int CountIn(string sourceName, string sharedName)
+        {
+            if (string.IsNullOrEmpty(sourceName) || string.IsNullOrEmpty(sharedName)) return 0;
+
+            for (var i = 0; i < Sources.Count; i++)
+            {
+                var source = Sources[i];
+                if (source == null || !source.Present || source.Name != sourceName) continue;
+                return source.Count(sharedName);
+            }
+            return 0;
+        }
+
         private static string Fmt(Vector3 point)
         {
             return point.x.ToString("0.#") + "," + point.z.ToString("0.#");

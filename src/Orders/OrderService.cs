@@ -496,6 +496,15 @@ namespace Husnisse.Orders
             return package.GetArray();
         }
 
+        /// <summary>
+        /// A stack as a client wrote it, read back into item data. Public so the delivery leg can
+        /// rebuild what the server serialised with <see cref="SerialiseItem"/>.
+        /// </summary>
+        public static ItemDrop.ItemData DeserialiseItem(byte[] blob)
+        {
+            return ReadItem(blob);
+        }
+
         private static ItemDrop.ItemData ReadItem(byte[] blob)
         {
             if (blob == null || blob.Length == 0) return null;

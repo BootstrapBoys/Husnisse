@@ -35,7 +35,7 @@ namespace Husnisse
     {
         public const string PluginGUID = "com.bootstrapboys.husnisse";
         public const string PluginName = "Husnisse";
-        public const string PluginVersion = "0.4.0";
+        public const string PluginVersion = "0.5.0";
 
         internal static bool Running;
 
@@ -67,6 +67,13 @@ namespace Husnisse
             // every one of them is absent-safe.
             IntegrationHost.Bind(harmony);
 
+            // Craft supply (0.5): the claim leg of a craft becomes a visible errand. Bound here,
+            // not in RegisterContent, because the patches have no prefab dependency and a client
+            // that never reaches prefab registration must still get them.
+            Patches.CraftSupply.Bind(harmony);
+            Patches.CraftRepaint.Bind(harmony);
+            DropMoreLootCompat.LogOnce();
+
             RegisterStatusCommand();
             RegisterPreviewCommand();
             RegisterPrefabCommand();
@@ -76,6 +83,7 @@ namespace Husnisse
             Commands.BenchCommand.Register();
             Commands.LedgerCommand.Register();
             Commands.RulesCommand.Register();
+            Commands.SupplyCommand.Register();
 
             if (!HusnisseConfig.Enabled.Value)
             {
@@ -189,6 +197,7 @@ namespace Husnisse
             NissePrefab.Register();
             OrderRpc.Register();
             RuleRpc.Register();
+            FetchRpc.Register();
 
             Log.Info("content registered");
         }

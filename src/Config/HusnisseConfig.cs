@@ -33,6 +33,7 @@ namespace Husnisse.Config
         public static ConfigEntry<bool> RequireWardOwnership;
         public static ConfigEntry<bool> RequirementReadouts;
         public static ConfigEntry<bool> SplitRequirementCounts;
+        public static ConfigEntry<bool> CraftSupply;
 
         private static ConfigSync _sync;
 
@@ -108,6 +109,11 @@ namespace Husnisse.Config
                 "Write a requirement's available amount as `42 [12+30]` — total, then what you carry and what " +
                 "the claim holds. Off writes the total alone. Split by default so a number that is mostly " +
                 "base stock is visible as such while this build is still read-only.");
+
+            CraftSupply = file.Bind("5. Contract", "Craft from Claim", true,
+                "A craft the pockets cannot pay for becomes a supply errand: the nisse fetches the missing " +
+                "materials from the claim's containers, carries them to you, and hands them over; the craft " +
+                "then runs as vanilla does, spending your pockets. Off leaves every craft pocket-only.");
 
             RespectWards = file.Bind("6. Ward", "Respect WardIsLove", true,
                 "Ward permissions filter every container. A bowl inside a ward its owner cannot use refuses to settle.");

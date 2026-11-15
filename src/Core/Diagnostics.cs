@@ -39,6 +39,7 @@ namespace Husnisse.Core
                       " wards=" + WardIsLoveCompat.Count +
                       " ward_api=" + (WardIsLoveCompat.Bound ? "bound" : "unbound") +
                       " require_ward_ownership=" + HusnisseConfig.RequireWardOwnership.Value +
+                      " " + DropMoreLootCompat.Describe() +
                       " " + PluginGuards.Describe());
 
             // The contract's own answer, from the same code the crafting row and the console command
@@ -50,6 +51,7 @@ namespace Husnisse.Core
                       " feeding_required=" + WorldPolicy.FeedingRequired +
                       " claims=" + ClaimRegistry.Count +
                       " trips=" + TripRunner.Count +
+                      " " + FetchRunner.Describe() +
                       " nisses=" + Object.FindObjectsByType<NisseActor>(FindObjectsSortMode.None).Length +
                       " bowl_piece=" + BowlPieceState());
 
