@@ -4,7 +4,9 @@ Run 2026-11-15 on the rig's spare tree `V:\ValheimTest2` (port 2656, world `MTTe
 server, no client. Same game build as the live server (`build_parity: MATCH E5E761C58099`).
 
 - `Husnisse.dll` sha256 `a21c60a81c4a8f2a01e9bd45da230aa3dee4867d5d6b9ee0ea85305236c3d055` — the build
-  that ran every scenario below; no source change after it.
+  that ran every scenario below, still the DLL deployed in the tree. No source changed after it
+  (`git status` clean for `src/`); a rebuild of `HEAD` is the same code but not byte-identical, because
+  the toolchain embeds build ids.
 - `TestHarness.dll` sha256 `02f439fc73bcb11033c777b304bdba2ca752affac225601ff2b4678fa01bbee8`
 - plugins in the tree: Husnisse, TestHarness, Jotunn, ConditionalConfigSync, ValheimModding-YamlDotNet
   (detector + 16.3.1), ServerSoftStop, MineTogether
