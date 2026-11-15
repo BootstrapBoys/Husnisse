@@ -1,0 +1,2 @@
+gc cmd: inv
+gc inv stacks=4 items=55 [obsidianx4,deerhidex4,copperscrapx5,woodx42]

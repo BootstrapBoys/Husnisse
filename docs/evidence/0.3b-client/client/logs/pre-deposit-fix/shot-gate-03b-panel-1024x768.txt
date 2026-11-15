@@ -1,0 +1,2 @@
+gc cmd: shot gate-03b-panel-1024x768
+gc shot C:\Users\Hermes\Desktop\husnisse-captures\gate-03b-panel-1024x768.png

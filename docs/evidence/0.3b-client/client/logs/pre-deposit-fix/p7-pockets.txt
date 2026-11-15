@@ -1,0 +1,6 @@
+gc cmd: give TrollHide 3 1
+gc give TrollHidex3 slot=(0,1) item=True stacks=1 items=3 [trollhidex3]
+gc cmd: give BoneFragments 3 2
+gc give BoneFragmentsx3 slot=(0,2) item=True stacks=2 items=6 [trollhidex3,bonefragmentsx3]
+gc cmd: inv
+gc inv stacks=2 items=6 [trollhidex3,bonefragmentsx3]

@@ -1,0 +1,7 @@
+gc cmd: click HusnisseCopyYes
+gc click HusnisseCopyYes label='Copy to nearby' interactable=True
+gc click HusnisseCopyYes invoked
+gc hud center='Rule copy sent for 2 container(s).'
+gc after HusnisseCopyYes ui container=piece_chest_wood(Clone) strip=True net='Off the network' netClickable=True rules='Rules: Metals' rulesClickable=True panel=True win=True inUse=True dist=1.8
+gc after HusnisseCopyYes zdo net=False rule='v1;k=cat;c=metals' inUseFlag=False owner=True
+gc after HusnisseCopyYes panel title='Storage rule' priority='0' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=True custom='Save contents' customOpen=False

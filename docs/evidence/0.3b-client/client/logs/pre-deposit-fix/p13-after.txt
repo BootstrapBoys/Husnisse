@@ -1,0 +1,4 @@
+gc cmd: ui
+gc ui ui container=piece_chest_wood(Clone) strip=True net='On the network' netClickable=True rules='Rules: Metals' rulesClickable=True panel=True win=True inUse=True dist=1.6
+gc ui zdo net=True rule='v1;k=cat;c=metals' inUseFlag=False owner=True
+gc ui panel title='Storage rule' priority='0' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=True custom='Save contents' customOpen=False

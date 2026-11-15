@@ -1,0 +1,37 @@
+Husnisse 0.3.1
+started 2026-11-15 14:11:32
+
+
+== world ready @ 14:12:00 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=False claims=0 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+
+== claim registered @ 14:14:29 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=False claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+claim -357620738:19438 source=native ward=0:0 owner=-202584743 r=20 center=-131,189 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 pickup=all unknown=0 lod=- nisse=none
+[flow] claim=-357620738:19438 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+husnisse rule piece_chest_wood[8] -127,189 net=on rule=none
+husnisse rule piece_chest_wood[7] -129,191 net=on rule=none
+husnisse rule piece_chest_wood[0] -133,175 net=on rule=none
+husnisse rule piece_chest_wood[4] -129,175 net=on rule=none
+husnisse rule piece_chest_wood[2] -131,173 net=on rule=none
+husnisse rule piece_chest_wood[1] -133,177 net=on rule=none
+husnisse rule piece_chest_wood[5] -129,177 net=on rule=none
+husnisse rule piece_chest_wood[0] -133,175 net=on rule=cat:metals
+husnisse rule piece_chest_wood[4] -129,175 net=on rule=cat:wood
+husnisse rule piece_chest_wood[2] -131,173 net=on rule=overflow
+husnisse rule piece_chest_wood[1] -133,177 net=on rule=deposit
+husnisse rule piece_chest_wood[6] -129,189 net=off rule=cat:wood
+[Orders] empty pockets queued=2 claim=-357620738:19438
+[Flow] drain tokens=5.0 queued=2 lane_ground=2 lane_container=0 lane_pockets=0 next=ground budget=2
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(-133,175) why=cat:metals src=ground claim=-357620738:19438
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(-133,175) why=cat:metals src=ground zdo=1
+[Flow] drain tokens=5.0 queued=3 lane_ground=3 lane_container=0 lane_pockets=0 next=ground budget=3
+[Flow] trip stacks=2 target=piece_chest_wood(Clone) at=(-129,175) why=cat:wood src=ground claim=-357620738:19438
+[Flow] landed moved=2 target=piece_chest_wood(Clone) at=(-129,175) why=cat:wood src=ground zdo=1
+[Flow] drain tokens=5.0 queued=1 lane_ground=1 lane_container=0 lane_pockets=0 next=ground budget=1

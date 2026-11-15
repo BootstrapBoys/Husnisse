@@ -1,0 +1,16 @@
+gc cmd: containers
+gc container TreasureChest_meadows(Clone) idx=1 at 39.84,77.74,0.05 net=False rule='' stacks=3 items=16 [upgrader_tier0 upgrader_weapon upgrader_namex1,torchx1,coinsx14] zdosts=3
+gc container piece_chest_wood(Clone) idx=5 at 5.00,78.02,-19.00 net=True rule='' stacks=0 items=0 [] zdosts=0
+gc container piece_chest_wood(Clone) idx=3 at 3.00,78.02,-17.00 net=False rule='' stacks=0 items=0 [] zdosts=0
+gc container piece_chest_wood(Clone) idx=0 at 1.00,78.02,-21.00 net=True rule='v1;k=cat;c=metals' stacks=0 items=0 [] zdosts=0
+gc container piece_chest_wood(Clone) idx=7 at 5.00,78.02,-5.00 net=True rule='' stacks=0 items=0 [] zdosts=0
+gc container TreasureChest_meadows(Clone) idx=0 at -108.03,70.83,-138.93 net=False rule='' stacks=2 items=3 [flintx2,torchx1] zdosts=2
+gc container piece_chest_wood(Clone) idx=4 at 5.00,78.02,-21.00 net=True rule='v1;k=cat;c=wood' stacks=1 items=18 [woodx18] zdosts=1
+gc container TreasureChest_meadows_buried(Clone) idx=0 at -59.67,70.50,-138.03 net=False rule='' stacks=2 items=2 [amberpearlx1,upgrader_tier0 upgrader_weapon upgrader_namex1] zdosts=2
+gc container piece_chest_wood(Clone) idx=8 at 7.00,78.02,-7.00 net=True rule='' stacks=0 items=0 [] zdosts=0
+gc container piece_chest_wood(Clone) idx=6 at 5.00,78.02,-7.00 net=False rule='v1;k=cat;c=wood' stacks=0 items=0 [] zdosts=0
+gc container piece_chest_wood(Clone) idx=1 at 1.00,78.02,-19.00 net=True rule='v1;k=deposit' stacks=0 items=0 [] zdosts=0
+gc container piece_chest_wood(Clone) idx=2 at 3.00,78.02,-23.00 net=True rule='v1;k=overflow' stacks=0 items=0 [] zdosts=0
+gc containers total=12 net=7 ruled=5
+gc close after: gui=none localZdoOwner=True stacks=0 items=0 []
+gc hud top='World saved ( 0.06+1.08s )'

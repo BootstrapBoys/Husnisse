@@ -1,0 +1,10 @@
+gc cmd: close
+gc close was=none
+gc cmd: stand Container 0
+gc stand Container[0] at 393.98,28.37,402.04 -> player 395.58,28.57,402.04
+gc cmd: open Container 0
+gc interact Container alt=False -> True
+gc hud top='Added Wood'
+gc hud top='Added Wood x2'
+gc hud top='Added Wood x3'
+gc hud top='Added Wood x4'

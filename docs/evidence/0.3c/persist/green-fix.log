@@ -1,0 +1,61 @@
+scenario queued: husnisse-03c-deposit-persist.cmd
+18:15:10.290 pocketfill player=0 stacks=1 items=5
+18:15:10.848 > depositall piece_chest_wood 0
+18:15:11.409 depositall piece_chest_wood[0] net=on before stacks=1 items=5
+18:15:11.434 depositall result=True after stacks=1 items=5
+18:15:11.844 > expect_last depositall result=True after stacks=1 items=5
+18:15:11.845   expect_last 'depositall result=True after stacks=1 items=5' in 'depositall result=True after stacks=1 items=5': ok
+18:15:12.407 > wait 40
+18:15:12.407 wait: 40s (server keeps ticking)
+18:15:53.079 > pockets
+18:15:53.079 pockets player=0 stacks=0 items=0
+18:15:53.583 > expect_last stacks=0 items=0
+18:15:53.583   expect_last 'stacks=0 items=0' in 'pockets player=0 stacks=0 items=0': ok
+18:15:54.085 > container piece_chest_wood 1
+18:15:54.095 container piece_chest_wood[1] stacks=1 items=5
+18:15:54.587 > expect_last stacks=1 items=5
+18:15:54.587   expect_last 'stacks=1 items=5' in 'container piece_chest_wood[1] stacks=1 items=5': ok
+18:15:55.089 > zdoitems piece_chest_wood 1
+18:15:55.103 zdoitems piece_chest_wood[1] bytes=21 stacks=1 items=5 owner=-1284927893 serverOwns=True
+18:15:55.592 > expect_last stacks=1 items=5
+18:15:55.592   expect_last 'stacks=1 items=5' in 'zdoitems piece_chest_wood[1] bytes=21 stacks=1 items=5 owner=-1284927893 serverOwns=True': ok
+18:15:56.097 > expect_last serverOwns=True
+18:15:56.097   expect_last 'serverOwns=True' in 'zdoitems piece_chest_wood[1] bytes=21 stacks=1 items=5 owner=-1284927893 serverOwns=True': ok
+18:15:56.600 > logcheck BSBLogs/Husnisse.log \[Flow\] landed moved=1 target=piece_chest_wood\(Clone\) at=\(4,3\) why=cat:wood .* zdo=1
+18:15:56.601   logcheck BSBLogs/Husnisse.log /\[Flow\] landed moved=1 target=piece_chest_wood\(Clone\) at=\(4,3\) why=cat:wood .* zdo=1/: ok '[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(4,3) why=cat:wood src=pockets zdo=1'
+18:15:57.102 > zdoowner piece_chest_wood 424242 2
+18:15:57.112 zdoowner piece_chest_wood[2] was=-1284927893 now=424242 serverOwns=False
+18:15:57.604 > zdoitems piece_chest_wood 2
+18:15:57.614 zdoitems piece_chest_wood[2] absent
+18:15:58.107 > expect_last absent
+18:15:58.107   expect_last 'absent' in 'zdoitems piece_chest_wood[2] absent': ok
+18:15:58.609 > pocketfill Coal 7
+18:15:58.619 pocketfill player=0 stacks=1 items=7
+18:15:59.112 > depositall piece_chest_wood 2
+18:15:59.597 depositall piece_chest_wood[2] net=off before stacks=1 items=7
+18:15:59.599 depositall result=True after stacks=0 items=0
+18:15:59.903 > expect depositall piece_chest_wood[2] net=off before stacks=1 items=7
+18:15:59.904   expect 'depositall piece_chest_wood[2] net=off before stacks=1 items=7': ok
+18:16:00.406 > expect_last depositall result=True after stacks=0 items=0
+18:16:00.406   expect_last 'depositall result=True after stacks=0 items=0' in 'depositall result=True after stacks=0 items=0': ok
+18:16:00.909 > container piece_chest_wood 2
+18:16:00.919 container piece_chest_wood[2] stacks=1 items=7
+18:16:01.412 > expect_last stacks=1 items=7
+18:16:01.412   expect_last 'stacks=1 items=7' in 'container piece_chest_wood[2] stacks=1 items=7': ok
+18:16:01.915 > zdoitems piece_chest_wood 2
+18:16:01.930 zdoitems piece_chest_wood[2] bytes=21 stacks=1 items=7 owner=-1284927893 serverOwns=True
+18:16:02.416 > expect_last stacks=1 items=7
+18:16:02.416   expect_last 'stacks=1 items=7' in 'zdoitems piece_chest_wood[2] bytes=21 stacks=1 items=7 owner=-1284927893 serverOwns=True': ok
+18:16:02.919 > expect_last serverOwns=True
+18:16:02.919   expect_last 'serverOwns=True' in 'zdoitems piece_chest_wood[2] bytes=21 stacks=1 items=7 owner=-1284927893 serverOwns=True': ok
+18:16:03.421 > logcheck BSBLogs/Husnisse.log \[Orders\] deposit-all dumped=1 left=0 .* zdo=1
+18:16:03.422   logcheck BSBLogs/Husnisse.log /\[Orders\] deposit-all dumped=1 left=0 .* zdo=1/: ok '[Orders] deposit-all dumped=1 left=0 container=piece_chest_wood(Clone) at=(8,3) zdo=1'
+18:16:03.924 > wait 20
+18:16:03.924 wait: 20s (server keeps ticking)
+18:16:24.040 > zdoitems piece_chest_wood 2
+18:16:24.054 zdoitems piece_chest_wood[2] bytes=21 stacks=1 items=7 owner=-1284927893 serverOwns=True
+18:16:24.542 > expect_last stacks=1 items=7
+18:16:24.542   expect_last 'stacks=1 items=7' in 'zdoitems piece_chest_wood[2] bytes=21 stacks=1 items=7 owner=-1284927893 serverOwns=True': ok
+18:16:25.045 > state
+18:16:25.076 server=True rocks5=0 rocks1=0 drops=0 players=0 zdos=88 instances=32
+18:16:25.548 scenario done: PASS (18 assertions, 0 failed)

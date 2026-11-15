@@ -1,0 +1,10 @@
+gc container piece_chest_wood(Clone) idx=6 at 4.00,46.17,6.00 net=False stacks=2 items=10 [copperscrapx5,ironscrapx5] zdosts=2 zid=-309553712:13317 zrev=30 zown=-878098723
+gc container piece_chest_wood(Clone) idx=3 at 2.00,46.17,-4.00 net=False stacks=10 items=138 [copperscrapx4,woodx4,coalx6,stonex20,resinx20,feathersx20,greydwarfeyex20,loxpeltx20,flintx20,wolfpeltx4] zdosts=10 zid=-309553712:13325 zrev=18 zown=-878098723
+gc container piece_chest_wood(Clone) idx=1 at 0.00,46.17,-6.00 net=True stacks=0 items=0 [] zdosts=0 zid=-309553712:13323 zrev=6 zown=-878098723
+gc container piece_chest_wood(Clone) idx=4 at 4.00,46.17,-8.00 net=True stacks=1 items=10 [woodx10] zdosts=1 zid=-309553712:13321 zrev=8 zown=-878098723
+gc container piece_chest_wood(Clone) idx=2 at 2.00,46.17,-10.00 net=True stacks=0 items=0 [] zdosts=0 zid=-309553712:13322 zrev=7 zown=-878098723
+gc container piece_chest_wood(Clone) idx=7 at 4.00,46.17,8.00 net=True stacks=1 items=5 [copperscrapx5] zdosts=1 zid=-309553712:13319 zrev=23 zown=-878098723
+gc container piece_chest_wood(Clone) idx=0 at 0.00,46.17,-8.00 net=True stacks=0 items=0 [] zdosts=0 zid=-309553712:13320 zrev=7 zown=-878098723
+gc container piece_chest_wood(Clone) idx=5 at 4.00,46.17,-6.00 net=True stacks=0 items=0 [] zdosts=0 zid=-309553712:13324 zrev=7 zown=-878098723
+gc container piece_chest_wood(Clone) idx=8 at 6.00,46.17,6.00 net=True stacks=0 items=0 [] zdosts=0 zid=-309553712:13318 zrev=11 zown=-878098723
+gc containers total=13 net=7 ruled=7

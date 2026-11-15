@@ -1,0 +1,61 @@
+scenario queued: husnisse-03c-deposit-persist.cmd
+18:10:38.030 wait: 40s (server keeps ticking)
+18:11:18.339 > pockets
+18:11:18.340 pockets player=0 stacks=0 items=0
+18:11:18.841 > expect_last stacks=0 items=0
+18:11:18.842   expect_last 'stacks=0 items=0' in 'pockets player=0 stacks=0 items=0': ok
+18:11:19.344 > container piece_chest_wood 1
+18:11:19.354 container piece_chest_wood[1] stacks=1 items=5
+18:11:19.847 > expect_last stacks=1 items=5
+18:11:19.847   expect_last 'stacks=1 items=5' in 'container piece_chest_wood[1] stacks=1 items=5': ok
+18:11:20.350 > zdoitems piece_chest_wood 1
+18:11:20.362 zdoitems piece_chest_wood[1] absent
+18:11:20.852 > expect_last stacks=1 items=5
+18:11:20.852   expect_last 'stacks=1 items=5' in 'zdoitems piece_chest_wood[1] absent': MISSING
+18:11:21.355 > expect_last serverOwns=True
+18:11:21.355   expect_last 'serverOwns=True' in 'zdoitems piece_chest_wood[1] absent': MISSING
+18:11:21.862 > logcheck BSBLogs/Husnisse.log \[Flow\] landed moved=1 target=piece_chest_wood\(Clone\) at=\(4,3\) why=cat:wood .* zdo=1
+18:11:21.864   logcheck BSBLogs/Husnisse.log /\[Flow\] landed moved=1 target=piece_chest_wood\(Clone\) at=\(4,3\) why=cat:wood .* zdo=1/: MISSING
+18:11:22.360 > zdoowner piece_chest_wood 424242 2
+18:11:22.369 zdoowner piece_chest_wood[2] was=-1344836286 now=424242 serverOwns=False
+18:11:22.862 > zdoitems piece_chest_wood 2
+18:11:22.872 zdoitems piece_chest_wood[2] absent
+18:11:23.365 > expect_last absent
+18:11:23.365   expect_last 'absent' in 'zdoitems piece_chest_wood[2] absent': ok
+18:11:23.868 > pocketfill Coal 7
+18:11:23.879 pocketfill player=0 stacks=1 items=7
+18:11:24.370 > depositall piece_chest_wood 2
+18:11:24.804 depositall piece_chest_wood[2] net=off before stacks=1 items=7
+18:11:24.806 depositall result=True after stacks=0 items=0
+18:11:25.112 > expect depositall piece_chest_wood[2] net=off before stacks=1 items=7
+18:11:25.113   expect 'depositall piece_chest_wood[2] net=off before stacks=1 items=7': ok
+18:11:25.616 > expect_last depositall result=True after stacks=0 items=0
+18:11:25.616   expect_last 'depositall result=True after stacks=0 items=0' in 'depositall result=True after stacks=0 items=0': ok
+18:11:26.120 > container piece_chest_wood 2
+18:11:26.131 container piece_chest_wood[2] stacks=1 items=7
+18:11:26.622 > expect_last stacks=1 items=7
+18:11:26.622   expect_last 'stacks=1 items=7' in 'container piece_chest_wood[2] stacks=1 items=7': ok
+18:11:27.128 > zdoitems piece_chest_wood 2
+18:11:27.137 zdoitems piece_chest_wood[2] absent
+18:11:27.627 > expect_last stacks=1 items=7
+18:11:27.627   expect_last 'stacks=1 items=7' in 'zdoitems piece_chest_wood[2] absent': MISSING
+18:11:28.129 > expect_last serverOwns=True
+18:11:28.129   expect_last 'serverOwns=True' in 'zdoitems piece_chest_wood[2] absent': MISSING
+18:11:28.637 > logcheck BSBLogs/Husnisse.log \[Orders\] deposit-all dumped=1 left=0 .* zdo=1
+18:11:28.637   logcheck BSBLogs/Husnisse.log /\[Orders\] deposit-all dumped=1 left=0 .* zdo=1/: MISSING
+18:11:29.140 > wait 20
+18:11:29.140 wait: 20s (server keeps ticking)
+18:11:49.272 > zdoitems piece_chest_wood 2
+18:11:49.282 zdoitems piece_chest_wood[2] absent
+18:11:49.774 > expect_last stacks=1 items=7
+18:11:49.774   expect_last 'stacks=1 items=7' in 'zdoitems piece_chest_wood[2] absent': MISSING
+18:11:50.277 > state
+18:11:50.308 server=True rocks5=0 rocks1=0 drops=0 players=0 zdos=88 instances=32
+18:11:50.790 scenario done: FAIL (18 assertions, 7 failed)
+18:11:50.790   FAILED EXPECTATION: last:stacks=1 items=5
+18:11:50.790   FAILED EXPECTATION: last:serverOwns=True
+18:11:50.790   FAILED EXPECTATION: logcheck BSBLogs/Husnisse.log /\[Flow\] landed moved=1 target=piece_chest_wood\(Clone\) at=\(4,3\) why=cat:wood .* zdo=1/
+18:11:50.790   FAILED EXPECTATION: last:stacks=1 items=7
+18:11:50.790   FAILED EXPECTATION: last:serverOwns=True
+18:11:50.790   FAILED EXPECTATION: logcheck BSBLogs/Husnisse.log /\[Orders\] deposit-all dumped=1 left=0 .* zdo=1/
+18:11:50.790   FAILED EXPECTATION: last:stacks=1 items=7

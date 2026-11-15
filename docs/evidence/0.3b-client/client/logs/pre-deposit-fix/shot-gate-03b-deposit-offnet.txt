@@ -1,0 +1,2 @@
+gc cmd: shot gate-03b-deposit-offnet
+gc shot C:\Users\Hermes\Desktop\husnisse-captures\gate-03b-deposit-offnet.png

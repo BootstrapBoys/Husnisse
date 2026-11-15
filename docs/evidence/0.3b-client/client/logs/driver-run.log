@@ -1,0 +1,376 @@
+
+== stopclient: stop the client (a running client locks its plugin DLLs)
+#< CLIXML
+force killed
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"><Obj S="progress" RefId="0"><TN RefId="0"><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="progress" RefId="1"><TNRef RefId="0" /><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj></Objs>
+== install: push the build and the probe to the client
+-rw-rw-r-- 1 hermes hermes 256512 Nov 15 13:13 /home/hermes/projects/valheim/nisse/artifacts/debug/Husnisse.dll
+-rw-rw-r-- 1 hermes hermes  42496 Nov 15 14:11 /home/hermes/projects/valheim/nisse/probe/gate-client/artifacts/HusnisseGateClientProbe.dll
+copied Husnisse.dll
+copied HusnisseGateClientProbe.dll
+== installed ==
+  stage Husnisse.dll      CD1F5F5497EFE87D73E5535D5A21EB33E6E6E3C763921E289E1CC65AB34CF23A
+  plugin Husnisse.dll     CD1F5F5497EFE87D73E5535D5A21EB33E6E6E3C763921E289E1CC65AB34CF23A
+  stage probe             6DD07418A68D96B8E28BA439D6941EBC33A64EFA08AB43375121F383715E9C5E
+  plugin probe            6DD07418A68D96B8E28BA439D6941EBC33A64EFA08AB43375121F383715E9C5E
+== plugin folders ==
+BootstrapBoys-GateClientProbe
+BootstrapBoys-Husnisse
+shudnal-ConditionalConfigSync
+ValheimModding-Jotunn
+ValheimModding-JsonDotNET
+ValheimModding-YamlDotNet
+cmd file reset: # idle
+cd1f5f5497efe87d73e5535d5a21eb33e6e6e3c763921e289e1cc65ab34cf23a  /home/hermes/projects/valheim/nisse/artifacts/debug/Husnisse.dll
+6dd07418a68d96b8e28ba439d6941ebc33a64efa08ab43375121f383715e9c5e  /home/hermes/projects/valheim/nisse/probe/gate-client/artifacts/HusnisseGateClientProbe.dll
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+#< CLIXML
+task args: -console -joinserverwithcharacter 192.168.1.136:2556 nissetester -password mtest
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"><Obj S="progress" RefId="0"><TN RefId="0"><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="progress" RefId="1"><TNRef RefId="0" /><MS><I64 N="SourceId">2</I64><PR N="Record"><AV>Get-ScheduledTask -TaskName 'HusnisseLegsLaunch'</AV><AI>1608496747</AI><Nil /><PI>-1</PI><PC>100</PC><T>Completed</T><SR>0</SR><SD>1/1 completed</SD></PR></MS></Obj><Obj S="progress" RefId="2"><TNRef RefId="0" /><MS><I64 N="SourceId">3</I64><PR N="Record"><AV>Set-ScheduledTask -TaskName 'HusnisseLegsLaunch' -Action $a | Out-Null</AV><AI>1812627515</AI><Nil /><PI>-1</PI><PC>100</PC><T>Completed</T><SR>0</SR><SD>1/1 completed</SD></PR></MS></Obj><Obj S="progress" RefId="3"><TNRef RefId="0" /><MS><I64 N="SourceId">4</I64><PR N="Record"><AV>Get-ScheduledTask -TaskName 'HusnisseLegsLaunch').Actions[0].Arguments)</AV><AI>148311325</AI><Nil /><PI>-1</PI><PC>100</PC><T>Completed</T><SR>0</SR><SD>1/1 completed</SD></PR></MS></Obj><Obj S="progress" RefId="4"><TNRef RefId="0" /><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj></Objs>#< CLIXML
+not running
+launched HusnisseLegsLaunch at 11:12:14
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"><Obj S="progress" RefId="0"><TN RefId="0"><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="progress" RefId="1"><TNRef RefId="0" /><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="progress" RefId="2"><TNRef RefId="0" /><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="progress" RefId="3"><TNRef RefId="0" /><MS><I64 N="SourceId">2</I64><PR N="Record"><AV>Start-ScheduledTask -TaskName "HusnisseLegsLaunch"</AV><AI>466265197</AI><Nil /><PI>-1</PI><PC>100</PC><T>Completed</T><SR>0</SR><SD>1/1 completed</SD></PR></MS></Obj></Objs>[Info   :Husnisse Gate Client Probe] gc ready player=Stranger id=-202584743 pos=-130.63,77.76,188.82 world=MTTest peers=1
+   gc cmd: where
+   gc where player=-130.63,77.76,188.82 nisse=- peers=1
+   gc cmd: state
+   gc state player=Stranger id=-202584743 pos=-130.63,77.76,188.82 hp=25/25 dead=False nisse=absent
+   gc state bowl=-
+   gc cmd: god on
+   gc god=True
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+   scenario queued: pre-clean.cmd
+   19:11:33.725 harness ready - write commands to V:\ValheimTest\BepInEx\config\harness.cmd
+   19:11:33.725 scene: not ready  server: False
+   19:12:01.146 harness patch: object culling gated by HoldObjects
+   19:13:29.587 mt master: no plugin instance
+   19:13:29.587 scenario loaded: 3 command(s)
+   19:13:29.587 > cleanup
+   19:13:29.733 mt master: no plugin instance
+   19:13:29.733 cleanup done
+   19:13:30.040 > wait 3
+   19:13:30.043 wait: 3s (server keeps ticking)
+   19:13:33.056 > husnisse status
+   19:13:33.192 husnisse status [config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=False
+   19:13:33.192 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+   19:13:33.192 husnisse status schema=2 feeding_required=False claims=0 trips=0 nisses=0 bowl_piece=present
+   19:13:33.192 husnisse status [rules] containers=0 ruled=0 deposits=0 blacklisted=0
+   19:13:33.192 husnisse status lines=4
+   19:13:33.566 scenario done: PASS (0 assertions, 0 failed)
+   gc cmd: god on
+   gc god=True
+   gc cmd: heal
+   gc heal hp=25/25
+   gc cmd: where
+   gc where player=-130.63,77.76,188.82 nisse=- peers=1
+gc where player=-130.63,77.76,188.82 nisse=- peers=1
+base x=-130.63 y=77.76 z=188.82 -> deck 78.01 (generator scene-compact.sh)
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (78 floor pieces, 9 chests)
+IDX_metals=0
+IDX_deposit=1
+IDX_overflow=2
+IDX_dump=3
+IDX_wood=4
+IDX_plain=5
+IDX_panel=6
+IDX_copyB=7
+IDX_copyA=8
+   19:14:43.984 console > husnisse_rule net piece_chest_wood on 7
+   19:14:44.485 > console husnisse_rule net piece_chest_wood on 0
+   19:14:44.488 console > husnisse_rule net piece_chest_wood on 0
+   19:14:44.986 > console husnisse_rule net piece_chest_wood on 4
+   19:14:44.989 console > husnisse_rule net piece_chest_wood on 4
+   19:14:45.490 > console husnisse_rule net piece_chest_wood on 2
+   19:14:45.493 console > husnisse_rule net piece_chest_wood on 2
+   19:14:45.992 > console husnisse_rule net piece_chest_wood on 1
+   19:14:45.994 console > husnisse_rule net piece_chest_wood on 1
+   19:14:46.497 > console husnisse_rule net piece_chest_wood on 5
+   19:14:46.500 console > husnisse_rule net piece_chest_wood on 5
+   19:14:46.997 > console husnisse_rule set piece_chest_wood cat:metals 0
+   19:14:46.999 console > husnisse_rule set piece_chest_wood cat:metals 0
+   19:14:47.501 > console husnisse_rule set piece_chest_wood cat:wood 4
+   19:14:47.503 console > husnisse_rule set piece_chest_wood cat:wood 4
+   19:14:48.002 > console husnisse_rule set piece_chest_wood overflow 2
+   19:14:48.004 console > husnisse_rule set piece_chest_wood overflow 2
+   19:14:48.506 > console husnisse_rule set piece_chest_wood deposit 1
+   19:14:48.509 console > husnisse_rule set piece_chest_wood deposit 1
+   19:14:49.007 > console husnisse_rule set piece_chest_wood cat:wood 6
+   19:14:49.010 console > husnisse_rule set piece_chest_wood cat:wood 6
+   19:14:49.511 > wait 2
+   19:14:49.511 wait: 2s (server keeps ticking)
+   19:14:51.521 > husnisse status
+   19:14:51.680 husnisse status [config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=False
+   19:14:51.680 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+   19:14:51.680 husnisse status schema=2 feeding_required=False claims=1 trips=0 nisses=1 bowl_piece=present
+   19:14:51.680 husnisse status rule -357620738:19438 -129,189 net=off rule=cat:wood
+   19:14:51.680 husnisse status rule -357620738:19438 -129,177 net=on rule=none
+   19:14:51.680 husnisse status rule -357620738:19438 -127,189 net=on rule=none
+   19:14:51.680 husnisse status rule -357620738:19438 -131,173 net=on rule=overflow
+   19:14:51.680 husnisse status rule -357620738:19438 -129,175 net=on rule=cat:wood
+   19:14:51.680 husnisse status rule -357620738:19438 -129,191 net=on rule=none
+   19:14:51.680 husnisse status rule -357620738:19438 -133,177 net=on rule=deposit
+   19:14:51.680 husnisse status rule -357620738:19438 -133,175 net=on rule=cat:metals
+   19:14:51.680 husnisse status [rules] containers=8 ruled=5 deposits=1 blacklisted=0
+   19:14:51.680 husnisse status claim -357620738:19438 source=native ward=0:0 owner=-202584743 r=20 center=-131,189 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=9 stacks=0 pickup=all unknown=1 lod=near:1.8 nisse=yes
+   19:14:51.680 husnisse status [flow] claim=-357620738:19438 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+   19:14:51.680 husnisse status lines=14
+   19:14:52.053 scenario done: PASS (2 assertions, 0 failed)
+   gc cmd: containers
+   gc container piece_chest_wood(Clone) idx=4 at -129.00,78.11,175.00 net=True rule='v1;k=cat;c=wood' stacks=0 items=0 [] zdosts=0 zid=-357620738:19444 zrev=6 zown=-1113127003
+   gc container piece_chest_wood(Clone) idx=7 at -129.00,78.11,191.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19442 zrev=5 zown=-1113127003
+   gc container piece_chest_wood(Clone) idx=8 at -127.00,78.11,189.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19441 zrev=5 zown=-1113127003
+   gc container TreasureChest_meadows_buried(Clone) idx=1 at -16.21,67.43,196.11 net=False rule='' stacks=3 items=36 [arrow_firex13,coinsx22,rubyx1] zdosts=3 zid=-357620738:7204 zrev=10 zown=-357620738
+   gc container TreasureChest_meadows_buried(Clone) idx=0 at -111.26,79.45,127.99 net=False rule='' stacks=2 items=24 [coinsx21,rubyx3] zdosts=2 zid=-357620738:6913 zrev=9 zown=-1113127003
+   gc container piece_chest_wood(Clone) idx=3 at -131.00,78.11,179.00 net=False rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19448 zrev=4 zown=-1113127003
+   gc container TreasureChest_meadows_buried(Clone) idx=2 at -7.82,57.85,67.51 net=False rule='' stacks=3 items=16 [silvernecklacex1,arrow_firex14,upgrader_tier0 upgrader_weapon upgrader_namex1] zdosts=3 zid=-357620738:11127 zrev=10 zown=0
+   gc container piece_chest_wood(Clone) idx=5 at -129.00,78.11,177.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19447 zrev=5 zown=-1113127003
+   gc container piece_chest_wood(Clone) idx=6 at -129.00,78.11,189.00 net=False rule='v1;k=cat;c=wood' stacks=0 items=0 [] zdosts=0 zid=-357620738:19440 zrev=5 zown=-1113127003
+   gc container piece_chest_wood(Clone) idx=1 at -133.00,78.11,177.00 net=True rule='v1;k=deposit' stacks=0 items=0 [] zdosts=0 zid=-357620738:19446 zrev=6 zown=-1113127003
+   gc container piece_chest_wood(Clone) idx=0 at -133.00,78.11,175.00 net=True rule='v1;k=cat;c=metals' stacks=0 items=0 [] zdosts=0 zid=-357620738:19443 zrev=6 zown=-1113127003
+   gc container piece_chest_wood(Clone) idx=2 at -131.00,78.11,173.00 net=True rule='v1;k=overflow' stacks=0 items=0 [] zdosts=0 zid=-357620738:19445 zrev=6 zown=-1113127003
+   gc containers total=12 net=7 ruled=5
+
+== p10: deposit-all on a networked chest — the nisse files it elsewhere
+   gc cmd: clear
+   gc clear stacks=0 items=0 []
+   gc cmd: inv
+   gc inv stacks=0 items=0 []
+   gc cmd: give CopperScrap 5 1
+   gc give CopperScrapx5 slot=(0,1) item=True stacks=1 items=5 [copperscrapx5]
+   gc cmd: give Wood 5 2
+   gc give Woodx5 slot=(0,2) item=True stacks=2 items=10 [copperscrapx5,woodx5]
+   gc cmd: inv
+   gc inv stacks=2 items=10 [copperscrapx5,woodx5]
+   gc cmd: close
+   gc close was=none
+   gc cmd: stand piece_chest_wood 5
+   gc stand piece_chest_wood(Clone)[5] at -129.00,78.11,177.00 -> player -127.40,78.31,177.00
+   gc cmd: open piece_chest_wood 5
+   gc interact piece_chest_wood(Clone) alt=False -> True
+   gc close after: gui=piece_chest_wood(Clone) localZdoOwner=True stacks=0 items=0 []
+   gc cmd: click HusnisseDepositAll
+   gc click HusnisseDepositAll label='Deposit all' interactable=True
+   [Info   :  Husnisse] order RPC registered
+   gc click HusnisseDepositAll invoked
+   gc hud center='The nisse takes 2 stack(s).'
+   gc after HusnisseDepositAll ui container=piece_chest_wood(Clone) strip=True net='On the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=True inUse=True dist=1.6
+   gc after HusnisseDepositAll zdo net=True rule='' inUseFlag=False owner=True
+   gc after HusnisseDepositAll panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False
+   gc cmd: watch 25 5
+   gc watch start seconds=25 interval=5.0
+   gc watch t=5 player=Stranger id=-202584743 pos=-127.40,78.11,177.01 hp=25/25 dead=False nisse=present
+   gc watch t=5 bowl feeding=False satiety=25 mood=100 ownerZdo=-202584743 authority=native claimRadius=20 claimOwner=-202584743 localZdoOwner=True
+   gc watch t=5 pantry stacks=0 items=0 []
+   gc watch t=5 hover='Porridge Bowl | This nisse asks for nothing. | [Alt] require offerings | Claim 20 m (native)'
+   gc watch t=5 nisse hp=1000/1000 pos=-131.80,78.10,176.87
+   gc watch t=10 player=Stranger id=-202584743 pos=-127.40,78.11,177.01 hp=25/25 dead=False nisse=present
+   gc watch t=10 bowl feeding=False satiety=25 mood=100 ownerZdo=-202584743 authority=native claimRadius=20 claimOwner=-202584743 localZdoOwner=True
+   gc watch t=10 pantry stacks=0 items=0 []
+   gc watch t=10 hover='Porridge Bowl | This nisse asks for nothing. | [Alt] require offerings | Claim 20 m (native)'
+   gc watch t=10 nisse hp=1000/1000 pos=-132.28,78.11,183.85
+   gc watch t=15 player=Stranger id=-202584743 pos=-127.40,78.11,177.01 hp=25/25 dead=False nisse=present
+   gc watch t=15 bowl feeding=False satiety=25 mood=100 ownerZdo=-202584743 authority=native claimRadius=20 claimOwner=-202584743 localZdoOwner=True
+   gc watch t=15 pantry stacks=0 items=0 []
+   gc watch t=15 hover='Porridge Bowl | This nisse asks for nothing. | [Alt] require offerings | Claim 20 m (native)'
+   gc watch t=15 nisse hp=1000/1000 pos=-131.91,78.11,188.16
+   gc watch t=20 player=Stranger id=-202584743 pos=-127.40,78.11,177.01 hp=25/25 dead=False nisse=present
+   gc watch t=20 bowl feeding=False satiety=25 mood=100 ownerZdo=-202584743 authority=native claimRadius=20 claimOwner=-202584743 localZdoOwner=True
+   gc watch t=20 pantry stacks=0 items=0 []
+   gc watch t=20 hover='Porridge Bowl | This nisse asks for nothing. | [Alt] require offerings | Claim 20 m (native)'
+   gc watch t=20 nisse hp=1000/1000 pos=-129.85,78.11,179.05
+   gc watch done seconds=25
+   gc cmd: close
+   gc close was=piece_chest_wood(Clone)
+   gc cmd: containers
+   gc container piece_chest_wood(Clone) idx=4 at -129.00,78.11,175.00 net=True rule='v1;k=cat;c=wood' stacks=1 items=10 [woodx10] zdosts=1 zid=-357620738:19444 zrev=8 zown=-1113127003
+   gc container piece_chest_wood(Clone) idx=7 at -129.00,78.11,191.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19442 zrev=11 zown=-1113127003
+   gc container piece_chest_wood(Clone) idx=8 at -127.00,78.11,189.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19441 zrev=6 zown=-1113127003
+   gc container TreasureChest_meadows_buried(Clone) idx=1 at -16.21,67.43,196.11 net=False rule='' stacks=3 items=36 [arrow_firex13,coinsx22,rubyx1] zdosts=3 zid=-357620738:7204 zrev=10 zown=-357620738
+   gc container TreasureChest_meadows_buried(Clone) idx=0 at -111.26,79.45,127.99 net=False rule='' stacks=2 items=24 [coinsx21,rubyx3] zdosts=2 zid=-357620738:6913 zrev=9 zown=-1113127003
+   gc container piece_chest_wood(Clone) idx=3 at -131.00,78.11,179.00 net=False rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19448 zrev=4 zown=-1113127003
+   gc container TreasureChest_meadows_buried(Clone) idx=2 at -7.82,57.85,67.51 net=False rule='' stacks=3 items=16 [silvernecklacex1,arrow_firex14,upgrader_tier0 upgrader_weapon upgrader_namex1] zdosts=3 zid=-357620738:11127 zrev=10 zown=0
+   gc container piece_chest_wood(Clone) idx=5 at -129.00,78.11,177.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19447 zrev=7 zown=-1113127003
+   gc container piece_chest_wood(Clone) idx=6 at -129.00,78.11,189.00 net=False rule='v1;k=cat;c=wood' stacks=0 items=0 [] zdosts=0 zid=-357620738:19440 zrev=14 zown=-1113127003
+   gc container piece_chest_wood(Clone) idx=1 at -133.00,78.11,177.00 net=True rule='v1;k=deposit' stacks=0 items=0 [] zdosts=0 zid=-357620738:19446 zrev=7 zown=-1113127003
+   gc container piece_chest_wood(Clone) idx=0 at -133.00,78.11,175.00 net=True rule='v1;k=cat;c=metals' stacks=1 items=5 [copperscrapx5] zdosts=1 zid=-357620738:19443 zrev=8 zown=-1113127003
+   gc container piece_chest_wood(Clone) idx=2 at -131.00,78.11,173.00 net=True rule='v1;k=overflow' stacks=0 items=0 [] zdosts=0 zid=-357620738:19445 zrev=7 zown=-1113127003
+   gc containers total=12 net=7 ruled=5
+   gc close after: gui=none localZdoOwner=True stacks=0 items=0 []
+
+== p10relog: quit the client, rejoin, and read the containers again (the ZDOs, not a cache)
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+#< CLIXML
+task args: -console -joinserverwithcharacter 192.168.1.136:2556 nissetester -password mtest
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"><Obj S="progress" RefId="0"><TN RefId="0"><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="progress" RefId="1"><TNRef RefId="0" /><MS><I64 N="SourceId">2</I64><PR N="Record"><AV>Get-ScheduledTask -TaskName 'HusnisseLegsLaunch'</AV><AI>1608496747</AI><Nil /><PI>-1</PI><PC>100</PC><T>Completed</T><SR>0</SR><SD>1/1 completed</SD></PR></MS></Obj><Obj S="progress" RefId="2"><TNRef RefId="0" /><MS><I64 N="SourceId">3</I64><PR N="Record"><AV>Set-ScheduledTask -TaskName 'HusnisseLegsLaunch' -Action $a | Out-Null</AV><AI>1812627515</AI><Nil /><PI>-1</PI><PC>100</PC><T>Completed</T><SR>0</SR><SD>1/1 completed</SD></PR></MS></Obj><Obj S="progress" RefId="3"><TNRef RefId="0" /><MS><I64 N="SourceId">4</I64><PR N="Record"><AV>Get-ScheduledTask -TaskName 'HusnisseLegsLaunch').Actions[0].Arguments)</AV><AI>148311325</AI><Nil /><PI>-1</PI><PC>100</PC><T>Completed</T><SR>0</SR><SD>1/1 completed</SD></PR></MS></Obj><Obj S="progress" RefId="4"><TNRef RefId="0" /><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj></Objs>#< CLIXML
+force killed
+launched HusnisseLegsLaunch at 11:16:19
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"><Obj S="progress" RefId="0"><TN RefId="0"><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="progress" RefId="1"><TNRef RefId="0" /><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="progress" RefId="2"><TNRef RefId="0" /><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="progress" RefId="3"><TNRef RefId="0" /><MS><I64 N="SourceId">2</I64><PR N="Record"><AV>Start-ScheduledTask -TaskName "HusnisseLegsLaunch"</AV><AI>1860562469</AI><Nil /><PI>-1</PI><PC>100</PC><T>Completed</T><SR>0</SR><SD>1/1 completed</SD></PR></MS></Obj></Objs>[Info   :Husnisse Gate Client Probe] gc ready player=Stranger id=-202584743 pos=-130.63,79.51,188.82 world=MTTest peers=1
+   gc cmd: where
+   gc where player=-130.55,79.46,188.78 nisse=-131.51,78.11,189.88 peers=1
+   gc cmd: state
+   gc state player=Stranger id=-202584743 pos=-130.55,79.46,188.78 hp=25/25 dead=False nisse=present
+   gc state bowl feeding=False satiety=25 mood=100 ownerZdo=-202584743 authority=native claimRadius=20 claimOwner=-202584743 localZdoOwner=True
+   gc state pantry stacks=0 items=0 []
+   gc state hover='Porridge Bowl | This nisse asks for nothing. | [Alt] require offerings | Claim 20 m (native)'
+   gc state nisse hp=1000/1000 pos=-131.51,78.11,189.88
+   gc cmd: god on
+   gc god=True
+   gc cmd: close
+   gc close was=none
+   gc cmd: containers
+   gc container piece_chest_wood(Clone) idx=0 at -133.00,78.11,175.00 net=True rule='v1;k=cat;c=metals' stacks=1 items=5 [copperscrapx5] zdosts=1 zid=-357620738:19443 zrev=8 zown=-106583184
+   gc container TreasureChest_meadows_buried(Clone) idx=1 at -16.21,67.43,196.11 net=False rule='' stacks=3 items=36 [arrow_firex13,coinsx22,rubyx1] zdosts=3 zid=-357620738:7204 zrev=10 zown=-357620738
+   gc container piece_chest_wood(Clone) idx=6 at -129.00,78.11,189.00 net=False rule='v1;k=cat;c=wood' stacks=0 items=0 [] zdosts=0 zid=-357620738:19440 zrev=14 zown=-106583184
+   gc container TreasureChest_meadows_buried(Clone) idx=2 at -7.82,57.85,67.51 net=False rule='' stacks=3 items=16 [silvernecklacex1,arrow_firex14,upgrader_tier0 upgrader_weapon upgrader_namex1] zdosts=3 zid=-357620738:11127 zrev=10 zown=0
+   gc container piece_chest_wood(Clone) idx=3 at -131.00,78.11,179.00 net=False rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19448 zrev=4 zown=-106583184
+   gc container piece_chest_wood(Clone) idx=1 at -133.00,78.11,177.00 net=True rule='v1;k=deposit' stacks=0 items=0 [] zdosts=0 zid=-357620738:19446 zrev=7 zown=-106583184
+   gc container piece_chest_wood(Clone) idx=2 at -131.00,78.11,173.00 net=True rule='v1;k=overflow' stacks=0 items=0 [] zdosts=0 zid=-357620738:19445 zrev=7 zown=-106583184
+   gc container piece_chest_wood(Clone) idx=5 at -129.00,78.11,177.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19447 zrev=7 zown=-106583184
+   gc container piece_chest_wood(Clone) idx=7 at -129.00,78.11,191.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19442 zrev=11 zown=-106583184
+   gc container piece_chest_wood(Clone) idx=8 at -127.00,78.11,189.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19441 zrev=6 zown=-106583184
+   gc container piece_chest_wood(Clone) idx=4 at -129.00,78.11,175.00 net=True rule='v1;k=cat;c=wood' stacks=1 items=10 [woodx10] zdosts=1 zid=-357620738:19444 zrev=8 zown=-106583184
+   gc container TreasureChest_meadows_buried(Clone) idx=0 at -111.26,79.45,127.99 net=False rule='' stacks=2 items=24 [coinsx21,rubyx3] zdosts=2 zid=-357620738:6913 zrev=9 zown=-106583184
+   gc containers total=12 net=7 ruled=5
+   gc close after: gui=none localZdoOwner=True stacks=0 items=0 []
+
+== p11: deposit-all on an off-network chest — everything lands here at once and stays
+   gc hud top='Added Copper Scrap x5'
+   gc cmd: clear
+   gc clear stacks=0 items=0 []
+   gc cmd: give CopperScrap 4 1
+   gc give CopperScrapx4 slot=(0,1) item=True stacks=1 items=4 [copperscrapx4]
+   gc cmd: give Wood 4 2
+   gc give Woodx4 slot=(0,2) item=True stacks=2 items=8 [copperscrapx4,woodx4]
+   gc cmd: give Coal 6 3
+   gc give Coalx6 slot=(0,3) item=True stacks=3 items=14 [copperscrapx4,woodx4,coalx6]
+   gc cmd: inv
+   gc inv stacks=3 items=14 [copperscrapx4,woodx4,coalx6]
+   gc hud top='Added Wood x5'
+   gc cmd: close
+   gc close was=none
+   gc cmd: stand piece_chest_wood 3
+   gc stand piece_chest_wood(Clone)[3] at -131.00,78.11,179.00 -> player -129.40,78.31,179.00
+   gc cmd: open piece_chest_wood 3
+   gc interact piece_chest_wood(Clone) alt=False -> True
+   gc close after: gui=piece_chest_wood(Clone) localZdoOwner=True stacks=0 items=0 []
+   gc cmd: click HusnisseDepositAll
+   gc click HusnisseDepositAll label='Deposit all' interactable=True
+   gc click HusnisseDepositAll invoked
+   gc hud center='Deposited 3 stack(s).'
+   gc after HusnisseDepositAll ui container=piece_chest_wood(Clone) strip=True net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=True inUse=True dist=1.6
+   gc after HusnisseDepositAll zdo net=False rule='' inUseFlag=False owner=True
+   gc after HusnisseDepositAll panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False
+   gc cmd: inv
+   gc inv stacks=0 items=0 []
+   gc cmd: ui
+   gc ui ui container=piece_chest_wood(Clone) strip=True net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=True inUse=True dist=1.6
+   gc ui zdo net=False rule='' inUseFlag=False owner=True
+   gc ui panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False
+   gc cmd: shot gate-03b-deposit-offnet
+   gc shot C:\Users\Hermes\Desktop\husnisse-captures\gate-03b-deposit-offnet.png
+   gc cmd: watch 12 4
+   gc watch start seconds=12 interval=4.0
+   gc watch t=4 player=Stranger id=-202584743 pos=-129.49,78.11,179.56 hp=25/25 dead=False nisse=present
+   gc watch t=4 bowl feeding=False satiety=25 mood=100 ownerZdo=-202584743 authority=native claimRadius=20 claimOwner=-202584743 localZdoOwner=True
+   gc watch t=4 pantry stacks=0 items=0 []
+   gc watch t=4 hover='Porridge Bowl | This nisse asks for nothing. | [Alt] require offerings | Claim 20 m (native)'
+   gc watch t=4 nisse hp=1000/1000 pos=-131.51,78.11,189.88
+   gc watch t=8 player=Stranger id=-202584743 pos=-129.49,78.11,179.56 hp=25/25 dead=False nisse=present
+   gc watch t=8 bowl feeding=False satiety=25 mood=100 ownerZdo=-202584743 authority=native claimRadius=20 claimOwner=-202584743 localZdoOwner=True
+   gc watch t=8 pantry stacks=0 items=0 []
+   gc watch t=8 hover='Porridge Bowl | This nisse asks for nothing. | [Alt] require offerings | Claim 20 m (native)'
+   gc watch t=8 nisse hp=1000/1000 pos=-131.51,78.11,189.88
+   gc watch t=12 player=Stranger id=-202584743 pos=-129.49,78.11,179.56 hp=25/25 dead=False nisse=present
+   gc watch t=12 bowl feeding=False satiety=25 mood=100 ownerZdo=-202584743 authority=native claimRadius=20 claimOwner=-202584743 localZdoOwner=True
+   gc watch t=12 pantry stacks=0 items=0 []
+   gc watch t=12 hover='Porridge Bowl | This nisse asks for nothing. | [Alt] require offerings | Claim 20 m (native)'
+   gc watch t=12 nisse hp=1000/1000 pos=-131.51,78.11,189.88
+   gc watch done seconds=12
+   gc cmd: close
+   gc close was=piece_chest_wood(Clone)
+   gc cmd: open piece_chest_wood 3
+   gc interact piece_chest_wood(Clone) alt=False -> True
+   gc cmd: ui
+   gc ui ui container=piece_chest_wood(Clone) strip=True net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=True inUse=False dist=1.6
+   gc ui zdo net=False rule='' inUseFlag=False owner=True
+   gc ui panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False
+   gc cmd: containers
+   gc container piece_chest_wood(Clone) idx=0 at -133.00,78.11,175.00 net=True rule='v1;k=cat;c=metals' stacks=1 items=5 [copperscrapx5] zdosts=1 zid=-357620738:19443 zrev=8 zown=-106583184
+   gc container TreasureChest_meadows_buried(Clone) idx=1 at -16.21,67.43,196.11 net=False rule='' stacks=3 items=36 [arrow_firex13,coinsx22,rubyx1] zdosts=3 zid=-357620738:7204 zrev=10 zown=-357620738
+   gc container piece_chest_wood(Clone) idx=6 at -129.00,78.11,189.00 net=False rule='v1;k=cat;c=wood' stacks=0 items=0 [] zdosts=0 zid=-357620738:19440 zrev=26 zown=-106583184
+   gc container TreasureChest_meadows_buried(Clone) idx=2 at -7.82,57.85,67.51 net=False rule='' stacks=3 items=16 [silvernecklacex1,arrow_firex14,upgrader_tier0 upgrader_weapon upgrader_namex1] zdosts=3 zid=-357620738:11127 zrev=10 zown=0
+   gc container piece_chest_wood(Clone) idx=3 at -131.00,78.11,179.00 net=False rule='' stacks=3 items=14 [copperscrapx4,woodx4,coalx6] zdosts=3 zid=-357620738:19448 zrev=9 zown=-106583184
+   gc container piece_chest_wood(Clone) idx=1 at -133.00,78.11,177.00 net=True rule='v1;k=deposit' stacks=0 items=0 [] zdosts=0 zid=-357620738:19446 zrev=7 zown=-106583184
+   gc container piece_chest_wood(Clone) idx=2 at -131.00,78.11,173.00 net=True rule='v1;k=overflow' stacks=0 items=0 [] zdosts=0 zid=-357620738:19445 zrev=7 zown=-106583184
+   gc container piece_chest_wood(Clone) idx=5 at -129.00,78.11,177.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19447 zrev=7 zown=-106583184
+   gc container piece_chest_wood(Clone) idx=7 at -129.00,78.11,191.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19442 zrev=22 zown=-106583184
+   gc container piece_chest_wood(Clone) idx=8 at -127.00,78.11,189.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19441 zrev=10 zown=-106583184
+   gc container piece_chest_wood(Clone) idx=4 at -129.00,78.11,175.00 net=True rule='v1;k=cat;c=wood' stacks=1 items=10 [woodx10] zdosts=1 zid=-357620738:19444 zrev=8 zown=-106583184
+   gc container TreasureChest_meadows_buried(Clone) idx=0 at -111.26,79.45,127.99 net=False rule='' stacks=2 items=24 [coinsx21,rubyx3] zdosts=2 zid=-357620738:6913 zrev=9 zown=-106583184
+   gc containers total=12 net=7 ruled=5
+   gc close after: gui=piece_chest_wood(Clone) localZdoOwner=True stacks=0 items=0 []
+
+== p12: the off-network chest with one slot left — one stack fits, two do not
+   gc cmd: give Stone 20 1
+   gc give Stonex20 slot=(0,1) item=True stacks=1 items=20 [stonex20]
+   gc cmd: move piece_chest_wood Stone 20
+   gc move into piece_chest_wood(Clone) 'Stone'x20 ok=True container[stacks=4 items=34 [copperscrapx4,woodx4,coalx6,stonex20]] player[stacks=0 items=0 []]
+   gc cmd: give Resin 20 2
+   gc give Resinx20 slot=(0,2) item=True stacks=1 items=20 [resinx20]
+   gc cmd: move piece_chest_wood Resin 20
+   gc move into piece_chest_wood(Clone) 'Resin'x20 ok=True container[stacks=5 items=54 [copperscrapx4,woodx4,coalx6,stonex20,resinx20]] player[stacks=0 items=0 []]
+   gc cmd: give Feathers 20 3
+   gc give Feathersx20 slot=(0,3) item=True stacks=1 items=20 [feathersx20]
+   gc cmd: move piece_chest_wood Feathers 20
+   gc move into piece_chest_wood(Clone) 'Feathers'x20 ok=True container[stacks=6 items=74 [copperscrapx4,woodx4,coalx6,stonex20,resinx20,feathersx20]] player[stacks=0 items=0 []]
+   gc cmd: give GreydwarfEye 20 4
+   gc give GreydwarfEyex20 slot=(0,4) item=True stacks=1 items=20 [greydwarfeyex20]
+   gc cmd: move piece_chest_wood GreydwarfEye 20
+   gc move into piece_chest_wood(Clone) 'GreydwarfEye'x20 ok=True container[stacks=7 items=94 [copperscrapx4,woodx4,coalx6,stonex20,resinx20,feathersx20,greydwarfeyex20]] player[stacks=0 items=0 []]
+   gc cmd: give LoxPelt 20 5
+   gc give LoxPeltx20 slot=(0,5) item=True stacks=1 items=20 [loxpeltx20]
+   gc cmd: move piece_chest_wood LoxPelt 20
+   gc move into piece_chest_wood(Clone) 'LoxPelt'x20 ok=True container[stacks=8 items=114 [copperscrapx4,woodx4,coalx6,stonex20,resinx20,feathersx20,greydwarfeyex20,loxpeltx20]] player[stacks=0 items=0 []]
+   gc cmd: give Flint 20 6
+   gc give Flintx20 slot=(0,6) item=True stacks=1 items=20 [flintx20]
+   gc cmd: move piece_chest_wood Flint 20
+   gc move into piece_chest_wood(Clone) 'Flint'x20 ok=True container[stacks=9 items=134 [copperscrapx4,woodx4,coalx6,stonex20,resinx20,feathersx20,greydwarfeyex20,loxpeltx20,flintx20]] player[stacks=0 items=0 []]
+   gc cmd: containers
+   gc container piece_chest_wood(Clone) idx=0 at -133.00,78.11,175.00 net=True rule='v1;k=cat;c=metals' stacks=1 items=5 [copperscrapx5] zdosts=1 zid=-357620738:19443 zrev=8 zown=-106583184
+   gc container TreasureChest_meadows_buried(Clone) idx=1 at -16.21,67.43,196.11 net=False rule='' stacks=3 items=36 [arrow_firex13,coinsx22,rubyx1] zdosts=3 zid=-357620738:7204 zrev=10 zown=-357620738
+   gc container piece_chest_wood(Clone) idx=6 at -129.00,78.11,189.00 net=False rule='v1;k=cat;c=wood' stacks=0 items=0 [] zdosts=0 zid=-357620738:19440 zrev=26 zown=-106583184
+   gc container TreasureChest_meadows_buried(Clone) idx=2 at -7.82,57.85,67.51 net=False rule='' stacks=3 items=16 [silvernecklacex1,arrow_firex14,upgrader_tier0 upgrader_weapon upgrader_namex1] zdosts=3 zid=-357620738:11127 zrev=10 zown=0
+   gc container piece_chest_wood(Clone) idx=3 at -131.00,78.11,179.00 net=False rule='' stacks=9 items=134 [copperscrapx4,woodx4,coalx6,stonex20,resinx20,feathersx20,greydwarfeyex20,loxpeltx20,flintx20] zdosts=9 zid=-357620738:19448 zrev=16 zown=-106583184
+   gc container piece_chest_wood(Clone) idx=1 at -133.00,78.11,177.00 net=True rule='v1;k=deposit' stacks=0 items=0 [] zdosts=0 zid=-357620738:19446 zrev=7 zown=-106583184
+   gc container piece_chest_wood(Clone) idx=2 at -131.00,78.11,173.00 net=True rule='v1;k=overflow' stacks=0 items=0 [] zdosts=0 zid=-357620738:19445 zrev=7 zown=-106583184
+   gc container piece_chest_wood(Clone) idx=5 at -129.00,78.11,177.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19447 zrev=7 zown=-106583184
+   gc container piece_chest_wood(Clone) idx=7 at -129.00,78.11,191.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19442 zrev=22 zown=-106583184
+   gc container piece_chest_wood(Clone) idx=8 at -127.00,78.11,189.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19441 zrev=10 zown=-106583184
+   gc container piece_chest_wood(Clone) idx=4 at -129.00,78.11,175.00 net=True rule='v1;k=cat;c=wood' stacks=1 items=10 [woodx10] zdosts=1 zid=-357620738:19444 zrev=8 zown=-106583184
+   gc container TreasureChest_meadows_buried(Clone) idx=0 at -111.26,79.45,127.99 net=False rule='' stacks=2 items=24 [coinsx21,rubyx3] zdosts=2 zid=-357620738:6913 zrev=9 zown=-106583184
+   gc containers total=12 net=7 ruled=5
+   gc cmd: give WolfPelt 4 1
+   gc give WolfPeltx4 slot=(0,1) item=True stacks=1 items=4 [wolfpeltx4]
+   gc cmd: give Obsidian 4 2
+   gc give Obsidianx4 slot=(0,2) item=True stacks=2 items=8 [wolfpeltx4,obsidianx4]
+   gc cmd: give DeerHide 4 3
+   gc give DeerHidex4 slot=(0,3) item=True stacks=3 items=12 [wolfpeltx4,obsidianx4,deerhidex4]
+   gc cmd: inv
+   gc inv stacks=3 items=12 [wolfpeltx4,obsidianx4,deerhidex4]
+   gc cmd: click HusnisseDepositAll
+   gc click HusnisseDepositAll label='Deposit all' interactable=True
+   gc click HusnisseDepositAll invoked
+   gc hud center='Deposited 1 stack(s); 2 would not fit.'
+   gc after HusnisseDepositAll ui container=piece_chest_wood(Clone) strip=True net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=True inUse=True dist=1.6
+   gc after HusnisseDepositAll zdo net=False rule='' inUseFlag=False owner=True
+   gc after HusnisseDepositAll panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False
+   gc cmd: inv
+   gc inv stacks=2 items=8 [obsidianx4,deerhidex4]
+   gc cmd: ui
+   gc ui ui container=piece_chest_wood(Clone) strip=True net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=True inUse=True dist=1.6
+   gc ui zdo net=False rule='' inUseFlag=False owner=True
+   gc ui panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False
+   gc cmd: shot gate-03b-deposit-full
+   gc shot C:\Users\Hermes\Desktop\husnisse-captures\gate-03b-deposit-full.png

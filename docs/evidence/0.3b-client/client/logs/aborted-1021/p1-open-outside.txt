@@ -1,0 +1,7 @@
+gc cmd: close
+gc close was=piece_chest_wood(Clone)
+gc cmd: stand piece_chest_wood 9
+gc stand: no piece_chest_wood[9]
+gc cmd: open piece_chest_wood 9
+gc use: no object for piece_chest_wood
+gc close after: gui=none localZdoOwner=True stacks=0 items=0 []

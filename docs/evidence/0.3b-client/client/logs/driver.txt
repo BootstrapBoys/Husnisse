@@ -1,0 +1,43 @@
+
+== stopclient: stop the client (a running client locks its plugin DLLs)
+
+== install: push the build and the probe to the client
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== p10: deposit-all on a networked chest — the nisse files it elsewhere
+--- p10-inv
+--- p10-give
+--- p10-open
+--- p10-click
+--- p10-watch
+--- p10-containers
+
+== p10relog: quit the client, rejoin, and read the containers again (the ZDOs, not a cache)
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+--- p10-relog
+
+== p11: deposit-all on an off-network chest — everything lands here at once and stays
+--- p11-give
+--- p11-open
+--- p11-click
+--- p11-read
+--- shot-gate-03b-deposit-offnet
+--- p11-wait
+--- p11-reopen
+
+== p12: the off-network chest with one slot left — one stack fits, two do not
+--- p12-fill
+--- p12-give
+--- p12-click
+--- p12-read
+--- shot-gate-03b-deposit-full
+
+== stopclient: stop the client (a running client locks its plugin DLLs)

@@ -1,0 +1,16 @@
+gc cmd: give TrollHide 5
+gc give TrollHidex5 slot=(0,1) item=True stacks=1 items=5 [trollhidex5]
+gc cmd: move piece_chest_wood TrollHide 5
+gc move into piece_chest_wood(Clone) 'TrollHide'x5 ok=True container[stacks=1 items=5 [trollhidex5]] player[stacks=0 items=0 []]
+gc cmd: give BoneFragments 5
+gc give BoneFragmentsx5 slot=(0,1) item=True stacks=1 items=5 [bonefragmentsx5]
+gc cmd: move piece_chest_wood BoneFragments 5
+gc move into piece_chest_wood(Clone) 'BoneFragments'x5 ok=True container[stacks=2 items=10 [trollhidex5,bonefragmentsx5]] player[stacks=0 items=0 []]
+gc cmd: give Coal 10
+gc give Coalx10 slot=(0,1) item=True stacks=1 items=10 [coalx10]
+gc cmd: move piece_chest_wood Coal 10
+gc move into piece_chest_wood(Clone) 'Coal'x10 ok=True container[stacks=3 items=20 [trollhidex5,bonefragmentsx5,coalx10]] player[stacks=0 items=0 []]
+gc cmd: ui
+gc ui ui container=piece_chest_wood(Clone) strip=True net='On the network' netClickable=True rules='Rules: Metals' rulesClickable=True panel=True win=True inUse=True dist=1.8
+gc ui zdo net=True rule='v1;k=cat;c=metals' inUseFlag=False owner=True
+gc ui panel title='Storage rule' priority='0' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=True custom='Save contents' customOpen=False

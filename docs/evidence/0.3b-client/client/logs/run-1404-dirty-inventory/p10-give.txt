@@ -1,0 +1,7 @@
+gc cmd: give CopperScrap 5 1
+gc give CopperScrapx5 slot=(0,1) item=True stacks=4 items=60 [obsidianx4,deerhidex4,copperscrapx10,woodx42]
+gc cmd: give Wood 5 2
+gc give Woodx5 slot=(0,2) item=True stacks=4 items=65 [obsidianx4,deerhidex4,copperscrapx10,woodx47]
+gc cmd: inv
+gc inv stacks=4 items=65 [obsidianx4,deerhidex4,copperscrapx10,woodx47]
+gc hud top='World saved ( 0.02+1.12s )'

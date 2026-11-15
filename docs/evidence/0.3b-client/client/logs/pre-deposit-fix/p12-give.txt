@@ -1,0 +1,9 @@
+gc cmd: give WolfPelt 4 1
+gc give WolfPeltx4 slot=(0,1) item=True stacks=1 items=4 [wolfpeltx4]
+gc cmd: give Obsidian 4 2
+gc give Obsidianx4 slot=(0,2) item=True stacks=2 items=8 [wolfpeltx4,obsidianx4]
+gc cmd: give DeerHide 4 3
+gc give DeerHidex4 slot=(0,3) item=True stacks=3 items=12 [wolfpeltx4,obsidianx4,deerhidex4]
+gc cmd: inv
+gc inv stacks=3 items=12 [wolfpeltx4,obsidianx4,deerhidex4]
+gc hud top='3 New unlocks in message log.'

@@ -1,0 +1,6 @@
+gc cmd: inv
+gc inv stacks=2 items=24 [flintx20,wolfpeltx4]
+gc cmd: ui
+gc ui ui container=piece_chest_wood(Clone) strip=True net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=True inUse=True dist=1.8
+gc ui zdo net=False rule='' inUseFlag=False owner=True
+gc ui panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False

@@ -184,6 +184,7 @@ namespace Husnisse.GateClient
                 case "open": StartOpen(parts.Length > 1 ? parts[1] : "husnisse_bowl", parts.Length > 2 ? ParseInt(parts[2], 0) : -1); break;
                 case "close": CloseGui(); break;
                 case "give": Give(parts); break;
+                case "clear": Clear(); break;
                 case "move": Move(parts, true); break;
                 case "take": Move(parts, false); break;
                 case "watch": StartWatch(parts); break;
@@ -287,6 +288,22 @@ namespace Husnisse.GateClient
         private void Containers()
         {
             var all = UnityEngine.Object.FindObjectsByType<Container>(FindObjectsSortMode.None);
+
+            // The index a `stand`/`open` uses, printed beside every chest so the scene generator's
+            // role->index map addresses the same chest in a dump as it does in an interaction. The
+            // gate used to match dumps by absolute coordinates, which only worked for one layout.
+            var indexOf = new Dictionary<Container, int>();
+            var counters = new Dictionary<string, int>();
+            foreach (var container in Sorted(all))
+            {
+                if (container.GetComponent("BowlPiece") != null) continue;
+                var key = container.gameObject.name;
+                int next;
+                counters.TryGetValue(key, out next);
+                counters[key] = next + 1;
+                indexOf[container] = next;
+            }
+
             var count = 0;
             var onNetwork = 0;
             var withRule = 0;
@@ -302,11 +319,61 @@ namespace Husnisse.GateClient
                 var rule = zdo != null ? zdo.GetString("husnisse_rule", string.Empty) : "-";
                 if (net) onNetwork++;
                 if (!string.IsNullOrEmpty(rule) && rule != "v1;k=none") withRule++;
+                int idx;
+                indexOf.TryGetValue(container, out idx);
 
-                Say("container " + container.name + " at " + Fmt(container.transform.position) +
-                    " net=" + net + " rule='" + rule + "' " + Items(container.GetInventory()));
+                Say("container " + container.name + " idx=" + idx + " at " + Fmt(container.transform.position) +
+                    " net=" + net + " rule='" + rule + "' " + Items(container.GetInventory()) +
+                    " zdosts=" + ZdoStacks(zdo) +
+                    " zid=" + (zdo != null ? zdo.m_uid.ToString() : "-") +
+                    " zrev=" + (zdo != null ? zdo.DataRevision.ToString() : "-") +
+                    " zown=" + (zdo != null ? zdo.GetOwner().ToString() : "-"));
             }
             Say("containers total=" + count + " net=" + onNetwork + " ruled=" + withRule);
+        }
+
+        /// <summary>
+        /// What the container's ZDO carries, decoded: the copy a save writes and a relog reads back.
+        /// The live inventory and this disagree exactly when a write was never serialised, which is
+        /// the difference a deposit bug lives in.
+        /// </summary>
+        private static string ZdoStacks(ZDO zdo)
+        {
+            if (zdo == null) return "-";
+
+            var bytes = zdo.GetByteArray("items");
+            if (bytes == null) return "0";
+
+            try
+            {
+                var scratch = new Inventory("probe-zdo", null, 8, 4);
+                scratch.Load(new ZPackage(bytes));
+                return scratch.NrOfItems().ToString();
+            }
+            catch
+            {
+                return "?";
+            }
+        }
+
+        private static List<Container> Sorted(Container[] containers)
+        {
+            var list = new List<Container>();
+            foreach (var container in containers)
+            {
+                if (container != null) list.Add(container);
+            }
+
+            list.Sort(delegate(Container a, Container b)
+            {
+                var first = a.transform.position;
+                var second = b.transform.position;
+                if (Math.Abs(first.x - second.x) > 0.01f) return first.x < second.x ? -1 : 1;
+                if (Math.Abs(first.z - second.z) > 0.01f) return first.z < second.z ? -1 : 1;
+                return first.y.CompareTo(second.y);
+            });
+
+            return list;
         }
 
         private void Claims()
@@ -433,6 +500,19 @@ namespace Husnisse.GateClient
             return field != null ? field.GetValue(gui) as Container : null;
         }
 
+        /// <summary>
+        /// The container the player is working with: the open one when its prefab matches, else the
+        /// nearest. A player drags into the chest whose window is open, and on a compact fixture the
+        /// nearest chest to the stand point can be the neighbour — which silently put p8's sample
+        /// into copyA and made the suggestion read empty.
+        /// </summary>
+        private static Container OpenContainer(string prefab)
+        {
+            var open = GuiContainer();
+            if (open != null && open.gameObject.name.StartsWith(prefab, StringComparison.OrdinalIgnoreCase)) return open;
+            return FindContainer(prefab);
+        }
+
         private void Give(string[] parts)
         {
             if (parts.Length < 3) { Say("usage: give <item> <amount> [slotY]"); return; }
@@ -449,12 +529,27 @@ namespace Husnisse.GateClient
                 " " + Items(inventory));
         }
 
+        /// <summary>
+        /// Empties the player's pockets. A character's inventory lives in the profile, not the
+        /// world, so a "fresh world" still starts with whatever the last run left behind — and a
+        /// phase that counts stacks (p10's two, p11's three) then measures the wrong thing.
+        /// </summary>
+        private void Clear()
+        {
+            var player = Player.m_localPlayer;
+            var inventory = player != null ? player.GetInventory() : null;
+            if (inventory == null) { Say("clear: no inventory"); return; }
+
+            inventory.RemoveAll();
+            Say("clear " + Items(inventory));
+        }
+
         private void Move(string[] parts, bool intoContainer)
         {
             if (parts.Length < 4) { Say("usage: move|take <prefab> <item> <amount>"); return; }
 
             var player = Player.m_localPlayer;
-            var container = FindContainer(parts[1]);
+            var container = OpenContainer(parts[1]);
             if (player == null || container == null) { Say("move: no player or container " + parts[1]); return; }
 
             var containerInventory = container.GetInventory();

@@ -1,0 +1,6 @@
+gc cmd: god on
+gc god=True
+gc cmd: heal
+gc heal hp=25/25
+gc cmd: where
+gc where player=-130.63,77.76,188.82 nisse=- peers=1

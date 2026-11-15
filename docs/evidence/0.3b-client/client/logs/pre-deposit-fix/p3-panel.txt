@@ -1,0 +1,6 @@
+gc cmd: click HusnisseRules
+gc click HusnisseRules label='Rules: No rule' interactable=True
+gc click HusnisseRules invoked
+gc after HusnisseRules ui container=piece_chest_wood(Clone) strip=True net='On the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=True win=True inUse=True dist=1.8
+gc after HusnisseRules zdo net=True rule='' inUseFlag=False owner=True
+gc after HusnisseRules panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False

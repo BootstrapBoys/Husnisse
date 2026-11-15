@@ -1,0 +1,21 @@
+gc cmd: ui
+gc ui ui container=piece_chest_wood(Clone) strip=True net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=True inUse=True dist=1.7
+gc ui zdo net=False rule='' inUseFlag=False owner=True
+gc ui panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False
+gc cmd: containers
+gc container TreasureChest_meadows_buried(Clone) at 180.64,31.41,-10.81 net=False rule='' stacks=2 items=52 [arrow_firex13,coinsx39]
+gc container piece_chest_wood(Clone) at 62.00,34.83,-7.00 net=False rule='' stacks=3 items=14 [copperscrapx4,woodx4,coalx6]
+gc container piece_chest_wood(Clone) at 64.00,34.83,5.00 net=True rule='v1;k=cat;c=metals' stacks=0 items=0 []
+gc container piece_chest_wood(Clone) at 64.00,34.83,3.00 net=False rule='v1;k=cat;c=metals' stacks=2 items=10 [copperscrapx5,ironscrapx5]
+gc container piece_chest_wood(Clone) at 60.00,34.83,-11.00 net=True rule='v1;k=cat;c=metals' stacks=0 items=0 []
+gc container piece_chest_wood(Clone) at 62.00,34.83,-13.00 net=True rule='v1;k=overflow' stacks=0 items=0 []
+gc container TreasureChest_meadows_buried(Clone) at 63.28,46.56,-129.58 net=False rule='' stacks=2 items=36 [amberpearlx2,coinsx34]
+gc container piece_chest_wood(Clone) at 64.00,34.83,-11.00 net=True rule='v1;k=cat;c=wood' stacks=0 items=0 []
+gc container TreasureChest_meadows(Clone) at 213.08,35.96,-39.05 net=False rule='' stacks=3 items=15 [amberx1,flintx4,arrow_flintx10]
+gc container piece_chest_wood(Clone) at 66.00,34.83,3.00 net=True rule='v1;k=cat;c=metals' stacks=0 items=0 []
+gc container TreasureChest_meadows_buried(Clone) at 10.09,30.19,7.21 net=False rule='' stacks=3 items=17 [arrow_firex14,amberpearlx2,knife_woodx1]
+gc container piece_chest_wood(Clone) at 64.00,34.83,-9.00 net=True rule='' stacks=0 items=0 []
+gc container TreasureChest_meadows_buried(Clone) at -61.67,35.68,-126.33 net=False rule='' stacks=2 items=34 [coinsx20,arrow_firex14]
+gc container piece_chest_wood(Clone) at 60.00,34.83,-9.00 net=True rule='v1;k=deposit' stacks=0 items=0 []
+gc container TreasureChest_meadows(Clone) at 8.35,34.93,-75.37 net=False rule='' stacks=2 items=15 [flintx4,coinsx11]
+gc containers total=15 net=7 ruled=7

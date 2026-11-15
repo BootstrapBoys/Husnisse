@@ -1,0 +1,15 @@
+copied Husnisse.dll
+copied HusnisseGateClientProbe.dll
+== installed ==
+  stage Husnisse.dll      CD1F5F5497EFE87D73E5535D5A21EB33E6E6E3C763921E289E1CC65AB34CF23A
+  plugin Husnisse.dll     CD1F5F5497EFE87D73E5535D5A21EB33E6E6E3C763921E289E1CC65AB34CF23A
+  stage probe             6DD07418A68D96B8E28BA439D6941EBC33A64EFA08AB43375121F383715E9C5E
+  plugin probe            6DD07418A68D96B8E28BA439D6941EBC33A64EFA08AB43375121F383715E9C5E
+== plugin folders ==
+BootstrapBoys-GateClientProbe
+BootstrapBoys-Husnisse
+shudnal-ConditionalConfigSync
+ValheimModding-Jotunn
+ValheimModding-JsonDotNET
+ValheimModding-YamlDotNet
+cmd file reset: # idle

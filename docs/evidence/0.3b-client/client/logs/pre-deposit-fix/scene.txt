@@ -1,0 +1,220 @@
+gc where player=0.88,34.15,1.44 nisse=- peers=1
+gc where player=0.88,33.84,1.44 nisse=- peers=1
+base x=0.88 y=33.84 z=1.44 -> deck 34.09
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (96 floor pieces, 10 chests)
+gc where player=0.88,33.84,1.44 nisse=- peers=1
+base x=0.88 y=33.84 z=1.44 -> deck 34.09
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (96 floor pieces, 10 chests)
+gc where player=0.88,33.84,1.44 nisse=- peers=1
+base x=0.88 y=33.84 z=1.44 -> deck 34.09
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (135 floor pieces, 10 chests)
+IDX_plain=0
+IDX_dump=1
+IDX_metals=2
+IDX_panel=3
+IDX_copyB=4
+IDX_deposit=5
+IDX_copyA=6
+IDX_overflow=7
+IDX_wood=8
+IDX_outside=9
+gc where player=4.57,33.83,2.14 nisse=- peers=1
+base x=4.57 y=33.83 z=2.14 -> deck 34.08
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (135 floor pieces, 10 chests)
+IDX_plain=0
+IDX_dump=1
+IDX_metals=2
+IDX_panel=3
+IDX_copyB=4
+IDX_deposit=5
+IDX_copyA=6
+IDX_overflow=7
+IDX_wood=8
+IDX_outside=9
+gc where player=8.64,33.68,4.01 nisse=- peers=1
+base x=8.64 y=33.68 z=4.01 -> deck 33.93
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (135 floor pieces, 10 chests)
+IDX_plain=0
+IDX_dump=1
+IDX_metals=2
+IDX_panel=3
+IDX_copyB=4
+IDX_deposit=5
+IDX_copyA=6
+IDX_overflow=7
+IDX_wood=8
+IDX_outside=9
+gc where player=-3.06,34.07,-0.65 nisse=- peers=1
+base x=-3.06 y=34.07 z=-0.65 -> deck 34.32
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (135 floor pieces, 10 chests)
+IDX_plain=0
+IDX_dump=1
+IDX_metals=2
+IDX_panel=3
+IDX_copyB=4
+IDX_deposit=5
+IDX_copyA=6
+IDX_overflow=7
+IDX_wood=8
+IDX_outside=9
+gc where player=0.60,33.85,1.00 nisse=- peers=1
+base x=0.60 y=33.85 z=1.00 -> deck 34.10
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (135 floor pieces, 10 chests)
+IDX_plain=0
+IDX_dump=1
+IDX_metals=2
+IDX_panel=3
+IDX_copyB=4
+IDX_deposit=5
+IDX_copyA=6
+IDX_overflow=7
+IDX_wood=8
+IDX_outside=9
+gc where player=4.01,33.83,2.62 nisse=- peers=1
+base x=4.01 y=33.83 z=2.62 -> deck 34.08
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (135 floor pieces, 10 chests)
+IDX_plain=0
+IDX_dump=1
+IDX_metals=2
+IDX_panel=3
+IDX_copyB=4
+IDX_deposit=5
+IDX_copyA=6
+IDX_overflow=7
+IDX_wood=8
+IDX_outside=9
+gc where player=7.60,34.92,5.00 nisse=- peers=1
+base x=7.60 y=34.92 z=5.00 -> deck 35.17
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (135 floor pieces, 10 chests)
+IDX_plain=0
+IDX_dump=1
+IDX_metals=2
+IDX_panel=3
+IDX_copyB=4
+IDX_deposit=5
+IDX_copyA=6
+IDX_overflow=7
+IDX_wood=8
+IDX_outside=9
+gc where player=400.37,27.72,400.18 nisse=- peers=1
+base x=400.37 y=27.72 z=400.18 -> deck 27.97
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (135 floor pieces, 10 chests)
+IDX_plain=0
+IDX_dump=1
+IDX_metals=2
+IDX_panel=3
+IDX_copyB=4
+IDX_deposit=5
+IDX_copyA=6
+IDX_overflow=7
+IDX_wood=8
+IDX_outside=9
+gc where player=1198.14,28.29,1198.83 nisse=- peers=1
+base x=1198.14 y=28.29 z=1198.83 -> deck 28.54
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (135 floor pieces, 10 chests)
+IDX_plain=0
+IDX_dump=1
+IDX_metals=2
+IDX_panel=3
+IDX_copyB=4
+IDX_deposit=5
+IDX_copyA=6
+IDX_overflow=7
+IDX_wood=8
+IDX_outside=9
+gc where player=1198.48,28.64,1198.81 nisse=- peers=1
+base x=1198.48 y=28.64 z=1198.81 -> deck 28.89 (generator scene-compact.sh)
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (49 floor pieces, 9 chests)
+IDX_plain=0
+IDX_dump=1
+IDX_metals=2
+IDX_deposit=3
+IDX_panel=4
+IDX_copyB=5
+IDX_wood=6
+IDX_copyA=7
+IDX_overflow=8
+gc where player=259.35,36.71,-384.89 nisse=- peers=1
+base x=259.35 y=36.71 z=-384.89 -> deck 36.96 (generator scene-compact.sh)
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (49 floor pieces, 9 chests)
+IDX_plain=0
+IDX_dump=1
+IDX_metals=2
+IDX_deposit=3
+IDX_panel=4
+IDX_copyB=5
+IDX_wood=6
+IDX_copyA=7
+IDX_overflow=8
+gc where player=259.68,37.06,-384.33 nisse=- peers=1
+base x=259.68 y=37.06 z=-384.33 -> deck 37.31 (generator scene-compact.sh)
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (49 floor pieces, 9 chests)
+IDX_wood=0
+IDX_plain=1
+IDX_dump=2
+IDX_metals=3
+IDX_deposit=4
+IDX_panel=5
+IDX_copyB=6
+IDX_copyA=7
+IDX_overflow=8
+gc where player=61.84,34.48,2.64 nisse=- peers=1
+base x=61.84 y=34.48 z=2.64 -> deck 34.73 (generator scene-compact.sh)
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (78 floor pieces, 9 chests)
+IDX_metals=0
+IDX_deposit=1
+IDX_overflow=2
+IDX_dump=3
+IDX_wood=4
+IDX_plain=5
+IDX_panel=6
+IDX_copyB=7
+IDX_copyA=8
+gc where player=2.98,77.67,-6.55 nisse=- peers=1
+base x=2.98 y=77.67 z=-6.55 -> deck 77.92 (generator scene-compact.sh)
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (78 floor pieces, 9 chests)
+IDX_metals=0
+IDX_deposit=1
+IDX_overflow=2
+IDX_dump=3
+IDX_wood=4
+IDX_plain=5
+IDX_panel=6
+IDX_copyB=7
+IDX_copyA=8
+gc where player=-131.71,49.85,-4.28 nisse=- peers=1
+base x=-131.71 y=49.85 z=-4.28 -> deck 50.10 (generator scene-compact.sh)
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (78 floor pieces, 9 chests)
+IDX_metals=0
+IDX_deposit=1
+IDX_overflow=2
+IDX_dump=3
+IDX_wood=4
+IDX_plain=5
+IDX_panel=6
+IDX_copyB=7
+IDX_copyA=8
+gc where player=-256.49,33.35,-61.12 nisse=- peers=1
+base x=-256.49 y=33.35 z=-61.12 -> deck 33.60 (generator scene-compact.sh)
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (78 floor pieces, 9 chests)
+IDX_metals=0
+IDX_deposit=1
+IDX_overflow=2
+IDX_dump=3
+IDX_wood=4
+IDX_plain=5
+IDX_panel=6
+IDX_copyB=7
+IDX_copyA=8
+gc where player=1.60,45.82,5.92 nisse=- peers=1
+base x=1.60 y=45.82 z=5.92 -> deck 46.07 (generator scene-compact.sh)
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (78 floor pieces, 9 chests)
+IDX_metals=0
+IDX_deposit=1
+IDX_overflow=2
+IDX_dump=3
+IDX_wood=4
+IDX_plain=5
+IDX_panel=6
+IDX_copyB=7
+IDX_copyA=8

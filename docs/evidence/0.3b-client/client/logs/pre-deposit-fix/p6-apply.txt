@@ -1,0 +1,6 @@
+gc cmd: click HusnisseCustomApply
+gc click HusnisseCustomApply label='Apply' interactable=True
+gc click HusnisseCustomApply invoked
+gc after HusnisseCustomApply ui container=piece_chest_wood(Clone) strip=True net='On the network' netClickable=True rules='Rules: Save contents (2)' rulesClickable=True panel=True win=True inUse=True dist=1.8
+gc after HusnisseCustomApply zdo net=True rule='v1;k=custom;i=%24item_trollhide,%24item_coal' inUseFlag=False owner=True
+gc after HusnisseCustomApply panel title='Storage rule' priority='0' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=True custom='Save contents (2)' customOpen=False

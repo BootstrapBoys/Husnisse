@@ -1,0 +1,217 @@
+diff --git a/src/UI/ContainerRulesUi.cs b/src/UI/ContainerRulesUi.cs
+index 9825257..49378b7 100644
+--- a/src/UI/ContainerRulesUi.cs
++++ b/src/UI/ContainerRulesUi.cs
+@@ -69,7 +69,6 @@ namespace Husnisse.UI
+         private static TMP_Text _customTitle;
+         private static readonly List<Button> CustomRows = new List<Button>();
+         private static readonly List<TMP_Text> CustomRowLabels = new List<TMP_Text>();
+-        private static readonly List<string> CustomRowNames = new List<string>();
+ 
+         /// <summary>The names the preview shows, and which of them are ticked. Stored as shared
+         /// names, because that is what a rule stores and what a translation must not change.</summary>
+@@ -77,12 +76,18 @@ namespace Husnisse.UI
+         private static readonly Dictionary<string, int> CustomStacks = new Dictionary<string, int>(StringComparer.Ordinal);
+         private static readonly HashSet<string> CustomTicked = new HashSet<string>(StringComparer.Ordinal);
+ 
++        /// <summary>Every name the preview has shown, ticked or not — what a re-read must not reset.</summary>
++        private static readonly HashSet<string> CustomKnown = new HashSet<string>(StringComparer.Ordinal);
++
+         private const int CustomColumns = 3;
+         private const int CustomRowsPerColumn = 14;
+ 
+         /// <summary>What the last refresh drew, so a frame that changes nothing touches nothing.</summary>
+         private static string _drawn = string.Empty;
+ 
++        /// <summary>The chest contents the preview was last built from.</summary>
++        private static string _contentsDrawn = string.Empty;
++
+         private static Container _container;
+         private static Claim _claim;
+         private static long _playerId;
+@@ -126,6 +131,7 @@ namespace Husnisse.UI
+                 _confirmingCopy = false;
+                 _copyTargets = null;
+                 _drawn = string.Empty;
++                _contentsDrawn = string.Empty;
+             }
+ 
+             _container = container;
+@@ -140,11 +146,26 @@ namespace Husnisse.UI
+             var open = _panel != null && _panel.activeSelf;
+             var custom = _customPanel != null && _customPanel.activeSelf;
+ 
++            // The preview is a read of the chest, and the chest is still usable while a panel is
++            // open (the panels sit beside the window, not over it). Re-read the contents when they
++            // change, keeping the player's ticks: a list captured once goes stale the moment a
++            // stack is added, and an Apply would then quietly drop it.
++            if ((open || custom) && _container != null)
++            {
++                var contents = ContentsSignature(_container);
++                if (contents != _contentsDrawn)
++                {
++                    _contentsDrawn = contents;
++                    CaptureContents(true);
++                }
++            }
++
+             // The suggestion is a read of the contents, so it is computed only while the panel that
+             // shows it is open; the signature keeps a frame that changes nothing cheap.
+             var suggestion = open && rule.IsNone ? ContainerNetwork.Suggestion(container) : ContainerRule.None();
+             var signature = on + "|" + rule.Encode() + "|" + _canEdit + "|" + open + "|" + custom + "|" +
+                             _confirmingCopy + "|" + (_canEdit ? suggestion.Encode() : "-") + "|" +
++                            StackCount(container) + "|" +
+                             (custom ? CustomSignature() : "-");
+             if (signature == _drawn) return;
+             _drawn = signature;
+@@ -167,7 +188,7 @@ namespace Husnisse.UI
+                 SetLabel(_priorityLabel, rule.IsNone ? "-" : rule.Priority.ToString());
+             }
+ 
+-            if (_customButton != null) _customButton.interactable = _canEdit && CustomNames.Count > 0;
++            if (_customButton != null) _customButton.interactable = _canEdit && StackCount(_container) > 0;
+             if (_suggestButton != null)
+             {
+                 _suggestButton.gameObject.SetActive(!suggestion.IsNone && _canEdit);
+@@ -241,10 +262,13 @@ namespace Husnisse.UI
+             _panel = new GameObject("HusnisseRulesPanel", typeof(RectTransform), typeof(Image));
+             _panel.transform.SetParent(parent, false);
+             var rect = _panel.GetComponent<RectTransform>();
+-            rect.anchorMin = new Vector2(0.5f, 0.5f);
+-            rect.anchorMax = new Vector2(0.5f, 0.5f);
+-            rect.pivot = new Vector2(0.5f, 0.5f);
+-            rect.anchoredPosition = Vector2.zero;
++            // Beside the container window, not on top of it: the chest's own grid stays readable
++            // while a rule is chosen (a centred 470 px panel covered 83% of the window's grid at
++            // 1080p — measured). Anchored to the window's top-right corner, opening to the right.
++            rect.anchorMin = new Vector2(1f, 1f);
++            rect.anchorMax = new Vector2(1f, 1f);
++            rect.pivot = new Vector2(0f, 1f);
++            rect.anchoredPosition = new Vector2(14f, 0f);
+             rect.sizeDelta = new Vector2(470f, 252f);
+ 
+             var background = _panel.GetComponent<Image>();
+@@ -358,10 +382,11 @@ namespace Husnisse.UI
+             _customPanel = new GameObject("HusnisseCustomPanel", typeof(RectTransform), typeof(Image));
+             _customPanel.transform.SetParent(parent, false);
+             var rect = _customPanel.GetComponent<RectTransform>();
+-            rect.anchorMin = new Vector2(0.5f, 0.5f);
+-            rect.anchorMax = new Vector2(0.5f, 0.5f);
+-            rect.pivot = new Vector2(0.5f, 0.5f);
+-            rect.anchoredPosition = Vector2.zero;
++            // Same rule as the rules panel: beside the window, never over the chest's grid.
++            rect.anchorMin = new Vector2(1f, 1f);
++            rect.anchorMax = new Vector2(1f, 1f);
++            rect.pivot = new Vector2(0f, 1f);
++            rect.anchoredPosition = new Vector2(14f, 0f);
+             rect.sizeDelta = new Vector2(470f, 336f);
+ 
+             var background = _customPanel.GetComponent<Image>();
+@@ -386,7 +411,6 @@ namespace Husnisse.UI
+ 
+             CustomRows.Clear();
+             CustomRowLabels.Clear();
+-            CustomRowNames.Clear();
+ 
+             var total = CustomColumns * CustomRowsPerColumn;
+             for (var i = 0; i < total; i++)
+@@ -543,8 +567,11 @@ namespace Husnisse.UI
+ 
+         private static void OnCustomRowClicked(int index)
+         {
+-            if (index < 0 || index >= CustomRowNames.Count) return;
+-            var name = CustomRowNames[index];
++            // The rows are a straight view of CustomNames (row i shows CustomNames[i]); the tick
++            // set is what a click changes. CustomRowNames used to hold this mapping and was never
++            // filled, so every click on a saved-list row did nothing — found on the client gate.
++            if (index < 0 || index >= CustomNames.Count) return;
++            var name = CustomNames[index];
+             if (!CustomTicked.Remove(name)) CustomTicked.Add(name);
+             DrawCustom();
+         }
+@@ -687,14 +714,21 @@ namespace Husnisse.UI
+         /// ticked for a container with no list yet; a container that already has one opens with
+         /// exactly that list ticked, so re-opening the preview cannot quietly undo a player's choice.
+         /// </summary>
+-        private static void CaptureContents()
+-        {
++        private static void CaptureContents(bool preserveTicks = false)
++        {
++            // What the player has already decided has to survive a re-read: a name that was on the
++            // list before keeps its tick, and a name that was there and unticked stays unticked.
++            // Only a name seen for the first time takes the default (all ticked when there is no
++            // saved list, otherwise only the saved names).
++            var previous = new HashSet<string>(CustomTicked, StringComparer.Ordinal);
++            var known = new HashSet<string>(CustomKnown, StringComparer.Ordinal);
++            CustomKnown.Clear();
+             CustomNames.Clear();
+             CustomStacks.Clear();
+             CustomTicked.Clear();
+ 
+             var inventory = _container != null ? _container.GetInventory() : null;
+-            if (inventory == null) return;
++            if (inventory == null) { _contentsDrawn = string.Empty; return; }
+ 
+             var rule = ContainerNetwork.RuleOf(_container);
+             var saved = rule.Kind == RuleKind.Custom ? rule.Items : null;
+@@ -707,18 +741,56 @@ namespace Husnisse.UI
+                 var name = item.m_shared.m_name;
+                 if (string.IsNullOrEmpty(name)) continue;
+ 
++                var isNew = !CustomStacks.ContainsKey(name);
+                 int stack;
+                 if (CustomStacks.TryGetValue(name, out stack))
+                 {
+                     CustomStacks[name] = stack + Mathf.Max(1, item.m_stack);
+-                    continue;
+                 }
++                else
++                {
++                    CustomStacks[name] = Mathf.Max(1, item.m_stack);
++                    CustomNames.Add(name);
++                }
++
++                if (!isNew) continue;
++                CustomKnown.Add(name);
++
++                if (preserveTicks && known.Contains(name))
++                {
++                    if (previous.Contains(name)) CustomTicked.Add(name);
++                }
++                else if (saved == null || saved.Contains(name))
++                {
++                    CustomTicked.Add(name);
++                }
++            }
++
++            // The preview was just built from this content, so a frame that follows must not think
++            // it changed and re-tick a row the player has already unticked.
++            _contentsDrawn = ContentsSignature(_container);
++        }
+ 
+-                CustomStacks[name] = Mathf.Max(1, item.m_stack);
+-                CustomNames.Add(name);
++        /// <summary>What the chest holds, cheaply: the preview only needs to know when it changed.</summary>
++        private static string ContentsSignature(Container container)
++        {
++            var inventory = container != null ? container.GetInventory() : null;
++            if (inventory == null) return string.Empty;
+ 
+-                if (saved == null || saved.Contains(name)) CustomTicked.Add(name);
++            var text = string.Empty;
++            for (var i = 0; i < inventory.NrOfItems(); i++)
++            {
++                var item = inventory.GetItem(i);
++                if (item == null || item.m_shared == null) continue;
++                text += item.m_shared.m_name + ":" + item.m_stack + ";";
+             }
++            return text;
++        }
++
++        private static int StackCount(Container container)
++        {
++            var inventory = container != null ? container.GetInventory() : null;
++            return inventory != null ? inventory.NrOfItems() : 0;
+         }
+ 
+         private static string CustomSignature()

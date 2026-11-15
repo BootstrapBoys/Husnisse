@@ -1,0 +1,2 @@
+gc cmd: watch 30 6
+gc watch start seconds=30 interval=6.0

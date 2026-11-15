@@ -1,0 +1,3 @@
+force killed
+launched HusnisseLegsLaunch at 11:07:24
+[Info   :Husnisse Gate Client Probe] gc ready player=Stranger id=-202584743 pos=-124.60,77.83,2.25 world=MTTest peers=1

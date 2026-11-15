@@ -1,0 +1,817 @@
+
+== install: push the build and the probe to the client
+
+== install: push the build and the probe to the client
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== p1: buttons on a claim chest, none outside the claim and none on a cart
+--- p1-where
+--- p1-open0
+--- p1-ui0
+--- shot-gate-03b-strip-claim
+--- p1-open-outside
+--- p1-ui-outside
+--- shot-gate-03b-strip-outside
+--- p1-open-cart
+--- p1-ui-cart
+--- shot-gate-03b-strip-cart
+--- p1-back
+
+== install: push the build and the probe to the client
+
+== install: push the build and the probe to the client
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== p1: buttons on a claim chest, none outside the claim and none on a cart
+--- p1-where
+--- p1-open0
+--- p1-ui0
+--- shot-gate-03b-strip-claim
+--- p1-open-outside
+--- p1-ui-outside
+--- shot-gate-03b-strip-outside
+--- p1-open-cart
+--- p1-ui-cart
+--- shot-gate-03b-strip-cart
+--- p1-back
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== p1: buttons on a claim chest, none outside the claim and none on a cart
+--- p1-where
+--- p1-open0
+--- p1-ui0
+--- shot-gate-03b-strip-claim
+--- p1-open-outside
+--- p1-ui-outside
+--- shot-gate-03b-strip-outside
+--- p1-open-cart
+--- p1-ui-cart
+--- shot-gate-03b-strip-cart
+--- p1-back
+
+== p1: buttons on a claim chest, and none on a cart (the no-claim case is p13)
+--- p1-where
+--- p1-open0
+--- p1-ui0
+--- shot-gate-03b-strip-claim
+--- p1-open-cart
+--- p1-ui-cart
+--- shot-gate-03b-strip-cart
+--- p1-back
+
+== p2: the network toggle is the world's, not the client's — close and reopen
+--- p2-before
+--- p2-toggle
+--- p2-after
+--- p2-close
+--- p2-reopen
+--- p2-read
+
+== p3: the panel renders; nothing covers the vanilla grid at 1080p or at 1024x768
+--- p3-panel
+--- p3-panel-read
+--- shot-gate-03b-panel-1080p
+--- p3-res-narrow
+--- p3-panel-narrow
+--- shot-gate-03b-panel-1024x768
+--- p3-res-back
+--- p3-panel-back
+
+== install: push the build and the probe to the client
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== p1: buttons on a claim chest, and none on a cart (the no-claim case is p13)
+--- p1-where
+--- p1-open0
+--- p1-ui0
+--- shot-gate-03b-strip-claim
+--- p1-open-cart
+--- p1-ui-cart
+--- shot-gate-03b-strip-cart
+--- p1-back
+
+== p2: the network toggle is the world's, not the client's — close and reopen
+--- p2-before
+--- p2-toggle
+--- p2-after
+--- p2-close
+--- p2-reopen
+--- p2-read
+
+== p3: the panel renders; nothing covers the vanilla grid at 1080p or at 1024x768
+--- p3-panel
+--- p3-panel-read
+--- shot-gate-03b-panel-1080p
+--- p3-res-narrow
+--- p3-panel-narrow
+--- shot-gate-03b-panel-1024x768
+--- p3-res-back
+--- p3-panel-back
+
+== p4: a category writes the rule and paints the button
+--- p4-click
+--- p4-read
+--- shot-gate-03b-category-metals
+
+== p5: priority + and -
+--- p5-plus
+--- p5-plus-read
+--- p5-minus
+--- p5-minus-read
+
+== p6: save contents — three kinds carried in, one unticked, applied, reopened
+--- p6-fill
+--- p6-open-custom
+--- p6-rows
+--- shot-gate-03b-save-contents
+--- p6-untick
+--- p6-untick-read
+--- p6-apply
+--- p6-applied
+--- shot-gate-03b-save-applied
+--- p6-reopen
+--- p6-reopen-read
+--- shot-gate-03b-save-reopen
+--- p6-close-custom
+
+== install: push the build and the probe to the client
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== p0: empty the pockets into Overflow so every later count is the test's own
+--- p0-inv
+--- p0-dump
+--- p0-close
+
+== p1: buttons on a claim chest, and none on a cart (the no-claim case is p13)
+--- p1-where
+--- p1-open0
+--- p1-ui0
+--- shot-gate-03b-strip-claim
+--- p1-open-cart
+--- p1-ui-cart
+--- shot-gate-03b-strip-cart
+--- p1-back
+
+== p2: the network toggle is the world's, not the client's — close and reopen
+--- p2-before
+--- p2-toggle
+--- p2-after
+--- p2-close
+--- p2-reopen
+--- p2-read
+
+== p3: the panel renders; nothing covers the vanilla grid at 1080p or at 1024x768
+--- p3-panel
+--- p3-panel-read
+--- shot-gate-03b-panel-1080p
+--- p3-res-narrow
+--- p3-panel-narrow
+--- shot-gate-03b-panel-1024x768
+--- p3-res-back
+--- p3-panel-back
+
+== p4: a category writes the rule and paints the button
+--- p4-click
+--- p4-read
+--- shot-gate-03b-category-metals
+
+== p5: priority + and -
+--- p5-plus
+--- p5-plus-read
+--- p5-minus
+--- p5-minus-read
+
+== install: push the build and the probe to the client
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== p0: empty the pockets into Overflow so every later count is the test's own
+--- p0-inv
+--- p0-dump
+--- p0-close
+
+== p1: buttons on a claim chest, and none on a cart (the no-claim case is p13)
+--- p1-where
+--- p1-open0
+--- p1-ui0
+--- shot-gate-03b-strip-claim
+--- p1-open-cart
+--- p1-ui-cart
+--- shot-gate-03b-strip-cart
+--- p1-back
+
+== p2: the network toggle is the world's, not the client's — close and reopen
+--- p2-before
+--- p2-toggle
+--- p2-after
+--- p2-close
+--- p2-reopen
+--- p2-read
+
+== p3: the panel renders; nothing covers the vanilla grid at 1080p or at 1024x768
+--- p3-panel
+--- p3-panel-read
+--- shot-gate-03b-panel-1080p
+--- p3-res-narrow
+--- p3-panel-narrow
+--- shot-gate-03b-panel-1024x768
+--- p3-res-back
+--- p3-panel-back
+
+== p4: a category writes the rule and paints the button
+--- p4-click
+--- p4-read
+--- shot-gate-03b-category-metals
+
+== p5: priority + and -
+--- p5-plus
+--- p5-plus-read
+--- p5-minus
+--- p5-minus-read
+
+== p6: save contents — three kinds carried in, one unticked, applied, reopened
+--- p6-fill
+--- p6-open-custom
+--- p6-rows
+--- shot-gate-03b-save-contents
+--- p6-untick
+--- p6-untick-read
+--- p6-apply
+--- p6-applied
+--- shot-gate-03b-save-applied
+--- p6-reopen
+--- p6-reopen-read
+--- shot-gate-03b-save-reopen
+--- p6-close-custom
+
+== install: push the build and the probe to the client
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== p3: the panel renders; nothing covers the vanilla grid at 1080p or at 1024x768
+--- p3-panel
+--- p3-panel-read
+--- shot-gate-03b-panel-1080p
+--- p3-res-narrow
+--- p3-panel-narrow
+--- shot-gate-03b-panel-1024x768
+--- p3-res-back
+--- p3-panel-back
+
+== p4: a category writes the rule and paints the button
+--- p4-click
+--- p4-read
+--- shot-gate-03b-category-metals
+
+== p5: priority + and -
+--- p5-plus
+--- p5-plus-read
+--- p5-minus
+--- p5-minus-read
+
+== p6: save contents — three kinds carried in, one unticked, applied, reopened
+--- p6-fill
+--- p6-open-custom
+--- p6-rows
+--- shot-gate-03b-save-contents
+--- p6-untick
+--- p6-untick-read
+--- p6-apply
+--- p6-applied
+--- shot-gate-03b-save-applied
+--- p6-reopen
+--- p6-reopen-read
+--- shot-gate-03b-save-reopen
+--- p6-close-custom
+
+== install: push the build and the probe to the client
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== p0: empty the pockets into Overflow so every later count is the test's own
+--- p0-inv
+--- p0-dump
+--- p0-close
+
+== p1: buttons on a claim chest, and none on a cart (the no-claim case is p13)
+--- p1-where
+--- p1-open0
+--- p1-ui0
+--- shot-gate-03b-strip-claim
+--- p1-open-cart
+--- p1-ui-cart
+--- shot-gate-03b-strip-cart
+--- p1-back
+
+== p2: the network toggle is the world's, not the client's — close and reopen
+--- p2-before
+--- p2-toggle
+--- p2-after
+--- p2-close
+--- p2-reopen
+--- p2-read
+
+== p3: the panel renders; nothing covers the vanilla grid at 1080p or at 1024x768
+--- p3-panel
+--- p3-panel-read
+--- shot-gate-03b-panel-1080p
+--- p3-res-narrow
+--- p3-panel-narrow
+--- shot-gate-03b-panel-1024x768
+--- p3-res-back
+--- p3-panel-back
+
+== p4: a category writes the rule and paints the button
+--- p4-click
+--- p4-read
+--- shot-gate-03b-category-metals
+
+== p5: priority + and -
+--- p5-plus
+--- p5-plus-read
+--- p5-minus
+--- p5-minus-read
+
+== p6: save contents — three kinds carried in, one unticked, applied, reopened
+--- p6-fill
+--- p6-open-custom
+--- p6-rows
+--- shot-gate-03b-save-contents
+--- p6-untick
+--- p6-untick-read
+--- p6-apply
+--- p6-applied
+--- shot-gate-03b-save-applied
+--- p6-reopen
+--- p6-reopen-read
+--- shot-gate-03b-save-reopen
+--- p6-close-custom
+
+== install: push the build and the probe to the client
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== p0: empty the pockets into Overflow so every later count is the test's own
+--- p0-inv
+--- p0-dump
+--- p0-close
+
+== p1: buttons on a claim chest, and none on a cart (the no-claim case is p13)
+--- p1-where
+--- p1-open0
+--- p1-ui0
+--- shot-gate-03b-strip-claim
+--- p1-open-cart
+--- p1-ui-cart
+--- shot-gate-03b-strip-cart
+--- p1-back
+
+== p2: the network toggle is the world's, not the client's — close and reopen
+--- p2-before
+--- p2-toggle
+--- p2-after
+--- p2-close
+--- p2-reopen
+--- p2-read
+
+== p3: the panel renders; nothing covers the vanilla grid at 1080p or at 1024x768
+--- p3-panel
+--- p3-panel-read
+--- shot-gate-03b-panel-1080p
+--- p3-res-narrow
+--- p3-panel-narrow
+--- shot-gate-03b-panel-1024x768
+--- p3-res-back
+--- p3-panel-back
+
+== p4: a category writes the rule and paints the button
+--- p4-click
+--- p4-read
+--- shot-gate-03b-category-metals
+
+== p5: priority + and -
+--- p5-plus
+--- p5-plus-read
+--- p5-minus
+--- p5-minus-read
+
+== p6: save contents — three kinds carried in, one unticked, applied, reopened
+--- p6-fill
+--- p6-open-custom
+--- p6-rows
+--- shot-gate-03b-save-contents
+--- p6-untick
+--- p6-untick-read
+--- p6-apply
+--- p6-applied
+--- shot-gate-03b-save-applied
+--- p6-reopen
+--- p6-reopen-read
+--- shot-gate-03b-save-reopen
+--- p6-close-custom
+
+== p7: the saved list routes — named item in, unnamed item to Overflow, deposit chest untouched
+--- p7-pockets
+--- p7-deposit
+--- p7-watch
+--- p7-containers
+--- shot-gate-03b-routed
+
+== p7: the saved list routes — named item in, unnamed item to Overflow, deposit chest untouched
+--- p7-pockets
+--- p7-deposit
+--- p7-watch
+--- p7-containers
+--- shot-gate-03b-routed
+
+== p8: use suggestion after clearing the rule on a non-empty chest
+--- p8-open
+--- p8-metals
+--- p8-clear
+--- p8-suggest-read
+--- shot-gate-03b-suggest-available
+--- p8-suggest
+--- p8-suggest-done
+
+== p9: copy to nearby — confirm line, cancel changes nothing, copy sets both
+--- p9-copy
+--- p9-confirm
+--- shot-gate-03b-copy-confirm
+--- p9-cancel
+--- p9-cancelled
+--- p9-copy2
+--- p9-yes
+--- p9-done
+--- shot-gate-03b-copy-done
+--- p9-containers
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== p0: empty the pockets into Overflow so every later count is the test's own
+--- p0-inv
+--- p0-dump
+--- p0-close
+
+== p1: buttons on a claim chest, and none on a cart (the no-claim case is p13)
+--- p1-where
+--- p1-open0
+--- p1-ui0
+--- shot-gate-03b-strip-claim
+--- p1-open-cart
+--- p1-ui-cart
+--- shot-gate-03b-strip-cart
+--- p1-back
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== p8: use suggestion after clearing the rule on a non-empty chest
+--- p8-open
+--- p8-rules
+--- p8-metals
+--- p8-before-clear
+--- p8-clear
+--- p8-suggest-read
+--- shot-gate-03b-suggest-available
+--- p8-suggest
+--- p8-suggest-done
+
+== p9: copy to nearby — confirm line, cancel changes nothing, copy sets both
+--- p9-copy
+--- p9-confirm
+--- shot-gate-03b-copy-confirm
+--- p9-cancel
+--- p9-cancelled
+--- p9-copy2
+--- p9-yes
+--- p9-done
+--- shot-gate-03b-copy-done
+--- p9-containers
+
+== p10: deposit-all on a networked chest — the nisse files it elsewhere
+--- p10-inv
+--- p10-give
+--- p10-open
+--- p10-click
+--- p10-watch
+--- p10-containers
+
+== p11: deposit-all on an off-network chest — everything lands here at once and stays
+--- p11-give
+--- p11-open
+--- p11-click
+--- p11-read
+--- shot-gate-03b-deposit-offnet
+--- p11-wait
+--- p11-reopen
+
+== p12: the off-network chest with one slot left — one stack fits, two do not
+--- p12-fill
+--- p12-give
+--- p12-click
+--- p12-read
+--- shot-gate-03b-deposit-full
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== p13: no claim at all, then a bowl somebody else placed (the last scenario; wipes the base)
+--- p13-copy-log
+--- p13-containers
+--- p13-open-noclaim
+--- shot-gate-03b-strip-noclaim
+--- p13-open-readonly
+--- p13-read
+--- shot-gate-03b-readonly
+--- p13-click
+--- p13-after
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== p13: no claim at all, then a bowl somebody else placed (the last scenario; wipes the base)
+--- p13-copy-log
+--- p13-containers
+--- p13-open-noclaim
+--- shot-gate-03b-strip-noclaim
+--- p13-open-readonly
+--- p13-read
+--- shot-gate-03b-readonly
+--- p13-click
+--- p13-after
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== p13: no claim at all, then a bowl somebody else placed (the last scenario; wipes the base)
+--- p13-copy-log
+--- p13-containers
+--- p13-open-readonly
+--- p13-read
+--- shot-gate-03b-readonly
+--- p13-click
+--- p13-after
+--- p13-open-noclaim
+--- shot-gate-03b-strip-noclaim
+--- p13-containers-final
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== p13: no claim at all, then a bowl somebody else placed (the last scenario; wipes the base)
+--- p13-copy-log
+--- p13-containers
+--- p13-open-readonly
+--- p13-read
+--- shot-gate-03b-readonly
+--- p13-click
+--- p13-after
+--- p13-open-noclaim
+--- shot-gate-03b-strip-noclaim
+--- p13-containers-final
+
+== p13: no claim at all, then a bowl somebody else placed (the last scenario; wipes the base)
+--- p13-copy-log
+--- p13-containers
+--- p13-open-readonly
+--- p13-read
+--- shot-gate-03b-readonly
+--- p13-click
+--- p13-click-rules
+--- p13-after
+--- p13-open-noclaim
+--- shot-gate-03b-strip-noclaim
+--- p13-containers-final
+
+== install: push the build and the probe to the client
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== p10: deposit-all on a networked chest — the nisse files it elsewhere
+--- p10-inv
+--- p10-give
+--- p10-open
+--- p10-click
+--- p10-watch
+--- p10-containers
+
+== install: push the build and the probe to the client
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== p10: deposit-all on a networked chest — the nisse files it elsewhere
+--- p10-inv
+--- p10-give
+--- p10-open
+--- p10-click
+--- p10-watch
+--- p10-containers
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== p11: deposit-all on an off-network chest — everything lands here at once and stays
+--- p11-give
+--- p11-open
+--- p11-click
+--- p11-read
+--- shot-gate-03b-deposit-offnet
+--- p11-wait
+--- p11-reopen
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== p8: use suggestion after clearing the rule on a non-empty chest
+--- p8-open
+--- p8-rules
+--- p8-metals
+--- p8-before-clear
+--- p8-clear
+--- p8-suggest-read
+--- shot-gate-03b-suggest-available
+--- p8-suggest
+--- p8-suggest-done
+
+== p9: copy to nearby — confirm line, cancel changes nothing, copy sets both
+--- p9-copy
+--- p9-confirm
+--- shot-gate-03b-copy-confirm
+--- p9-cancel
+--- p9-cancelled
+--- p9-copy2
+--- p9-yes
+--- p9-done
+--- shot-gate-03b-copy-done
+--- p9-containers
+
+== install: push the build and the probe to the client
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== scene: build the gate scene at the client's own position (this wipes earlier harness scenes)
+--- scene-where
+--- scene-containers
+
+== p8: use suggestion after clearing the rule on a non-empty chest
+--- p8-open
+--- p8-rules
+--- p8-metals
+--- p8-before-clear
+--- p8-clear
+--- p8-suggest-read
+--- shot-gate-03b-suggest-available
+--- p8-suggest
+--- p8-suggest-done
+
+== p9: copy to nearby — confirm line, cancel changes nothing, copy sets both
+--- p9-copy
+--- p9-confirm
+--- shot-gate-03b-copy-confirm
+--- p9-cancel
+--- p9-cancelled
+--- p9-copy2
+--- p9-yes
+--- p9-done
+--- shot-gate-03b-copy-done
+--- p9-containers
+
+== p10: deposit-all on a networked chest — the nisse files it elsewhere
+--- p10-inv
+--- p10-give
+--- p10-open
+--- p10-click
+--- p10-watch
+--- p10-containers
+
+== p11: deposit-all on an off-network chest — everything lands here at once and stays
+--- p11-give
+--- p11-open
+--- p11-click
+--- p11-read
+--- shot-gate-03b-deposit-offnet
+--- p11-wait
+--- p11-reopen
+
+== p12: the off-network chest with one slot left — one stack fits, two do not
+--- p12-fill
+--- p12-give
+--- p12-click
+--- p12-read
+--- shot-gate-03b-deposit-full
+
+== launch: quit any client, start the join task, wait for this launch's ready line
+--- launch-where
+
+== p13: no claim at all, then a bowl somebody else placed (the last scenario; wipes the base)
+--- p13-copy-log
+--- p13-containers
+--- p13-open-readonly
+--- p13-read
+--- shot-gate-03b-readonly
+--- p13-click
+--- p13-click-rules
+--- p13-after
+--- p13-open-noclaim
+--- shot-gate-03b-strip-noclaim
+--- p13-containers-final

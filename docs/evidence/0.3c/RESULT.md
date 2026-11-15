@@ -149,3 +149,52 @@ the pockets until a trip lands, the off-network dump empties them at once.
   proves the branch and that nothing is queued; the write itself is the game's own path.
 - A narrow screen and a controller for the third button; MyLittleUI beside the strip.
 - Throughput at scale (200 containers) and the fair queue — 0.3d's benchmark.
+
+## The persistence defect — a deposit that only existed in the server's memory
+
+The 0.3c gate above proved the *routing* of a deposit by reading the live `Inventory` back on the
+server. The 0.3b client gate then showed the same deposit never reaching the chest on the client
+(card `t_ab336800`): `Container.Save` runs from the inventory's change event and
+returns without a word unless `m_nview.IsOwner()`, and `Trip.Land` wrote into the inventory without
+ever taking the ZDO. The write stayed in memory, the next owner write dropped it, and a relog read
+an empty chest. The same is true of a real game's chest that a player has opened — opening claims
+the ZDO — which is exactly how a player configures one.
+
+**Fix (`src/Storage/ContainerWrite.cs`).** One seam for every server-side inventory move:
+`EnsureOwned(container, why)` takes the ZDO for this machine first (`ClaimOwnership`, a no-op when it
+already owns it), and `Persist(container, why)` packs the inventory, writes the ZDO's `items` key if
+the change event has not, reads the packed array back and compares it. Wired into `Trip.Land` (the
+destination **and** a container source — an unsaved removal would duplicate a stack),
+`OrderService.DumpPockets` and the sulk tidy-up. `[Flow] landed … zdo=1` and
+`[Orders] deposit-all … zdo=1` now carry the read-back in the diagnostics file, and `zdo=0` is an
+error line. Ownership is left with the server; the game claims it back the next time a player opens
+the chest (or takes all from it).
+
+**Gate (`testrig/scenarios/husnisse-03c-deposit-persist.cmd`, 18 assertions).** The harness grew
+`zdoowner <prefab> <uid|server|0> [index]` — put a chest's ZDO under a fabricated peer, exactly as a
+player opening it does — and `zdoitems <prefab> [index]`, which decodes the packed array out of the
+ZDO (what a save writes and a relog reads), not the live inventory. `SpawnPrefab` now claims
+ownership on spawn, so a harness piece is the normal server-owned case.
+
+| Build | Result | Reading |
+|---|---|---|
+| `d35096e2…` (the 0.3b gate build) | **FAIL 18, 7 failed** | `container piece_chest_wood[1] stacks=1 items=5` but `zdoitems … absent`; the same for deposit-all; the diagnostics lines carry no `zdo=` |
+| `cd1f5f54…` (this fix, commit `bf32ae0`) | **PASS 18/18** | `zdoitems piece_chest_wood[1] bytes=21 stacks=1 items=5 owner=… serverOwns=True`; `[Flow] landed … zdo=1`; deposit-all `zdoitems … stacks=1 items=7`; still there after a 20 s wait |
+
+Both runs: `V:\ValheimTest` (2556), world `MTTest` regenerated before each boot (the save renamed
+`MTTest.pre-03c3d`/`…f`), same harness, same scenario. Transcripts and the two logs per boot are in
+`persist/` (`red-old*.log`, `green-fix*.log`).
+
+No regression on the fixed build: `husnisse-03c-deposit.cmd` **PASS 25/25** and
+`husnisse-03c-overflow.cmd` **PASS 14/14** on the same build (`persist/husnisse-03c-*-fix.log`), so the
+routing and the deposit-all cases the original 0.3c gate proved still hold with the write going through
+`ContainerWrite`.
+
+The **client half** — a real client's `containers` dump before and after a relog — is `driver.sh p10` and `driver.sh p10relog` in `docs/evidence/0.3b-client`; `verify.sh` now has a relog row for it.
+
+### Rig lesson, now written into the scenario
+
+A world that a client has saved carries those chests' ZDOs (and their owner keys) into the next
+boot. A leftover chest shifts the position-sorted `piece_chest_wood <index>` the harness addresses
+and answered `zdoowner … was=-878098723 serverOwns=False` on a chest the mod had just claimed — the
+run looked like a bug in the fix, and was a stale world. Fresh world per run, always.

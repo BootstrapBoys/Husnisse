@@ -1,0 +1,6 @@
+gc cmd: click HusnisseCopyNo
+gc click HusnisseCopyNo label='Cancel' interactable=True
+gc click HusnisseCopyNo invoked
+gc after HusnisseCopyNo ui container=piece_chest_wood(Clone) strip=True net='Off the network' netClickable=True rules='Rules: Metals' rulesClickable=True panel=True win=True inUse=True dist=1.8
+gc after HusnisseCopyNo zdo net=False rule='v1;k=cat;c=metals' inUseFlag=False owner=True
+gc after HusnisseCopyNo panel title='Storage rule' priority='0' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=True custom='Save contents' customOpen=False

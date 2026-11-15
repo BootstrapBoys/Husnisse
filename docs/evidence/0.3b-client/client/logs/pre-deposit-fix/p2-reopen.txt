@@ -1,0 +1,3 @@
+gc cmd: open piece_chest_wood 3
+gc interact piece_chest_wood(Clone) alt=False -> True
+gc open gui=piece_chest_wood(Clone) stacks=0 items=0 [] inUse=True owner=True

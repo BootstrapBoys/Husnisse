@@ -1,0 +1,2 @@
+gc cmd: inv
+gc inv stacks=1 items=4 [woodx4]

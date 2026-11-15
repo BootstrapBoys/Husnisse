@@ -1,0 +1,4 @@
+# gate-113817-2670598
+setpos 151.6 41.1 120
+containers
+

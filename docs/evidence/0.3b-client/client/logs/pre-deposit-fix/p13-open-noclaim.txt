@@ -1,0 +1,11 @@
+gc cmd: close
+gc close was=piece_chest_wood(Clone)
+gc cmd: stand piece_chest_wood 1
+gc stand piece_chest_wood(Clone)[1] at 0.00,46.17,-6.00 -> player 1.60,46.37,-6.00
+gc cmd: open piece_chest_wood 1
+gc interact piece_chest_wood(Clone) alt=False -> True
+gc cmd: ui
+gc ui ui container=piece_chest_wood(Clone) strip=True net='On the network' netClickable=True rules='Rules: Metals' rulesClickable=True panel=False win=True inUse=False dist=1.6
+gc ui zdo net=True rule='v1;k=deposit' inUseFlag=False owner=True
+gc ui panel title='Storage rule' priority='0' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=True custom='Save contents' customOpen=False
+gc close after: gui=piece_chest_wood(Clone) localZdoOwner=True stacks=0 items=0 []

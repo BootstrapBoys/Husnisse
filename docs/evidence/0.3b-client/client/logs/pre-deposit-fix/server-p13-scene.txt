@@ -1,0 +1,40 @@
+17:49:28.911   comp MeshFilter on floor_2x2_snow
+17:49:28.911   comp MeshRenderer on floor_2x2_snow
+17:49:28.911   comp LODGroup on floor_2x2_snow
+17:49:28.911   comp Transform on New
+17:49:28.911   comp LODGroup on New
+17:49:28.911   comp Transform on woodchest
+17:49:29.414 > spawn piece_chest_wood 32 46.17 6
+17:49:29.415 spawned piece_chest_wood(Clone) at (32.00, 46.17, 6.00)  zdo=-309553712:13352  owner=-309553712  activeSelf=True  mineRock5=False  mineRock=False  character=False
+17:49:29.415   comp Transform on piece_chest_wood(Clone)
+17:49:29.415   comp ZNetView on piece_chest_wood(Clone)
+17:49:29.415   comp Container on piece_chest_wood(Clone)
+17:49:29.415   comp Piece on piece_chest_wood(Clone)
+17:49:29.415   comp WearNTear on piece_chest_wood(Clone)
+17:49:29.415   comp Transform on floor_2x2_snow
+17:49:29.415   comp MeshFilter on floor_2x2_snow
+17:49:29.415   comp MeshRenderer on floor_2x2_snow
+17:49:29.415   comp LODGroup on floor_2x2_snow
+17:49:29.415   comp Transform on New
+17:49:29.415   comp LODGroup on New
+17:49:29.415   comp Transform on woodchest
+17:49:29.920 > wait 6
+17:49:29.920 wait: 6s (server keeps ticking)
+17:49:35.965 > zdo husnisse_bowl husnisse_bowl_init
+17:49:35.974 zdo husnisse_bowl.husnisse_bowl_init = int=1 bool=True
+17:49:36.468 > husnisse claims
+17:49:36.887 husnisse claim -309553712:13349 source=native ward=0:0 owner=424242 r=20 native_r=20 native_owner=424242 suppressed=False refusal='' containers=1
+17:49:37.032 husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=1 wards=0 ward_api=False
+17:49:37.337 > expect_claim owner=424242
+17:49:37.337   expect_claim 'owner=424242' in 'husnisse claim -309553712:13349 source=native ward=0:0 owner=424242 r=20 native_r=20 native_owner=424242 suppressed=False refusal='' containers=1': ok
+17:49:37.853 > husnisse status
+17:49:38.018 husnisse status [config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=False
+17:49:38.019 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+17:49:38.019 husnisse status schema=2 feeding_required=False claims=1 trips=0 nisses=1 bowl_piece=present
+17:49:38.019 husnisse status [rules] containers=0 ruled=0 deposits=0 blacklisted=0
+17:49:38.019 husnisse status claim -309553712:13349 source=native ward=0:0 owner=424242 r=20 center=4,8 native_r=20 native_owner=424242 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=1 stacks=0 pickup=all unknown=1 lod=near:11.8 nisse=yes
+17:49:38.019 husnisse status [flow] claim=-309553712:13349 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+17:49:38.019 husnisse status lines=6
+17:49:38.356 > expect_ge containers=(\d+) 1
+17:49:38.356   expect>= /containers=(\d+)/ 1 >= 1: ok
+17:49:38.860 scenario done: PASS (2 assertions, 0 failed)

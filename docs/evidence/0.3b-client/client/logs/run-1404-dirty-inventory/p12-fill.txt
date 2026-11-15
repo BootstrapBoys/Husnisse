@@ -1,0 +1,35 @@
+gc cmd: give Stone 20 1
+gc give Stonex20 slot=(0,1) item=True stacks=1 items=20 [stonex20]
+gc cmd: move piece_chest_wood Stone 20
+gc move into piece_chest_wood(Clone) 'Stone'x20 ok=True container[stacks=6 items=138 [obsidianx8,deerhidex8,copperscrapx9,woodx50,woodx43,stonex20]] player[stacks=0 items=0 []]
+gc cmd: give Resin 20 2
+gc give Resinx20 slot=(0,2) item=True stacks=1 items=20 [resinx20]
+gc cmd: move piece_chest_wood Resin 20
+gc move into piece_chest_wood(Clone) 'Resin'x20 ok=True container[stacks=7 items=158 [obsidianx8,deerhidex8,copperscrapx9,woodx50,woodx43,stonex20,resinx20]] player[stacks=0 items=0 []]
+gc cmd: give Feathers 20 3
+gc give Feathersx20 slot=(0,3) item=True stacks=1 items=20 [feathersx20]
+gc cmd: move piece_chest_wood Feathers 20
+gc move into piece_chest_wood(Clone) 'Feathers'x20 ok=True container[stacks=8 items=178 [obsidianx8,deerhidex8,copperscrapx9,woodx50,woodx43,stonex20,resinx20,feathersx20]] player[stacks=0 items=0 []]
+gc cmd: give GreydwarfEye 20 4
+gc give GreydwarfEyex20 slot=(0,4) item=True stacks=1 items=20 [greydwarfeyex20]
+gc cmd: move piece_chest_wood GreydwarfEye 20
+gc move into piece_chest_wood(Clone) 'GreydwarfEye'x20 ok=True container[stacks=9 items=198 [obsidianx8,deerhidex8,copperscrapx9,woodx50,woodx43,stonex20,resinx20,feathersx20,greydwarfeyex20]] player[stacks=0 items=0 []]
+gc cmd: give LoxPelt 20 5
+gc give LoxPeltx20 slot=(0,5) item=True stacks=1 items=20 [loxpeltx20]
+gc cmd: move piece_chest_wood LoxPelt 20
+gc move into piece_chest_wood(Clone) 'LoxPelt'x20 ok=True container[stacks=10 items=218 [obsidianx8,deerhidex8,copperscrapx9,woodx50,woodx43,stonex20,resinx20,feathersx20,greydwarfeyex20,loxpeltx20]] player[stacks=0 items=0 []]
+gc cmd: give Flint 20 6
+gc give Flintx20 slot=(0,6) item=True stacks=1 items=20 [flintx20]
+gc cmd: move piece_chest_wood Flint 20
+gc move into piece_chest_wood(Clone) 'Flint'x20 ok=False container[stacks=10 items=218 [obsidianx8,deerhidex8,copperscrapx9,woodx50,woodx43,stonex20,resinx20,feathersx20,greydwarfeyex20,loxpeltx20]] player[stacks=1 items=20 [flintx20]]
+gc cmd: containers
+gc container piece_chest_wood(Clone) idx=1 at -126.00,77.83,-9.00 net=True rule='v1;k=deposit' stacks=0 items=0 [] zdosts=0 zid=-1891667160:18932 zrev=7 zown=-256483424
+gc container piece_chest_wood(Clone) idx=2 at -124.00,77.83,-13.00 net=True rule='v1;k=overflow' stacks=2 items=8 [obsidianx4,deerhidex4] zdosts=2 zid=-1891667160:18931 zrev=9 zown=-256483424
+gc container piece_chest_wood(Clone) idx=7 at -122.00,77.83,5.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-1891667160:18928 zrev=22 zown=-256483424
+gc container piece_chest_wood(Clone) idx=8 at -120.00,77.83,3.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-1891667160:18927 zrev=10 zown=-256483424
+gc container piece_chest_wood(Clone) idx=6 at -122.00,77.83,3.00 net=False rule='v1;k=cat;c=wood' stacks=0 items=0 [] zdosts=0 zid=-1891667160:18926 zrev=27 zown=-256483424
+gc container piece_chest_wood(Clone) idx=4 at -122.00,77.83,-11.00 net=True rule='v1;k=cat;c=wood' stacks=1 items=47 [woodx47] zdosts=1 zid=-1891667160:18930 zrev=7 zown=-256483424
+gc container piece_chest_wood(Clone) idx=5 at -122.00,77.83,-9.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-1891667160:18933 zrev=7 zown=-256483424
+gc container piece_chest_wood(Clone) idx=3 at -124.00,77.83,-7.00 net=False rule='' stacks=10 items=218 [obsidianx8,deerhidex8,copperscrapx9,woodx50,woodx43,stonex20,resinx20,feathersx20,greydwarfeyex20,loxpeltx20] zdosts=10 zid=-1891667160:18934 zrev=17 zown=-256483424
+gc container piece_chest_wood(Clone) idx=0 at -126.00,77.83,-11.00 net=True rule='v1;k=cat;c=metals' stacks=1 items=10 [copperscrapx10] zdosts=1 zid=-1891667160:18929 zrev=8 zown=-256483424
+gc containers total=9 net=7 ruled=5

@@ -1,0 +1,61 @@
+scenario queued: husnisse-03c-overflow.cmd
+18:27:03.518 > fill piece_chest_wood Coal 2000 0
+18:27:03.531 fill piece_chest_wood Coalx2000 added=450 stacks=10 items=451
+18:27:04.021 > wait 2
+18:27:04.021 wait: 2s (server keeps ticking)
+18:27:06.032 > spawn BronzeScrap 2 ground 6
+18:27:06.033 spawned BronzeScrap(Clone) at (2.00, 1.00, 6.00)  zdo=-1924393484:103  owner=-1924393484  activeSelf=True  mineRock5=False  mineRock=False  character=False
+18:27:06.033   comp Transform on BronzeScrap(Clone)
+18:27:06.033   comp Rigidbody on BronzeScrap(Clone)
+18:27:06.033   comp ZNetView on BronzeScrap(Clone)
+18:27:06.033   comp ZSyncTransform on BronzeScrap(Clone)
+18:27:06.033   comp ItemDrop on BronzeScrap(Clone)
+18:27:06.033   comp ParticleSystemRenderer on BronzeScrap(Clone)
+18:27:06.033   comp ParticleSystem on BronzeScrap(Clone)
+18:27:06.033   comp LODGroup on BronzeScrap(Clone)
+18:27:06.033   comp Transform on model
+18:27:06.033   comp MeshFilter on model
+18:27:06.033   comp MeshRenderer on model
+18:27:06.033   comp BoxCollider on model
+18:27:06.536 > wait 15
+18:27:06.536 wait: 15s (server keeps ticking)
+18:27:21.651 > container piece_chest_wood 2
+18:27:21.661 container piece_chest_wood[2] stacks=1 items=1
+18:27:22.154 > expect_last stacks=1
+18:27:22.154   expect_last 'stacks=1' in 'container piece_chest_wood[2] stacks=1 items=1': ok
+18:27:22.658 > logcheck BSBLogs/Husnisse.log \[Flow\] landed .* at=\(6,3\) why=overflow \(full: cat:metals\)
+18:27:22.658   logcheck BSBLogs/Husnisse.log /\[Flow\] landed .* at=\(6,3\) why=overflow \(full: cat:metals\)/: ok '[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(6,3) why=overflow (full: cat:metals)'
+18:27:23.160 > fill piece_chest_wood Coal 2000 2
+18:27:23.170 fill piece_chest_wood Coalx2000 added=450 stacks=10 items=451
+18:27:23.663 > wait 2
+18:27:23.663 wait: 2s (server keeps ticking)
+18:27:25.674 > fill piece_chest_wood BlackMetalScrap 5 3
+18:27:25.684 fill piece_chest_wood BlackMetalScrapx5 added=5 stacks=1 items=5
+18:27:26.176 > wait 1
+18:27:26.176 wait: 1s (server keeps ticking)
+18:27:27.181 > interact piece_chest_wood alt 3
+18:27:27.206 interact piece_chest_wood alt: Container=True
+18:27:27.686 > wait 2
+18:27:27.686 wait: 2s (server keeps ticking)
+18:27:29.696 > container piece_chest_wood 3
+18:27:29.707 container piece_chest_wood[3] stacks=1 items=5
+18:27:30.201 > expect_last stacks=1
+18:27:30.201   expect_last 'stacks=1' in 'container piece_chest_wood[3] stacks=1 items=5': ok
+18:27:30.704 > logcheck BSBLogs/Husnisse.log \[Flow\] unmatched .*blackmetalscrap why=no chest has room for .* \(full: cat:metals\+overflow\)
+18:27:30.705   logcheck BSBLogs/Husnisse.log /\[Flow\] unmatched .*blackmetalscrap why=no chest has room for .* \(full: cat:metals\+overflow\)/: ok '[Flow] unmatched $item_blackmetalscrap why=no chest has room for $item_blackmetalscrap (full: cat:metals+overflow)'
+18:27:31.207 > husnisse status
+18:27:31.352 husnisse status [config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=False
+18:27:31.352 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+18:27:31.352 husnisse status schema=2 feeding_required=False claims=1 trips=0 nisses=1 bowl_piece=present
+18:27:31.352 husnisse status rule -1924393484:95 4,3 net=on rule=cat:metals prio=1
+18:27:31.352 husnisse status rule -1924393484:95 2,3 net=on rule=cat:metals
+18:27:31.352 husnisse status rule -1924393484:95 6,3 net=on rule=overflow
+18:27:31.352 husnisse status [rules] containers=3 ruled=3 deposits=0 blacklisted=0
+18:27:31.352 husnisse status claim -1924393484:95 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=4 stacks=31 pickup=all unknown=1 lod=far:1451.5 nisse=yes
+18:27:31.352 husnisse status [flow] claim=-1924393484:95 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+18:27:31.352 husnisse status lines=9
+18:27:31.725 > expect_ge ruled=(\d+) 3
+18:27:31.725   expect>= /ruled=(\d+)/ 3 >= 3: ok
+18:27:32.226 > state
+18:27:32.256 server=True rocks5=0 rocks1=0 drops=0 players=0 zdos=99 instances=89
+18:27:32.728 scenario done: PASS (14 assertions, 0 failed)

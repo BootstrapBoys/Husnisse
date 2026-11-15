@@ -1,0 +1,4 @@
+gc cmd: clear
+gc clear stacks=0 items=0 []
+gc cmd: inv
+gc inv stacks=0 items=0 []

@@ -1,0 +1,26 @@
+gc cmd: click HusnisseCustomClose
+gc click HusnisseCustomClose label='Cancel' interactable=True
+gc click HusnisseCustomClose invoked
+gc cmd: ui
+gc ui ui container=piece_chest_wood(Clone) strip=True net='On the network' netClickable=True rules='Rules: Save contents (2)' rulesClickable=True panel=True win=True inUse=True dist=1.8
+gc ui zdo net=True rule='v1;k=custom;i=%24item_trollhide,%24item_coal' inUseFlag=False owner=True
+gc ui panel title='Storage rule' priority='0' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=True custom='Save contents (2)' customOpen=False
+gc cmd: containers
+gc container piece_chest_wood(Clone) at 15.00,34.18,-5.00 net=True rule='v1;k=overflow' stacks=0 items=0 []
+gc container piece_chest_wood(Clone) at -4.00,34.18,1.00 net=True rule='' stacks=0 items=0 []
+gc container piece_chest_wood(Clone) at 6.00,34.18,-6.00 net=True rule='v1;k=cat;c=metals' stacks=0 items=0 []
+gc container piece_chest_wood(Clone) at 8.00,34.18,5.00 net=True rule='' stacks=0 items=0 []
+gc container TreasureChest_meadows_buried(Clone) at 2.38,37.42,125.93 net=False rule='' stacks=3 items=45 [arrow_firex11,coinsx33,knife_woodx1]
+gc container piece_chest_wood(Clone) at -4.00,34.18,9.00 net=False rule='' stacks=0 items=0 []
+gc container TreasureChest_meadows_buried(Clone) at 70.45,32.32,-1.54 net=False rule='' stacks=2 items=30 [coinsx29,rubyx1]
+gc container Container at -1.99,34.88,5.00 net=False rule='-' stacks=0 items=0 []
+gc container piece_chest_wood(Clone) at 6.00,34.18,7.00 net=True rule='' stacks=0 items=0 []
+gc container piece_chest_wood(Clone) at 16.00,34.18,0.00 net=True rule='v1;k=cat;c=wood' stacks=0 items=0 []
+gc container piece_chest_wood(Clone) at 8.00,34.18,-7.00 net=True rule='v1;k=deposit' stacks=0 items=0 []
+gc container TreasureChest_meadows(Clone) at 102.30,34.16,8.02 net=False rule='' stacks=3 items=22 [torchx1,arrow_flintx20,amberx1]
+gc container TreasureChest_meadows(Clone) at -71.32,31.79,-86.99 net=False rule='' stacks=2 items=16 [coinsx12,flintx4]
+gc container piece_chest_wood(Clone) at 6.00,34.18,5.00 net=True rule='v1;k=custom;i=%24item_trollhide,%24item_coal' stacks=3 items=20 [trollhidex5,bonefragmentsx5,coalx10]
+gc containers total=14 net=8 ruled=6
+gc after HusnisseCustomClose ui container=piece_chest_wood(Clone) strip=True net='On the network' netClickable=True rules='Rules: Save contents (2)' rulesClickable=True panel=True win=True inUse=True dist=1.8
+gc after HusnisseCustomClose zdo net=True rule='v1;k=custom;i=%24item_trollhide,%24item_coal' inUseFlag=False owner=True
+gc after HusnisseCustomClose panel title='Storage rule' priority='0' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=True custom='Save contents (2)' customOpen=False

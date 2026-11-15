@@ -1,0 +1,40 @@
+gc cmd: give Stone 20 1
+gc give Stonex20 slot=(0,1) item=True stacks=1 items=20 [stonex20]
+gc cmd: move piece_chest_wood Stone 20
+gc move into piece_chest_wood(Clone) 'Stone'x20 ok=True container[stacks=4 items=34 [copperscrapx4,woodx4,coalx6,stonex20]] player[stacks=0 items=0 []]
+gc cmd: give Resin 20 2
+gc give Resinx20 slot=(0,2) item=True stacks=1 items=20 [resinx20]
+gc cmd: move piece_chest_wood Resin 20
+gc move into piece_chest_wood(Clone) 'Resin'x20 ok=True container[stacks=5 items=54 [copperscrapx4,woodx4,coalx6,stonex20,resinx20]] player[stacks=0 items=0 []]
+gc cmd: give Feathers 20 3
+gc give Feathersx20 slot=(0,3) item=True stacks=1 items=20 [feathersx20]
+gc cmd: move piece_chest_wood Feathers 20
+gc move into piece_chest_wood(Clone) 'Feathers'x20 ok=True container[stacks=6 items=74 [copperscrapx4,woodx4,coalx6,stonex20,resinx20,feathersx20]] player[stacks=0 items=0 []]
+gc cmd: give GreydwarfEye 20 4
+gc give GreydwarfEyex20 slot=(0,4) item=True stacks=1 items=20 [greydwarfeyex20]
+gc cmd: move piece_chest_wood GreydwarfEye 20
+gc move into piece_chest_wood(Clone) 'GreydwarfEye'x20 ok=True container[stacks=7 items=94 [copperscrapx4,woodx4,coalx6,stonex20,resinx20,feathersx20,greydwarfeyex20]] player[stacks=0 items=0 []]
+gc cmd: give LoxPelt 20 5
+gc give LoxPeltx20 slot=(0,5) item=True stacks=1 items=20 [loxpeltx20]
+gc cmd: move piece_chest_wood LoxPelt 20
+gc move into piece_chest_wood(Clone) 'LoxPelt'x20 ok=True container[stacks=8 items=114 [copperscrapx4,woodx4,coalx6,stonex20,resinx20,feathersx20,greydwarfeyex20,loxpeltx20]] player[stacks=0 items=0 []]
+gc cmd: give Flint 20 6
+gc give Flintx20 slot=(0,6) item=True stacks=1 items=20 [flintx20]
+gc cmd: move piece_chest_wood Flint 20
+gc move into piece_chest_wood(Clone) 'Flint'x20 ok=True container[stacks=9 items=134 [copperscrapx4,woodx4,coalx6,stonex20,resinx20,feathersx20,greydwarfeyex20,loxpeltx20,flintx20]] player[stacks=0 items=0 []]
+gc cmd: containers
+gc container piece_chest_wood(Clone) idx=4 at 4.00,46.17,-8.00 net=True rule='v1;k=cat;c=wood' stacks=1 items=10 [woodx10] zdosts=1 zid=-309553712:13321 zrev=8 zown=-1237432910
+gc container piece_chest_wood(Clone) idx=2 at 2.00,46.17,-10.00 net=True rule='v1;k=overflow' stacks=0 items=0 [] zdosts=0 zid=-309553712:13322 zrev=7 zown=-1237432910
+gc container TreasureChest_meadows(Clone) idx=0 at 72.16,54.36,118.44 net=False rule='' stacks=3 items=18 [flintx4,coinsx13,amberx1] zdosts=3 zid=-309553712:11736 zrev=9 zown=-309553712
+gc container TreasureChest_meadows_02(Clone) idx=0 at 153.06,53.76,70.68 net=False rule='' stacks=2 items=13 [axehead2x1,arrow_flintx12] zdosts=2 zid=-309553712:6616 zrev=8 zown=-309553712
+gc container piece_chest_wood(Clone) idx=8 at 6.00,46.17,6.00 net=True rule='v1;k=cat;c=metals' stacks=0 items=0 [] zdosts=0 zid=-309553712:13318 zrev=7 zown=-1237432910
+gc container piece_chest_wood(Clone) idx=1 at 0.00,46.17,-6.00 net=True rule='v1;k=deposit' stacks=0 items=0 [] zdosts=0 zid=-309553712:13323 zrev=6 zown=-1237432910
+gc container piece_chest_wood(Clone) idx=5 at 4.00,46.17,-6.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-309553712:13324 zrev=7 zown=-1237432910
+gc container piece_chest_wood(Clone) idx=6 at 4.00,46.17,6.00 net=False rule='v1;k=cat;c=metals' stacks=2 items=10 [copperscrapx5,ironscrapx5] zdosts=2 zid=-309553712:13317 zrev=20 zown=-1237432910
+gc container TreasureChest_meadows_buried(Clone) idx=1 at 71.51,29.83,-53.80 net=False rule='' stacks=3 items=43 [arrow_firex13,silvernecklacex1,coinsx29] zdosts=3 zid=-309553712:7343 zrev=10 zown=-1237432910
+gc container piece_chest_wood(Clone) idx=0 at 0.00,46.17,-8.00 net=True rule='v1;k=cat;c=metals' stacks=0 items=0 [] zdosts=0 zid=-309553712:13320 zrev=7 zown=-1237432910
+gc container TreasureChest_meadows_buried(Clone) idx=0 at -127.95,61.48,112.16 net=False rule='' stacks=2 items=12 [arrow_firex11,silvernecklacex1] zdosts=2 zid=-309553712:10277 zrev=9 zown=-309553712
+gc container piece_chest_wood(Clone) idx=7 at 4.00,46.17,8.00 net=True rule='v1;k=cat;c=metals' stacks=1 items=5 [copperscrapx5] zdosts=1 zid=-309553712:13319 zrev=13 zown=-1237432910
+gc container piece_chest_wood(Clone) idx=3 at 2.00,46.17,-4.00 net=False rule='' stacks=9 items=134 [copperscrapx4,woodx4,coalx6,stonex20,resinx20,feathersx20,greydwarfeyex20,loxpeltx20,flintx20] zdosts=9 zid=-309553712:13325 zrev=16 zown=-1237432910
+gc containers total=13 net=7 ruled=7
+gc hud top='4 New unlocks in message log.'

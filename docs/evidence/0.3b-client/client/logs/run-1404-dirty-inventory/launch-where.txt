@@ -1,0 +1,10 @@
+gc cmd: where
+gc where player=-124.60,77.83,2.25 nisse=-124.56,77.83,3.87 peers=1
+gc cmd: state
+gc state player=Stranger id=-202584743 pos=-124.60,77.83,2.25 hp=25/25 dead=False nisse=present
+gc state bowl feeding=False satiety=25 mood=100 ownerZdo=-202584743 authority=native claimRadius=20 claimOwner=-202584743 localZdoOwner=True
+gc state pantry stacks=0 items=0 []
+gc state hover='Porridge Bowl | This nisse asks for nothing. | [Alt] require offerings | Claim 20 m (native)'
+gc state nisse hp=1000/1000 pos=-124.56,77.83,3.87
+gc cmd: god on
+gc god=True

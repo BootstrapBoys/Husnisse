@@ -1,0 +1,23 @@
+gc cmd: watch 25 5
+gc watch start seconds=25 interval=5.0
+gc watch t=5 player=Stranger id=-202584743 pos=5.87,46.17,-5.99 hp=25/25 dead=False nisse=present
+gc watch t=5 bowl feeding=False satiety=25 mood=100 ownerZdo=-202584743 authority=native claimRadius=20 claimOwner=-202584743 localZdoOwner=True
+gc watch t=5 pantry stacks=0 items=0 []
+gc watch t=5 hover='Porridge Bowl | This nisse asks for nothing. | [Alt] require offerings | Claim 20 m (native)'
+gc watch t=5 nisse hp=1000/1000 pos=2.82,46.17,-0.86
+gc watch t=10 player=Stranger id=-202584743 pos=5.87,46.17,-5.99 hp=25/25 dead=False nisse=present
+gc watch t=10 bowl feeding=False satiety=25 mood=100 ownerZdo=-202584743 authority=native claimRadius=20 claimOwner=-202584743 localZdoOwner=True
+gc watch t=10 pantry stacks=0 items=0 []
+gc watch t=10 hover='Porridge Bowl | This nisse asks for nothing. | [Alt] require offerings | Claim 20 m (native)'
+gc watch t=10 nisse hp=1000/1000 pos=1.39,46.17,-5.11
+gc watch t=15 player=Stranger id=-202584743 pos=5.87,46.17,-5.99 hp=25/25 dead=False nisse=present
+gc watch t=15 bowl feeding=False satiety=25 mood=100 ownerZdo=-202584743 authority=native claimRadius=20 claimOwner=-202584743 localZdoOwner=True
+gc watch t=15 pantry stacks=0 items=0 []
+gc watch t=15 hover='Porridge Bowl | This nisse asks for nothing. | [Alt] require offerings | Claim 20 m (native)'
+gc watch t=15 nisse hp=1000/1000 pos=0.51,46.17,3.97
+gc watch t=20 player=Stranger id=-202584743 pos=5.87,46.17,-5.99 hp=25/25 dead=False nisse=present
+gc watch t=20 bowl feeding=False satiety=25 mood=100 ownerZdo=-202584743 authority=native claimRadius=20 claimOwner=-202584743 localZdoOwner=True
+gc watch t=20 pantry stacks=0 items=0 []
+gc watch t=20 hover='Porridge Bowl | This nisse asks for nothing. | [Alt] require offerings | Claim 20 m (native)'
+gc watch t=20 nisse hp=1000/1000 pos=1.46,46.17,6.87
+gc watch done seconds=25

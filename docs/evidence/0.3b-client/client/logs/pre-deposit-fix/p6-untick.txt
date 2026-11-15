@@ -1,0 +1,6 @@
+gc cmd: click HusnisseCustomRow1
+gc click HusnisseCustomRow1 label='[x] Bone Fragments x5' interactable=True
+gc click HusnisseCustomRow1 invoked
+gc after HusnisseCustomRow1 ui container=piece_chest_wood(Clone) strip=True net='On the network' netClickable=True rules='Rules: Metals' rulesClickable=True panel=False win=True inUse=True dist=1.8
+gc after HusnisseCustomRow1 zdo net=True rule='v1;k=cat;c=metals' inUseFlag=False owner=True
+gc after HusnisseCustomRow1 panel title='Storage rule' priority='0' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=True custom='Save contents' customOpen=True

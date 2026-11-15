@@ -1,0 +1,7 @@
+gc cmd: close
+gc close was=none
+gc cmd: stand piece_chest_wood 5
+gc stand piece_chest_wood(Clone)[5] at -129.00,78.11,177.00 -> player -127.40,78.31,177.00
+gc cmd: open piece_chest_wood 5
+gc interact piece_chest_wood(Clone) alt=False -> True
+gc close after: gui=piece_chest_wood(Clone) localZdoOwner=True stacks=0 items=0 []

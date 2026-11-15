@@ -1,0 +1,38 @@
+== /home/hermes/projects/valheim/nisse/docs/evidence/0.3b-client/client/logs/p3-panel-read.txt
+   screen 1920x1080  window rect 40.0,383.0,570.0x340.0
+   categories drawn: 8  columns=4 rows=2
+     Metals       at (  638.0,  653.0) 104.0x26.0  color #FFFFFF
+     Wood         at (  748.0,  653.0) 104.0x26.0  color #FFFFFF
+     Food         at (  858.0,  653.0) 104.0x26.0  color #FFFFFF
+     Trophies     at (  968.0,  653.0) 104.0x26.0  color #FFFFFF
+     Valuables    at (  638.0,  621.0) 104.0x26.0  color #FFFFFF
+     Building     at (  748.0,  621.0) 104.0x26.0  color #FFFFFF
+     Consumables  at (  858.0,  621.0) 104.0x26.0  color #FFFFFF
+     Tools        at (  968.0,  621.0) 104.0x26.0  color #FFFFFF
+   HusnisseNetworkStrip   grid-overlap      0.0  window-overlap   9256.0  inside=True  area=9256  ok
+   HusnisseRulesPanel     grid-overlap      0.0  window-overlap      0.0  inside=False  area=118440  ok
+   HusnisseCustomPanel    grid-overlap      0.0  window-overlap      0.0  inside=False  area=157920  ok
+   HusnisseNetworkStrip   controls=3 overlapping-pairs=0
+   HusnisseRulesPanel     controls=20 overlapping-pairs=0
+   HusnisseRulesPanel: visible 470.0x252.0 at (624.0,471.0)
+   HusnisseCustomPanel: hidden 470.0x336.0 at (624.0,387.0)
+
+== /home/hermes/projects/valheim/nisse/docs/evidence/0.3b-client/client/logs/p3-panel-narrow.txt
+   screen 1024x768  window rect 21.3,396.3,304.0x181.3
+   categories drawn: 8  columns=4 rows=2
+     Metals       at (  340.3,  540.3) 55.5x13.9  color #FFFFFF
+     Wood         at (  398.9,  540.3) 55.5x13.9  color #FFFFFF
+     Food         at (  457.6,  540.3) 55.5x13.9  color #FFFFFF
+     Trophies     at (  516.3,  540.3) 55.5x13.9  color #FFFFFF
+     Valuables    at (  340.3,  523.2) 55.5x13.9  color #FFFFFF
+     Building     at (  398.9,  523.2) 55.5x13.9  color #FFFFFF
+     Consumables  at (  457.6,  523.2) 55.5x13.9  color #FFFFFF
+     Tools        at (  516.3,  523.2) 55.5x13.9  color #FFFFFF
+   HusnisseNetworkStrip   grid-overlap      0.0  window-overlap   2632.8  inside=True  area=2633  ok
+   HusnisseRulesPanel     grid-overlap      0.0  window-overlap      0.0  inside=False  area=33690  ok
+   HusnisseCustomPanel    grid-overlap      0.0  window-overlap      0.0  inside=False  area=44919  ok
+   HusnisseNetworkStrip   controls=3 overlapping-pairs=0
+   HusnisseRulesPanel     controls=20 overlapping-pairs=0
+   HusnisseRulesPanel: visible 250.7x134.4 at (332.8,443.2)
+   HusnisseCustomPanel: hidden 250.7x179.2 at (332.8,398.4)
+

@@ -1,0 +1,61 @@
+scenario queued: husnisse-03c-deposit.cmd
+18:24:45.455 > expect depositall piece_chest_wood[0] net=on before stacks=2 items=10
+18:24:45.456   expect 'depositall piece_chest_wood[0] net=on before stacks=2 items=10': ok
+18:24:45.957 > expect_last depositall result=True after stacks=2 items=10
+18:24:45.957   expect_last 'depositall result=True after stacks=2 items=10' in 'depositall result=True after stacks=2 items=10': ok
+18:24:46.463 > wait 35
+18:24:46.463 wait: 35s (server keeps ticking)
+18:25:21.649 > pockets
+18:25:21.649 pockets player=0 stacks=0 items=0
+18:25:22.151 > expect_last stacks=0 items=0
+18:25:22.152   expect_last 'stacks=0 items=0' in 'pockets player=0 stacks=0 items=0': ok
+18:25:22.654 > container piece_chest_wood 0
+18:25:22.663 container piece_chest_wood stacks=1 items=15
+18:25:23.157 > expect_last items=15
+18:25:23.157   expect_last 'items=15' in 'container piece_chest_wood stacks=1 items=15': ok
+18:25:23.660 > container piece_chest_wood 1
+18:25:23.672 container piece_chest_wood[1] stacks=1 items=25
+18:25:24.162 > expect_last items=25
+18:25:24.162   expect_last 'items=25' in 'container piece_chest_wood[1] stacks=1 items=25': ok
+18:25:24.665 > logcheck BSBLogs/Husnisse.log \[Orders\] empty pockets queued=2
+18:25:24.665   logcheck BSBLogs/Husnisse.log /\[Orders\] empty pockets queued=2/: ok '[Orders] empty pockets queued=2'
+18:25:25.167 > pocketfill CopperScrap 5 Wood 5
+18:25:25.177 pocketfill player=0 stacks=2 items=10
+18:25:25.670 > depositall piece_chest_wood 4
+18:25:26.118 depositall piece_chest_wood[4] net=off before stacks=2 items=10
+18:25:26.121 depositall result=True after stacks=0 items=0
+18:25:26.427 > expect depositall piece_chest_wood[4] net=off before stacks=2 items=10
+18:25:26.427   expect 'depositall piece_chest_wood[4] net=off before stacks=2 items=10': ok
+18:25:26.929 > expect_last depositall result=True after stacks=0 items=0
+18:25:26.929   expect_last 'depositall result=True after stacks=0 items=0' in 'depositall result=True after stacks=0 items=0': ok
+18:25:27.432 > container piece_chest_wood 4
+18:25:27.442 container piece_chest_wood[4] stacks=2 items=10
+18:25:27.934 > expect_last stacks=2 items=10
+18:25:27.934   expect_last 'stacks=2 items=10' in 'container piece_chest_wood[4] stacks=2 items=10': ok
+18:25:28.437 > container piece_chest_wood 0
+18:25:28.447 container piece_chest_wood stacks=1 items=15
+18:25:28.942 > expect_last items=15
+18:25:28.942   expect_last 'items=15' in 'container piece_chest_wood stacks=1 items=15': ok
+18:25:29.444 > container piece_chest_wood 1
+18:25:29.456 container piece_chest_wood[1] stacks=1 items=25
+18:25:29.947 > expect_last items=25
+18:25:29.947   expect_last 'items=25' in 'container piece_chest_wood[1] stacks=1 items=25': ok
+18:25:30.449 > logcheck BSBLogs/Husnisse.log \[Orders\] deposit-all dumped=2 left=0 container=.* at=\(10,3\)
+18:25:30.449   logcheck BSBLogs/Husnisse.log /\[Orders\] deposit-all dumped=2 left=0 container=.* at=\(10,3\)/: ok '[Orders] deposit-all dumped=2 left=0 container=piece_chest_wood(Clone) at=(10,3)'
+18:25:30.952 > wait 25
+18:25:30.952 wait: 25s (server keeps ticking)
+18:25:56.106 > container piece_chest_wood 4
+18:25:56.117 container piece_chest_wood[4] stacks=2 items=10
+18:25:56.608 > expect_last stacks=2 items=10
+18:25:56.608   expect_last 'stacks=2 items=10' in 'container piece_chest_wood[4] stacks=2 items=10': ok
+18:25:57.111 > container piece_chest_wood 0
+18:25:57.124 container piece_chest_wood stacks=1 items=15
+18:25:57.614 > expect_last items=15
+18:25:57.614   expect_last 'items=15' in 'container piece_chest_wood stacks=1 items=15': ok
+18:25:58.116 > container piece_chest_wood 1
+18:25:58.127 container piece_chest_wood[1] stacks=1 items=25
+18:25:58.618 > expect_last items=25
+18:25:58.618   expect_last 'items=25' in 'container piece_chest_wood[1] stacks=1 items=25': ok
+18:25:59.122 > state
+18:25:59.157 server=True rocks5=0 rocks1=0 drops=0 players=0 zdos=94 instances=90
+18:25:59.630 scenario done: PASS (25 assertions, 0 failed)

@@ -1,0 +1,85 @@
+gc cmd: panel
+gc panel root=Container win=True screen=1024x768 rect=21.3,396.3,304.0x181.3
+gc panel grid name=ContainerGrid active=True rect=21.3,396.3,304.0x156.8
+gc panel el name=HusnisseNetworkStrip active=True vis=True clickable=- label='On the network' color=#FFA13C rect=132.3,561.6,189.9x13.9
+gc panel el name=HusnisseNet active=True vis=True clickable=True label='On the network' color=#FFA13C rect=132.3,561.6,60.8x13.9
+gc panel el name=HusnisseDepositAll active=True vis=True clickable=True label='Deposit all' color=#FFA13C rect=196.8,561.6,60.8x13.9
+gc panel el name=HusnisseRules active=True vis=True clickable=True label='Rules: No rule' color=#FFA13C rect=261.3,561.6,60.8x13.9
+gc panel el name=HusnisseRulesPanel active=True vis=True clickable=- label='Storage rule' color=#FFFFFF rect=332.8,443.2,250.7x134.4
+gc panel el name=HusnisseRulesTitle active=True vis=True clickable=- label='Storage rule' color=#FFFFFF rect=340.3,558.4,160.0x13.9
+gc panel el name=HusnisseRulesClose active=True vis=True clickable=True label='Close' color=#FFA13C rect=539.7,559.5,38.4x12.8
+gc panel el name=HusnisseCatMetals active=True vis=True clickable=True label='Metals' color=#FFFFFF rect=340.3,540.3,55.5x13.9
+gc panel el name=HusnisseCatWood active=True vis=True clickable=True label='Wood' color=#FFFFFF rect=398.9,540.3,55.5x13.9
+gc panel el name=HusnisseCatFood active=True vis=True clickable=True label='Food' color=#FFFFFF rect=457.6,540.3,55.5x13.9
+gc panel el name=HusnisseCatTrophies active=True vis=True clickable=True label='Trophies' color=#FFFFFF rect=516.3,540.3,55.5x13.9
+gc panel el name=HusnisseCatValuables active=True vis=True clickable=True label='Valuables' color=#FFFFFF rect=340.3,523.2,55.5x13.9
+gc panel el name=HusnisseCatBuilding active=True vis=True clickable=True label='Building' color=#FFFFFF rect=398.9,523.2,55.5x13.9
+gc panel el name=HusnisseCatConsumables active=True vis=True clickable=True label='Consumables' color=#FFFFFF rect=457.6,523.2,55.5x13.9
+gc panel el name=HusnisseCatTools active=True vis=True clickable=True label='Tools' color=#FFFFFF rect=516.3,523.2,55.5x13.9
+gc panel el name=HusnisseOverflow active=True vis=True clickable=True label='Overflow' color=#FFFFFF rect=340.3,504.0,74.7x14.9
+gc panel el name=HusnisseDeposit active=True vis=True clickable=True label='Deposit' color=#FFFFFF rect=419.2,504.0,74.7x14.9
+gc panel el name=HusnisseNoRule active=True vis=True clickable=True label='No rule' color=#FFD65C rect=498.1,504.0,70.4x14.9
+gc panel el name=HusnisseCustom active=True vis=True clickable=False label='Save contents' color=#FFFFFF rect=340.3,485.9,116.3x14.9
+gc panel el name=HusnissePriorityLabel active=True vis=True clickable=- label='Priority' color=#FFFFFF rect=462.9,486.9,35.2x12.8
+gc panel el name=HusnissePriorityMinus active=True vis=True clickable=False label='-' color=#FFA13C rect=498.1,485.9,14.9x14.9
+gc panel el name=HusnissePriorityValue active=True vis=True clickable=- label='-' color=#FFFFFF rect=514.1,487.5,21.3x11.7
+gc panel el name=HusnissePriorityPlus active=True vis=True clickable=False label='+' color=#FFA13C rect=536.5,485.9,14.9x14.9
+gc panel el name=HusnisseSuggest active=False vis=False clickable=False label='Use suggestion: No rule' color=#FFA13C rect=340.3,467.7,116.3x14.9
+gc panel el name=HusnisseCopy active=True vis=True clickable=False label='Copy to nearby' color=#FFA13C rect=460.8,467.7,107.7x14.9
+gc panel el name=HusnisseStatus active=True vis=True clickable=- label='' color=#FFFFFF rect=340.3,450.7,160.0x12.8
+gc panel el name=HusnisseCopyNo active=False vis=False clickable=True label='Cancel' color=#FFA13C rect=503.5,450.7,32.0x13.9
+gc panel el name=HusnisseCopyYes active=False vis=False clickable=True label='Copy to nearby' color=#FFA13C rect=538.7,450.7,29.9x13.9
+gc panel el name=HusnisseCustomPanel active=False vis=False clickable=- label='This container is empty.' color=#FFFFFF rect=332.8,398.4,250.7x179.2
+gc panel el name=HusnisseCustomTitle active=True vis=False clickable=- label='This container is empty.' color=#FFFFFF rect=340.3,558.4,170.7x13.9
+gc panel el name=HusnisseCustomClose active=True vis=False clickable=True label='Cancel' color=#FFA13C rect=539.7,559.5,38.4x12.8
+gc panel el name=HusnisseCustomRow0 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=338.1,546.1,77.9x9.1
+gc panel el name=HusnisseCustomRow1 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=419.2,546.1,77.9x9.1
+gc panel el name=HusnisseCustomRow2 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=500.3,546.1,77.9x9.1
+gc panel el name=HusnisseCustomRow3 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=338.1,536.0,77.9x9.1
+gc panel el name=HusnisseCustomRow4 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=419.2,536.0,77.9x9.1
+gc panel el name=HusnisseCustomRow5 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=500.3,536.0,77.9x9.1
+gc panel el name=HusnisseCustomRow6 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=338.1,525.9,77.9x9.1
+gc panel el name=HusnisseCustomRow7 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=419.2,525.9,77.9x9.1
+gc panel el name=HusnisseCustomRow8 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=500.3,525.9,77.9x9.1
+gc panel el name=HusnisseCustomRow9 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=338.1,515.7,77.9x9.1
+gc panel el name=HusnisseCustomRow10 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=419.2,515.7,77.9x9.1
+gc panel el name=HusnisseCustomRow11 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=500.3,515.7,77.9x9.1
+gc panel el name=HusnisseCustomRow12 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=338.1,505.6,77.9x9.1
+gc panel el name=HusnisseCustomRow13 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=419.2,505.6,77.9x9.1
+gc panel el name=HusnisseCustomRow14 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=500.3,505.6,77.9x9.1
+gc panel el name=HusnisseCustomRow15 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=338.1,495.5,77.9x9.1
+gc panel el name=HusnisseCustomRow16 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=419.2,495.5,77.9x9.1
+gc panel el name=HusnisseCustomRow17 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=500.3,495.5,77.9x9.1
+gc panel el name=HusnisseCustomRow18 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=338.1,485.3,77.9x9.1
+gc panel el name=HusnisseCustomRow19 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=419.2,485.3,77.9x9.1
+gc panel el name=HusnisseCustomRow20 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=500.3,485.3,77.9x9.1
+gc panel el name=HusnisseCustomRow21 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=338.1,475.2,77.9x9.1
+gc panel el name=HusnisseCustomRow22 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=419.2,475.2,77.9x9.1
+gc panel el name=HusnisseCustomRow23 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=500.3,475.2,77.9x9.1
+gc panel el name=HusnisseCustomRow24 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=338.1,465.1,77.9x9.1
+gc panel el name=HusnisseCustomRow25 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=419.2,465.1,77.9x9.1
+gc panel el name=HusnisseCustomRow26 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=500.3,465.1,77.9x9.1
+gc panel el name=HusnisseCustomRow27 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=338.1,454.9,77.9x9.1
+gc panel el name=HusnisseCustomRow28 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=419.2,454.9,77.9x9.1
+gc panel el name=HusnisseCustomRow29 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=500.3,454.9,77.9x9.1
+gc panel el name=HusnisseCustomRow30 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=338.1,444.8,77.9x9.1
+gc panel el name=HusnisseCustomRow31 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=419.2,444.8,77.9x9.1
+gc panel el name=HusnisseCustomRow32 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=500.3,444.8,77.9x9.1
+gc panel el name=HusnisseCustomRow33 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=338.1,434.7,77.9x9.1
+gc panel el name=HusnisseCustomRow34 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=419.2,434.7,77.9x9.1
+gc panel el name=HusnisseCustomRow35 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=500.3,434.7,77.9x9.1
+gc panel el name=HusnisseCustomRow36 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=338.1,424.5,77.9x9.1
+gc panel el name=HusnisseCustomRow37 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=419.2,424.5,77.9x9.1
+gc panel el name=HusnisseCustomRow38 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=500.3,424.5,77.9x9.1
+gc panel el name=HusnisseCustomRow39 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=338.1,414.4,77.9x9.1
+gc panel el name=HusnisseCustomRow40 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=419.2,414.4,77.9x9.1
+gc panel el name=HusnisseCustomRow41 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=500.3,414.4,77.9x9.1
+gc panel el name=HusnisseCustomAll active=True vis=False clickable=True label='All' color=#FFA13C rect=340.3,404.8,37.3x13.9
+gc panel el name=HusnisseCustomNone active=True vis=False clickable=True label='None' color=#FFA13C rect=381.9,404.8,37.3x13.9
+gc panel el name=HusnisseCustomApply active=True vis=False clickable=True label='Apply' color=#FFA13C rect=526.9,404.8,51.2x13.9
+gc panel overlap HusnisseNetworkStrip vs grid = 0.0 vs window = 2632.8 inside=True area=2633
+gc panel overlap HusnisseRulesPanel vs grid = 0.0 vs window = 0.0 inside=False area=33690
+gc panel overlap HusnisseCustomPanel vs grid = 0.0 vs window = 0.0 inside=False area=44919
+gc panel pairs HusnisseNetworkStrip leaves=3 overlapping=0
+gc panel pairs HusnisseRulesPanel leaves=20 overlapping=0
+gc panel counts elements=76 visible=25

@@ -1,0 +1,18 @@
+scenario queued: pre-clean.cmd
+18:46:01.829 harness ready - write commands to V:\ValheimTest\BepInEx\config\harness.cmd
+18:46:01.829 scene: not ready  server: False
+18:46:30.586 harness patch: object culling gated by HoldObjects
+19:04:35.030 mt master: no plugin instance
+19:04:35.030 scenario loaded: 3 command(s)
+19:04:35.030 > cleanup
+19:04:35.151 mt master: no plugin instance
+19:04:35.151 cleanup done
+19:04:35.456 > wait 3
+19:04:35.459 wait: 3s (server keeps ticking)
+19:04:38.478 > husnisse status
+19:04:38.632 husnisse status [config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=False
+19:04:38.632 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+19:04:38.632 husnisse status schema=2 feeding_required=False claims=0 trips=0 nisses=0 bowl_piece=present
+19:04:38.632 husnisse status [rules] containers=0 ruled=0 deposits=0 blacklisted=0
+19:04:38.632 husnisse status lines=4
+19:04:39.004 scenario done: PASS (0 assertions, 0 failed)

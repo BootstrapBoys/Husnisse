@@ -1,0 +1,40 @@
+19:05:49.456 console > husnisse_rule net piece_chest_wood on 7
+19:05:49.958 > console husnisse_rule net piece_chest_wood on 0
+19:05:49.960 console > husnisse_rule net piece_chest_wood on 0
+19:05:50.458 > console husnisse_rule net piece_chest_wood on 4
+19:05:50.461 console > husnisse_rule net piece_chest_wood on 4
+19:05:50.963 > console husnisse_rule net piece_chest_wood on 2
+19:05:50.966 console > husnisse_rule net piece_chest_wood on 2
+19:05:51.467 > console husnisse_rule net piece_chest_wood on 1
+19:05:51.469 console > husnisse_rule net piece_chest_wood on 1
+19:05:51.978 > console husnisse_rule net piece_chest_wood on 5
+19:05:51.981 console > husnisse_rule net piece_chest_wood on 5
+19:05:52.479 > console husnisse_rule set piece_chest_wood cat:metals 0
+19:05:52.481 console > husnisse_rule set piece_chest_wood cat:metals 0
+19:05:52.983 > console husnisse_rule set piece_chest_wood cat:wood 4
+19:05:52.985 console > husnisse_rule set piece_chest_wood cat:wood 4
+19:05:53.484 > console husnisse_rule set piece_chest_wood overflow 2
+19:05:53.486 console > husnisse_rule set piece_chest_wood overflow 2
+19:05:53.988 > console husnisse_rule set piece_chest_wood deposit 1
+19:05:53.990 console > husnisse_rule set piece_chest_wood deposit 1
+19:05:54.489 > console husnisse_rule set piece_chest_wood cat:wood 6
+19:05:54.492 console > husnisse_rule set piece_chest_wood cat:wood 6
+19:05:54.994 > wait 2
+19:05:54.994 wait: 2s (server keeps ticking)
+19:05:57.005 > husnisse status
+19:05:57.192 husnisse status [config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=False
+19:05:57.192 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+19:05:57.192 husnisse status schema=2 feeding_required=False claims=1 trips=0 nisses=1 bowl_piece=present
+19:05:57.192 husnisse status rule -1891667160:18924 -120,3 net=on rule=none
+19:05:57.192 husnisse status rule -1891667160:18924 -122,-11 net=on rule=cat:wood
+19:05:57.192 husnisse status rule -1891667160:18924 -122,-9 net=on rule=none
+19:05:57.192 husnisse status rule -1891667160:18924 -126,-9 net=on rule=deposit
+19:05:57.192 husnisse status rule -1891667160:18924 -126,-11 net=on rule=cat:metals
+19:05:57.192 husnisse status rule -1891667160:18924 -124,-13 net=on rule=overflow
+19:05:57.192 husnisse status rule -1891667160:18924 -122,5 net=on rule=none
+19:05:57.192 husnisse status rule -1891667160:18924 -122,3 net=off rule=cat:wood
+19:05:57.192 husnisse status [rules] containers=8 ruled=5 deposits=1 blacklisted=0
+19:05:57.192 husnisse status claim -1891667160:18924 source=native ward=0:0 owner=-202584743 r=20 center=-124,3 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=9 stacks=0 pickup=all unknown=1 lod=near:1.8 nisse=yes
+19:05:57.192 husnisse status [flow] claim=-1891667160:18924 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+19:05:57.192 husnisse status lines=14
+19:05:57.531 scenario done: PASS (2 assertions, 0 failed)

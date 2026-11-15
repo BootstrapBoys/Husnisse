@@ -1,0 +1,153 @@
+#< CLIXML
+== BSBLogs/Husnisse.log (tail) ==
+Husnisse 0.3.0
+started 2026-11-15 11:29:14
+
+
+== world ready @ 11:29:42 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=False claims=0 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0
+
+== claim registered @ 11:31:50 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=False claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0
+claim -83935561:17728 source=native ward=0:0 owner=424242 r=20 center=22,18 native_r=20 native_owner=424242 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none
+
+== claim removed @ 11:32:32 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=False claims=0 trips=0 nisses=1 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0
+
+== claim registered @ 11:35:35 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=False claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0
+claim -83935561:21005 source=native ward=0:0 owner=424242 r=20 center=122,122 native_r=20 native_owner=424242 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=none
+== BSBLogs/Harness.log (tail) ==
+16:35:32.727   comp BoxCollider on collider
+16:35:32.727   comp Transform on WET
+16:35:32.727   comp ParticleSystem on WET
+16:35:33.230 > spawn wood_floor 150 40.80 122
+16:35:33.231 spawned wood_floor(Clone) at (150.00, 40.80, 122.00)  zdo=-83935561:21001  owner=-83935561  activeSelf=True  mineRock5=False  mineRock=False  character=False
+16:35:33.231   comp Transform on wood_floor(Clone)
+16:35:33.231   comp Piece on wood_floor(Clone)
+16:35:33.231   comp ZNetView on wood_floor(Clone)
+16:35:33.231   comp WearNTear on wood_floor(Clone)
+16:35:33.231   comp LODGroup on wood_floor(Clone)
+16:35:33.231   comp Transform on floor_2x2_snow
+16:35:33.231   comp MeshFilter on floor_2x2_snow
+16:35:33.231   comp MeshRenderer on floor_2x2_snow
+16:35:33.232   comp Transform on collider
+16:35:33.232   comp BoxCollider on collider
+16:35:33.232   comp Transform on WET
+16:35:33.232   comp ParticleSystem on WET
+16:35:33.731 > spawn wood_floor 152 40.80 118
+16:35:33.732 spawned wood_floor(Clone) at (152.00, 40.80, 118.00)  zdo=-83935561:21002  owner=-83935561  activeSelf=True  mineRock5=False  mineRock=False  character=False
+16:35:33.733   comp Transform on wood_floor(Clone)
+16:35:33.733   comp Piece on wood_floor(Clone)
+16:35:33.733   comp ZNetView on wood_floor(Clone)
+16:35:33.733   comp WearNTear on wood_floor(Clone)
+16:35:33.733   comp LODGroup on wood_floor(Clone)
+16:35:33.733   comp Transform on floor_2x2_snow
+16:35:33.733   comp MeshFilter on floor_2x2_snow
+16:35:33.733   comp MeshRenderer on floor_2x2_snow
+16:35:33.733   comp Transform on collider
+16:35:33.733   comp BoxCollider on collider
+16:35:33.733   comp Transform on WET
+16:35:33.733   comp ParticleSystem on WET
+16:35:34.236 > spawn wood_floor 152 40.80 120
+16:35:34.237 spawned wood_floor(Clone) at (152.00, 40.80, 120.00)  zdo=-83935561:21003  owner=-83935561  activeSelf=True  mineRock5=False  mineRock=False  character=False
+16:35:34.237   comp Transform on wood_floor(Clone)
+16:35:34.237   comp Piece on wood_floor(Clone)
+16:35:34.237   comp ZNetView on wood_floor(Clone)
+16:35:34.237   comp WearNTear on wood_floor(Clone)
+16:35:34.237   comp LODGroup on wood_floor(Clone)
+16:35:34.237   comp Transform on floor_2x2_snow
+16:35:34.237   comp MeshFilter on floor_2x2_snow
+16:35:34.237   comp MeshRenderer on floor_2x2_snow
+16:35:34.237   comp Transform on collider
+16:35:34.237   comp BoxCollider on collider
+16:35:34.237   comp Transform on WET
+16:35:34.237   comp ParticleSystem on WET
+16:35:34.736 > spawn wood_floor 152 40.80 122
+16:35:34.737 spawned wood_floor(Clone) at (152.00, 40.80, 122.00)  zdo=-83935561:21004  owner=-83935561  activeSelf=True  mineRock5=False  mineRock=False  character=False
+16:35:34.737   comp Transform on wood_floor(Clone)
+16:35:34.737   comp Piece on wood_floor(Clone)
+16:35:34.737   comp ZNetView on wood_floor(Clone)
+16:35:34.738   comp WearNTear on wood_floor(Clone)
+16:35:34.738   comp LODGroup on wood_floor(Clone)
+16:35:34.738   comp Transform on floor_2x2_snow
+16:35:34.738   comp MeshFilter on floor_2x2_snow
+16:35:34.738   comp MeshRenderer on floor_2x2_snow
+16:35:34.738   comp Transform on collider
+16:35:34.738   comp BoxCollider on collider
+16:35:34.738   comp Transform on WET
+16:35:34.738   comp ParticleSystem on WET
+16:35:35.241 > spawn husnisse_bowl 122 40.90 122 424242
+16:35:35.257 spawned husnisse_bowl(Clone) at (122.00, 40.90, 122.00)  zdo=-83935561:21005  owner=-83935561  activeSelf=True  mineRock5=False  mineRock=False  character=False
+16:35:35.257   comp Transform on husnisse_bowl(Clone)
+16:35:35.257   comp Piece on husnisse_bowl(Clone)
+16:35:35.257   comp ZNetView on husnisse_bowl(Clone)
+16:35:35.258   comp WearNTear on husnisse_bowl(Clone)
+16:35:35.258   comp LODGroup on husnisse_bowl(Clone)
+16:35:35.258   comp Container on husnisse_bowl(Clone)
+16:35:35.258   comp BowlPiece on husnisse_bowl(Clone)
+16:35:35.258   comp Transform on roof_check_pint
+16:35:35.258   comp Transform on connectionEffectPoint
+16:35:35.258   comp Transform on Capsule_blockplayer
+16:35:35.258   comp CapsuleCollider on Capsule_blockplayer
+16:35:35.258   comp Transform on Capsule_interact
+16:35:35.741 > spawn piece_chest_wood 124 40.90 122
+16:35:35.742 spawned piece_chest_wood(Clone) at (124.00, 40.90, 122.00)  zdo=-83935561:21007  owner=-83935561  activeSelf=True  mineRock5=False  mineRock=False  character=False
+16:35:35.742   comp Transform on piece_chest_wood(Clone)
+16:35:35.742   comp ZNetView on piece_chest_wood(Clone)
+16:35:35.742   comp Container on piece_chest_wood(Clone)
+16:35:35.742   comp Piece on piece_chest_wood(Clone)
+16:35:35.742   comp WearNTear on piece_chest_wood(Clone)
+16:35:35.742   comp Transform on floor_2x2_snow
+16:35:35.742   comp MeshFilter on floor_2x2_snow
+16:35:35.742   comp MeshRenderer on floor_2x2_snow
+16:35:35.742   comp LODGroup on floor_2x2_snow
+16:35:35.742   comp Transform on New
+16:35:35.742   comp LODGroup on New
+16:35:35.742   comp Transform on woodchest
+16:35:36.246 > spawn piece_chest_wood 150 40.90 120
+16:35:36.247 spawned piece_chest_wood(Clone) at (150.00, 40.90, 120.00)  zdo=-83935561:21008  owner=-83935561  activeSelf=True  mineRock5=False  mineRock=False  character=False
+16:35:36.247   comp Transform on piece_chest_wood(Clone)
+16:35:36.247   comp ZNetView on piece_chest_wood(Clone)
+16:35:36.247   comp Container on piece_chest_wood(Clone)
+16:35:36.247   comp Piece on piece_chest_wood(Clone)
+16:35:36.247   comp WearNTear on piece_chest_wood(Clone)
+16:35:36.247   comp Transform on floor_2x2_snow
+16:35:36.247   comp MeshFilter on floor_2x2_snow
+16:35:36.247   comp MeshRenderer on floor_2x2_snow
+16:35:36.247   comp LODGroup on floor_2x2_snow
+16:35:36.247   comp Transform on New
+16:35:36.247   comp LODGroup on New
+16:35:36.247   comp Transform on woodchest
+16:35:36.747 > wait 6
+16:35:36.747 wait: 6s (server keeps ticking)
+16:35:42.820 > zdo husnisse_bowl husnisse_bowl_init
+16:35:42.829 zdo husnisse_bowl.husnisse_bowl_init = int=1 bool=True
+16:35:43.323 > husnisse claims
+16:35:43.728 husnisse claim -83935561:21005 source=native ward=0:0 owner=424242 r=20 native_r=20 native_owner=424242 suppressed=False refusal='' containers=1
+16:35:43.871 husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=1 wards=0 ward_api=False
+16:35:44.176 > expect_claim owner=424242
+16:35:44.176   expect_claim 'owner=424242' in 'husnisse claim -83935561:21005 source=native ward=0:0 owner=424242 r=20 native_r=20 native_owner=424242 suppressed=False refusal='' containers=1': ok
+16:35:44.679 > husnisse status
+16:35:44.837 husnisse status [config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 feeding_required=False
+16:35:44.837 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+16:35:44.837 husnisse status schema=2 feeding_required=False claims=1 trips=0 nisses=1 bowl_piece=present
+16:35:44.837 husnisse status [rules] containers=0 ruled=0 deposits=0
+16:35:44.837 husnisse status claim -83935561:21005 source=native ward=0:0 owner=424242 r=20 center=122,122 native_r=20 native_owner=424242 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=1 stacks=0 nisse=yes
+16:35:44.837 husnisse status lines=5
+16:35:45.212 > expect_ge containers=(\d+) 1
+16:35:45.212   expect>= /containers=(\d+)/ 1 >= 1: ok
+16:35:45.715 scenario done: PASS (2 assertions, 0 failed)
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"><Obj S="progress" RefId="0"><TN RefId="0"><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="progress" RefId="1"><TNRef RefId="0" /><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj></Objs>

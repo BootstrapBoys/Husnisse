@@ -1,0 +1,12 @@
+gc where player=-124.14,77.48,2.82 nisse=- peers=1
+base x=-124.14 y=77.48 z=2.82 -> deck 77.73 (generator scene-compact.sh)
+wrote /home/hermes/.hermes/cache/scratch/gate-scene.cmd (78 floor pieces, 9 chests)
+IDX_metals=0
+IDX_deposit=1
+IDX_overflow=2
+IDX_dump=3
+IDX_wood=4
+IDX_plain=5
+IDX_panel=6
+IDX_copyB=7
+IDX_copyA=8

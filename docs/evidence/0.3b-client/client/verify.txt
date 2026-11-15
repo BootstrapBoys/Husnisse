@@ -1,0 +1,52 @@
+base -131 78.01 189 — chest pieces at y=78.11
+SKIP  sections 1-7: the wide scene.sh fixture, proven on card t_3f054844 (set GATE_WIDE=1)
+
+=== 8. use suggestion on a non-empty chest with no rule
+FAIL  the suggestion appears once the rule is cleared           [suggestActive=True]
+FAIL  and it names the dominant category                        [suggest='Use suggestion: Metals']
+FAIL  clicking it writes that category                          [rule='v1;k=cat;c=metals']
+
+=== 9. copy to nearby behind a confirm
+FAIL  confirm line names the two neighbours                     [status='Copy this rule to 2 nearby container\(s\)\?']
+FAIL  Cancel clears the confirm                                 [status='']
+grep: /home/hermes/projects/valheim/nisse/docs/evidence/0.3b-client/client/logs/p9-cancelled.txt: No such file or directory
+FAIL  Cancel wrote nothing to copy target A                     (no dump line for idx=8)
+grep: /home/hermes/projects/valheim/nisse/docs/evidence/0.3b-client/client/logs/p9-cancelled.txt: No such file or directory
+FAIL  Cancel wrote nothing to copy target B                     (no dump line for idx=7)
+FAIL  Copy reports the two writes                               [hud center='Rule copy sent for 2 container\(s\)\.']
+grep: /home/hermes/projects/valheim/nisse/docs/evidence/0.3b-client/client/logs/p9-containers.txt: No such file or directory
+FAIL  copy target A now carries the rule                        [rule='v1;k=cat;c=metals' idx=8]
+grep: /home/hermes/projects/valheim/nisse/docs/evidence/0.3b-client/client/logs/p9-containers.txt: No such file or directory
+FAIL  copy target B now carries the rule                        [rule='v1;k=cat;c=metals' idx=7]
+
+=== 10. deposit-all on a networked chest files the pockets elsewhere
+PASS  pockets hold a metal and a timber
+PASS  the click reached the handler
+PASS  the server accepted both stacks
+PASS  the copper went into a metals chest
+PASS  the timber went to the wood chest
+PASS  the chest the button was pressed on got no copper
+PASS  …and no timber
+PASS  …and the copper's chest carries it in its ZDO
+PASS  …and the wood chest's ZDO carries the timber
+PASS  relog: the copper's chest still carries it
+PASS  relog: the wood chest still holds the timber
+PASS  relog: the chest the button was pressed on still got no copper
+PASS  relog: …and still no timber
+
+=== 11. deposit-all on an off-network chest dumps at once and stays
+PASS  the click reached the handler
+PASS  the HUD reports the dump
+PASS  all three stacks are in that chest
+PASS  …and its ZDO carries them
+PASS  the chest reopened
+
+=== 12. the off-network chest with one slot left: one fits, two do not
+PASS  nine of ten slots are full
+PASS  the two that did not fit are still in the pockets
+PASS  the message names both numbers
+
+=== 13. read-only: a bowl somebody else placed
+SKIP  p13: needs its own fresh world (set GATE_P13=1 when the logs are from that run)
+
+verified=21 failed=10

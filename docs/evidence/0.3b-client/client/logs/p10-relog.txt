@@ -1,0 +1,17 @@
+gc cmd: close
+gc close was=none
+gc cmd: containers
+gc container piece_chest_wood(Clone) idx=0 at -133.00,78.11,175.00 net=True rule='v1;k=cat;c=metals' stacks=1 items=5 [copperscrapx5] zdosts=1 zid=-357620738:19443 zrev=8 zown=-106583184
+gc container TreasureChest_meadows_buried(Clone) idx=1 at -16.21,67.43,196.11 net=False rule='' stacks=3 items=36 [arrow_firex13,coinsx22,rubyx1] zdosts=3 zid=-357620738:7204 zrev=10 zown=-357620738
+gc container piece_chest_wood(Clone) idx=6 at -129.00,78.11,189.00 net=False rule='v1;k=cat;c=wood' stacks=0 items=0 [] zdosts=0 zid=-357620738:19440 zrev=14 zown=-106583184
+gc container TreasureChest_meadows_buried(Clone) idx=2 at -7.82,57.85,67.51 net=False rule='' stacks=3 items=16 [silvernecklacex1,arrow_firex14,upgrader_tier0 upgrader_weapon upgrader_namex1] zdosts=3 zid=-357620738:11127 zrev=10 zown=0
+gc container piece_chest_wood(Clone) idx=3 at -131.00,78.11,179.00 net=False rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19448 zrev=4 zown=-106583184
+gc container piece_chest_wood(Clone) idx=1 at -133.00,78.11,177.00 net=True rule='v1;k=deposit' stacks=0 items=0 [] zdosts=0 zid=-357620738:19446 zrev=7 zown=-106583184
+gc container piece_chest_wood(Clone) idx=2 at -131.00,78.11,173.00 net=True rule='v1;k=overflow' stacks=0 items=0 [] zdosts=0 zid=-357620738:19445 zrev=7 zown=-106583184
+gc container piece_chest_wood(Clone) idx=5 at -129.00,78.11,177.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19447 zrev=7 zown=-106583184
+gc container piece_chest_wood(Clone) idx=7 at -129.00,78.11,191.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19442 zrev=11 zown=-106583184
+gc container piece_chest_wood(Clone) idx=8 at -127.00,78.11,189.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-357620738:19441 zrev=6 zown=-106583184
+gc container piece_chest_wood(Clone) idx=4 at -129.00,78.11,175.00 net=True rule='v1;k=cat;c=wood' stacks=1 items=10 [woodx10] zdosts=1 zid=-357620738:19444 zrev=8 zown=-106583184
+gc container TreasureChest_meadows_buried(Clone) idx=0 at -111.26,79.45,127.99 net=False rule='' stacks=2 items=24 [coinsx21,rubyx3] zdosts=2 zid=-357620738:6913 zrev=9 zown=-106583184
+gc containers total=12 net=7 ruled=5
+gc close after: gui=none localZdoOwner=True stacks=0 items=0 []

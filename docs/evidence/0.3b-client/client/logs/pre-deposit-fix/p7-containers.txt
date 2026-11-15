@@ -1,0 +1,6 @@
+gc hud center='World save in 30s'
+gc watch t=6 player=Stranger id=-202584743 pos=-2.40,34.18,1.00 hp=25/25 dead=False nisse=present
+gc watch t=6 bowl feeding=False satiety=25 mood=100 ownerZdo=-202584743 authority=native claimRadius=20 claimOwner=-202584743 localZdoOwner=True
+gc watch t=6 pantry stacks=0 items=0 []
+gc watch t=6 hover='Porridge Bowl | This nisse asks for nothing. | [Alt] require offerings | Claim 20 m (native)'
+gc watch t=6 nisse hp=1000/1000 pos=12.35,34.18,-3.32

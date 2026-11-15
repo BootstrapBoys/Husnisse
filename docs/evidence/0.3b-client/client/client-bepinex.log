@@ -1,0 +1,570 @@
+[Message:   BepInEx] BepInEx 5.4.23.6 - valheim (11/13/2026 12:24:48 PM)
+[Message:   BepInEx] User is running BepInExPack Valheim version 5.4.2360
+[Info   :   BepInEx] Running under Unity v6000.0.75.2503836
+[Info   :   BepInEx] CLR runtime version: 4.0.30319.42000
+[Info   :   BepInEx] Supports SRE: True
+[Info   :   BepInEx] System platform: Bits64, Windows
+[Message:   BepInEx] Preloader started
+[Info   :   BepInEx] Loaded 1 patcher method from [BepInEx.Preloader 5.4.23.6]
+[Info   :   BepInEx] 1 patcher plugin loaded
+[Info   :   BepInEx] Patching [UnityEngine.CoreModule] with [BepInEx.Chainloader]
+[Message:   BepInEx] Preloader finished
+[Message:   BepInEx] Valheim Version: 1.0.21
+[Message:   BepInEx] Chainloader ready
+[Message:   BepInEx] Chainloader started
+[Info   :   BepInEx] 6 plugins to load
+[Info   :   BepInEx] Loading [Conditional Config Sync 1.0.11] (_shudnal.ConditionalConfigSync)
+[Info   :   BepInEx] Loading [Husnisse Gate Client Probe 0.1.0] (bootstrapboys.husnisse.gateclient)
+[Info   :Husnisse Gate Client Probe] gc loaded 0.1.0
+[Info   :   BepInEx] Loading [Jotunn 2.30.2] (com.jotunn.jotunn)
+[Info   :Jotunn.Main] Initializing ModCompatibility
+[Info   :Jotunn.Main] Initializing SynchronizationManager
+[Info   :Jotunn.Main] Initializing NetworkManager
+[Info   :   BepInEx] Loading [YamlDotNet Detector 1.0.0] (com.ValheimModding.YamlDotNetDetector)
+[Info   :YamlDotNet Detector] YamlDotNet 16.0.0.0 loaded from plugins\ValheimModding-YamlDotNet\YamlDotNet.dll
+[Info   :   BepInEx] Loading [Husnisse 0.3.0] (com.bootstrapboys.husnisse)
+[Info   :  Husnisse] Husnisse 0.3.0 starting
+[Warning:  Husnisse] outdated English localisation ignored; embedded strings are used: C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\config\Husnisse\localization\en.yaml
+[Info   :  Husnisse] localisation loaded: English (check: Porridge Bowl)
+[Info   :Jotunn.Main] Initializing PrefabManager
+[Info   :  Husnisse] core ready; waiting for vanilla prefabs
+[Info   :   BepInEx] Loading [Newtonsoft.Json Detector 1.0.0] (com.ValheimModding.NewtonsoftJsonDetector)
+[Info   :Newtonsoft.Json Detector] Newtonsoft.Json 13.0.0.0 assembly already loaded from C:\Program Files (x86)\Steam\steamapps\common\Valheim\valheim_Data\Managed\Newtonsoft.Json.dll
+[Message:   BepInEx] Chainloader startup complete (6 loaded, 0 skipped, 0 failed)
+[Info   :Jotunn.Main] Initializing AssetManager
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/stone/Stone1_huge.prefab, new: Assets/world/Props/DeepNorth/HotSpring/Stone1_huge.prefab, using old path
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/Caverocks/caverock_pillar.prefab, new: Assets/world/Props/DeepNorth/HotSpring/caverock_pillar.prefab, using old path
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/Rocks/highstone.prefab, new: Assets/world/Props/DeepNorth/HotSpring/highstone.prefab, using old path
+[Info   :Jotunn.Main] Initializing PieceManager
+[Info   :Jotunn.Main] Initializing MockManager
+[Info   :  Husnisse] bowl fields: category=Misc station=none resources=1 enabled=True table=_HammerPieceTable
+[Info   :  Husnisse] bowl registered as husnisse_bowl
+[Info   :Jotunn.Main] Initializing CreatureManager
+[Info   :  Husnisse] creature registered as husnisse_nisse (body=husnisse_nisse)
+[Info   :  Husnisse] content registered
+[Info   :Jotunn.Managers.PrefabManager] Adding 2 custom prefabs to the ZNetScene
+[Info   :Jotunn.Managers.CreatureManager] Adding 1 custom creatures
+[Info   :Jotunn.Managers.PieceManager] Adding 1 custom pieces to the PieceTables
+[Info   :Jotunn.Managers.NetworkManager] Registering 2 custom RPCs
+[Info   :Jotunn.Managers.PrefabManager] Adding 2 custom prefabs to the ZNetScene
+[Info   :Jotunn.Managers.CreatureManager] Adding 1 custom creatures
+[Info   :Jotunn.Managers.PieceManager] Adding 1 custom pieces to the PieceTables
+[Info   :Jotunn.Managers.NetworkManager] Registering 2 custom RPCs
+[Info   :ConditionalConfigSync] [com.bootstrapboys.husnisse][Client][Version] Received com.bootstrapboys.husnisse version 0.0.0, minimum version 0.0.0, ConditionalConfigSync protocol 1 from the server (90297529449575433). Remote ConditionalConfigSync version 1.0.11; elapsed 9604 ms.
+[Info   :ConditionalConfigSync] [com.bootstrapboys.husnisse][Client][Version] Received com.bootstrapboys.husnisse version 0.0.0, minimum version 0.0.0, ConditionalConfigSync protocol 1 from the server (90297529449575433). Remote ConditionalConfigSync version 1.0.11; elapsed 9683 ms.
+[Info   :ConditionalConfigSync] [com.bootstrapboys.husnisse][Client] Received 1 configs and 0 custom values from the server (config=1. General -> Lock Configuration)
+[Info   :Jotunn.Managers.SynchronizationManager+<AdminRPC_OnClientReceive>d__49] Received admin status from server: No Admin
+[Info   :Husnisse Gate Client Probe] gc ready player=Stranger id=-202584743 pos=0.20,53.53,-6.11 world=MTTest peers=1
+[Info   :Husnisse Gate Client Probe] gc command_file=C:\Users\Hermes\husnisse-probe.cmd
+[Info   :Husnisse Gate Client Probe] gc hud center='You feel cold'
+[Info   :Husnisse Gate Client Probe] gc hud top='You picked up an Axe'
+[Info   :Husnisse Gate Client Probe] gc cmd: stand piece_chest_wood 1
+[Info   :Husnisse Gate Client Probe] gc stand: no piece_chest_wood[1]
+[Info   :Husnisse Gate Client Probe] gc cmd: open piece_chest_wood 1
+[Info   :Husnisse Gate Client Probe] gc use: no object for piece_chest_wood
+[Info   :Husnisse Gate Client Probe] gc open gui=none
+[Info   :Husnisse Gate Client Probe] gc cmd: where
+[Info   :Husnisse Gate Client Probe] gc where player=0.20,53.53,-6.11 nisse=- peers=1
+[Info   :Husnisse Gate Client Probe] gc cmd: state
+[Info   :Husnisse Gate Client Probe] gc state player=Stranger id=-202584743 pos=0.20,53.53,-6.11 hp=25/25 dead=False nisse=absent
+[Info   :Husnisse Gate Client Probe] gc state bowl=-
+[Info   :Husnisse Gate Client Probe] gc cmd: god on
+[Info   :Husnisse Gate Client Probe] gc god=True
+[Info   :Husnisse Gate Client Probe] gc hud center='Day 1'
+[Info   :Husnisse Gate Client Probe] gc hud top='You are getting warmer'
+[Info   :Husnisse Gate Client Probe] gc cmd: god on
+[Info   :Husnisse Gate Client Probe] gc god=True
+[Info   :Husnisse Gate Client Probe] gc cmd: heal
+[Info   :Husnisse Gate Client Probe] gc heal hp=25/25
+[Info   :Husnisse Gate Client Probe] gc cmd: where
+[Info   :Husnisse Gate Client Probe] gc where player=0.20,53.53,-6.11 nisse=- peers=1
+[Info   :Husnisse Gate Client Probe] gc cmd: containers
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -63.40,53.59,4.21 net=False rule='' stacks=2 items=31 [rubyx3,coinsx28]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -13.03,49.17,-130.50 net=False rule='' stacks=3 items=34 [coinsx30,axe_woodx1,rubyx3]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at 127.91,36.24,77.27 net=False rule='' stacks=2 items=3 [silvernecklacex1,amberpearlx2]
+[Info   :Husnisse Gate Client Probe] gc containers total=3 net=0 ruled=0
+[Info   :  Husnisse] fade: property=_Cutoff mode=Cutoff renderers=4 shader=Custom/Creature
+[Info   :  Husnisse] bowl: pantry ready 4x1 (4 slots)
+[Info   :Husnisse Gate Client Probe] gc cmd: containers
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at 2.00,53.88,-4.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -63.40,53.59,4.21 net=False rule='' stacks=2 items=31 [rubyx3,coinsx28]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at 24.00,53.88,18.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -13.03,49.17,-130.50 net=False rule='' stacks=3 items=34 [coinsx30,axe_woodx1,rubyx3]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at 127.91,36.24,77.27 net=False rule='' stacks=2 items=3 [silvernecklacex1,amberpearlx2]
+[Info   :Husnisse Gate Client Probe] gc containers total=5 net=0 ruled=0
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=none
+[Info   :Husnisse Gate Client Probe] gc cmd: stand piece_chest_wood 1
+[Info   :Husnisse Gate Client Probe] gc stand piece_chest_wood(Clone)[1] at 24.00,53.88,18.00 -> player 25.60,54.08,18.00
+[Info   :Husnisse Gate Client Probe] gc cmd: open piece_chest_wood 1
+[Info   :Husnisse Gate Client Probe] gc interact piece_chest_wood(Clone) alt=False -> True
+[Info   :Husnisse Gate Client Probe] gc close after: gui=piece_chest_wood(Clone) localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: ui
+[Info   :Husnisse Gate Client Probe] gc ui ui container=piece_chest_wood(Clone) strip=True net='Off the network' netClickable=False rules='Rules: No rule · read only' rulesClickable=False panel=False win=True inUse=True dist=1.6
+[Info   :Husnisse Gate Client Probe] gc ui zdo net=False rule='' inUseFlag=False owner=True
+[Info   :Husnisse Gate Client Probe] gc ui panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False
+[Info   :Husnisse Gate Client Probe] gc cmd: panel
+[Info   :Husnisse Gate Client Probe] gc panel root=Container win=True screen=1920x1080 rect=40.0,383.0,570.0x340.0
+[Info   :Husnisse Gate Client Probe] gc panel grid name=ContainerGrid active=True rect=40.0,383.0,570.0x294.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseNetworkStrip active=True vis=True clickable=- label='Off the network' color=#FFA13C rect=248.0,693.0,356.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseNet active=True vis=True clickable=False label='Off the network' color=#FFA13C rect=248.0,693.0,114.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseDepositAll active=True vis=True clickable=True label='Deposit all' color=#FFA13C rect=369.0,693.0,114.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseRules active=True vis=True clickable=False label='Rules: No rule · read only' color=#FFA13C rect=490.0,693.0,114.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseRulesPanel active=False vis=False clickable=- label='Storage rule' color=#FFFFFF rect=624.0,471.0,470.0x252.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseRulesTitle active=True vis=False clickable=- label='Storage rule' color=#FFFFFF rect=638.0,687.0,300.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseRulesClose active=True vis=False clickable=True label='Close' color=#FFA13C rect=1012.0,689.0,72.0x24.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatMetals active=True vis=False clickable=True label='Metals' color=#FFFFFF rect=638.0,653.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatWood active=True vis=False clickable=True label='Wood' color=#FFFFFF rect=748.0,653.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatFood active=True vis=False clickable=True label='Food' color=#FFFFFF rect=858.0,653.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatTrophies active=True vis=False clickable=True label='Trophies' color=#FFFFFF rect=968.0,653.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatValuables active=True vis=False clickable=True label='Valuables' color=#FFFFFF rect=638.0,621.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatBuilding active=True vis=False clickable=True label='Building' color=#FFFFFF rect=748.0,621.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatConsumables active=True vis=False clickable=True label='Consumables' color=#FFFFFF rect=858.0,621.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatTools active=True vis=False clickable=True label='Tools' color=#FFFFFF rect=968.0,621.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseOverflow active=True vis=False clickable=True label='Overflow' color=#FFFFFF rect=638.0,585.0,140.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseDeposit active=True vis=False clickable=True label='Deposit' color=#FFFFFF rect=786.0,585.0,140.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseNoRule active=True vis=False clickable=True label='No rule' color=#FFD65C rect=934.0,585.0,132.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustom active=True vis=False clickable=False label='Save contents' color=#FFFFFF rect=638.0,551.0,218.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnissePriorityLabel active=True vis=False clickable=- label='Priority' color=#FFFFFF rect=868.0,553.0,66.0x24.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnissePriorityMinus active=True vis=False clickable=False label='-' color=#FFA13C rect=934.0,551.0,28.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnissePriorityValue active=True vis=False clickable=- label='-' color=#FFFFFF rect=964.0,554.0,40.0x22.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnissePriorityPlus active=True vis=False clickable=False label='+' color=#FFA13C rect=1006.0,551.0,28.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseSuggest active=False vis=False clickable=False label='Use suggestion: No rule' color=#FFA13C rect=638.0,517.0,218.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCopy active=True vis=False clickable=False label='Copy to nearby' color=#FFA13C rect=864.0,517.0,202.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseStatus active=True vis=False clickable=- label='' color=#FFFFFF rect=638.0,485.0,300.0x24.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCopyNo active=False vis=False clickable=True label='Cancel' color=#FFA13C rect=944.0,485.0,60.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCopyYes active=False vis=False clickable=True label='Copy to nearby' color=#FFA13C rect=1010.0,485.0,56.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomPanel active=False vis=False clickable=- label='This container is empty.' color=#FFFFFF rect=624.0,387.0,470.0x336.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomTitle active=True vis=False clickable=- label='This container is empty.' color=#FFFFFF rect=638.0,687.0,320.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomClose active=True vis=False clickable=True label='Cancel' color=#FFA13C rect=1012.0,689.0,72.0x24.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow0 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,664.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow1 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,664.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow2 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,664.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow3 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,645.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow4 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,645.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow5 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,645.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow6 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,626.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow7 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,626.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow8 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,626.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow9 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,607.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow10 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,607.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow11 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,607.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow12 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,588.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow13 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,588.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow14 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,588.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow15 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,569.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow16 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,569.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow17 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,569.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow18 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,550.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow19 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,550.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow20 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,550.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow21 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,531.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow22 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,531.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow23 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,531.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow24 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,512.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow25 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,512.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow26 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,512.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow27 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,493.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow28 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,493.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow29 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,493.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow30 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,474.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow31 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,474.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow32 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,474.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow33 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,455.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow34 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,455.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow35 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,455.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow36 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,436.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow37 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,436.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow38 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,436.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow39 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,417.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow40 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,417.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow41 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,417.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomAll active=True vis=False clickable=True label='All' color=#FFA13C rect=638.0,399.0,70.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomNone active=True vis=False clickable=True label='None' color=#FFA13C rect=716.0,399.0,70.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomApply active=True vis=False clickable=True label='Apply' color=#FFA13C rect=988.0,399.0,96.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel overlap HusnisseNetworkStrip vs grid = 0.0 vs window = 9256.0 inside=True area=9256
+[Info   :Husnisse Gate Client Probe] gc panel overlap HusnisseRulesPanel vs grid = 0.0 vs window = 0.0 inside=False area=118440
+[Info   :Husnisse Gate Client Probe] gc panel overlap HusnisseCustomPanel vs grid = 0.0 vs window = 0.0 inside=False area=157920
+[Info   :Husnisse Gate Client Probe] gc panel pairs HusnisseNetworkStrip leaves=3 overlapping=0
+[Info   :Husnisse Gate Client Probe] gc panel counts elements=76 visible=4
+[Info   :Husnisse Gate Client Probe] gc cmd: shot gate-03b-readonly
+[Info   :Husnisse Gate Client Probe] gc shot C:\Users\Hermes\Desktop\husnisse-captures\gate-03b-readonly.png
+[Info   :Husnisse Gate Client Probe] gc hud top='Added Wood'
+[Info   :Husnisse Gate Client Probe] gc hud top='Added Wood x2'
+[Info   :Husnisse Gate Client Probe] gc cmd: click HusnisseNet
+[Info   :Husnisse Gate Client Probe] gc click HusnisseNet skipped: not visible
+[Info   :Husnisse Gate Client Probe] gc hud top='Added Wood x5'
+[Info   :  Husnisse] nisse left with bowl -83935561:17728
+[Info   :  Husnisse] fade: property=_Cutoff mode=Cutoff renderers=4 shader=Custom/Creature
+[Info   :Husnisse Gate Client Probe] gc cmd: ui
+[Info   :Husnisse Gate Client Probe] gc ui ui container=none strip=False net='Off the network' netClickable=False rules='Rules: No rule · read only' rulesClickable=False panel=False win=False inUse=- dist=-
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=none
+[Info   :Husnisse Gate Client Probe] gc cmd: stand piece_chest_wood 0
+[Info   :Husnisse Gate Client Probe] gc stand: no piece_chest_wood[0]
+[Info   :Husnisse Gate Client Probe] gc cmd: open piece_chest_wood 0
+[Info   :Husnisse Gate Client Probe] gc use: no object for piece_chest_wood
+[Info   :Husnisse Gate Client Probe] gc cmd: ui
+[Info   :Husnisse Gate Client Probe] gc ui ui container=none strip=False net='Off the network' netClickable=False rules='Rules: No rule · read only' rulesClickable=False panel=False win=False inUse=- dist=-
+[Info   :Husnisse Gate Client Probe] gc cmd: shot gate-03b-strip-noclaim
+[Info   :Husnisse Gate Client Probe] gc shot C:\Users\Hermes\Desktop\husnisse-captures\gate-03b-strip-noclaim.png
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=none
+[Info   :Husnisse Gate Client Probe] gc cmd: containers
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -63.40,53.59,4.21 net=False rule='' stacks=2 items=31 [rubyx3,coinsx28]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at -13.03,49.17,-130.50 net=False rule='' stacks=3 items=34 [coinsx30,axe_woodx1,rubyx3]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at 127.91,36.24,77.27 net=False rule='' stacks=2 items=3 [silvernecklacex1,amberpearlx2]
+[Info   :Husnisse Gate Client Probe] gc containers total=3 net=0 ruled=0
+[Info   :Husnisse Gate Client Probe] gc cmd: god on
+[Info   :Husnisse Gate Client Probe] gc god=True
+[Info   :Husnisse Gate Client Probe] gc cmd: setpos 120 140 120
+[Info   :Husnisse Gate Client Probe] gc setpos from=25.62,45.70,18.13 requested=120.00,140.00,120.00 now=120.00,140.00,120.00
+[Info   :Husnisse Gate Client Probe] gc hud center='World save in 30s'
+[Info   :Husnisse Gate Client Probe] gc cmd: heal
+[Info   :Husnisse Gate Client Probe] gc heal hp=25/25
+[Info   :Husnisse Gate Client Probe] gc cmd: where
+[Info   :Husnisse Gate Client Probe] gc where player=120.13,40.57,120.22 nisse=- peers=1
+[Info   :Husnisse Gate Client Probe] gc hud top='World saved ( 0.07+1.08s )'
+[Info   :Husnisse Gate Client Probe] gc cmd: where
+[Info   :Husnisse Gate Client Probe] gc where player=120.19,40.55,120.32 nisse=- peers=1
+[Info   :Husnisse Gate Client Probe] gc cmd: containers
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at 263.54,35.40,-1.17 net=False rule='' stacks=3 items=15 [silvernecklacex1,rubyx1,arrow_firex13]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at 245.38,30.97,252.09 net=False rule='' stacks=2 items=33 [coinsx30,rubyx3]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at 76.93,41.50,262.88 net=False rule='' stacks=3 items=14 [silvernecklacex1,arrow_firex12,amberpearlx1]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at 127.91,36.24,77.27 net=False rule='' stacks=2 items=3 [silvernecklacex1,amberpearlx2]
+[Info   :Husnisse Gate Client Probe] gc containers total=4 net=0 ruled=0
+[Info   :  Husnisse] fade: property=_Cutoff mode=Cutoff renderers=4 shader=Custom/Creature
+[Info   :  Husnisse] bowl: pantry ready 4x1 (4 slots)
+[Info   :Husnisse Gate Client Probe] gc cmd: containers
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at 263.54,35.40,-1.17 net=False rule='' stacks=3 items=15 [silvernecklacex1,rubyx1,arrow_firex13]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at 245.38,30.97,252.09 net=False rule='' stacks=2 items=33 [coinsx30,rubyx3]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at 76.93,41.50,262.88 net=False rule='' stacks=3 items=14 [silvernecklacex1,arrow_firex12,amberpearlx1]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at 127.91,36.24,77.27 net=False rule='' stacks=2 items=3 [silvernecklacex1,amberpearlx2]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at 124.00,40.90,122.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at 150.00,40.90,120.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc containers total=6 net=0 ruled=0
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=none
+[Info   :Husnisse Gate Client Probe] gc cmd: stand piece_chest_wood 0
+[Info   :Husnisse Gate Client Probe] gc stand piece_chest_wood(Clone)[0] at 124.00,40.90,122.00 -> player 125.60,41.10,122.00
+[Info   :Husnisse Gate Client Probe] gc cmd: open piece_chest_wood 0
+[Info   :Husnisse Gate Client Probe] gc interact piece_chest_wood(Clone) alt=False -> True
+[Info   :Husnisse Gate Client Probe] gc close after: gui=piece_chest_wood(Clone) localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: ui
+[Info   :Husnisse Gate Client Probe] gc ui ui container=piece_chest_wood(Clone) strip=True net='Off the network' netClickable=False rules='Rules: No rule · read only' rulesClickable=False panel=False win=True inUse=True dist=1.6
+[Info   :Husnisse Gate Client Probe] gc ui zdo net=False rule='' inUseFlag=False owner=True
+[Info   :Husnisse Gate Client Probe] gc ui panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False
+[Info   :Husnisse Gate Client Probe] gc cmd: panel
+[Info   :Husnisse Gate Client Probe] gc panel root=Container win=True screen=1920x1080 rect=40.0,383.0,570.0x340.0
+[Info   :Husnisse Gate Client Probe] gc panel grid name=ContainerGrid active=True rect=40.0,383.0,570.0x294.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseNetworkStrip active=True vis=True clickable=- label='Off the network' color=#FFA13C rect=248.0,693.0,356.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseNet active=True vis=True clickable=False label='Off the network' color=#FFA13C rect=248.0,693.0,114.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseDepositAll active=True vis=True clickable=True label='Deposit all' color=#FFA13C rect=369.0,693.0,114.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseRules active=True vis=True clickable=False label='Rules: No rule · read only' color=#FFA13C rect=490.0,693.0,114.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseRulesPanel active=False vis=False clickable=- label='Storage rule' color=#FFFFFF rect=624.0,471.0,470.0x252.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseRulesTitle active=True vis=False clickable=- label='Storage rule' color=#FFFFFF rect=638.0,687.0,300.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseRulesClose active=True vis=False clickable=True label='Close' color=#FFA13C rect=1012.0,689.0,72.0x24.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatMetals active=True vis=False clickable=True label='Metals' color=#FFFFFF rect=638.0,653.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatWood active=True vis=False clickable=True label='Wood' color=#FFFFFF rect=748.0,653.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatFood active=True vis=False clickable=True label='Food' color=#FFFFFF rect=858.0,653.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatTrophies active=True vis=False clickable=True label='Trophies' color=#FFFFFF rect=968.0,653.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatValuables active=True vis=False clickable=True label='Valuables' color=#FFFFFF rect=638.0,621.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatBuilding active=True vis=False clickable=True label='Building' color=#FFFFFF rect=748.0,621.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatConsumables active=True vis=False clickable=True label='Consumables' color=#FFFFFF rect=858.0,621.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatTools active=True vis=False clickable=True label='Tools' color=#FFFFFF rect=968.0,621.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseOverflow active=True vis=False clickable=True label='Overflow' color=#FFFFFF rect=638.0,585.0,140.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseDeposit active=True vis=False clickable=True label='Deposit' color=#FFFFFF rect=786.0,585.0,140.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseNoRule active=True vis=False clickable=True label='No rule' color=#FFD65C rect=934.0,585.0,132.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustom active=True vis=False clickable=False label='Save contents' color=#FFFFFF rect=638.0,551.0,218.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnissePriorityLabel active=True vis=False clickable=- label='Priority' color=#FFFFFF rect=868.0,553.0,66.0x24.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnissePriorityMinus active=True vis=False clickable=False label='-' color=#FFA13C rect=934.0,551.0,28.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnissePriorityValue active=True vis=False clickable=- label='-' color=#FFFFFF rect=964.0,554.0,40.0x22.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnissePriorityPlus active=True vis=False clickable=False label='+' color=#FFA13C rect=1006.0,551.0,28.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseSuggest active=False vis=False clickable=False label='Use suggestion: No rule' color=#FFA13C rect=638.0,517.0,218.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCopy active=True vis=False clickable=False label='Copy to nearby' color=#FFA13C rect=864.0,517.0,202.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseStatus active=True vis=False clickable=- label='' color=#FFFFFF rect=638.0,485.0,300.0x24.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCopyNo active=False vis=False clickable=True label='Cancel' color=#FFA13C rect=944.0,485.0,60.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCopyYes active=False vis=False clickable=True label='Copy to nearby' color=#FFA13C rect=1010.0,485.0,56.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomPanel active=False vis=False clickable=- label='This container is empty.' color=#FFFFFF rect=624.0,387.0,470.0x336.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomTitle active=True vis=False clickable=- label='This container is empty.' color=#FFFFFF rect=638.0,687.0,320.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomClose active=True vis=False clickable=True label='Cancel' color=#FFA13C rect=1012.0,689.0,72.0x24.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow0 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,664.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow1 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,664.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow2 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,664.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow3 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,645.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow4 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,645.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow5 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,645.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow6 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,626.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow7 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,626.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow8 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,626.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow9 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,607.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow10 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,607.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow11 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,607.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow12 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,588.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow13 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,588.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow14 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,588.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow15 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,569.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow16 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,569.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow17 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,569.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow18 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,550.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow19 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,550.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow20 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,550.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow21 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,531.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow22 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,531.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow23 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,531.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow24 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,512.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow25 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,512.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow26 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,512.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow27 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,493.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow28 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,493.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow29 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,493.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow30 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,474.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow31 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,474.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow32 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,474.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow33 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,455.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow34 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,455.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow35 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,455.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow36 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,436.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow37 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,436.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow38 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,436.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow39 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,417.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow40 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,417.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow41 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,417.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomAll active=True vis=False clickable=True label='All' color=#FFA13C rect=638.0,399.0,70.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomNone active=True vis=False clickable=True label='None' color=#FFA13C rect=716.0,399.0,70.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomApply active=True vis=False clickable=True label='Apply' color=#FFA13C rect=988.0,399.0,96.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel overlap HusnisseNetworkStrip vs grid = 0.0 vs window = 9256.0 inside=True area=9256
+[Info   :Husnisse Gate Client Probe] gc panel overlap HusnisseRulesPanel vs grid = 0.0 vs window = 0.0 inside=False area=118440
+[Info   :Husnisse Gate Client Probe] gc panel overlap HusnisseCustomPanel vs grid = 0.0 vs window = 0.0 inside=False area=157920
+[Info   :Husnisse Gate Client Probe] gc panel pairs HusnisseNetworkStrip leaves=3 overlapping=0
+[Info   :Husnisse Gate Client Probe] gc panel counts elements=76 visible=4
+[Info   :Husnisse Gate Client Probe] gc cmd: shot gate-03b-readonly
+[Info   :Husnisse Gate Client Probe] gc shot C:\Users\Hermes\Desktop\husnisse-captures\gate-03b-readonly.png
+[Info   :Husnisse Gate Client Probe] gc cmd: click HusnisseNet
+[Info   :Husnisse Gate Client Probe] gc click HusnisseNet label='Off the network' interactable=False
+[Info   :Husnisse Gate Client Probe] gc click HusnisseNet skipped: not interactable
+[Info   :Husnisse Gate Client Probe] gc cmd: click HusnisseRules
+[Info   :Husnisse Gate Client Probe] gc click HusnisseRules label='Rules: No rule · read only' interactable=False
+[Info   :Husnisse Gate Client Probe] gc click HusnisseRules skipped: not interactable
+[Info   :Husnisse Gate Client Probe] gc cmd: ui
+[Info   :Husnisse Gate Client Probe] gc ui ui container=piece_chest_wood(Clone) strip=True net='Off the network' netClickable=False rules='Rules: No rule · read only' rulesClickable=False panel=False win=True inUse=True dist=1.6
+[Info   :Husnisse Gate Client Probe] gc ui zdo net=False rule='' inUseFlag=False owner=True
+[Info   :Husnisse Gate Client Probe] gc ui panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=piece_chest_wood(Clone)
+[Info   :Husnisse Gate Client Probe] gc cmd: stand piece_chest_wood 1
+[Info   :Husnisse Gate Client Probe] gc stand piece_chest_wood(Clone)[1] at 150.00,40.90,120.00 -> player 151.60,41.10,120.00
+[Info   :Husnisse Gate Client Probe] gc cmd: open piece_chest_wood 1
+[Info   :Husnisse Gate Client Probe] gc interact piece_chest_wood(Clone) alt=False -> True
+[Info   :Husnisse Gate Client Probe] gc cmd: ui
+[Info   :Husnisse Gate Client Probe] gc ui ui container=piece_chest_wood(Clone) strip=True net='Off the network' netClickable=False rules='Rules: No rule · read only' rulesClickable=False panel=False win=True inUse=False dist=1.6
+[Info   :Husnisse Gate Client Probe] gc ui zdo net=False rule='' inUseFlag=False owner=True
+[Info   :Husnisse Gate Client Probe] gc ui panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False
+[Info   :Husnisse Gate Client Probe] gc close after: gui=piece_chest_wood(Clone) localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: shot gate-03b-strip-noclaim
+[Info   :Husnisse Gate Client Probe] gc shot C:\Users\Hermes\Desktop\husnisse-captures\gate-03b-strip-noclaim.png
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=piece_chest_wood(Clone)
+[Info   :Husnisse Gate Client Probe] gc cmd: containers
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at 263.54,35.40,-1.17 net=False rule='' stacks=3 items=15 [silvernecklacex1,rubyx1,arrow_firex13]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at 245.38,30.97,252.09 net=False rule='' stacks=2 items=33 [coinsx30,rubyx3]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at 76.93,41.50,262.88 net=False rule='' stacks=3 items=14 [silvernecklacex1,arrow_firex12,amberpearlx1]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at 127.91,36.24,77.27 net=False rule='' stacks=2 items=3 [silvernecklacex1,amberpearlx2]
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at 124.00,40.90,122.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at 150.00,40.90,120.00 net=False rule='' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc containers total=6 net=0 ruled=0
+[Info   :Husnisse Gate Client Probe] gc close after: gui=none localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: ui
+[Info   :Husnisse Gate Client Probe] gc ui ui container=none strip=False net='Off the network' netClickable=False rules='Rules: No rule · read only' rulesClickable=False panel=False win=False inUse=- dist=-
+[Info   :Husnisse Gate Client Probe] gc cmd: panel
+[Info   :Husnisse Gate Client Probe] gc panel root=Container win=False screen=1920x1080 rect=40.0,383.0,570.0x340.0
+[Info   :Husnisse Gate Client Probe] gc panel grid name=ContainerGrid active=False rect=40.0,383.0,570.0x294.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseNetworkStrip active=False vis=False clickable=- label='Off the network' color=#FFA13C rect=248.0,693.0,356.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseNet active=True vis=False clickable=False label='Off the network' color=#FFA13C rect=248.0,693.0,114.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseDepositAll active=True vis=False clickable=True label='Deposit all' color=#FFA13C rect=369.0,693.0,114.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseRules active=True vis=False clickable=False label='Rules: No rule · read only' color=#FFA13C rect=490.0,693.0,114.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseRulesPanel active=False vis=False clickable=- label='Storage rule' color=#FFFFFF rect=624.0,471.0,470.0x252.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseRulesTitle active=True vis=False clickable=- label='Storage rule' color=#FFFFFF rect=638.0,687.0,300.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseRulesClose active=True vis=False clickable=True label='Close' color=#FFA13C rect=1012.0,689.0,72.0x24.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatMetals active=True vis=False clickable=True label='Metals' color=#FFFFFF rect=638.0,653.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatWood active=True vis=False clickable=True label='Wood' color=#FFFFFF rect=748.0,653.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatFood active=True vis=False clickable=True label='Food' color=#FFFFFF rect=858.0,653.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatTrophies active=True vis=False clickable=True label='Trophies' color=#FFFFFF rect=968.0,653.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatValuables active=True vis=False clickable=True label='Valuables' color=#FFFFFF rect=638.0,621.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatBuilding active=True vis=False clickable=True label='Building' color=#FFFFFF rect=748.0,621.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatConsumables active=True vis=False clickable=True label='Consumables' color=#FFFFFF rect=858.0,621.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatTools active=True vis=False clickable=True label='Tools' color=#FFFFFF rect=968.0,621.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseOverflow active=True vis=False clickable=True label='Overflow' color=#FFFFFF rect=638.0,585.0,140.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseDeposit active=True vis=False clickable=True label='Deposit' color=#FFFFFF rect=786.0,585.0,140.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseNoRule active=True vis=False clickable=True label='No rule' color=#FFD65C rect=934.0,585.0,132.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustom active=True vis=False clickable=False label='Save contents' color=#FFFFFF rect=638.0,551.0,218.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnissePriorityLabel active=True vis=False clickable=- label='Priority' color=#FFFFFF rect=868.0,553.0,66.0x24.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnissePriorityMinus active=True vis=False clickable=False label='-' color=#FFA13C rect=934.0,551.0,28.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnissePriorityValue active=True vis=False clickable=- label='-' color=#FFFFFF rect=964.0,554.0,40.0x22.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnissePriorityPlus active=True vis=False clickable=False label='+' color=#FFA13C rect=1006.0,551.0,28.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseSuggest active=False vis=False clickable=False label='Use suggestion: No rule' color=#FFA13C rect=638.0,517.0,218.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCopy active=True vis=False clickable=False label='Copy to nearby' color=#FFA13C rect=864.0,517.0,202.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseStatus active=True vis=False clickable=- label='' color=#FFFFFF rect=638.0,485.0,300.0x24.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCopyNo active=False vis=False clickable=True label='Cancel' color=#FFA13C rect=944.0,485.0,60.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCopyYes active=False vis=False clickable=True label='Copy to nearby' color=#FFA13C rect=1010.0,485.0,56.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomPanel active=False vis=False clickable=- label='This container is empty.' color=#FFFFFF rect=624.0,387.0,470.0x336.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomTitle active=True vis=False clickable=- label='This container is empty.' color=#FFFFFF rect=638.0,687.0,320.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomClose active=True vis=False clickable=True label='Cancel' color=#FFA13C rect=1012.0,689.0,72.0x24.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow0 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,664.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow1 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,664.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow2 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,664.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow3 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,645.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow4 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,645.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow5 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,645.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow6 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,626.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow7 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,626.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow8 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,626.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow9 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,607.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow10 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,607.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow11 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,607.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow12 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,588.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow13 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,588.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow14 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,588.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow15 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,569.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow16 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,569.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow17 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,569.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow18 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,550.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow19 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,550.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow20 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,550.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow21 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,531.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow22 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,531.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow23 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,531.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow24 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,512.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow25 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,512.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow26 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,512.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow27 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,493.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow28 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,493.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow29 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,493.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow30 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,474.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow31 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,474.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow32 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,474.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow33 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,455.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow34 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,455.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow35 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,455.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow36 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,436.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow37 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,436.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow38 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,436.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow39 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,417.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow40 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,417.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow41 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,417.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomAll active=True vis=False clickable=True label='All' color=#FFA13C rect=638.0,399.0,70.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomNone active=True vis=False clickable=True label='None' color=#FFA13C rect=716.0,399.0,70.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomApply active=True vis=False clickable=True label='Apply' color=#FFA13C rect=988.0,399.0,96.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel overlap HusnisseNetworkStrip vs grid = 0.0 vs window = 9256.0 inside=True area=9256
+[Info   :Husnisse Gate Client Probe] gc panel overlap HusnisseRulesPanel vs grid = 0.0 vs window = 0.0 inside=False area=118440
+[Info   :Husnisse Gate Client Probe] gc panel overlap HusnisseCustomPanel vs grid = 0.0 vs window = 0.0 inside=False area=157920
+[Info   :Husnisse Gate Client Probe] gc panel counts elements=76 visible=0
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=none
+[Info   :Husnisse Gate Client Probe] gc cmd: stand piece_chest_wood 1
+[Info   :Husnisse Gate Client Probe] gc stand piece_chest_wood(Clone)[1] at 150.00,40.90,120.00 -> player 151.60,41.10,120.00
+[Info   :Husnisse Gate Client Probe] gc cmd: open piece_chest_wood 1
+[Info   :Husnisse Gate Client Probe] gc interact piece_chest_wood(Clone) alt=False -> True
+[Info   :Husnisse Gate Client Probe] gc cmd: ui
+[Info   :Husnisse Gate Client Probe] gc ui ui container=piece_chest_wood(Clone) strip=False net='Off the network' netClickable=False rules='Rules: No rule · read only' rulesClickable=False panel=False win=False inUse=False dist=1.6
+[Info   :Husnisse Gate Client Probe] gc ui zdo net=False rule='' inUseFlag=False owner=True
+[Info   :Husnisse Gate Client Probe] gc ui panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False
+[Info   :Husnisse Gate Client Probe] gc cmd: panel
+[Info   :Husnisse Gate Client Probe] gc panel root=Container win=False screen=1920x1080 rect=40.0,383.0,570.0x340.0
+[Info   :Husnisse Gate Client Probe] gc panel grid name=ContainerGrid active=False rect=40.0,383.0,570.0x294.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseNetworkStrip active=False vis=False clickable=- label='Off the network' color=#FFA13C rect=248.0,693.0,356.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseNet active=True vis=False clickable=False label='Off the network' color=#FFA13C rect=248.0,693.0,114.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseDepositAll active=True vis=False clickable=True label='Deposit all' color=#FFA13C rect=369.0,693.0,114.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseRules active=True vis=False clickable=False label='Rules: No rule · read only' color=#FFA13C rect=490.0,693.0,114.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseRulesPanel active=False vis=False clickable=- label='Storage rule' color=#FFFFFF rect=624.0,471.0,470.0x252.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseRulesTitle active=True vis=False clickable=- label='Storage rule' color=#FFFFFF rect=638.0,687.0,300.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseRulesClose active=True vis=False clickable=True label='Close' color=#FFA13C rect=1012.0,689.0,72.0x24.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatMetals active=True vis=False clickable=True label='Metals' color=#FFFFFF rect=638.0,653.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatWood active=True vis=False clickable=True label='Wood' color=#FFFFFF rect=748.0,653.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatFood active=True vis=False clickable=True label='Food' color=#FFFFFF rect=858.0,653.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatTrophies active=True vis=False clickable=True label='Trophies' color=#FFFFFF rect=968.0,653.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatValuables active=True vis=False clickable=True label='Valuables' color=#FFFFFF rect=638.0,621.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatBuilding active=True vis=False clickable=True label='Building' color=#FFFFFF rect=748.0,621.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatConsumables active=True vis=False clickable=True label='Consumables' color=#FFFFFF rect=858.0,621.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCatTools active=True vis=False clickable=True label='Tools' color=#FFFFFF rect=968.0,621.0,104.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseOverflow active=True vis=False clickable=True label='Overflow' color=#FFFFFF rect=638.0,585.0,140.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseDeposit active=True vis=False clickable=True label='Deposit' color=#FFFFFF rect=786.0,585.0,140.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseNoRule active=True vis=False clickable=True label='No rule' color=#FFD65C rect=934.0,585.0,132.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustom active=True vis=False clickable=False label='Save contents' color=#FFFFFF rect=638.0,551.0,218.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnissePriorityLabel active=True vis=False clickable=- label='Priority' color=#FFFFFF rect=868.0,553.0,66.0x24.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnissePriorityMinus active=True vis=False clickable=False label='-' color=#FFA13C rect=934.0,551.0,28.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnissePriorityValue active=True vis=False clickable=- label='-' color=#FFFFFF rect=964.0,554.0,40.0x22.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnissePriorityPlus active=True vis=False clickable=False label='+' color=#FFA13C rect=1006.0,551.0,28.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseSuggest active=False vis=False clickable=False label='Use suggestion: No rule' color=#FFA13C rect=638.0,517.0,218.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCopy active=True vis=False clickable=False label='Copy to nearby' color=#FFA13C rect=864.0,517.0,202.0x28.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseStatus active=True vis=False clickable=- label='' color=#FFFFFF rect=638.0,485.0,300.0x24.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCopyNo active=False vis=False clickable=True label='Cancel' color=#FFA13C rect=944.0,485.0,60.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCopyYes active=False vis=False clickable=True label='Copy to nearby' color=#FFA13C rect=1010.0,485.0,56.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomPanel active=False vis=False clickable=- label='This container is empty.' color=#FFFFFF rect=624.0,387.0,470.0x336.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomTitle active=True vis=False clickable=- label='This container is empty.' color=#FFFFFF rect=638.0,687.0,320.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomClose active=True vis=False clickable=True label='Cancel' color=#FFA13C rect=1012.0,689.0,72.0x24.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow0 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,664.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow1 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,664.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow2 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,664.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow3 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,645.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow4 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,645.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow5 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,645.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow6 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,626.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow7 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,626.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow8 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,626.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow9 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,607.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow10 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,607.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow11 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,607.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow12 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,588.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow13 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,588.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow14 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,588.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow15 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,569.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow16 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,569.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow17 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,569.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow18 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,550.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow19 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,550.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow20 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,550.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow21 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,531.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow22 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,531.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow23 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,531.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow24 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,512.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow25 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,512.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow26 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,512.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow27 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,493.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow28 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,493.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow29 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,493.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow30 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,474.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow31 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,474.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow32 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,474.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow33 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,455.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow34 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,455.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow35 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,455.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow36 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,436.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow37 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,436.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow38 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,436.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow39 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=634.0,417.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow40 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=786.0,417.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomRow41 active=False vis=False clickable=True label='Take all' color=#FFA13C rect=938.0,417.0,146.0x17.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomAll active=True vis=False clickable=True label='All' color=#FFA13C rect=638.0,399.0,70.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomNone active=True vis=False clickable=True label='None' color=#FFA13C rect=716.0,399.0,70.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel el name=HusnisseCustomApply active=True vis=False clickable=True label='Apply' color=#FFA13C rect=988.0,399.0,96.0x26.0
+[Info   :Husnisse Gate Client Probe] gc panel overlap HusnisseNetworkStrip vs grid = 0.0 vs window = 9256.0 inside=True area=9256
+[Info   :Husnisse Gate Client Probe] gc panel overlap HusnisseRulesPanel vs grid = 0.0 vs window = 0.0 inside=False area=118440
+[Info   :Husnisse Gate Client Probe] gc panel overlap HusnisseCustomPanel vs grid = 0.0 vs window = 0.0 inside=False area=157920
+[Info   :Husnisse Gate Client Probe] gc panel counts elements=76 visible=0
+[Info   :Husnisse Gate Client Probe] gc close after: gui=piece_chest_wood(Clone) localZdoOwner=True stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc cmd: god on
+[Info   :Husnisse Gate Client Probe] gc god=True
+[Info   :Husnisse Gate Client Probe] gc cmd: setpos 320 60 320
+[Info   :Husnisse Gate Client Probe] gc setpos from=151.60,40.90,120.00 requested=320.00,60.00,320.00 now=320.00,60.00,320.00
+[Info   :Husnisse Gate Client Probe] gc hud top='You are wet'
+[Info   :Husnisse Gate Client Probe] gc cmd: setpos 151.6 41.1 120
+[Info   :Husnisse Gate Client Probe] gc setpos from=320.00,28.23,320.00 requested=151.60,41.10,120.00 now=151.60,41.10,120.00
+[Info   :Husnisse Gate Client Probe] gc cmd: containers
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows_buried(Clone) at 245.38,30.97,252.09 net=False rule='' stacks=2 items=33 [coinsx30,rubyx3]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 174.08,34.96,365.78 net=False rule='' stacks=2 items=9 [coinsx8,amberx1]
+[Info   :Husnisse Gate Client Probe] gc containers total=2 net=0 ruled=0
+[Info   :  Husnisse] fade: property=_Cutoff mode=Cutoff renderers=4 shader=Custom/Creature
+[Info   :  Husnisse] nisse settled at bowl -83935561:21005
+[Info   :  Husnisse] bowl: pantry ready 4x1 (4 slots)
+[Info   :  Husnisse] fade: property=_Cutoff mode=Cutoff renderers=4 shader=Custom/Creature

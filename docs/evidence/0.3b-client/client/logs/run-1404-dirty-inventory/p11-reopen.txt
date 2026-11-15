@@ -1,0 +1,20 @@
+gc cmd: close
+gc close was=piece_chest_wood(Clone)
+gc cmd: open piece_chest_wood 3
+gc interact piece_chest_wood(Clone) alt=False -> True
+gc cmd: ui
+gc ui ui container=piece_chest_wood(Clone) strip=True net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=True inUse=False dist=1.8
+gc ui zdo net=False rule='' inUseFlag=False owner=True
+gc ui panel title='Storage rule' priority='-' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=False custom='Save contents' customOpen=False
+gc cmd: containers
+gc container piece_chest_wood(Clone) idx=1 at -126.00,77.83,-9.00 net=True rule='v1;k=deposit' stacks=0 items=0 [] zdosts=0 zid=-1891667160:18932 zrev=7 zown=-256483424
+gc container piece_chest_wood(Clone) idx=2 at -124.00,77.83,-13.00 net=True rule='v1;k=overflow' stacks=2 items=8 [obsidianx4,deerhidex4] zdosts=2 zid=-1891667160:18931 zrev=9 zown=-256483424
+gc container piece_chest_wood(Clone) idx=7 at -122.00,77.83,5.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-1891667160:18928 zrev=22 zown=-256483424
+gc container piece_chest_wood(Clone) idx=8 at -120.00,77.83,3.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-1891667160:18927 zrev=10 zown=-256483424
+gc container piece_chest_wood(Clone) idx=6 at -122.00,77.83,3.00 net=False rule='v1;k=cat;c=wood' stacks=0 items=0 [] zdosts=0 zid=-1891667160:18926 zrev=27 zown=-256483424
+gc container piece_chest_wood(Clone) idx=4 at -122.00,77.83,-11.00 net=True rule='v1;k=cat;c=wood' stacks=1 items=47 [woodx47] zdosts=1 zid=-1891667160:18930 zrev=7 zown=-256483424
+gc container piece_chest_wood(Clone) idx=5 at -122.00,77.83,-9.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-1891667160:18933 zrev=7 zown=-256483424
+gc container piece_chest_wood(Clone) idx=3 at -124.00,77.83,-7.00 net=False rule='' stacks=5 items=118 [obsidianx8,deerhidex8,copperscrapx9,woodx50,woodx43] zdosts=5 zid=-1891667160:18934 zrev=11 zown=-256483424
+gc container piece_chest_wood(Clone) idx=0 at -126.00,77.83,-11.00 net=True rule='v1;k=cat;c=metals' stacks=1 items=10 [copperscrapx10] zdosts=1 zid=-1891667160:18929 zrev=8 zown=-256483424
+gc containers total=9 net=7 ruled=5
+gc close after: gui=piece_chest_wood(Clone) localZdoOwner=True stacks=0 items=0 []

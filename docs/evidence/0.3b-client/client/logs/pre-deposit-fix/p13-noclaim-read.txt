@@ -1,0 +1,4 @@
+gc panel el name=HusnisseNetworkStrip active=False vis=False clickable=- label='Off the network' color=#FFA13C rect=248.0,693.0,356.0x26.0
+gc panel el name=HusnisseNet active=True vis=False clickable=False label='Off the network' color=#FFA13C rect=248.0,693.0,114.0x26.0
+gc panel overlap HusnisseNetworkStrip vs grid = 0.0 vs window = 9256.0 inside=True area=9256
+gc panel counts elements=76 visible=0

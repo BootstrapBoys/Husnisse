@@ -1,0 +1,8 @@
+gc cmd: give CopperScrap 4 1
+gc give CopperScrapx4 slot=(0,1) item=True stacks=1 items=4 [copperscrapx4]
+gc cmd: give Wood 4 2
+gc give Woodx4 slot=(0,2) item=True stacks=2 items=8 [copperscrapx4,woodx4]
+gc cmd: give Coal 6 3
+gc give Coalx6 slot=(0,3) item=True stacks=3 items=14 [copperscrapx4,woodx4,coalx6]
+gc cmd: inv
+gc inv stacks=3 items=14 [copperscrapx4,woodx4,coalx6]

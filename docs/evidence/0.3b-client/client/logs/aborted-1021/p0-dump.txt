@@ -1,0 +1,17 @@
+gc cmd: stand piece_chest_wood 7
+gc stand: no piece_chest_wood[7]
+gc cmd: open piece_chest_wood 7
+gc use: no object for piece_chest_wood
+gc cmd: move piece_chest_wood Coal 99
+gc move: no player or container piece_chest_wood
+gc cmd: move piece_chest_wood Wood 99
+gc move: no player or container piece_chest_wood
+gc cmd: move piece_chest_wood Stone 99
+gc move: no player or container piece_chest_wood
+gc cmd: move piece_chest_wood Resin 99
+gc move: no player or container piece_chest_wood
+gc cmd: move piece_chest_wood Feathers 99
+gc move: no player or container piece_chest_wood
+gc cmd: inv
+gc inv stacks=1 items=4 [woodx4]
+gc open gui=none

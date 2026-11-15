@@ -1,0 +1,14 @@
+gc cmd: close
+gc close was=none
+gc cmd: containers
+gc container piece_chest_wood(Clone) idx=1 at -126.00,77.83,-9.00 net=True rule='v1;k=deposit' stacks=0 items=0 [] zdosts=0 zid=-1891667160:18932 zrev=7 zown=-256483424
+gc container piece_chest_wood(Clone) idx=2 at -124.00,77.83,-13.00 net=True rule='v1;k=overflow' stacks=2 items=8 [obsidianx4,deerhidex4] zdosts=2 zid=-1891667160:18931 zrev=9 zown=-256483424
+gc container piece_chest_wood(Clone) idx=7 at -122.00,77.83,5.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-1891667160:18928 zrev=11 zown=-256483424
+gc container piece_chest_wood(Clone) idx=8 at -120.00,77.83,3.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-1891667160:18927 zrev=6 zown=-256483424
+gc container piece_chest_wood(Clone) idx=6 at -122.00,77.83,3.00 net=False rule='v1;k=cat;c=wood' stacks=0 items=0 [] zdosts=0 zid=-1891667160:18926 zrev=14 zown=-256483424
+gc container piece_chest_wood(Clone) idx=4 at -122.00,77.83,-11.00 net=True rule='v1;k=cat;c=wood' stacks=1 items=47 [woodx47] zdosts=1 zid=-1891667160:18930 zrev=7 zown=-256483424
+gc container piece_chest_wood(Clone) idx=5 at -122.00,77.83,-9.00 net=True rule='' stacks=0 items=0 [] zdosts=0 zid=-1891667160:18933 zrev=7 zown=-256483424
+gc container piece_chest_wood(Clone) idx=3 at -124.00,77.83,-7.00 net=False rule='' stacks=0 items=0 [] zdosts=0 zid=-1891667160:18934 zrev=4 zown=-256483424
+gc container piece_chest_wood(Clone) idx=0 at -126.00,77.83,-11.00 net=True rule='v1;k=cat;c=metals' stacks=1 items=10 [copperscrapx10] zdosts=1 zid=-1891667160:18929 zrev=8 zown=-256483424
+gc containers total=9 net=7 ruled=5
+gc close after: gui=none localZdoOwner=True stacks=0 items=0 []

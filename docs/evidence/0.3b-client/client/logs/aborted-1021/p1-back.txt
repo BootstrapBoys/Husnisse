@@ -1,0 +1,6 @@
+gc cmd: close
+gc close was=Container
+gc cmd: stand piece_chest_wood 3
+gc stand: no piece_chest_wood[3]
+gc cmd: open piece_chest_wood 3
+gc use: no object for piece_chest_wood

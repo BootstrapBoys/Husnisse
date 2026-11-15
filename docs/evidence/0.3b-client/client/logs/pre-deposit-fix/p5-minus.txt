@@ -1,0 +1,6 @@
+gc cmd: click HusnissePriorityMinus
+gc click HusnissePriorityMinus label='-' interactable=True
+gc click HusnissePriorityMinus invoked
+gc after HusnissePriorityMinus ui container=piece_chest_wood(Clone) strip=True net='On the network' netClickable=True rules='Rules: Metals' rulesClickable=True panel=True win=True inUse=True dist=1.8
+gc after HusnissePriorityMinus zdo net=True rule='v1;k=cat;c=metals' inUseFlag=False owner=True
+gc after HusnissePriorityMinus panel title='Storage rule' priority='0' status='' suggestActive=False suggest='Use suggestion: No rule' copyClickable=True custom='Save contents' customOpen=False

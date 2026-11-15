@@ -1,0 +1,1 @@
+wrote /home/hermes/.hermes/cache/scratch/gate-readonly.cmd (424242 bowl at 4,46.17,8 + chest at 6,46.17,8; no-claim chest at 32,46.17,6)
