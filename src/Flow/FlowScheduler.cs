@@ -83,16 +83,34 @@ namespace Husnisse.Flow
                 var nisse = NisseFactory.EnsureNisse(claim.Bowl);
                 if (nisse == null) continue;
 
-                EnqueueDrops(claim);
-                EnqueueDeposits(claim);
+                Refill(claim);
                 TripRunner.PokeNext(claim);
 
                 if (FlowQueue.Count(claim) == 0) TripRunner.GoHome(claim, nisse);
             }
         }
 
-        private static void EnqueueDrops(Claim claim)
+        /// <summary>
+        /// One refill pass for a claim: ground drops inside it, then the deposit chests on its
+        /// network. The claim's containers are gathered once and shared by both halves, so a pass
+        /// scans the scene once however many chests the base has — this is also the unit the
+        /// `husnisse_bench` benchmark times, because it is what a reconcile tick actually runs.
+        /// </summary>
+        public static void Refill(Claim claim)
         {
+            if (claim == null) return;
+
+            var containers = ContainerIndex.InClaim(claim);
+            EnqueueDrops(claim, containers);
+            EnqueueDeposits(claim, containers);
+        }
+
+        private static void EnqueueDrops(Claim claim, List<Container> containers)
+        {
+            // Nothing in the claim can take a drop, so do not even walk the world's drops: an empty
+            // base with a floor of loot would otherwise scan every item on the map each tick.
+            if (containers == null || containers.Count == 0) return;
+
             var drops = new List<ItemDrop>();
             foreach (var drop in Object.FindObjectsByType<ItemDrop>(FindObjectsSortMode.None))
             {
@@ -109,7 +127,7 @@ namespace Husnisse.Flow
             // One scan of the claim's network for the whole pile, and one routing question per
             // stack: a drop nothing accepts stays on the ground without being queued and retried
             // every tick, which is what a broken rule would otherwise look like in the log.
-            var network = StorageRouter.NetworkCandidates(claim);
+            var network = StorageRouter.NetworkCandidates(claim, containers);
             foreach (var drop in drops)
             {
                 if (!StorageRouter.Decide(claim, network, drop.m_itemData, null, null).Found) continue;
@@ -124,12 +142,13 @@ namespace Husnisse.Flow
         /// off-network chest is not part of the claim's work at all — and a stack nothing accepts
         /// stays in it rather than being queued for ever.
         /// </summary>
-        private static void EnqueueDeposits(Claim claim)
+        private static void EnqueueDeposits(Claim claim, List<Container> containers)
         {
             List<Container> network = null;
 
-            foreach (var container in ContainerIndex.InClaim(claim))
+            foreach (var container in containers)
             {
+                if (container == null) continue;
                 if (ContainerNetwork.RuleOf(container).Kind != RuleKind.Deposit) continue;
                 if (!ContainerNetwork.IsOnNetwork(container)) continue;
                 if (ContainerNetwork.IsBlacklisted(container)) continue;
@@ -142,7 +161,7 @@ namespace Husnisse.Flow
                     var item = inventory.GetItem(i);
                     if (item == null || item.m_shared == null) continue;
 
-                    if (network == null) network = StorageRouter.NetworkCandidates(claim);
+                    if (network == null) network = StorageRouter.NetworkCandidates(claim, containers);
                     if (!StorageRouter.Decide(claim, network, item, null, container).Found) continue;
                     FlowQueue.EnqueueContainer(claim, container, item);
                 }
@@ -171,6 +190,8 @@ namespace Husnisse.Flow
                 var budget = Mathf.Min(FloorTokens(), FlowQueue.Count(claim));
                 if (budget <= 0) continue;
 
+                DiagnosticsFile.Line("[Flow] drain tokens=" + _tokens.ToString("0.0") +
+                                     " " + FlowQueue.Describe(claim) + " budget=" + budget);
                 TripRunner.Start(claim, nisse, budget);
             }
         }

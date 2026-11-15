@@ -59,6 +59,43 @@ namespace Husnisse.Storage
             return claim.Allows(playerId);
         }
 
+        /// <summary>
+        /// The one question behind the container window: may this container show the three buttons?
+        /// A claim must own it, the filter must allow it (not the bowl, not a backpack, not on a
+        /// ward's ground the claim does not own) and it must not be blacklisted. The UI draws from
+        /// this and a harness asks the same function, so "a blacklisted container never shows a
+        /// button" is proven on one predicate instead of a copy of the conditions inside a patch.
+        /// </summary>
+        public static bool OffersUi(Claim claim, Container container)
+        {
+            if (claim == null || container == null) return false;
+            if (claim.Suppressed) return false;
+            if (container.GetComponent<Bowl.BowlPiece>() != null) return false;
+            if (!ContainerFilter.CanUse(claim, container)) return false;
+            return !IsBlacklisted(container);
+        }
+
+        /// <summary>
+        /// Blacklists (or releases) one container. The flag is per container and only ever adds to
+        /// the shipped defaults: a cart is blacklisted by class through `4. Storage / Skip Carts and
+        /// Ships`, which no per-container flag overrides, so `Describe` is the truth about whether
+        /// the flag took effect. Blacklisting also drops the container off the network, because a
+        /// blacklisted container is never part of one — leaving `net=on` behind would be a state the
+        /// router silently ignores.
+        /// </summary>
+        public static bool WriteBlacklist(Container container, bool blacklisted, string who)
+        {
+            var zdo = Zdo(container);
+            if (zdo == null) return false;
+
+            zdo.Set(ZdoKeys.ContainerBlacklist, blacklisted);
+            if (blacklisted && IsOnNetwork(container)) zdo.Set(ZdoKeys.ContainerNetwork, false);
+
+            Log.Debug("Rules", "blacklist " + (blacklisted ? "on" : "off") + " " +
+                               Utils.GetPrefabName(container.gameObject) + " by " + who);
+            return true;
+        }
+
         /// <summary>One line per container for `husnisse_status`: position, opt-in and rule.</summary>
         public static string Describe(Container container)
         {

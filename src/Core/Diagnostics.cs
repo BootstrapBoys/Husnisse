@@ -28,6 +28,7 @@ namespace Husnisse.Core
                       " reconcile=" + HusnisseConfig.ReconcileInterval.Value +
                       " bowl_drain=" + HusnisseConfig.BowlDrainMinutes.Value +
                       " radius=" + HusnisseConfig.ClaimRadius.Value +
+                      " lod_distance=" + HusnisseConfig.LodDistance.Value +
                       " feeding_required=" + WorldPolicy.FeedingRequired);
 
             lines.Add("[compat] wardislove=" + (WardIsLoveCompat.Installed ? "installed" : "absent") +
@@ -46,6 +47,18 @@ namespace Husnisse.Core
             var network = 0;
             var ruled = 0;
             var deposits = 0;
+            var blacklisted = 0;
+
+            // Counted over every container a claim contains, not over the usable ones: the whole
+            // point of a blacklisted container is that the filter keeps it out of that list.
+            foreach (var container in Object.FindObjectsByType<Container>(FindObjectsSortMode.None))
+            {
+                if (container == null) continue;
+                if (!ContainerNetwork.IsBlacklisted(container)) continue;
+                if (ClaimRegistry.FindFor(container.transform.position) == null) continue;
+                blacklisted++;
+            }
+
             foreach (var claim in ClaimRegistry.All())
             {
                 foreach (var container in ContainerIndex.InClaim(claim))
@@ -58,7 +71,8 @@ namespace Husnisse.Core
                     lines.Add("rule " + claim.BowlId + " " + ContainerNetwork.Describe(container));
                 }
             }
-            lines.Add("[rules] containers=" + network + " ruled=" + ruled + " deposits=" + deposits);
+            lines.Add("[rules] containers=" + network + " ruled=" + ruled + " deposits=" + deposits +
+                      " blacklisted=" + blacklisted);
 
             foreach (var claim in ClaimRegistry.All())
             {
@@ -72,9 +86,16 @@ namespace Husnisse.Core
                 }
 
                 var nisse = "none";
+                var lod = "-";
                 foreach (var actor in Object.FindObjectsByType<NisseActor>(FindObjectsSortMode.None))
                 {
-                    if (actor != null && actor.BowlId == claim.BowlId) nisse = "yes";
+                    if (actor == null || actor.BowlId != claim.BowlId) continue;
+                    nisse = "yes";
+
+                    var level = actor.GetComponent<NisseLod>();
+                    if (level == null) continue;
+                    lod = level.Far ? "far" : "near";
+                    if (!float.IsInfinity(level.Nearest)) lod += ":" + level.Nearest.ToString("0.0");
                 }
 
                 lines.Add("claim " + claim.BowlId +
@@ -100,7 +121,10 @@ namespace Husnisse.Core
                           " trip=" + (TripRunner.Get(claim) != null ? TripRunner.Get(claim).ShortState() : "idle") +
                           " containers=" + containers.Count +
                           " stacks=" + stacks +
+                          " lod=" + lod +
                           " nisse=" + nisse);
+
+                lines.Add("[flow] claim=" + claim.BowlId + " " + FlowQueue.Describe(claim));
             }
 
             return lines;

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Husnisse.Claims;
-using Husnisse.Compat;
 using Husnisse.Core;
 using Husnisse.Localization;
 using Husnisse.Net;
@@ -105,11 +104,7 @@ namespace Husnisse.UI
             }
 
             var claim = ClaimRegistry.FindFor(container.transform.position);
-            var shows = claim != null &&
-                        !claim.Suppressed &&
-                        container.GetComponent<Bowl.BowlPiece>() == null &&
-                        ContainerFilter.CanUse(claim, container) &&
-                        !ContainerNetwork.IsBlacklisted(container);
+            var shows = ContainerNetwork.OffersUi(claim, container);
 
             if (!shows)
             {

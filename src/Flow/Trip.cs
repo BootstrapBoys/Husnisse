@@ -36,6 +36,7 @@ namespace Husnisse.Flow
         private readonly NisseMotion _motion;
         private readonly List<FlowTicket> _pending = new List<FlowTicket>();
         private readonly List<Vector3> _pickups = new List<Vector3>();
+        private readonly HashSet<FlowSource> _sources = new HashSet<FlowSource>();
         private Container _target;
         private Vector3 _targetPoint;
         private Vector3 _homePoint;
@@ -73,8 +74,11 @@ namespace Husnisse.Flow
         }
 
         /// <summary>
-        /// Takes up to <paramref name="budget"/> tickets from the claim's queue that share one
-        /// destination chest. Tickets that route elsewhere go back to the head of the queue.
+        /// Takes up to <paramref name="budget"/> tickets that share one destination chest, all from
+        /// the task type the queue's rotation picked for this trip. The rotation decides which
+        /// source is served; the batch is then filled from that source alone, so fairness costs the
+        /// trip nothing — the other task type waits one trip, not one stack. Tickets in the lane
+        /// that route elsewhere go back to its head.
         /// </summary>
         public static Trip Start(Claim claim, NisseActor nisse, int budget)
         {
@@ -83,11 +87,21 @@ namespace Husnisse.Flow
             var trip = new Trip(claim, nisse);
             var memory = MemoryOf(nisse);
 
+            FlowTicket first;
+            if (!FlowQueue.TryDequeue(claim, out first)) return null;
+
+            // The rotation has already moved past this lane, so the next trip starts at the next one.
+            var lane = first != null ? first.Source : FlowSource.Ground;
+
             for (var taken = 0; taken < budget; taken++)
             {
-                FlowTicket ticket;
-                if (!FlowQueue.TryDequeue(claim, out ticket)) break;
-                if (ticket == null || !ticket.IsValid())
+                var ticket = first;
+                first = null;
+
+                if (taken > 0 && !FlowQueue.TryDequeueFrom(claim, lane, out ticket)) break;
+                if (ticket == null) break;
+
+                if (!ticket.IsValid())
                 {
                     continue;
                 }
@@ -118,6 +132,7 @@ namespace Husnisse.Flow
                 }
 
                 trip._pending.Add(ticket);
+                trip._sources.Add(ticket.Source);
                 trip.AddPickup(ticket);
             }
 
@@ -129,9 +144,11 @@ namespace Husnisse.Flow
             Log.Debug("Flow", "trip start claim=" + claim.BowlId + " stacks=" + trip._pending.Count +
                               " pickups=" + trip._pickups.Count + " target=" + trip._target.name +
                               " at=" + Where(trip._target.transform.position) + " why=" + trip._why +
+                              " src=" + trip.SourceToken() +
                               " leg_m=" + Vector3.Distance(nisse.transform.position, trip._targetPoint).ToString("0.0"));
             DiagnosticsFile.Line("[Flow] trip stacks=" + trip._pending.Count + " target=" + trip._target.name +
                                  " at=" + Where(trip._target.transform.position) + " why=" + trip._why +
+                                 " src=" + trip.SourceToken() +
                                  " claim=" + claim.BowlId);
             return trip;
         }
@@ -362,7 +379,18 @@ namespace Husnisse.Flow
                               " at=" + Where(_target.transform.position) + " why=" + _why +
                               " remaining=" + _pending.Count);
             DiagnosticsFile.Line("[Flow] landed moved=" + moved + " target=" + _target.name +
-                                 " at=" + Where(_target.transform.position) + " why=" + _why);
+                                 " at=" + Where(_target.transform.position) + " why=" + _why +
+                                 " src=" + SourceToken());
+        }
+
+        /// <summary>Which task types this batch came from: ground, container, pockets, or a mix.</summary>
+        private string SourceToken()
+        {
+            if (_sources.Count == 0) return "none";
+            if (_sources.Count > 1) return "mixed";
+
+            foreach (var source in _sources) return FlowQueue.Token(source);
+            return "none";
         }
 
         public void Abort()

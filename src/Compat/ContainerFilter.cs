@@ -94,13 +94,16 @@ namespace Husnisse.Compat
 
         /// <summary>
         /// The prefabs that ship blacklisted: nothing that moves and nothing that exists to display.
-        /// The per-container blacklist flag is a separate ZDO key; this is the default a container
-        /// with no flag inherits, so a new mod's cart is safe without a save-data migration.
+        /// The two `4. Storage` toggles decide the classes, so turning "Skip Carts and Ships" off
+        /// really makes carts eligible instead of leaving a hard default in force behind the setting.
+        /// The per-container flag is a separate ZDO key and only ever adds a blacklist; it is not
+        /// stored per class, so a new mod's cart is safe without a save-data migration.
         /// </summary>
         public static bool DefaultBlacklisted(Container container)
         {
             if (container == null) return true;
-            return IsMobile(container) || IsDisplayPile(container);
+            if (HusnisseConfig.SkipMobileContainers.Value && IsMobile(container)) return true;
+            return HusnisseConfig.SkipDisplayPiles.Value && IsDisplayPile(container);
         }
 
         public static bool CanUse(Claim claim, Container container)

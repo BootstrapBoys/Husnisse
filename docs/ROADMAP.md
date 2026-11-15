@@ -158,9 +158,14 @@ suggestion, copy-rule and the rule-aware router, with a headless gate on every r
 (`docs/evidence/0.3b/`). 0.3c added the full-category case (a full chest does not claim a stack, the
 next chest of the category is tried before Overflow, and the reason names the rules that were full),
 Deposit chests as a **source** the nisse drains, and deposit-all on and off the network
-(`docs/evidence/0.3c/`). Still to do in this release: LOD, fair queue, the shipped blacklist defaults
-and the 200-container benchmark (0.3d). The panel's controls and the deposit-all button are built and
-wired but were not clicked on a client.
+(`docs/evidence/0.3c/`). 0.3d finished the release: the blacklist's two layers behind one button
+predicate (class defaults follow `4. Storage / Skip Carts and Ships` and `Skip Display Piles`, the
+per-container flag is `husnisse_rule blacklist`, and `netall` joins a whole prefab), the queue's
+round-robin lanes with a trip filling its batch from the lane it serves, per-peer animation LOD
+(`2. Nisse / Animation LOD Distance`), and the 200-container benchmark (`husnisse_bench`, recorded in
+`docs/evidence/0.3d/`). 0.3 is code-complete and unreleased. The panel's controls, the deposit-all
+button and the LOD's visual behaviour are built and gated headlessly but were not exercised on a
+client.
 
 **Risks** — vanilla container UI patching is the most compatibility-sensitive work in the project.
 MyLittleUI and other UI mods must be tested; the buttons must survive a controller and a narrow screen.

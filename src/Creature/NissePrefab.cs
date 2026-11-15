@@ -56,6 +56,7 @@ namespace Husnisse.Creature
 
             prefab.AddComponent<NisseFade>();
             prefab.AddComponent<NisseMotion>();
+            prefab.AddComponent<NisseLod>();
             prefab.AddComponent<NisseActor>();
             prefab.AddComponent<NisseHands>();
 

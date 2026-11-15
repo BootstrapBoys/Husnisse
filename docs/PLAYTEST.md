@@ -169,6 +169,12 @@ The panel itself, on a client — the headless gate proves the routing, not the 
 - [ ] Fill that off-network chest to the last slot and press `Deposit all` again: the overflow stays in
       your pockets and the message says how many would not fit.
 - [ ] A blacklisted container (a cart, a ship, a display pile) shows no buttons.
+- [ ] `husnisse_rule blacklist piece_chest_wood on <n>` on an ordinary chest: its buttons disappear the
+      next time the window is opened, and a stack dropped beside it is not filed into it.
+      `... blacklist piece_chest_wood off <n>` brings the buttons back.
+- [ ] **Animation LOD**: stand 40 m from the nisse (`2. Nisse / Animation LOD Distance` is 30) and watch
+      it: the body stops animating while its trips keep running (the position still changes). Walk
+      inside 30 m and the walk animation resumes. Set the distance to 5 m and back to confirm the knob.
 - [ ] A non-owner opens the same chest: the buttons are there, greyed, and the title says `read only`.
 - [ ] `husnisse_categories check` in the console lists what the presets do not cover; a gap item
       (a pelt, a bone, a boss drop) lands in Overflow rather than in a ruled chest.

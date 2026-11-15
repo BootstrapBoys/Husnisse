@@ -341,6 +341,35 @@ Overflow, plain-chest fallback and "the deposit chest takes nothing" all pass in
 first-toggle write, priority, copy/idempotent copy) in `husnisse-03b-rules-edit.cmd` (10). Evidence:
 `docs/evidence/0.3b/`.
 
+## 8. The creature's own cost, and a stack's identity — 2026-11-15
+
+Two engine facts from the 0.3d gate (`docs/evidence/0.3d/RESULT.md`) that the next phases will lean on:
+
+- **Animation LOD works by switching the Animator, and the switch is observable.** `Animator.enabled =
+  false` with `AnimatorCullingMode.CullCompletely` stops the body animating without touching the trip:
+  `husnisse lod apply 60` reports `far=True animator=False culling=2`, `apply 5` reports
+  `far=False animator=True culling=0`, and the nisse stays bound to its claim (`nisse=yes`) in both
+  states. `Character.m_animator` is **protected** — a `MonoBehaviour` cannot read it and must resolve
+  the Animator from the component tree. On a dedicated server there are no `Player` objects, so the
+  viewer distance is infinite and every nisse reports `lod=far`: the switch is per peer and costs
+  nothing when nobody is connected.
+- **Writing a container's ZDO reloads its inventory, and every `ItemData` in it is a new object.** The
+  deposit-chest scan queues stacks by identity; after a rule write on the same chest the queued tickets
+  referenced items that no longer existed in the inventory, so the next reconcile queued the same four
+  stacks again (observed `lane_container=4` → `8`), and the following trip dropped four tickets as
+  invalid. The durable identity is the stack's **slot, count and shared name inside the same
+  container** (`FlowQueue.SameStack`), not the object reference.
+
+A third fact is about the rig, not the engine: **objects spawned at `ground` can fall out of the
+world on the spare tree.** A `Cart` placed at (6, 3) ended at y = −4438 within minutes, and a floor of
+30 item drops ended far from where they were placed in one run and stayed put in the next. Anything
+that asserts on a spawned object's position must either give it a collider under it or assert on state
+that does not move — the fairness scenario now reads the deposit chest and the queue.
+
+The cost side is recorded separately: **one reconcile pass over 200 networked containers and 40
+stacks costs ~20 ms** (0.4 % of the 5 s tick), and one routing answer against that network costs
+0.33 ms — `docs/evidence/0.3d/BENCH.md`.
+
 ## What this means for the plan
 
 | Assumption | Status |

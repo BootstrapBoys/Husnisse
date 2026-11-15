@@ -21,6 +21,7 @@ namespace Husnisse.Config
         public static ConfigEntry<float> ItemsPerSecond;
         public static ConfigEntry<float> ReconcileInterval;
         public static ConfigEntry<float> ClaimRadius;
+        public static ConfigEntry<float> LodDistance;
         public static ConfigEntry<float> MoodDecayPerHour;
         public static ConfigEntry<int> SulkMisfileCap;
         public static ConfigEntry<int> SulkIntervalMinutes;
@@ -62,6 +63,10 @@ namespace Husnisse.Config
 
             ClaimRadius = file.Bind("2. Nisse", "Claim Radius", 20f,
                 new ConfigDescription("Radius a nisse claims around its bowl, in metres.", new AcceptableValueRange<float>(5f, 50f)));
+
+            LodDistance = file.Bind("2. Nisse", "Animation LOD Distance", 30f,
+                new ConfigDescription("A nisse farther than this from every player stops being animated; its work stays in the queue. Sampled twice a second, per peer.",
+                    new AcceptableValueRange<float>(5f, 120f)));
 
             MoodDecayPerHour = file.Bind("2. Nisse", "Mood Decay Per Hour", 20f,
                 new ConfigDescription("Mood lost per hour of neglect while a player is online.", new AcceptableValueRange<float>(0f, 100f)));

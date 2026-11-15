@@ -25,7 +25,10 @@ What survives from the strict version:
 - **Nothing happens while it is not working.** An unfed or sulking nisse stops the base: no sorting, no
   machine feeding, no ship unloading.
 - **Performance is bounded by the rate, not by a scan.** A 200-chest base costs what the configured
-  items/second allows, not what a loop can touch.
+  items/second allows, not what a loop can touch. Measured on the rig: one full reconcile pass over
+  200 networked containers and 40 stacks on the floor takes about 20 ms — 0.4 % of the 5 s tick — and a
+  single routing answer against that 200-container network takes 0.33 ms
+  (`docs/evidence/0.3d/BENCH.md`).
 - **Balance is a relationship.** Automation is gated by care, not by a checkbox.
 - **Failure is legible.** When something is not being sorted you can see why: the bowl is empty, the
   nisse cannot reach the room, or it is sulking.
@@ -197,10 +200,13 @@ crates. Nothing joins by default: a container is on the network only when it is 
   — an off-network chest is not part of the claim's work.
 - **Custom list** — "save contents" opens a preview of the captured item names with checkboxes; only the
   ticked items route there. Teaching by demonstration writes the same list.
-- **Blacklist** — per container only. A blacklisted container shows neither the toggle nor the settings
-  button. Carts, ships and display piles start blacklisted rather than hard-coded out of the scan.
-  `husnisse_prefabs` writes every container prefab to `BepInEx/BSBLogs/Husnisse-prefabs.txt` so entries
-  can be identified without guessing.
+- **Blacklist** — a container can be blacklisted one at a time (`husnisse_rule blacklist <prefab> <on|off>
+  [index]`), and a blacklisted container shows neither the toggle nor the settings button and is never
+  part of a network. Carts, ships and display piles start blacklisted **by class** — the `4. Storage /
+  Skip Carts and Ships` and `Skip Display Piles` toggles decide that, so turning them off really makes
+  the class eligible instead of leaving a hard default in force. Nothing that moves and nothing that
+  exists to display is ever a destination. `husnisse_prefabs` writes every container prefab to
+  `BepInEx/BSBLogs/Husnisse-prefabs.txt` so entries can be identified without guessing.
 - **Deposit-all** — a third button in the container window. On a chest that is on the network it hands
   the player's stacks to the nisse, which files them by their rules at the queue's rate (the chest the
   button was pressed on gets nothing by right). On an off-network chest it dumps every pocket stack
@@ -209,6 +215,13 @@ crates. Nothing joins by default: a container is on the network only when it is 
   says how many.
 - **Permissions** — the claim owner and ward-permitted players change rules; anyone with container
   access can read them.
+- **Fair queue** — work is queued per task type (ground drops, deposit chests, player orders) and the
+  queue hands out one type in turn, so a floor of loot cannot starve a deposit chest or an order waiting
+  behind it. A machine that refills later joins as its own lane.
+- **Animation LOD** — a nisse farther than `2. Nisse / Animation LOD Distance` (default 30 m) from every
+  player stops animating on that peer; its work continues in the queue and the trips keep running. Each
+  peer decides for itself: a dedicated server animates nothing when nobody is connected, a client
+  animates the nisses near it.
 - **Authority** — rules live in the container's ZDO and are written through the server; a client with
   no local player changes nothing.
 - **Storage** — the opt-in is `husnisse_net` (bool) and the rule is `husnisse_rule`, one versioned
@@ -450,9 +463,10 @@ table is the summary.
   the answer is to make feeding interesting (meals with effects) or to let a fed nisse run for days —
   not to add an "auto" switch that deletes the concept.
 - **Pathing is not free, and not universal.** Measured: 32 m navmesh tiles rebuild at most once per
-  10 s, the first path request in a fresh tile always fails, and a 2 m doorway is not passable at all.
-  The poke-ahead/retry/fade rule is the mitigation. The 200-container benchmark still has to happen
-  before 0.3.
+  10 s and the first path request in a fresh tile always fails; doorways are shape-dependent, not
+  width-dependent — a free-standing 2 m opening is walkable, a small room with the same 2 m gap is not.
+  The poke-ahead/retry/fade rule is the mitigation. The 200-container benchmark has been recorded
+  (`docs/evidence/0.3d/BENCH.md`).
 - **Dependency surface.** Jötunn and ConditionalConfigSync are hard dependencies, on server and clients.
   Every other integration is a declared soft dependency with a native fallback, so a version mismatch
   degrades that one function instead of stopping the mod.

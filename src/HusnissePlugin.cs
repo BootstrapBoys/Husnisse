@@ -56,6 +56,7 @@ namespace Husnisse
             RegisterPrefabCommand();
             Commands.RuleCommand.Register();
             Commands.CategoryCommand.Register();
+            Commands.BenchCommand.Register();
 
             if (!HusnisseConfig.Enabled.Value)
             {

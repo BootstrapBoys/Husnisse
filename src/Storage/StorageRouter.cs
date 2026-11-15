@@ -104,10 +104,20 @@ namespace Husnisse.Storage
         /// </summary>
         public static List<Container> NetworkCandidates(Claim claim)
         {
-            var candidates = new List<Container>();
-            if (claim == null) return candidates;
+            return NetworkCandidates(claim, ContainerIndex.InClaim(claim));
+        }
 
-            foreach (var container in ContainerIndex.InClaim(claim))
+        /// <summary>
+        /// The same filter against a container list the caller already gathered — a refill pass
+        /// gathers the claim once and asks this twice (for the ground drops and for the deposit
+        /// chests) instead of scanning the scene per question.
+        /// </summary>
+        public static List<Container> NetworkCandidates(Claim claim, List<Container> containers)
+        {
+            var candidates = new List<Container>();
+            if (claim == null || containers == null) return candidates;
+
+            foreach (var container in containers)
             {
                 if (container == null) continue;
                 if (ContainerNetwork.IsBlacklisted(container)) continue;

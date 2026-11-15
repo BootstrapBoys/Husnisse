@@ -14,14 +14,16 @@ namespace Husnisse.Commands
     public static class RuleCommand
     {
         private const string Usage =
-            "usage: husnisse_rule list | net <prefab> <on|off> [index] | set <prefab> <rule> [index] | " +
+            "usage: husnisse_rule list | net <prefab> <on|off> [index] | netall <prefab> <on|off> | " +
+            "blacklist <prefab> <on|off> [index] | set <prefab> <rule> [index] | " +
             "prio <prefab> <n> [index] | suggest <prefab> [index] | copy <prefab> <index> [radius]";
 
         public static void Register()
         {
             new Terminal.ConsoleCommand(
                 "husnisse_rule",
-                "Container network: list | net <prefab> <on|off> [index] | set <prefab> <rule> [index] | " +
+                "Container network: list | net <prefab> <on|off> [index] | netall <prefab> <on|off> | " +
+                "blacklist <prefab> <on|off> [index] | set <prefab> <rule> [index] | " +
                 "prio <prefab> <n> [index] | suggest <prefab> [index] | copy <prefab> <index> [radius].",
                 delegate(Terminal.ConsoleEventArgs args) { Run(args); });
         }
@@ -37,9 +39,15 @@ namespace Husnisse.Commands
                 return;
             }
 
-            if (sub == "set" || sub == "net" || sub == "prio")
+            if (sub == "set" || sub == "net" || sub == "prio" || sub == "blacklist")
             {
                 Write(args, parts, sub);
+                return;
+            }
+
+            if (sub == "netall")
+            {
+                NetAll(args, parts);
                 return;
             }
 
@@ -56,6 +64,33 @@ namespace Husnisse.Commands
             }
 
             args.Context?.AddString(Usage);
+        }
+
+        /// <summary>
+        /// Joins (or leaves) every container of one prefab in one call. A base with two hundred chests
+        /// is otherwise two hundred console commands, which is what the 200-container benchmark and
+        /// an admin repairing a world both need.
+        /// </summary>
+        private static void NetAll(Terminal.ConsoleEventArgs args, string[] parts)
+        {
+            if (parts.Length < 4)
+            {
+                args.Context?.AddString(Usage);
+                return;
+            }
+
+            var prefab = parts[2];
+            var on = parts[3] == "on" || parts[3] == "true" || parts[3] == "1";
+
+            var written = 0;
+            foreach (var container in ByPrefab(prefab))
+            {
+                if (ContainerNetwork.WriteNetworkAndSuggest(container, on, "console")) written++;
+            }
+
+            var line = "husnisse netall " + prefab + " " + (on ? "on" : "off") + " written=" + written;
+            args.Context?.AddString(line);
+            Core.DiagnosticsFile.Line(line);
         }
 
         private static void Write(Terminal.ConsoleEventArgs args, string[] parts, string sub)
@@ -78,7 +113,12 @@ namespace Husnisse.Commands
                 return;
             }
 
-            if (sub == "net")
+            if (sub == "blacklist")
+            {
+                var blacklisted = value == "on" || value == "true" || value == "1";
+                ContainerNetwork.WriteBlacklist(container, blacklisted, "console");
+            }
+            else if (sub == "net")
             {
                 // The console path is a first toggle like any other, so it offers the same
                 // suggestion the button does: one behaviour, whichever way the container joins.
@@ -118,6 +158,16 @@ namespace Husnisse.Commands
             var line = "husnisse rule " + prefab + "[" + index + "] " + ContainerNetwork.Describe(container);
             args.Context?.AddString(line);
             Core.DiagnosticsFile.Line(line);
+
+            // Releasing a container whose class still ships blacklisted changes nothing: say so
+            // rather than leave a flag that reads as if it worked.
+            if (sub == "blacklist" && ContainerNetwork.IsBlacklisted(container))
+            {
+                var hint = "husnisse rule " + prefab + "[" + index + "] still blacklisted: its prefab " +
+                           "class is skipped by 4. Storage / Skip Carts and Ships or Skip Display Piles";
+                args.Context?.AddString(hint);
+                Core.DiagnosticsFile.Line(hint);
+            }
         }
 
         /// <summary>
