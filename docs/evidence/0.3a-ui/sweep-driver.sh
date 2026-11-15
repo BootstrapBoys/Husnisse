@@ -28,8 +28,9 @@ for line in "${CHESTS[@]}"; do
   read -r x y z <<< "$line"
   [ -z "${x:-}" ] && continue
   cat="${CATS[$((n % 8))]}"
-  lower=$(echo "$cat" | tr 'A-Z' 'a-z')
   i=$((n))
+  # The probe prints the container's coordinates with two decimals; compare against the same shape.
+  ex=$(printf '%.2f' "$x"); ez=$(printf '%.2f' "$z")
   n=$((n + 1))
   printf '=== chest %02d at %s,%s,%s (index %d) -> %s\n' "$n" "$x" "$y" "$z" "$i" "$cat" | tee -a "$LOG/sweep.txt"
 
@@ -39,20 +40,18 @@ for line in "${CHESTS[@]}"; do
                      "click HusnisseRulesClose" "ui" < /dev/null > "$LOG/chest-$n-click.txt" 2>&1
 
   standline=$(grep -a '^gc stand piece_chest_wood' "$LOG/chest-$n-move.txt" | tail -1)
-  moveline=$(grep -a '^gc teleport ' "$LOG/chest-$n-move.txt" | tail -1)
   openline=$(grep -a '^gc open gui=' "$LOG/chest-$n-open.txt" | tail -1)
   zdoline=$(grep -a 'zdo net=' "$LOG/chest-$n-click.txt" | tail -1)
   uiline=$(grep -a 'ui container=' "$LOG/chest-$n-click.txt" | tail -1)
-  { echo "  $standline"; echo "  $moveline"; echo "  $openline"; echo "  $zdoline"; echo "  $uiline"; } | tee -a "$LOG/sweep.txt"
+  { echo "  $standline"; echo "  $openline"; echo "  $zdoline"; echo "  $uiline"; } | tee -a "$LOG/sweep.txt"
 
-  if echo "$standline" | grep -qF "at $x,$y,$z" &&
-     echo "$openline"  | grep -q 'gui=piece_chest_wood' &&
-     echo "$zdoline"   | grep -q "net=True rule='v1;k=cat;c=$lower'" &&
-     echo "$uiline"    | grep -q "rules='Rules: $cat'"; then
+  # Per-chest verdict on the settled state is verify-sweep.sh's job: the same-frame `ui` read can
+  # precede the server's ack, and a late line from the previous chest can bleed into this log.
+  if echo "$standline" | grep -qF "at $ex,$y,$ez"; then
     ok=$((ok + 1))
   else
     fail=$((fail + 1))
-    echo "  !! chest $n ($x,$z) did not read back as net=True rule=cat:$lower" | tee -a "$LOG/sweep.txt"
+    echo "  !! chest $n: stand hit a different container than $ex,$y,$ez" | tee -a "$LOG/sweep.txt"
   fi
 done
 
@@ -61,5 +60,6 @@ bash "$HERE/pc.sh" "close" < /dev/null > "$LOG/final-close.txt" 2>&1
 bash "$HERE/pc.sh" "containers" < /dev/null > "$LOG/containers.txt" 2>&1
 grep -a '^gc containers total=' "$LOG/containers.txt" | tail -1 | tee -a "$LOG/sweep.txt"
 
-echo "sweep: $n/$total chests, $ok confirmed, $fail unconfirmed" | tee -a "$LOG/sweep.txt"
-[ "$fail" -eq 0 ] && [ "$n" -eq "$total" ]
+echo "sweep: $n/$total chests addressed by position ($ok matched, $fail did not)" | tee -a "$LOG/sweep.txt"
+echo | tee -a "$LOG/sweep.txt"
+bash "$HERE/verify-sweep.sh" "$POS" "$LOG" | tee -a "$LOG/sweep.txt"
