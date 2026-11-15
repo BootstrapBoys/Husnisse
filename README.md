@@ -419,6 +419,55 @@ console and appends them to the file. `1. General / Write Diagnostics File` turn
 `[Claims]`, `[Flow]`, `[Bowl]`, `[Memory]`, `[Compat]`, `[Creature]`, `[Orders]` — so a filter can
 isolate one. `husnisse_prefabs` exports every loaded container prefab to `Husnisse-prefabs.txt`.
 
+## Machines (0.6)
+
+A base is not only chests. The nisse tends the pieces that make things, and it does it the same way it
+files a stack: it walks to the chest that holds what the machine needs, takes the load while it stands
+there, carries it to the machine, puts it in, and walks home. Output is a real world object — the
+machine spawns it as vanilla does, the nisse picks it up and files it by the same rules a floor full of
+loot follows. Nothing is written from a distance.
+
+**Which pieces.** `Smelter` (smelter, blast furnace, charcoal kiln, eitr refinery, windmill) for fuel
+and ore; `Fermenter` for mash and a tap; `CookingStation` (cooking station, oven) for food and fuel;
+`Beehive` and `SapCollector` to empty; `Fireplace` (fire pit, hearth, bonfire, standing torch) for
+fuel; `Tameable` creatures for a portion of food. Each machine is driven through **its own interact
+RPC** (`RPC_AddOre`, `RPC_AddFuel`, `RPC_AddItem`, `RPC_Tap`, `RPC_Extract`, `RPC_EmptyProcessed`,
+`RPC_RemoveDoneItem`), so the prefab's own rules, ceilings, cheat flags and effects still decide what
+happens, and the transfer plays the prefab's own effect on every peer.
+
+**Caps are ceilings.** `7. Machines / Fuel Cap Percent` and `Input Cap Percent` (both 50) say how full
+the nisse keeps a machine, as a share of that prefab's own maximum. A machine is topped up only when
+it has fallen below the cap and is never filled past it; `Collect At` decides how much finished work is
+worth a walk. A furnace with ore and no coal is a cold furnace, so fuel is served before input.
+
+**Pause.** Each machine carries `husnisse_machine_pause` in its own ZDO. The ledger's **Pause
+machines** switch writes it for every machine in the claim; `husnisse_machines pause <prefab> <on|off>`
+writes one. A paused machine is still listed (so it can be resumed) and is never walked to.
+
+**Protect valuable wood.** `7. Machines / Protect Valuable Wood` (default on) refuses to burn fine
+wood, core wood, elder bark, ancient bark or Yggdrasil wood even when a machine names one of them. A
+machine that asks for it is left alone and says so; nothing is substituted.
+
+**Animals are fed, not simulated.** A hungry creature gets a portion of a food from its own consume
+list, set down beside it as a real drop. The portion is reserved (`husnisse_animal_portion`, plus a
+server-side window) so the claim's own pickup pass does not carry the meal off before the creature
+reaches it. Feeding is what keeps taming going and a tame herd breeding; nothing is written *into* the
+creature.
+
+**A machine's own bin is not storage.** The incinerator's container exists to be filled by hand and
+destroyed; the nisse neither files into it nor draws from it.
+
+## Four-way supply permissions
+
+Every container may say what it **supplies**, not only what it accepts: **crafting** (a craft's
+shortfall), **production** (a processor's input), **fuel** (a fire's or furnace's fuel) and **feed** (an
+animal's portion). All four are on by default and the choice lives in the chest's rule
+(`v1;k=…;s=crafting,fuel`), so it travels with the container: the container window's four toggles,
+`husnisse_rule supply <prefab> <all|none|list| -purpose> [index]`, and the rules file all write the same
+value. A craft, a processor, a fire and an animal each take only from chests that permit their purpose,
+and the contract stops counting a chest that may not supply a craft — a number the errand cannot pay
+would be a promise.
+
 ## Technical architecture
 
 | Piece | Approach |

@@ -34,6 +34,14 @@ namespace Husnisse.Config
         public static ConfigEntry<bool> RequirementReadouts;
         public static ConfigEntry<bool> SplitRequirementCounts;
         public static ConfigEntry<bool> CraftSupply;
+        public static ConfigEntry<bool> TendMachines;
+        public static ConfigEntry<int> MachineFuelPercent;
+        public static ConfigEntry<int> MachineInputPercent;
+        public static ConfigEntry<int> CollectAt;
+        public static ConfigEntry<bool> CollectOutput;
+        public static ConfigEntry<bool> RefuelFires;
+        public static ConfigEntry<bool> FeedAnimals;
+        public static ConfigEntry<bool> ProtectValuableWood;
 
         private static ConfigSync _sync;
 
@@ -120,6 +128,41 @@ namespace Husnisse.Config
 
             RequireWardOwnership = file.Bind("6. Ward", "Require Ward Ownership", false,
                 "When on, a nisse may only use containers in wards its own player placed. Off by default: a permitted tribe member's nisse may use the ward owner's chests.");
+
+            TendMachines = file.Bind("7. Machines", "Tend Machines", true,
+                "The nisse feeds and empties the base's machines: smelters, kilns, refineries, fermenters, " +
+                "cooking stations and ovens take fuel and input and give back finished goods. Off leaves every " +
+                "machine to the player and stops the machine work only.");
+
+            MachineFuelPercent = file.Bind("7. Machines", "Fuel Cap Percent", 50,
+                new ConfigDescription("How full the nisse keeps a fire or a furnace's fuel: a cap, not a target to " +
+                    "exceed. A machine is topped up only when its fuel falls below this share of its own maximum, " +
+                    "and never past it.",
+                    new AcceptableValueRange<int>(1, 100)));
+
+            MachineInputPercent = file.Bind("7. Machines", "Input Cap Percent", 50,
+                new ConfigDescription("The same cap for a processor's ore queue and a cooking station's slots.",
+                    new AcceptableValueRange<int>(1, 100)));
+
+            CollectAt = file.Bind("7. Machines", "Collect At", 1,
+                new ConfigDescription("Finished units a machine must hold before the nisse walks over to empty it. 1 " +
+                    "collects as soon as anything is ready.",
+                    new AcceptableValueRange<int>(1, 20)));
+
+            CollectOutput = file.Bind("7. Machines", "Collect Output", true,
+                "Carry finished goods out of machines to the chests whose rules claim them. Off leaves output where " +
+                "the machine drops it.");
+
+            RefuelFires = file.Bind("7. Machines", "Refuel Fires", true,
+                "Keep fire pits, hearths, bonfires and standing torches burning with the fuel each one names.");
+
+            FeedAnimals = file.Bind("7. Machines", "Feed Animals", true,
+                "Lay a portion down for a hungry tameable creature so taming continues and a tame herd keeps " +
+                "breeding.");
+
+            ProtectValuableWood = file.Bind("7. Machines", "Protect Valuable Wood", true,
+                "Never burn fine wood, core wood, elder bark, ancient bark or Yggdrasil wood as fuel, even if a " +
+                "machine names one of them. A machine that asks for it is left alone and says so in the log.");
 
             _sync = new ConfigSync(pluginGuid);
             _sync.AddLockingConfigEntry(LockConfiguration);

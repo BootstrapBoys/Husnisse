@@ -22,6 +22,10 @@ namespace Husnisse.Net
 
         /// <summary>The claim's pickup filter, addressed by the bowl's position (0.3.1).</summary>
         SetPickup = 5,
+
+        /// <summary>A machine's pause flag (0.6), addressed by the machine's position. A machine is
+        /// not a container, so it has its own op rather than riding the rule payload.</summary>
+        SetMachinePause = 6,
     }
 
     /// <summary>
@@ -92,6 +96,12 @@ namespace Husnisse.Net
             Send(RuleOp.SetPickup, bowlPosition, playerId, (filter ?? PickupFilter.All()).Encode());
         }
 
+        /// <summary>A machine's pause flag, addressed by the machine's own position.</summary>
+        public static void SendMachinePause(Vector3 machinePosition, long playerId, bool paused)
+        {
+            Send(RuleOp.SetMachinePause, machinePosition, playerId, paused ? "1" : "0");
+        }
+
         private static void Send(RuleOp op, Vector3 containerPosition, long playerId, string payload)
         {
             if (ZNet.instance == null) return;
@@ -137,6 +147,14 @@ namespace Husnisse.Net
                 if (op == RuleOp.SetPickup)
                 {
                     HandlePickup(sender, claimed, position, payload);
+                    return;
+                }
+
+                // A machine is not a container either: its pause lives in its own ZDO and the
+                // position names the piece.
+                if (op == RuleOp.SetMachinePause)
+                {
+                    HandleMachinePause(sender, claimed, position, payload);
                     return;
                 }
 
@@ -188,14 +206,14 @@ namespace Husnisse.Net
                 if (op == RuleOp.SetRule)
                 {
                     var rule = ContainerRule.Decode(payload);
-                    if (rule.Kind == RuleKind.None && payload != ContainerRule.None().Encode())
+                    if (!ContainerRule.LooksValid(payload))
                     {
                         Log.Debug("Rules", "refused: rule payload not understood: " + payload);
                         return;
                     }
 
                     if (!ContainerNetwork.WriteRule(container, rule, "player " + who)) return;
-                    Log.Debug("Rules", "rule " + name + " " + rule.Describe() +
+                    Log.Debug("Rules", "rule " + name + " " + rule.Describe() + rule.SupplyDescribe() +
                                        " claim=" + claim.BowlId + " player=" + who);
                     Ack(sender, op, position, payload);
                     return;
@@ -204,7 +222,7 @@ namespace Husnisse.Net
                 if (op == RuleOp.SetRuleAndNetwork)
                 {
                     var rule = ContainerRule.Decode(payload);
-                    if (rule.Kind == RuleKind.None && payload != ContainerRule.None().Encode())
+                    if (!ContainerRule.LooksValid(payload))
                     {
                         Log.Debug("Rules", "refused: rule payload not understood: " + payload);
                         return;
@@ -273,6 +291,40 @@ namespace Husnisse.Net
             Ack(sender, RuleOp.SetPickup, bowlPosition, payload);
         }
 
+        /// <summary>
+        /// A machine's pause flag. The piece is resolved from the server's own world by position, and
+        /// the claim that contains it decides who may write: the same rights that change a chest's
+        /// rule switch a machine off.
+        /// </summary>
+        private static void HandleMachinePause(long sender, long claimed, Vector3 machinePosition, string payload)
+        {
+            var machine = Machines.MachineScan.At(machinePosition);
+            if (machine == null)
+            {
+                Log.Debug("Machines", "pause refused: no machine at " + machinePosition);
+                return;
+            }
+
+            var claim = ClaimRegistry.FindFor(machine.Position);
+            if (claim == null)
+            {
+                Log.Debug("Machines", "pause refused: " + machine.Prefab + " is outside every claim");
+                return;
+            }
+
+            var who = sender == 0L ? claimed : PeerIdentity.PlayerId(sender);
+            if (sender != 0L && who == 0L) return;
+            if (!claim.Allows(who))
+            {
+                Log.Debug("Machines", "pause refused: player " + who + " does not hold claim " + claim.BowlId);
+                return;
+            }
+
+            var paused = payload == "1";
+            machine.SetPaused(paused, "player " + who);
+            Ack(sender, RuleOp.SetMachinePause, machinePosition, payload);
+        }
+
         /// <summary>Tells the peer that asked which value the server accepted.</summary>
         private static void Ack(long sender, RuleOp op, Vector3 position, string payload)
         {
@@ -309,6 +361,15 @@ namespace Husnisse.Net
                     if (claim == null || claim.Bowl == null) return;
                     PickupFilter.Write(claim, PickupFilter.Decode(payload), "server ack");
                     Log.Debug("Rules", "ack applied pickup " + PickupFilter.Decode(payload).Describe());
+                    return;
+                }
+
+                if (op == RuleOp.SetMachinePause)
+                {
+                    var machine = Machines.MachineScan.At(position);
+                    if (machine == null || machine.View == null || !machine.View.IsOwner()) return;
+                    machine.SetPaused(payload == "1", "server ack");
+                    Log.Debug("Machines", "ack applied pause " + payload + " " + machine.Prefab);
                     return;
                 }
 

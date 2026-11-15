@@ -176,6 +176,17 @@ namespace Husnisse.Contract
         /// </summary>
         public static List<Container> Eligible(Claim claim)
         {
+            return Eligible(claim, SupplyPurpose.Crafting);
+        }
+
+        /// <summary>
+        /// The same list for one kind of consumer (0.6). A chest whose owner switched this purpose
+        /// off still holds the item, still routes stacks into itself, and is simply not asked: the
+        /// four permissions are what makes a base's stockpiles and its machines share one network
+        /// without the machines eating what a craft may need.
+        /// </summary>
+        public static List<Container> Eligible(Claim claim, SupplyPurpose purpose)
+        {
             var list = new List<Container>();
             if (claim == null) return list;
 
@@ -186,6 +197,7 @@ namespace Husnisse.Contract
                 if (container == null) continue;
                 if (container.GetComponent<BowlPiece>() != null) continue;
                 if (ContainerNetwork.IsBlacklisted(container)) continue;
+                if (!ContainerNetwork.RuleOf(container).Supplies(purpose)) continue;
                 list.Add(container);
             }
             return list;

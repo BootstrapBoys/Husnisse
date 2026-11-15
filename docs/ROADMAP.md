@@ -321,6 +321,17 @@ decision recorded (keep or drop).
 
 **Done when** — a smelter is fed and emptied unattended; caps hold; permissions are enforced per chest.
 
+**Status — implemented 2026-11-15, headless-proven; client visual pass open.** The mailbox is **dropped**
+(decision 2026-11-13; the docket entry is closed rather than deferred). Gates:
+`testrig/scenarios/husnisse-06-machines.cmd` (21 assertions), `husnisse-06-permissions.cmd` (25),
+`husnisse-06-home.cmd` (17); evidence in `docs/evidence/0.6/RESULT.md`. A smelter is fed its fuel and its
+ore, held at both caps, made to work under a roof and emptied into the chest whose rule claims the bars;
+`none`/`production`/`fuel`/`-crafting` are enforced per chest on the same setup; a fire is refuelled and
+starved by its chest's fuel permission; a hungry boar gets a portion and gets nothing when the chest may
+not feed. Two things the rig cannot prove and does not claim: a creature eating the portion (a spawned
+creature on a zone-less server does not walk its consume path) and the client UI (four supply toggles, the
+ledger's Pause machines switch).
+
 ## 0.7 — Multiplayer and migration
 
 **Scope** — shared-chest handshake and ownership revision; two-client authority tests; the chosen

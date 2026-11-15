@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.6.0
+
+Internal only — machines, and the four-way supply permission.
+
+- **The nisse tends the base's machines.** A smelter, blast furnace, charcoal kiln, eitr refinery or windmill is fed its fuel and its ore; a fire pit, hearth, bonfire or standing torch is kept lit; a fermentation barrel gets its mash; a cooking station or oven gets food and fuel; a beehive and a sap extractor are emptied. The nisse walks to the chest, takes the load while it stands there, carries it to the machine and puts it in through the machine's own interact RPC — so the prefab's rules, ceilings and effects still decide what happens — then walks home. Output is a real world object: the nisse picks it up and files it by the same rules a floor full of loot follows.
+- **Caps, not top-ups.** `7. Machines / Fuel Cap Percent` and `Input Cap Percent` (both 50) are ceilings: a machine is topped up only when it falls below that share of its own maximum, and is never filled past it. `Collect At` decides how much finished work is worth a walk. Each prefab's own maximum still applies underneath.
+- **Pause, per claim.** The ledger gained a **Pause machines** switch: one click stops every machine in the claim (the flag lives in each machine's ZDO, so it survives a relog and every peer agrees) and one click resumes them. `husnisse_machines pause <prefab> <on|off>` does one machine, and `husnisse_machines feed|collect` asks for a single errand by hand.
+- **Four-way supply permissions, per chest.** Every container may say what it supplies: **crafting** (a craft's shortfall), **production** (a processor's input), **fuel** (a fire's wood) and **feed** (an animal's portion). All four are on by default; the container window's four toggles switch them per chest, `husnisse_rule supply <prefab> <list>` does it from the console, and the rules file round-trips them. A chest that may not supply a craft is no longer counted by the contract either — a number the errand cannot pay would be a promise.
+- **Animals are fed, not tamed by bookkeeping.** A hungry tameable creature gets a portion of a food it actually eats, set down on the ground beside it. The portion is reserved, so the claim's own pickup pass does not carry the meal off before the creature reaches it; the feeding is what keeps taming going and a tame herd breeding.
+- **Valuable wood is protected.** `7. Machines / Protect Valuable Wood` (default on) refuses to burn fine wood, core wood, elder bark, ancient bark or Yggdrasil wood even when a machine names one of them; the machine is left alone and says so in the log.
+- **A machine's own bin is not storage.** An incinerator's container is where a player puts what they want destroyed; the nisse no longer treats it as a chest to file into or draw from.
+- **A stack that falls out of the world is not work.** A claim is a circle on the map, not a cylinder: a drop more than 40 m below the bowl (through a floor, off a cliff, into the sea) is skipped by the pickup pass and dropped from the queue instead of being retried for ever.
+- Machines are inspected without a client: `husnisse_machines` lists each one with its kind, position, caps and ready count, and `husnisse_status` carries the same lines with a `[machines]` prefix and a per-claim summary.
+- **One engine fact worth knowing.** A dedicated server only advances `ZNet.m_netTime` while a player is connected, and vanilla machines measure their work with that clock — so an empty server's smelters, fires, fermenters and hives stand still until someone is online. That is the game's behaviour, not the mod's; the gate moves the same clock through the test harness.
+
 ## 0.5.0
 
 Internal only — craft from the claim.

@@ -273,6 +273,12 @@ namespace Husnisse.Flow
         {
             if (_motion == null) return true;
 
+            // A leg that goes off the bottom of the world is not walked and not faded: the drop it
+            // was aimed at has fallen out of the map, and teleporting the nisse six hundred metres
+            // underground to stand beside it would be a worse bug than the lost stack. The trip
+            // treats the leg as done, and the invalid ticket is dropped at the landing.
+            if (_claim != null && point.y < _claim.Center.y - FlowTicket.GoneBelow) return true;
+
             if (_motion.IsFading) return false;
 
             if (!_legSet || Vector3.Distance(_legPoint, point) > 0.5f || _legArrive != arrive)

@@ -140,6 +140,15 @@ namespace Husnisse.Localization
         public const string LedgerPage = "$husnisse_ledger_page";
         public const string LedgerTidy = "$husnisse_ledger_tidy";
         public const string LedgerTidySent = "$husnisse_ledger_tidy_sent";
+        public const string LedgerMachines = "$husnisse_ledger_machines";
+        public const string LedgerPause = "$husnisse_ledger_pause";
+        public const string LedgerResume = "$husnisse_ledger_resume";
+        public const string LedgerMachinesLine = "$husnisse_ledger_machines_line";
+
+        public const string SupplyCrafting = "$husnisse_supply_crafting";
+        public const string SupplyProduction = "$husnisse_supply_production";
+        public const string SupplyFuel = "$husnisse_supply_fuel";
+        public const string SupplyFeed = "$husnisse_supply_feed";
         public const string LedgerSent = "$husnisse_ledger_sent";
 
         // Craft from the claim (0.5)
@@ -282,7 +291,7 @@ namespace Husnisse.Localization
         }
 
         private const string DefaultEnglish = @"
-version: 9
+version: 10
 language: English
 strings:
   $husnisse_bowl_name: Porridge Bowl
@@ -399,6 +408,14 @@ strings:
   $husnisse_ledger_page: Page {0}/{1}
   $husnisse_ledger_tidy: Tidy
   $husnisse_ledger_tidy_sent: The nisse will sort this chest.
+  $husnisse_ledger_machines: Machines
+  $husnisse_ledger_pause: Pause machines
+  $husnisse_ledger_resume: Resume machines
+  $husnisse_ledger_machines_line: ""{0} · {1} ready · {2} paused""
+  $husnisse_supply_crafting: Craft
+  $husnisse_supply_production: Process
+  $husnisse_supply_fuel: Fuel
+  $husnisse_supply_feed: Feed
   $husnisse_ledger_sent: The nisse will see to it.
   $husnisse_supply_fetching: The nisse fetches what the base can spare.
   $husnisse_supply_fetched: The nisse brings the materials.

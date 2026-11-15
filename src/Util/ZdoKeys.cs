@@ -43,5 +43,12 @@ namespace Husnisse.Util
         public const string ContainerNetwork = "husnisse_net";
         public const string ContainerRule = "husnisse_rule";
         public const string ContainerBlacklist = "husnisse_blacklist";
+
+        // Machine tending (0.6). Per-machine, in the machine's own ZDO: the ledger writes it and the
+        // server's scan reads it, so a pause survives a relog and every peer agrees on it. The
+        // animal-feed reservation rides on the drop the nisse sets down, so the claim's ground pass
+        // does not pick the portion up again before the creature has eaten it.
+        public const string MachinePause = "husnisse_machine_pause";
+        public const string AnimalPortion = "husnisse_animal_portion";
     }
 }

@@ -132,6 +132,14 @@ namespace Husnisse.Compat
                 return false;
             }
 
+            // A machine's own bin is not storage: the incinerator's container is where a player puts
+            // what they want destroyed, and the nisse filing into it would delete their goods.
+            if (Machines.Machine.IsMachineBin(container.gameObject))
+            {
+                Log.Debug("Compat", "skip machine bin " + container.name);
+                return false;
+            }
+
             // Ground beats ownership: a container standing inside a ward the claim does not own is
             // never touched, whatever permissions the claim owner has. Two nisses never share a
             // chest. A ward claim owns its own ward, so its containers pass.

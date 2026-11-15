@@ -106,6 +106,7 @@ namespace Husnisse.Storage
                    " net=" + (IsOnNetwork(container) ? "on" : "off") +
                    " rule=" + rule.Describe() +
                    (rule.Priority != 0 ? " prio=" + rule.Priority : string.Empty) +
+                   rule.SupplyDescribe() +
                    (IsBlacklisted(container) ? " blacklisted" : string.Empty);
         }
 

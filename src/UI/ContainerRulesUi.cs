@@ -44,6 +44,8 @@ namespace Husnisse.UI
         private static TMP_Text _title;
         private static readonly Dictionary<ItemCategory, Button> CategoryButtons = new Dictionary<ItemCategory, Button>();
         private static readonly Dictionary<ItemCategory, TMP_Text> CategoryLabels = new Dictionary<ItemCategory, TMP_Text>();
+        private static readonly Dictionary<SupplyPurpose, Button> SupplyButtons = new Dictionary<SupplyPurpose, Button>();
+        private static readonly Dictionary<SupplyPurpose, TMP_Text> SupplyLabels = new Dictionary<SupplyPurpose, TMP_Text>();
         private static Button _overflowButton;
         private static Button _depositButton;
         private static Button _noneButton;
@@ -175,6 +177,13 @@ namespace Husnisse.UI
 
             Mark(rule);
 
+            foreach (var pair in SupplyLabels)
+            {
+                var allowed = (rule.Supply & pair.Key) != 0;
+                pair.Value.color = allowed ? new Color(1f, 0.84f, 0.36f) : new Color(1f, 1f, 1f, 0.45f);
+                if (SupplyButtons[pair.Key] != null) SupplyButtons[pair.Key].interactable = _canEdit;
+            }
+
             if (_priorityMinus != null) _priorityMinus.interactable = _canEdit && !rule.IsNone && rule.Priority > -9;
             if (_priorityPlus != null) _priorityPlus.interactable = _canEdit && !rule.IsNone && rule.Priority < 9;
             if (_priorityLabel != null)
@@ -214,6 +223,8 @@ namespace Husnisse.UI
             _gui = gui;
             CategoryButtons.Clear();
             CategoryLabels.Clear();
+            SupplyButtons.Clear();
+            SupplyLabels.Clear();
 
             var parent = gui.m_container;
             if (parent == null) return;
@@ -264,7 +275,7 @@ namespace Husnisse.UI
             rect.anchorMax = new Vector2(1f, 1f);
             rect.pivot = new Vector2(0f, 1f);
             rect.anchoredPosition = new Vector2(14f, 0f);
-            rect.sizeDelta = new Vector2(470f, 252f);
+            rect.sizeDelta = new Vector2(470f, 288f);
 
             var background = _panel.GetComponent<Image>();
             background.color = new Color(0.06f, 0.06f, 0.06f, 0.97f);
@@ -357,18 +368,35 @@ namespace Husnisse.UI
             _copyLabel = LabelOf(_copyButton);
             SetLabel(_copyLabel, Loc.T(Loc.RuleCopy));
 
+            // The four-way supply permission (0.6): what this chest may be raided for. Four small
+            // toggles rather than a menu, because they are one decision a player makes about a chest
+            // and the answer has to be readable at a glance — amber means "may supply".
+            var supplyIndex = 0;
+            foreach (var pair in SupplyPurposes.Editable())
+            {
+                var purpose = pair.Key;
+                var button = CloneButton(template, _panel.transform, "HusnisseSupply" + purpose,
+                                         delegate { OnSupplyClicked(purpose); });
+                Place((RectTransform)button.transform, new Vector2(0f, 1f), new Vector2(0f, 1f),
+                      new Vector2(14f + supplyIndex * 110f, -212f), new Vector2(104f, 24f));
+                SetLabel(LabelOf(button), Loc.T(pair.Value));
+                SupplyButtons[purpose] = button;
+                SupplyLabels[purpose] = LabelOf(button);
+                supplyIndex++;
+            }
+
             _statusLabel = CloneText(gui.m_containerName, _panel.transform, "HusnisseStatus", string.Empty, 12);
             Place(_statusLabel.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 1f),
-                  new Vector2(14f, -214f), new Vector2(300f, 24f));
+                  new Vector2(14f, -250f), new Vector2(300f, 24f));
 
             _cancelButton = CloneButton(template, _panel.transform, "HusnisseCopyNo", OnCopyCancelled);
             Place((RectTransform)_cancelButton.transform, new Vector2(0f, 1f), new Vector2(0f, 1f),
-                  new Vector2(320f, -212f), new Vector2(60f, 26f));
+                  new Vector2(320f, -248f), new Vector2(60f, 26f));
             SetLabel(LabelOf(_cancelButton), Loc.T(Loc.RuleCancel));
 
             _confirmButton = CloneButton(template, _panel.transform, "HusnisseCopyYes", OnCopyConfirmed);
             Place((RectTransform)_confirmButton.transform, new Vector2(0f, 1f), new Vector2(0f, 1f),
-                  new Vector2(386f, -212f), new Vector2(56f, 26f));
+                  new Vector2(386f, -248f), new Vector2(56f, 26f));
             SetLabel(LabelOf(_confirmButton), Loc.T(Loc.RuleCopy));
         }
 
@@ -448,6 +476,20 @@ namespace Husnisse.UI
             if (!Ready()) return;
             RuleRpc.SendNetwork(_container.transform.position, _playerId,
                                 !ContainerNetwork.IsOnNetwork(_container));
+        }
+
+        /// <summary>
+        /// One of the four supply purposes, toggled. The whole rule is rewritten through the same
+        /// request as every other rule edit, so the write is atomic on the server and the chest's
+        /// ZDO — not a local copy — is what changes.
+        /// </summary>
+        private static void OnSupplyClicked(SupplyPurpose purpose)
+        {
+            if (!Ready() || !_canEdit || _container == null) return;
+
+            var rule = ContainerNetwork.RuleOf(_container).Clone();
+            rule.Supply = (rule.Supply & purpose) != 0 ? rule.Supply & ~purpose : rule.Supply | purpose;
+            RuleRpc.SendRule(_container.transform.position, _playerId, rule);
         }
 
         /// <summary>

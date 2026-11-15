@@ -33,6 +33,10 @@ namespace Husnisse.Core
                       " lod_distance=" + HusnisseConfig.LodDistance.Value +
                       " ledger_key=" + HusnisseConfig.LedgerKey.Value +
                       " presets=" + PresetStore.Describe() +
+                      " tend_machines=" + HusnisseConfig.TendMachines.Value +
+                      " fuel_cap=" + HusnisseConfig.MachineFuelPercent.Value +
+                      " input_cap=" + HusnisseConfig.MachineInputPercent.Value +
+                      " collect_at=" + HusnisseConfig.CollectAt.Value +
                       " feeding_required=" + WorldPolicy.FeedingRequired);
 
             lines.Add("[compat] wardislove=" + (WardIsLoveCompat.Installed ? "installed" : "absent") +
@@ -134,11 +138,20 @@ namespace Husnisse.Core
                           " stacks=" + stacks +
                           " pickup=" + PickupFilter.Of(claim).Describe() +
                           " unknown=" + LedgerModel.UnknownCount(claim) +
+                          " " + Machines.MachineScan.Summary(claim) +
                           " lod=" + lod +
                           " nisse=" + nisse);
 
                 lines.Add("[flow] claim=" + claim.BowlId + " " + FlowQueue.Describe(claim));
+
+                foreach (var line in Machines.MachineScan.Describe(claim))
+                {
+                    lines.Add("[machines] " + line);
+                }
             }
+
+            lines.Add("[machines] " + Machines.MachineRunner.Describe() +
+                      " portions=" + Machines.FeedGuard.Count);
 
             return lines;
         }

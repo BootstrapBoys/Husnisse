@@ -63,19 +63,19 @@ provider that counts a chest it cannot take from.
 | 1 | Deposit chest auto-sort | 0.3 container network (toggle + preset/list) | **covered, different mechanic** — a Deposit chest is a designated source: the nisse carries its contents to the chests whose rules claim them (0.3c) |
 | 2 | Chest remembers its item type when empty | 0.3 container rule lives in its ZDO | covered |
 | 3 | Storage rules: preferred destination, overflow chest, base groups, copy settings | 0.3 container rules | **covered** — 0.3a shipped the container UI, the eight categories and the roles in the chest's ZDO; 0.3b added the preset table with priority, the saved list with its checkbox preview, the first-toggle suggestion and copy-rule; 0.3c added Overflow's "full category" case with a named reason and deposit-as-a-source. Base groups are the claim |
-| 4 | Supply permissions per chest (crafting, production, fuel, feed) | 0.6 pantries | **partial** — one permission today, four in QM |
+| 4 | Supply permissions per chest (crafting, production, fuel, feed) | 0.6 four-way permission | **covered** — every chest carries four supply purposes, all on by default; a craft, a processor, a fire and an animal each take only from chests that permit their purpose. Set from the container window's four toggles, `husnisse_rule supply`, or the rules file; a chest that may not supply a craft is not counted by the contract either |
 | 5 | Deposit All · sort inventory · sort chest · combine compatible stacks | 0.1 orders; queue in 0.1.2; 0.3c deposit-all; merge in 0.3.1 | **covered** — deposit-all (network: the nisse files your pockets; off-network: dump into that chest, unsorted), Empty Pockets and Tidy are in; 0.3.1 merges partial pocket stacks before an Empty Pockets order queues | 
 | 6 | Pickup controls, per item type | 0.3.1 type filter | **covered** — per claim, one toggle per preset in the ledger; the ground scan honours it, orders do not |
 | 7 | Configurable stack sizes (no weight change) | 1.0 | scheduled |
 | 8 | Craft from storage | 0.5 | **covered** — a recipe the pockets cannot pay for becomes a visible supply errand: the nisse takes the missing materials from the claim's chests, carries them to the bench and puts them in the player's hands, and the game's own craft spends them from the pockets. AAA batches fetch for the whole batch and the deferred craft keeps its size |
 | 9 | Building coverage through the deposit chest's area | 1.0 comfort coverage | scheduled — coverage equals the claim radius |
-| 10 | Supply processors, fermenters, cooking racks; collect finished goods | 0.6 | scheduled |
-| 11 | Machine caps, pause automation, protect valuable wood | 0.6 | scheduled |
-| 12 | Refuel fires and torches, feed animals and taming creatures | 0.6 | scheduled |
+| 10 | Supply processors, fermenters, cooking racks; collect finished goods | 0.6 machines | **covered** — a smelter, blast furnace, charcoal kiln, eitr refinery, windmill, fermenter, cooking station, oven, beehive and sap extractor are fed their own fuel and input through their own interact RPC, and emptied the same way. Output is a real drop the nisse carries to the chest whose rule claims it. Caps come from each prefab's maximum cut by `7. Machines` percentages |
+| 11 | Machine caps, pause automation, protect valuable wood | 0.6 machines | **covered** — `Fuel Cap Percent` / `Input Cap Percent` are ceilings the nisse never fills past; the ledger's Pause machines switch (and `husnisse_machines pause`) stops automation per claim or per machine; `Protect Valuable Wood` refuses to burn fine wood, core wood, elder bark, ancient bark or Yggdrasil wood |
+| 12 | Refuel fires and torches, feed animals and taming creatures | 0.6 home | **covered** — fire pits, hearths, bonfires and standing torches are kept at their fuel cap; a hungry tameable gets a portion of a food it eats, set down beside it and reserved from the claim's own pickup pass. The creature eating it is a client check (a spawned creature on a zone-less server does not walk its consume path) |
 | 13 | Owl companion / base assistant | 0.1 nisse | replaced by the creature |
 | 14 | Helmsman ship unloading | 1.0 | scheduled — any container on a ship inside the claim |
 | 15 | Searchable chest settings, range previews, controller navigation | 0.2 range preview; 0.3.1 ledger | **partial** — the ledger lists every container and shows the ring; search and controller navigation are not built |
-| 16 | Mailboxes and the postal system (`Quartermaster.outgoingMail`, `PostalDirectory`) | — | **decision** — keep or drop, needed by 0.6 |
+| 16 | Mailboxes and the postal system (`Quartermaster.outgoingMail`, `PostalDirectory`) | — | **moot (dropped 2026-11-13)** — the mailbox is a courier network, not a house spirit: it is out of scope and its postal keys are never read |
 | 17 | Shared-chest handshake and ownership revision | 0.7 multiplayer | scheduled |
 | 18 | Ward ownership and access filtering | 0.2 — WardIsLove handover | **scheduled** — only for a bowl inside a ward |
 | 19 | Claim / revision semantics for chest ZDOs | 0.7 migration | scheduled |
@@ -96,7 +96,7 @@ provider that counts a chest it cannot take from.
 | 9 | WardIsLove: ward ownership and host range | 0.2 — handover | **scheduled** — only for a bowl inside a ward |
 | 10 | Chest dock: gate "Chest Config", force-sort an unowned chest | 0.3.1 ledger | **covered** — gating is moot without QM's menu; the sort-unowned half is the ledger's **Tidy** row action |
 | 11 | Forget override (delete from both lists) | — | **moot** |
-| 12 | Mail watchdog: clear stale queued-mail links | 0.6 | **gap** if mailboxes are kept |
+| 12 | Mail watchdog: clear stale queued-mail links | — | **moot** — mailboxes are dropped |
 | 13 | Pocket merge: merge stacks in the player inventory on sort | 0.3.1 | **covered** — `OrderService.MergePockets`, run by an Empty Pockets order before it queues |
 | 14 | Craft repaint: repaint the recipe list after a craft | 0.5 | **covered** — `CraftRepaint` marks the list stale after `DoCrafting` and rebuilds it on the next idle frame; needed because a craft from the claim empties a chest and the pockets in one action |
 | 15 | Stack rule: ignore crafter, ignored tags, EpicLoot components | 0.5 | **covered by construction** — stack identity is vanilla's (shared data, quality, world level), plus variant and durability in the mod's own pocket merge. The crafter and EpicLoot's material stamps are not part of it, so nothing has to be relaxed; quality, world level and durability are never ignored. There is no config because there is no stricter rule to relax |
@@ -155,14 +155,16 @@ UI integration must no-op when headless, because Husnisse is server-required and
 | 0.3.1 | teaching · editable ledger · pickup type filter · pocket merge · YAML rules and presets |
 | 0.4 | read-only contract: `Count`/`CanAfford`, sources, EpicLoot provider, AAABuildMenu, PlanBuild, MyLittleUI readouts, QI stand-down |
 | 0.5 | `TryConsume`, craft-from-claim, delivery fiction, repaint, DropMoreLoot, stack rules |
-| 0.6 | machines · four-way permissions · mailbox decision |
+| 0.6 | machines · four-way permissions · mailbox decision (dropped) |
 | 0.7 | multiplayer hardening · migration route |
 | 1.0 | stack sizes · ship unloading · comfort coverage · QM config import · parity sign-off |
 
 ## Open decisions
 
-- **Mailboxes.** QM ships a postal system. Dropping it silently is a feature regression; keeping it
-  means owning `outgoingMail`/`PostalDirectory` semantics and a watchdog. Decide before 0.6.
+- **Mailboxes.** **Dropped, 2026-11-13.** QM ships a postal system; a courier network is a different
+  mod, and owning `outgoingMail`/`PostalDirectory` semantics (and a watchdog for its stale links) buys
+  nothing for a house spirit. Nothing reads or writes those keys, so a world that had mail keeps its
+  data untouched and simply has no postal service.
 - **Chest dock.** If Husnisse has no chest-config UI, the dock's gating half is moot; the
   "sort an unowned chest" half may still be wanted. Decide by 0.3.
 - **Migration route.** One of the three above, chosen before 0.7.

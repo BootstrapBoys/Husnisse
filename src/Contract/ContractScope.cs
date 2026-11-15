@@ -159,6 +159,12 @@ namespace Husnisse.Contract
                 var container = all[i];
                 if (container == null) continue;
                 if (ContainerNetwork.IsBlacklisted(container)) continue;
+
+                // The contract answers a crafting question, so a chest whose owner has switched
+                // crafting off as a supply purpose is not counted: a number the errand cannot pay
+                // would be a promise, and 0.5 spent a release learning not to make one.
+                if (!ContainerNetwork.RuleOf(container).Supplies(SupplyPurpose.Crafting)) continue;
+
                 containers.Add(container);
             }
 

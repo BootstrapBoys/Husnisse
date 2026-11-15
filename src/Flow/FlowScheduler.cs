@@ -3,6 +3,7 @@ using Husnisse.Claims;
 using Husnisse.Config;
 using Husnisse.Core;
 using Husnisse.Creature;
+using Husnisse.Machines;
 using Husnisse.Rounds;
 using Husnisse.Storage;
 using UnityEngine;
@@ -48,6 +49,7 @@ namespace Husnisse.Flow
                 _dumped = true;
                 _elapsed = 0f;
                 TripRunner.Reset();
+                MachineRunner.Reset();
                 DiagnosticsFile.Dump("world ready");
             }
 
@@ -62,6 +64,7 @@ namespace Husnisse.Flow
             // A supply errand is one more kind of visible work, so it ticks beside the deposit trips
             // and the queue yields to it: a claim has one pair of hands.
             FetchRunner.Tick(dt);
+            MachineRunner.Tick(dt);
             TripRunner.Tick(dt);
         }
 
@@ -123,6 +126,15 @@ namespace Husnisse.Flow
 
                 var item = drop.m_itemData;
                 if (item == null || item.m_shared == null) continue;
+
+                // A portion the nisse set down for an animal is not loot: the creature is walking
+                // to it, and the claim's own pass must not carry it off first.
+                if (FeedGuard.IsReserved(drop)) continue;
+
+                // Off the bottom of the world: a claim is a circle on the map, so a stack that fell
+                // through a floor still reads as inside it. Queueing it would be a trip to nowhere.
+                if (drop.transform.position.y < claim.Center.y - FlowTicket.GoneBelow) continue;
+
                 drops.Add(drop);
             }
 
@@ -204,16 +216,21 @@ namespace Husnisse.Flow
                 // The nisse is carrying a supply load; the queue waits for its hands like it waits
                 // for a trip.
                 if (FetchRunner.Has(claim)) continue;
+                if (MachineRunner.Has(claim)) continue;
 
                 var nisse = NisseFactory.EnsureNisse(claim.Bowl);
                 if (nisse == null) continue;
+
+                // Machine work competes for the same hands: a fire to light or a finished smelter to
+                // empty is served between chest trips, on the turn-taking MachineRunner keeps.
+                if (MachineRunner.TryStart(claim, nisse)) continue;
 
                 var budget = Mathf.Min(FloorTokens(), FlowQueue.Count(claim));
                 if (budget <= 0) continue;
 
                 DiagnosticsFile.Line("[Flow] drain tokens=" + _tokens.ToString("0.0") +
                                      " " + FlowQueue.Describe(claim) + " budget=" + budget);
-                TripRunner.Start(claim, nisse, budget);
+                if (TripRunner.Start(claim, nisse, budget)) MachineRunner.NoteChestWork(claim);
             }
         }
 

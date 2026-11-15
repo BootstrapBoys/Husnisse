@@ -16,7 +16,8 @@ namespace Husnisse.Commands
         private const string Usage =
             "usage: husnisse_rule list | net <prefab> <on|off> [index] | netall <prefab> <on|off> | " +
             "blacklist <prefab> <on|off> [index] | set <prefab> <rule> [index] | " +
-            "prio <prefab> <n> [index] | suggest <prefab> [index] | copy <prefab> <index> [radius]";
+            "prio <prefab> <n> [index] | supply <prefab> <list> [index] | suggest <prefab> [index] | " +
+            "copy <prefab> <index> [radius]";
 
         public static void Register()
         {
@@ -24,7 +25,8 @@ namespace Husnisse.Commands
                 "husnisse_rule",
                 "Container network: list | net <prefab> <on|off> [index] | netall <prefab> <on|off> | " +
                 "blacklist <prefab> <on|off> [index] | set <prefab> <rule> [index] | " +
-                "prio <prefab> <n> [index] | suggest <prefab> [index] | copy <prefab> <index> [radius].",
+                "prio <prefab> <n> [index] | supply <prefab> <all|none|crafting,production,fuel,feed| -fuel> [index] | " +
+                "suggest <prefab> [index] | copy <prefab> <index> [radius].",
                 delegate(Terminal.ConsoleEventArgs args) { Run(args); });
         }
 
@@ -39,7 +41,7 @@ namespace Husnisse.Commands
                 return;
             }
 
-            if (sub == "set" || sub == "net" || sub == "prio" || sub == "blacklist")
+            if (sub == "set" || sub == "net" || sub == "prio" || sub == "blacklist" || sub == "supply")
             {
                 Write(args, parts, sub);
                 return;
@@ -142,6 +144,15 @@ namespace Husnisse.Commands
                 }
 
                 rule.Priority = priority;
+                ContainerNetwork.WriteRule(container, rule, "console");
+            }
+            else if (sub == "supply")
+            {
+                // The four-way permission (0.6): what this chest may be raided for. The whole rule is
+                // rewritten, so the write is atomic and a peer never sees a half-permission.
+                var supply = SupplyPurposes.Parse(value);
+                var rule = ContainerNetwork.RuleOf(container).Clone();
+                rule.Supply = supply;
                 ContainerNetwork.WriteRule(container, rule, "console");
             }
             else

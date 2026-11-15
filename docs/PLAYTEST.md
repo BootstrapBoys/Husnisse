@@ -259,7 +259,30 @@ can spend it?
 - [ ] Switch the game language to German: hover and messages change; untranslated keys stay English.
 - [ ] Deliberately break the YAML (bad indent): the file is skipped with a log line, the game still runs.
 
-## 9. Feel — the actual question
+## 9. Machines and the four supply toggles (0.6)
+
+- [ ] Put a smelter and a chest with coal + copper scrap inside a claim; **feed the nisse** and do
+      nothing else. Within a minute the nisse should walk to the chest, carry coal and scrap to the
+      smelter (its own smoke/spark effects play), and stop with the fuel and ore at half full — not
+      full. Watch the nisse: the load is on its back.
+- [ ] Light the smelter (roof + ore + fuel) and wait: bars appear at the output and the nisse carries
+      them to the chest whose rule claims them. Nothing is deleted; nothing teleports.
+- [ ] Open the smelter's chest, press **Rules**: four toggles, `Craft`, `Process`, `Fuel`, `Feed`, all
+      lit. Switch `Fuel` off, empty the furnace's fuel and wait: the coal stays in the chest and the
+      furnace goes cold. Switch it back on: it is fed again.
+- [ ] In the ledger (`H` by the inventory), press **Pause machines**: the nisse stops tending every
+      machine in the claim; press **Resume machines**: it carries on. Check `husnisse_machines` in the
+      console shows `paused=`.
+- [ ] Put a boar in the claim with berries in the chest and watch it being fed: a berry is set down
+      beside the animal and **stays** until the animal eats it (the claim's own pickup must not take it
+      back). Does it eat? Does the taming bar move? Does a tame pair breed again after a feeding?
+- [ ] Put a fire pit in the claim with wood in the chest: it is topped up when it burns low. Then point
+      a machine's fuel at fine wood (`husnisse_machines` shows it wants fuel, nothing happens). Is
+      "Protect Valuable Wood" doing what you expect?
+- [ ] Anything a machine did that felt wrong — a stack it should not have taken, an errand that took
+      too long, a machine it ignored.
+
+## 10. Feel — the actual question
 
 Not pass/fail. Write down:
 

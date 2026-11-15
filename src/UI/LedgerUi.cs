@@ -36,6 +36,8 @@ namespace Husnisse.UI
         private static Button _rangeButton;
         private static Button _exportButton;
         private static Button _importButton;
+        private static Button _machinesButton;
+        private static TMP_Text _machinesLabel;
 
         private static readonly Dictionary<ItemCategory, Button> PickupButtons = new Dictionary<ItemCategory, Button>();
         private static readonly Dictionary<ItemCategory, TMP_Text> PickupLabels = new Dictionary<ItemCategory, TMP_Text>();
@@ -247,10 +249,36 @@ namespace Husnisse.UI
 
             DrawRows();
             DrawEdit(selected);
+            DrawMachines();
 
             if (_exportButton != null) _exportButton.interactable = IsServer();
             if (_importButton != null) _importButton.interactable = IsServer();
             if (_rangeButton != null) _rangeButton.interactable = true;
+        }
+
+        /// <summary>
+        /// The one machine control a player needs: pause automation for the claim, and a line saying
+        /// how much is waiting. The nisse stops walking to machines the moment the flag lands, and
+        /// resumes when it is turned back.
+        /// </summary>
+        private static void DrawMachines()
+        {
+            if (_claim == null || _machinesButton == null) return;
+
+            var machines = 0;
+            var paused = 0;
+            var ready = 0;
+            foreach (var machine in Machines.MachineScan.All(_claim))
+            {
+                machines++;
+                if (machine.Paused) paused++;
+                if (machine.Ready() > 0) ready++;
+            }
+
+            var allPaused = machines > 0 && paused == machines;
+            SetLabel(LabelOf(_machinesButton), Loc.T(allPaused ? Loc.LedgerResume : Loc.LedgerPause));
+            _machinesButton.interactable = _canEdit && machines > 0;
+            SetLabel(_machinesLabel, Loc.T(Loc.LedgerMachinesLine, machines, ready, paused));
         }
 
         private static string Signature(LedgerRow selected)
@@ -259,6 +287,14 @@ namespace Husnisse.UI
                        _canEdit + "|" + _page + "|" + _pickup.Encode() + "|" +
                        (selected != null ? KeyOf(selected) + "|" + selected.Rule.Encode() + "|" +
                                            selected.OnNetwork + "|" + selected.Blacklisted : "-") + "|";
+
+            if (_claim != null)
+            {
+                foreach (var machine in Machines.MachineScan.All(_claim))
+                {
+                    text += machine.Prefab + ":" + machine.Paused + ":" + (machine.Ready() > 0) + ";";
+                }
+            }
 
             var start = _page * VisibleRows;
             for (var i = start; i < Mathf.Min(_rows.Count, start + VisibleRows); i++)
@@ -373,6 +409,27 @@ namespace Husnisse.UI
             if (_claim == null) return;
             ClaimRing.ShowFor(_claim.Center, _claim.Radius, new Color(0.55f, 0.95f, 0.55f, 0.85f), 8f);
             Status(Loc.T(Loc.LedgerRangeShown, _claim.Radius.ToString("0")));
+        }
+
+        /// <summary>Pause or resume every machine in the claim, through the same server-validated op
+        /// the console uses.</summary>
+        private static void OnMachinesClicked()
+        {
+            if (_claim == null) return;
+
+            var machines = Machines.MachineScan.All(_claim);
+            if (machines.Count == 0) return;
+
+            var paused = 0;
+            foreach (var machine in machines)
+            {
+                if (machine.Paused) paused++;
+            }
+
+            var pause = paused < machines.Count;
+            LedgerActions.SetMachinesPaused(_claim, pause);
+            Status(Loc.T(pause ? Loc.LedgerPause : Loc.LedgerResume));
+            _drawn = string.Empty;
         }
 
         private static void OnExportClicked()
@@ -604,6 +661,16 @@ namespace Husnisse.UI
 
             _status = CloneText(gui.m_containerName, _panel.transform, "HusnisseLedgerStatus", string.Empty, 11);
             Place(_status.rectTransform, Top, Top, new Vector2(352f, -66f), new Vector2(296f, 22f));
+
+            // Pause automation for the whole claim (0.6): the machines are one switch for the player
+            // and a per-machine flag on the console, because the ledger's rows are containers and a
+            // machine is not one.
+            _machinesButton = CloneButton(template, _panel.transform, "HusnisseLedgerMachines", OnMachinesClicked);
+            Place((RectTransform)_machinesButton.transform, Top, Top, new Vector2(384f, -392f), new Vector2(150f, 24f));
+            SetLabel(LabelOf(_machinesButton), Loc.T(Loc.LedgerPause));
+
+            _machinesLabel = CloneText(gui.m_containerName, _panel.transform, "HusnisseLedgerMachinesLine", string.Empty, 11);
+            Place(_machinesLabel.rectTransform, Top, Top, new Vector2(540f, -394f), new Vector2(106f, 22f));
 
             BuildPickup(gui, template);
             BuildRows(gui, template);

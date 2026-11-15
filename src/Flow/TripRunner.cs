@@ -106,6 +106,7 @@ namespace Husnisse.Flow
             if (claim == null || nisse == null || claim.Bowl == null) return;
             if (Has(claim) || HusnisseConfig.Enabled.Value == false) return;
             if (FetchRunner.Has(claim)) return;
+            if (Machines.MachineRunner.Has(claim)) return;
 
             var motion = nisse.GetComponent<NisseMotion>();
             if (motion == null || motion.IsFading || motion.IsTravelling) return;

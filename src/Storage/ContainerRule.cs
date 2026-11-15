@@ -40,8 +40,10 @@ namespace Husnisse.Storage
     /// category with no priority, a custom list with no owner) would be readable by the router and
     /// wrong. The server writes the whole value in one Set, so a peer never sees the halves.
     ///
-    /// Format: <c>v1;k=cat;c=metals;p=1;i=</c>. Unknown fields and unknown versions decode to
-    /// None, so a future encoder can add fields without an older build inventing a rule.
+    /// Format: <c>v1;k=cat;c=metals;p=1;i=;s=fuel</c>. Unknown fields and unknown versions decode to
+    /// None, so a future encoder can add fields without an older build inventing a rule. The supply
+    /// field (<c>s=</c>) is additive and absent means every purpose, which is what a build without
+    /// this field assumes: an older Husnisse reading a newer rule loses nothing but the restriction.
     /// </summary>
     public sealed class ContainerRule
     {
@@ -56,6 +58,13 @@ namespace Husnisse.Storage
         /// <summary>Prefab item names for a custom list. Stored without stacks, as the UI shows them.</summary>
         public List<string> Items = new List<string>();
 
+        /// <summary>
+        /// What this container may be raided for (0.6). Four purposes, all allowed by default; a
+        /// chest whose owner has switched one off is never chosen as a source for that consumer, no
+        /// matter how much of the item it holds.
+        /// </summary>
+        public SupplyPurpose Supply = SupplyPurpose.All;
+
         public bool IsNone
         {
             get { return Kind == RuleKind.None; }
@@ -68,9 +77,15 @@ namespace Husnisse.Storage
 
         public ContainerRule Clone()
         {
-            var copy = new ContainerRule { Kind = Kind, Category = Category, Priority = Priority };
+            var copy = new ContainerRule { Kind = Kind, Category = Category, Priority = Priority, Supply = Supply };
             if (Items != null) copy.Items.AddRange(Items);
             return copy;
+        }
+
+        /// <summary>Whether this container may give an item to one kind of consumer.</summary>
+        public bool Supplies(SupplyPurpose purpose)
+        {
+            return purpose == SupplyPurpose.None || (Supply & purpose) == purpose;
         }
 
         /// <summary>The token the ledger and diagnostics print: cat:metals, custom:3, overflow, deposit, none.</summary>
@@ -89,6 +104,25 @@ namespace Husnisse.Storage
                 default:
                     return "none";
             }
+        }
+
+        /// <summary>The supply permissions as the diagnostics print them, or empty for the default.</summary>
+        public string SupplyDescribe()
+        {
+            return Supply == SupplyPurpose.All ? string.Empty : " supply=" + SupplyPurposes.Describe(Supply);
+        }
+
+        /// <summary>
+        /// Whether a payload is a rule this build can read at all: the version tag and a kind field,
+        /// which is the one part every encoder writes. Used by the RPC before a client's payload is
+        /// written, so a typo cannot become a rule just because it decodes to "none". A rule that
+        /// restricts supply but carries no category (`v1;k=none;s=fuel`) is valid — it is how a chest
+        /// with no routing rule still says what it may give.
+        /// </summary>
+        public static bool LooksValid(string encoded)
+        {
+            if (string.IsNullOrEmpty(encoded)) return false;
+            return encoded.StartsWith(Version + ";k=", StringComparison.Ordinal);
         }
 
         /// <summary>
@@ -130,6 +164,7 @@ namespace Husnisse.Storage
         {
             if (other == null) return false;
             if (Kind != other.Kind || Category != other.Category || Priority != other.Priority) return false;
+            if (Supply != other.Supply) return false;
             var mine = Items ?? new List<string>();
             var theirs = other.Items ?? new List<string>();
             if (mine.Count != theirs.Count) return false;
@@ -142,7 +177,12 @@ namespace Husnisse.Storage
 
         public string Encode()
         {
-            if (Kind == RuleKind.None) return Version + ";k=none";
+            if (Kind == RuleKind.None)
+            {
+                return Supply == SupplyPurpose.All
+                    ? Version + ";k=none"
+                    : Version + ";k=none;s=" + SupplyPurposes.Encode(Supply);
+            }
 
             var text = new StringBuilder(Version);
             text.Append(";k=").Append(KindToken(Kind));
@@ -157,6 +197,7 @@ namespace Husnisse.Storage
                     text.Append(Uri.EscapeDataString(Items[i] ?? string.Empty));
                 }
             }
+            if (Supply != SupplyPurpose.All) text.Append(";s=").Append(SupplyPurposes.Encode(Supply));
             return text.ToString();
         }
 
@@ -221,6 +262,10 @@ namespace Husnisse.Storage
                             }
                         }
                     }
+                }
+                else if (key == "s")
+                {
+                    rule.Supply = SupplyPurposes.Parse(value);
                 }
             }
 

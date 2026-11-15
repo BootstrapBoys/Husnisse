@@ -62,7 +62,17 @@ namespace Husnisse.Flow
             if (Claim == null || Claim.Bowl == null || Item == null || Item.m_shared == null) return false;
             if (Amount <= 0) return false;
 
-            if (Source == FlowSource.Ground) return Drop != null;
+            if (Source == FlowSource.Ground)
+            {
+                if (Drop == null || Drop.gameObject == null) return false;
+
+                // A claim is a circle on the map, not a cylinder: a stack that has fallen out of the
+                // world (off a cliff, into the sea, through a floor on a server with no terrain)
+                // still reads as "inside the claim" and would be retried every drain for ever. The
+                // nisse does not dredge; a drop this far below the bowl is gone, not work.
+                if (Drop.transform.position.y < Claim.Center.y - GoneBelow) return false;
+                return true;
+            }
 
             var inventory = Source == FlowSource.Container
                 ? (Container != null ? Container.GetInventory() : null)
@@ -70,6 +80,9 @@ namespace Husnisse.Flow
 
             return inventory != null && inventory.ContainsItem(Item);
         }
+
+        /// <summary>How far below a claim's bowl a drop has to fall before it is out of the world.</summary>
+        public const float GoneBelow = 40f;
 
         public Inventory SourceInventory()
         {

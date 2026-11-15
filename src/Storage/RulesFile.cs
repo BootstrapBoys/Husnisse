@@ -73,6 +73,14 @@ namespace Husnisse.Storage
 
             /// <summary>The console shorthand (`cat:metals@1`, `custom:$item_coal`, `none`).</summary>
             public string Rule { get; set; }
+
+            /// <summary>
+            /// What the chest may be raided for, as tokens (`crafting`, `production`, `fuel`, `feed`).
+            /// Null or empty means every purpose, which is what an older file without the key means
+            /// too. A missing purpose is a restriction, so an unreadable token is an error rather
+            /// than a silent widening.
+            /// </summary>
+            public List<string> Supply { get; set; }
         }
 
         public sealed class ClaimEntry
@@ -149,7 +157,7 @@ namespace Husnisse.Storage
                         var net = ContainerNetwork.IsOnNetwork(container);
                         var blacklisted = ContainerNetwork.Zdo(container) != null &&
                                           ContainerNetwork.Zdo(container).GetBool(ZdoKeys.ContainerBlacklist, false);
-                        if (rule.IsNone && !net && !blacklisted) continue;
+                        if (rule.IsNone && !net && !blacklisted && rule.Supply == SupplyPurpose.All) continue;
 
                         entry.Containers.Add(new RuleEntry
                         {
@@ -158,6 +166,7 @@ namespace Husnisse.Storage
                             Net = net,
                             Blacklist = blacklisted,
                             Rule = rule.ToShorthand(),
+                            Supply = rule.Supply == SupplyPurpose.All ? null : SupplyTokens(rule.Supply),
                         });
                     }
 
@@ -283,6 +292,7 @@ namespace Husnisse.Storage
                        " target=" + target +
                        " net=" + (Entry != null && Entry.Net) +
                        " rule=" + (Entry != null ? Entry.Rule : "-") +
+                       " supply=" + (Rule != null ? SupplyPurposes.Describe(Rule.Supply) : "-") +
                        " blacklist=" + (Entry != null && Entry.Blacklist) +
                        (Mapped ? " mapped=yes" : string.Empty);
             }
@@ -412,6 +422,9 @@ namespace Husnisse.Storage
                         continue;
                     }
 
+                    var supply = SupplyOf(row, plan, claimIndex);
+                    rule.Supply = supply;
+
                     var container = Resolve(claim, row);
                     plan.Rows.Add(new PlanRow
                     {
@@ -427,6 +440,43 @@ namespace Husnisse.Storage
             }
 
             return plan;
+        }
+
+        /// <summary>The supply tokens an export writes for a restricted chest.</summary>
+        private static List<string> SupplyTokens(SupplyPurpose supply)
+        {
+            var tokens = new List<string>();
+            for (var i = 0; i < SupplyPurposes.Order.Length; i++)
+            {
+                if ((supply & SupplyPurposes.Order[i]) == 0) continue;
+                tokens.Add(SupplyPurposes.Token(SupplyPurposes.Order[i]));
+            }
+            return tokens;
+        }
+
+        /// <summary>
+        /// A row's supply list. Absent means every purpose (the pre-0.6 file and the hand-written
+        /// file); a token this build does not know is a plan error, because dropping it would widen
+        /// the permission the owner wrote.
+        /// </summary>
+        private static SupplyPurpose SupplyOf(RuleEntry row, Plan plan, int claimIndex)
+        {
+            if (row.Supply == null || row.Supply.Count == 0) return SupplyPurpose.All;
+
+            var allowed = SupplyPurpose.None;
+            foreach (var raw in row.Supply)
+            {
+                var token = raw == null ? string.Empty : raw.Trim();
+                var purpose = SupplyPurposes.FromToken(token);
+                if (purpose == SupplyPurpose.None && token != SupplyPurposes.NoneToken)
+                {
+                    plan.Errors.Add("claim " + claimIndex + " " + row.Prefab + " " + row.Position +
+                                   " has a supply purpose this build does not understand: " + token);
+                    continue;
+                }
+                allowed |= purpose;
+            }
+            return allowed;
         }
 
         private static string PickupEncode(List<string> tokens, Plan plan, int claimIndex)

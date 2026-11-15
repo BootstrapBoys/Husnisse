@@ -225,6 +225,25 @@ namespace Husnisse.Ledger
             Net.RuleRpc.SendBlacklist(row.Position, PlayerId(), blacklisted);
         }
 
+        /// <summary>
+        /// Pause or resume every machine in the claim (0.6). One request per machine, each validated
+        /// against the claim that contains it — the same op the console's `pause` uses, so a client's
+        /// click and an admin's command cannot take different paths.
+        /// </summary>
+        public static void SetMachinesPaused(Claim claim, bool paused)
+        {
+            if (claim == null || !CanEdit(claim)) return;
+
+            var count = 0;
+            foreach (var machine in Machines.MachineScan.All(claim))
+            {
+                Net.RuleRpc.SendMachinePause(machine.Position, PlayerId(), paused);
+                count++;
+            }
+
+            Note("machines pause=" + paused + " count=" + count + " claim=" + claim.BowlId);
+        }
+
         public static void SetPriority(Claim claim, LedgerRow row, int priority)
         {
             if (!Editable(claim, row)) return;
