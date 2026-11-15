@@ -209,6 +209,37 @@ The panel itself, on a client — the headless gate proves the routing, not the 
 - [ ] A client that is not the claim's owner sees the ledger read-only: buttons disabled, "read only" in
       the title, no message spam when clicked.
 
+## 5d. The read-only contract (0.4)
+
+The numbers a crafting UI shows, on a real client, with the pack installed. Nothing here spends anything —
+0.4 answers questions, it does not take materials.
+
+- [ ] **The row counts the base.** Stand in a claim with a chest holding iron. Open the crafting window and
+  pick a recipe that needs iron: the requirement reads `10 (42 [12+30])` — needed, total, then what you
+  carry and what the base holds. Hover the row: no tooltip change is expected, the number is the evidence.
+- [ ] **A material the base does not hold is untouched.** The same recipe's other requirements read a plain
+  vanilla number. No `( … )` for anything the claim cannot contribute.
+- [ ] **Out of the claim, the number falls back.** Walk 25 m away, reopen the crafting window: the iron row
+  is pocket-only again.
+- [ ] `husnisse_contract Iron` in the console prints `scope claim …`, `sources pockets=… slots=… backpack=…
+  claim=…` and `count $item_iron=<total> carried=<n> claim=<n>`, and `total = carried + claim`.
+- [ ] **AAA Crafting** with the same recipe: its `+` button lets the batch go up to what the whole base
+  affords, and the requirement rows match the vanilla rows.
+- [ ] **AAABuildMenu**: pin a build piece that needs iron; the pinned row's number includes the base's iron.
+- [ ] **MyLittleUI**: the requirement still shows **one** available count, not two (Husnisse switches off
+  MyLittleUI's own pocket-only number for the session). Turn `5. Contract / Requirement Readouts` off and
+  MyLittleUI's number comes back.
+- [ ] **EpicLoot stays pocket-only** — expected at 0.4. The enchanting UI counts what you carry; the log says
+  `its inventory provider is deferred to 0.5`. If it counts the base's stock and then cannot pay with it,
+  that is a bug worth reporting.
+- [ ] **PlanBuild** stays pocket-only too, for the same reason (`blueprint-cost adapter is deferred to 0.5`).
+- [ ] A dedicated server's `husnisse_status` prints `ready=False` and `scope none (not ready: no local
+  player)` — a server has no player to scope, and it must not invent a number.
+
+Open questions this pass should answer: is `42 [12+30]` readable, or does the split clutter the row (the
+setting exists either way)? Does an AAA batch ceiling that only the base can pay for feel wrong before 0.5
+can spend it?
+
 ## 6. Persistence and diagnostics
 
 - [ ] Log out and back in: claim, bowl owner, satiety, mood, bowl contents and memory survive.

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.0
+
+Internal only — the read-only storage contract.
+
+- **The contract answers.** `Count` and `CanAfford` over the sources the storage contract fixes — pockets → ExtraSlots rows → the equipped AdventureBackpacks pack → the containers of the claim you are standing in — with `ApiVersion`, `IsReady` and `ScopeDescription` beside them. `husnisse_contract [item]` prints the answer and where each part came from; `husnisse_status` prints the same lines. A player outside every claim counts what they carry; a claim a player is not permitted on contributes nothing.
+- **The crafting and build rows count the base.** A requirement reads `10 (42 [12+30])` — how many are needed, then how many you can reach, then the split between carried and stored. `5. Contract / Split Requirement Counts` turns the split off; `5. Contract / Requirement Readouts` turns the whole readout off and leaves every crafting UI vanilla.
+- **AAA Crafting** counts the claim in its requirement rows and its batch ceiling; **AAABuildMenu**'s pinned rows count it too. **MyLittleUI**'s own pocket-only number is switched off for the session, so a row has one count instead of two — the same arrangement AAA already uses for MyLittleUI's multicraft setting.
+- **One provider, never two.** If `Quartermaster_Integrations` is loaded, Husnisse registers none of it and reports `provider=qi`, so a chest is never counted twice while the old packages are being removed.
+- **This build reads; it does not spend.** `TryConsume` answers `false` and says so once in the log: a spend needs a visible delivery, and that is 0.5. EpicLoot's inventory provider and PlanBuild's blueprint cost are therefore deferred to 0.5 as well — both pay through the same list they count, so a read-only entry would either take the pocket half of a cost it cannot finish (EpicLoot) or place blueprints for free (PlanBuild). Both are detected and explained in the log instead of silently missing.
+- Readouts are client-only and no-op headless: a dedicated server has no player to scope, and `husnisse_contract` answers `ready=False` there rather than inventing a number.
+
 ## 0.3.1
 
 Internal only — teaching and the ledger.

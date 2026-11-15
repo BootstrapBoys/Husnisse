@@ -202,6 +202,9 @@ namespace Husnisse.GateClient
                 case "ledgerpanel": LedgerPanel(); break;
                 case "god": God(parts); break;
                 case "heal": Heal(); break;
+                case "contract": Contract(parts); break;
+                case "integrations": Integrations(); break;
+                case "row": Row(parts); break;
                 case "quit": Quit(); break;
                 default: Logger.LogWarning("gc unknown command: " + line); break;
             }
@@ -1070,6 +1073,125 @@ namespace Husnisse.GateClient
             if (player == null) { Say("heal: no player"); return; }
             player.SetHealth(player.GetMaxHealth());
             Say("heal hp=" + player.GetHealth().ToString("0") + "/" + player.GetMaxHealth().ToString("0"));
+        }
+
+        // ------------------------------------------------------------------ contract (0.4)
+
+        private static Type ModType(string fullName)
+        {
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            foreach (var assembly in assemblies)
+            {
+                if (assembly == null) continue;
+                try
+                {
+                    var type = assembly.GetType(fullName, false);
+                    if (type != null) return type;
+                }
+                catch { }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// The mod's storage contract, asked from the client — the same report `husnisse_contract`
+        /// prints. Every number a gate asserts comes from here, so the gate and the player read one
+        /// answer rather than two implementations of it.
+        /// </summary>
+        private void Contract(string[] parts)
+        {
+            var type = ModType("Husnisse.Contract.StorageContract");
+            if (type == null) { Say("contract: mod not loaded"); return; }
+
+            var report = type.GetMethod("Report", BindingFlags.Public | BindingFlags.Static, null,
+                new[] { typeof(string) }, null);
+            if (report == null) { Say("contract: StorageContract.Report(string) not found"); return; }
+
+            var item = parts.Length > 1 ? parts[1] : null;
+            IEnumerable lines;
+            try { lines = report.Invoke(null, new object[] { item }) as IEnumerable; }
+            catch (Exception e) { Say("contract: threw " + (e.InnerException?.Message ?? e.Message)); return; }
+            if (lines == null) { Say("contract: no report"); return; }
+
+            foreach (var line in lines)
+            {
+                if (line == null) continue;
+                Say(Convert.ToString(line));
+            }
+        }
+
+        /// <summary>Which readouts bound, and which integration stood down.</summary>
+        private void Integrations()
+        {
+            var type = ModType("Husnisse.Contract.IntegrationHost");
+            var describe = type != null
+                ? type.GetMethod("Describe", BindingFlags.Public | BindingFlags.Static, null, Type.EmptyTypes, null)
+                : null;
+
+            Say("integrations " + (describe != null ? Convert.ToString(describe.Invoke(null, null)) : "not found"));
+        }
+
+        /// <summary>
+        /// One requirement row, written by the game's own row builder (`InventoryGui.SetupRequirement`,
+        /// the same static the crafting window and the build HUD call) and read back. This is the
+        /// readout a player sees, produced through the real code path — the probe does not format it.
+        /// </summary>
+        private void Row(string[] parts)
+        {
+            var itemName = parts.Length > 1 ? parts[1] : "Wood";
+            var amount = parts.Length > 2 ? ParseInt(parts[2], 5) : 5;
+
+            var player = Player.m_localPlayer;
+            var hud = Hud.instance;
+            if (player == null) { Say("row: no player"); return; }
+            if (hud == null || hud.m_requirementItems == null || hud.m_requirementItems.Length == 0)
+            {
+                Say("row: no hud rows");
+                return;
+            }
+
+            var requirement = FindRequirement(itemName, amount);
+            if (requirement == null) { Say("row: no requirement for " + itemName); return; }
+
+            var row = hud.m_requirementItems[0].transform;
+            var ok = InventoryGui.SetupRequirement(row, requirement, player, true, 0, 1);
+
+            // The build HUD keeps its rows hidden until a piece is selected; a gate wants to see the
+            // row the patch just wrote, so it is made visible for the screenshot.
+            hud.m_requirementItems[0].SetActive(true);
+
+            var label = row.Find("res_amount");
+            var text = label != null ? TextOf(label.GetComponent<TMP_Text>()) : null;
+            Say("row item=" + requirement.m_resItem.m_itemData.m_shared.m_name +
+                " amount=" + amount + " setup=" + ok + " text='" + text + "'");
+        }
+
+        private static Piece.Requirement FindRequirement(string itemName, int amount)
+        {
+            var database = ObjectDB.instance;
+            if (database == null || database.m_recipes == null) return null;
+
+            foreach (var recipe in database.m_recipes)
+            {
+                if (recipe == null || recipe.m_resources == null) continue;
+
+                foreach (var resource in recipe.m_resources)
+                {
+                    if (resource == null || resource.m_resItem == null) continue;
+                    var shared = resource.m_resItem.m_itemData != null ? resource.m_resItem.m_itemData.m_shared : null;
+                    if (shared == null || string.IsNullOrEmpty(shared.m_name)) continue;
+                    if (shared.m_name.IndexOf(itemName, StringComparison.OrdinalIgnoreCase) < 0) continue;
+
+                    return new Piece.Requirement
+                    {
+                        m_resItem = resource.m_resItem,
+                        m_amount = amount,
+                        m_amountPerLevel = 0
+                    };
+                }
+            }
+
+            return null;
         }
 
         /// <summary>

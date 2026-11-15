@@ -1,0 +1,141 @@
+[Message:   BepInEx] BepInEx 5.4.23.6 - valheim (11/13/2026 12:24:48 PM)
+[Message:   BepInEx] User is running BepInExPack Valheim version 5.4.2360
+[Info   :   BepInEx] Running under Unity v6000.0.75.2503836
+[Info   :   BepInEx] CLR runtime version: 4.0.30319.42000
+[Info   :   BepInEx] Supports SRE: True
+[Info   :   BepInEx] System platform: Bits64, Windows
+[Message:   BepInEx] Preloader started
+[Info   :   BepInEx] Loaded 1 patcher method from [BepInEx.Preloader 5.4.23.6]
+[Info   :   BepInEx] 1 patcher plugin loaded
+[Info   :   BepInEx] Patching [UnityEngine.CoreModule] with [BepInEx.Chainloader]
+[Message:   BepInEx] Preloader finished
+[Message:   BepInEx] Valheim Version: 1.0.21
+[Message:   BepInEx] Chainloader ready
+[Message:   BepInEx] Chainloader started
+[Info   :   BepInEx] 13 plugins to load
+[Info   :   BepInEx] Loading [Conditional Config Sync 1.0.11] (_shudnal.ConditionalConfigSync)
+[Info   :   BepInEx] Loading [AAABuildMenu 1.0.6] (Azumatt.AAABuildMenu)
+[Info   :   BepInEx] Loading [AzuAntiArthriticCrafting 2.1.12] (Azumatt.AzuAntiArthriticCrafting)
+[Info   :   BepInEx] Loading [Husnisse Gate Client Probe 0.1.0] (bootstrapboys.husnisse.gateclient)
+[Info   :Husnisse Gate Client Probe] gc loaded 0.1.0
+[Info   :   BepInEx] Loading [Jotunn 2.30.2] (com.jotunn.jotunn)
+[Info   :Jotunn.Main] Initializing ModCompatibility
+[Info   :Jotunn.Main] Initializing SynchronizationManager
+[Info   :Jotunn.Main] Initializing NetworkManager
+[Info   :   BepInEx] Loading [YamlDotNet Detector 1.0.0] (com.ValheimModding.YamlDotNetDetector)
+[Info   :YamlDotNet Detector] YamlDotNet 16.0.0.0 loaded from plugins\ValheimModding-YamlDotNet\YamlDotNet.dll
+[Info   :   BepInEx] Loading [Newtonsoft.Json Detector 1.0.0] (com.ValheimModding.NewtonsoftJsonDetector)
+[Info   :Newtonsoft.Json Detector] Newtonsoft.Json 13.0.0.0 assembly already loaded from C:\Program Files (x86)\Steam\steamapps\common\Valheim\valheim_Data\Managed\Newtonsoft.Json.dll
+[Info   :   BepInEx] Loading [Adventure Backpacks 2.4.6] (vapok.mods.adventurebackpacks)
+[Info   :Jotunn.Main] Initializing LocalizationManager
+[Info   :Jotunn.Main] Initializing GUIManager
+[Info   :   BepInEx] Loading [Epic Loot 0.15.6] (randyknapp.mods.epicloot)
+[Info   :Jotunn.Main] Initializing ItemManager
+[Info   :Jotunn.Main] Initializing PrefabManager
+[Info   :Jotunn.Main] Initializing AssetManager
+[Info   :Jotunn.Main] Initializing PieceManager
+[Info   :Jotunn.Main] Initializing MockManager
+[Info   :Jotunn.Main] Initializing MinimapManager
+[Info   : Epic Loot] QuickConfig launcher v2 owned by EpicLoot; this mod carries v2.
+[Info   :   BepInEx] Loading [PlanBuild 0.20.0] (marcopogo.PlanBuild)
+[Info   :Jotunn.Main] Initializing InputManager
+[Info   :PlanBuild.Blueprints.BlueprintManager] Initializing BlueprintManager
+[Info   :Jotunn.Main] Initializing CommandManager
+[Info   :PlanBuild.Blueprints.BlueprintSync] Loading known blueprints
+[Info   :Jotunn.Main] Initializing UndoManager
+[Info   :Jotunn.Main] Initializing KitbashManager
+[Info   :PlanBuild.Plans.PlanManager] Initializing PlanManager
+[Info   :   BepInEx] Loading [Extra Slots 1.2.24] (shudnal.ExtraSlots)
+[Info   :   BepInEx] Loading [My Little UI 1.2.34] (shudnal.MyLittleUI)
+[Info   :   BepInEx] Loading [Husnisse 0.4.0] (com.bootstrapboys.husnisse)
+[Info   :  Husnisse] Husnisse 0.4.0 starting
+[Warning:  Husnisse] outdated English localisation ignored; embedded strings are used: C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\config\Husnisse\localization\en.yaml
+[Info   :  Husnisse] localisation loaded: English (check: Porridge Bowl)
+[Info   :  Husnisse] [Contract] EpicLoot is installed; its inventory provider is deferred to 0.5, because a provider that counts the claim must also be able to pay from it, and that spend is the server-authoritative `TryConsume` this build does not have. counts stay pocket-only in EpicLoot until then.
+[Info   :  Husnisse] [Contract] PlanBuild is installed; its blueprint-cost adapter is deferred to 0.5. PlanBuild uses one inventory list for the cost display and for the take, so a read-only entry that counted the claim would place blueprints for free.
+[Info   :  Husnisse] [Contract] readouts state=native rows=pocket+claim aaacrafting=bound aaabuildmenu=bound mylittleui=already-off epicloot=deferred-readonly planbuild=deferred-readonly
+[Info   :  Husnisse] core ready; waiting for vanilla prefabs
+[Message:   BepInEx] Chainloader startup complete (13 loaded, 0 skipped, 0 failed)
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/stone/Stone1_huge.prefab, new: Assets/world/Props/DeepNorth/HotSpring/Stone1_huge.prefab, using old path
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/Caverocks/caverock_pillar.prefab, new: Assets/world/Props/DeepNorth/HotSpring/caverock_pillar.prefab, using old path
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/Rocks/highstone.prefab, new: Assets/world/Props/DeepNorth/HotSpring/highstone.prefab, using old path
+[Info   :Jotunn.Managers.InputManager] Registering 6 custom inputs
+[Info   :Jotunn.Managers.CommandManager] Adding 20 commands to the Console
+[Info   :Jotunn.Main] Initializing KeyHintManager
+[Info   :  Husnisse] bowl fields: category=Misc station=none resources=1 enabled=True table=_HammerPieceTable
+[Info   :  Husnisse] bowl registered as husnisse_bowl
+[Info   :Jotunn.Main] Initializing CreatureManager
+[Info   :  Husnisse] creature registered as husnisse_nisse (body=husnisse_nisse)
+[Info   :  Husnisse] content registered
+[Info   :Jotunn.Managers.KitbashManager] Applying Kitbash in 1 objects
+[Info   :Jotunn.Managers.ItemManager] Adding 253 custom items to the ObjectDB
+[Info   :Jotunn.Managers.CommandManager] Adding 20 commands to the Console
+[Info   :Jotunn.Managers.PrefabManager] Adding 290 custom prefabs to the ZNetScene
+[Info   :Jotunn.Managers.CreatureManager] Adding 1 custom creatures
+[Info   :AAABuildMenu] BuildMenuDataManager initialized
+[Info   :Jotunn.Managers.ItemManager] Adding 254 custom items to the ObjectDB
+[Info   :Jotunn.Managers.ItemManager] Adding 6 custom recipes to the ObjectDB
+[Info   :Jotunn.Managers.PieceManager] Adding 18 custom pieces to the PieceTables
+[Warning:Jotunn.Managers.MockManager] Not fixing potential mock references for field Dictionary`2 : System.Collections.Generic.Dictionary`2[UnityEngine.UI.Graphic,UnityEngine.Color] is not supported.
+[Warning:Jotunn.Managers.MockManager] Not fixing potential mock references for field Dictionary`2 : System.Collections.Generic.Dictionary`2[UnityEngine.UI.Graphic,UnityEngine.Color] is not supported.
+[Warning:Jotunn.Managers.MockManager] Not fixing potential mock references for field Dictionary`2 : System.Collections.Generic.Dictionary`2[UnityEngine.UI.Graphic,UnityEngine.Color] is not supported.
+[Info   :Jotunn.Managers.NetworkManager] Registering 20 custom RPCs
+[Warning:PlanBuild.Plans.PlanDB] Warning for mod developers:
+Multiple pieces with the same m_name but different resource requirements, this will cause issues with Player.m_knownRecipes!
+Piece.m_name: $piece_yuleklapp
+ Requirements: $item_finewood:2, $item_bonefragments:1
+ Pieces: piece_gift1
+
+ Requirements: $item_finewood:3, $item_dandelion:1
+ Pieces: piece_gift2
+
+ Requirements: $item_finewood:4, $item_raspberries:1
+ Pieces: piece_gift3
+
+
+[Info   :ConditionalConfigSync] [Extra Slots][Client][Version] Received Extra Slots version 1.2.24, minimum version 1.2.24, ConditionalConfigSync protocol 1 from the server (0). Remote ConditionalConfigSync version 1.0.11; elapsed 160 ms.
+[Info   :ConditionalConfigSync] [My Little UI][Client][Version] Received My Little UI version 1.2.34, minimum version 1.2.24, ConditionalConfigSync protocol 1 from the server (0). Remote ConditionalConfigSync version 1.0.11; elapsed 160 ms.
+[Info   :ConditionalConfigSync] [com.bootstrapboys.husnisse][Client][Version] Received com.bootstrapboys.husnisse version 0.0.0, minimum version 0.0.0, ConditionalConfigSync protocol 1 from the server (0). Remote ConditionalConfigSync version 1.0.11; elapsed 160 ms.
+[Info   :ConditionalConfigSync] [Extra Slots][Client][Version] Received Extra Slots version 1.2.24, minimum version 1.2.24, ConditionalConfigSync protocol 1 from the server (90297538568407049). Remote ConditionalConfigSync version 1.0.11; elapsed 1271 ms.
+[Info   :ConditionalConfigSync] [My Little UI][Client][Version] Received My Little UI version 1.2.34, minimum version 1.2.24, ConditionalConfigSync protocol 1 from the server (90297538568407049). Remote ConditionalConfigSync version 1.0.11; elapsed 1271 ms.
+[Info   :ConditionalConfigSync] [com.bootstrapboys.husnisse][Client][Version] Received com.bootstrapboys.husnisse version 0.0.0, minimum version 0.0.0, ConditionalConfigSync protocol 1 from the server (90297538568407049). Remote ConditionalConfigSync version 1.0.11; elapsed 1271 ms.
+[Info   :ConditionalConfigSync] [Extra Slots][Client] Received 92 configs and 0 custom values from the server
+[Info   :ConditionalConfigSync] [My Little UI][Client] Received 45 configs and 0 custom values from the server
+[Info   :ConditionalConfigSync] [com.bootstrapboys.husnisse][Client] Received 1 configs and 0 custom values from the server (config=1. General -> Lock Configuration)
+[Info   :Jotunn.Managers.SynchronizationManager+<AdminRPC_OnClientReceive>d__49] Received admin status from server: No Admin
+[Info   : Epic Loot] Applied server-pushed loottables.json.
+[Info   : Epic Loot] Applied server-pushed magiceffects.json.
+[Info   : Epic Loot] Applied server-pushed shardstones.json.
+[Info   : Epic Loot] Applied server-pushed shardstoneconversions.json.
+[Info   : Epic Loot] Applied server-pushed biomedata.json.
+[Info   : Epic Loot] Applied server-pushed adventuredata.json.
+[Info   : Epic Loot] Applied server-pushed iteminfo.json.
+[Info   : Epic Loot] Applied server-pushed enchantcosts.json.
+[Info   : Epic Loot] Applied server-pushed itemnames.json.
+[Info   : Epic Loot] Applied server-pushed legendaries.json.
+[Info   : Epic Loot] Applied server-pushed abilities.json.
+[Info   : Epic Loot] Applied server-pushed materialconversions.json.
+[Info   : Epic Loot] Applied server-pushed enchantingupgrades.json.
+[Info   : Epic Loot] Applied server-pushed itemsorter.json.
+[Info   :  Husnisse] bowl: pantry ready 4x1 (4 slots)
+[Info   :  Husnisse] bowl: pantry ready 4x1 (4 slots)
+[Info   :  Husnisse] fade: property=_Cutoff mode=Cutoff renderers=4 shader=Custom/Creature
+[Message:Extra Slots] Extra slots latest backup recovery committed. Newly deferred 0, already present 0, remaining records 0.
+[Info   :PlanBuild.Blueprints.BlueprintManager] Registering known blueprints
+[Info   :Husnisse Gate Client Probe] gc ready player=Stranger id=-202584743 pos=-126.81,34.12,-6.86 world=MTTest peers=1
+[Info   :Husnisse Gate Client Probe] gc command_file=C:\Users\Hermes\husnisse-probe.cmd
+[Info   :Husnisse Gate Client Probe] gc hud center='Center message'
+[Info   :Husnisse Gate Client Probe] gc hud top='You picked up an Axe'
+[Info   :Husnisse Gate Client Probe] gc cmd: contract Wood
+[Info   :Husnisse Gate Client Probe] gc [contract] api=1 provider=native can_consume=False ready=True
+[Info   :Husnisse Gate Client Probe] gc [contract] scope claim -798557703:15702 at -125.8,-6.9 r=20 source=native owner=-202584743 containers=2 permitted=True
+[Info   :Husnisse Gate Client Probe] gc [contract] sources pockets=stacks=3 items=29 slots=stacks=0 items=0 backpack=absent claim=containers=2 stacks=2
+[Info   :Husnisse Gate Client Probe] gc [contract] count $item_wood=30 carried=5 claim=25
+[Info   :Husnisse Gate Client Probe] gc cmd: integrations
+[Info   :Husnisse Gate Client Probe] gc integrations state=native rows=pocket+claim aaacrafting=bound aaabuildmenu=bound mylittleui=already-off epicloot=deferred-readonly planbuild=deferred-readonly
+[Info   :Husnisse Gate Client Probe] gc cmd: row Wood 5
+[Info   :Husnisse Gate Client Probe] gc row item=$item_wood amount=5 setup=True text='5 <color=#ADE8E6>(30 [5+25])</color>'
+[Info   :Husnisse Gate Client Probe] gc cmd: row Wood 5
+[Info   :Husnisse Gate Client Probe] gc row item=$item_wood amount=5 setup=True text='5 <color=#ADE8E6>(30 [5+25])</color>'
+[Info   :Husnisse Gate Client Probe] gc cmd: shot contract-row
+[Info   :Husnisse Gate Client Probe] gc shot C:\Users\Hermes\Desktop\husnisse-captures\contract-row.png

@@ -1,0 +1,9 @@
+gc cmd: setpos -126.81 34.12 -6.86
+gc setpos from=-96.93,33.31,-7.16 requested=-126.81,34.12,-6.86 now=-126.81,34.12,-6.86
+gc cmd: where
+gc where player=-126.81,34.12,-6.86 nisse=-125.81,35.81,-6.86 peers=1
+gc cmd: contract Wood
+gc [contract] api=1 provider=native can_consume=False ready=True
+gc [contract] scope claim 1:5424 at -125.8,-6.9 r=20 source=native owner=-202584743 containers=3 permitted=True
+gc [contract] sources pockets=stacks=3 items=34 slots=stacks=0 items=0 backpack=absent claim=containers=3 stacks=3
+gc [contract] count $item_wood=55 carried=10 claim=45

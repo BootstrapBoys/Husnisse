@@ -1,0 +1,1 @@
+task args: -console -joinserverwithcharacter 192.168.1.136:2956 nissetester -password mtest

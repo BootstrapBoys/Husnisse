@@ -230,8 +230,12 @@ panel will call, and exposes it through the ghost, the hover and the console com
 
 ### Phase 6 — contract (0.4 / 0.5)
 
-- `StorageScope` becomes network-aware and implements `Count`/`CanAfford`; provider registration with
-  QI stand-down; then `TryConsume` and the delivery fiction.
+- 0.4 shipped: `Contract/StorageContract` + `ContractScope` + the four sources (pockets, ExtraSlots,
+  equipped backpack, claim), the requirement-row readout, AAA Crafting and AAABuildMenu counts,
+  MyLittleUI's number switched off, and `provider=qi|native`.
+- 0.5: `TryConsume` and the delivery fiction; with it, EpicLoot's inventory provider and PlanBuild's
+  inventory-list adapter (both are read *and* spent, so neither can be read-only).
+
 
 ## Tests to add with the refactor
 

@@ -397,6 +397,32 @@ through the world** (no zones, no terrain colliders) and ended 90 m below the bo
 refused `TooFar`. The harness now pins the synthetic player at the bowl and turns gravity off; on the
 client rig a real player stands on real terrain.
 
+## 10. Two consumer APIs that count and spend through one list — 2026-11-15
+
+Measured by decompiling the shipped DLLs (IL, not a runtime run): EpicLoot 0.15.6 and PlanBuild 0.20.0, the
+versions the pack ships. Both facts decide what a read-only contract can honestly expose.
+
+- **EpicLoot's inventory provider is also its wallet.** `EpicLoot.API.RegisterInventoryProvider(id,
+  getItems, countItem, removeItem, removeExactItem)` feeds `API.CountProviderItems` (summed into the
+  "have" number) and `API.RemoveProviderItems`. The money path is
+  `EpicLoot_UnityLib.InventoryManagement.RemoveItem(string, int)`: it takes from the player's own
+  `Inventory` **first**, then the stash, and only then asks the providers for the remainder. A provider
+  that counts stock it cannot remove therefore does not "fail safely": the consumer removes the pocket
+  half, the provider returns 0, and the cost is short. **Consequence:** a read-only provider must not be
+  registered at all; the provider belongs with the spend.
+- **PlanBuild's inventory list is also its take, and the take is `void`.** `PlanPiece.GetInventories` is
+  used by `HasAllResources` (the blueprint's colour) and by `AddAllMaterials` (placement). `IInventory`'s
+  `RemoveItem` returns nothing, so nothing can report a shortfall: **an entry that can count but not remove
+  places blueprints for free.**
+- **AAA Crafting's container count is display-only.** `Utilities.GetItemsInCloseContainers` sums other
+  container-crafting mods' nearby lists and is read by `GetAvailableItems` / `GetTrackerCount`; AAA's craft
+  still runs through the game's own path, and `CfcLoaded` only switches the container count on. That is
+  why its numbers can ship ahead of any spend.
+- **MyLittleUI appends its own number to the same row.** `InventoryGui_SetupRequirement_AddAvailableAmount`
+  reads `int.TryParse(val.text)`, so it writes `10 (2)` from the player's pockets. Two writers produce two
+  numbers; switching its `Item - Available resources amount / Enabled` off for the session is the
+  established arrangement in this pack (AAA does the same to MyLittleUI's multicraft setting).
+
 ## What this means for the plan
 
 | Assumption | Status |

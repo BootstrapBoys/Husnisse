@@ -1,0 +1,44 @@
+
+== prep: stop the tree, side-line its world, deploy the gate build, boot
+
+== client: launch into the gate tree and wait for the world
+--- state
+
+== scene: build the fixture at the client's own position
+--- where
+--- scene
+
+== p1: the contract, standing in the claim
+--- p1-inv
+
+== client: launch into the gate tree and wait for the world
+--- state
+
+== scene: build the fixture at the client's own position
+--- where
+
+== scene: build the fixture at the client's own position
+--- where
+
+== scene: build the fixture at the client's own position
+--- where
+--- scene
+
+== p3: out of the claim the claim leg disappears
+--- p3-far
+--- p3-back
+
+== p2: the requirement row the player would see
+--- p2-row
+
+== p4: integrations and a screenshot
+--- p4-integrations
+--- shot-contract
+
+== scene: build the fixture at the client's own position
+--- where
+--- scene
+
+== p3: out of the claim the claim leg disappears
+--- p3-far
+--- p3-back

@@ -1,0 +1,1 @@
+[Info   :Husnisse Gate Client Probe] gc ready player=Stranger id=-202584743 pos=-126.83,33.52,-6.88 world=MTTest peers=1

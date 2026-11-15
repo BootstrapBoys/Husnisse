@@ -49,7 +49,9 @@ guard ships at 0.4: users will not remove QI cleanly on day one.
 
 **The law at the contract boundary.** Read-only queries (`Count`, `CanAfford`) are exempt: they ask the
 claim a question. Consumption (`TryConsume`, craft-from-claim) is the nisse's work and needs a delivery
-fiction — decided in 0.4, before the first consuming surface lands.
+fiction — decided in 0.4 (a visible bundle carried to the bench), shipping in 0.5. 0.4 therefore answers
+and does not spend, and the two consumer seams that are read *and* spent (EpicLoot's provider, PlanBuild's
+inventory list) wait for 0.5 rather than counting stock they cannot pay with.
 
 ## Quartermaster surfaces
 
@@ -80,13 +82,13 @@ fiction — decided in 0.4, before the first consuming surface lands.
 
 | # | Feature | Husnisse | Status |
 |---|---|---|---|
-| 1 | AAA Crafting: true max craft, batch cap, quantity field | 0.4 | scheduled |
-| 2 | MyLittleUI: requirement rows count storage | 0.4 readouts | **partial** |
-| 3 | ExtraSlots: slot protection + slot as a source | 0.4 contract source 2 | needs the 0.4 contract path |
-| 4 | AdventureBackpacks: equipped container as a source | 0.4 contract source 3 | needs the 0.4 contract path |
-| 5 | AAABuildMenu: pinned build-row counts | 0.4 | **gap** |
-| 6 | EpicLoot: registered inventory provider, and refusing to double-register | 0.4 | **gap** |
-| 7 | PlanBuild: blueprint cost counts storage | 0.4 | **gap** |
+| 1 | AAA Crafting: true max craft, batch cap, quantity field | 0.4 — claim counts in AAA's rows and batch ceiling | **covered for the numbers** — `GetItemsInCloseContainers` and `CalculateMaxCraftAmount` read the claim; the craft itself still spends pockets until 0.5 |
+| 2 | MyLittleUI: requirement rows count storage | 0.4 readouts | **covered** — MyLittleUI's own pocket-only number is off for the session and Husnisse writes the row, so one number, not two |
+| 3 | ExtraSlots: slot protection + slot as a source | 0.4 contract source 2 | **covered** — extra rows are source 2 and are partitioned out of the pocket count; protection is moot because the only thing that moves pocket items is an Empty Pockets order, which already skips the hotbar and equipped rows |
+| 4 | AdventureBackpacks: equipped container as a source | 0.4 contract source 3 | **covered** — `ABAPI.TryGetEquippedBackpackInventory`, counted beside the pockets and never filed into |
+| 5 | AAABuildMenu: pinned build-row counts | 0.4 | **covered** — `PinnedRecipeTracker.CountItem` postfix adds the claim to the player's own row |
+| 6 | EpicLoot: registered inventory provider, and refusing to double-register | 0.5 (refusal at 0.4) | **partial** — the double-register refusal is in; the provider itself is carried to 0.5 because EpicLoot spends the player's pockets before it asks a provider, so a read-only provider would lose the pocket half of a cost it cannot finish |
+| 7 | PlanBuild: blueprint cost counts storage | 0.5 | **gap, carried to 0.5** — `GetInventories` feeds both the colour and a `void` take; a read-only entry places blueprints for free |
 | 8 | DropMoreLoot: defer stack sizes to it when installed | 0.5 | **gap** |
 | 9 | WardIsLove: ward ownership and host range | 0.2 — handover | **scheduled** — only for a bowl inside a ward |
 | 10 | Chest dock: gate "Chest Config", force-sort an unowned chest | 0.3.1 ledger | **covered** — gating is moot without QM's menu; the sort-unowned half is the ledger's **Tidy** row action |
@@ -97,13 +99,14 @@ fiction — decided in 0.4, before the first consuming surface lands.
 | 15 | Stack rule: ignore crafter, ignored tags, EpicLoot components | 0.5 | **gap** |
 | 16 | Ward host range / ownership modes | 0.2 — handover | **scheduled** |
 | 17 | Routing and stack diagnostics | 0.1 `Diagnostics` | **partial** — needs the same tags |
-| 18 | Refuse to run beside EpicLootContainerBridge | 0.4 | **gap** |
+| 18 | Refuse to run beside EpicLootContainerBridge | 0.4 | **covered** — logged as a refusal with the reason; there is no provider yet to double-register, and the guard is what keeps one from being added beside the bridge |
 
 ## The ten gaps
 
-1. AAABuildMenu pinned counts
-2. EpicLoot inventory provider + double-register refusal
-3. PlanBuild blueprint cost
+1. ~~AAABuildMenu pinned counts~~ — **closed in 0.4**
+2. EpicLoot inventory provider — **carried to 0.5** (needs a spend it can finish; the refusal beside
+   EpicLootContainerBridge ships now)
+3. PlanBuild blueprint cost — **carried to 0.5** (its take is `void`, so a read-only entry is free builds)
 4. DropMoreLoot stack deferral
 5. ~~Pocket stack merge on sort~~ — **closed in 0.3.1**
 6. Craft-list repaint after craft

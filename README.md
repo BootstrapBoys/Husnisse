@@ -58,7 +58,7 @@ and not a parallel copy: the other mod answers, we consume or step aside.
 |---|---|---|---|
 | Claim authority | bowl claim: radius, owner, permits | **WardIsLove**, only for a bowl standing inside a ward | inside a ward: the ward's range, owner and permitted players become the claim; outside: the native radius and owner stand |
 | Storage sources | containers inside the claim | **ExtraSlots**, **AdventureBackpacks** | their slots and backpack join the contract's source list |
-| Inventory provider | Husnisse's own query | **EpicLoot** | EpicLoot's provider answers; Husnisse refuses to double-register beside it |
+| Inventory provider | Husnisse's own query | **EpicLoot** | EpicLoot's provider answers; Husnisse refuses to double-register beside it. **Only one can own the list, and the list is also how EpicLoot pays**, so Husnisse's provider lands with the spend (0.5); until then EpicLoot stays pocket-only and the refusal beside EpicLootContainerBridge is already in |
 | Stack policy | native merge rules | **DropMoreLoot** | stack sizes and merging defer to it |
 | UI readouts | none — we do not draw panels | **AAA Crafting**, **AAABuildMenu**, **PlanBuild**, **MyLittleUI** | they query us; this is consumption, not handover |
 | Config locking | BepInEx config | **ConditionalConfigSync** (hard) | values are locked server-side |
@@ -504,7 +504,7 @@ table is the summary.
 | **0.2** | **Claim ownership**: provider seam, WardIsLove full handover with last-known fallback, range preview, claim diagnostics, parity harness starts | Claims are foundational — teaching and container rules must be built on the claim that actually governs the base. |
 | **0.3** | **Network core**: container UI toggle/settings, item categories with priority, Overflow and Deposit roles, custom-list preview, auto-suggest, copy rule, blacklist, deposit-all, animation LOD, fair queue, read-only badge | The network and its routing model; the largest UI work in the project. |
 | **0.3.1** | **Teaching and ledger**: teaching writes lists, editable ledger, pickup filter, pocket stack merge, YAML rule export/import and editable presets | The precise editing layer on top of 0.3's network. |
-| **0.4** | **Read-only contract**: `Count`/`CanAfford` and sources (ExtraSlots, AdventureBackpacks), EpicLoot provider, AAABuildMenu counts, PlanBuild costs, MyLittleUI readouts, QI stand-down | QI's queries, before any consumption needs a fiction. |
+| **0.4** | **Read-only contract**: `Count`/`CanAfford` and sources (ExtraSlots, AdventureBackpacks), AAABuildMenu and AAA Crafting readouts, MyLittleUI's row, QI stand-down. EpicLoot's provider and PlanBuild's adapter carried to 0.5 (both seams count *and* spend) | QI's queries, before any consumption needs a fiction. |
 | **0.5** | **Craft from claim**: `TryConsume`, delivery fiction, craft-list repaint, DropMoreLoot deferral, stack rules | The first consuming surface; needs 0.4's contract. |
 | **0.6** | Machines: fuel, feed, collect, caps; four-way supply permissions; mailbox decision | The nightly queue earns its keep. |
 | **0.7** | Multiplayer hardening, Quartermaster ZDO migration — only after a route is proven on a copied world | Two clients and a live world are where storage mods die. |

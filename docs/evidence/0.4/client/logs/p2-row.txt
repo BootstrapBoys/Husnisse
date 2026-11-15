@@ -1,0 +1,4 @@
+gc cmd: row Wood 5
+gc row item=$item_wood amount=5 setup=True text='5 <color=#ADE8E6>(30 [5+25])</color>'
+gc cmd: row Iron 2
+gc row item=$item_iron amount=2 setup=True text='2'

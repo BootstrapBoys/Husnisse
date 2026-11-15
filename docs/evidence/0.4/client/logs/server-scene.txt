@@ -1,0 +1,50 @@
+19:44:42.216   comp MeshFilter on floor_2x2_snow
+19:44:42.216   comp MeshRenderer on floor_2x2_snow
+19:44:42.216   comp Transform on collider
+19:44:42.216   comp BoxCollider on collider
+19:44:42.216   comp Transform on WET
+19:44:42.216   comp ParticleSystem on WET
+19:44:42.717 > spawn husnisse_bowl -125.81 34.32 -6.86 -202584743
+19:44:42.745 spawned husnisse_bowl(Clone) at (-125.81, 34.32, -6.86)  zdo=-360268614:15736  owner=-360268614  activeSelf=True  mineRock5=False  mineRock=False  character=False
+19:44:42.745   comp Transform on husnisse_bowl(Clone)
+19:44:42.745   comp Piece on husnisse_bowl(Clone)
+19:44:42.745   comp ZNetView on husnisse_bowl(Clone)
+19:44:42.745   comp WearNTear on husnisse_bowl(Clone)
+19:44:42.745   comp LODGroup on husnisse_bowl(Clone)
+19:44:42.745   comp Container on husnisse_bowl(Clone)
+19:44:42.745   comp BowlPiece on husnisse_bowl(Clone)
+19:44:42.745   comp Transform on roof_check_pint
+19:44:42.745   comp Transform on connectionEffectPoint
+19:44:42.745   comp Transform on Capsule_blockplayer
+19:44:42.745   comp CapsuleCollider on Capsule_blockplayer
+19:44:42.745   comp Transform on Capsule_interact
+19:44:43.221 > spawn piece_chest_wood -124.81 34.32 -6.86
+19:44:43.221 spawned piece_chest_wood(Clone) at (-124.81, 34.32, -6.86)  zdo=-360268614:15738  owner=-360268614  activeSelf=True  mineRock5=False  mineRock=False  character=False
+19:44:43.221   comp Transform on piece_chest_wood(Clone)
+19:44:43.222   comp ZNetView on piece_chest_wood(Clone)
+19:44:43.222   comp Container on piece_chest_wood(Clone)
+19:44:43.222   comp Piece on piece_chest_wood(Clone)
+19:44:43.222   comp WearNTear on piece_chest_wood(Clone)
+19:44:43.222   comp Transform on floor_2x2_snow
+19:44:43.222   comp MeshFilter on floor_2x2_snow
+19:44:43.222   comp MeshRenderer on floor_2x2_snow
+19:44:43.222   comp LODGroup on floor_2x2_snow
+19:44:43.222   comp Transform on New
+19:44:43.222   comp LODGroup on New
+19:44:43.222   comp Transform on woodchest
+19:44:43.723 > wait 6
+19:44:43.723 wait: 6s (server keeps ticking)
+19:44:49.759 > nostruct
+19:44:49.778 nostruct: removed WearNTear from 550 object(s)
+19:44:50.263 > zdo husnisse_bowl husnisse_bowl_init
+19:44:50.277 zdo husnisse_bowl.husnisse_bowl_init = int=1 bool=True
+19:44:50.763 > husnisse claims
+19:44:51.701 husnisse claim -360268614:15736 source=native ward=0:0 owner=-202584743 r=20 native_r=20 native_owner=-202584743 suppressed=False refusal='' containers=1
+19:44:51.997 husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=1 wards=0 ward_api=False
+19:44:52.301 > expect_claim owner=-202584743
+19:44:52.303   expect_claim 'owner=-202584743' in 'husnisse claim -360268614:15736 source=native ward=0:0 owner=-202584743 r=20 native_r=20 native_owner=-202584743 suppressed=False refusal='' containers=1': ok
+19:44:52.805 > fill piece_chest_wood Wood 30
+19:44:52.827 fill piece_chest_wood Woodx30 added=30 stacks=1 items=30
+19:44:53.307 > container piece_chest_wood 0
+19:44:53.324 container piece_chest_wood stacks=1 items=30
+19:44:53.810 scenario done: PASS (1 assertions, 0 failed)

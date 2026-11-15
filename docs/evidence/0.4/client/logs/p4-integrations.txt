@@ -1,0 +1,6 @@
+gc cmd: integrations
+gc integrations state=native rows=pocket+claim aaacrafting=bound aaabuildmenu=bound mylittleui=already-off epicloot=deferred-readonly planbuild=deferred-readonly
+gc cmd: contract
+gc [contract] api=1 provider=native can_consume=False ready=True
+gc [contract] scope claim -798557703:15702 at -125.8,-6.9 r=20 source=native owner=-202584743 containers=2 permitted=True
+gc [contract] sources pockets=stacks=3 items=29 slots=stacks=0 items=0 backpack=absent claim=containers=2 stacks=2

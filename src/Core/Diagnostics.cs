@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Husnisse.Claims;
 using Husnisse.Config;
+using Husnisse.Contract;
 using Husnisse.Core;
 using Husnisse.Bowl;
 using Husnisse.Storage;
@@ -38,7 +39,12 @@ namespace Husnisse.Core
                       " wards=" + WardIsLoveCompat.Count +
                       " ward_api=" + (WardIsLoveCompat.Bound ? "bound" : "unbound") +
                       " require_ward_ownership=" + HusnisseConfig.RequireWardOwnership.Value +
-                      " quartermaster=" + (PluginGuards.QuartermasterInstalled() ? "installed" : "absent"));
+                      " " + PluginGuards.Describe());
+
+            // The contract's own answer, from the same code the crafting row and the console command
+            // ask: a gate reads these lines instead of re-deriving the numbers.
+            lines.Add("[contract] readouts " + IntegrationHost.Describe());
+            lines.AddRange(StorageContract.Report(null));
 
             lines.Add("schema=" + SaveSchema.Read() +
                       " feeding_required=" + WorldPolicy.FeedingRequired +

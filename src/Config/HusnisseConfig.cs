@@ -31,6 +31,8 @@ namespace Husnisse.Config
         public static ConfigEntry<bool> SkipDisplayPiles;
         public static ConfigEntry<bool> RespectWards;
         public static ConfigEntry<bool> RequireWardOwnership;
+        public static ConfigEntry<bool> RequirementReadouts;
+        public static ConfigEntry<bool> SplitRequirementCounts;
 
         private static ConfigSync _sync;
 
@@ -96,6 +98,16 @@ namespace Husnisse.Config
 
             SkipDisplayPiles = file.Bind("4. Storage", "Skip Display Piles", true,
                 "Never treat DynamicStoragePiles or the Muji DynamicStorage display containers as storage.");
+
+            RequirementReadouts = file.Bind("5. Contract", "Requirement Readouts", true,
+                "Show what the claim can reach on crafting and build requirement rows, and let AAA Crafting, " +
+                "AAABuildMenu and MyLittleUI read the claim instead of the pockets only. Off leaves every " +
+                "crafting UI exactly vanilla. The contract itself (Count/CanAfford) keeps answering either way.");
+
+            SplitRequirementCounts = file.Bind("5. Contract", "Split Requirement Counts", true,
+                "Write a requirement's available amount as `42 [12+30]` — total, then what you carry and what " +
+                "the claim holds. Off writes the total alone. Split by default so a number that is mostly " +
+                "base stock is visible as such while this build is still read-only.");
 
             RespectWards = file.Bind("6. Ward", "Respect WardIsLove", true,
                 "Ward permissions filter every container. A bowl inside a ward its owner cannot use refuses to settle.");

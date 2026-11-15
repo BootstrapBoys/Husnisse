@@ -229,6 +229,36 @@ EpicLoot present; no double counting; no server-side UI work.
 **Risks** — each UI mod's binding is a separate API surface; five have never been exercised outside the
 pack.
 
+**Status (2026-11-15)** — implemented on branch `husnisse/0.4-readonly`, build, tag and client gate done;
+unreleased (internal only).
+
+- `Contract/StorageContract` answers `ApiVersion 1`, `Provider`, `IsReady`, `ScopeDescription`, `Count` and
+  `CanAfford` over the contract's source order — pockets → ExtraSlots rows → equipped AdventureBackpacks
+  pack → the containers of the claim the player is standing in — and `husnisse_contract [item]` plus
+  `husnisse_status` print the same lines a consumer gets. `TryConsume` answers `false` and says why once:
+  this release reads, it does not spend.
+- The claim leg is the nisse's own question (`ContainerIndex.InClaim` → `ContainerFilter.CanUse`, the
+  blacklist on top), so the ward ground rule, the cart/ship/display-pile exclusions and the backpack rule
+  apply to a craft row exactly as they apply to a trip. A claim the player is not permitted on contributes
+  nothing; no claim contributes nothing.
+- Readouts: the vanilla requirement row (`10 (42 [12+30])`, split by default, off with
+  `5. Contract / Requirement Readouts`), AAA Crafting's container counts and batch ceiling,
+  AAABuildMenu's pinned rows. MyLittleUI's own pocket-only number is switched off for the session so the row
+  has one writer.
+- `provider=qi|native` in the diagnostics; with Quartermaster_Integrations loaded Husnisse registers no
+  consumer integration at all.
+- **Two integrations are deliberately deferred to 0.5**, and both are the same shape: EpicLoot's inventory
+  provider and PlanBuild's blueprint-cost adapter are lists that are *both read and spent*. EpicLoot takes
+  the player's pockets first and only then asks the provider, so a count-only provider loses the pocket half
+  of a cost it cannot finish; PlanBuild's take is `void`, so a count-only entry places blueprints for free.
+  Both are detected and explained in the log today, and they land with `TryConsume` and its server round
+  trip. This is a scope correction to this release, not a silent omission.
+- Proof: `testrig/scenarios/husnisse-04-contract.cmd` (PASS, 15 assertions, dedicated server) and a real
+  client gate with the consumer pack installed — `docs/evidence/0.4/RESULT.md`. The row number the client
+  read back is `5 (55 [10+45])`, the count is `55 = 10 carried + 45 claim`, walking 30 m out of the claim
+  drops it to `10`, and a client relog keeps both. Contract test 3 (a ward-locked container) is inherited
+  from the 0.2b claim proof rather than re-run with a live ward; that is the one open corner.
+
 ## 0.5 — Craft from claim
 
 **Scope**
@@ -237,6 +267,9 @@ pack.
 - Delivery fiction for consumed materials (decide: carry, fade at the bench, or requisition).
 - Craft-list repaint after a craft; DropMoreLoot stack-size deferral; stack rule relaxations (crafter,
   ignored tags, EpicLoot components; never quality/level/durability).
+- **Carried over from 0.4**: EpicLoot's inventory provider and PlanBuild's blueprint-cost adapter. Both are
+  seams that are read *and* spent, so they cannot exist before `TryConsume` (see the 0.4 status); with it,
+  each is a data-source swap from Quartermaster_Integrations' version, which is our code.
 
 **Done when** — a craft spends pockets first, then claim storage, with a visible delivery and no
 duplication; the recipe list is correct immediately after the craft.

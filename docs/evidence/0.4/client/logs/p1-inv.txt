@@ -1,0 +1,13 @@
+gc cmd: inv
+gc inv stacks=2 items=24 [flintx20,wolfpeltx4]
+gc cmd: contract Wood
+gc [contract] api=1 provider=native can_consume=False ready=True
+gc [contract] scope claim -1480798642:15639 at -125.8,-6.9 r=20 source=native owner=-202584743 containers=1 permitted=True
+gc [contract] sources pockets=stacks=2 items=24 slots=stacks=0 items=0 backpack=absent claim=containers=1 stacks=0
+gc [contract] count $item_wood=0 carried=0 claim=0
+gc cmd: containers
+gc container TreasureChest_meadows_buried(Clone) at -194.07,34.03,126.80 net=False rule='' stacks=3 items=47 [amberpearlx1,silvernecklacex1,coinsx45]
+gc container piece_chest_wood(Clone) at -124.83,33.72,-6.88 net=False rule='' stacks=0 items=0 []
+gc container TreasureChest_meadows_buried(Clone) at -190.58,29.04,-60.99 net=False rule='' stacks=2 items=5 [amberpearlx2,rubyx3]
+gc container TreasureChest_meadows_01(Clone) at -66.58,36.00,-40.81 net=False rule='' stacks=2 items=8 [axehead1x1,coinsx7]
+gc containers total=4 net=0 ruled=0

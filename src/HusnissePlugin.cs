@@ -2,6 +2,7 @@ using BepInEx;
 using HarmonyLib;
 using Husnisse.Claims;
 using Husnisse.Config;
+using Husnisse.Contract;
 using Husnisse.Compat;
 using Husnisse.Core;
 using Husnisse.Bowl;
@@ -22,11 +23,19 @@ namespace Husnisse
     [BepInDependency("com.jotunn.jotunn", BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("_shudnal.ConditionalConfigSync", BepInDependency.DependencyFlags.HardDependency)]
     [BepInDependency("com.ValheimModding.YamlDotNetDetector", BepInDependency.DependencyFlags.HardDependency)]
+    [BepInDependency("randyknapp.mods.epicloot", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("Azumatt.AzuAntiArthriticCrafting", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("Azumatt.AAABuildMenu", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("marcopogo.PlanBuild", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("shudnal.MyLittleUI", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("shudnal.ExtraSlots", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("vapok.mods.adventurebackpacks", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("com.bootstrapboys.quartermaster_integrations", BepInDependency.DependencyFlags.SoftDependency)]
     public class HusnissePlugin : BaseUnityPlugin
     {
         public const string PluginGUID = "com.bootstrapboys.husnisse";
         public const string PluginName = "Husnisse";
-        public const string PluginVersion = "0.3.1";
+        public const string PluginVersion = "0.4.0";
 
         internal static bool Running;
 
@@ -50,10 +59,18 @@ namespace Husnisse
 
             Loc.Initialize();
 
-            new Harmony(PluginGUID).PatchAll();
+            var harmony = new Harmony(PluginGUID);
+            harmony.PatchAll();
+
+            // Read-only consumer integrations (0.4). They bind after config and after the optional
+            // plugins have loaded — the soft dependencies above make that order deterministic — and
+            // every one of them is absent-safe.
+            IntegrationHost.Bind(harmony);
+
             RegisterStatusCommand();
             RegisterPreviewCommand();
             RegisterPrefabCommand();
+            RegisterContractCommand();
             Commands.RuleCommand.Register();
             Commands.CategoryCommand.Register();
             Commands.BenchCommand.Register();
@@ -134,6 +151,26 @@ namespace Husnisse
                 {
                     var path = PrefabExport.Dump();
                     args.Context?.AddString(path != null ? "wrote " + path : "no ZNetScene yet");
+                });
+        }
+
+        /// <summary>
+        /// The contract, asked by hand. Same lines `husnisse_status` and the harness read, so a player
+        /// and a gate can never see two different answers.
+        /// </summary>
+        private static void RegisterContractCommand()
+        {
+            new Terminal.ConsoleCommand(
+                "husnisse_contract",
+                "Print the storage contract's answer: husnisse_contract [item] — scope, sources and the count.",
+                delegate(Terminal.ConsoleEventArgs args)
+                {
+                    var item = args.Length > 1 ? args[1] : null;
+                    foreach (var line in StorageContract.Report(item))
+                    {
+                        args.Context?.AddString(line);
+                        DiagnosticsFile.Line(line);
+                    }
                 });
         }
 

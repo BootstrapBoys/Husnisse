@@ -1,0 +1,2 @@
+gc cmd: shot contract
+gc shot C:\Users\Hermes\Desktop\husnisse-captures\contract.png
