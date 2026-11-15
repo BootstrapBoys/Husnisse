@@ -25,18 +25,21 @@ namespace Husnisse.Claims.Authority
 
             var anchor = new ClaimAnchor(claim.BowlPosition, claim.NativeRadius, claim.NativeOwnerId);
             ClaimResolution resolution = null;
+            var code = ClaimRefusal.None;
             string refusal = null;
 
             if (HusnisseConfig.RespectWards.Value && Ward.TryResolve(anchor, out resolution))
             {
                 if (!resolution.Permitted)
                 {
+                    code = ClaimRefusal.WardNotPermitted;
                     refusal = "ward does not permit the bowl's owner";
                 }
                 else if (HusnisseConfig.RequireWardOwnership.Value &&
                          anchor.NativeOwnerId != 0L && resolution.OwnerId != 0L &&
                          resolution.OwnerId != anchor.NativeOwnerId)
                 {
+                    code = ClaimRefusal.WardNotOwned;
                     refusal = "ward belongs to another player";
                 }
                 else if (wardHolders != null)
@@ -44,6 +47,7 @@ namespace Husnisse.Claims.Authority
                     ZDOID holder;
                     if (wardHolders.TryGetValue(resolution.WardId, out holder) && holder != claim.BowlId)
                     {
+                        code = ClaimRefusal.WardHeld;
                         refusal = "another bowl already holds this ward";
                     }
                     else
@@ -55,7 +59,7 @@ namespace Husnisse.Claims.Authority
 
             if (resolution == null) Native.TryResolve(anchor, out resolution);
 
-            return claim.Apply(resolution, refusal);
+            return claim.Apply(resolution, code, refusal);
         }
     }
 }

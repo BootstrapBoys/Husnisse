@@ -65,9 +65,11 @@ namespace Husnisse.Core
                           " ward=" + claim.WardId +
                           " owner=" + claim.OwnerId +
                           " r=" + claim.Radius.ToString("0") +
+                          " center=" + claim.Center.x.ToString("0.#") + "," + claim.Center.z.ToString("0.#") +
                           " native_r=" + claim.NativeRadius.ToString("0") +
                           " native_owner=" + claim.NativeOwnerId +
                           " suppressed=" + claim.Suppressed +
+                          " refusal_code=" + claim.RefusalCode +
                           (claim.Refusal != null ? " refusal=\"" + claim.Refusal + "\"" : string.Empty) +
                           " satiety=" + (bowl != null ? bowl.Satiety.ToString("0") : "-") +
                           " mood=" + (bowl != null ? bowl.Mood.ToString("0") : "-") +

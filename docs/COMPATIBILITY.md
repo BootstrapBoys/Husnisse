@@ -33,6 +33,9 @@ Reached by reflection; nothing from WardIsLove ships in this tree. Verified on t
 - Permits: `WardMonoscript.permissionsManager.IsPermitted(playerId)`.
   `CustomCheck.CheckAccess` inspects only the first enabled ward containing the point, which is not
   necessarily the ward the bowl selected, so the claim layer asks the ward it actually chose.
+- Hover: WardIsLove denies the container hover to a player its ward does not permit, so that player
+  sees the ward's `No access` instead of the bowl's `Claim …` line. That is correct access control;
+  the claim is still computed and logged on the client, and a permitted player sees the claim line.
 
 ## Storage semantics
 

@@ -1,0 +1,34 @@
+#< CLIXML
+--- c02 client view ---
+[Info   :Husnisse Claim Probe] c02 ready player=NisseTester pos=(-3.06, 34.07, -0.65) world=MTTest
+[Info   :Husnisse Claim Probe] c02 claim 1:166 source=ward ward=-1034875403:15628 owner=111 r=12 center=-6,-6 native_r=20 suppressed=False code=None
+[Info   :Husnisse Claim Probe] c02 claim -1034875403:15630 source=ward ward=-1034875403:15628 owner=111 r=12 center=-6,-6 native_r=20 suppressed=True code=WardHeld
+[Info   :Husnisse Claim Probe] c02 claims total=2
+[Info   :Husnisse Claim Probe] c02 claim 1:166 source=native ward=0:0 owner=0 r=20 center=-0.2,-0.4 native_r=20 suppressed=False code=None
+[Info   :Husnisse Claim Probe] c02 claims total=1
+[Info   :Husnisse Claim Probe] c02 claims total=0
+[Info   :Husnisse Claim Probe] c02 claim -1034875403:15632 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 suppressed=False code=None
+[Info   :Husnisse Claim Probe] c02 claims total=1
+[Info   :Husnisse Claim Probe] c02 claims total=0
+[Info   :Husnisse Claim Probe] c02 claim -1034875403:15635 source=ward ward=-1034875403:15634 owner=111 r=25 center=-20,-20 native_r=20 suppressed=False code=None
+[Info   :Husnisse Claim Probe] c02 claims total=1
+[Info   :Husnisse Claim Probe] c02 claims total=0
+[Info   :Husnisse Claim Probe] c02 claim -1034875403:15638 source=ward ward=-1034875403:15637 owner=111 r=25 center=-20,-20 native_r=20 suppressed=False code=None
+[Info   :Husnisse Claim Probe] c02 claims total=1
+[Info   :Husnisse Claim Probe] c02 claim -1034875403:15638 source=native ward=0:0 owner=0 r=20 center=-18,-18 native_r=20 suppressed=False code=None
+[Info   :Husnisse Claim Probe] c02 claims total=1
+[Info   :Husnisse Claim Probe] c02 claims total=0
+[Info   :Husnisse Claim Probe] c02 claim -1034875403:15641 source=ward ward=-1034875403:15640 owner=111 r=25 center=-20,-20 native_r=20 suppressed=False code=None
+[Info   :Husnisse Claim Probe] c02 claims total=1
+[Info   :Husnisse Claim Probe] c02 claim -1034875403:15641 source=ward ward=-1034875403:15640 owner=111 r=25 center=-20,-20 native_r=20 suppressed=False code=None
+[Info   :Husnisse Claim Probe] c02 claim -1034875403:15643 source=ward ward=-1034875403:15640 owner=111 r=25 center=-20,-20 native_r=20 suppressed=True code=WardHeld
+[Info   :Husnisse Claim Probe] c02 claims total=2
+[Info   :Husnisse Claim Probe] c02 claim -1034875403:15645 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 suppressed=False code=None
+[Info   :Husnisse Claim Probe] c02 claims total=1
+[Info   :Husnisse Claim Probe] c02 claims total=0
+[Info   :Husnisse Claim Probe] c02 claim -1034875403:15651 source=ward ward=-1034875403:15650 owner=222 r=28 center=10,10 native_r=20 suppressed=False code=None
+[Info   :Husnisse Claim Probe] c02 claims total=1
+[Info   :Husnisse Claim Probe] c02 claims total=0
+[Info   :Husnisse Claim Probe] c02 claim -1034875403:15655 source=ward ward=-1034875403:15653 owner=111 r=12 center=-6,-6 native_r=20 suppressed=False code=None
+[Info   :Husnisse Claim Probe] c02 claims total=1
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"><Obj S="progress" RefId="0"><TN RefId="0"><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="progress" RefId="1"><TNRef RefId="0" /><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj></Objs>

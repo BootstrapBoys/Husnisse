@@ -1,0 +1,310 @@
+===== native (client connected) =====
+scenario queued: husnisse-02-native.cmd
+05:46:18.995   comp BowlPiece on husnisse_bowl(Clone)
+05:46:18.995   comp Transform on roof_check_pint
+05:46:18.995   comp Transform on connectionEffectPoint
+05:46:18.995   comp Transform on Capsule_blockplayer
+05:46:18.995   comp CapsuleCollider on Capsule_blockplayer
+05:46:18.995   comp Transform on Capsule_interact
+05:46:19.489 > wait 4
+05:46:19.489 wait: 4s (server keeps ticking)
+05:46:23.512 > zdo husnisse_bowl husnisse_bowl_init
+05:46:23.522 zdo husnisse_bowl.husnisse_bowl_init = int=1 bool=True
+05:46:24.012 > zdo husnisse_bowl husnisse_claim_authority
+05:46:24.023 zdo husnisse_bowl.husnisse_claim_authority = str='native'
+05:46:24.516 > zdo husnisse_bowl husnisse_claim_ward
+05:46:24.527 zdo husnisse_bowl.husnisse_claim_ward = str='0'
+05:46:25.018 > zdo husnisse_bowl husnisse_claim_radius
+05:46:25.031 zdo husnisse_bowl.husnisse_claim_radius = float=20
+05:46:25.524 > zdo husnisse_bowl husnisse_claim_snapshot_radius
+05:46:25.537 zdo husnisse_bowl.husnisse_claim_snapshot_radius = absent
+05:46:26.024 > husnisse claims
+05:46:26.524 husnisse claim -1034875403:15632 source=native ward=0:0 owner=0 r=20 native_r=20 native_owner=0 suppressed=False refusal='' containers=0
+05:46:26.695 husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=True
+05:46:27.000 > expect str='native'
+05:46:27.000   expect 'str='native'': ok
+05:46:27.504 > expect str='0'
+05:46:27.504   expect 'str='0'': ok
+05:46:28.005 > expect float=20
+05:46:28.006   expect 'float=20': ok
+05:46:28.509 > expect absent
+05:46:28.510   expect 'absent': ok
+05:46:29.010 > expect_last total=1 working=1 suppressed=0
+05:46:29.010   expect_last 'total=1 working=1 suppressed=0' in 'husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=True': ok
+05:46:29.516 > expect source=native
+05:46:29.516   expect 'source=native': ok
+05:46:30.017 > expect_last native=1 ward=0
+05:46:30.017   expect_last 'native=1 ward=0' in 'husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=True': ok
+05:46:30.521 > husnisse preview 0 0
+05:46:30.708 husnisse preview pos=0,0 center=0,0 source=native ward=0 owner=0 r=20 verdict=overlap
+05:46:31.045 > expect_preview verdict=overlap
+05:46:31.045   expect_preview 'verdict=overlap' in 'husnisse preview pos=0,0 center=0,0 source=native ward=0 owner=0 r=20 verdict=overlap': ok
+05:46:31.549 > expect_preview source=native
+05:46:31.549   expect_preview 'source=native' in 'husnisse preview pos=0,0 center=0,0 source=native ward=0 owner=0 r=20 verdict=overlap': ok
+05:46:32.050 > husnisse preview 41 0
+05:46:32.220 husnisse preview pos=41,0 center=41,0 source=native ward=0 owner=0 r=20 verdict=ok
+05:46:32.560 > expect_preview verdict=ok
+05:46:32.560   expect_preview 'verdict=ok' in 'husnisse preview pos=41,0 center=41,0 source=native ward=0 owner=0 r=20 verdict=ok': ok
+05:46:33.061 > expect_preview source=native
+05:46:33.061   expect_preview 'source=native' in 'husnisse preview pos=41,0 center=41,0 source=native ward=0 owner=0 r=20 verdict=ok': ok
+05:46:33.566 > expect_preview r=20
+05:46:33.566   expect_preview 'r=20' in 'husnisse preview pos=41,0 center=41,0 source=native ward=0 owner=0 r=20 verdict=ok': ok
+05:46:34.066 > husnisse status
+05:46:34.226 husnisse status [config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+05:46:34.226 husnisse status [compat] wardislove=installed wards=0 ward_api=bound require_ward_ownership=False quartermaster=absent
+05:46:34.226 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
+05:46:34.226 husnisse status claim -1034875403:15632 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=yes
+05:46:34.226 husnisse status lines=4
+05:46:34.599 > expect husnisse status claim
+05:46:34.599   expect 'husnisse status claim': ok
+05:46:35.103 > expect center=0,0
+05:46:35.103   expect 'center=0,0': ok
+05:46:35.604 scenario done: PASS (19 assertions, 0 failed)
+===== ward (client connected) =====
+scenario queued: husnisse-02-ward.cmd
+05:46:53.879   comp LODGroup on husnisse_bowl(Clone)
+05:46:53.879   comp Container on husnisse_bowl(Clone)
+05:46:53.879   comp BowlPiece on husnisse_bowl(Clone)
+05:46:53.879   comp Transform on roof_check_pint
+05:46:53.879   comp Transform on connectionEffectPoint
+05:46:53.879   comp Transform on Capsule_blockplayer
+05:46:53.879   comp CapsuleCollider on Capsule_blockplayer
+05:46:53.879   comp Transform on Capsule_interact
+05:46:54.368 > wait 4
+05:46:54.368 wait: 4s (server keeps ticking)
+05:46:58.396 > husnisse claims
+05:46:58.906 husnisse claim -1034875403:15635 source=ward ward=-1034875403:15634 owner=111 r=25 native_r=20 native_owner=0 suppressed=False refusal='' containers=0
+05:46:59.082 husnisse claims total=1 working=1 suppressed=0 native=0 ward=1 containers=0 wards=1 ward_api=True
+05:46:59.387 > expect_last total=1 working=1 suppressed=0
+05:46:59.387   expect_last 'total=1 working=1 suppressed=0' in 'husnisse claims total=1 working=1 suppressed=0 native=0 ward=1 containers=0 wards=1 ward_api=True': ok
+05:46:59.893 > expect_last native=0 ward=1
+05:46:59.893   expect_last 'native=0 ward=1' in 'husnisse claims total=1 working=1 suppressed=0 native=0 ward=1 containers=0 wards=1 ward_api=True': ok
+05:47:00.394 > expect_last wards=1
+05:47:00.394   expect_last 'wards=1' in 'husnisse claims total=1 working=1 suppressed=0 native=0 ward=1 containers=0 wards=1 ward_api=True': ok
+05:47:00.899 > expect source=ward
+05:47:00.899   expect 'source=ward': ok
+05:47:01.399 > expect owner=111
+05:47:01.399   expect 'owner=111': ok
+05:47:01.903 > expect native_r=20
+05:47:01.903   expect 'native_r=20': ok
+05:47:02.408 > expect native_owner=0
+05:47:02.408   expect 'native_owner=0': ok
+05:47:02.911 > zdo husnisse_bowl husnisse_claim_authority
+05:47:02.922 zdo husnisse_bowl.husnisse_claim_authority = str='ward'
+05:47:03.412 > zdo husnisse_bowl husnisse_claim_radius
+05:47:03.422 zdo husnisse_bowl.husnisse_claim_radius = float=25
+05:47:03.916 > zdo husnisse_bowl husnisse_claim_snapshot_radius
+05:47:03.928 zdo husnisse_bowl.husnisse_claim_snapshot_radius = float=20
+05:47:04.417 > expect str='ward'
+05:47:04.418   expect 'str='ward'': ok
+05:47:04.922 > expect float=25
+05:47:04.923   expect 'float=25': ok
+05:47:05.423 > expect float=20
+05:47:05.423   expect 'float=20': ok
+05:47:05.926 > husnisse preview -25 -25
+05:47:06.070 husnisse preview pos=-25,-25 center=-20,-20 source=ward ward=-1034875403:15634 owner=111 r=25 verdict=overlap
+05:47:06.442 > expect_preview source=ward
+05:47:06.442   expect_preview 'source=ward' in 'husnisse preview pos=-25,-25 center=-20,-20 source=ward ward=-1034875403:15634 owner=111 r=25 verdict=overlap': ok
+05:47:06.943 > expect_preview r=25
+05:47:06.944   expect_preview 'r=25' in 'husnisse preview pos=-25,-25 center=-20,-20 source=ward ward=-1034875403:15634 owner=111 r=25 verdict=overlap': ok
+05:47:07.448 > expect_preview verdict=overlap
+05:47:07.448   expect_preview 'verdict=overlap' in 'husnisse preview pos=-25,-25 center=-20,-20 source=ward ward=-1034875403:15634 owner=111 r=25 verdict=overlap': ok
+05:47:07.967 > husnisse status
+05:47:08.153 husnisse status [config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+05:47:08.153 husnisse status [compat] wardislove=installed wards=1 ward_api=bound require_ward_ownership=False quartermaster=absent
+05:47:08.153 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
+05:47:08.153 husnisse status claim -1034875403:15635 source=ward ward=-1034875403:15634 owner=111 r=25 center=-20,-20 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=yes
+05:47:08.153 husnisse status lines=4
+05:47:08.492 > expect husnisse status claim
+05:47:08.492   expect 'husnisse status claim': ok
+05:47:08.993 > expect center=-20,-20
+05:47:08.993   expect 'center=-20,-20': ok
+05:47:09.496 > expect husnisse status [compat] wardislove=installed wards=1
+05:47:09.496   expect 'husnisse status [compat] wardislove=installed wards=1': ok
+05:47:09.998 scenario done: PASS (21 assertions, 0 failed)
+===== ward-removed (client connected) =====
+scenario queued: husnisse-02-ward-removed.cmd
+05:47:23.210   comp Container on husnisse_bowl(Clone)
+05:47:23.210   comp BowlPiece on husnisse_bowl(Clone)
+05:47:23.210   comp Transform on roof_check_pint
+05:47:23.210   comp Transform on connectionEffectPoint
+05:47:23.210   comp Transform on Capsule_blockplayer
+05:47:23.210   comp CapsuleCollider on Capsule_blockplayer
+05:47:23.210   comp Transform on Capsule_interact
+05:47:23.699 > wait 4
+05:47:23.699 wait: 4s (server keeps ticking)
+05:47:27.720 > husnisse claims
+05:47:28.205 husnisse claim -1034875403:15638 source=ward ward=-1034875403:15637 owner=111 r=25 native_r=20 native_owner=0 suppressed=False refusal='' containers=0
+05:47:28.382 husnisse claims total=1 working=1 suppressed=0 native=0 ward=1 containers=0 wards=1 ward_api=True
+05:47:28.687 > expect_last native=0 ward=1
+05:47:28.687   expect_last 'native=0 ward=1' in 'husnisse claims total=1 working=1 suppressed=0 native=0 ward=1 containers=0 wards=1 ward_api=True': ok
+05:47:29.191 > expect_claim source=ward
+05:47:29.191   expect_claim 'source=ward' in 'husnisse claim -1034875403:15638 source=ward ward=-1034875403:15637 owner=111 r=25 native_r=20 native_owner=0 suppressed=False refusal='' containers=0': ok
+05:47:29.693 > expect_claim r=25
+05:47:29.693   expect_claim 'r=25' in 'husnisse claim -1034875403:15638 source=ward ward=-1034875403:15637 owner=111 r=25 native_r=20 native_owner=0 suppressed=False refusal='' containers=0': ok
+05:47:30.197 > zdo husnisse_bowl husnisse_claim_snapshot_radius
+05:47:30.208 zdo husnisse_bowl.husnisse_claim_snapshot_radius = float=20
+05:47:30.698 > expect float=20
+05:47:30.699   expect 'float=20': ok
+05:47:31.202 > destroy Thorward
+05:47:31.215 destroyed Thorward(Clone)[0]
+05:47:31.703 > wait 6
+05:47:31.704 wait: 6s (server keeps ticking)
+05:47:37.737 > husnisse preview -18 -18
+05:47:37.906 husnisse preview pos=-18,-18 center=-18,-18 source=native ward=0 owner=0 r=20 verdict=overlap
+05:47:38.245 > expect_preview source=native
+05:47:38.245   expect_preview 'source=native' in 'husnisse preview pos=-18,-18 center=-18,-18 source=native ward=0 owner=0 r=20 verdict=overlap': ok
+05:47:38.747 > expect_preview r=20
+05:47:38.747   expect_preview 'r=20' in 'husnisse preview pos=-18,-18 center=-18,-18 source=native ward=0 owner=0 r=20 verdict=overlap': ok
+05:47:39.253 > expect_preview verdict=overlap
+05:47:39.253   expect_preview 'verdict=overlap' in 'husnisse preview pos=-18,-18 center=-18,-18 source=native ward=0 owner=0 r=20 verdict=overlap': ok
+05:47:39.752 > husnisse claims
+05:47:40.191 husnisse claim -1034875403:15638 source=native ward=0:0 owner=0 r=20 native_r=20 native_owner=0 suppressed=False refusal='' containers=0
+05:47:40.358 husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=True
+05:47:40.662 > expect_last native=1 ward=0
+05:47:40.662   expect_last 'native=1 ward=0' in 'husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=True': ok
+05:47:41.166 > expect_last total=1 working=1 suppressed=0
+05:47:41.166   expect_last 'total=1 working=1 suppressed=0' in 'husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=True': ok
+05:47:41.667 > expect_claim source=native
+05:47:41.668   expect_claim 'source=native' in 'husnisse claim -1034875403:15638 source=native ward=0:0 owner=0 r=20 native_r=20 native_owner=0 suppressed=False refusal='' containers=0': ok
+05:47:42.171 > expect_claim r=20
+05:47:42.171   expect_claim 'r=20' in 'husnisse claim -1034875403:15638 source=native ward=0:0 owner=0 r=20 native_r=20 native_owner=0 suppressed=False refusal='' containers=0': ok
+05:47:42.672 > expect_claim suppressed=False
+05:47:42.672   expect_claim 'suppressed=False' in 'husnisse claim -1034875403:15638 source=native ward=0:0 owner=0 r=20 native_r=20 native_owner=0 suppressed=False refusal='' containers=0': ok
+05:47:43.176 > husnisse status
+05:47:43.350 husnisse status [config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+05:47:43.350 husnisse status [compat] wardislove=installed wards=0 ward_api=bound require_ward_ownership=False quartermaster=absent
+05:47:43.350 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
+05:47:43.350 husnisse status claim -1034875403:15638 source=native ward=0:0 owner=0 r=20 center=-18,-18 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=yes
+05:47:43.350 husnisse status lines=4
+05:47:43.687 > expect center=-18,-18
+05:47:43.687   expect 'center=-18,-18': ok
+05:47:44.191 > zdo husnisse_bowl husnisse_claim_authority
+05:47:44.202 zdo husnisse_bowl.husnisse_claim_authority = str='native'
+05:47:44.693 > expect str='native'
+05:47:44.694   expect 'str='native'': ok
+05:47:45.199 scenario done: PASS (14 assertions, 0 failed)
+===== second-bowl (client connected) =====
+scenario queued: husnisse-02-second-bowl.cmd
+05:47:59.963   comp CapsuleCollider on Capsule_blockplayer
+05:47:59.963   comp Transform on Capsule_interact
+05:48:00.452 > wait 2
+05:48:00.452 wait: 2s (server keeps ticking)
+05:48:02.467 > spawn husnisse_bowl -16 ground -16
+05:48:02.484 spawned husnisse_bowl(Clone) at (-16.00, 106.86, -16.00)  zdo=-1034875403:15643  owner=-1034875403  activeSelf=True  mineRock5=False  mineRock=False  character=False
+05:48:02.484   comp Transform on husnisse_bowl(Clone)
+05:48:02.484   comp Piece on husnisse_bowl(Clone)
+05:48:02.484   comp ZNetView on husnisse_bowl(Clone)
+05:48:02.484   comp WearNTear on husnisse_bowl(Clone)
+05:48:02.484   comp LODGroup on husnisse_bowl(Clone)
+05:48:02.484   comp Container on husnisse_bowl(Clone)
+05:48:02.484   comp BowlPiece on husnisse_bowl(Clone)
+05:48:02.484   comp Transform on roof_check_pint
+05:48:02.484   comp Transform on connectionEffectPoint
+05:48:02.484   comp Transform on Capsule_blockplayer
+05:48:02.484   comp CapsuleCollider on Capsule_blockplayer
+05:48:02.484   comp Transform on Capsule_interact
+05:48:02.970 > wait 4
+05:48:02.970 wait: 4s (server keeps ticking)
+05:48:06.990 > husnisse preview -16 -16
+05:48:07.146 husnisse preview pos=-16,-16 center=-20,-20 source=ward ward=-1034875403:15640 owner=111 r=25 verdict=overlap
+05:48:07.518 > expect_preview source=ward
+05:48:07.518   expect_preview 'source=ward' in 'husnisse preview pos=-16,-16 center=-20,-20 source=ward ward=-1034875403:15640 owner=111 r=25 verdict=overlap': ok
+05:48:08.021 > expect_preview r=25
+05:48:08.022   expect_preview 'r=25' in 'husnisse preview pos=-16,-16 center=-20,-20 source=ward ward=-1034875403:15640 owner=111 r=25 verdict=overlap': ok
+05:48:08.524 > expect_preview verdict=overlap
+05:48:08.524   expect_preview 'verdict=overlap' in 'husnisse preview pos=-16,-16 center=-20,-20 source=ward ward=-1034875403:15640 owner=111 r=25 verdict=overlap': ok
+05:48:09.024 > husnisse claims
+05:48:09.516 husnisse claim -1034875403:15641 source=ward ward=-1034875403:15640 owner=111 r=25 native_r=20 native_owner=0 suppressed=False refusal='' containers=0
+05:48:09.518 husnisse claim -1034875403:15643 source=ward ward=-1034875403:15640 owner=111 r=25 native_r=20 native_owner=0 suppressed=True refusal='another bowl already holds this ward' containers=0
+05:48:09.689 husnisse claims total=2 working=1 suppressed=1 native=0 ward=2 containers=0 wards=1 ward_api=True
+05:48:09.994 > expect_last total=2 working=1 suppressed=1
+05:48:09.994   expect_last 'total=2 working=1 suppressed=1' in 'husnisse claims total=2 working=1 suppressed=1 native=0 ward=2 containers=0 wards=1 ward_api=True': ok
+05:48:10.498 > expect_last native=0 ward=2
+05:48:10.498   expect_last 'native=0 ward=2' in 'husnisse claims total=2 working=1 suppressed=1 native=0 ward=2 containers=0 wards=1 ward_api=True': ok
+05:48:11.001 > expect_claim suppressed=True
+05:48:11.002   expect_claim 'suppressed=True' in 'husnisse claim -1034875403:15643 source=ward ward=-1034875403:15640 owner=111 r=25 native_r=20 native_owner=0 suppressed=True refusal='another bowl already holds this ward' containers=0': ok
+05:48:11.505 > expect_claim another bowl already holds this ward
+05:48:11.505   expect_claim 'another bowl already holds this ward' in 'husnisse claim -1034875403:15643 source=ward ward=-1034875403:15640 owner=111 r=25 native_r=20 native_owner=0 suppressed=True refusal='another bowl already holds this ward' containers=0': ok
+05:48:12.006 > husnisse status
+05:48:12.180 husnisse status [config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 feeding_required=True
+05:48:12.180 husnisse status [compat] wardislove=installed wards=1 ward_api=bound require_ward_ownership=False quartermaster=absent
+05:48:12.180 husnisse status schema=2 feeding_required=True claims=2 trips=0 nisses=2 bowl_piece=present
+05:48:12.180 husnisse status claim -1034875403:15641 source=ward ward=-1034875403:15640 owner=111 r=25 center=-20,-20 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=yes
+05:48:12.180 husnisse status claim -1034875403:15643 source=ward ward=-1034875403:15640 owner=111 r=25 center=-20,-20 native_r=20 native_owner=0 suppressed=True refusal_code=WardHeld refusal="another bowl already holds this ward" satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 nisse=yes
+05:48:12.180 husnisse status lines=5
+05:48:12.520 > expect husnisse status claim
+05:48:12.520   expect 'husnisse status claim': ok
+05:48:13.021 > expect refusal_code=WardHeld
+05:48:13.021   expect 'refusal_code=WardHeld': ok
+05:48:13.525 > husnisse claims
+05:48:14.020 husnisse claim -1034875403:15641 source=ward ward=-1034875403:15640 owner=111 r=25 native_r=20 native_owner=0 suppressed=False refusal='' containers=0
+05:48:14.021 husnisse claim -1034875403:15643 source=ward ward=-1034875403:15640 owner=111 r=25 native_r=20 native_owner=0 suppressed=True refusal='another bowl already holds this ward' containers=0
+05:48:14.179 husnisse claims total=2 working=1 suppressed=1 native=0 ward=2 containers=0 wards=1 ward_api=True
+05:48:14.485 > expect_last total=2 working=1 suppressed=1
+05:48:14.485   expect_last 'total=2 working=1 suppressed=1' in 'husnisse claims total=2 working=1 suppressed=1 native=0 ward=2 containers=0 wards=1 ward_api=True': ok
+05:48:14.986 > expect_last native=0 ward=2
+05:48:14.986   expect_last 'native=0 ward=2' in 'husnisse claims total=2 working=1 suppressed=1 native=0 ward=2 containers=0 wards=1 ward_api=True': ok
+05:48:15.490 scenario done: PASS (11 assertions, 0 failed)
+===== overlap (client connected) =====
+scenario queued: husnisse-02-overlap.cmd
+05:49:16.979   comp WearNTear on Thorward(Clone)
+05:49:16.979   comp Demister on Thorward(Clone)
+05:49:16.979   comp ParticleSystemForceField on Thorward(Clone)
+05:49:16.979   comp WardMonoscript on Thorward(Clone)
+05:49:16.979   comp Transform on PlayerBase
+05:49:16.979   comp CapsuleCollider on PlayerBase
+05:49:16.979   comp EffectArea on PlayerBase
+05:49:16.979   comp Transform on Energy Particles
+05:49:17.461 > wait 2
+05:49:17.461 wait: 2s (server keeps ticking)
+05:49:19.473 > zdoset Thorward enabled bool true 1
+05:49:19.482 zdoset Thorward[1].enabled = bool:true
+05:49:19.974 > zdoset Thorward WILLimitedWard bool true 1
+05:49:19.984 zdoset Thorward[1].WILLimitedWard = bool:true
+05:49:20.477 > zdoset Thorward WILLimitedWardTime int -1 1
+05:49:20.487 zdoset Thorward[1].WILLimitedWardTime = int:-1
+05:49:20.980 > zdoset Thorward creator long 999 1
+05:49:20.992 zdoset Thorward[1].creator = long:999
+05:49:21.486 > zdoset Thorward wardRadius float 28 1
+05:49:21.496 zdoset Thorward[1].wardRadius = float:28
+05:49:21.986 > spawn husnisse_bowl 0 ground 0
+05:49:21.997 spawned husnisse_bowl(Clone) at (0.00, 199.92, 0.00)  zdo=-1034875403:15655  owner=-1034875403  activeSelf=True  mineRock5=False  mineRock=False  character=False
+05:49:21.997   comp Transform on husnisse_bowl(Clone)
+05:49:21.997   comp Piece on husnisse_bowl(Clone)
+05:49:21.997   comp ZNetView on husnisse_bowl(Clone)
+05:49:21.997   comp WearNTear on husnisse_bowl(Clone)
+05:49:21.997   comp LODGroup on husnisse_bowl(Clone)
+05:49:21.997   comp Container on husnisse_bowl(Clone)
+05:49:21.997   comp BowlPiece on husnisse_bowl(Clone)
+05:49:21.997   comp Transform on roof_check_pint
+05:49:21.997   comp Transform on connectionEffectPoint
+05:49:21.997   comp Transform on Capsule_blockplayer
+05:49:21.997   comp CapsuleCollider on Capsule_blockplayer
+05:49:21.997   comp Transform on Capsule_interact
+05:49:22.491 > wait 4
+05:49:22.491 wait: 4s (server keeps ticking)
+05:49:26.514 > husnisse preview 0 0
+05:49:26.704 husnisse preview pos=0,0 center=-6,-6 source=ward ward=-1034875403:15653 owner=111 r=12 verdict=overlap
+05:49:27.015 > expect_preview source=ward
+05:49:27.015   expect_preview 'source=ward' in 'husnisse preview pos=0,0 center=-6,-6 source=ward ward=-1034875403:15653 owner=111 r=12 verdict=overlap': ok
+05:49:27.515 > expect_preview center=-6,-6
+05:49:27.515   expect_preview 'center=-6,-6' in 'husnisse preview pos=0,0 center=-6,-6 source=ward ward=-1034875403:15653 owner=111 r=12 verdict=overlap': ok
+05:49:28.020 > expect_preview owner=111
+05:49:28.020   expect_preview 'owner=111' in 'husnisse preview pos=0,0 center=-6,-6 source=ward ward=-1034875403:15653 owner=111 r=12 verdict=overlap': ok
+05:49:28.520 > expect_preview r=12
+05:49:28.520   expect_preview 'r=12' in 'husnisse preview pos=0,0 center=-6,-6 source=ward ward=-1034875403:15653 owner=111 r=12 verdict=overlap': ok
+05:49:29.025 > expect_preview verdict=overlap
+05:49:29.025   expect_preview 'verdict=overlap' in 'husnisse preview pos=0,0 center=-6,-6 source=ward ward=-1034875403:15653 owner=111 r=12 verdict=overlap': ok
+05:49:29.526 > husnisse claims
+05:49:30.060 husnisse claim -1034875403:15655 source=ward ward=-1034875403:15653 owner=111 r=12 native_r=20 native_owner=0 suppressed=False refusal='' containers=0
+05:49:30.239 husnisse claims total=1 working=1 suppressed=0 native=0 ward=1 containers=0 wards=2 ward_api=True
+05:49:30.544 > expect_last total=1 working=1 suppressed=0
+05:49:30.544   expect_last 'total=1 working=1 suppressed=0' in 'husnisse claims total=1 working=1 suppressed=0 native=0 ward=1 containers=0 wards=2 ward_api=True': ok
+05:49:31.048 > expect_last native=0 ward=1
+05:49:31.048   expect_last 'native=0 ward=1' in 'husnisse claims total=1 working=1 suppressed=0 native=0 ward=1 containers=0 wards=2 ward_api=True': ok
+05:49:31.549 > expect_claim owner=111
+05:49:31.549   expect_claim 'owner=111' in 'husnisse claim -1034875403:15655 source=ward ward=-1034875403:15653 owner=111 r=12 native_r=20 native_owner=0 suppressed=False refusal='' containers=0': ok
+05:49:32.053 > expect_claim r=12
+05:49:32.053   expect_claim 'r=12' in 'husnisse claim -1034875403:15655 source=ward ward=-1034875403:15653 owner=111 r=12 native_r=20 native_owner=0 suppressed=False refusal='' containers=0': ok
+05:49:32.554 scenario done: PASS (31 assertions, 0 failed)

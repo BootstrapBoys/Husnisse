@@ -20,6 +20,8 @@ namespace Husnisse.Localization
         public const string BowlHover = "$husnisse_bowl_hover";
         public const string BowlHoverNoFeed = "$husnisse_bowl_hover_nofeed";
         public const string BowlHoverEmpty = "$husnisse_bowl_hover_empty";
+        public const string BowlHoverClaim = "$husnisse_bowl_hover_claim";
+        public const string BowlHoverClaimRefused = "$husnisse_bowl_hover_claim_refused";
         public const string BowlFed = "$husnisse_bowl_fed";
         public const string BowlNotYours = "$husnisse_bowl_not_yours";
         public const string BowlNeedsFood = "$husnisse_bowl_needs_food";
@@ -56,6 +58,12 @@ namespace Husnisse.Localization
         public const string PlaceOverlap = "$husnisse_place_overlap";
         public const string PlaceWard = "$husnisse_place_ward";
         public const string PlaceOtherWard = "$husnisse_place_other_ward";
+
+        public const string ClaimSourceNative = "$husnisse_claim_source_native";
+        public const string ClaimSourceWard = "$husnisse_claim_source_ward";
+        public const string ClaimRefusedWard = "$husnisse_claim_refused_ward";
+        public const string ClaimRefusedOwner = "$husnisse_claim_refused_owner";
+        public const string ClaimRefusedHeld = "$husnisse_claim_refused_held";
 
         private const string FolderName = "localization";
 
@@ -144,7 +152,7 @@ namespace Husnisse.Localization
                     return;
                 }
 
-                if (string.Equals(file.Language, "English", StringComparison.OrdinalIgnoreCase) && file.Version < 2)
+                if (string.Equals(file.Language, "English", StringComparison.OrdinalIgnoreCase) && file.Version < 4)
                 {
                     Log.Warn("outdated English localisation ignored; embedded strings are used: " + path);
                     return;
@@ -188,7 +196,7 @@ namespace Husnisse.Localization
         }
 
         private const string DefaultEnglish = @"
-version: 3
+version: 4
 language: English
 strings:
   $husnisse_bowl_name: Porridge Bowl
@@ -196,6 +204,8 @@ strings:
   $husnisse_bowl_hover: ""Satiety {0:0}/100   Mood {1:0}/100\n[E] open bowl""
   $husnisse_bowl_hover_nofeed: ""This nisse asks for nothing.\n[Alt] require offerings""
   $husnisse_bowl_hover_empty: ""The bowl is empty.\n[E] open bowl""
+  $husnisse_bowl_hover_claim: Claim {0:0} m ({1})
+  $husnisse_bowl_hover_claim_refused: Claim refused — {0}
   $husnisse_bowl_fed: The nisse takes the offering.
   $husnisse_bowl_not_yours: The nisse's bowl is not yours to fill.
   $husnisse_bowl_needs_food: The nisse needs food.
@@ -228,6 +238,11 @@ strings:
   $husnisse_place_overlap: Another nisse already claims this ground.
   $husnisse_place_ward: You are not permitted to build here.
   $husnisse_place_other_ward: Another player's ward holds this ground.
+  $husnisse_claim_source_native: native
+  $husnisse_claim_source_ward: ward
+  $husnisse_claim_refused_ward: the ward does not permit you
+  $husnisse_claim_refused_owner: another player's ward
+  $husnisse_claim_refused_held: another bowl is already here
 ";
     }
 }

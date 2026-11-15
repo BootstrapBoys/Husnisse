@@ -42,10 +42,23 @@ Headless-proven on the rig; this block is the visual pass.
 
 Headless-proven on the rig (`SPIKE-REPORT.md` §5); these are the client-only checks.
 
+**0.2b client session (2026-11-15) — proven, not by hand:** the five parity scenarios ran with a real
+client connected on the same build, and the client's own claim objects matched every transition
+(`docs/evidence/0.2b/client-claims-final.txt`): native `r=20`; ward `r=25 owner=111`; ward removed back
+to native `r=20` without a restart; second bowl `suppressed=True code=WardHeld`; overlap `owner=222
+r=28` then `owner=111 r=12`. The range ring and the hover claim line were photographed on the client
+(`range-preview-ring.jpg`, `hover-native-claim.jpg`). The boxes below are the manual pass that remains.
+
 - [ ] Place a bowl outside every ward: `husnisse_status` reports `source=native`, `ward=0` and the
       configured radius.
 - [ ] Place a WardIsLove ward over it: within a couple of seconds the claim reports `source=ward`, a
       ward id, and the ward's radius instead of the configured one.
+- [ ] Hold the bowl before placing it: a **green** ring shows the ground the claim would take, and it
+      draws the ward's bubble (not the configured radius) when the ghost stands inside a ward.
+- [ ] Aim at a spot already claimed, or a ward you may not use: the ring turns **red** and the placement
+      is refused with the matching message.
+- [ ] Hover a placed bowl: the last line reads `Claim <N> m (native|ward)`; hover a suppressed bowl and
+      it reads `Claim refused — …`.
 - [ ] Feed and order from the bowl while it stands in your own ward: both work.
 - [ ] Let a permitted tribe member place a bowl in your ward (`Require Ward Ownership` off): it settles,
       and they can feed and order it.

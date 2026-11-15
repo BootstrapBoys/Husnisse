@@ -144,6 +144,12 @@ A nisse claims a radius around its bowl (the home piece). Claims do not overlap,
 placed inside an existing claim is refused outright — the piece is not placed, so no materials are
 wasted. Base groups emerge from separate claims without a "group" setting.
 
+While the bowl is in hand, a ring on the ground shows the claim it would take: green where it can be
+placed, red where it is refused, and the ward's bubble rather than the bowl's own radius whenever the
+bowl stands inside a ward. Hovering a placed bowl states the same thing in words (`Claim 25 m (ward)`).
+`husnisse_preview [x z]` prints the calculation for any point; that is also the seam the 0.3.1 ledger
+will use to draw the same ring from its own panel.
+
 Authority is decided **per bowl, by where it stands**. Outside any ward, the native claim applies: the
 player who placed the bowl feeds, teaches and gives orders, and everyone else can read the ledger.
 Inside a WardIsLove ward (0.2), that ward's range, owner and permitted players become the claim: the

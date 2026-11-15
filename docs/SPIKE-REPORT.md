@@ -203,22 +203,49 @@ lives in this tree):
 
 **How it was driven.** The shared harness gained `zdoset <prefab> <key> <type> <value> [index]`,
 `destroy <prefab> [index]`, an optional index on `zdo`, an optional creator on `spawn`, and a Husnisse
-command (`husnisse claims | containers | status`) that reads the mod's live claim objects and calls
-`ContainerIndex.InClaim`. `expect_last` and `expect_claim` assert the newest observation, so a line
-left over from an earlier step cannot make a transition test pass. Five scenarios, one server session:
+command (`husnisse claims | containers | status | preview <x> <z> [radius] [player]`) that reads the
+mod's live claim objects and calls `ContainerIndex.InClaim` or `ClaimPreview.Evaluate`. `expect_last`,
+`expect_claim` and `expect_preview` assert the newest observation, so a line left over from an earlier
+step cannot make a transition test pass. Five scenarios, one server session:
 
-| Scenario | File | Verdict | What it shows |
+| Scenario | File | Verdict (final) | What it shows |
 |---|---|---|---|
-| native | `husnisse-02-native.cmd` | PASS (7) | `source=native`, `ward=0`, `r=20`, no snapshot |
-| ward claim | `husnisse-02-ward.cmd` | PASS (12) | `source=ward`, `owner=111`, `r=25` (the ward's radius), `native_r=20`, snapshot written; `husnisse_status` prints `[compat] ... wards=1 ward_api=bound` and a claim line with `source=ward ... r=25` |
-| ward removed | `husnisse-02-ward-removed.cmd` | PASS (10) | ward → native within 6 s without a restart; `r` back to 20, snapshot still 20 |
-| second bowl in a ward | `husnisse-02-second-bowl.cmd` | PASS (6) | `total=2 working=1 suppressed=1`, refusal `another bowl already holds this ward`, same answer on a second pass |
-| overlap | `husnisse-02-overlap.cmd` | PASS (14) | a ward over a native claim without containing the bowl: the bowl stays native and its container count drops 1 → 0. Two wards over one bowl: the placer's ward wins over the smaller (222/r=28 beats 111/r=12); with neither ward owned by the placer the smallest wins (111/r=12) |
+| native | `husnisse-02-native.cmd` | PASS (19) | `source=native`, `ward=0`, `r=20`, no snapshot; `husnisse preview 0 0` says `verdict=ok` before placement and `verdict=overlap` after it, `41 0` stays `ok`; status carries `center=0,0` |
+| ward claim | `husnisse-02-ward.cmd` | PASS (21) | `source=ward`, `owner=111`, `r=25` (the ward's radius), `native_r=20`, snapshot written; the preview promises `source=ward center=-20,-20 r=25 owner=111 verdict=ok` before the bowl exists and `overlap` anywhere in the same ward; `husnisse_status` prints `[compat] ... wards=1 ward_api=bound` and a claim line with `center=-20,-20` |
+| ward removed | `husnisse-02-ward-removed.cmd` | PASS (14) | ward → native within 6 s without a restart; `r` back to 20, snapshot still 20; preview at the bowl is native `r=20` |
+| second bowl in a ward | `husnisse-02-second-bowl.cmd` | PASS (11) | `total=2 working=1 suppressed=1`, refusal `another bowl already holds this ward`, same answer on a second pass, status `refusal_code=WardHeld` |
+| overlap | `husnisse-02-overlap.cmd` | PASS (31) | a ward over a native claim without containing the bowl: the bowl stays native and its container count drops 1 → 0; preview at the chest says ward/25/222 but refuses as `overlap`, and clear ground is `ok`. Two wards over one bowl: the placer's ward wins over the smaller (222/r=28 beats 111/r=12); with neither ward owned by the placer the smallest wins (111/r=12); the preview follows both branches |
 
 **What this proves, and what it does not.** The provider seam, per-bowl selection, one bowl per ward,
-the native snapshot and the live switch are proven on a real server with the real WardIsLove. Still
-client-side: placement refusal through the hammer, hover text, the range preview, and whether a
-client's 2 s revalidation agrees with the server's (0.2b).
+the native snapshot, the live switch and the preview calculation are proven on a real server with the
+real WardIsLove, and the same five scenarios pass with a real client connected on the same build
+(`docs/evidence/0.2b/client-session.txt`). The client's own claim objects — not the server's — were
+polled through all five and matched every transition (`client-claims-final.txt`). Still open: placement
+through the hammer UI with a real player's piece table, and the ledger panel (0.3.1), which will call
+the same preview seam.
+
+### 5a. Range preview on a client — 2026-11-15
+
+**Question.** Does the range ring render, and does the claim line reach a player's hover?
+
+**Answer.** Yes, both, with one measured correction.
+
+- The ring is a 72-segment `LineRenderer` on a shared `husnisse_claim_ring` object, `Sprites/Default`,
+  0.3 m wide, 0.1 m above the sampled ground. On the client it renders clearly (green at 3 m radius
+  around the player, `docs/evidence/0.2b/range-preview-ring.jpg`).
+- **The heightmap can sit below a built or static surface.** At the spawn platform the heightmap and a
+  terrain raycast answered ~0.3 m below the visible stone, so a ring placed at `hit + 0.1` was hidden
+  under the platform even though it existed and was active. The fix is to treat the caller's own height
+  (the placement ghost, or the player asking for a preview) as a floor: `max(sampled, caller - 0.02) +
+  0.1`. A preview ring must never sink below the surface it is previewing.
+- The hover line reaches the player: `Porridge Bowl / Satiety 25/100 Mood 100/100 / [E] open bowl /
+  Claim 20 m (native)` (`hover-native-claim.jpg`), and `Claim 10 m (ward)` for a bowl inside a ward
+  (client probe log). WardIsLove denies the container hover to a player its ward does not permit
+  (`No access` in game), which is correct for a non-owner and is why the ward screenshot shows the ward's
+  own access gate rather than our line; the mod's computed text is in the probe log.
+- The placement postfix was exercised on a client by putting a real bowl prefab into
+  `Player.m_placementGhost`; the ring follows it. Driving the actual hammer selection needs a character
+  that has learned the recipe and remains a manual check.
 
 **Reproduce**
 

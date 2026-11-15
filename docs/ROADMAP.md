@@ -118,11 +118,17 @@ client VM was offline when the build was ready.
 - Diagnostics: `claim_source`, ward id, effective radius.
 - Parity harness begins: native claim, ward claim, ward removed, second bowl in a ward, overlap.
 
-**Status** — 0.2a (provider seam, per-bowl resolution, snapshot, live switch, the five headless
-scenarios) implemented 2026-11-14. 0.2b (range preview at placement and in the ledger, client session,
-screenshots) is open.
+**Status** — 0.2a (provider seam, per-bowl resolution, snapshot, live switch) and 0.2b (range preview
+at placement and in the hover/ledger seam, `husnisse_preview`, effective-centre diagnostics, the five
+parity scenarios) implemented 2026-11-15. **The five scenarios pass headlessly and with a real client
+connected, on the same final build** (`Husnisse.dll` sha256 `a790429e…`); evidence and screenshots are in
+`docs/evidence/0.2b/`. The ledger panel is 0.3.1, so 0.2b ships the preview calculation and ring it will
+call (`ClaimPreview.Evaluate` + `ClaimRing.ShowFor`) and exposes them today through the placement ghost,
+the bowl hover and `husnisse_preview`.
 
-**Done when** — the five harness scenarios pass headlessly and in a client session.
+**Done when** — the five harness scenarios pass headlessly and in a client session. **Met 2026-11-15**:
+native 19, ward 21, ward removed 14, second bowl 11, overlap 31 assertions; the client's own claim state
+matched every transition (client-side `c02 claim` log).
 
 **Risks** — WardIsLove's API differs by version; the reflection seam must fail closed (native claim),
 never half-bound.

@@ -10,6 +10,7 @@ using Husnisse.Localization;
 using Husnisse.Flow;
 using Husnisse.Net;
 using Jotunn.Managers;
+using UnityEngine;
 
 namespace Husnisse
 {
@@ -51,6 +52,7 @@ namespace Husnisse
 
             new Harmony(PluginGUID).PatchAll();
             RegisterStatusCommand();
+            RegisterPreviewCommand();
             RegisterPrefabCommand();
 
             if (!HusnisseConfig.Enabled.Value)
@@ -78,6 +80,42 @@ namespace Husnisse
                     {
                         args.Context?.AddString(line);
                         DiagnosticsFile.Line(line);
+                    }
+                });
+        }
+
+        private static void RegisterPreviewCommand()
+        {
+            new Terminal.ConsoleCommand(
+                "husnisse_preview",
+                "Preview the claim a bowl would get: husnisse_preview [x z] [radius] [player].",
+                delegate(Terminal.ConsoleEventArgs args)
+                {
+                    var player = Player.m_localPlayer;
+                    var playerId = player != null ? player.GetPlayerID() : 0L;
+                    var position = player != null ? player.transform.position : Vector3.zero;
+
+                    var index = 1;
+                    float x, z;
+                    if (args.Length >= 3 && float.TryParse(args[1], out x) && float.TryParse(args[2], out z))
+                    {
+                        position = new Vector3(x, position.y, z);
+                        index = 3;
+                    }
+
+                    var radius = 0f;
+                    if (args.Length > index) float.TryParse(args[index], out radius);
+                    if (args.Length > index + 1) long.TryParse(args[index + 1], out playerId);
+
+                    var preview = ClaimPreview.Evaluate(position, playerId, radius);
+                    args.Context?.AddString(preview.ToString());
+                    DiagnosticsFile.Line(preview.ToString());
+
+                    if (player != null && ZNet.instance != null && !ZNet.instance.IsDedicated())
+                    {
+                        ClaimRing.ShowFor(preview.Center, preview.Radius,
+                            preview.Placeable ? new Color(0.55f, 0.95f, 0.55f, 0.85f)
+                                              : new Color(0.95f, 0.35f, 0.30f, 0.90f), 8f);
                     }
                 });
         }

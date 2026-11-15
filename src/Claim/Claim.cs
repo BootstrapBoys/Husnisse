@@ -33,6 +33,8 @@ namespace Husnisse.Claims
         /// <summary>True when the bowl may not work: overlapping claim, or a ward it cannot use.</summary>
         public bool Suppressed { get; private set; }
 
+        public ClaimRefusal RefusalCode { get; private set; }
+
         /// <summary>Why the claim is suppressed, in words; null when it works.</summary>
         public string Refusal { get; private set; }
 
@@ -62,16 +64,19 @@ namespace Husnisse.Claims
 
         /// <summary>Applies a resolved authority. A refusal marks the claim suppressed but keeps its ground.
         /// Returns true when the effective answer changed.</summary>
-        public bool Apply(ClaimResolution resolution, string refusal)
+        public bool Apply(ClaimResolution resolution, ClaimRefusal refusalCode, string refusal)
         {
             if (resolution == null) return false;
+
+            var suppressed = refusalCode != ClaimRefusal.None;
 
             var changed = Source != resolution.Source ||
                           !WardId.Equals(resolution.Source == ClaimSource.Ward ? resolution.WardId : ZDOID.None) ||
                           Radius != resolution.Radius ||
                           OwnerId != resolution.OwnerId ||
                           Center != resolution.Center ||
-                          Suppressed != (refusal != null) ||
+                          Suppressed != suppressed ||
+                          RefusalCode != refusalCode ||
                           Refusal != refusal;
 
             Source = resolution.Source;
@@ -79,7 +84,8 @@ namespace Husnisse.Claims
             Radius = resolution.Radius;
             OwnerId = resolution.OwnerId;
             WardId = resolution.Source == ClaimSource.Ward ? resolution.WardId : ZDOID.None;
-            Suppressed = refusal != null;
+            Suppressed = suppressed;
+            RefusalCode = refusalCode;
             Refusal = refusal;
 
             // The native values are the fallback the moment a ward takes over.

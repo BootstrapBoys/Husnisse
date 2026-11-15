@@ -1,8 +1,6 @@
 using HarmonyLib;
 using Husnisse.Bowl;
 using Husnisse.Claims;
-using Husnisse.Claims.Authority;
-using Husnisse.Compat;
 using Husnisse.Config;
 using Husnisse.Localization;
 using UnityEngine;
@@ -10,56 +8,62 @@ using UnityEngine;
 namespace Husnisse.Patches
 {
     /// <summary>
-    /// Refuses a bowl before it is placed, rather than suppressing it afterwards. Same rules as the
-    /// registry, judged on the claim the bowl would actually get: inside a ward that is the ward's
-    /// bubble, so a second bowl anywhere in the same ward is refused.
+    /// Refuses a bowl before it is placed, rather than suppressing it afterwards. The decision comes
+    /// from <see cref="ClaimPreview"/>, the same answer the ring under the ghost is drawn from, so the
+    /// red ring and the refusal can never tell the player different stories.
     /// </summary>
     [HarmonyPatch(typeof(Player), nameof(Player.TryPlacePiece))]
     public static class PlacementGuard
     {
-        private static readonly WardAuthority Ward = new WardAuthority();
+        private static readonly AccessTools.FieldRef<Player, GameObject> GhostField =
+            AccessTools.FieldRefAccess<Player, GameObject>("m_placementGhost");
 
         private static bool Prefix(Player __instance, Piece piece)
         {
             if (__instance == null || piece == null) return true;
             if (Utils.GetPrefabName(piece.gameObject) != BowlPrefab.PrefabName) return true;
 
-            var ghostField = AccessTools.Field(typeof(Player), "m_placementGhost");
-            var ghost = ghostField != null ? ghostField.GetValue(__instance) as GameObject : null;
+            var ghost = GhostField(__instance);
             var position = ghost != null ? ghost.transform.position : __instance.transform.position;
-            var playerId = __instance.GetPlayerID();
 
-            var center = position;
-            var radius = HusnisseConfig.ClaimRadius.Value;
-            ClaimResolution ward = null;
+            var preview = ClaimPreview.Evaluate(position, __instance.GetPlayerID(), HusnisseConfig.ClaimRadius.Value);
+            if (preview.Placeable) return true;
 
-            if (HusnisseConfig.RespectWards.Value &&
-                Ward.TryResolve(new ClaimAnchor(position, radius, playerId), out ward))
+            __instance.Message(MessageHud.MessageType.Center, Loc.T(preview.MessageKey));
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Draws the claim the bowl would get while the player holds it over the ground. Runs after the
+    /// game has positioned the ghost for this frame, so the ring follows the aim instead of lagging
+    /// one frame behind it. Only the local player draws; a dedicated server has no camera.
+    /// </summary>
+    [HarmonyPatch(typeof(Player), "UpdatePlacementGhost")]
+    public static class PlacementPreview
+    {
+        private static readonly AccessTools.FieldRef<Player, GameObject> GhostField =
+            AccessTools.FieldRefAccess<Player, GameObject>("m_placementGhost");
+
+        private static readonly Color Placeable = new Color(0.55f, 0.95f, 0.55f, 0.85f);
+        private static readonly Color Refused = new Color(0.95f, 0.35f, 0.30f, 0.90f);
+
+        private static void Postfix(Player __instance)
+        {
+            if (__instance == null || __instance != Player.m_localPlayer) return;
+            if (ZNet.instance != null && ZNet.instance.IsDedicated()) return;
+
+            var ghost = GhostField(__instance);
+            if (ghost == null || !ghost.activeInHierarchy ||
+                Utils.GetPrefabName(ghost) != BowlPrefab.PrefabName)
             {
-                center = ward.Center;
-                radius = ward.Radius;
-
-                if (!ward.Permitted)
-                {
-                    __instance.Message(MessageHud.MessageType.Center, Loc.T(Loc.PlaceWard));
-                    return false;
-                }
-
-                if (HusnisseConfig.RequireWardOwnership.Value &&
-                    ward.OwnerId != 0L && playerId != 0L && ward.OwnerId != playerId)
-                {
-                    __instance.Message(MessageHud.MessageType.Center, Loc.T(Loc.PlaceOtherWard));
-                    return false;
-                }
+                ClaimRing.Hide();
+                return;
             }
 
-            if (ClaimRegistry.OverlapsAny(center, radius))
-            {
-                __instance.Message(MessageHud.MessageType.Center, Loc.T(Loc.PlaceOverlap));
-                return false;
-            }
-
-            return true;
+            var preview = ClaimPreview.Evaluate(ghost.transform.position, __instance.GetPlayerID(),
+                                                HusnisseConfig.ClaimRadius.Value);
+            ClaimRing.Show(preview.Center, preview.Radius, preview.Placeable ? Placeable : Refused);
         }
     }
 }

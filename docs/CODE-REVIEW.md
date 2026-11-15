@@ -193,8 +193,25 @@ nisse never touches a chest on a ward it does not own. Diagnostics gained `sourc
 `native_r` and `native_owner` per claim and `wards`/`ward_api` in `[compat]`; the same answer is
 mirrored into the bowl's ZDO (`husnisse_claim_*`). Evidence: `SPIKE-REPORT.md` §5, five headless
 scenarios.
-Still open for 0.2b: placement-time range preview, the ledger preview, and the client session
-(placement guard, hover text, screenshots).
+
+*(0.2b implemented 2026-11-15.)* `Claim/ClaimPreview` is one calculation used by three surfaces: the
+placement guard (refuse or allow), the ring under the ghost, and `husnisse_preview`. It mirrors
+`ClaimResolver`'s rules and returns the ground the bowl would own, the source, the ward, the owner and a
+machine-readable verdict (`ok`, `ward_not_permitted`, `ward_not_owned`, `overlap`), so the green/red ring
+and the refusal message cannot disagree. `ClaimRefusal` is now the shared enum for a preview and a
+settled claim; `ClaimResolver` records the code beside the diagnostic string, and `ClaimText` maps it to
+localised hover text. `Claim/ClaimRing` draws the ground as a 72-segment `LineRenderer` (Sprites/Default,
+0.3 m) with one shared instance: the placement postfix (`Player.UpdatePlacementGhost`) drives it every
+frame the bowl ghost is active, and `ShowFor` gives the `husnisse_preview` command and the future ledger
+panel the same visual. `PlacementGuard` was rewritten onto the preview, so the refusal path has one
+implementation. `BowlPiece.HoverText` gained the claim line (`Claim 25 m (ward)` or `Claim refused — …`);
+`Diagnostics` gained the effective centre and `refusal_code`; `HusnissePlugin` registers
+`husnisse_preview [x z] [radius] [player]`. Evidence: `docs/evidence/0.2b/` — five scenarios pass
+headlessly and with a client connected on the final build, the client's own claim log matches every
+transition, and screenshots show the ring and the native/ward hover lines.
+
+*Known limit:* the ledger panel itself is 0.3.1; 0.2b ships the seam (`ClaimPreview` + `ClaimRing`) the
+panel will call, and exposes it through the ghost, the hover and the console command.
 
 ### Phase 4 — 0.3 network core
 

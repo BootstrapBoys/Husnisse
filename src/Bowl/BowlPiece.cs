@@ -281,19 +281,42 @@ namespace Husnisse.Bowl
         public string HoverText()
         {
             var name = DisplayName();
+            string body;
 
             if (!RequiresFeeding)
             {
-                return name + "\n" + Loc.T(Loc.BowlAltRequire);
+                body = Loc.T(Loc.BowlAltRequire);
+            }
+            else
+            {
+                body = Satiety > 0f
+                    ? string.Format(Loc.T(Loc.BowlHover), Satiety, Mood)
+                    : Loc.T(Loc.BowlHoverEmpty);
+
+                if (!WorldPolicy.FeedingRequired) body += Loc.T(Loc.BowlAltOff);
             }
 
-            var body = Satiety > 0f
-                ? string.Format(Loc.T(Loc.BowlHover), Satiety, Mood)
-                : Loc.T(Loc.BowlHoverEmpty);
+            var claim = ClaimLine();
+            return claim != null ? name + "\n" + body + "\n" + claim : name + "\n" + body;
+        }
 
-            var text = name + "\n" + body;
-            if (!WorldPolicy.FeedingRequired) text += Loc.T(Loc.BowlAltOff);
-            return text;
+        /// <summary>
+        /// The claim as the player needs to read it: its radius and where the ground came from, or
+        /// why it is refused. Same numbers as `husnisse_status`, in the place players actually look.
+        /// </summary>
+        private string ClaimLine()
+        {
+            if (_claim == null) return null;
+
+            if (_claim.Suppressed)
+            {
+                var reason = ClaimText.KeyFor(_claim.RefusalCode);
+                var phrase = reason != null ? Loc.T(reason) : _claim.Refusal;
+                return string.Format(Loc.T(Loc.BowlHoverClaimRefused), phrase);
+            }
+
+            return string.Format(Loc.T(Loc.BowlHoverClaim), _claim.Radius,
+                                 Loc.T(ClaimText.SourceKey(_claim.Source)));
         }
 
         /// <summary>Alt-interact requests the toggle from the server; the server owns the ZDO write.</summary>

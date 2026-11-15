@@ -2,11 +2,16 @@
 
 ## 0.2.0
 
-Internal only — claim ownership groundwork; 0.2 is not released.
+Internal only — claim ownership and its range preview; 0.2 is not released.
 
 - A bowl standing inside a WardIsLove ward takes that ward's range, owner and permitted players as its claim. Outside every ward the bowl keeps its own radius and its placer, exactly as before.
 - A second bowl placed inside the same ward refuses to settle, and a nisse never uses a container standing inside a ward it does not own.
 - Removing the ward, or moving the bowl out of it, returns the bowl to the radius and owner it had before, without a restart.
+- **Range preview**: while a bowl is held, a ring on the ground shows the claim it would take — the ward's bubble inside a ward, the configured radius outside one. It is green where the bowl can be placed and red where it is refused; the refusal comes from the same calculation the guard uses, so the ring and the message always agree.
+- Hovering a placed bowl states its claim (`Claim 25 m (ward)`), or why the claim is refused (`Claim refused — another bowl is already here`).
+- `husnisse_preview [x z] [radius] [player]` prints the claim a bowl would get at a point and draws the same ring for eight seconds. This is the data seam the 0.3.1 ledger will read.
+- `husnisse_status` claim lines now carry the effective centre and a machine-readable refusal code, and the placement refusal is logged with the verdict that produced it.
+- Parity harness: five claim scenarios (native, ward, ward removed, second bowl in a ward, overlap) plus `husnisse preview` / `expect_preview`. All pass headlessly and with a real client connected on the same build; the client's own claim state matches every transition.
 
 ## 0.1.4
 
