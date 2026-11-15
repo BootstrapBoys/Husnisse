@@ -1,0 +1,61 @@
+scenario queued: husnisse-031-teach.cmd
+15:13:36.561   comp MeshRenderer on model
+15:13:36.561   comp BoxCollider on model
+15:13:37.083 > spawn Wood 10 ground 10
+15:13:37.084 spawned Wood(Clone) at (10.00, 1.00, 10.00)  zdo=-1740179663:2419  owner=-1740179663  activeSelf=True  mineRock5=False  mineRock=False  character=False
+15:13:37.084   comp Transform on Wood(Clone)
+15:13:37.084   comp Rigidbody on Wood(Clone)
+15:13:37.084   comp ZNetView on Wood(Clone)
+15:13:37.084   comp ZSyncTransform on Wood(Clone)
+15:13:37.084   comp ItemDrop on Wood(Clone)
+15:13:37.084   comp Floating on Wood(Clone)
+15:13:37.084   comp ParticleSystemRenderer on Wood(Clone)
+15:13:37.084   comp ParticleSystem on Wood(Clone)
+15:13:37.084   comp LODGroup on Wood(Clone)
+15:13:37.084   comp Transform on log (1)
+15:13:37.084   comp MeshFilter on log (1)
+15:13:37.084   comp MeshRenderer on log (1)
+15:13:37.586 > spawn Barley 7 ground 7
+15:13:37.586 spawned Barley(Clone) at (7.00, 1.00, 7.00)  zdo=-1740179663:2420  owner=-1740179663  activeSelf=True  mineRock5=False  mineRock=False  character=False
+15:13:37.586   comp Transform on Barley(Clone)
+15:13:37.586   comp Rigidbody on Barley(Clone)
+15:13:37.586   comp ZNetView on Barley(Clone)
+15:13:37.586   comp ZSyncTransform on Barley(Clone)
+15:13:37.586   comp ItemDrop on Barley(Clone)
+15:13:37.586   comp ParticleSystemRenderer on Barley(Clone)
+15:13:37.586   comp ParticleSystem on Barley(Clone)
+15:13:37.586   comp LODGroup on Barley(Clone)
+15:13:37.586   comp Transform on blast
+15:13:37.586   comp MeshFilter on blast
+15:13:37.586   comp MeshRenderer on blast
+15:13:37.586   comp Transform on collider
+15:13:38.088 > wait 60
+15:13:38.089 wait: 60s (server keeps ticking)
+15:14:38.439 > container piece_chest_wood 0
+15:14:38.450 container piece_chest_wood stacks=1 items=6
+15:14:38.942 > expect_last stacks=1
+15:14:38.942   expect_last 'stacks=1' in 'container piece_chest_wood stacks=1 items=6': ok
+15:14:39.444 > expect_ge container piece_chest_wood.* items=(\d+) 6
+15:14:39.446   expect>= /container piece_chest_wood.* items=(\d+)/ 6 >= 6: ok
+15:14:39.946 > container piece_chest_wood 1
+15:14:39.956 container piece_chest_wood[1] stacks=1 items=6
+15:14:40.449 > expect_last stacks=1
+15:14:40.449   expect_last 'stacks=1' in 'container piece_chest_wood[1] stacks=1 items=6': ok
+15:14:40.952 > expect_ge container piece_chest_wood.* items=(\d+) 6
+15:14:40.952   expect>= /container piece_chest_wood.* items=(\d+)/ 6 >= 6: ok
+15:14:41.456 > container piece_chest_wood 2
+15:14:41.468 container piece_chest_wood[2] stacks=1 items=7
+15:14:41.958 > expect_last stacks=1
+15:14:41.959   expect_last 'stacks=1' in 'container piece_chest_wood[2] stacks=1 items=7': ok
+15:14:42.461 > expect_ge container piece_chest_wood.* items=(\d+) 6
+15:14:42.461   expect>= /container piece_chest_wood.* items=(\d+)/ 7 >= 6: ok
+15:14:42.963 > container piece_chest_wood 3
+15:14:42.972 container piece_chest_wood[3] stacks=1 items=3
+15:14:43.465 > expect_last stacks=1 items=3
+15:14:43.466   expect_last 'stacks=1 items=3' in 'container piece_chest_wood[3] stacks=1 items=3': ok
+15:14:43.968 > drops 40
+15:14:43.980 drops loaded=0 nearest=-1.0m farthest=-1.0m
+15:14:43.981 drops within 40m of (7.00, 1.00, 7.00): 0 of 0 loaded
+15:14:44.471 > expect_le drops within 40m of .*: (\d+) of \d+ loaded 0
+15:14:44.471   expect<= /drops within 40m of .*: (\d+) of \d+ loaded/ 0 <= 0: ok
+15:14:44.973 scenario done: PASS (19 assertions, 0 failed)

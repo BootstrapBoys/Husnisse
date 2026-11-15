@@ -1,0 +1,61 @@
+scenario queued: husnisse-031-rules.cmd
+15:17:49.301 console > husnisse_rules export
+15:17:49.806 > logcheck BSBLogs/Husnisse.log rules export claims=1 containers=3 path=.*rules.yaml
+15:17:49.806   logcheck BSBLogs/Husnisse.log /rules export claims=1 containers=3 path=.*rules.yaml/: ok 'rules export claims=1 containers=3 path=V:\ValheimTest2\BepInEx\config\Husnisse\rules.yaml'
+15:17:50.308 > console husnisse_rules plan
+15:17:50.310 console > husnisse_rules plan
+15:17:50.810 > logcheck BSBLogs/Husnisse.log rules plan ok=True unmapped=0
+15:17:50.811   logcheck BSBLogs/Husnisse.log /rules plan ok=True unmapped=0/: ok 'rules plan ok=True unmapped=0'
+15:17:51.313 > logcheck BSBLogs/Husnisse.log yaml row 1 .*target=piece_chest_wood .*rule=cat:metals@2
+15:17:51.313   logcheck BSBLogs/Husnisse.log /yaml row 1 .*target=piece_chest_wood .*rule=cat:metals@2/: ok 'yaml row 1 claim=1 file=piece_chest_wood 3,3 target=piece_chest_wood 3,3 net=True rule=cat:metals@2'
+15:17:51.815 > logcheck BSBLogs/Husnisse.log yaml row 2 .*rule=custom:\$item_coal,\$item_wood@3
+15:17:51.816   logcheck BSBLogs/Husnisse.log /yaml row 2 .*rule=custom:\$item_coal,\$item_wood@3/: ok 'yaml row 2 claim=1 file=piece_chest_wood 6,3 target=piece_chest_wood 6,3 net=True rule=custom:$item_coal,$item_wood@3'
+15:17:52.318 > logcheck BSBLogs/Husnisse.log yaml row 3 .*rule=cat:wood
+15:17:52.318   logcheck BSBLogs/Husnisse.log /yaml row 3 .*rule=cat:wood/: ok 'yaml row 3 claim=1 file=piece_chest_wood 9,3 target=piece_chest_wood 9,3 net=True rule=cat:wood'
+15:17:52.821 > console husnisse_rule set piece_chest_wood deposit 0
+15:17:52.823 console > husnisse_rule set piece_chest_wood deposit 0
+15:17:53.323 > console husnisse_rule set piece_chest_wood none 1
+15:17:53.325 console > husnisse_rule set piece_chest_wood none 1
+15:17:53.825 > console husnisse_rule net piece_chest_wood off 2
+15:17:53.828 console > husnisse_rule net piece_chest_wood off 2
+15:17:54.328 > console husnisse_rule set piece_chest_wood cat:food 2
+15:17:54.330 console > husnisse_rule set piece_chest_wood cat:food 2
+15:17:54.830 > console husnisse_rule list
+15:17:54.832 console > husnisse_rule list
+15:17:55.334 > logcheck BSBLogs/Husnisse.log husnisse rule piece_chest_wood\[0\].*net=on rule=deposit
+15:17:55.334   logcheck BSBLogs/Husnisse.log /husnisse rule piece_chest_wood\[0\].*net=on rule=deposit/: ok 'husnisse rule piece_chest_wood[0] 3,3 net=on rule=deposit'
+15:17:55.839 > logcheck BSBLogs/Husnisse.log husnisse rule piece_chest_wood\[1\].*net=on rule=none
+15:17:55.840   logcheck BSBLogs/Husnisse.log /husnisse rule piece_chest_wood\[1\].*net=on rule=none/: ok 'husnisse rule piece_chest_wood[1] 6,3 net=on rule=none'
+15:17:56.342 > logcheck BSBLogs/Husnisse.log husnisse rule piece_chest_wood\[2\].*net=off rule=cat:food
+15:17:56.342   logcheck BSBLogs/Husnisse.log /husnisse rule piece_chest_wood\[2\].*net=off rule=cat:food/: ok 'husnisse rule piece_chest_wood[2] 9,3 net=off rule=cat:food'
+15:17:56.844 > console husnisse_rules plan
+15:17:56.847 console > husnisse_rules plan
+15:17:57.347 > console husnisse_rules apply
+15:17:57.349 console > husnisse_rules apply
+15:17:57.849 > logcheck BSBLogs/Husnisse.log rules apply applied=3 claims=1
+15:17:57.850   logcheck BSBLogs/Husnisse.log /rules apply applied=3 claims=1/: ok 'rules apply applied=3 claims=1'
+15:17:58.354 > console husnisse_rule list
+15:17:58.356 console > husnisse_rule list
+15:17:58.856 > logcheck BSBLogs/Husnisse.log husnisse rule piece_chest_wood\[0\].*net=on rule=cat:metals prio=2
+15:17:58.857   logcheck BSBLogs/Husnisse.log /husnisse rule piece_chest_wood\[0\].*net=on rule=cat:metals prio=2/: ok 'husnisse rule piece_chest_wood[0] 3,3 net=on rule=cat:metals prio=2'
+15:17:59.359 > logcheck BSBLogs/Husnisse.log husnisse rule piece_chest_wood\[1\].*net=on rule=custom:2 prio=3
+15:17:59.359   logcheck BSBLogs/Husnisse.log /husnisse rule piece_chest_wood\[1\].*net=on rule=custom:2 prio=3/: ok 'husnisse rule piece_chest_wood[1] 6,3 net=on rule=custom:2 prio=3'
+15:17:59.861 > logcheck BSBLogs/Husnisse.log husnisse rule piece_chest_wood\[2\].*net=on rule=cat:wood
+15:17:59.862   logcheck BSBLogs/Husnisse.log /husnisse rule piece_chest_wood\[2\].*net=on rule=cat:wood/: ok 'husnisse rule piece_chest_wood[2] 9,3 net=on rule=cat:wood'
+15:18:00.364 > destroy piece_chest_wood 0
+15:18:00.374 destroyed piece_chest_wood(Clone)[0]
+15:18:00.867 > console husnisse_rules plan
+15:18:00.870 console > husnisse_rules plan
+15:18:01.370 > logcheck BSBLogs/Husnisse.log rules plan ok=True unmapped=1
+15:18:01.370   logcheck BSBLogs/Husnisse.log /rules plan ok=True unmapped=1/: ok 'rules plan ok=True unmapped=1'
+15:18:01.872 > console husnisse_rules apply
+15:18:01.874 console > husnisse_rules apply
+15:18:02.375 > logcheck BSBLogs/Husnisse.log rules apply refused: plan has 1 unmapped
+15:18:02.375   logcheck BSBLogs/Husnisse.log /rules apply refused: plan has 1 unmapped/: ok 'rules apply refused: plan has 1 unmapped'
+15:18:02.877 > console husnisse_rule list
+15:18:02.880 console > husnisse_rule list
+15:18:03.380 > logcheck BSBLogs/Husnisse.log husnisse rule piece_chest_wood\[0\].*net=on rule=custom:2 prio=3
+15:18:03.380   logcheck BSBLogs/Husnisse.log /husnisse rule piece_chest_wood\[0\].*net=on rule=custom:2 prio=3/: ok 'husnisse rule piece_chest_wood[0] 6,3 net=on rule=custom:2 prio=3'
+15:18:03.883 > logcheck BSBLogs/Husnisse.log husnisse rule piece_chest_wood\[1\].*net=on rule=cat:wood
+15:18:03.883   logcheck BSBLogs/Husnisse.log /husnisse rule piece_chest_wood\[1\].*net=on rule=cat:wood/: ok 'husnisse rule piece_chest_wood[1] 9,3 net=on rule=cat:wood'
+15:18:04.385 scenario done: PASS (26 assertions, 0 failed)

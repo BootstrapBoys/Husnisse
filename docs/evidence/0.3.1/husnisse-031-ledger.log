@@ -1,0 +1,61 @@
+scenario queued: husnisse-031-ledger.cmd
+15:15:41.000 drops loaded=1 nearest=0.0m farthest=0.0m
+15:15:41.000 drops within 3m of (13.00, 1.00, 13.00): 1 of 1 loaded
+15:15:41.001   $item_copperscrap x1 at (13.00, 1.00, 13.00) dist=0.0
+15:15:41.489 > expect_ge drops within 3m of .*: (\d+) of \d+ loaded 1
+15:15:41.489   expect>= /drops within 3m of .*: (\d+) of \d+ loaded/ 1 >= 1: ok
+15:15:41.991 > console husnisse_ledger pickup metals on
+15:15:41.993 console > husnisse_ledger pickup metals on
+15:15:42.494 > husnisse status
+15:15:42.673 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+15:15:42.673 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+15:15:42.673 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
+15:15:42.673 husnisse status rule -1740179663:2421 3,3 net=on rule=cat:metals prio=4
+15:15:42.673 husnisse status rule -1740179663:2421 9,3 net=on rule=cat:wood prio=2
+15:15:42.673 husnisse status rule -1740179663:2421 6,3 net=off rule=custom:2 prio=3
+15:15:42.673 husnisse status [rules] containers=3 ruled=3 deposits=0 blacklisted=1
+15:15:42.673 husnisse status claim -1740179663:2421 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=4 stacks=1 pickup=all unknown=0 lod=far nisse=yes
+15:15:42.673 husnisse status [flow] claim=-1740179663:2421 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+15:15:42.674 husnisse status lines=9
+15:15:43.011 > expect pickup=all
+15:15:43.011   expect 'pickup=all': ok
+15:15:43.514 > wait 20
+15:15:43.514 wait: 20s (server keeps ticking)
+15:16:03.649 > container piece_chest_wood 0
+15:16:03.662 container piece_chest_wood stacks=1 items=1
+15:16:04.168 > expect_last stacks=1 items=1
+15:16:04.169   expect_last 'stacks=1 items=1' in 'container piece_chest_wood stacks=1 items=1': ok
+15:16:04.671 > pocketfill CopperScrap 20
+15:16:04.686 pocketfill player=0 stacks=1 items=20
+15:16:05.173 > pockets
+15:16:05.174 pockets player=0 stacks=1 items=20
+15:16:05.676 > expect_last stacks=1 items=20
+15:16:05.676   expect_last 'stacks=1 items=20' in 'pockets player=0 stacks=1 items=20': ok
+15:16:06.179 > pocketsplit CopperScrap 10
+15:16:06.192 pocketsplit CopperScrap split=10 stacks=2 items=20
+15:16:06.681 > pockets
+15:16:06.681 pockets player=0 stacks=2 items=20
+15:16:07.184 > expect_last stacks=2 items=20
+15:16:07.184   expect_last 'stacks=2 items=20' in 'pockets player=0 stacks=2 items=20': ok
+15:16:07.686 > pocketempty
+15:16:07.710 pocketempty player=0 before stacks=2 items=20
+15:16:08.009 pocketempty nisse_bowl=-1740179663:2421 bowl_zdo=-1740179663:2421 claim_here=True player_pos=(1.20, 2.20, 1.20) bowl_pos=(0.00, 1.00, 0.00) dist=2.1
+15:16:08.021 pocketempty interact: NisseHands=True
+15:16:08.021 pocketempty after stacks=1 items=20
+15:16:08.326 > logcheck BSBLogs/Husnisse.log \[Orders\] pockets merged units=10
+15:16:08.327   logcheck BSBLogs/Husnisse.log /\[Orders\] pockets merged units=10/: ok '[Orders] pockets merged units=10'
+15:16:08.829 > pockets
+15:16:08.829 pockets player=0 stacks=1 items=20
+15:16:09.332 > expect_last stacks=1 items=20
+15:16:09.332   expect_last 'stacks=1 items=20' in 'pockets player=0 stacks=1 items=20': ok
+15:16:09.834 > wait 25
+15:16:09.834 wait: 25s (server keeps ticking)
+15:16:34.978 > container piece_chest_wood 0
+15:16:34.987 container piece_chest_wood stacks=1 items=21
+15:16:35.480 > expect_last stacks=1 items=21
+15:16:35.480   expect_last 'stacks=1 items=21' in 'container piece_chest_wood stacks=1 items=21': ok
+15:16:35.983 > pockets
+15:16:35.983 pockets player=0 stacks=0 items=0
+15:16:36.485 > expect_last stacks=0 items=0
+15:16:36.485   expect_last 'stacks=0 items=0' in 'pockets player=0 stacks=0 items=0': ok
+15:16:36.988 scenario done: PASS (25 assertions, 0 failed)

@@ -1,0 +1,155 @@
+Husnisse 0.3.1
+started 2026-11-15 10:10:37
+
+
+== world ready @ 10:11:08 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=0 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+
+== claim registered @ 10:13:11 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+claim -1740179663:2410 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 pickup=all unknown=0 lod=- nisse=none
+[flow] claim=-1740179663:2410 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+[Teach] watching player=0 name=... claim=-1740179663:2410 for=120s
+[Teach] learned name=$item_copperscrap chest=piece_chest_wood@3,3 rule=custom:1
+[Teach] learned name=$item_wood chest=piece_chest_wood@6,3 rule=custom:1
+[Teach] learned name=$item_barley chest=piece_chest_wood@9,3 rule=custom:1
+[Teach] stopped watching player=0
+[Flow] drain tokens=5.0 queued=1 lane_ground=1 lane_container=0 lane_pockets=0 next=ground budget=1
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(3,3) why=custom:1 already holds it src=ground claim=-1740179663:2410
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(3,3) why=custom:1 already holds it src=ground
+[Flow] drain tokens=5.0 queued=3 lane_ground=3 lane_container=0 lane_pockets=0 next=ground budget=3
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(6,3) why=custom:1 already holds it src=ground claim=-1740179663:2410
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(6,3) why=custom:1 already holds it src=ground
+[Flow] drain tokens=5.0 queued=4 lane_ground=4 lane_container=0 lane_pockets=0 next=ground budget=4
+[Flow] trip stacks=2 target=piece_chest_wood(Clone) at=(9,3) why=custom:1 already holds it src=ground claim=-1740179663:2410
+[Flow] landed moved=2 target=piece_chest_wood(Clone) at=(9,3) why=custom:1 already holds it src=ground
+[Flow] drain tokens=5.0 queued=1 lane_ground=1 lane_container=0 lane_pockets=0 next=ground budget=1
+
+== claim removed @ 10:14:52 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=0 trips=0 nisses=1 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+
+== claim registered @ 10:14:53 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+claim -1740179663:2421 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 pickup=all unknown=0 lod=- nisse=none
+[flow] claim=-1740179663:2421 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+ledger claim=-1740179663:2421 source=native owner=0 r=20 rows=4 networked=0 ruled=0 unknown=4 pickup=all presets=builtin
+ledger row 0 piece_chest_wood [0] 3,3 net=off rule=none blacklisted=False ui=True unknown=True
+ledger row 1 piece_chest_wood [1] 6,3 net=off rule=none blacklisted=False ui=True unknown=True
+ledger row 2 piece_chest_wood [2] 9,3 net=off rule=none blacklisted=False ui=True unknown=True
+ledger row 3 piece_chest_wood [3] 12,3 net=off rule=none blacklisted=False ui=True unknown=True
+ledger done claims=1 rows=4 unknown=4
+ledger claim=-1740179663:2421 source=native owner=0 r=20 rows=4 networked=0 ruled=0 unknown=4 pickup=all presets=builtin
+ledger row 0 piece_chest_wood [0] 3,3 net=off rule=none blacklisted=False ui=True unknown=True
+ledger row 1 piece_chest_wood [1] 6,3 net=off rule=none blacklisted=False ui=True unknown=True
+ledger row 2 piece_chest_wood [2] 9,3 net=off rule=none blacklisted=False ui=True unknown=True
+ledger row 3 piece_chest_wood [3] 12,3 net=off rule=none blacklisted=False ui=True unknown=True
+ledger done claims=1 rows=4 unknown=4
+ledger wrote piece_chest_wood[0] 3,3 net=on rule=cat:metals
+ledger claim=-1740179663:2421 source=native owner=0 r=20 rows=4 networked=1 ruled=1 unknown=3 pickup=all presets=builtin
+husnisse rule piece_chest_wood[1] 6,3 net=off rule=custom:2 prio=3
+ledger wrote piece_chest_wood[2] 9,3 net=off rule=cat:wood prio=2
+ledger claim=-1740179663:2421 source=native owner=0 r=20 rows=4 networked=1 ruled=3 unknown=1 pickup=all presets=builtin
+ledger wrote piece_chest_wood[2] 9,3 net=on rule=cat:wood prio=2
+ledger claim=-1740179663:2421 source=native owner=0 r=20 rows=4 networked=2 ruled=3 unknown=1 pickup=all presets=builtin
+ledger wrote piece_chest_wood[0] 3,3 net=on rule=cat:metals prio=4
+ledger claim=-1740179663:2421 source=native owner=0 r=20 rows=4 networked=2 ruled=3 unknown=1 pickup=all presets=builtin
+ledger wrote piece_chest_wood[3] 12,3 net=off rule=none blacklisted
+ledger claim=-1740179663:2421 source=native owner=0 r=20 rows=4 networked=2 ruled=3 unknown=0 pickup=all presets=builtin
+[Ledger] pickup wood,food,trophies,valuables,building,consumables,tools claim=-1740179663:2421
+ledger claim=-1740179663:2421 source=native owner=0 r=20 rows=4 networked=2 ruled=3 unknown=0 pickup=wood,food,trophies,valuables,building,consumables,tools presets=builtin
+[Flow] drain tokens=5.0 queued=1 lane_ground=1 lane_container=0 lane_pockets=0 next=ground budget=1
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(9,3) why=cat:wood p=2 src=ground claim=-1740179663:2421
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(9,3) why=cat:wood p=2 src=ground
+[Flow] drain tokens=5.0 queued=1 lane_ground=1 lane_container=0 lane_pockets=0 next=ground budget=1
+[Ledger] pickup all claim=-1740179663:2421
+ledger claim=-1740179663:2421 source=native owner=0 r=20 rows=4 networked=2 ruled=3 unknown=0 pickup=all presets=builtin
+[Flow] drain tokens=5.0 queued=1 lane_ground=1 lane_container=0 lane_pockets=0 next=ground budget=1
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(3,3) why=cat:metals p=4 src=ground claim=-1740179663:2421
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(3,3) why=cat:metals p=4 src=ground
+[Flow] drain tokens=5.0 queued=1 lane_ground=1 lane_container=0 lane_pockets=0 next=ground budget=1
+[Orders] pockets merged units=10 claim=-1740179663:2421
+[Orders] empty pockets queued=1 unmatched=0 claim=-1740179663:2421
+[Orders] order EmptyPockets -> Queued player=0 count=1
+[Flow] drain tokens=5.0 queued=1 lane_ground=0 lane_container=0 lane_pockets=1 next=pockets budget=1
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(3,3) why=cat:metals p=4 remembered src=pockets claim=-1740179663:2421
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(3,3) why=cat:metals p=4 remembered src=pockets
+
+== claim removed @ 10:16:44 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=0 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+
+== claim registered @ 10:16:45 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+claim -1740179663:2431 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 pickup=all unknown=0 lod=- nisse=none
+[flow] claim=-1740179663:2431 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+husnisse rule piece_chest_wood[0] 3,3 net=off rule=cat:metals prio=2
+husnisse rule piece_chest_wood[0] 3,3 net=on rule=cat:metals prio=2
+husnisse rule piece_chest_wood[1] 6,3 net=off rule=custom:2 prio=3
+husnisse rule piece_chest_wood[1] 6,3 net=on rule=custom:2 prio=3
+husnisse rule piece_chest_wood[2] 9,3 net=off rule=cat:wood
+husnisse rule piece_chest_wood[2] 9,3 net=on rule=cat:wood
+rules preset metals $item_coal presets=file:metals
+category metals count=1
+  $item_coal
+[Flow] drain tokens=5.0 queued=1 lane_ground=1 lane_container=0 lane_pockets=0 next=ground budget=1
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(6,3) why=custom:2 p=3 src=ground claim=-1740179663:2431
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(6,3) why=custom:2 p=3 src=ground
+[Flow] drain tokens=5.0 queued=1 lane_ground=1 lane_container=0 lane_pockets=0 next=ground budget=1
+rules preset metals builtin presets=builtin
+[Flow] drain tokens=5.0 queued=1 lane_ground=1 lane_container=0 lane_pockets=0 next=ground budget=1
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(3,3) why=cat:metals p=2 src=ground claim=-1740179663:2431
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(3,3) why=cat:metals p=2 src=ground
+[Flow] drain tokens=5.0 queued=1 lane_ground=1 lane_container=0 lane_pockets=0 next=ground budget=1
+rules export claims=1 containers=3 path=V:\ValheimTest2\BepInEx\config\Husnisse\rules.yaml
+yaml plan rows=3 claims=1 unmapped=0 errors=0 source=V:\ValheimTest2\BepInEx\config\Husnisse\rules.yaml
+yaml row 1 claim=1 file=piece_chest_wood 3,3 target=piece_chest_wood 3,3 net=True rule=cat:metals@2 blacklist=False
+yaml row 2 claim=1 file=piece_chest_wood 6,3 target=piece_chest_wood 6,3 net=True rule=custom:$item_coal,$item_wood@3 blacklist=False
+yaml row 3 claim=1 file=piece_chest_wood 9,3 target=piece_chest_wood 9,3 net=True rule=cat:wood blacklist=False
+rules plan ok=True unmapped=0
+husnisse rule piece_chest_wood[0] 3,3 net=on rule=deposit
+husnisse rule piece_chest_wood[1] 6,3 net=on rule=none
+husnisse rule piece_chest_wood[2] 9,3 net=off rule=cat:wood
+husnisse rule piece_chest_wood[2] 9,3 net=off rule=cat:food
+[Flow] drain tokens=5.0 queued=1 lane_ground=0 lane_container=1 lane_pockets=0 next=container budget=1
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(6,3) why=no rule src=container claim=-1740179663:2431
+husnisse rule piece_chest_wood[0] 3,3 net=on rule=deposit
+husnisse rule piece_chest_wood[1] 6,3 net=on rule=none
+husnisse rule piece_chest_wood[2] 9,3 net=off rule=cat:food
+husnisse rules listed=3
+yaml plan rows=3 claims=1 unmapped=0 errors=0 source=V:\ValheimTest2\BepInEx\config\Husnisse\rules.yaml
+yaml row 1 claim=1 file=piece_chest_wood 3,3 target=piece_chest_wood 3,3 net=True rule=cat:metals@2 blacklist=False
+yaml row 2 claim=1 file=piece_chest_wood 6,3 target=piece_chest_wood 6,3 net=True rule=custom:$item_coal,$item_wood@3 blacklist=False
+yaml row 3 claim=1 file=piece_chest_wood 9,3 target=piece_chest_wood 9,3 net=True rule=cat:wood blacklist=False
+rules plan ok=True unmapped=0
+rules apply applied=3 claims=1 pickup=1
+husnisse rule piece_chest_wood[0] 3,3 net=on rule=cat:metals prio=2
+husnisse rule piece_chest_wood[1] 6,3 net=on rule=custom:2 prio=3
+husnisse rule piece_chest_wood[2] 9,3 net=on rule=cat:wood
+husnisse rules listed=3
+yaml plan rows=3 claims=1 unmapped=1 errors=0 source=V:\ValheimTest2\BepInEx\config\Husnisse\rules.yaml
+yaml row 1 claim=1 file=piece_chest_wood 3,3 target=UNMAPPED net=True rule=cat:metals@2 blacklist=False
+yaml row 2 claim=1 file=piece_chest_wood 6,3 target=piece_chest_wood 6,3 net=True rule=custom:$item_coal,$item_wood@3 blacklist=False
+yaml row 3 claim=1 file=piece_chest_wood 9,3 target=piece_chest_wood 9,3 net=True rule=cat:wood blacklist=False
+rules plan ok=True unmapped=1
+rules apply refused: plan has 1 unmapped entr(y/ies); map them first
+[Flow] landed moved=0 target=piece_chest_wood(Clone) at=(6,3) why=no rule src=container
+husnisse rule piece_chest_wood[0] 6,3 net=on rule=custom:2 prio=3
+husnisse rule piece_chest_wood[1] 9,3 net=on rule=cat:wood
+husnisse rules listed=2
