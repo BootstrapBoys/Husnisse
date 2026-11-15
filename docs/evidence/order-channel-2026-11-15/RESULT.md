@@ -12,8 +12,14 @@ for the reason and the exact commands.
 | Harness | `TestHarness.dll` sha256 `a082605d6b98` |
 | Tree | `V:\ValheimOrders`, port 2856, world `MTTest` (fixture), `build_parity: MATCH E5E761C58099`, live server untouched (pid 7284) |
 | Config | `Feeding Required = false` (per-bowl opt-in), `Debug Logging = true`, `Allow Orders = true`, `Bowl Drain Minutes = 20` |
-| Drivers | `TestHarness` commands `orderid`, `pocketorder`, `pockets`, `container`, `interact`, `zdo`, `logcheck` |
-| Scenarios | `tests/10-husnisse-orders.cmd` (PASS 15/15), `scenarios/husnisse-orders-toggle.cmd` (PASS 6/6) |
+| Drivers | `TestHarness` commands `orderid`, `pocketorder`, `pockets`, `handover`, `container`, `interact`, `zdo`, `logcheck` |
+| Scenarios | `tests/10-husnisse-orders.cmd` (PASS 15/15), `scenarios/husnisse-orders-toggle.cmd` (PASS 6/6), `scenarios/husnisse-orders-handover.cmd` (PASS 4/4) |
+
+The proof is against `3a9b4e09ae2f`. Between that run and this note landing, card `t_fed257f1` committed
+two 0.3a fixes (`a2ce928`, `8be7f7a`) into the same tree, so a rebuild of the same commit no longer
+produces that byte-identical DLL (the surrounding 0.3a code changed). The order-channel files are
+unchanged — `0f9244d` carries exactly what was tested — but the next run should rebuild and re-run the
+three scenarios rather than quote these numbers as current.
 
 ## The three faults and what changed
 
