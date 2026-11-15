@@ -1,0 +1,200 @@
+13:32:56.820 harness ready - write commands to V:\ValheimTest2\BepInEx\config\harness.cmd
+13:32:56.820 scene: not ready  server: False
+13:33:29.920 harness patch: object culling gated by HoldObjects
+13:33:30.478 mt master: Enabled=True (session none)
+13:33:30.478 scenario loaded: 53 command(s)
+13:33:30.478 > cleanup
+13:33:30.924 mt master: Enabled=True (session none)
+13:33:30.924 cleanup done
+13:33:31.305 > hold on
+13:33:31.305 hold: on (culling suppressed)
+13:33:31.811 > spawn husnisse_bowl 0 ground 0
+13:33:31.902 spawned husnisse_bowl(Clone) at (0.00, 1.00, 0.00)  zdo=-1801221635:2301  owner=-1801221635  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:33:31.903   comp Transform on husnisse_bowl(Clone)
+13:33:31.903   comp Piece on husnisse_bowl(Clone)
+13:33:31.904   comp ZNetView on husnisse_bowl(Clone)
+13:33:31.904   comp WearNTear on husnisse_bowl(Clone)
+13:33:31.904   comp LODGroup on husnisse_bowl(Clone)
+13:33:31.904   comp Container on husnisse_bowl(Clone)
+13:33:31.904   comp BowlPiece on husnisse_bowl(Clone)
+13:33:31.904   comp Transform on roof_check_pint
+13:33:31.904   comp Transform on connectionEffectPoint
+13:33:31.904   comp Transform on Capsule_blockplayer
+13:33:31.904   comp CapsuleCollider on Capsule_blockplayer
+13:33:31.904   comp Transform on Capsule_interact
+13:33:32.312 > wait 4
+13:33:32.313 wait: 4s (server keeps ticking)
+13:33:36.334 > zdo husnisse_bowl husnisse_bowl_init
+13:33:36.355 zdo husnisse_bowl.husnisse_bowl_init = int=1 bool=True
+13:33:36.836 > husnisse claims
+13:33:37.339 husnisse claim -1801221635:2301 source=native ward=0:0 owner=0 r=20 native_r=20 native_owner=0 suppressed=False refusal='' containers=0
+13:33:37.520 husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=False
+13:33:37.823 > expect_last total=1 working=1
+13:33:37.824   expect_last 'total=1 working=1' in 'husnisse claims total=1 working=1 suppressed=0 native=1 ward=0 containers=0 wards=0 ward_api=False': ok
+13:33:38.324 > spawn piece_chest_wood 3 ground 3
+13:33:38.325 spawned piece_chest_wood(Clone) at (3.00, 1.00, 3.00)  zdo=-1801221635:2303  owner=-1801221635  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:33:38.325   comp Transform on piece_chest_wood(Clone)
+13:33:38.325   comp ZNetView on piece_chest_wood(Clone)
+13:33:38.325   comp Container on piece_chest_wood(Clone)
+13:33:38.325   comp Piece on piece_chest_wood(Clone)
+13:33:38.325   comp WearNTear on piece_chest_wood(Clone)
+13:33:38.325   comp Transform on floor_2x2_snow
+13:33:38.325   comp MeshFilter on floor_2x2_snow
+13:33:38.325   comp MeshRenderer on floor_2x2_snow
+13:33:38.325   comp LODGroup on floor_2x2_snow
+13:33:38.325   comp Transform on New
+13:33:38.325   comp LODGroup on New
+13:33:38.325   comp Transform on woodchest
+13:33:38.825 > spawn Cart 6 ground 3
+13:33:38.829 spawned Cart(Clone) at (6.00, 1.00, 3.00)  zdo=-1801221635:2304  owner=-1801221635  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:33:38.829   comp Transform on Cart(Clone)
+13:33:38.829   comp Rigidbody on Cart(Clone)
+13:33:38.830   comp Vagon on Cart(Clone)
+13:33:38.830   comp Floating on Cart(Clone)
+13:33:38.830   comp ZNetView on Cart(Clone)
+13:33:38.830   comp ZSyncTransform on Cart(Clone)
+13:33:38.830   comp Piece on Cart(Clone)
+13:33:38.830   comp WearNTear on Cart(Clone)
+13:33:38.830   comp ImpactEffect on Cart(Clone)
+13:33:38.830   comp LineRenderer on Cart(Clone)
+13:33:38.830   comp LODGroup on Cart(Clone)
+13:33:38.830   comp DisableInPlacementGhost on Cart(Clone)
+13:33:39.331 > spawn Karve 9 ground 3
+13:33:39.341 spawned Karve(Clone) at (9.00, 1.00, 3.00)  zdo=-1801221635:2305  owner=-1801221635  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:33:39.341   comp Transform on Karve(Clone)
+13:33:39.341   comp MeshFilter on Karve(Clone)
+13:33:39.342   comp Rigidbody on Karve(Clone)
+13:33:39.342   comp Ship on Karve(Clone)
+13:33:39.342   comp ZNetView on Karve(Clone)
+13:33:39.342   comp ZSyncTransform on Karve(Clone)
+13:33:39.342   comp Piece on Karve(Clone)
+13:33:39.342   comp WearNTear on Karve(Clone)
+13:33:39.342   comp ImpactEffect on Karve(Clone)
+13:33:39.342   comp LODGroup on Karve(Clone)
+13:33:39.342   comp Transform on OnboardTrigger
+13:33:39.342   comp BoxCollider on OnboardTrigger
+13:33:39.919 > wait 3
+13:33:39.919 wait: 3s (server keeps ticking)
+13:33:42.928 > husnisse containers
+13:33:43.999 husnisse container piece_chest at (9.00, 0.96, 4.30) inventory=True inside=True canuse=False blacklisted=True ui=False
+13:33:44.633 husnisse container Container at (6.00, -109.67, 3.02) inventory=True inside=True canuse=False blacklisted=True ui=False
+13:33:45.077 husnisse container piece_chest_wood(Clone) at (3.00, 1.00, 3.00) inventory=True inside=True canuse=True blacklisted=False ui=True
+13:33:45.077 husnisse containers found=3
+13:33:45.382 > expect_last found=3
+13:33:45.382   expect_last 'found=3' in 'husnisse containers found=3': ok
+13:33:45.884 > husnisse container piece_chest_wood 0
+13:33:46.614 husnisse container piece_chest_wood[0] at=(3.00, 1.00, 3.00) claim=True blacklisted=False ui=True
+13:33:46.919 > expect_last claim=True blacklisted=False ui=True
+13:33:46.919   expect_last 'claim=True blacklisted=False ui=True' in 'husnisse container piece_chest_wood[0] at=(3.00, 1.00, 3.00) claim=True blacklisted=False ui=True': ok
+13:33:47.421 > husnisse container Cart
+13:33:47.999 husnisse container Container[0] at=(6.00, -207.21, 3.04) claim=True blacklisted=True ui=False
+13:33:48.302 > expect_last claim=True blacklisted=True ui=False
+13:33:48.303   expect_last 'claim=True blacklisted=True ui=False' in 'husnisse container Container[0] at=(6.00, -207.21, 3.04) claim=True blacklisted=True ui=False': ok
+13:33:48.805 > husnisse container Karve
+13:33:49.363 husnisse container piece_chest[0] at=(9.00, 0.96, 4.30) claim=True blacklisted=True ui=False
+13:33:49.672 > expect_last claim=True blacklisted=True ui=False
+13:33:49.672   expect_last 'claim=True blacklisted=True ui=False' in 'husnisse container piece_chest[0] at=(9.00, 0.96, 4.30) claim=True blacklisted=True ui=False': ok
+13:33:50.171 > console husnisse_rule netall piece_chest_wood on
+13:33:50.174 console > husnisse_rule netall piece_chest_wood on
+13:33:50.674 > logcheck BSBLogs/Husnisse.log husnisse netall piece_chest_wood on written=1
+13:33:50.677   logcheck BSBLogs/Husnisse.log /husnisse netall piece_chest_wood on written=1/: ok 'husnisse netall piece_chest_wood on written=1'
+13:33:51.175 > husnisse status
+13:33:51.370 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 feeding_required=True
+13:33:51.370 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+13:33:51.370 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
+13:33:51.370 husnisse status rule -1801221635:2301 3,3 net=on rule=none
+13:33:51.370 husnisse status [rules] containers=1 ruled=0 deposits=0 blacklisted=2
+13:33:51.370 husnisse status claim -1801221635:2301 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=1 stacks=0 lod=far nisse=yes
+13:33:51.370 husnisse status [flow] claim=-1801221635:2301 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+13:33:51.370 husnisse status lines=7
+13:33:51.708 > expect [rules] containers=1 ruled=0 deposits=0 blacklisted=2
+13:33:51.709   expect '[rules] containers=1 ruled=0 deposits=0 blacklisted=2': ok
+13:33:52.210 > console husnisse_rule net piece_chest_wood on 0
+13:33:52.212 console > husnisse_rule net piece_chest_wood on 0
+13:33:52.713 > husnisse container piece_chest_wood 0
+13:33:53.372 husnisse container piece_chest_wood[0] at=(3.00, 1.00, 3.00) claim=True blacklisted=False ui=True
+13:33:53.678 > expect_last claim=True blacklisted=False ui=True
+13:33:53.678   expect_last 'claim=True blacklisted=False ui=True' in 'husnisse container piece_chest_wood[0] at=(3.00, 1.00, 3.00) claim=True blacklisted=False ui=True': ok
+13:33:54.181 > husnisse status
+13:33:54.367 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 feeding_required=True
+13:33:54.367 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+13:33:54.367 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
+13:33:54.367 husnisse status rule -1801221635:2301 3,3 net=on rule=none
+13:33:54.367 husnisse status [rules] containers=1 ruled=0 deposits=0 blacklisted=2
+13:33:54.367 husnisse status claim -1801221635:2301 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=1 stacks=0 lod=far nisse=yes
+13:33:54.367 husnisse status [flow] claim=-1801221635:2301 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+13:33:54.368 husnisse status lines=7
+13:33:54.705 > expect [rules] containers=1 ruled=0 deposits=0 blacklisted=2
+13:33:54.705   expect '[rules] containers=1 ruled=0 deposits=0 blacklisted=2': ok
+13:33:55.207 > console husnisse_rule blacklist piece_chest_wood on 0
+13:33:55.210 console > husnisse_rule blacklist piece_chest_wood on 0
+13:33:55.729 > logcheck BSBLogs/Husnisse.log piece_chest_wood\[0\] .*net=off rule=none blacklisted
+13:33:55.730   logcheck BSBLogs/Husnisse.log /piece_chest_wood\[0\] .*net=off rule=none blacklisted/: ok 'piece_chest_wood[0] 3,3 net=off rule=none blacklisted'
+13:33:56.236 > husnisse container piece_chest_wood 0
+13:33:56.864 husnisse container piece_chest_wood[0] at=(3.00, 1.00, 3.00) claim=True blacklisted=True ui=False
+13:33:57.168 > expect_last claim=True blacklisted=True ui=False
+13:33:57.168   expect_last 'claim=True blacklisted=True ui=False' in 'husnisse container piece_chest_wood[0] at=(3.00, 1.00, 3.00) claim=True blacklisted=True ui=False': ok
+13:33:57.671 > husnisse status
+13:33:57.864 husnisse status [config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 feeding_required=True
+13:33:57.864 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+13:33:57.864 husnisse status schema=2 feeding_required=True claims=1 trips=0 nisses=1 bowl_piece=present
+13:33:57.864 husnisse status [rules] containers=0 ruled=0 deposits=0 blacklisted=3
+13:33:57.864 husnisse status claim -1801221635:2301 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=1 stacks=0 lod=far nisse=yes
+13:33:57.864 husnisse status [flow] claim=-1801221635:2301 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+13:33:57.864 husnisse status lines=6
+13:33:58.203 > expect [rules] containers=0 ruled=0 deposits=0 blacklisted=3
+13:33:58.203   expect '[rules] containers=0 ruled=0 deposits=0 blacklisted=3': ok
+13:33:58.706 > spawn CopperScrap 1 ground 1
+13:33:58.707 spawned CopperScrap(Clone) at (1.00, 1.00, 1.00)  zdo=-1801221635:2306  owner=-1801221635  activeSelf=True  mineRock5=False  mineRock=False  character=False
+13:33:58.707   comp Transform on CopperScrap(Clone)
+13:33:58.707   comp Rigidbody on CopperScrap(Clone)
+13:33:58.707   comp ZNetView on CopperScrap(Clone)
+13:33:58.707   comp ZSyncTransform on CopperScrap(Clone)
+13:33:58.707   comp ItemDrop on CopperScrap(Clone)
+13:33:58.707   comp ParticleSystemRenderer on CopperScrap(Clone)
+13:33:58.707   comp ParticleSystem on CopperScrap(Clone)
+13:33:58.707   comp LODGroup on CopperScrap(Clone)
+13:33:58.707   comp Transform on model
+13:33:58.707   comp MeshFilter on model
+13:33:58.707   comp MeshRenderer on model
+13:33:58.707   comp BoxCollider on model
+13:33:59.211 > wait 20
+13:33:59.211 wait: 20s (server keeps ticking)
+13:34:19.334 > drops 6
+13:34:19.350 drops loaded=1 nearest=0.0m farthest=0.0m
+13:34:19.351 drops within 6m of (1.00, 1.00, 1.00): 1 of 1 loaded
+13:34:19.351   $item_copperscrap x1 at (1.00, 1.00, 1.00) dist=0.0
+13:34:19.837 > expect_ge drops within 6m of .*: (\d+) of \d+ loaded 1
+13:34:19.839   expect>= /drops within 6m of .*: (\d+) of \d+ loaded/ 1 >= 1: ok
+13:34:20.340 > container piece_chest_wood 0
+13:34:20.354 container piece_chest_wood stacks=0 items=0
+13:34:20.843 > expect_last stacks=0
+13:34:20.843   expect_last 'stacks=0' in 'container piece_chest_wood stacks=0 items=0': ok
+13:34:21.345 > console husnisse_rule blacklist piece_chest_wood off 0
+13:34:21.347 console > husnisse_rule blacklist piece_chest_wood off 0
+13:34:21.847 > husnisse container piece_chest_wood 0
+13:34:22.541 husnisse container piece_chest_wood[0] at=(3.00, 1.00, 3.00) claim=True blacklisted=False ui=True
+13:34:22.846 > expect_last claim=True blacklisted=False ui=True
+13:34:22.846   expect_last 'claim=True blacklisted=False ui=True' in 'husnisse container piece_chest_wood[0] at=(3.00, 1.00, 3.00) claim=True blacklisted=False ui=True': ok
+13:34:23.348 > console husnisse_rule net piece_chest_wood on 0
+13:34:23.351 console > husnisse_rule net piece_chest_wood on 0
+13:34:23.851 > wait 35
+13:34:23.851 wait: 35s (server keeps ticking)
+13:34:59.050 > drops 6
+13:34:59.061 drops loaded=0 nearest=-1.0m farthest=-1.0m
+13:34:59.061 drops within 6m of (1.00, 1.00, 1.00): 0 of 0 loaded
+13:34:59.555 > expect_le drops within 6m of .*: (\d+) of \d+ loaded 0
+13:34:59.555   expect<= /drops within 6m of .*: (\d+) of \d+ loaded/ 0 <= 0: ok
+13:35:00.058 > container piece_chest_wood 0
+13:35:00.070 container piece_chest_wood stacks=1 items=1
+13:35:00.561 > expect_last stacks=1
+13:35:00.561   expect_last 'stacks=1' in 'container piece_chest_wood stacks=1 items=1': ok
+13:35:01.064 > husnisse container Cart
+13:35:01.819 husnisse container Container[0] at=(6.00, -4446.04, 3.05) claim=True blacklisted=True ui=False
+13:35:02.124 > expect_last claim=True blacklisted=True ui=False
+13:35:02.124   expect_last 'claim=True blacklisted=True ui=False' in 'husnisse container Container[0] at=(6.00, -4446.04, 3.05) claim=True blacklisted=True ui=False': ok
+13:35:02.626 > husnisse container Karve
+13:35:03.292 husnisse container piece_chest[0] at=(9.00, 0.96, 4.30) claim=True blacklisted=True ui=False
+13:35:03.597 > expect_last claim=True blacklisted=True ui=False
+13:35:03.597   expect_last 'claim=True blacklisted=True ui=False' in 'husnisse container piece_chest[0] at=(9.00, 0.96, 4.30) claim=True blacklisted=True ui=False': ok
+13:35:04.099 scenario done: PASS (19 assertions, 0 failed)

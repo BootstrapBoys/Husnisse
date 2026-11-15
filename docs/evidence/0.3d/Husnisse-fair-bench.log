@@ -1,0 +1,73 @@
+Husnisse 0.3.0
+started 2026-11-15 08:04:29
+
+
+== world ready @ 08:05:01 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=0 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+
+== claim registered @ 08:05:03 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+claim -1553089021:2012 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 lod=- nisse=none
+[flow] claim=-1553089021:2012 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+husnisse netall piece_chest_wood on written=3
+husnisse rule piece_chest_wood[2] 8,4 net=off rule=none
+husnisse rule piece_chest_wood[0] 4,4 net=on rule=cat:metals
+husnisse rule piece_chest_wood[1] 6,4 net=on rule=cat:wood
+husnisse rule piece_chest_wood[2] 8,4 net=off rule=deposit
+[Flow] drain tokens=5.0 queued=6 lane_ground=6 lane_container=0 lane_pockets=0 next=ground budget=5
+[Flow] trip stacks=5 target=piece_chest_wood(Clone) at=(6,4) why=cat:wood src=ground claim=-1553089021:2012
+[Flow] landed moved=5 target=piece_chest_wood(Clone) at=(6,4) why=cat:wood src=ground
+[Flow] drain tokens=5.0 queued=30 lane_ground=30 lane_container=0 lane_pockets=0 next=ground budget=5
+[Flow] trip stacks=4 target=piece_chest_wood(Clone) at=(6,4) why=cat:wood remembered src=ground claim=-1553089021:2012
+husnisse rule piece_chest_wood[2] 8,4 net=on rule=deposit
+[Flow] landed moved=4 target=piece_chest_wood(Clone) at=(6,4) why=cat:wood remembered src=ground
+[Flow] drain tokens=5.0 queued=32 lane_ground=28 lane_container=4 lane_pockets=0 next=ground budget=5
+[Flow] trip stacks=3 target=piece_chest_wood(Clone) at=(6,4) why=cat:wood remembered src=ground claim=-1553089021:2012
+[Flow] landed moved=3 target=piece_chest_wood(Clone) at=(6,4) why=cat:wood remembered src=ground
+[Flow] drain tokens=5.0 queued=30 lane_ground=26 lane_container=4 lane_pockets=0 next=container budget=5
+[Flow] drain tokens=5.0 queued=26 lane_ground=26 lane_container=0 lane_pockets=0 next=ground budget=5
+[Flow] trip stacks=5 target=piece_chest_wood(Clone) at=(6,4) why=cat:wood remembered src=ground claim=-1553089021:2012
+[Flow] landed moved=5 target=piece_chest_wood(Clone) at=(6,4) why=cat:wood remembered src=ground
+[Flow] drain tokens=5.0 queued=30 lane_ground=26 lane_container=4 lane_pockets=0 next=container budget=5
+[Flow] trip stacks=4 target=piece_chest_wood(Clone) at=(4,4) why=cat:metals src=container claim=-1553089021:2012
+[Flow] landed moved=4 target=piece_chest_wood(Clone) at=(4,4) why=cat:metals src=container
+[Flow] drain tokens=5.0 queued=26 lane_ground=26 lane_container=0 lane_pockets=0 next=ground budget=5
+[Flow] trip stacks=5 target=piece_chest_wood(Clone) at=(6,4) why=cat:wood remembered src=ground claim=-1553089021:2012
+
+== claim removed @ 08:07:12 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=0 trips=0 nisses=1 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+
+== claim registered @ 08:07:13 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+claim -1553089021:2047 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 lod=- nisse=none
+[flow] claim=-1553089021:2047 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+husnisse netall piece_chest_wood on written=200
+husnisse rule piece_chest_wood[0] -15.2,-7.2 net=on rule=cat:metals
+husnisse rule piece_chest_wood[1] -15.2,-5.6 net=on rule=cat:wood
+husnisse rule piece_chest_wood[199] 15.2,7.2 net=on rule=overflow
+[Flow] drain tokens=5.0 queued=1 lane_ground=1 lane_container=0 lane_pockets=0 next=ground budget=1
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(-15.2,-7.2) why=cat:metals src=ground claim=-1553089021:2047
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(-15.2,-7.2) why=cat:metals src=ground
+[Flow] drain tokens=5.0 queued=21 lane_ground=21 lane_container=0 lane_pockets=0 next=ground budget=5
+[Flow] trip stacks=5 target=piece_chest_wood(Clone) at=(-15.2,-7.2) why=cat:metals remembered src=ground claim=-1553089021:2047
+husnisse bench scene claim=-1553089021:2047 containers=200 network=200 samples=40 runs=10
+husnisse bench metric=index units=200 runs=10 avg_ms=3.932 max_ms=4.761
+husnisse bench metric=network units=200 runs=10 avg_ms=1.258 max_ms=1.838
+husnisse bench metric=decide units=40 runs=10 avg_ms=13.011 max_ms=15.555
+husnisse bench metric=refill units=40 runs=10 avg_ms=20.431 max_ms=31.062
+husnisse bench done queued_after_refill=39 (queue cleared)
+[Flow] landed moved=5 target=piece_chest_wood(Clone) at=(-15.2,-7.2) why=cat:metals remembered src=ground
+[Flow] drain tokens=5.0 queued=39 lane_ground=39 lane_container=0 lane_pockets=0 next=ground budget=5
+[Flow] trip stacks=3 target=piece_chest_wood(Clone) at=(-15.2,-5.6) why=cat:wood src=ground claim=-1553089021:2047

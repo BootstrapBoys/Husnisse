@@ -1,0 +1,27 @@
+Husnisse 0.3.0
+started 2026-11-15 08:32:55
+
+
+== world ready @ 08:33:29 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=0 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+
+== claim registered @ 08:33:31 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False quartermaster=absent
+schema=2 feeding_required=True claims=1 trips=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+claim -1801221635:2301 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 lod=- nisse=none
+[flow] claim=-1801221635:2301 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+husnisse netall piece_chest_wood on written=1
+husnisse rule piece_chest_wood[0] 3,3 net=on rule=none
+husnisse rule piece_chest_wood[0] 3,3 net=off rule=none blacklisted
+husnisse rule piece_chest_wood[0] still blacklisted: its prefab class is skipped by 4. Storage / Skip Carts and Ships or Skip Display Piles
+husnisse rule piece_chest_wood[0] 3,3 net=off rule=none
+husnisse rule piece_chest_wood[0] 3,3 net=on rule=none
+[Flow] drain tokens=5.0 queued=1 lane_ground=1 lane_container=0 lane_pockets=0 next=ground budget=1
+[Flow] trip stacks=1 target=piece_chest_wood(Clone) at=(3,3) why=no rule src=ground claim=-1801221635:2301
+[Flow] landed moved=1 target=piece_chest_wood(Clone) at=(3,3) why=no rule src=ground
+[Flow] drain tokens=5.0 queued=1 lane_ground=1 lane_container=0 lane_pockets=0 next=ground budget=1
