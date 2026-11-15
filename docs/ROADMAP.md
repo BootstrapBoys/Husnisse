@@ -198,9 +198,9 @@ suggestions agree. Evidence: `docs/evidence/0.3.1/`.
 into a copied world with every rule intact or nothing applied. **Met 2026-11-15** headlessly on the
 spare tree: `husnisse-031-teach` (three taught types route by name, a control chest left unwatched keeps
 no rule, 19 assertions), `husnisse-031-ledger` (classify/rule/priority/net/blacklist via the ledger
-layer, pickup filter live both ways, pocket merge, 29 assertions), `husnisse-031-rules` (preset narrowed
+layer, pickup filter live both ways, pocket merge, 25 assertions), `husnisse-031-rules` (preset narrowed
 and restored, export → mutate → apply restores every rule, one destroyed chest refuses the whole import,
-20 assertions). The **UI/ledger client proof** (the gate this card names) is **not recorded**: the one
+26 assertions). The **UI/ledger client proof** (the gate this card names) is **not recorded**: the one
 client rig was driven by a concurrent card for the whole run, so the panel was not exercised on a
 client. The exact sequence to finish it is `docs/evidence/0.3.1/client-gate.md`; the probe already
 carries the commands (`ledger`, `ledgerpanel`, `click`, `alt`, `move`) and `docs/PLAYTEST.md` §5c is
