@@ -53,6 +53,18 @@ namespace Husnisse.Flow
         public bool Finished => _phase == Phase.Done || _phase == Phase.Aborted;
         public bool Aborted => _phase == Phase.Aborted;
 
+        /// <summary>Whether this exact stack has been taken and not yet put down.</summary>
+        public bool Carries(ItemDrop.ItemData item)
+        {
+            if (item == null) return false;
+
+            foreach (var ticket in _pending)
+            {
+                if (ticket != null && ReferenceEquals(ticket.Item, item)) return true;
+            }
+            return false;
+        }
+
         private Trip(Claim claim, NisseActor nisse)
         {
             _claim = claim;

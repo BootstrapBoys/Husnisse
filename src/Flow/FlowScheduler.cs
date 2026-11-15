@@ -84,6 +84,7 @@ namespace Husnisse.Flow
                 if (nisse == null) continue;
 
                 EnqueueDrops(claim);
+                EnqueueDeposits(claim);
                 TripRunner.PokeNext(claim);
 
                 if (FlowQueue.Count(claim) == 0) TripRunner.GoHome(claim, nisse);
@@ -113,6 +114,38 @@ namespace Husnisse.Flow
             {
                 if (!StorageRouter.Decide(claim, network, drop.m_itemData, null, null).Found) continue;
                 FlowQueue.EnqueueDrop(claim, drop);
+            }
+        }
+
+        /// <summary>
+        /// A deposit chest is a source, not a destination: a player throws anything into it and the
+        /// nisse carries the contents to the chests whose rules claim them, at the queue's rate and
+        /// one visible trip at a time. It is drained only while it is on the network — an
+        /// off-network chest is not part of the claim's work at all — and a stack nothing accepts
+        /// stays in it rather than being queued for ever.
+        /// </summary>
+        private static void EnqueueDeposits(Claim claim)
+        {
+            List<Container> network = null;
+
+            foreach (var container in ContainerIndex.InClaim(claim))
+            {
+                if (ContainerNetwork.RuleOf(container).Kind != RuleKind.Deposit) continue;
+                if (!ContainerNetwork.IsOnNetwork(container)) continue;
+                if (ContainerNetwork.IsBlacklisted(container)) continue;
+
+                var inventory = container.GetInventory();
+                if (inventory == null) continue;
+
+                for (var i = 0; i < inventory.NrOfItems(); i++)
+                {
+                    var item = inventory.GetItem(i);
+                    if (item == null || item.m_shared == null) continue;
+
+                    if (network == null) network = StorageRouter.NetworkCandidates(claim);
+                    if (!StorageRouter.Decide(claim, network, item, null, container).Found) continue;
+                    FlowQueue.EnqueueContainer(claim, container, item);
+                }
             }
         }
 

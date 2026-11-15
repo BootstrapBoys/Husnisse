@@ -6,6 +6,7 @@ using Husnisse.Compat;
 using Husnisse.Core;
 using Husnisse.Localization;
 using Husnisse.Net;
+using Husnisse.Orders;
 using Husnisse.Storage;
 using TMPro;
 using UnityEngine;
@@ -14,11 +15,12 @@ using UnityEngine.UI;
 namespace Husnisse.UI
 {
     /// <summary>
-    /// Two buttons in the top-right of the container window: the network toggle and the rule button,
-    /// which opens a small panel of categories, roles, priority and the saved list. Everything shown
-    /// is read from the container's ZDO (the server's copy); a click only asks the server to write,
-    /// and the label changes when the ZDO does. A container outside a claim, a blacklisted one, or a
-    /// headless server gets no UI at all.
+    /// Three buttons in the top-right of the container window: the network toggle, the rule button,
+    /// which opens a small panel of categories, roles, priority and the saved list, and deposit-all,
+    /// which leaves the player's pockets at this chest (sorted by the nisse when it is on the
+    /// network, unsorted in the chest when it is not). Everything shown is read from the container's
+    /// ZDO (the server's copy); a click only asks the server to write, and the label changes when the
+    /// ZDO does. A container outside a claim, a blacklisted one, or a headless server gets no UI.
     /// </summary>
     public static class ContainerRulesUi
     {
@@ -33,8 +35,10 @@ namespace Husnisse.UI
         private static InventoryGui _gui;
         private static GameObject _strip;
         private static Button _netButton;
+        private static Button _depositAllButton;
         private static Button _rulesButton;
         private static TMP_Text _netLabel;
+        private static TMP_Text _depositAllLabel;
         private static TMP_Text _rulesLabel;
 
         private static GameObject _panel;
@@ -212,12 +216,17 @@ namespace Husnisse.UI
             stripRect.anchorMax = new Vector2(1f, 1f);
             stripRect.pivot = new Vector2(1f, 1f);
             stripRect.anchoredPosition = new Vector2(-6f, -4f);
-            stripRect.sizeDelta = new Vector2(236f, 26f);
+            stripRect.sizeDelta = new Vector2(356f, 26f);
             stripRect.SetAsLastSibling();
 
             _netButton = CloneButton(template, _strip.transform, "HusnisseNet", OnNetworkClicked);
             Place((RectTransform)_netButton.transform, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 0f), new Vector2(114f, 26f));
             _netLabel = LabelOf(_netButton);
+
+            _depositAllButton = CloneButton(template, _strip.transform, "HusnisseDepositAll", OnDepositAllClicked);
+            Place((RectTransform)_depositAllButton.transform, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(121f, 0f), new Vector2(114f, 26f));
+            _depositAllLabel = LabelOf(_depositAllButton);
+            SetLabel(_depositAllLabel, Loc.T(Loc.DepositAll));
 
             _rulesButton = CloneButton(template, _strip.transform, "HusnisseRules", OnRulesClicked);
             Place((RectTransform)_rulesButton.transform, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(0f, 0f), new Vector2(114f, 26f));
@@ -420,6 +429,22 @@ namespace Husnisse.UI
             if (!Ready()) return;
             RuleRpc.SendNetwork(_container.transform.position, _playerId,
                                 !ContainerNetwork.IsOnNetwork(_container));
+        }
+
+        /// <summary>
+        /// Deposit-all is about the player's own pockets, not the chest's rule, so it is not gated
+        /// on rule-edit permission: anyone who can open the chest can leave their things in it. A
+        /// networked chest turns the click into an Empty Pockets order and the server refuses it
+        /// with the usual words if the player has no claim here.
+        /// </summary>
+        private static void OnDepositAllClicked()
+        {
+            if (_container == null || _claim == null) return;
+
+            var player = Player.m_localPlayer;
+            if (player == null) return;
+
+            OrderService.RequestDepositAll(player, _claim, _container);
         }
 
         private static void OnRulesClicked()

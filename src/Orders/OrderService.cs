@@ -148,6 +148,85 @@ namespace Husnisse.Orders
             return true;
         }
 
+        /// <summary>
+        /// Deposit-all: leave everything the player is carrying in a container.
+        ///
+        /// Which half of the feature runs is the chest's own state, not a mode the player picks.
+        /// On a chest that is on the claim's network the request is Empty Pockets aimed at that
+        /// chest — the nisse takes the stacks and files them by their rules at the queue's rate —
+        /// because a player's inventory lives on the player's machine and a dedicated server has
+        /// no copy of it. On any other chest the stacks go straight in, unsorted: that is the
+        /// manual "dump it here and deal with it later" action, the player's own move, and it
+        /// needs neither a fed nisse nor a queue.
+        /// </summary>
+        public static bool RequestDepositAll(Player player, Claim claim, Container container)
+        {
+            if (player == null || container == null) return false;
+            if (!HusnisseConfig.AllowOrders.Value) return true;
+
+            if (IsNetworkTarget(claim, container)) return RequestEmptyPockets(player, claim);
+            return DumpPockets(player, container);
+        }
+
+        /// <summary>
+        /// Whether deposit-all at this chest means "the nisse sorts it". A bowl is never a
+        /// deposit target — its inventory refuses anything that is not food — and a chest that is
+        /// off the network or outside the claim is simply a chest.
+        /// </summary>
+        private static bool IsNetworkTarget(Claim claim, Container container)
+        {
+            if (claim == null || container == null) return false;
+            if (container.GetComponent<Bowl.BowlPiece>() != null) return false;
+            if (!claim.Contains(container.transform.position)) return false;
+            if (ContainerNetwork.IsBlacklisted(container)) return false;
+            return ContainerNetwork.IsOnNetwork(container);
+        }
+
+        /// <summary>
+        /// The off-network half: move every pocket stack into the chest as it is, stopping when the
+        /// chest is full. Add first, remove second — the player's stack is the only copy until the
+        /// chest holds it — so a refused add costs nothing.
+        /// </summary>
+        private static bool DumpPockets(Player player, Container container)
+        {
+            if (container.GetComponent<Bowl.BowlPiece>() != null) return false;
+
+            var inventory = player != null ? player.GetInventory() : null;
+            var target = container.GetInventory();
+            if (inventory == null || target == null) return false;
+
+            var moved = 0;
+            var spilled = 0;
+
+            foreach (var item in PocketItems(player))
+            {
+                if (item == null || item.m_shared == null) continue;
+
+                var clone = item.Clone();
+                if (!target.CanAddItem(clone) || !target.AddItem(clone))
+                {
+                    spilled++;
+                    continue;
+                }
+
+                inventory.RemoveItem(item, item.m_stack);
+                moved++;
+            }
+
+            if (moved > 0 && spilled > 0)
+                player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderDepositFull, moved, spilled));
+            else if (moved > 0)
+                player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderDeposited, moved));
+            else if (spilled > 0)
+                player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderNoRoom));
+            else
+                player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderPocketsEmpty));
+
+            Note("deposit-all dumped=" + moved + " left=" + spilled + " container=" + container.name +
+                 " at=" + Where(container.transform.position));
+            return true;
+        }
+
         /// <summary>Server entry point, called from the RPC handler (or directly on a host).</summary>
         public static OrderVerdict ExecuteOnServer(OrderCaller caller, ZDOID bowlId, OrderKind kind, ZDOID containerId)
         {
@@ -317,8 +396,9 @@ namespace Husnisse.Orders
                 // The drop exists either way — the player handed it over and can see it — but only
                 // one the network accepts is queued, so an unstorable stack lies by the bowl instead
                 // of cycling through the queue for ever.
-                if (StorageRouter.Decide(claim, network, item, null, null).Found) FlowQueue.EnqueueDrop(claim, drop);
-                else Note("empty pockets left on the ground: " + item.m_shared.m_name + " (no chest accepts it)");
+                var decision = StorageRouter.Decide(claim, network, item, null, null);
+                if (decision.Found) FlowQueue.EnqueueDrop(claim, drop);
+                else Note("empty pockets left on the ground: " + item.m_shared.m_name + " why=" + decision.Why);
                 queued++;
             }
 
@@ -374,9 +454,12 @@ namespace Husnisse.Orders
                 // Only stacks with somewhere to go are queued: a stack nothing accepts would be a
                 // promise the nisse cannot keep, so it stays in the player's pocket and the answer
                 // says how many really move.
-                if (!StorageRouter.Decide(claim, network, item, null, null).Found)
+                var decision = StorageRouter.Decide(claim, network, item, null, null);
+                if (!decision.Found)
                 {
                     unwanted++;
+                    DiagnosticsFile.Line("[Flow] unmatched " + item.m_shared.m_name +
+                                          " why=" + decision.Why + " from=pockets claim=" + claim.BowlId);
                     continue;
                 }
 
@@ -401,9 +484,12 @@ namespace Husnisse.Orders
                 var item = inventory.GetItem(i);
                 if (item == null || item.m_shared == null) continue;
 
-                if (!StorageRouter.Decide(claim, network, item, null, source).Found)
+                var decision = StorageRouter.Decide(claim, network, item, null, source);
+                if (!decision.Found)
                 {
                     unwanted++;
+                    DiagnosticsFile.Line("[Flow] unmatched " + item.m_shared.m_name +
+                                          " why=" + decision.Why + " from=" + source.name + " claim=" + claim.BowlId);
                     continue;
                 }
 
@@ -425,6 +511,11 @@ namespace Husnisse.Orders
         {
             Log.Debug("Orders", line);
             DiagnosticsFile.Line("[Orders] " + line);
+        }
+
+        private static string Where(Vector3 point)
+        {
+            return "(" + point.x.ToString("0.#") + "," + point.z.ToString("0.#") + ")";
         }
 
         private static bool IsHotbar(ItemDrop.ItemData item)

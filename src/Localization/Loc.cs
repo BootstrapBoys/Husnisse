@@ -44,6 +44,10 @@ namespace Husnisse.Localization
         public const string OrderNowhere = "$husnisse_order_nowhere";
         public const string OrderFiles = "$husnisse_order_files";
         public const string OrderLeaves = "$husnisse_order_leaves";
+        public const string OrderDeposited = "$husnisse_order_deposited";
+        public const string OrderDepositFull = "$husnisse_order_deposit_full";
+        public const string OrderNoRoom = "$husnisse_order_no_room";
+        public const string OrderPocketsEmpty = "$husnisse_order_pockets_empty";
 
         public const string HandHover = "$husnisse_hand_hover";
         public const string HandName = "$husnisse_hand_name";
@@ -68,6 +72,7 @@ namespace Husnisse.Localization
         // Container network (0.3)
         public const string NetOn = "$husnisse_net_on";
         public const string NetOff = "$husnisse_net_off";
+        public const string DepositAll = "$husnisse_deposit_all";
         public const string RuleButton = "$husnisse_rule_button";
         public const string RuleTitle = "$husnisse_rule_title";
         public const string RuleNone = "$husnisse_rule_none";
@@ -186,7 +191,7 @@ namespace Husnisse.Localization
                     return;
                 }
 
-                if (string.Equals(file.Language, "English", StringComparison.OrdinalIgnoreCase) && file.Version < 6)
+                if (string.Equals(file.Language, "English", StringComparison.OrdinalIgnoreCase) && file.Version < 7)
                 {
                     Log.Warn("outdated English localisation ignored; embedded strings are used: " + path);
                     return;
@@ -230,7 +235,7 @@ namespace Husnisse.Localization
         }
 
         private const string DefaultEnglish = @"
-version: 6
+version: 7
 language: English
 strings:
   $husnisse_bowl_name: Porridge Bowl
@@ -261,6 +266,10 @@ strings:
   $husnisse_order_nowhere: The nisse has nowhere to put that.
   $husnisse_order_files: The nisse files {0} stack(s).
   $husnisse_order_leaves: The nisse leaves it as it is.
+  $husnisse_order_deposited: Deposited {0} stack(s).
+  $husnisse_order_deposit_full: Deposited {0} stack(s); {1} would not fit.
+  $husnisse_order_no_room: There is no room in this chest.
+  $husnisse_order_pockets_empty: Your pockets are empty.
   $husnisse_hand_hover: ""[E] take my things""
   $husnisse_hand_name: Nisse
   $husnisse_voice_hungry1: The bowl is empty.
@@ -279,6 +288,7 @@ strings:
   $husnisse_claim_refused_held: another bowl is already here
   $husnisse_net_on: On the network
   $husnisse_net_off: Off the network
+  $husnisse_deposit_all: Deposit all
   $husnisse_rule_button: Rules
   $husnisse_rule_title: Storage rule
   $husnisse_rule_none: No rule

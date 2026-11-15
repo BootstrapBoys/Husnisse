@@ -33,9 +33,36 @@ namespace Husnisse.Flow
             Enqueue(FlowTicket.FromDrop(claim, drop));
         }
 
-        public static void EnqueueContainer(Claim claim, Container container, ItemDrop.ItemData item)
+        /// <summary>
+        /// Queues one stack out of a container. A stack already waiting in the queue or riding on
+        /// the nisse's back is not queued again: a deposit chest is re-scanned on every reconcile
+        /// tick, and the stack has not moved yet while the trip that took it is still walking.
+        /// </summary>
+        public static bool EnqueueContainer(Claim claim, Container container, ItemDrop.ItemData item)
         {
+            if (claim == null || container == null || item == null) return false;
+            if (InFlight(claim, item)) return false;
+
             Enqueue(FlowTicket.FromContainer(claim, container, item));
+            return true;
+        }
+
+        /// <summary>Whether this stack is already spoken for — waiting in the queue or on a trip.</summary>
+        public static bool InFlight(Claim claim, ItemDrop.ItemData item)
+        {
+            if (claim == null || item == null) return false;
+
+            LinkedList<FlowTicket> queue;
+            if (Queues.TryGetValue(claim.BowlId, out queue))
+            {
+                foreach (var ticket in queue)
+                {
+                    if (ticket.Source == FlowSource.Container && ReferenceEquals(ticket.Item, item)) return true;
+                }
+            }
+
+            var trip = TripRunner.Get(claim);
+            return trip != null && trip.Carries(item);
         }
 
         public static void EnqueuePockets(Claim claim, Inventory inventory, ItemDrop.ItemData item)
