@@ -179,8 +179,13 @@ crates. Nothing joins by default: a container is on the network only when it is 
 - **Toggle** — a button in the top-right of the container UI adds or removes it. A settings button next
   to it opens the rule: item categories, a custom list, or a special role.
 - **Categories** — grouped by survival category (Metals, Wood, Food, Trophies, Valuables, Building,
-  Consumables, Tools), each expanding to Valheim item types. A container may hold several item types;
-  where several containers accept the same type, priority decides which fills first.
+  Consumables, Tools). Four are item types; the other four are named materials, because Valheim files
+  ore, timber, cut stone and treasure all under one item type, and most raw meat as a material too.
+  A container may hold several item types; where several containers accept the same item, priority
+  decides which fills first, and the nisse's memory only breaks a tie.
+- **Unclassified items** — hides, pelts, bones, boss drops and the rest belong to no preset. They go
+  to an **Overflow** chest or a plain networked chest, never into a chest whose rule says otherwise;
+  `husnisse_categories check` lists exactly what the presets do not cover in the running game build.
 - **Special roles** — **Overflow** (one or many chests: catches items whose category chests are full and
   items no rule matches) and **Deposit** (one or many chests: dump everything in, the nisse sorts out).
 - **Custom list** — "save contents" opens a preview of the captured item names with checkboxes; only the
@@ -204,7 +209,9 @@ crates. Nothing joins by default: a container is on the network only when it is 
 
 Per nisse, persisted in its own ZDO:
 
-- `item → container` assignments, learned by demonstration or set in the ledger.
+- `item → container` assignments, learned by demonstration or set in the ledger. A rule outranks a
+  memory — the player's written decision wins — and the memory decides only between two containers
+  that both accept the item.
 - `container → rule` (preset category, custom list, preferred/overflow priority, blacklist).
 - `machine → standing order` (fill to N, empty always, leave X wood).
 

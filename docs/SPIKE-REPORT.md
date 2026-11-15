@@ -299,6 +299,45 @@ BepInEx log, then the real line twice in two separate trips
 client probe, so "the player saw it" stops being a screenshot judgement. A message suppressed
 because the HUD is hidden (`Hud.IsUserHidden()`) is neither shown nor logged.
 
+## 7. Items, and what a rule can see — 2026-11-15
+
+The presets had to be built from the game's own data, because the item type does not answer the
+question a player asks. `husnisse_categories dump` (0.3b) writes every `ObjectDB` item with its
+`ItemType`, satiety and the preset that claims it; this tree reported **1102 item prefabs**, and the
+table was written from that list rather than from memory.
+
+Two facts changed the design:
+
+- **A stack's identity is `ItemDrop.ItemData.m_shared.m_name`, a token** (`$item_coal`), not a display
+  name. It is language-independent and it is shared by variants — which is exactly why a saved list
+  stores it (and why an EpicLoot enchant keeps its base item's home).
+- **Valheim files most raw meat, and every uncooked meal, as `ItemType.Material`, not
+  `Consumable`.** Measured: `$item_wolf_meat` type=Material food=50, `$item_bakedpoteitr_uncooked`
+  type=Material food=37, `$item_asksvin_egg` type=Misc food=10. A food preset keyed on the consumable
+  type would have missed them, so **Food is "anything with satiety"** (`m_food > 0`), and the mead
+  bases — materials with no satiety — are named into Consumables instead.
+
+Ore, timber, cut stone and treasure are all `Material` too, so those four presets are named sets. The
+audit is the maintenance path, not a one-off:
+
+```
+category metals      game=25  named=25
+category food        game=128 named=36       (type rule + named ingredients)
+category trophies    game=72  named=0
+categories items=1102 covered=318 gaps=277 overlaps=0 gear=507
+```
+
+`overlaps` must stay 0: an item two presets claim would route by preset order. `gaps` is the honest
+remainder (hides, pelts, bones, boss drops) — they route to Overflow or a plain chest by design.
+
+**Routing is measurable headlessly.** Seven chests in one claim, one real drop at a time, chest
+contents read back through the harness (`container <prefab> <n>`) and the reason read from
+`BSBLogs/Husnisse.log` (`[Flow] landed … why=cat:metals p=1`): category, priority, saved list,
+Overflow, plain-chest fallback and "the deposit chest takes nothing" all pass in
+`testrig/scenarios/husnisse-03b-routing.cmd` (21 assertions), and the editing paths (suggestion,
+first-toggle write, priority, copy/idempotent copy) in `husnisse-03b-rules-edit.cmd` (10). Evidence:
+`docs/evidence/0.3b/`.
+
 ## What this means for the plan
 
 | Assumption | Status |

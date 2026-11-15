@@ -550,6 +550,16 @@ namespace Husnisse.UI
                 if (CustomTicked.Contains(name)) ticked.Add(name);
             }
 
+            // A name already on the list for an item the chest no longer holds cannot be shown, and
+            // must not be silently dropped by a preview that only lists what is inside today.
+            if (rule.Kind == RuleKind.Custom && rule.Items != null)
+            {
+                foreach (var saved in rule.Items)
+                {
+                    if (!CustomNames.Contains(saved) && !ticked.Contains(saved)) ticked.Add(saved);
+                }
+            }
+
             if (ticked.Count == 0)
             {
                 // Nothing ticked is "no list": the container keeps its priority and loses the rule,
@@ -648,7 +658,9 @@ namespace Husnisse.UI
 
         /// <summary>
         /// Reads the container's contents once into the preview's lists. Stacks of the same item
-        /// collapse into one row with a count, because a list stores names, not stacks.
+        /// collapse into one row with a count, because a list stores names, not stacks. Everything is
+        /// ticked for a container with no list yet; a container that already has one opens with
+        /// exactly that list ticked, so re-opening the preview cannot quietly undo a player's choice.
         /// </summary>
         private static void CaptureContents()
         {
@@ -658,6 +670,9 @@ namespace Husnisse.UI
 
             var inventory = _container != null ? _container.GetInventory() : null;
             if (inventory == null) return;
+
+            var rule = ContainerNetwork.RuleOf(_container);
+            var saved = rule.Kind == RuleKind.Custom ? rule.Items : null;
 
             for (var i = 0; i < inventory.NrOfItems(); i++)
             {
@@ -676,7 +691,8 @@ namespace Husnisse.UI
 
                 CustomStacks[name] = Mathf.Max(1, item.m_stack);
                 CustomNames.Add(name);
-                CustomTicked.Add(name);
+
+                if (saved == null || saved.Contains(name)) CustomTicked.Add(name);
             }
         }
 

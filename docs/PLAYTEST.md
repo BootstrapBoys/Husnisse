@@ -132,6 +132,36 @@ r=28` then `owner=111 r=12`. The range ring and the hover claim line were photog
 - [ ] Items dropped outside the claim are ignored.
 - [ ] A cart or ship inside the claim is not used as storage.
 
+## 5b. The container network (0.3a + 0.3b)
+
+The panel itself, on a client — the headless gate proves the routing, not the drawing.
+
+- [ ] Open a chest inside the claim: two buttons sit in the top-right, `Off the network` and
+      `Rules: No rule`. Open a chest outside the claim, or a cart/ship: neither appears.
+- [ ] Click the network toggle: it reads `On the network`. Close and reopen the chest: still on.
+- [ ] Open the rule panel: eight categories in two rows, `Overflow`, `Deposit`, `No rule`, a
+      `Priority` row with `−`/`+`, `Save contents`, `Use suggestion` (only when the chest has no rule
+      and something in it is a known category) and `Copy to nearby`.
+- [ ] Click `Metals` while the chest holds coal: the button turns amber, the title bar reads
+      `Rules: Metals`, and the chest's `husnisse_rule` is `v1;k=cat;c=metals`.
+- [ ] Put a chest of ore next to it, set that one to `Metals`, then click `+` on the second until its
+      priority reads `1`. Drop ore in the claim: it goes to the priority-1 chest while it has room.
+- [ ] Fill a chest with mixed junk and toggle it on from the network button (not the panel): the rule
+      it lands on is the category most of the contents belong to. Change it — the suggestion never
+      comes back over your choice.
+- [ ] Open `Save contents` on a chest holding a few kinds of item: one row per item with a count,
+      all ticked. Untick one, `Apply`, and confirm the rule reads `Save contents (n-1)` and the
+      unticked item no longer routes there.
+- [ ] `Copy to nearby` on a chest with a rule and one or two same-type neighbours: the line reads
+      "Copy this rule to N nearby container(s)?" with `Copy`/`Cancel`; cancel changes nothing, copy
+      sets the neighbours' rules.
+- [ ] With a `Deposit` chest in the base, drop an item no rule claims: it goes to `Overflow` (or a
+      plain networked chest), never into the deposit chest.
+- [ ] A blacklisted container (a cart, a ship, a display pile) shows no buttons.
+- [ ] A non-owner opens the same chest: the buttons are there, greyed, and the title says `read only`.
+- [ ] `husnisse_categories check` in the console lists what the presets do not cover; a gap item
+      (a pelt, a bone, a boss drop) lands in Overflow rather than in a ruled chest.
+
 ## 6. Persistence and diagnostics
 
 - [ ] Log out and back in: claim, bowl owner, satiety, mood, bowl contents and memory survive.

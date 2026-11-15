@@ -2,11 +2,16 @@
 
 ## 0.3.0
 
-Internal only — the container network's controls and its rule storage. Routing is not wired yet; this
-build proves that a base can be configured and that the rules are world state.
+Internal only — the container network's controls, its rule storage and its router. This build proves a
+base can be configured and that items file themselves by the rules written there.
 
 - Every container in a claim now has two buttons in the top-right of its window: a network toggle and a rule button. A container outside a claim, a blacklisted one (carts, ships and display piles are blacklisted by default) and a dedicated server show neither.
-- The rule panel offers the eight survival categories and the two roles — Overflow and Deposit — plus "No rule". The choice is written into the container's ZDO as one versioned value through the server, and every peer reads it back from there, so two players cannot hold different rules for one chest.
+- The rule panel offers the eight survival categories, the two roles — Overflow and Deposit — "No rule", a **priority** for the chest, a **saved list** captured from its contents with a checkbox preview, and a **copy** of the rule to the nearby chests of the same kind (behind a confirm).
+- Categories are a real table, read off the game's own item list rather than typed from memory: ore, scrap, bars and nails; timber and bark; cut stone and tar; treasure; food, crops, seeds and spices; mead bases; and the tools Valheim files as weapons. `husnisse_categories check` reports what the presets do not cover in the running build, and `husnisse_categories dump` writes every item with its type and satiety.
+- **Routing obeys the rules.** A stack goes to the chest whose category or saved list claims it, highest priority first; `Overflow` takes what no rule claims; a chest with no rule is the general-purpose one. A `Deposit` chest is never a destination, and the nisse's memory now only breaks a tie — a written rule outranks a habit. A stack nothing accepts is left where it is and named in the diagnostics instead of being dropped into the nearest chest.
+- The first toggle of a chest with no rule suggests the category most of its contents belong to and writes it; the player can change it immediately.
+- Every landing is written to `BepInEx/BSBLogs/Husnisse.log` with its reason — `landed moved=1 target=piece_chest_wood(Clone) at=(4,3) why=cat:metals p=1` — so a misfiled stack can be explained after the fact.
+- `husnisse_rule` grew `prio <prefab> <n> [index]`, `suggest <prefab> [index]` and `copy <prefab> <index> [radius]`, and rule shorthands take a priority suffix (`cat:metals@2`).
 - The claim owner and the players a ward permits change rules; anyone else sees the buttons disabled and is told why. A client writes nothing: the request goes to the server, which validates the claim, the sender's identity and the container before writing.
 - `husnisse_rule list | net <prefab> <on|off> [index] | set <prefab> <rule> [index]` reads and writes the same state from the server console. `husnisse_status` gains one line per network container and a `[rules]` count.
 - A rule encoding this build does not understand reads as "no rule" instead of breaking the chest.
