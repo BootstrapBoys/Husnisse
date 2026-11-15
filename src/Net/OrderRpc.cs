@@ -82,16 +82,12 @@ namespace Husnisse.Net
 
         /// <summary>
         /// The player id behind a connected peer, read from the character ZDO the peer drives. The
-        /// package's own claim is only ever compared against this, never trusted.
+        /// package's own claim is only ever compared against this, never trusted. One rule for the
+        /// whole mod: <see cref="PeerIdentity"/> owns it, the order channel only drives the seam.
         /// </summary>
         public static long PlayerIdOf(ZNetPeer peer)
         {
-            if (peer == null) return 0L;
-            if (peer.m_playerID != 0L) return peer.m_playerID;
-            if (ZDOMan.instance == null || peer.m_characterID.IsNone()) return 0L;
-
-            var character = ZDOMan.instance.GetZDO(peer.m_characterID);
-            return character != null ? character.GetLong(ZDOVars.s_playerID, 0L) : 0L;
+            return PeerIdentity.PlayerId(peer);
         }
 
         /// <summary>

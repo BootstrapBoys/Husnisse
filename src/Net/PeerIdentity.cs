@@ -14,10 +14,17 @@ namespace Husnisse.Net
     {
         public static long PlayerId(long peerUid)
         {
-            if (ZNet.instance == null || ZDOMan.instance == null) return 0L;
+            if (ZNet.instance == null) return 0L;
+            return PlayerId(ZNet.instance.GetPeer(peerUid));
+        }
 
-            var peer = ZNet.instance.GetPeer(peerUid);
-            if (peer == null) return 0L;
+        /// <summary>
+        /// The same rule for a peer record in hand — the order channel's headless test fabricates a
+        /// peer ZNet does not know, and every caller has the record already.
+        /// </summary>
+        public static long PlayerId(ZNetPeer peer)
+        {
+            if (peer == null || ZDOMan.instance == null) return 0L;
 
             if (peer.m_playerID != 0L) return peer.m_playerID;
 
@@ -25,13 +32,13 @@ namespace Husnisse.Net
             var zdo = ZDOMan.instance.GetZDO(peer.m_characterID);
             if (zdo == null)
             {
-                Log.Debug("Net", "peer " + peerUid + " has character " + peer.m_characterID +
+                Log.Debug("Net", "peer uid=" + peer.m_uid + " has character " + peer.m_characterID +
                                  " but the ZDO is not here yet");
                 return 0L;
             }
 
             var id = zdo.GetLong(ZDOVars.s_playerID, 0L);
-            Log.Debug("Net", "peer " + peerUid + " uid=" + peer.m_uid + " name=" + peer.m_playerName +
+            Log.Debug("Net", "peer uid=" + peer.m_uid + " name=" + peer.m_playerName +
                              " character=" + peer.m_characterID + " player=" + id);
             return id;
         }

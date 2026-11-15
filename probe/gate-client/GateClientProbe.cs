@@ -191,6 +191,7 @@ namespace Husnisse.GateClient
                 case "cam": Cam(parts); break;
                 case "face": Face(parts); break;
                 case "teleport": Teleport(parts); break;
+                case "setpos": SetPos(parts); break;
                 case "stand": Stand(parts); break;
                 case "ui": UiState("ui"); break;
                 case "click": ClickUi(parts.Length > 1 ? parts[1] : "HusnisseNet"); break;
@@ -210,6 +211,8 @@ namespace Husnisse.GateClient
 
             Say(prefix + " player=" + player.GetPlayerName() + " id=" + player.GetPlayerID() +
                 " pos=" + Fmt(player.transform.position) +
+                " hp=" + player.GetHealth().ToString("0") + "/" + player.GetMaxHealth().ToString("0") +
+                " dead=" + player.IsDead() +
                 " nisse=" + (FindNisse() != null ? "present" : "absent"));
 
             var bowl = FindContainer("husnisse_bowl");
@@ -525,6 +528,30 @@ namespace Husnisse.GateClient
             _busy = false;
         }
 
+        /// <summary>
+        /// Put the player at a point by transform. `teleport` goes through Player.TeleportTo, which
+        /// on this client build has been observed to leave the player where it was; a gate that then
+        /// measures "near the bowl" would measure the wrong place, so this is the blunt instrument.
+        /// </summary>
+        private void SetPos(string[] parts)
+        {
+            if (parts.Length < 4) { Say("usage: setpos <x> <y> <z>"); return; }
+
+            var player = Player.m_localPlayer;
+            if (player == null) { Say("setpos: no player"); return; }
+
+            float x, y, z;
+            if (!float.TryParse(parts[1], out x) || !float.TryParse(parts[2], out y) || !float.TryParse(parts[3], out z))
+            {
+                Say("setpos: bad coordinates");
+                return;
+            }
+
+            var from = player.transform.position;
+            Place(player, new Vector3(x, y, z));
+            Say("setpos from=" + Fmt(from) + " requested=" + Fmt(new Vector3(x, y, z)) + " now=" + Fmt(player.transform.position));
+        }
+
         // Stand beside a container so its window stays open (InventoryGui closes beyond 4 m).
         private void Stand(string[] parts)
         {
@@ -536,7 +563,10 @@ namespace Husnisse.GateClient
 
             var target = container.transform.position;
             var position = target + new Vector3(1.6f, 0.2f, 0f);
-            player.transform.position = position;
+            // Direct placement, not TeleportTo: a teleport suppresses the container window for its
+            // whole duration (InventoryGui.Update hides while IsTeleporting), so the chest would
+            // close the moment it opened.
+            Place(player, position);
             Say("stand " + container.name + "[" + index + "] at " + Fmt(target) + " -> player " + Fmt(position));
         }
 
@@ -560,7 +590,12 @@ namespace Husnisse.GateClient
                 " netClickable=" + (netButton != null ? netButton.interactable.ToString() : "-") +
                 " rules='" + LabelOf(rules) + "'" +
                 " rulesClickable=" + (rulesButton != null ? rulesButton.interactable.ToString() : "-") +
-                " panel=" + (panel != null && panel.activeSelf));
+                " panel=" + (panel != null && panel.activeSelf) +
+                " win=" + (root != null && root.gameObject.activeInHierarchy) +
+                " inUse=" + (current != null ? current.IsInUse().ToString() : "-") +
+                " dist=" + (current != null && Player.m_localPlayer != null
+                    ? Vector3.Distance(Player.m_localPlayer.transform.position, current.transform.position).ToString("0.0")
+                    : "-"));
 
             if (current == null) return;
             var view = current.GetComponent<ZNetView>();
@@ -569,6 +604,7 @@ namespace Husnisse.GateClient
             {
                 Say(prefix + " zdo net=" + zdo.GetBool("husnisse_net", false) +
                     " rule='" + zdo.GetString("husnisse_rule", string.Empty) + "'" +
+                    " inUseFlag=" + zdo.GetBool("inUse", false) +
                     " owner=" + (view != null && view.IsOwner()));
             }
         }
@@ -652,6 +688,24 @@ namespace Husnisse.GateClient
             if (player == null) { Say("heal: no player"); return; }
             player.SetHealth(player.GetMaxHealth());
             Say("heal hp=" + player.GetHealth().ToString("0") + "/" + player.GetMaxHealth().ToString("0"));
+        }
+
+        /// <summary>
+        /// Put the player at a position without going through Player.TeleportTo. A teleport holds
+        /// IsTeleporting() true for at least two seconds, and InventoryGui.Update hides the window
+        /// every frame while it is: a container opened right after a teleport closes at once. Moving
+        /// the rigidbody directly leaves no such state, so the window stays up.
+        /// </summary>
+        private static void Place(Player player, Vector3 position)
+        {
+            player.transform.position = position;
+            var body = player.GetComponent<Rigidbody>();
+            if (body != null)
+            {
+                body.position = position;
+                body.velocity = Vector3.zero;
+            }
+            Physics.SyncTransforms();
         }
 
         private void Teleport(string[] parts)
