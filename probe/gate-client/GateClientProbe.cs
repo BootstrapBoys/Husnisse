@@ -181,7 +181,7 @@ namespace Husnisse.GateClient
                 case "hover": Hover(parts.Length > 1 ? parts[1] : "husnisse_bowl"); break;
                 case "use": Use(parts.Length > 1 ? parts[1] : "husnisse_bowl", false); break;
                 case "alt": Use(parts.Length > 1 ? parts[1] : "husnisse_bowl", true); break;
-                case "open": StartOpen(parts.Length > 1 ? parts[1] : "husnisse_bowl"); break;
+                case "open": StartOpen(parts.Length > 1 ? parts[1] : "husnisse_bowl", parts.Length > 2 ? ParseInt(parts[2], 0) : -1); break;
                 case "close": CloseGui(); break;
                 case "give": Give(parts); break;
                 case "move": Move(parts, true); break;
@@ -281,14 +281,25 @@ namespace Husnisse.GateClient
         {
             var all = UnityEngine.Object.FindObjectsByType<Container>(FindObjectsSortMode.None);
             var count = 0;
+            var onNetwork = 0;
+            var withRule = 0;
             foreach (var container in all)
             {
                 if (container == null) continue;
                 if (container.GetComponent("BowlPiece") != null) continue;
                 count++;
-                Say("container " + container.name + " at " + Fmt(container.transform.position) + " " + Items(container.GetInventory()));
+
+                var view = container.GetComponent<ZNetView>();
+                var zdo = view != null && view.IsValid() ? view.GetZDO() : null;
+                var net = zdo != null && zdo.GetBool("husnisse_net", false);
+                var rule = zdo != null ? zdo.GetString("husnisse_rule", string.Empty) : "-";
+                if (net) onNetwork++;
+                if (!string.IsNullOrEmpty(rule) && rule != "v1;k=none") withRule++;
+
+                Say("container " + container.name + " at " + Fmt(container.transform.position) +
+                    " net=" + net + " rule='" + rule + "' " + Items(container.GetInventory()));
             }
-            Say("containers total=" + count);
+            Say("containers total=" + count + " net=" + onNetwork + " ruled=" + withRule);
         }
 
         private void Claims()
@@ -321,12 +332,12 @@ namespace Husnisse.GateClient
 
         // ------------------------------------------------------------------ interaction
 
-        private void Use(string prefab, bool alt)
+        private void Use(string prefab, bool alt, int index = -1)
         {
             var player = Player.m_localPlayer;
             if (player == null) { Say("use: no player"); return; }
 
-            var container = FindContainer(prefab);
+            var container = index >= 0 ? FindContainer(prefab, index) : FindContainer(prefab);
             if (container != null)
             {
                 bool result;
@@ -354,9 +365,9 @@ namespace Husnisse.GateClient
             Say("use: no object for " + prefab);
         }
 
-        private void StartOpen(string prefab)
+        private void StartOpen(string prefab, int index = -1)
         {
-            Use(prefab, false);
+            Use(prefab, false, index);
             if (!_busy) StartCoroutine(AfterOpen());
         }
 

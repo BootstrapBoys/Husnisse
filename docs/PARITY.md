@@ -57,7 +57,7 @@ fiction — decided in 0.4, before the first consuming surface lands.
 |---|---|---|---|
 | 1 | Deposit chest auto-sort | 0.3 container network (toggle + preset/list) | **covered, different mechanic** |
 | 2 | Chest remembers its item type when empty | 0.3 container rule lives in its ZDO | covered |
-| 3 | Storage rules: preferred destination, overflow chest, base groups, copy settings | 0.3 container rules | **partial** — categories and saved lists land in 0.3; priority/overflow pending |
+| 3 | Storage rules: preferred destination, overflow chest, base groups, copy settings | 0.3 container rules | **partial** — 0.3a ships the container UI, the eight categories and the Overflow/Deposit roles stored in the chest's ZDO; priority, saved lists, auto-suggest and copy-rule are 0.3b |
 | 4 | Supply permissions per chest (crafting, production, fuel, feed) | 0.6 pantries | **partial** — one permission today, four in QM |
 | 5 | Deposit All · sort inventory · sort chest · combine compatible stacks | 0.1 orders; queue in 0.1.2; merge in 0.3.1 | **partial** |
 | 6 | Pickup controls, per item type | 0.3.1 type filter | **partial** — per claim, edited in the ledger |

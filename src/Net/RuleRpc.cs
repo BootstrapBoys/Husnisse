@@ -29,6 +29,16 @@ namespace Husnisse.Net
     public static class RuleRpc
     {
         private const string Method = "Husnisse_Rule";
+
+        /// <summary>
+        /// The server's answer to the peer that asked. It carries the value it accepted, and the peer
+        /// applies it to its own ZDO copy when it owns that copy (which is the usual case: opening a
+        /// container makes the client the ZDO owner, and a ZDO's owner is the only writer whose data
+        /// the other peers accept). Without this the server's write lands in the server's copy and the
+        /// client that has the chest open never sees it.
+        /// </summary>
+        private const string AckMethod = "Husnisse_RuleAck";
+
         private static bool _registered;
 
         /// <summary>Containers are point objects; 1 m is generous and still one container.</summary>
@@ -38,6 +48,7 @@ namespace Husnisse.Net
         {
             if (_registered || ZRoutedRpc.instance == null) return;
             ZRoutedRpc.instance.Register<ZPackage>(Method, Handle);
+            ZRoutedRpc.instance.Register<ZPackage>(AckMethod, HandleAck);
             _registered = true;
             Log.Info("rule RPC registered");
         }
@@ -132,6 +143,7 @@ namespace Husnisse.Net
                     if (!ContainerNetwork.WriteNetwork(container, on, "player " + who)) return;
                     Log.Debug("Rules", "network " + (on ? "on" : "off") + " " + name +
                                        " claim=" + claim.BowlId + " player=" + who);
+                    Ack(sender, op, position, payload);
                     return;
                 }
 
@@ -147,11 +159,64 @@ namespace Husnisse.Net
                     if (!ContainerNetwork.WriteRule(container, rule, "player " + who)) return;
                     Log.Debug("Rules", "rule " + name + " " + rule.Describe() +
                                        " claim=" + claim.BowlId + " player=" + who);
+                    Ack(sender, op, position, payload);
                 }
             }
             catch (Exception ex)
             {
                 Log.Warn("rule RPC failed: " + ex.Message);
+            }
+        }
+
+        /// <summary>Tells the peer that asked which value the server accepted.</summary>
+        private static void Ack(long sender, RuleOp op, Vector3 position, string payload)
+        {
+            if (sender == 0L || ZRoutedRpc.instance == null) return;
+
+            var package = new ZPackage();
+            package.Write((byte)op);
+            package.Write(position);
+            package.Write(payload ?? string.Empty);
+            package.SetPos(0);
+            ZRoutedRpc.instance.InvokeRoutedRPC(sender, AckMethod, package);
+        }
+
+        /// <summary>
+        /// The asking peer applies the accepted value to its local copy. Only the ZDO's owner may
+        /// write it: that is the copy the other peers accept, and the client that has the container
+        /// open is the owner. A peer that no longer owns it leaves the job to the owner.
+        /// </summary>
+        private static void HandleAck(long sender, ZPackage package)
+        {
+            if (ZNet.instance == null || ZNet.instance.IsServer()) return;
+            if (package == null) return;
+
+            try
+            {
+                package.SetPos(0);
+                var op = (RuleOp)package.ReadByte();
+                var position = package.ReadVector3();
+                var payload = package.ReadString();
+
+                var container = ContainerAt(position);
+                if (container == null) return;
+
+                var view = container.GetComponent<ZNetView>();
+                if (view == null || !view.IsOwner()) return;
+
+                if (op == RuleOp.SetNetwork)
+                {
+                    ContainerNetwork.WriteNetwork(container, payload == "1", "server ack");
+                }
+                else if (op == RuleOp.SetRule)
+                {
+                    ContainerNetwork.WriteRule(container, ContainerRule.Decode(payload), "server ack");
+                }
+                Log.Debug("Rules", "ack applied " + payload + " (local owner)");
+            }
+            catch (Exception ex)
+            {
+                Log.Warn("rule ack failed: " + ex.Message);
             }
         }
 
