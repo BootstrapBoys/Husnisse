@@ -45,6 +45,7 @@ namespace Husnisse.Core
 
             var network = 0;
             var ruled = 0;
+            var deposits = 0;
             foreach (var claim in ClaimRegistry.All())
             {
                 foreach (var container in ContainerIndex.InClaim(claim))
@@ -52,10 +53,12 @@ namespace Husnisse.Core
                     if (!ContainerNetwork.IsOnNetwork(container) && ContainerNetwork.RuleOf(container).IsNone) continue;
                     network++;
                     if (!ContainerNetwork.RuleOf(container).IsNone) ruled++;
+                    if (ContainerNetwork.RuleOf(container).Kind == RuleKind.Deposit &&
+                        ContainerNetwork.IsOnNetwork(container)) deposits++;
                     lines.Add("rule " + claim.BowlId + " " + ContainerNetwork.Describe(container));
                 }
             }
-            lines.Add("[rules] containers=" + network + " ruled=" + ruled);
+            lines.Add("[rules] containers=" + network + " ruled=" + ruled + " deposits=" + deposits);
 
             foreach (var claim in ClaimRegistry.All())
             {

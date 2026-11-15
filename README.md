@@ -186,16 +186,27 @@ crates. Nothing joins by default: a container is on the network only when it is 
 - **Unclassified items** — hides, pelts, bones, boss drops and the rest belong to no preset. They go
   to an **Overflow** chest or a plain networked chest, never into a chest whose rule says otherwise;
   `husnisse_categories check` lists exactly what the presets do not cover in the running game build.
+- **A full chest does not claim a stack.** Room is decided per stack: a chest with no empty slot and no
+  stack of that item drops out of the running, so a *lower-priority* chest of the same category is
+  tried before Overflow, and Overflow is used only when nothing that claims the stack can hold it.
+  The diagnostics say which rules were full — `why=overflow (full: cat:metals)`.
 - **Special roles** — **Overflow** (one or many chests: catches items whose category chests are full and
   items no rule matches) and **Deposit** (one or many chests: dump everything in, the nisse sorts out).
+  A Deposit chest is a **source**, never a destination: the nisse carries its contents to the chests
+  whose rules claim them, one visible trip at a time, and it must be on the network for that to happen
+  — an off-network chest is not part of the claim's work.
 - **Custom list** — "save contents" opens a preview of the captured item names with checkboxes; only the
   ticked items route there. Teaching by demonstration writes the same list.
 - **Blacklist** — per container only. A blacklisted container shows neither the toggle nor the settings
   button. Carts, ships and display piles start blacklisted rather than hard-coded out of the scan.
   `husnisse_prefabs` writes every container prefab to `BepInEx/BSBLogs/Husnisse-prefabs.txt` so entries
   can be identified without guessing.
-- **Deposit-all** — on a network container it hands the player's items to the nisse, which sorts them; on
-  an off-network container it dumps every pocket item into that container, unsorted.
+- **Deposit-all** — a third button in the container window. On a chest that is on the network it hands
+  the player's stacks to the nisse, which files them by their rules at the queue's rate (the chest the
+  button was pressed on gets nothing by right). On an off-network chest it dumps every pocket stack
+  **into that chest, unsorted** — the manual "leave it here and deal with it later" action, which needs
+  no fed nisse and no queue. Anything that does not fit stays in the player's pockets and the message
+  says how many.
 - **Permissions** — the claim owner and ward-permitted players change rules; anyone with container
   access can read them.
 - **Authority** — rules live in the container's ZDO and are written through the server; a client with
@@ -264,14 +275,19 @@ it could not reach — legible failure, same as everything else.
 
 ### Orders
 
-Two direct commands, both still the nisse's work:
+Two direct commands, both still the nisse's work, plus one button that may or may not be:
 
 - **Empty Pockets** — interact with the nisse. It queues what it can file from your inventory; the hotbar
   and equipped items stay where they are.
 - **Tidy** — Alt-interact a chest inside a claim. The nisse queues its contents for the right chests.
+- **Deposit all** — a button in the container window, next to the network toggle. At a networked chest
+  it is Empty Pockets aimed at that chest: the nisse takes the stacks and files them by their rules. At
+  an off-network chest it is the player's own move — everything in the pockets goes into that chest,
+  unsorted, at once.
 
-Both refuse when the nisse is absent, when the bowl is empty and feeding is required, or when the
-player is outside the claim — and they say which. The client asks; the server validates and moves.
+The three refuse when the nisse is absent, when the bowl is empty and feeding is required, or when the
+player is outside the claim — and they say which. The exception is deposit-all at an off-network chest,
+which is not the nisse's work and needs none of that. The client asks; the server validates and moves.
 You are told the verdict after the server decides, with the number of stacks it took ("The nisse takes
 6 stack(s)").
 

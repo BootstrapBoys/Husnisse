@@ -18,6 +18,9 @@ Contents are in the chest's ZDO, not in a side channel, and they are replicated.
   "owner-only field" concept for container data.
 - Runtime: a freshly spawned `piece_chest_wood` had `zdos items = 0 bytes`; adding 50 wood made it
   `21 bytes`, readable through `ZNetView.GetZDO().GetByteArray("items")` without opening anything.
+- Runtime: `piece_chest_wood` is **5×2 = 10 slots** and `piece_chest_blackmetal` 8×4 = 32
+  (`husnisse_prefabs` dump, 2026-11-15). A routing test that needs a full chest fills ten stacks, not
+  twenty-four — `Inventory.AddItem(GameObject, int)` adds one stack per call, whatever the amount.
 
 **Consequence:** QI's `Count` / `CanAfford` can be answered from the claim client-side with a plain
 scan of instantiated `Container` objects. **No custom server→client snapshot layer is needed at

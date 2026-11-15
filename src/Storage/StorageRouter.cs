@@ -50,6 +50,11 @@ namespace Husnisse.Storage
     /// highest priority first, and to an Overflow chest or a container with no rule only when no
     /// rule claimed it. A Deposit chest is a source and is never a destination.
     ///
+    /// "Full" is a property of the stack, not the chest: a chest with no empty slot and no stack of
+    /// this item cannot take it, so it drops out of the running and the next chest of the same
+    /// category — at any priority — is tried before Overflow. Only when nothing that claims the
+    /// stack can hold it does it fall through, and the reason then names the rules that were full.
+    ///
     /// The nisse's memory no longer overrides a rule — a player who says "metals live here" outranks
     /// a habit — but it still breaks a tie between two containers that accept the same item, which is
     /// what keeps a two-chest base from filling in an order nobody chose.
@@ -140,6 +145,7 @@ namespace Husnisse.Storage
             if (memory != null) memory.TryRecall(name, out remembered);
 
             var candidates = new List<Candidate>();
+            var full = new List<string>();
             var onNetwork = 0;
 
             foreach (var container in network)
@@ -149,28 +155,41 @@ namespace Husnisse.Storage
                 onNetwork++;
 
                 var rule = ContainerNetwork.RuleOf(container);
-                if (!CanTake(container, item)) continue;
-
                 var tier = TierOf(rule, item);
                 if (tier == RouteTier.None) continue;
+
+                if (!CanTake(container, item))
+                {
+                    // The rule claimed this stack but the chest cannot hold it. That is the "full
+                    // category" case, and naming it is what turns "nowhere to put it" into a reason
+                    // a player can act on.
+                    full.Add(RuleToken(rule));
+                    continue;
+                }
 
                 candidates.Add(Describe(claim, container, rule, tier, remembered, name));
             }
 
             if (onNetwork == 0) return RouteDecision.Unrouted("nothing on the network");
 
+            // A container whose rule accepts the stack is the first answer at any priority: a
+            // lower-priority chest of the same category with room is still the right home, and
+            // Overflow is for what no rule can take *today*, not for what a shipping order
+            // pushed out. Where several accept it, Pick's total order decides.
             var best = Pick(candidates, RouteTier.Category, RouteTier.Custom);
-            if (best.Container != null) return Answer(best);
+            if (best.Container != null) return Answer(best, string.Empty);
 
-            // Overflow is the chest a player designated for "everything else"; it outranks a chest
-            // that merely has no rule, because it is a decision and not a default.
+            // No rule-bearing chest can take it. Overflow is the chest a player designated for
+            // "everything else" — full categories included — and it outranks a chest that merely
+            // has no rule, because it is a decision and not a default.
+            var note = FullNote(full);
             best = Pick(candidates, RouteTier.Overflow);
-            if (best.Container != null) return Answer(best);
+            if (best.Container != null) return Answer(best, note);
 
             best = Pick(candidates, RouteTier.Generic);
-            if (best.Container != null) return Answer(best);
+            if (best.Container != null) return Answer(best, note);
 
-            return RouteDecision.Unrouted("no chest has room for " + name);
+            return RouteDecision.Unrouted("no chest has room for " + name + note);
         }
 
         private static RouteTier TierOf(ContainerRule rule, ItemDrop.ItemData item)
@@ -234,7 +253,7 @@ namespace Husnisse.Storage
             return false;
         }
 
-        private static RouteDecision Answer(Candidate best)
+        private static RouteDecision Answer(Candidate best, string note)
         {
             var rule = best.Rule;
             string why;
@@ -263,8 +282,47 @@ namespace Husnisse.Storage
                 Container = best.Container,
                 Tier = best.Tier,
                 Rule = rule,
-                Why = why,
+                Why = why + note,
             };
+        }
+
+        /// <summary>The token a rule is known by in a reason: cat:metals, custom, overflow.</summary>
+        private static string RuleToken(ContainerRule rule)
+        {
+            switch (rule.Kind)
+            {
+                case RuleKind.Category:
+                    return "cat:" + ContainerRule.CategoryToken(rule.Category);
+                case RuleKind.Custom:
+                    return "custom";
+                case RuleKind.Overflow:
+                    return "overflow";
+                case RuleKind.Deposit:
+                    return "deposit";
+                default:
+                    return "no rule";
+            }
+        }
+
+        /// <summary>
+        /// " (full: cat:metals+overflow)" — which rules wanted the stack and could not hold it.
+        /// Sorted and capped so the same base always prints the same reason.
+        /// </summary>
+        private static string FullNote(List<string> full)
+        {
+            if (full == null || full.Count == 0) return string.Empty;
+
+            var distinct = new List<string>();
+            foreach (var token in full)
+            {
+                if (token != null && !distinct.Contains(token)) distinct.Add(token);
+            }
+            distinct.Sort(StringComparer.Ordinal);
+
+            const int show = 3;
+            var text = distinct.Count > show ? string.Join("+", distinct.GetRange(0, show).ToArray()) + "+"
+                                             : string.Join("+", distinct.ToArray());
+            return " (full: " + text + ")";
         }
 
         /// <summary>
