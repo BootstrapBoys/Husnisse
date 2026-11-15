@@ -56,6 +56,7 @@ namespace Husnisse.Patches
         private static MethodInfo _doCrafting;
 
         private static bool _aaaScanned;
+        private static FieldInfo _aaaCurrentAmount;
         private static FieldInfo _aaaAmount;
         private static FieldInfo _aaaInput;
 
@@ -262,6 +263,11 @@ namespace Husnisse.Patches
                 var type = info.Instance.GetType().Assembly.GetType("AzuAntiArthriticCrafting.Patches.AAACraft");
                 _aaaAmount = type != null ? AccessTools.Field(type, "amount") : null;
                 _aaaInput = type != null ? AccessTools.Field(type, "inputAmount") : null;
+
+                // 2.1.x keeps the batch count on the crafting-panel patch, not on AAACraft.
+                var panel = info.Instance.GetType().Assembly.GetType(
+                    "AzuAntiArthriticCrafting.Patches.InventoryGuiShowCraftingPanelPatch");
+                _aaaCurrentAmount = panel != null ? AccessTools.Field(panel, "CurrentCraftAmount") : null;
             }
             catch (Exception ex)
             {
@@ -275,6 +281,11 @@ namespace Husnisse.Patches
         {
             try
             {
+                if (_aaaCurrentAmount != null && _aaaCurrentAmount.GetValue(null) is int current && current > 0)
+                {
+                    return current;
+                }
+
                 if (_aaaInput != null && _aaaInput.GetValue(null) is TMPro.TMP_InputField input && input != null)
                 {
                     int parsed;

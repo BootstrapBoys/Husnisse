@@ -62,7 +62,7 @@ namespace Husnisse.Net
         /// Client: ask for a load. Returns null when the request went over the wire (the answer
         /// arrives as an acknowledgment) and the verdict when this machine is the server.
         /// </summary>
-        public static FetchResult? Request(ZDOID bowlId, long playerId, long token, Vector3 bench,
+        public static FetchResult? Request(Vector3 bowlPoint, long playerId, long token, Vector3 bench,
                                            List<KeyValuePair<string, int>> items)
         {
             if (ZNet.instance == null) return FetchResult.NoClaim;
@@ -71,7 +71,7 @@ namespace Husnisse.Net
 
             var package = new ZPackage();
             package.Write(token);
-            package.Write(bowlId);
+            package.Write(bowlPoint);
             package.Write(playerId);
             package.Write(bench);
             package.Write((byte)Mathf.Min(MaxItems, items != null ? items.Count : 0));
@@ -158,7 +158,7 @@ namespace Husnisse.Net
             }
 
             long token;
-            ZDOID bowlId;
+            Vector3 bowlPoint;
             long claimed;
             Vector3 bench;
             var items = new List<KeyValuePair<string, int>>();
@@ -166,7 +166,7 @@ namespace Husnisse.Net
             try
             {
                 token = package.ReadLong();
-                bowlId = package.ReadZDOID();
+                bowlPoint = package.ReadVector3();
                 claimed = package.ReadLong();
                 bench = package.ReadVector3();
                 var count = package.ReadByte();
@@ -193,7 +193,7 @@ namespace Husnisse.Net
                 return FetchResult.NotYours;
             }
 
-            var verdict = SupplyService.Begin(caller, bowlId, token, bench, items);
+            var verdict = SupplyService.Begin(caller, bowlPoint, token, bench, items);
             if (sender != 0L) Ack(sender, token, verdict, SupplyService.LastNote);
 
             return verdict;

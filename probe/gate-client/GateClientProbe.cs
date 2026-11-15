@@ -205,6 +205,13 @@ namespace Husnisse.GateClient
                 case "contract": Contract(parts); break;
                 case "integrations": Integrations(); break;
                 case "row": Row(parts); break;
+                case "available": Available(parts); break;
+                case "select": SelectRecipe(parts); break;
+                case "craft": Craft(); break;
+                case "craftopen": CraftOpen(); break;
+                case "craftstate": CraftState("craftstate"); break;
+                case "aaa": Aaa(parts); break;
+                case "burst": Burst(parts); break;
                 case "quit": Quit(); break;
                 default: Logger.LogWarning("gc unknown command: " + line); break;
             }
@@ -1129,6 +1136,256 @@ namespace Husnisse.GateClient
                 : null;
 
             Say("integrations " + (describe != null ? Convert.ToString(describe.Invoke(null, null)) : "not found"));
+        }
+
+        // ------------------------------------------------------------------ crafting window
+
+        /// <summary>Every recipe the open crafting tab offers, in list order, so `select` can name one.</summary>
+        private void Available(string[] parts)
+        {
+            var filter = parts.Length > 1 ? parts[1] : null;
+            var gui = InventoryGui.instance;
+            if (gui == null) { Say("available: no gui"); return; }
+
+            var list = RecipeList(gui);
+            if (list == null) { Say("available: m_availableRecipes not readable"); return; }
+
+            var shown = 0;
+            for (var i = 0; i < list.Count; i++)
+            {
+                var pair = list[i];
+                var recipe = PairRecipe(pair);
+                if (recipe == null || recipe.m_item == null) continue;
+
+                var name = recipe.m_item.name;
+                var shared = recipe.m_item.m_itemData != null ? recipe.m_item.m_itemData.m_shared.m_name : "?";
+                if (!string.IsNullOrEmpty(filter) &&
+                    name.IndexOf(filter, StringComparison.OrdinalIgnoreCase) < 0 &&
+                    shared.IndexOf(filter, StringComparison.OrdinalIgnoreCase) < 0) continue;
+
+                Say("available [" + i + "] " + name + " " + shared + " canCraft=" + PairCanCraft(pair) +
+                    " amount=" + recipe.m_amount);
+                shown++;
+            }
+            Say("available total=" + shown + " of " + list.Count);
+        }
+
+        /// <summary>Selects a recipe the way the list does — `SetRecipe(index)` — then reads the panel.</summary>
+        private void SelectRecipe(string[] parts)
+        {
+            if (parts.Length < 2) { Say("select: name an item"); return; }
+
+            var gui = InventoryGui.instance;
+            if (gui == null) { Say("select: no gui"); return; }
+            var list = RecipeList(gui);
+            if (list == null) { Say("select: m_availableRecipes not readable"); return; }
+
+            var wanted = parts[1];
+            for (var i = 0; i < list.Count; i++)
+            {
+                var recipe = PairRecipe(list[i]);
+                if (recipe == null || recipe.m_item == null) continue;
+
+                var name = recipe.m_item.name;
+                var shared = recipe.m_item.m_itemData != null ? recipe.m_item.m_itemData.m_shared.m_name : "?";
+                if (!string.Equals(name, wanted, StringComparison.OrdinalIgnoreCase) &&
+                    !string.Equals(shared, wanted, StringComparison.OrdinalIgnoreCase) &&
+                    !string.Equals(shared, "$item_" + wanted.ToLowerInvariant(), StringComparison.OrdinalIgnoreCase)) continue;
+
+                var setRecipe = typeof(InventoryGui).GetMethod("SetRecipe",
+                    BindingFlags.Instance | BindingFlags.NonPublic, null, new[] { typeof(int), typeof(bool) }, null);
+                if (setRecipe == null) { Say("select: SetRecipe(int,bool) not found"); return; }
+
+                setRecipe.Invoke(gui, new object[] { i, false });
+                CraftState("select " + wanted);
+                return;
+            }
+
+            Say("select: no recipe " + wanted);
+        }
+
+        /// <summary>Opens the inventory on the crafting tab, the way the crafting station's panel does.</summary>
+        private void CraftOpen()
+        {
+            var gui = InventoryGui.instance;
+            if (gui == null) { Say("craftopen: no gui"); return; }
+
+            gui.Show(null, 3);
+            Say("craftopen visible=" + InventoryGui.IsVisible());
+            StartCoroutine(AfterCraftOpen());
+        }
+
+        private IEnumerator AfterCraftOpen()
+        {
+            yield return new WaitForSeconds(0.6f);
+            CraftState("craftopen");
+            Available(new[] { "available" });
+        }
+
+        /// <summary>Presses the craft button's own handler, so the press path under test is the player's.</summary>
+        private void Craft()
+        {
+            var gui = InventoryGui.instance;
+            if (gui == null) { Say("craft: no gui"); return; }
+
+            var pressed = typeof(InventoryGui).GetMethod("OnCraftPressed",
+                BindingFlags.Instance | BindingFlags.NonPublic, null, Type.EmptyTypes, null);
+            if (pressed == null) { Say("craft: OnCraftPressed not found"); return; }
+
+            var button = gui.m_craftButton;
+            Say("craft press button=" + (button != null ? button.interactable.ToString() : "-") +
+                " visible=" + InventoryGui.IsVisible());
+            pressed.Invoke(gui, null);
+            StartCoroutine(AfterCraft());
+        }
+
+        private IEnumerator AfterCraft()
+        {
+            yield return new WaitForSeconds(1.5f);
+            CraftState("after craft");
+            yield return new WaitForSeconds(6f);
+            CraftState("after craft +7");
+        }
+
+        /// <summary>The craft panel's live state: what is selected, whether the button is live, and the count.</summary>
+        private void CraftState(string prefix)
+        {
+            var gui = InventoryGui.instance;
+            var player = Player.m_localPlayer;
+            if (gui == null || player == null) { Say(prefix + " craft: no gui/player"); return; }
+
+            var pair = SelectedPair(gui);
+            var recipe = PairRecipe(pair);
+            var button = gui.m_craftButton;
+            var timer = CraftTimer(gui);
+
+            var line = prefix + " craft winner=" + (recipe != null && recipe.m_item != null ? recipe.m_item.name : "-") +
+                       " button=" + (button != null ? button.interactable.ToString() : "-") +
+                       " visible=" + InventoryGui.IsVisible() +
+                       " timer=" + timer.ToString("0.0") +
+                       " upgrader=" + gui.InUpradeTab();
+
+            if (recipe != null && recipe.m_item != null && recipe.m_resources != null)
+            {
+                var have = PlayerHaveRequirements(player, recipe);
+                line += " have=" + have;
+                for (var i = 0; i < recipe.m_resources.Length; i++)
+                {
+                    var requirement = recipe.m_resources[i];
+                    if (requirement == null || requirement.m_resItem == null) continue;
+                    var shared = requirement.m_resItem.m_itemData != null ? requirement.m_resItem.m_itemData.m_shared.m_name : null;
+                    if (string.IsNullOrEmpty(shared)) continue;
+                    line += " " + shared + "=" + requirement.GetAmount(1) +
+                            "+carried" + player.GetInventory().CountItems(shared, -1, true) +
+                            "+claim" + ClaimCount(shared);
+                }
+            }
+
+            Say(line);
+            Say(prefix + " pockets " + Items(player.GetInventory()));
+        }
+
+        /// <summary>AAA Crafting's batch count: read it, and set it when an amount is given.</summary>
+        private void Aaa(string[] parts)
+        {
+            var type = ModType("AzuAntiArthriticCrafting.Patches.InventoryGuiShowCraftingPanelPatch");
+            if (type == null) { Say("aaa: AAA not loaded"); return; }
+
+            var field = type.GetField("CurrentCraftAmount", BindingFlags.Public | BindingFlags.Static);
+            if (field == null) { Say("aaa: CurrentCraftAmount not found"); return; }
+
+            if (parts.Length > 1)
+            {
+                var amount = ParseInt(parts[1], 1);
+                field.SetValue(null, Mathf.Max(1, amount));
+            }
+
+            Say("aaa amount=" + field.GetValue(null));
+        }
+
+        /// <summary>N screenshots in a row, so a moving nisse cannot walk past the shutter.</summary>
+        private void Burst(string[] parts)
+        {
+            var tag = parts.Length > 1 ? parts[1] : "burst";
+            var count = parts.Length > 2 ? ParseInt(parts[2], 6) : 6;
+            var interval = parts.Length > 3 ? ParseFloat(parts[3], 0.8f) : 0.8f;
+
+            if (_busy) { Logger.LogWarning("gc burst skipped: busy"); return; }
+            StartCoroutine(BurstRoutine(tag, Mathf.Clamp(count, 1, 30), Mathf.Max(0.2f, interval)));
+        }
+
+        private IEnumerator BurstRoutine(string tag, int count, float interval)
+        {
+            _busy = true;
+            Directory.CreateDirectory(CaptureDir);
+            for (var i = 0; i < count; i++)
+            {
+                var path = Path.Combine(CaptureDir, tag + "-" + i.ToString("00") + ".png");
+                ScreenCapture.CaptureScreenshot(path);
+                Say("burst " + i + " " + path);
+                yield return new WaitForSeconds(interval);
+            }
+            Say("burst done count=" + count);
+            _busy = false;
+        }
+
+        private static List<object> RecipeList(InventoryGui gui)
+        {
+            var field = typeof(InventoryGui).GetField("m_availableRecipes", BindingFlags.Instance | BindingFlags.NonPublic);
+            var raw = field != null ? field.GetValue(gui) as IEnumerable : null;
+            if (raw == null) return null;
+
+            var list = new List<object>();
+            foreach (var item in raw) list.Add(item);
+            return list;
+        }
+
+        private static object SelectedPair(InventoryGui gui)
+        {
+            var field = typeof(InventoryGui).GetField("m_selectedRecipe", BindingFlags.Instance | BindingFlags.NonPublic);
+            return field != null ? field.GetValue(gui) : null;
+        }
+
+        private static Recipe PairRecipe(object pair)
+        {
+            if (pair == null) return null;
+            var property = pair.GetType().GetProperty("Recipe", BindingFlags.Instance | BindingFlags.Public);
+            return property != null ? property.GetValue(pair, null) as Recipe : null;
+        }
+
+        private static bool PairCanCraft(object pair)
+        {
+            if (pair == null) return false;
+            var property = pair.GetType().GetProperty("CanCraft", BindingFlags.Instance | BindingFlags.Public);
+            return property != null && property.GetValue(pair, null) is bool value && value;
+        }
+
+        private static float CraftTimer(InventoryGui gui)
+        {
+            var field = typeof(InventoryGui).GetField("m_craftTimer", BindingFlags.Instance | BindingFlags.NonPublic);
+            return field != null && field.GetValue(gui) is float value ? value : -1f;
+        }
+
+        private static bool PlayerHaveRequirements(Player player, Recipe recipe)
+        {
+            try { return player.HaveRequirements(recipe, false, 1, 1); }
+            catch { return false; }
+        }
+
+        /// <summary>The mod's own claim count, so a line can show what the panel is counting.</summary>
+        private static int ClaimCount(string sharedName)
+        {
+            var type = ModType("Husnisse.Contract.StorageContract");
+            var count = type != null ? type.GetMethod("CountClaim", BindingFlags.Public | BindingFlags.Static) : null;
+            if (count == null) return -1;
+            try { return Convert.ToInt32(count.Invoke(null, new object[] { sharedName })); }
+            catch { return -1; }
+        }
+
+        private static float ParseFloat(string text, float fallback)
+        {
+            float value;
+            return float.TryParse(text, out value) ? value : fallback;
         }
 
         /// <summary>

@@ -1,0 +1,6 @@
+gc cmd: craft
+gc craft press button=True visible=True
+[Info   :  Husnisse] supply RPC registered
+gc hud center='The nisse fetches what the base can spare.'
+gc after craft craft winner=Club button=True visible=True timer=-1.0 upgrader=False have=True $item_wood=6+carried0+claim20 $item_bonefragments=0+carried0+claim0 $item_upgrader_tier0 $item_upgrader_weapon $item_upgrader_name=1+carried0+claim0
+gc after craft pockets stacks=0 items=0 []

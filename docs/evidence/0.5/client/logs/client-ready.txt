@@ -1,0 +1,4 @@
+[Info   :Husnisse Gate Client Probe] gc loaded 0.1.0
+[Info   :   BepInEx] Loading [Husnisse 0.5.0] (com.bootstrapboys.husnisse)
+[Info   :  Husnisse] Husnisse 0.5.0 starting
+[Info   :Husnisse Gate Client Probe] gc ready player=Stranger id=-202584743 pos=1.56,33.57,0.52 world=MTTest peers=1

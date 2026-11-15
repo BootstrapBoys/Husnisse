@@ -1,0 +1,15 @@
+gc cmd: craftstate
+gc craftstate craft winner=Club button=True visible=True timer=-1.0 upgrader=False have=True $item_wood=6+carried0+claim14 $item_bonefragments=0+carried0+claim0 $item_upgrader_tier0 $item_upgrader_weapon $item_upgrader_name=1+carried0+claim0
+gc craftstate pockets stacks=1 items=1 [clubx1]
+gc cmd: inv
+gc inv stacks=1 items=1 [clubx1]
+gc cmd: containers
+gc container TreasureChest_meadows_buried(Clone) idx=0 at -72.83,77.30,-125.18 net=False rule='' stacks=3 items=5 [silvernecklacex1,rubyx3,$mod_epicloot_Magic $mod_epicloot_shard_Cyan $mod_epicloot_assets_shardstonex1] zdosts=3 zid=-1416515096:5970 zrev=12 zown=0
+gc container piece_chest_wood(Clone) idx=0 at 1.56,33.77,3.02 net=False rule='' stacks=1 items=14 [woodx14] zdosts=1 zid=-1416515096:15944 zrev=9 zown=-1022782763
+gc container TreasureChest_meadows_buried(Clone) idx=1 at 121.72,33.99,56.98 net=False rule='' stacks=4 items=26 [coinsx23,axe_woodx1,rubyx1,shield_woodx1] zdosts=4 zid=-1416515096:3916 zrev=13 zown=0
+gc containers total=3 net=0 ruled=0
+gc cmd: contract Wood
+gc [contract] api=1 provider=native can_consume=True busy=False ready=True
+gc [contract] scope claim -1416515096:15942 at 0.1,0.5 r=20 source=native owner=-202584743 containers=1 permitted=True
+gc [contract] sources pockets=stacks=1 items=1 slots=stacks=0 items=0 backpack=absent claim=containers=1 stacks=1
+gc [contract] count $item_wood=14 carried=0 claim=14

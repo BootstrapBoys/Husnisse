@@ -1,0 +1,14 @@
+gc cmd: close
+gc close was=none
+gc cmd: craftopen
+gc craftopen visible=True
+gc craftopen craft winner=BlueprintRune button=False visible=True timer=-1.0 upgrader=False have=False $item_stone=1+carried0+claim0
+gc craftopen pockets stacks=0 items=0 []
+gc available [0] PlanHammer $item_plan_hammer canCraft=True amount=1
+gc available [1] Club $item_club canCraft=True amount=1
+gc available [2] BlueprintRune $item_blueprintrune canCraft=False amount=1
+gc available [3] Hammer $item_hammer canCraft=False amount=1
+gc available [4] AxeStone $item_axe_stone canCraft=False amount=1
+gc available [5] Torch $item_torch canCraft=False amount=1
+gc available total=6 of 6
+gc close after: gui=none localZdoOwner=True stacks=0 items=0 []

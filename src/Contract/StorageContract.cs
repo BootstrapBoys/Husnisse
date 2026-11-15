@@ -49,15 +49,19 @@ namespace Husnisse.Contract
             get { return PluginGuards.IntegrationsInstalled() ? ProviderQi : ProviderNative; }
         }
 
-        /// <summary>True when a spend can be attempted: the supply path exists and the mod is running.</summary>
+        /// <summary>
+        /// True when a spend can be attempted. Deliberately independent of <see cref="IsReady"/> and
+        /// of the plugin's own startup flag: the consumer integrations bind during Awake, before the
+        /// mod is "running", and a flag that is still false there would make them stand down for the
+        /// session. The startup refusal (Quartermaster beside us) is what actually disables the path.
+        /// </summary>
         public static bool CanConsume
         {
             get
             {
                 try
                 {
-                    return HusnissePlugin.Running &&
-                           HusnisseConfig.CraftSupply != null && HusnisseConfig.CraftSupply.Value;
+                    return HusnisseConfig.CraftSupply != null && HusnisseConfig.CraftSupply.Value;
                 }
                 catch
                 {

@@ -1,0 +1,2 @@
+client state player=Stranger id=-202584743
+client pid -202584743

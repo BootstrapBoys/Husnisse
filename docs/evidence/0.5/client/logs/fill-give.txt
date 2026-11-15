@@ -1,0 +1,2 @@
+gc cmd: give Wood 20
+gc give Woodx20 slot=(0,1) item=False stacks=2 items=24 [flintx20,wolfpeltx4]

@@ -1,0 +1,125 @@
+
+== prep: stop the tree, side-line its world, deploy the gate build to both sides, boot
+client idle
+
+== client: launch into the gate tree and wait for the world
+--- state
+
+== scene: a floor, a workbench and the claim, at the client's own position
+--- where
+--- scene
+
+== scene: fill the chest from the client (give, open, move, close)
+--- fill-give
+--- fill-open
+--- fill-move
+--- fill-close
+--- scene-inv
+
+== p1: the crafting window with an empty pocket and a stocked claim
+--- p1-open
+--- p1-available
+--- p1-select
+--- p1-state
+--- shot-05-before-craft
+
+== client: launch into the gate tree and wait for the world
+--- state
+
+== p1: the crafting window with an empty pocket and a stocked claim
+--- p1-open
+--- p1-available
+--- p1-select
+--- p1-state
+--- shot-05-before-craft
+
+== p2: the press, the nisse's load, and the craft it pays for
+--- p2-craft
+--- p2-burst
+--- p2-state
+--- shot-05-after-craft
+
+== client: launch into the gate tree and wait for the world
+
+== p1: the crafting window with an empty pocket and a stocked claim
+--- p1-open
+--- p1-available
+--- p1-select
+--- p1-state
+--- shot-05-before-craft
+
+== p1: the crafting window with an empty pocket and a stocked claim
+--- p1-open
+--- p1-available
+--- p1-select
+--- p1-state
+--- shot-05-before-craft
+
+== p1: the crafting window with an empty pocket and a stocked claim
+--- p1-open
+--- p1-available
+--- p1-select
+--- p1-state
+--- shot-05-before-craft
+
+== p2: the press, the nisse's load, and the craft it pays for
+--- p2-craft
+--- p2-burst
+--- p2-state
+--- shot-05-after-craft
+
+== p1: the crafting window with an empty pocket and a stocked claim
+--- p1-open
+--- p1-available
+--- p1-select
+--- p1-state
+--- shot-05-before-craft
+
+== p2: the press, the nisse's load, and the craft it pays for
+--- p2-craft
+--- p2-burst
+--- p2-state
+--- shot-05-after-craft
+
+== p1: the crafting window with an empty pocket and a stocked claim
+--- p1-open
+--- p1-available
+--- p1-select
+--- p1-state
+--- shot-05-before-craft
+
+== p2: the press, the nisse's load, and the craft it pays for
+--- p2-craft
+--- p2-burst
+--- p2-state
+--- shot-05-after-craft
+
+== prep: stop the tree, side-line its world, deploy the gate build to both sides, boot
+client idle
+
+== client: launch into the gate tree and wait for the world
+--- state
+
+== scene: a floor, a workbench and the claim, at the client's own position
+--- where
+--- scene
+
+== scene: fill the chest from the client (give, open, move, close)
+--- fill-give
+--- fill-open
+--- fill-move
+--- fill-close
+--- scene-inv
+
+== p1: the crafting window with an empty pocket and a stocked claim
+--- p1-open
+--- p1-available
+--- p1-select
+--- p1-state
+--- shot-05-before-craft
+
+== p2: the press, the nisse's load, and the craft it pays for
+--- p2-craft
+--- p2-burst
+--- p2-state
+--- shot-05-after-craft

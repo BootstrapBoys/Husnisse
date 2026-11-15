@@ -1,0 +1,9 @@
+gc hud top='1 New unlocks in message log.'
+gc cmd: burst 05-supply 16 0.9
+gc burst 0 C:\Users\Hermes\Desktop\husnisse-captures\05-supply-00.png
+gc burst 1 C:\Users\Hermes\Desktop\husnisse-captures\05-supply-01.png
+gc burst 2 C:\Users\Hermes\Desktop\husnisse-captures\05-supply-02.png
+gc after craft +7 craft winner=Club button=True visible=True timer=-1.0 upgrader=False have=True $item_wood=6+carried0+claim14 $item_bonefragments=0+carried0+claim0 $item_upgrader_tier0 $item_upgrader_weapon $item_upgrader_name=1+carried0+claim0
+gc after craft +7 pockets stacks=1 items=1 [clubx1]
+gc burst 3 C:\Users\Hermes\Desktop\husnisse-captures\05-supply-03.png
+gc burst 4 C:\Users\Hermes\Desktop\husnisse-captures\05-supply-04.png

@@ -1,0 +1,6 @@
+gc cmd: available Club
+gc available [1] Club $item_club canCraft=True amount=1
+gc available total=1 of 6
+gc cmd: available Torch
+gc available [5] Torch $item_torch canCraft=False amount=1
+gc available total=1 of 6

@@ -75,7 +75,7 @@ namespace Husnisse.Commands
             items.Add(new KeyValuePair<string, int>(shared, amount));
 
             var token = Environment.TickCount;
-            var verdict = SupplyService.Begin(caller, home.BowlId, token, caller.Position, items);
+            var verdict = SupplyService.Begin(caller, home.BowlPosition, token, caller.Position, items);
 
             Emit(args, "supply request item=" + shared + " amount=" + amount + " claim=" + home.BowlId +
                        " caller=" + caller.PlayerId + " peer=" + caller.PeerUid +

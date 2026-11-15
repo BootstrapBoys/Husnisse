@@ -1,0 +1,2 @@
+gc cmd: shot 05-after-craft
+gc shot C:\Users\Hermes\Desktop\husnisse-captures\05-after-craft.png

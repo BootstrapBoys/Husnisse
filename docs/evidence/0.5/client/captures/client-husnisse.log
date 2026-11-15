@@ -1,0 +1,17 @@
+Husnisse 0.5.0
+started 2026-11-15 13:09:40
+
+
+== claim registered @ 13:11:16 ==
+[config] enabled=True debug=False diagnostics_file=True rate=5 reconcile=5 bowl_drain=20 radius=20 lod_distance=30 ledger_key=H presets=builtin feeding_required=True
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False stacks=native quartermaster=absent integrations=absent epicloot=installed epicloot_bridge=absent aaacrafting=installed aaabuildmenu=installed planbuild=installed mylittleui=installed extraslots=installed adventurebackpacks=installed
+[contract] readouts state=native rows=pocket+claim aaacrafting=bound aaabuildmenu=bound mylittleui=already-off epicloot=off planbuild=off
+[contract] api=1 provider=native can_consume=True busy=False ready=True
+[contract] scope claim -1416515096:15942 at 0.1,0.5 r=20 source=native owner=-202584743 containers=0 permitted=True
+[contract] sources pockets=stacks=2 items=24 slots=stacks=0 items=0 backpack=absent claim=containers=0 stacks=0
+schema=2 feeding_required=True claims=1 trips=0 supply errands=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+claim -1416515096:15942 source=native ward=0:0 owner=-202584743 r=20 center=0.1,0.5 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 pickup=all unknown=0 lod=- nisse=none
+[flow] claim=-1416515096:15942 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+[Supply] craft deferred recipe=Club quality=1 batch=1 token=93344907 claim=-1416515096:15942
+[Supply] craft resumed item=$item_club batch=1

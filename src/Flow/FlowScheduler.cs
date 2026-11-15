@@ -39,6 +39,7 @@ namespace Husnisse.Flow
 
             Net.OrderRpc.Register();
             Net.RuleRpc.Register();
+            Net.FetchRpc.Register();
 
             WorldPolicy.ApplyServerPolicy();
 

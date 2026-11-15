@@ -207,7 +207,9 @@ namespace Husnisse.Contract
             token = ++_nextToken;
             if (token <= 0L) token = ++_nextToken;
 
-            return FetchRpc.Request(claim.BowlId, player.GetPlayerID(), token, player.transform.position, items);
+            // The bowl is addressed by its position: a ZDOID's user component is a per-peer key table
+            // entry, so the id a client holds is not the id the server knows the bowl by.
+            return FetchRpc.Request(claim.BowlPosition, player.GetPlayerID(), token, player.transform.position, items);
         }
 
         // ------------------------------------------------------------------ server
@@ -217,23 +219,47 @@ namespace Husnisse.Contract
         /// containers, so a client cannot name a chest that is not there or ask for more than one
         /// holds; nothing is removed here — the nisse does that when it reaches each chest.
         /// </summary>
-        public static FetchResult Begin(OrderCaller caller, ZDOID bowlId, long token, Vector3 bench,
+        public static FetchResult Begin(OrderCaller caller, Vector3 bowlPoint, long token, Vector3 bench,
                                         List<KeyValuePair<string, int>> items)
         {
             LastNote = string.Empty;
 
-            var verdict = Decide(caller, bowlId, token, bench, items);
+            var verdict = Decide(caller, bowlPoint, token, bench, items);
             if (verdict != FetchResult.Accepted)
             {
                 DiagnosticsFile.Line("[Supply] refused result=" + verdict + " note=\"" + (LastNote ?? string.Empty) +
-                                     "\" player=" + caller.PlayerId + " claim=" + bowlId);
+                                     "\" player=" + caller.PlayerId + " bowl=" +
+                                     bowlPoint.x.ToString("0.#") + "," + bowlPoint.z.ToString("0.#"));
                 Log.Debug("Flow", "supply refused: " + verdict + " (" + (LastNote ?? string.Empty) + ")");
             }
 
             return verdict;
         }
 
-        private static FetchResult Decide(OrderCaller caller, ZDOID bowlId, long token, Vector3 bench,
+        /// <summary>
+        /// The claim whose bowl stands at a point. Addressed by position on purpose: a client's ZDOID
+        /// for the bowl carries that peer's own key-table user component, so the id it sends is not
+        /// the id the server files the claim under.
+        /// </summary>
+        public static Claim ClaimAt(Vector3 bowlPoint)
+        {
+            var best = 0f;
+            Claim found = null;
+
+            foreach (var claim in ClaimRegistry.All())
+            {
+                if (claim == null) continue;
+                var distance = Vector3.Distance(claim.BowlPosition, bowlPoint);
+                if (distance > 1.5f) continue;
+                if (found != null && distance >= best) continue;
+                found = claim;
+                best = distance;
+            }
+
+            return found ?? ClaimRegistry.FindFor(bowlPoint);
+        }
+
+        private static FetchResult Decide(OrderCaller caller, Vector3 bowlPoint, long token, Vector3 bench,
                                           List<KeyValuePair<string, int>> items)
         {
             if (HusnisseConfig.CraftSupply == null || !HusnisseConfig.CraftSupply.Value)
@@ -244,7 +270,7 @@ namespace Husnisse.Contract
 
             if (!caller.Valid) { LastNote = "no caller"; return FetchResult.NotYours; }
 
-            var claim = ClaimRegistry.Find(bowlId);
+            var claim = ClaimAt(bowlPoint);
             if (claim == null || claim.Bowl == null) { LastNote = "no claim"; return FetchResult.NoClaim; }
             if (claim.Suppressed) { LastNote = "claim suppressed"; return FetchResult.NotYours; }
             if (!claim.Allows(caller.PlayerId)) { LastNote = "not permitted"; return FetchResult.NotYours; }
