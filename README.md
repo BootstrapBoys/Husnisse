@@ -195,6 +195,9 @@ crates. Nothing joins by default: a container is on the network only when it is 
   access can read them.
 - **Authority** — rules live in the container's ZDO and are written through the server; a client with
   no local player changes nothing.
+- **Storage** — the opt-in is `husnisse_net` (bool) and the rule is `husnisse_rule`, one versioned
+  string (`v1;k=cat;c=metals;p=1;i=…`) so no peer ever reads half a rule. A version or field this build
+  does not understand reads as "no rule", never as a broken chest. The server is the only writer.
 - **Containers outside a claim** are not on any network and show no buttons.
 
 ### Memory

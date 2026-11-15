@@ -36,6 +36,7 @@ namespace Husnisse.Flow
             if (ZNetScene.instance == null) return;
 
             Net.OrderRpc.Register();
+            Net.RuleRpc.Register();
 
             WorldPolicy.ApplyServerPolicy();
 

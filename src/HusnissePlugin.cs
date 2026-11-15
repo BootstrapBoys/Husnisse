@@ -26,7 +26,7 @@ namespace Husnisse
     {
         public const string PluginGUID = "com.bootstrapboys.husnisse";
         public const string PluginName = "Husnisse";
-        public const string PluginVersion = "0.2.2";
+        public const string PluginVersion = "0.3.0";
 
         internal static bool Running;
 
@@ -54,6 +54,7 @@ namespace Husnisse
             RegisterStatusCommand();
             RegisterPreviewCommand();
             RegisterPrefabCommand();
+            Commands.RuleCommand.Register();
 
             if (!HusnisseConfig.Enabled.Value)
             {
@@ -146,6 +147,7 @@ namespace Husnisse
             BowlPrefab.Register();
             NissePrefab.Register();
             OrderRpc.Register();
+            RuleRpc.Register();
 
             Log.Info("content registered");
         }

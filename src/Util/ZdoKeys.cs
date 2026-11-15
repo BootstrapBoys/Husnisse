@@ -32,5 +32,12 @@ namespace Husnisse.Util
 
         // Container role
         public const string ContainerRole = "husnisse_role";
+
+        // Container network (0.3). `husnisse_net` is the opt-in, `husnisse_rule` the whole rule as
+        // one versioned string (see ContainerRule), `husnisse_blacklist` an explicit per-container
+        // "never show a button". Prefab defaults (carts, ships, display piles) are not stored here.
+        public const string ContainerNetwork = "husnisse_net";
+        public const string ContainerRule = "husnisse_rule";
+        public const string ContainerBlacklist = "husnisse_blacklist";
     }
 }

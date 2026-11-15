@@ -92,6 +92,17 @@ namespace Husnisse.Compat
             return prefab.StartsWith("DS_", System.StringComparison.OrdinalIgnoreCase);
         }
 
+        /// <summary>
+        /// The prefabs that ship blacklisted: nothing that moves and nothing that exists to display.
+        /// The per-container blacklist flag is a separate ZDO key; this is the default a container
+        /// with no flag inherits, so a new mod's cart is safe without a save-data migration.
+        /// </summary>
+        public static bool DefaultBlacklisted(Container container)
+        {
+            if (container == null) return true;
+            return IsMobile(container) || IsDisplayPile(container);
+        }
+
         public static bool CanUse(Claim claim, Container container)
         {
             if (claim == null || container == null) return false;

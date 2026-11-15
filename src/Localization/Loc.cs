@@ -65,6 +65,26 @@ namespace Husnisse.Localization
         public const string ClaimRefusedOwner = "$husnisse_claim_refused_owner";
         public const string ClaimRefusedHeld = "$husnisse_claim_refused_held";
 
+        // Container network (0.3)
+        public const string NetOn = "$husnisse_net_on";
+        public const string NetOff = "$husnisse_net_off";
+        public const string RuleButton = "$husnisse_rule_button";
+        public const string RuleTitle = "$husnisse_rule_title";
+        public const string RuleNone = "$husnisse_rule_none";
+        public const string RuleOverflow = "$husnisse_rule_overflow";
+        public const string RuleDeposit = "$husnisse_rule_deposit";
+        public const string RuleClose = "$husnisse_rule_close";
+        public const string RuleReadOnly = "$husnisse_rule_read_only";
+        public const string RuleRefused = "$husnisse_rule_refused";
+        public const string CatMetals = "$husnisse_cat_metals";
+        public const string CatWood = "$husnisse_cat_wood";
+        public const string CatFood = "$husnisse_cat_food";
+        public const string CatTrophies = "$husnisse_cat_trophies";
+        public const string CatValuables = "$husnisse_cat_valuables";
+        public const string CatBuilding = "$husnisse_cat_building";
+        public const string CatConsumables = "$husnisse_cat_consumables";
+        public const string CatTools = "$husnisse_cat_tools";
+
         private const string FolderName = "localization";
 
         private static readonly Dictionary<string, Dictionary<string, string>> ByLanguage =
@@ -152,7 +172,7 @@ namespace Husnisse.Localization
                     return;
                 }
 
-                if (string.Equals(file.Language, "English", StringComparison.OrdinalIgnoreCase) && file.Version < 4)
+                if (string.Equals(file.Language, "English", StringComparison.OrdinalIgnoreCase) && file.Version < 5)
                 {
                     Log.Warn("outdated English localisation ignored; embedded strings are used: " + path);
                     return;
@@ -196,7 +216,7 @@ namespace Husnisse.Localization
         }
 
         private const string DefaultEnglish = @"
-version: 4
+version: 5
 language: English
 strings:
   $husnisse_bowl_name: Porridge Bowl
@@ -243,6 +263,24 @@ strings:
   $husnisse_claim_refused_ward: the ward does not permit you
   $husnisse_claim_refused_owner: another player's ward
   $husnisse_claim_refused_held: another bowl is already here
+  $husnisse_net_on: On the network
+  $husnisse_net_off: Off the network
+  $husnisse_rule_button: Rules
+  $husnisse_rule_title: Storage rule
+  $husnisse_rule_none: No rule
+  $husnisse_rule_overflow: Overflow
+  $husnisse_rule_deposit: Deposit
+  $husnisse_rule_close: Close
+  $husnisse_rule_read_only: read only
+  $husnisse_rule_refused: Only the claim's owner may change this container's rule.
+  $husnisse_cat_metals: Metals
+  $husnisse_cat_wood: Wood
+  $husnisse_cat_food: Food
+  $husnisse_cat_trophies: Trophies
+  $husnisse_cat_valuables: Valuables
+  $husnisse_cat_building: Building
+  $husnisse_cat_consumables: Consumables
+  $husnisse_cat_tools: Tools
 ";
     }
 }

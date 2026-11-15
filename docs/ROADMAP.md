@@ -152,6 +152,10 @@ never half-bound.
 (category, priority, overflow, deposit, unmatched) lands in the intended chest; the 200-container
 benchmark is recorded; a blacklisted container never shows a button.
 
+**Progress** — 0.3a landed the container UI and rule storage (buttons, settings panel, `husnisse_rule`
+console path, ZDO encoding); categories, priority, custom lists, auto-suggest and copy-rule are 0.3b;
+routing is not wired until then.
+
 **Risks** — vanilla container UI patching is the most compatibility-sensitive work in the project.
 MyLittleUI and other UI mods must be tested; the buttons must survive a controller and a narrow screen.
 

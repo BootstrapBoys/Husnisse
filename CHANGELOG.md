@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.0
+
+Internal only — the container network's controls and its rule storage. Routing is not wired yet; this
+build proves that a base can be configured and that the rules are world state.
+
+- Every container in a claim now has two buttons in the top-right of its window: a network toggle and a rule button. A container outside a claim, a blacklisted one (carts, ships and display piles are blacklisted by default) and a dedicated server show neither.
+- The rule panel offers the eight survival categories and the two roles — Overflow and Deposit — plus "No rule". The choice is written into the container's ZDO as one versioned value through the server, and every peer reads it back from there, so two players cannot hold different rules for one chest.
+- The claim owner and the players a ward permits change rules; anyone else sees the buttons disabled and is told why. A client writes nothing: the request goes to the server, which validates the claim, the sender's identity and the container before writing.
+- `husnisse_rule list | net <prefab> <on|off> [index] | set <prefab> <rule> [index]` reads and writes the same state from the server console. `husnisse_status` gains one line per network container and a `[rules]` count.
+- A rule encoding this build does not understand reads as "no rule" instead of breaking the chest.
+
 ## 0.2.2
 
 Internal only — the nisse's warning line now reaches a player's HUD.

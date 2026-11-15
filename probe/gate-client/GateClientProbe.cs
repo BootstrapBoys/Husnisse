@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using BepInEx;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Husnisse.GateClient
 {
@@ -189,6 +191,9 @@ namespace Husnisse.GateClient
                 case "cam": Cam(parts); break;
                 case "face": Face(parts); break;
                 case "teleport": Teleport(parts); break;
+                case "stand": Stand(parts); break;
+                case "ui": UiState("ui"); break;
+                case "click": ClickUi(parts.Length > 1 ? parts[1] : "HusnisseNet"); break;
                 case "god": God(parts); break;
                 case "heal": Heal(); break;
                 case "quit": Quit(); break;
@@ -509,6 +514,94 @@ namespace Husnisse.GateClient
             _busy = false;
         }
 
+        // Stand beside a container so its window stays open (InventoryGui closes beyond 4 m).
+        private void Stand(string[] parts)
+        {
+            var prefab = parts.Length > 1 ? parts[1] : "piece_chest_wood";
+            var index = parts.Length > 2 ? ParseInt(parts[2], 0) : 0;
+            var container = FindContainer(prefab, index);
+            var player = Player.m_localPlayer;
+            if (container == null || player == null) { Say("stand: no " + prefab + "[" + index + "]"); return; }
+
+            var target = container.transform.position;
+            var position = target + new Vector3(1.6f, 0.2f, 0f);
+            player.transform.position = position;
+            Say("stand " + container.name + "[" + index + "] at " + Fmt(target) + " -> player " + Fmt(position));
+        }
+
+        private void UiState(string prefix)
+        {
+            var gui = InventoryGui.instance;
+            if (gui == null) { Say(prefix + " ui: no gui"); return; }
+
+            var current = GuiContainer();
+            var root = gui.m_container;
+            var strip = FindUnder(root, "HusnisseNetworkStrip");
+            var panel = FindUnder(root, "HusnisseRulesPanel");
+            var net = FindUnder(root, "HusnisseNet");
+            var rules = FindUnder(root, "HusnisseRules");
+            var netButton = net != null ? net.GetComponent<Button>() : null;
+            var rulesButton = rules != null ? rules.GetComponent<Button>() : null;
+
+            Say(prefix + " ui container=" + (current != null ? current.name : "none") +
+                " strip=" + (strip != null && strip.activeInHierarchy) +
+                " net='" + LabelOf(net) + "'" +
+                " netClickable=" + (netButton != null ? netButton.interactable.ToString() : "-") +
+                " rules='" + LabelOf(rules) + "'" +
+                " rulesClickable=" + (rulesButton != null ? rulesButton.interactable.ToString() : "-") +
+                " panel=" + (panel != null && panel.activeSelf));
+
+            if (current == null) return;
+            var view = current.GetComponent<ZNetView>();
+            var zdo = view != null && view.IsValid() ? view.GetZDO() : null;
+            if (zdo != null)
+            {
+                Say(prefix + " zdo net=" + zdo.GetBool("husnisse_net", false) +
+                    " rule='" + zdo.GetString("husnisse_rule", string.Empty) + "'" +
+                    " owner=" + (view != null && view.IsOwner()));
+            }
+        }
+
+        private void ClickUi(string name)
+        {
+            var gui = InventoryGui.instance;
+            var target = gui != null ? FindUnder(gui.m_container, name) : null;
+            if (target == null) { Say("click " + name + ": missing"); return; }
+
+            var button = target.GetComponent<Button>();
+            if (button == null) { Say("click " + name + ": no Button"); return; }
+
+            Say("click " + name + " label='" + LabelOf(target) + "' interactable=" + button.interactable);
+            if (!button.interactable) { Say("click " + name + " skipped: not interactable"); return; }
+
+            button.onClick.Invoke();
+            Say("click " + name + " invoked");
+            StartCoroutine(AfterClick(name));
+        }
+
+        private IEnumerator AfterClick(string name)
+        {
+            yield return new WaitForSeconds(1.2f);
+            UiState("after " + name);
+        }
+
+        private static GameObject FindUnder(Transform root, string name)
+        {
+            if (root == null) return null;
+            foreach (var child in root.GetComponentsInChildren<Transform>(true))
+            {
+                if (child != null && child.gameObject.name == name) return child.gameObject;
+            }
+            return null;
+        }
+
+        private static string LabelOf(GameObject go)
+        {
+            if (go == null) return "-";
+            var label = go.GetComponentInChildren<TMP_Text>(true);
+            return label != null ? label.text : "-";
+        }
+
         private void Shot(string name)
         {
             Directory.CreateDirectory(CaptureDir);
@@ -646,6 +739,29 @@ namespace Husnisse.GateClient
                 best = container;
             }
             return best;
+        }
+
+        /// <summary>Deterministic by position, the same order the rig harness and husnisse_rule use.</summary>
+        private static Container FindContainer(string prefab, int index)
+        {
+            var matches = new List<Container>();
+            foreach (var container in UnityEngine.Object.FindObjectsByType<Container>(FindObjectsSortMode.None))
+            {
+                if (container == null) continue;
+                if (!container.gameObject.name.StartsWith(prefab, StringComparison.OrdinalIgnoreCase)) continue;
+                matches.Add(container);
+            }
+
+            matches.Sort(delegate(Container a, Container b)
+            {
+                var first = a.transform.position;
+                var second = b.transform.position;
+                if (Math.Abs(first.x - second.x) > 0.01f) return first.x < second.x ? -1 : 1;
+                if (Math.Abs(first.z - second.z) > 0.01f) return first.z < second.z ? -1 : 1;
+                return first.y.CompareTo(second.y);
+            });
+
+            return index >= 0 && index < matches.Count ? matches[index] : null;
         }
 
         private static Character FindNisse()
