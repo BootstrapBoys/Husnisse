@@ -91,6 +91,7 @@ namespace Husnisse.Storage
             var zdo = Zdo(container);
             if (zdo == null) return false;
 
+            if (rule != null) rule.Sanitise();
             var encoded = (rule ?? ContainerRule.None()).Encode();
             zdo.Set(ZdoKeys.ContainerRule, encoded);
             Log.Debug("Rules", "rule written " + Utils.GetPrefabName(container.gameObject) +
@@ -107,6 +108,61 @@ namespace Husnisse.Storage
             Log.Debug("Rules", "network " + (on ? "on" : "off") + " " +
                                Utils.GetPrefabName(container.gameObject) + " by " + who);
             return true;
+        }
+
+        /// <summary>
+        /// Turning a container on for the first time also offers it a rule: the preset most of its
+        /// contents already belong to (improvement 3). The write is the server's, like every other
+        /// rule, and it happens only when the container has no rule at all, so a player's choice is
+        /// never overwritten — and never a suggestion, because a chest that already holds the right
+        /// category either has its rule or is a plain chest the player left alone.
+        ///
+        /// The acknowledgement leg and the harness use <see cref="WriteNetwork"/>: a peer applying
+        /// the server's accepted value must not compute a suggestion of its own.
+        /// </summary>
+        public static bool WriteNetworkAndSuggest(Container container, bool on, string who)
+        {
+            if (!WriteNetwork(container, on, who)) return false;
+            if (!on) return true;
+
+            var suggested = Suggestion(container);
+            if (suggested.IsNone) return true;
+
+            WriteRule(container, suggested, who + " (from contents)");
+            Log.Debug("Rules", "suggested " + suggested.Describe() + " for " +
+                               Utils.GetPrefabName(container.gameObject) + " (" + Count(container) + " stack(s))");
+            return true;
+        }
+
+        /// <summary>
+        /// The rule a first toggle would offer: the preset most of the container's stacks belong to,
+        /// or none when nothing in it is classified. A suggestion never replaces an existing rule.
+        /// </summary>
+        public static ContainerRule Suggestion(Container container)
+        {
+            if (container == null) return ContainerRule.None();
+            if (!RuleOf(container).IsNone) return ContainerRule.None();
+
+            var inventory = container.GetInventory();
+            if (inventory == null) return ContainerRule.None();
+
+            var items = new List<ItemDrop.ItemData>();
+            for (var i = 0; i < inventory.NrOfItems(); i++)
+            {
+                var item = inventory.GetItem(i);
+                if (item != null) items.Add(item);
+            }
+
+            var category = CategoryMap.Dominant(items);
+            if (category == ItemCategory.None) return ContainerRule.None();
+
+            return new ContainerRule { Kind = RuleKind.Category, Category = category };
+        }
+
+        private static int Count(Container container)
+        {
+            var inventory = container.GetInventory();
+            return inventory != null ? inventory.NrOfItems() : 0;
         }
     }
 }

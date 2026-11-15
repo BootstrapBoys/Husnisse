@@ -76,6 +76,20 @@ namespace Husnisse.Localization
         public const string RuleClose = "$husnisse_rule_close";
         public const string RuleReadOnly = "$husnisse_rule_read_only";
         public const string RuleRefused = "$husnisse_rule_refused";
+        public const string RulePriority = "$husnisse_rule_priority";
+        public const string RuleCustom = "$husnisse_rule_custom";
+        public const string RuleCustomTitle = "$husnisse_rule_custom_title";
+        public const string RuleCustomEmpty = "$husnisse_rule_custom_empty";
+        public const string RuleSuggest = "$husnisse_rule_suggest";
+        public const string RuleCopy = "$husnisse_rule_copy";
+        public const string RuleCopyConfirm = "$husnisse_rule_copy_confirm";
+        public const string RuleCopyNothing = "$husnisse_rule_copy_nothing";
+        public const string RuleCopyDone = "$husnisse_rule_copy_done";
+        public const string RuleApply = "$husnisse_rule_apply";
+        public const string RuleCancel = "$husnisse_rule_cancel";
+        public const string RuleTickAll = "$husnisse_rule_tick_all";
+        public const string RuleTickNone = "$husnisse_rule_tick_none";
+        public const string RuleNeedsRule = "$husnisse_rule_needs_rule";
         public const string CatMetals = "$husnisse_cat_metals";
         public const string CatWood = "$husnisse_cat_wood";
         public const string CatFood = "$husnisse_cat_food";
@@ -172,7 +186,7 @@ namespace Husnisse.Localization
                     return;
                 }
 
-                if (string.Equals(file.Language, "English", StringComparison.OrdinalIgnoreCase) && file.Version < 5)
+                if (string.Equals(file.Language, "English", StringComparison.OrdinalIgnoreCase) && file.Version < 6)
                 {
                     Log.Warn("outdated English localisation ignored; embedded strings are used: " + path);
                     return;
@@ -216,7 +230,7 @@ namespace Husnisse.Localization
         }
 
         private const string DefaultEnglish = @"
-version: 5
+version: 6
 language: English
 strings:
   $husnisse_bowl_name: Porridge Bowl
@@ -273,6 +287,20 @@ strings:
   $husnisse_rule_close: Close
   $husnisse_rule_read_only: read only
   $husnisse_rule_refused: Only the claim's owner may change this container's rule.
+  $husnisse_rule_priority: Priority
+  $husnisse_rule_custom: Save contents
+  $husnisse_rule_custom_title: Save these items
+  $husnisse_rule_custom_empty: This container is empty.
+  $husnisse_rule_suggest: Use suggestion
+  $husnisse_rule_copy: Copy to nearby
+  $husnisse_rule_copy_confirm: ""Copy this rule to {0} nearby container(s)?""
+  $husnisse_rule_copy_nothing: No other container of this kind is nearby and on the network.
+  $husnisse_rule_copy_done: ""Rule copy sent for {0} container(s).""
+  $husnisse_rule_apply: Apply
+  $husnisse_rule_cancel: Cancel
+  $husnisse_rule_tick_all: All
+  $husnisse_rule_tick_none: None
+  $husnisse_rule_needs_rule: Give the container a rule first.
   $husnisse_cat_metals: Metals
   $husnisse_cat_wood: Wood
   $husnisse_cat_food: Food

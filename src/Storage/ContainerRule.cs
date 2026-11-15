@@ -190,13 +190,15 @@ namespace Husnisse.Storage
             }
 
             if (rule.Kind == RuleKind.Category && rule.Category == ItemCategory.None) rule.Kind = RuleKind.None;
+            rule.Sanitise();
             if (rule.Kind == RuleKind.Custom && rule.Items.Count == 0) rule.Kind = RuleKind.None;
             return rule;
         }
 
         /// <summary>
         /// The console/YAML-friendly shorthand the admin command and scenario scripts type:
-        /// <c>none</c>, <c>overflow</c>, <c>deposit</c>, <c>cat:metals</c>, <c>custom:Coal,Wood</c>.
+        /// <c>none</c>, <c>overflow</c>, <c>deposit</c>, <c>cat:metals</c>, <c>custom:Coal,Wood</c>,
+        /// each optionally followed by <c>@priority</c> (<c>cat:metals@2</c>).
         /// Returns null when the token is not a rule at all, so a typo writes nothing.
         /// </summary>
         public static ContainerRule ParseShorthand(string token)
@@ -204,6 +206,21 @@ namespace Husnisse.Storage
             if (string.IsNullOrEmpty(token)) return null;
             token = token.Trim();
 
+            var priority = 0;
+            var at = token.LastIndexOf('@');
+            if (at > 0 && at < token.Length - 1)
+            {
+                if (!int.TryParse(token.Substring(at + 1), out priority)) return null;
+                token = token.Substring(0, at).Trim();
+            }
+
+            var rule = ParseKind(token);
+            if (rule != null) rule.Priority = priority;
+            return rule;
+        }
+
+        private static ContainerRule ParseKind(string token)
+        {
             if (string.Equals(token, "none", StringComparison.OrdinalIgnoreCase)) return None();
             if (string.Equals(token, "overflow", StringComparison.OrdinalIgnoreCase))
                 return new ContainerRule { Kind = RuleKind.Overflow };
@@ -223,11 +240,45 @@ namespace Husnisse.Storage
                 {
                     if (name.Trim().Length > 0) rule.Items.Add(name.Trim());
                 }
+                rule.Sanitise();
                 return rule.Items.Count > 0 ? rule : null;
             }
 
             return null;
         }
+
+        /// <summary>
+        /// What a saved list may cost the ZDO: a chest holds 32 stacks, and a list captured from
+        /// contents is at most that, so 64 names is generous; past that a client is writing noise.
+        /// Duplicates collapse, blank names go, and a name longer than any real item is truncated
+        /// rather than stored. Applied on decode as well as on capture, because the value arrives
+        /// from the network.
+        /// </summary>
+        public const int MaxItems = 64;
+        private const int MaxNameLength = 64;
+
+        public void Sanitise()
+        {
+            if (Items == null)
+            {
+                Items = new List<string>();
+                return;
+            }
+
+            var kept = new List<string>(Math.Min(Items.Count, MaxItems));
+            foreach (var raw in Items)
+            {
+                if (kept.Count >= MaxItems) break;
+                var name = (raw ?? string.Empty).Trim();
+                if (name.Length == 0) continue;
+                if (name.Length > MaxNameLength) name = name.Substring(0, MaxNameLength);
+                if (kept.Contains(name)) continue;
+                kept.Add(name);
+            }
+
+            Items = kept;
+        }
+
 
         public static string KindToken(RuleKind kind)
         {

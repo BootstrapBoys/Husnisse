@@ -91,11 +91,10 @@ namespace Husnisse.Flow
             var nisse = NisseFactory.Find(claim.Bowl);
             if (ticket == null || nisse == null) return;
 
-            var target = Storage.StorageRouter.FindTarget(claim, ticket.Item.m_shared.m_name, null,
-                ticket.ExcludeContainer());
-            if (target == null) return;
+            var target = Storage.StorageRouter.Decide(claim, ticket.Item, null, ticket.ExcludeContainer());
+            if (!target.Found) return;
 
-            var point = target.transform.position;
+            var point = target.Container.transform.position;
             // A null path list still pokes both areas; no result is used here on purpose.
             Pathfinding.instance.GetPath(nisse.transform.position, point, null,
                 Pathfinding.AgentType.Humanoid, requireFullPath: false, cleanup: false);

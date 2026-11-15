@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using Husnisse.Claims;
 using Husnisse.Config;
 using Husnisse.Core;
 using Husnisse.Creature;
 using Husnisse.Rounds;
+using Husnisse.Storage;
 using UnityEngine;
 
 namespace Husnisse.Flow
@@ -90,6 +92,7 @@ namespace Husnisse.Flow
 
         private static void EnqueueDrops(Claim claim)
         {
+            var drops = new List<ItemDrop>();
             foreach (var drop in Object.FindObjectsByType<ItemDrop>(FindObjectsSortMode.None))
             {
                 if (drop == null) continue;
@@ -97,7 +100,18 @@ namespace Husnisse.Flow
 
                 var item = drop.m_itemData;
                 if (item == null || item.m_shared == null) continue;
+                drops.Add(drop);
+            }
 
+            if (drops.Count == 0) return;
+
+            // One scan of the claim's network for the whole pile, and one routing question per
+            // stack: a drop nothing accepts stays on the ground without being queued and retried
+            // every tick, which is what a broken rule would otherwise look like in the log.
+            var network = StorageRouter.NetworkCandidates(claim);
+            foreach (var drop in drops)
+            {
+                if (!StorageRouter.Decide(claim, network, drop.m_itemData, null, null).Found) continue;
                 FlowQueue.EnqueueDrop(claim, drop);
             }
         }

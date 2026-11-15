@@ -39,6 +39,7 @@ namespace Husnisse.Flow
         private Container _target;
         private Vector3 _targetPoint;
         private Vector3 _homePoint;
+        private string _why = string.Empty;
         private Phase _phase;
         private int _pickupIndex;
         private float _timer;
@@ -79,10 +80,16 @@ namespace Husnisse.Flow
                     continue;
                 }
 
-                var target = StorageRouter.FindTarget(claim, ticket.Item.m_shared.m_name, memory, ticket.ExcludeContainer());
+                var decision = StorageRouter.Decide(claim, ticket.Item, memory, ticket.ExcludeContainer());
+                var target = decision.Container;
                 if (target == null)
                 {
-                    Log.Debug("Flow", "trip: nowhere to put " + ticket.Item.m_shared.m_name);
+                    // Nothing accepts it. A ground drop is re-queued by the next scan, and a stack
+                    // from a chest stays where it is: the ticket is dropped, never silently landed
+                    // in a chest whose rule said otherwise.
+                    Log.Debug("Flow", "trip: nowhere to put " + ticket.Item.m_shared.m_name + " (" + decision.Why + ")");
+                    DiagnosticsFile.Line("[Flow] unmatched " + ticket.Item.m_shared.m_name +
+                                          " why=" + decision.Why + " claim=" + claim.BowlId);
                     continue;
                 }
 
@@ -90,6 +97,7 @@ namespace Husnisse.Flow
                 {
                     trip._target = target;
                     trip._targetPoint = StandPoint(target.transform.position, nisse.transform.position);
+                    trip._why = decision.Why;
                 }
                 else if (trip._target != target)
                 {
@@ -108,8 +116,17 @@ namespace Husnisse.Flow
             trip.OrderPickups();
             Log.Debug("Flow", "trip start claim=" + claim.BowlId + " stacks=" + trip._pending.Count +
                               " pickups=" + trip._pickups.Count + " target=" + trip._target.name +
+                              " at=" + Where(trip._target.transform.position) + " why=" + trip._why +
                               " leg_m=" + Vector3.Distance(nisse.transform.position, trip._targetPoint).ToString("0.0"));
+            DiagnosticsFile.Line("[Flow] trip stacks=" + trip._pending.Count + " target=" + trip._target.name +
+                                 " at=" + Where(trip._target.transform.position) + " why=" + trip._why +
+                                 " claim=" + claim.BowlId);
             return trip;
+        }
+
+        private static string Where(Vector3 point)
+        {
+            return "(" + point.x.ToString("0.#") + "," + point.z.ToString("0.#") + ")";
         }
 
         private void AddPickup(FlowTicket ticket)
@@ -330,7 +347,10 @@ namespace Husnisse.Flow
             Landed += moved;
             if (moved > 0) FlowScheduler.Instance?.Spend(moved);
             Log.Debug("Flow", "trip deposit claim=" + _claim.BowlId + " moved=" + moved + " target=" + _target.name +
+                              " at=" + Where(_target.transform.position) + " why=" + _why +
                               " remaining=" + _pending.Count);
+            DiagnosticsFile.Line("[Flow] landed moved=" + moved + " target=" + _target.name +
+                                 " at=" + Where(_target.transform.position) + " why=" + _why);
         }
 
         public void Abort()

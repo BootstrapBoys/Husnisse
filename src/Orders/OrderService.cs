@@ -313,7 +313,11 @@ namespace Husnisse.Orders
                     continue;
                 }
 
-                FlowQueue.EnqueueDrop(claim, drop);
+                // The drop exists either way — the player handed it over and can see it — but only
+                // one the network accepts is queued, so an unstorable stack lies by the bowl instead
+                // of cycling through the queue for ever.
+                if (StorageRouter.Decide(claim, item, null, null).Found) FlowQueue.EnqueueDrop(claim, drop);
+                else Note("empty pockets left on the ground: " + item.m_shared.m_name + " (no chest accepts it)");
                 queued++;
             }
 
@@ -362,13 +366,23 @@ namespace Husnisse.Orders
 
             var items = PocketItems(player);
             var queued = 0;
+            var unwanted = 0;
             foreach (var item in items)
             {
+                // Only stacks with somewhere to go are queued: a stack nothing accepts would be a
+                // promise the nisse cannot keep, so it stays in the player's pocket and the answer
+                // says how many really move.
+                if (!StorageRouter.Decide(claim, item, null, null).Found)
+                {
+                    unwanted++;
+                    continue;
+                }
+
                 FlowQueue.EnqueuePockets(claim, inventory, item);
                 queued++;
             }
 
-            Note("empty pockets queued=" + queued + " claim=" + claim.BowlId);
+            Note("empty pockets queued=" + queued + " unmatched=" + unwanted + " claim=" + claim.BowlId);
             return queued;
         }
 
@@ -378,16 +392,24 @@ namespace Husnisse.Orders
             if (inventory == null) return 0;
 
             var queued = 0;
+            var unwanted = 0;
             for (var i = 0; i < inventory.NrOfItems(); i++)
             {
                 var item = inventory.GetItem(i);
                 if (item == null || item.m_shared == null) continue;
 
+                if (!StorageRouter.Decide(claim, item, null, source).Found)
+                {
+                    unwanted++;
+                    continue;
+                }
+
                 FlowQueue.EnqueueContainer(claim, source, item);
                 queued++;
             }
 
-            Note("tidy queued=" + queued + " claim=" + claim.BowlId + " source=" + source.name);
+            Note("tidy queued=" + queued + " unmatched=" + unwanted + " claim=" + claim.BowlId +
+                 " source=" + source.name);
             return queued;
         }
 
