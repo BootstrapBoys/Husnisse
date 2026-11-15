@@ -15,7 +15,24 @@ objects is detected by component type name.
 
 | Mod | Behaviour |
 |---|---|
-| **WardIsLove** | Every container is filtered through `WardIsLove.Util.CustomCheck.CheckAccess(ownerId, point, radius, flash)`. A container in a ward the claim owner cannot use is never targeted. A bowl placed inside such a ward **refuses to settle**: the claim registers as suppressed, does nothing, and says why. `6. Ward / Respect WardIsLove` turns the filter off; `6. Ward / Require Ward Ownership` (default off) additionally restricts use to wards the claim owner placed, instead of any ward they are permitted on. |
+| **WardIsLove** | A bowl standing inside a ward uses that ward's ground: its radius, owner and permitted players become the claim. A bowl outside every ward never consults WardIsLove at all. Containers follow the ground, not permissions: a container inside a ward the claim does not own is never targeted, whatever permits the claim owner holds, so two nisses never share a chest. A bowl inside a ward its owner cannot use **refuses to settle** (suppressed, does nothing, says why), and a second bowl in the same ward refuses too. `6. Ward / Respect WardIsLove` turns the whole handover off; `6. Ward / Require Ward Ownership` (default off) additionally restricts a bowl to wards its own player placed, instead of any ward they are permitted on. |
+
+### WardIsLove 4.0.9 — the API the seam uses
+
+Reached by reflection; nothing from WardIsLove ships in this tree. Verified on the rig 2026-11-14:
+
+- `WardMonoscript.m_wardInstances` (public static `List<WardMonoscript>`) is the ward list.
+  `PrivateArea.m_allAreas` does not contain these wards: WardIsLove replaces the guard stone with
+  `Thorward`.
+- `IsEnabled()` = `General / WardEnabled` && ZDO `enabled` && `WILWardLimitCheck()`. The limit check is
+  **false** unless the ward is flagged limited, so an unlimited ward carries `WILLimitedWard = true`
+  and `WILLimitedWardTime = -1`. A spawned ward with only `enabled` set is not enabled.
+- Radius: `WardMonoscriptExt.GetWardRadius` reads ZDO float `wardRadius`, default `WardRange`.
+- Owner: the ward piece's creator, read from the ZDO key `creator`. `Piece.m_creator` is a copy taken
+  in `Awake`, so it is stale for a piece whose creator was written later.
+- Permits: `WardMonoscript.permissionsManager.IsPermitted(playerId)`.
+  `CustomCheck.CheckAccess` inspects only the first enabled ward containing the point, which is not
+  necessarily the ward the bowl selected, so the claim layer asks the ward it actually chose.
 
 ## Storage semantics
 

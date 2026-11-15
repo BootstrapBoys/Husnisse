@@ -16,6 +16,10 @@ namespace Husnisse.Core
     {
         public static List<string> Lines()
         {
+            // The status command is a probe, not a snapshot: resolve first so a ward that arrived or
+            // left since the last timer tick is already reflected in the numbers below.
+            ClaimRegistry.RevalidateAll();
+
             var lines = new List<string>();
             lines.Add("[config] enabled=" + HusnisseConfig.Enabled.Value +
                       " debug=" + HusnisseConfig.DebugLogging.Value +
@@ -27,6 +31,8 @@ namespace Husnisse.Core
                       " feeding_required=" + WorldPolicy.FeedingRequired);
 
             lines.Add("[compat] wardislove=" + (WardIsLoveCompat.Installed ? "installed" : "absent") +
+                      " wards=" + WardIsLoveCompat.Count +
+                      " ward_api=" + (WardIsLoveCompat.Bound ? "bound" : "unbound") +
                       " require_ward_ownership=" + HusnisseConfig.RequireWardOwnership.Value +
                       " quartermaster=" + (PluginGuards.QuartermasterInstalled() ? "installed" : "absent"));
 
@@ -55,9 +61,14 @@ namespace Husnisse.Core
                 }
 
                 lines.Add("claim " + claim.BowlId +
+                          " source=" + claim.SourceName +
+                          " ward=" + claim.WardId +
                           " owner=" + claim.OwnerId +
                           " r=" + claim.Radius.ToString("0") +
+                          " native_r=" + claim.NativeRadius.ToString("0") +
+                          " native_owner=" + claim.NativeOwnerId +
                           " suppressed=" + claim.Suppressed +
+                          (claim.Refusal != null ? " refusal=\"" + claim.Refusal + "\"" : string.Empty) +
                           " satiety=" + (bowl != null ? bowl.Satiety.ToString("0") : "-") +
                           " mood=" + (bowl != null ? bowl.Mood.ToString("0") : "-") +
                           " sulk=" + (bowl != null ? bowl.SulkLevel.ToString() : "-") +

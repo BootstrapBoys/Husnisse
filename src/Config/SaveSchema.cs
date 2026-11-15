@@ -8,7 +8,7 @@ namespace Husnisse.Config
     /// </summary>
     public static class SaveSchema
     {
-        public const int Version = 1;
+        public const int Version = 2;
         private const string Prefix = "husnisse_schema_";
 
         public static void Publish()

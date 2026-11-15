@@ -158,7 +158,8 @@ Claims never overlap, whatever their source. A second bowl placed inside the sam
 a native claim may not overlap a ward claim. If a bowl sits inside two overlapping wards, the ward
 owned by the bowl's placer wins; if neither is theirs, the smallest containing ward. When a ward is
 placed over an existing native bowl — or the bowl is moved into one — the native radius and owner are
-recorded first, then the ward takes over immediately.
+recorded first, then the ward takes over immediately. If a ward is placed over two bowls that already
+exist, the bowl with the lower id keeps the ward and the other refuses to settle.
 
 Where a ward overlaps a native claim without containing its bowl, the ward's ground wins: the native
 nisse excludes any container that sits inside a ward it does not own, so two nisses never touch one

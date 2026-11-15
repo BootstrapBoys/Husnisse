@@ -129,7 +129,7 @@ namespace Husnisse.Orders
                 return false;
             }
 
-            if (player != null && claim.OwnerId != 0L && player.GetPlayerID() != claim.OwnerId)
+            if (player != null && !claim.Allows(player.GetPlayerID()))
             {
                 if (!server) player.Message(MessageHud.MessageType.Center, Loc.T(Loc.BowlNotYours));
                 return false;

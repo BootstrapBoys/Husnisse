@@ -38,6 +38,27 @@ Headless-proven on the rig; this block is the visual pass.
 - [ ] `husnisse_status` shows `trip=Pickup/3`, `trip=ToTarget/3`, `trip=Transfer/3`, `trip=Home/3` in
       order during a trip, and `trip=idle` between trips.
 
+## 0.2 Claim authority (client pass)
+
+Headless-proven on the rig (`SPIKE-REPORT.md` §5); these are the client-only checks.
+
+- [ ] Place a bowl outside every ward: `husnisse_status` reports `source=native`, `ward=0` and the
+      configured radius.
+- [ ] Place a WardIsLove ward over it: within a couple of seconds the claim reports `source=ward`, a
+      ward id, and the ward's radius instead of the configured one.
+- [ ] Feed and order from the bowl while it stands in your own ward: both work.
+- [ ] Let a permitted tribe member place a bowl in your ward (`Require Ward Ownership` off): it settles,
+      and they can feed and order it.
+- [ ] Turn `Require Ward Ownership` on and repeat: the placement is refused with the other-player's-ward
+      message.
+- [ ] Try to place a second bowl anywhere in the same ward: refused before it is placed, no materials
+      spent.
+- [ ] Remove the ward: within a couple of seconds the claim returns to the native radius and owner and
+      the nisse keeps working — no restart.
+- [ ] Stand a bowl inside two overlapping wards, one of them yours: the claim takes **your** ward's
+      radius.
+- [ ] Put a chest inside someone else's ward that overlaps your native claim: the nisse never touches it.
+
 ## 1. The bowl is a pantry
 
 - [ ] Hammer → Misc → **Porridge Bowl** (5 wood). It places like any piece.

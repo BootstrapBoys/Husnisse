@@ -75,11 +75,6 @@ namespace Husnisse.Bowl
             _zdo.Set(ZdoKeys.BowlLastSulk, ZNet.instance != null ? ZNet.instance.GetTime().Ticks : 0L);
         }
 
-        public float Radius
-        {
-            get { return _zdo == null ? HusnisseConfig.ClaimRadius.Value : _zdo.GetFloat(ZdoKeys.BowlRadius, HusnisseConfig.ClaimRadius.Value); }
-        }
-
         private void Awake()
         {
             _nview = GetComponent<ZNetView>();
@@ -90,50 +85,82 @@ namespace Husnisse.Bowl
 
             _container = GetComponent<Container>();
 
-            if (_nview.IsOwner())
+            if (_nview.IsOwner() && !_zdo.GetBool(ZdoKeys.BowlInit, false))
             {
-                if (!_zdo.GetBool(ZdoKeys.BowlInit, false))
-                {
-                    var piece = GetComponent<Piece>();
-                    var creator = piece != null ? piece.GetCreator() : 0L;
-                    _zdo.Set(ZdoKeys.BowlOwner, creator);
-                    _zdo.Set(ZdoKeys.BowlRadius, HusnisseConfig.ClaimRadius.Value);
-                    _zdo.Set(ZdoKeys.BowlSatiety, 25f);
-                    _zdo.Set(ZdoKeys.BowlMood, 100f);
-                    _zdo.Set(ZdoKeys.BowlInit, true);
-                }
-
-                NisseFactory.EnsureNisse(this);
+                var piece = GetComponent<Piece>();
+                var creator = piece != null ? piece.GetCreator() : 0L;
+                _zdo.Set(ZdoKeys.BowlOwner, creator);
+                _zdo.Set(ZdoKeys.BowlRadius, HusnisseConfig.ClaimRadius.Value);
+                _zdo.Set(ZdoKeys.BowlSatiety, 25f);
+                _zdo.Set(ZdoKeys.BowlMood, 100f);
+                _zdo.Set(ZdoKeys.BowlInit, true);
             }
 
+            // The native rule is the bowl's own: its radius and the player who placed it. A recorded
+            // snapshot wins, because that is the last state the bowl owned its ground in.
+            var radius = _zdo.GetFloat(ZdoKeys.BowlRadius, HusnisseConfig.ClaimRadius.Value);
             var owner = _zdo.GetLong(ZdoKeys.BowlOwner, 0L);
-
-            var suppressed = false;
-            if (ClaimRegistry.OverlapsAny(transform.position, Radius, _zdo.m_uid))
+            float snapshotRadius;
+            long snapshotOwner;
+            var hasSnapshot = _zdo.GetFloat(ZdoKeys.ClaimSnapshotRadius, out snapshotRadius);
+            if (hasSnapshot)
             {
-                suppressed = true;
-                Log.Warn("bowl at " + transform.position + " overlaps an existing claim; it refuses to settle");
+                snapshotOwner = _zdo.GetLong(ZdoKeys.ClaimSnapshotOwner, owner);
             }
-            if (HusnisseConfig.RespectWards.Value && !WardIsLoveCompat.IsPermitted(owner, transform.position))
+            else
             {
-                suppressed = true;
-                Log.Warn("bowl at " + transform.position + " is inside a ward its owner cannot use; it refuses to settle");
-            }
-            if (HusnisseConfig.RespectWards.Value && HusnisseConfig.RequireWardOwnership.Value)
-            {
-                long wardOwner;
-                if (WardIsLoveCompat.TryGetWardOwner(transform.position, out wardOwner) && wardOwner != 0L && wardOwner != owner)
-                {
-                    suppressed = true;
-                    Log.Warn("bowl at " + transform.position + " is inside another player's ward; it refuses to settle");
-                }
+                snapshotRadius = radius;
+                snapshotOwner = owner;
             }
 
-            _claim = new Claim(_zdo.m_uid, transform.position, Radius, owner, this, suppressed);
+            _claim = new Claim(_zdo.m_uid, transform.position, snapshotRadius, snapshotOwner, this, hasSnapshot);
             ClaimRegistry.Register(_claim);
-            Log.Debug("Bowl", "ready " + _zdo.m_uid + " owner=" + owner + " r=" + Radius.ToString("0") +
+
+            if (_nview.IsOwner()) NisseFactory.EnsureNisse(this);
+
+            Log.Debug("Bowl", "ready " + _zdo.m_uid + " owner=" + _claim.OwnerId + " source=" + _claim.SourceName +
+                               " ward=" + _claim.WardId + " r=" + _claim.Radius.ToString("0") +
                                " satiety=" + Satiety.ToString("0") + " mood=" + Mood.ToString("0") +
-                               " suppressed=" + suppressed);
+                               " suppressed=" + _claim.Suppressed);
+        }
+
+        /// <summary>
+        /// Called by the registry after every resolution: mirrors the effective claim into the bowl's
+        /// ZDO so a client, a tool or the test harness can read the authority without re-resolving it.
+        /// Only the ZDO owner writes; everyone else reads the replicated values.
+        /// </summary>
+        public void OnClaimResolved(Claim claim)
+        {
+            if (claim == null || _zdo == null || _nview == null || !_nview.IsOwner()) return;
+
+            _claim = claim;
+
+            SetString(ZdoKeys.ClaimAuthority, claim.SourceName);
+            SetString(ZdoKeys.ClaimWard, claim.WardId.IsNone() ? "0" : claim.WardId.ToString());
+            SetFloat(ZdoKeys.ClaimRadius, claim.Radius);
+            SetLong(ZdoKeys.ClaimOwner, claim.OwnerId);
+
+            if (!claim.HasSnapshot) return;
+            SetFloat(ZdoKeys.ClaimSnapshotRadius, claim.NativeRadius);
+            SetLong(ZdoKeys.ClaimSnapshotOwner, claim.NativeOwnerId);
+        }
+
+        private void SetString(string key, string value)
+        {
+            if (_zdo.GetString(key, string.Empty) == value) return;
+            _zdo.Set(key, value);
+        }
+
+        private void SetFloat(string key, float value)
+        {
+            if (Mathf.Approximately(_zdo.GetFloat(key, float.MinValue), value)) return;
+            _zdo.Set(key, value);
+        }
+
+        private void SetLong(string key, long value)
+        {
+            if (_zdo.GetLong(key, long.MinValue) == value) return;
+            _zdo.Set(key, value);
         }
 
         private void Start()
@@ -321,6 +348,8 @@ namespace Husnisse.Bowl
 
         private bool IsOwner(long playerId)
         {
+            if (_claim != null) return _claim.Allows(playerId);
+
             var owner = _zdo != null ? _zdo.GetLong(ZdoKeys.BowlOwner, 0L) : 0L;
             return owner == 0L || playerId == owner;
         }

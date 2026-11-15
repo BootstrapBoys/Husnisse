@@ -118,6 +118,10 @@ client VM was offline when the build was ready.
 - Diagnostics: `claim_source`, ward id, effective radius.
 - Parity harness begins: native claim, ward claim, ward removed, second bowl in a ward, overlap.
 
+**Status** — 0.2a (provider seam, per-bowl resolution, snapshot, live switch, the five headless
+scenarios) implemented 2026-11-14. 0.2b (range preview at placement and in the ledger, client session,
+screenshots) is open.
+
 **Done when** — the five harness scenarios pass headlessly and in a client session.
 
 **Risks** — WardIsLove's API differs by version; the reflection seam must fail closed (native claim),

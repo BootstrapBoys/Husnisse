@@ -16,7 +16,7 @@ polish pass.
 | H1 | **No server-authority layer.** Orders, feeding and the Tidy patch execute wherever the interaction runs. `OrderService` moves items with `Inventory.AddItem/RemoveItem` inline; `BowlPiece.Interact` writes the ZDO directly; `ContainerTidy` runs as a client-side prefix. | `OrderService.cs:38-54`, `BowlPiece.cs:143-170`, `ContainerTidy.cs:16-29` | In multiplayer, a client can execute moves the server does not arbitrate: desync, ghost items, or a rejected write. 0.1 was only ever tested headless. Needs an RPC layer before any client ships. |
 | H2 | **Scheduler is interval + budgets**, not a queue at a rate. | `RoundScheduler.cs:63-70`, `RoundContext.cs` | The new model (5 items/s, 5 s reconcile, bounded catch-up) cannot be expressed by scaling budgets. Replace both files. |
 | H3 | **Router has no rules.** It picks remembered chest → chest already holding the item → any chest with room. | `StorageRouter.cs:13-42` | No categories, priority, Overflow, Deposit, unmatched handling, network membership or blacklist. Needs a new rule model and resolver. |
-| H4 | **Claims are native-only.** `Claim` holds radius/owner; `WardIsLoveCompat` only gates access; suppression is computed once in `Awake` and never re-evaluated. | `Claim.cs:11-18`, `BowlPiece.cs:104-127` | No per-bowl ward handover, no snapshot, no live switch, no one-bowl-per-ward, no overlap resolution. The 0.2 foundation is absent. |
+| H4 | **Claims are native-only.** `Claim` holds radius/owner; `WardIsLoveCompat` only gates access; suppression is computed once in `Awake` and never re-evaluated. | `Claim.cs:11-18`, `BowlPiece.cs:104-127` | No per-bowl ward handover, no snapshot, no live switch, no one-bowl-per-ward, no overlap resolution. The 0.2 foundation is absent. **Resolved in 0.2a — see Phase 3.** |
 | H5 | **The nisse is killable.** `Character` has no invulnerability flag; the clone keeps health 100 and `Faction.PlayerSpawned`. | `NissePrefab.cs:51-55`; `Character.Damage(HitData)` exists, no `m_invulnerable` | A raid can kill it, contradicting the settled rule. Needs a `Character.Damage` prefix plus a faction test (`TrainingDummy` is the candidate). |
 | H6 | **Container discovery is a hard whitelist**, the opposite of the new opt-in network. | `ContainerFilter.cs:109-148`, `ContainerIndex.cs:16-27` | New rule is: every container inside a claim is eligible, off by default, opt-in via ZDO, blacklist hides it. The filter becomes a blacklist policy, not a gate. |
 
@@ -177,6 +177,24 @@ because the Greyling controller has none.
 - Placement guard uses effective radius and checks both sources.
 - Range preview.
 - Harness scenarios listed in ROADMAP.
+
+*(0.2a implemented 2026-11-14.)* `Claim/Authority/IClaimAuthority` holds the seam (`ClaimSource`,
+`ClaimAnchor`, `ClaimResolution`); `NativeAuthority` always answers with the bowl's own radius and
+placer, `WardAuthority` picks the containing ward (placer's ward first, then smallest radius, then
+lowest ward id) and reports permits from the ward's own permission list. `ClaimResolver` applies the
+refusals — ward does not permit the bowl's owner, `Require Ward Ownership` mismatch, or a ward another
+bowl already holds — and `Claim` keeps the effective ground plus the native snapshot. `ClaimMonitor`
+re-resolves every 2 s because WardIsLove raises no event worth reaching into; the pass is a few claims
+against a few wards and only the ZDO owner writes. `ClaimRegistry` walks claims in bowl-id order with a
+ward-holder map, which is what makes one bowl per ward stable across runs. `Claim.Allows` gives the
+ward's permitted players the same rights as the owner, and `OrderService` plus the feeding toggle use
+it. `ContainerFilter` now enforces ground-beats-ownership instead of a `CheckAccess` call, so a native
+nisse never touches a chest on a ward it does not own. Diagnostics gained `source`, `ward`, `r`,
+`native_r` and `native_owner` per claim and `wards`/`ward_api` in `[compat]`; the same answer is
+mirrored into the bowl's ZDO (`husnisse_claim_*`). Evidence: `SPIKE-REPORT.md` §5, five headless
+scenarios.
+Still open for 0.2b: placement-time range preview, the ledger preview, and the client session
+(placement guard, hover text, screenshots).
 
 ### Phase 4 — 0.3 network core
 

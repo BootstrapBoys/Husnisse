@@ -92,20 +92,6 @@ namespace Husnisse.Compat
             return prefab.StartsWith("DS_", System.StringComparison.OrdinalIgnoreCase);
         }
 
-        /// <summary>Wards are the owner's permission list; the nisse is not above it.</summary>
-        private static bool IsWardPermitted(Claim claim, Container container)
-        {
-            return WardIsLoveCompat.IsPermitted(claim.OwnerId, container.transform.position);
-        }
-
-        /// <summary>Optional stricter rule: only wards the claim owner placed themselves.</summary>
-        private static bool IsWardOwnedByClaim(Claim claim, Container container)
-        {
-            long wardOwner;
-            if (!WardIsLoveCompat.TryGetWardOwner(container.transform.position, out wardOwner)) return true;
-            return wardOwner == 0L || wardOwner == claim.OwnerId;
-        }
-
         public static bool CanUse(Claim claim, Container container)
         {
             if (claim == null || container == null) return false;
@@ -132,15 +118,12 @@ namespace Husnisse.Compat
                 return false;
             }
 
-            if (HusnisseConfig.RespectWards.Value && !IsWardPermitted(claim, container))
+            // Ground beats ownership: a container standing inside a ward the claim does not own is
+            // never touched, whatever permissions the claim owner has. Two nisses never share a
+            // chest. A ward claim owns its own ward, so its containers pass.
+            if (HusnisseConfig.RespectWards.Value && WardIsLoveCompat.BlocksOwner(claim.OwnerId, container.transform.position))
             {
-                Log.Debug("Compat", "skip ward-protected container " + container.name);
-                return false;
-            }
-
-            if (HusnisseConfig.RespectWards.Value && HusnisseConfig.RequireWardOwnership.Value && !IsWardOwnedByClaim(claim, container))
-            {
-                Log.Debug("Compat", "skip container in a ward the claim owner did not place " + container.name);
+                Log.Debug("Compat", "skip container on a ward's ground the claim does not own " + container.name);
                 return false;
             }
 

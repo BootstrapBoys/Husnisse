@@ -177,6 +177,63 @@ ConditionalConfigSync 1.0.11, SoftStop and Husnisse loaded (`4 loaded, 0 failed`
 **Still unproven:** placement through the hammer (ghost validation), feeding by interact, a round
 that actually files an item, and WardIsLove binding with the mod present. Those need a client.
 
+## 5. Claim authority — 2026-11-14
+
+Question: with WardIsLove 4.0.9 installed, does a bowl resolve the right ground per bowl, survive a
+ward appearing and disappearing, and refuse a second bowl in the same ward — headless, on the rig?
+
+**What WardIsLove 4.0.9 actually exposes** (decompiled for the API surface only; no WardIsLove code
+lives in this tree):
+
+- `WardIsLove.Util.WardMonoscript.m_wardInstances` is a `public static List<WardMonoscript>` and is the
+  authoritative list. `PrivateArea.m_allAreas` never sees these wards, because WardIsLove replaces the
+  guard stone with `Thorward`.
+- `IsEnabled()` is the `General / WardEnabled` toggle **and** the ZDO bool `enabled` **and**
+  `WILWardLimitCheck()`. That limit check returns **false** for a ward that is not flagged limited, so
+  an unlimited ward must carry `WILLimitedWard = true` and `WILLimitedWardTime = -1`. A ward spawned
+  with only `enabled = true` reports disabled — this is the trap that cost the first run.
+- `GetWardRadius()` reads the ZDO float `wardRadius` (default `WardRange`), so the radius written into
+  the ZDO is the radius the claim must use.
+- The owner is the ward `Piece`'s creator. Read it from the ZDO (`creator`), not from `Piece.m_creator`:
+  the field is a copy taken in `Piece.Awake`, so a piece whose creator is written after Awake keeps 0.
+- `CustomCheck.CheckAccess` stops at the **first** enabled ward containing the point, which is not
+  necessarily the ward this bowl selected. Per-ward permits come from
+  `WardMonoscript.permissionsManager.IsPermitted(playerID)`, so the claim layer asks the ward it
+  actually chose.
+
+**How it was driven.** The shared harness gained `zdoset <prefab> <key> <type> <value> [index]`,
+`destroy <prefab> [index]`, an optional index on `zdo`, an optional creator on `spawn`, and a Husnisse
+command (`husnisse claims | containers | status`) that reads the mod's live claim objects and calls
+`ContainerIndex.InClaim`. `expect_last` and `expect_claim` assert the newest observation, so a line
+left over from an earlier step cannot make a transition test pass. Five scenarios, one server session:
+
+| Scenario | File | Verdict | What it shows |
+|---|---|---|---|
+| native | `husnisse-02-native.cmd` | PASS (7) | `source=native`, `ward=0`, `r=20`, no snapshot |
+| ward claim | `husnisse-02-ward.cmd` | PASS (12) | `source=ward`, `owner=111`, `r=25` (the ward's radius), `native_r=20`, snapshot written; `husnisse_status` prints `[compat] ... wards=1 ward_api=bound` and a claim line with `source=ward ... r=25` |
+| ward removed | `husnisse-02-ward-removed.cmd` | PASS (10) | ward → native within 6 s without a restart; `r` back to 20, snapshot still 20 |
+| second bowl in a ward | `husnisse-02-second-bowl.cmd` | PASS (6) | `total=2 working=1 suppressed=1`, refusal `another bowl already holds this ward`, same answer on a second pass |
+| overlap | `husnisse-02-overlap.cmd` | PASS (14) | a ward over a native claim without containing the bowl: the bowl stays native and its container count drops 1 → 0. Two wards over one bowl: the placer's ward wins over the smaller (222/r=28 beats 111/r=12); with neither ward owned by the placer the smallest wins (111/r=12) |
+
+**What this proves, and what it does not.** The provider seam, per-bowl selection, one bowl per ward,
+the native snapshot and the live switch are proven on a real server with the real WardIsLove. Still
+client-side: placement refusal through the hammer, hover text, the range preview, and whether a
+client's 2 s revalidation agrees with the server's (0.2b).
+
+**Reproduce**
+
+```bash
+cd ../testrig
+./rig.sh down && ./rig.sh deploy ../nisse/artifacts/debug/Husnisse.dll BootstrapBoys-Husnisse
+./rig.sh deploy artifacts/harness/TestHarness.dll BootstrapBoys-TestHarness
+./rig.sh up
+for f in native ward ward-removed second-bowl overlap; do ./rig.sh scenario "scenarios/husnisse-02-$f.cmd"; done
+./rig.sh down
+```
+
+The tree's config must keep `2. Nisse / Claim Radius = 20`, `Respect WardIsLove = true` and
+`Require Ward Ownership = false`; the scenarios assume those values.
+
 ## What this means for the plan
 
 | Assumption | Status |

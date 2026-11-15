@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0
+
+Internal only — claim ownership groundwork; 0.2 is not released.
+
+- A bowl standing inside a WardIsLove ward takes that ward's range, owner and permitted players as its claim. Outside every ward the bowl keeps its own radius and its placer, exactly as before.
+- A second bowl placed inside the same ward refuses to settle, and a nisse never uses a container standing inside a ward it does not own.
+- Removing the ward, or moving the bowl out of it, returns the bowl to the radius and owner it had before, without a restart.
+
 ## 0.1.4
 
 - The nisse walks. Work is a visible trip now: it collects a batch, walks to the chest that owns those items, stands at it while the transfer happens, and walks back to its bowl. It no longer appears next to the chest.

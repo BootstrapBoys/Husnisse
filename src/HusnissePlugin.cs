@@ -1,5 +1,6 @@
 using BepInEx;
 using HarmonyLib;
+using Husnisse.Claims;
 using Husnisse.Config;
 using Husnisse.Compat;
 using Husnisse.Core;
@@ -24,7 +25,7 @@ namespace Husnisse
     {
         public const string PluginGUID = "com.bootstrapboys.husnisse";
         public const string PluginName = "Husnisse";
-        public const string PluginVersion = "0.1.4";
+        public const string PluginVersion = "0.2.0";
 
         internal static bool Running;
 
@@ -60,6 +61,7 @@ namespace Husnisse
 
             PrefabManager.OnVanillaPrefabsAvailable += RegisterContent;
             FlowScheduler.Attach(gameObject);
+            ClaimMonitor.Attach(gameObject);
             Running = true;
 
             Log.Info("core ready; waiting for vanilla prefabs");

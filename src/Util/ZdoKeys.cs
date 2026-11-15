@@ -17,6 +17,15 @@ namespace Husnisse.Util
         public const string BowlSulk = "husnisse_bowl_sulk";
         public const string BowlLastSulk = "husnisse_bowl_last_sulk";
 
+        // Claim authority. The first four are the documented 0.2 data model; the last two carry the
+        // effective answer so a client or the harness can read a claim without re-resolving it.
+        public const string ClaimAuthority = "husnisse_claim_authority";
+        public const string ClaimWard = "husnisse_claim_ward";
+        public const string ClaimSnapshotRadius = "husnisse_claim_snapshot_radius";
+        public const string ClaimSnapshotOwner = "husnisse_claim_snapshot_owner";
+        public const string ClaimRadius = "husnisse_claim_radius";
+        public const string ClaimOwner = "husnisse_claim_owner";
+
         // Nisse
         public const string NisseBowl = "husnisse_nisse_bowl";
         public const string MemoryPrefix = "husnisse_mem_";
