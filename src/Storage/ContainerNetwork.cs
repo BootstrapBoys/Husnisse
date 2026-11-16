@@ -16,15 +16,26 @@ namespace Husnisse.Storage
     {
         public static ZDO Zdo(Container container)
         {
-            if (container == null) return null;
-            var view = container.GetComponent<ZNetView>();
-            return view != null ? view.GetZDO() : null;
+            return ContainerNet.Zdo(container);
         }
 
         public static bool IsOnNetwork(Container container)
         {
             var zdo = Zdo(container);
             return zdo != null && zdo.GetBool(ZdoKeys.ContainerNetwork, false);
+        }
+
+        /// <summary>
+        /// Only the per-container flag, without the shipped class defaults. Ship unloading needs this:
+        /// a ship hold is blacklisted as a class ("never file goods into something that moves") but is
+        /// a legitimate unloading source while `4. Storage / Unload Ships` is on. A player who sets
+        /// the flag on one hold still refuses that boat.
+        /// </summary>
+        public static bool HasFlagBlacklist(Container container)
+        {
+            if (container == null) return true;
+            var zdo = Zdo(container);
+            return zdo != null && zdo.GetBool(ZdoKeys.ContainerBlacklist, false);
         }
 
         /// <summary>
@@ -35,8 +46,7 @@ namespace Husnisse.Storage
         public static bool IsBlacklisted(Container container)
         {
             if (container == null) return true;
-            var zdo = Zdo(container);
-            if (zdo != null && zdo.GetBool(ZdoKeys.ContainerBlacklist, false)) return true;
+            if (HasFlagBlacklist(container)) return true;
             return ContainerFilter.DefaultBlacklisted(container);
         }
 

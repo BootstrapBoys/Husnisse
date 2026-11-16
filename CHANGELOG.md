@@ -1,5 +1,39 @@
 # Changelog
 
+## 1.0.0
+
+Parity — the last three Quartermaster surfaces, and the sign-off.
+
+- **Stack sizes are a setting now.** `4. Storage / Max Stack Size` (default 1000) puts every stackable
+  item under one ceiling after the item database loads. Item weight is never touched; single-item
+  equipment keeps its native one-per-stack; a stack already saved above the ceiling is left alone
+  until it is split, so lowering the number cannot delete anything. `Enable Stack Sizes` turns the
+  whole surface off and leaves the game's own limits in charge. Restart after changing either.
+- **DropMoreLoot owns the number when it is installed.** DropMoreLoot multiplies stack sizes in
+  `ItemDrop.Awake`, so two writers would race silently. With it present Husnisse writes no stack size
+  at all, and the diagnostics say `stacks=dropmoreloot`; without it, Husnisse's ceiling applies.
+- **A ship's hold inside a claim is emptied into the base.** Any container on a ship inside the claim
+  is a source for the container network: the nisse walks (or fades) to the hold, takes a batch, and
+  files it by the chests' rules at the queue's rate. A stack no rule accepts stays aboard. The hold
+  is never a destination, and a boat that leaves the claim mid-trip is not touched — the stack stays
+  where it is. `4. Storage / Unload Ships` switches it off; carts remain excluded.
+- **A station anywhere in a claim supports the whole claim.** A workbench, forge, stonecutter or other
+  station standing inside a claim now answers building, structure repair and dismantling anywhere in
+  that same claim — vanilla only asks for a station within its own radius. Crafting, item upgrades and
+  item repair still require walking up to the station. `4. Storage / Extend Station Coverage` turns it
+  off.
+- **`[stacks]`, `[build]` and `[ship]` in the diagnostics.** `husnisse status` and the session file now
+  name the stack policy and its ceiling, the stations standing in claims and how often coverage was
+  used, and the ship holds seen and stacks queued, so each of the three surfaces is legible without
+  debug logging.
+- **Parity is signed.** Every one of Quartermaster's 20 and QI's 18 surfaces is now covered,
+  deliberately waived, or moot (`docs/PARITY.md`). QM config import is out of scope by the
+  2026-11-13 decision; ledger search/controller navigation is waived as UI, not storage.
+- **One engine fact worth knowing.** A ship's hold is a child `Container` with no `ZNetView` of its
+  own: it points at the ship root through `m_rootObjectOverride`. Asking the child for a component
+  finds nothing, so every server-side write to a hold was refused as "no ZDO" until the lookup went
+  through the override — the difference between an unload and a boat that never empties.
+
 ## 0.7.0
 
 Internal only — multiplayer, and the Quartermaster migration.

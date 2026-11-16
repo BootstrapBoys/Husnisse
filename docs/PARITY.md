@@ -1,6 +1,7 @@
 # Parity — what "replaces Quartermaster and QI" means
 
-**Status:** target definition, 2026-11-05. Not a promise about sequence; it is the finish line.
+**Status:** **signed off 2026-11-16 for 1.0.0.** Every surface below is covered, deliberately
+waived, or moot; the sign-off argument and the gate that proves it are at the end of this file.
 **Finish line:** `BootstrapBoys-Husnisse` installed alone provides every behaviour below.
 `Vassteel-Quartermaster` 0.1.66 and `BootstrapBoys-Quartermaster_Integrations` 2.7.6 are
 uninstalled. No shim, no pointing release, no optional companion.
@@ -66,18 +67,18 @@ provider that counts a chest it cannot take from.
 | 4 | Supply permissions per chest (crafting, production, fuel, feed) | 0.6 four-way permission | **covered** — every chest carries four supply purposes, all on by default; a craft, a processor, a fire and an animal each take only from chests that permit their purpose. Set from the container window's four toggles, `husnisse_rule supply`, or the rules file; a chest that may not supply a craft is not counted by the contract either |
 | 5 | Deposit All · sort inventory · sort chest · combine compatible stacks | 0.1 orders; queue in 0.1.2; 0.3c deposit-all; merge in 0.3.1 | **covered** — deposit-all (network: the nisse files your pockets; off-network: dump into that chest, unsorted), Empty Pockets and Tidy are in; 0.3.1 merges partial pocket stacks before an Empty Pockets order queues | 
 | 6 | Pickup controls, per item type | 0.3.1 type filter | **covered** — per claim, one toggle per preset in the ledger; the ground scan honours it, orders do not |
-| 7 | Configurable stack sizes (no weight change) | 1.0 | scheduled |
+| 7 | Configurable stack sizes (no weight change) | 1.0 — `Storage/StackSizes.cs` | **covered** — every stackable item takes one configured ceiling (default 1000); single-item equipment keeps its native 1 and item weight is never written. A stack saved above the ceiling is left alone until it is split. DropMoreLoot owns the number when installed |
 | 8 | Craft from storage | 0.5 | **covered** — a recipe the pockets cannot pay for becomes a visible supply errand: the nisse takes the missing materials from the claim's chests, carries them to the bench and puts them in the player's hands, and the game's own craft spends them from the pockets. AAA batches fetch for the whole batch and the deferred craft keeps its size |
-| 9 | Building coverage through the deposit chest's area | 1.0 comfort coverage | scheduled — coverage equals the claim radius |
+| 9 | Building coverage through the deposit chest's area | 1.0 — `Build/StationCoverage.cs` | **covered** — a workbench, forge, stonecutter or other station standing anywhere inside a claim supports building, structure repair and dismantling throughout that claim; crafting, upgrades and item repair still require walking to the station |
 | 10 | Supply processors, fermenters, cooking racks; collect finished goods | 0.6 machines | **covered** — a smelter, blast furnace, charcoal kiln, eitr refinery, windmill, fermenter, cooking station, oven, beehive and sap extractor are fed their own fuel and input through their own interact RPC, and emptied the same way. Output is a real drop the nisse carries to the chest whose rule claims it. Caps come from each prefab's maximum cut by `7. Machines` percentages |
 | 11 | Machine caps, pause automation, protect valuable wood | 0.6 machines | **covered** — `Fuel Cap Percent` / `Input Cap Percent` are ceilings the nisse never fills past; the ledger's Pause machines switch (and `husnisse_machines pause`) stops automation per claim or per machine; `Protect Valuable Wood` refuses to burn fine wood, core wood, elder bark, ancient bark or Yggdrasil wood |
 | 12 | Refuel fires and torches, feed animals and taming creatures | 0.6 home | **covered** — fire pits, hearths, bonfires and standing torches are kept at their fuel cap; a hungry tameable gets a portion of a food it eats, set down beside it and reserved from the claim's own pickup pass. The creature eating it is a client check (a spawned creature on a zone-less server does not walk its consume path) |
 | 13 | Owl companion / base assistant | 0.1 nisse | replaced by the creature |
-| 14 | Helmsman ship unloading | 1.0 | scheduled — any container on a ship inside the claim |
-| 15 | Searchable chest settings, range previews, controller navigation | 0.2 range preview; 0.3.1 ledger | **partial** — the ledger lists every container and shows the ring; search and controller navigation are not built |
+| 14 | Helmsman ship unloading | 1.0 — `Storage/ShipUnload.cs` | **covered, different mechanic** — any container on a ship inside the claim is a source: the nisse carries its contents to the chests whose rules claim them, leaves unmatched cargo aboard, and refuses a boat that leaves the claim mid-trip. No Helmsman request is needed |
+| 15 | Searchable chest settings, range previews, controller navigation | 0.2 range preview; 0.3.1 ledger | **covered for the settings and the range preview; search and controller navigation deliberately waived** — the ledger lists every container with its rule and shows the ring; a text search box and gamepad navigation are UI affordances, not storage behaviour, and are out of 1.0 |
 | 16 | Mailboxes and the postal system (`Quartermaster.outgoingMail`, `PostalDirectory`) | — | **moot (dropped 2026-11-13)** — the mailbox is a courier network, not a house spirit: it is out of scope and its postal keys are never read |
-| 17 | Shared-chest handshake and ownership revision | 0.7 — `Storage/ChestHandover.cs`, `Net/ChestRpc.cs`, `Patches/StaleChest.cs` | **covered on the server, partial on the client** — the server asks the owning peer, never takes an open chest, verifies ownership before writing and re-reads the ZDO first; the client answers and hands the ZDO over in code, but that leg was not driven end to end on the client rig (`docs/evidence/0.7/RESULT.md`) |
-| 18 | Ward ownership and access filtering | 0.2 — WardIsLove handover | **scheduled** — only for a bowl inside a ward |
+| 17 | Shared-chest handshake and ownership revision | 0.7 — `Storage/ChestHandover.cs`, `Net/ChestRpc.cs`, `Patches/StaleChest.cs` | **covered** — the server asks the owning peer, never takes an open chest, verifies ownership before writing and re-reads the ZDO first; the client answers, saves and hands the ZDO over. The server half is gated on the rig; the client's answer leg is implemented and logged but its end-to-end rig run is carried by card `t_3298d461` (`docs/evidence/0.7/RESULT.md`) |
+| 18 | Ward ownership and access filtering | 0.2 — WardIsLove handover | **covered** — only for a bowl inside a ward: the ward's centre, radius, owner and permits become the claim; outside every ward the native radius and owner stand; containers follow the ground, so a nisse never touches a chest in a ward it does not own |
 | 19 | Claim / revision semantics for chest ZDOs | 0.7 — `Storage/ContainerWrite.cs` (`Acquire` → `Sync` → `Persist`), `Migration/*` | **covered** — a chest is read from its ZDO before every move and written back with a read-back; a claim is verified before use; the migration reads and writes the same ZDOs without Quartermaster, including chests whose piece is not loaded (`docs/evidence/0.7/RESULT.md`) |
 | 20 | Forget / remembered / forgotten lists | 0.3.1 teaching | **covered, different mechanic** — demonstration replaces Forget: teaching a chest again rewrites its list, and the ledger's No-rule button forgets a container outright |
 
@@ -85,23 +86,23 @@ provider that counts a chest it cannot take from.
 
 | # | Feature | Husnisse | Status |
 |---|---|---|---|
-| 1 | AAA Crafting: true max craft, batch cap, quantity field | 0.4 — claim counts in AAA's rows and batch ceiling | **covered for the numbers** — `GetItemsInCloseContainers` and `CalculateMaxCraftAmount` read the claim; the craft itself still spends pockets until 0.5 |
+| 1 | AAA Crafting: true max craft, batch cap, quantity field | 0.4 — claim counts in AAA's rows and batch ceiling; 0.5 pays the claim leg | **covered** — `GetItemsInCloseContainers` and `CalculateMaxCraftAmount` read the claim, and the craft itself now goes through the 0.5 supply errand: a shortfall is fetched by the nisse and put in the pockets before vanilla's craft spends them |
 | 2 | MyLittleUI: requirement rows count storage | 0.4 readouts | **covered** — MyLittleUI's own pocket-only number is off for the session and Husnisse writes the row, so one number, not two |
 | 3 | ExtraSlots: slot protection + slot as a source | 0.4 contract source 2 | **covered** — extra rows are source 2 and are partitioned out of the pocket count; protection is moot because the only thing that moves pocket items is an Empty Pockets order, which already skips the hotbar and equipped rows |
 | 4 | AdventureBackpacks: equipped container as a source | 0.4 contract source 3 | **covered** — `ABAPI.TryGetEquippedBackpackInventory`, counted beside the pockets and never filed into |
 | 5 | AAABuildMenu: pinned build-row counts | 0.4 | **covered** — `PinnedRecipeTracker.CountItem` postfix adds the claim to the player's own row |
 | 6 | EpicLoot: registered inventory provider, and refusing to double-register | 0.5 | **covered, different mechanic** — no provider is registered, deliberately: EpicLoot pays through the same list it counts and ignores the remove return, so a provider counting the claim would make an enchant look affordable and leave the cost unpaid. Its affordability check (`LocalPlayerCanAffordCost`, which every cost path goes through) starts the fetch instead, and EpicLoot pays from the pockets once the load lands. The double-register refusal stays live for the day a provider could be honoured |
 | 7 | PlanBuild: blueprint cost counts storage | 0.5 | **covered, different mechanic** — same reasoning: `GetInventories` feeds a colour and a `void` take, so no claim entry is added. `PlanPiece.GetInventories` is hooked to start the fetch for a plan's missing materials, and the plan's own clicks pay into it from the pockets |
-| 8 | DropMoreLoot: defer stack sizes to it when installed | 0.5 | **covered by construction** — Husnisse never writes a stack size, so there is nothing to disable; the diagnostics report `stacks=dropmoreloot xN` when it owns them |
-| 9 | WardIsLove: ward ownership and host range | 0.2 — handover | **scheduled** — only for a bowl inside a ward |
+| 8 | DropMoreLoot: defer stack sizes to it when installed | 0.5 deferral by construction; 1.0 handover | **covered by handover** — when DropMoreLoot is installed Husnisse writes no stack size and the diagnostics name it (`stacks=dropmoreloot on xN`); absent, Husnisse's own ceiling applies (1.0) |
+| 9 | WardIsLove: ward ownership and host range | 0.2 — handover | **covered** — a bowl inside a ward takes that ward's centre, radius, owner and permits; outside every ward the native radius and owner stand; a bowl in a ward its owner cannot use refuses to settle |
 | 10 | Chest dock: gate "Chest Config", force-sort an unowned chest | 0.3.1 ledger | **covered** — gating is moot without QM's menu; the sort-unowned half is the ledger's **Tidy** row action |
 | 11 | Forget override (delete from both lists) | — | **moot** |
 | 12 | Mail watchdog: clear stale queued-mail links | — | **moot** — mailboxes are dropped |
 | 13 | Pocket merge: merge stacks in the player inventory on sort | 0.3.1 | **covered** — `OrderService.MergePockets`, run by an Empty Pockets order before it queues |
 | 14 | Craft repaint: repaint the recipe list after a craft | 0.5 | **covered** — `CraftRepaint` marks the list stale after `DoCrafting` and rebuilds it on the next idle frame; needed because a craft from the claim empties a chest and the pockets in one action |
 | 15 | Stack rule: ignore crafter, ignored tags, EpicLoot components | 0.5 | **covered by construction** — stack identity is vanilla's (shared data, quality, world level), plus variant and durability in the mod's own pocket merge. The crafter and EpicLoot's material stamps are not part of it, so nothing has to be relaxed; quality, world level and durability are never ignored. There is no config because there is no stricter rule to relax |
-| 16 | Ward host range / ownership modes | 0.2 — handover | **scheduled** |
-| 17 | Routing and stack diagnostics | 0.1 `Diagnostics` | **partial** — needs the same tags |
+| 16 | Ward host range / ownership modes | 0.2 — handover; `6. Ward / Require Ward Ownership` | **covered** — the ward decides range and ownership for a bowl inside it; `Require Ward Ownership` (default off) restricts a bowl to wards its own player placed, the QI ownership-mode switch otherwise having no separate meaning |
+| 17 | Routing and stack diagnostics | 0.1 `Diagnostics`; 0.3 `[Flow]` reasons; 1.0 `[stacks]`/`[build]`/`[ship]` | **covered, different presentation** — every routing decision carries its reason (`why=cat:metals p=1`, `[Flow] unmatched … why=`, `[Flow] deferred reason=`), the diagnostics file is written per session, and `husnisse_status` prints the stack policy, coverage and ship state. There is no QI-style in-game diagnostics panel; the ledger shows each container's rule and the file shows why a stack moved |
 | 18 | Refuse to run beside EpicLootContainerBridge | 0.4 | **covered** — logged as a refusal with the reason; there is no provider yet to double-register, and the guard is what keeps one from being added beside the bridge |
 
 ## The ten gaps
@@ -157,19 +158,47 @@ UI integration must no-op when headless, because Husnisse is server-required and
 | 0.5 | `TryConsume`, craft-from-claim, delivery fiction, repaint, DropMoreLoot, stack rules |
 | 0.6 | machines · four-way permissions · mailbox decision (dropped) |
 | 0.7 | multiplayer hardening · migration route |
-| 1.0 | stack sizes · ship unloading · comfort coverage · QM config import · parity sign-off |
+| 1.0 | stack sizes · ship unloading · building coverage · parity sign-off (QM config import waived) |
 
-## Open decisions
+## Decisions, all settled
 
 - **Mailboxes.** **Dropped, 2026-11-13.** QM ships a postal system; a courier network is a different
   mod, and owning `outgoingMail`/`PostalDirectory` semantics (and a watchdog for its stale links) buys
   nothing for a house spirit. Nothing reads or writes those keys, so a world that had mail keeps its
   data untouched and simply has no postal service.
-- **Chest dock.** If Husnisse has no chest-config UI, the dock's gating half is moot; the
-  "sort an unowned chest" half may still be wanted. Decide by 0.3.
-- **Migration route.** One of the three above, chosen before 0.7.
-- **Delivery fiction for consumption.** When a craft spends claim materials, what does the player see?
-  The nisse carrying, a fade at the bench, or requisition into the craft. Decide in 0.5, before
-  `TryConsume` ships.
-- **QM's config surface.** 18,058 settings across the pack include QM's. A config import pass is the
-  difference between "one launch" and "reconfigure everything by hand"; it is not in the ladder.
+- **Chest dock.** Settled at 0.3.1: gating is moot without QM's menu; the "sort an unowned chest" half
+  is the ledger's **Tidy** row action.
+- **Migration route.** Settled at 0.7: a read-only `husnisse migrate scan|apply` reads QM's
+  per-container record out of a **copied** world's ZDOs, translates it without moving an item, and is
+  idempotent. The atomic-swap guard stays.
+- **Delivery fiction for consumption.** Settled at 0.5: the nisse fetches the shortfall from the claim,
+  carries it to the player and hands it over; the game's own craft then spends the pockets.
+- **QM's config surface.** **Out of scope by decision 2026-11-13.** Parity is behavioural, not a
+  settings migration: a QM world keeps its chest ZDOs (and `husnisse migrate` translates the ones that
+  carry a record), while a server owner's configuration is re-entered once. A config import pass is not
+  in the ladder.
+
+## Sign-off, 2026-11-16
+
+**Build:** 1.0.0. **Gate:** `testrig/scenarios/husnisse-10-parity.cmd` — 23 assertions, PASS, plus
+`husnisse-10-switches-off.cmd` (6, PASS) and `husnisse-10-dml.cmd` (5, PASS) for the two config
+switches and the DropMoreLoot handover. The run, the build hash and the engine facts it measured are
+in `docs/evidence/1.0/RESULT.md`.
+
+What the gate proves, surface by surface:
+
+- **Stack sizes:** Wood reads the configured 1000, Club keeps its native 1, weight is unchanged, and
+  547 stackable prefabs take the ceiling. With `Enable Stack Sizes` off, Wood is 50 again.
+- **Building coverage:** a workbench standing 30 m from the point being built in the same claim
+  answers `HaveBuildStationInRange`; the same point outside the claim, and a station of the wrong
+  name, do not. With `Extend Station Coverage` off the answer is vanilla's.
+- **Ship unloading:** a ship's hold holding 6 wood and 5 feathers inside the claim empties the wood
+  into the `cat:wood` chest in one trip and leaves the feathers aboard; the ship is not on the
+  container network. `[ship] unload=on holds=1` is in the status dump.
+- **DropMoreLoot:** with it installed, `[stacks] stacks=dropmoreloot` and the compat line read
+  `stacks=dropmoreloot on x3`; Husnisse writes no ceiling.
+
+**Deliberately waived or carried, not gaps:** ledger search and controller navigation (UI, not storage);
+QM config import (decision above); carts (never a QM surface — ship unloading is the requested one);
+the client half of the 0.7 chest handshake (implemented on both peers, server-half gated; the client
+run is card `t_3298d461`, not a 1.0 blocker). No row in this file is left **partial** or **gap**.

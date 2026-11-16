@@ -30,12 +30,13 @@ namespace Husnisse
     [BepInDependency("shudnal.MyLittleUI", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("shudnal.ExtraSlots", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("vapok.mods.adventurebackpacks", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("TastyChickenLegs.DropMoreLoot", BepInDependency.DependencyFlags.SoftDependency)]
     [BepInDependency("com.bootstrapboys.quartermaster_integrations", BepInDependency.DependencyFlags.SoftDependency)]
     public class HusnissePlugin : BaseUnityPlugin
     {
         public const string PluginGUID = "com.bootstrapboys.husnisse";
         public const string PluginName = "Husnisse";
-        public const string PluginVersion = "0.7.0";
+        public const string PluginVersion = "1.0.0";
 
         internal static bool Running;
 
@@ -201,6 +202,11 @@ namespace Husnisse
             RuleRpc.Register();
             FetchRpc.Register();
             ChestRpc.Register();
+
+            // Stack sizes are a prefab-level number, so this is the first moment they can be armed:
+            // the item list itself arrives a moment later (ObjectDB.CopyOtherDB), which is where the
+            // write actually lands, with a per-frame retry from the flow pump as a fallback.
+            Storage.StackSizes.Ensure();
 
             Log.Info("content registered");
         }

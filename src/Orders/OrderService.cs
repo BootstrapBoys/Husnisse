@@ -198,7 +198,7 @@ namespace Husnisse.Orders
                 return true;
             }
 
-            var view = source != null ? source.GetComponent<ZNetView>() : null;
+            var view = ContainerNet.View(source);
             var id = view != null && view.GetZDO() != null ? view.GetZDO().m_uid : ZDOID.None;
             if (id == ZDOID.None)
             {

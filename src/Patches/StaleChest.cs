@@ -2,6 +2,7 @@ using System.Reflection;
 using HarmonyLib;
 using Husnisse.Core;
 using Husnisse.Localization;
+using Husnisse.Storage;
 using UnityEngine;
 
 namespace Husnisse.Patches
@@ -40,7 +41,7 @@ namespace Husnisse.Patches
             var container = CurrentContainer.GetValue(__instance) as Container;
             if (container == null) return;
 
-            var view = container.GetComponent<ZNetView>();
+            var view = ContainerNet.View(container);
             if (view == null || !view.IsValid() || view.IsOwner()) return;
 
             var player = Player.m_localPlayer;

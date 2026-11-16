@@ -232,8 +232,7 @@ namespace Husnisse.Storage
         private static Candidate Describe(Claim claim, Container container, ContainerRule rule, RouteTier tier,
                                           ZDOID remembered, string itemName)
         {
-            var view = container.GetComponent<ZNetView>();
-            var zdo = view != null ? view.GetZDO() : null;
+            var zdo = ContainerNet.Zdo(container);
             var inventory = container.GetInventory();
 
             return new Candidate
@@ -370,10 +369,10 @@ namespace Husnisse.Storage
         public static void Learn(Container container, string itemName, ItemMemory memory)
         {
             if (container == null || memory == null) return;
-            var view = container.GetComponent<ZNetView>();
-            if (view == null || view.GetZDO() == null) return;
-            memory.Remember(itemName, view.GetZDO().m_uid);
-            Log.Debug("Memory", "learned " + itemName + " -> " + view.GetZDO().m_uid);
+            var zdo = ContainerNet.Zdo(container);
+            if (zdo == null) return;
+            memory.Remember(itemName, zdo.m_uid);
+            Log.Debug("Memory", "learned " + itemName + " -> " + zdo.m_uid);
         }
     }
 }

@@ -9,22 +9,17 @@ using UnityEngine;
 namespace Husnisse.Compat
 {
     /// <summary>
-    /// DropMoreLoot multiplies `SharedData.m_maxStackSize` in `ItemDrop.Awake`. A storage mod that
-    /// also writes stack sizes fights it: whichever runs last wins, and the loss is silent.
-    ///
-    /// Husnisse never writes a stack size. It has no `ItemStacks`-shaped override to disable and no
-    /// maximum-stack setting of its own — stack sizes are scheduled for 1.0, and until then the
-    /// game's value (or whatever another mod made of it) is the value every count, merge and
-    /// requirement uses. That is the whole integration: defer by not competing, and say so in the
-    /// diagnostics so a support log shows whose number is in play.
-    ///
-    /// The merge rule is the other half of the same question. Vanilla's `FindFreeStackItem` compares
-    /// shared data, quality and world level — it does **not** care who crafted a stack, and it does
-    /// not look at custom-data keys. Husnisse's own pocket merge adds durability and variant to that
-    /// list and never touches quality, world level or durability to make a merge fit. So a stack
-    /// crafted at a bench merges with one picked up (the relaxation Quartermaster_Integrations asks
-    /// for), and EpicLoot's material stamps do not split a stack, while gear, levelled items and
-    /// damaged items keep their own stacks.
+    /// DropMoreLoot multiplies `SharedData.m_maxStackSize` in `ItemDrop.Awake`, so two writers would
+    /// fight and whichever ran last would win silently. Now that stack sizes are a Husnisse surface
+    /// (1.0), the integration is a handover: when DropMoreLoot is installed it owns the number and
+    /// Husnisse writes none; absent, Husnisse applies its configured ceiling. The merge rule is the
+    /// other half of the same question. Vanilla's `FindFreeStackItem` compares shared data, quality
+    /// and world level — it does **not** care who crafted a stack, and it does not look at custom-data
+    /// keys. Husnisse's own pocket merge adds durability and variant to that list and never touches
+    /// quality, world level or durability to make a merge fit. So a stack crafted at a bench merges
+    /// with one picked up (the relaxation Quartermaster_Integrations asks for), and EpicLoot's
+    /// material stamps do not split a stack, while gear, levelled items and damaged items keep their
+    /// own stacks.
     /// </summary>
     public static class DropMoreLootCompat
     {
@@ -65,8 +60,7 @@ namespace Husnisse.Compat
             {
                 Log.Info("[Compat] DropMoreLoot owns stack sizes (" +
                          (Safe(() => _stacking) ? "stacking on, x" + SafeInt(() => _multiplier) : "stacking off") +
-                         "); Husnisse never writes a stack size, so its counts and merges use whatever " +
-                         "DropMoreLoot applied.");
+                         "); Husnisse writes none, so its counts and merges use whatever DropMoreLoot applied.");
             }
             catch (Exception ex)
             {

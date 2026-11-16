@@ -135,7 +135,7 @@ namespace Husnisse.Ledger
                 if (container.GetComponent<Bowl.BowlPiece>() != null) continue;
                 if (prefab != null && Utils.GetPrefabName(container.gameObject) != prefab) continue;
 
-                var view = container.GetComponent<ZNetView>();
+                var view = ContainerNet.View(container);
                 if (view == null || view.GetZDO() == null) continue;
                 matches.Add(container);
             }

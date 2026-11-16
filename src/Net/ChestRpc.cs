@@ -1,4 +1,5 @@
 using Husnisse.Core;
+using Husnisse.Storage;
 using UnityEngine;
 
 namespace Husnisse.Net
@@ -139,7 +140,7 @@ namespace Husnisse.Net
                 return;
             }
 
-            var view = container.GetComponent<ZNetView>();
+            var view = ContainerNet.View(container);
             var zdo = view != null ? view.GetZDO() : null;
             if (view == null || !view.IsValid() || zdo == null)
             {

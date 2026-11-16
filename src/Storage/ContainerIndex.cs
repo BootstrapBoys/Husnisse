@@ -35,7 +35,7 @@ namespace Husnisse.Storage
                 if (container == null || !claim.Contains(container.transform.position)) continue;
                 if (container.GetComponent<BowlPiece>() != null) continue;
                 if (!ContainerFilter.CanUse(claim, container)) continue;
-                var view = container.GetComponent<ZNetView>();
+                var view = ContainerNet.View(container);
                 if (view != null && view.GetZDO() != null && view.GetZDO().m_uid == id) return container;
             }
             return null;
@@ -61,8 +61,7 @@ namespace Husnisse.Storage
 
         public static string Role(Container container)
         {
-            var view = container != null ? container.GetComponent<ZNetView>() : null;
-            var zdo = view != null ? view.GetZDO() : null;
+            var zdo = ContainerNet.Zdo(container);
             return zdo == null ? string.Empty : zdo.GetString(ZdoKeys.ContainerRole, string.Empty);
         }
 

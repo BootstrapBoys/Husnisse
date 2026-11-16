@@ -46,6 +46,11 @@ namespace Husnisse.Core
                       " " + DropMoreLootCompat.Describe() +
                       " " + PluginGuards.Describe());
 
+            // The three 1.0 surfaces, each with the number or switch that says whether it is live.
+            lines.Add("[stacks] " + StackSizes.Describe());
+            lines.Add("[build] " + Build.StationCoverage.Describe());
+            lines.Add("[ship] " + ShipUnload.Describe());
+
             // The contract's own answer, from the same code the crafting row and the console command
             // ask: a gate reads these lines instead of re-deriving the numbers.
             lines.Add("[contract] readouts " + IntegrationHost.Describe());

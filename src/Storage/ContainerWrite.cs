@@ -57,7 +57,7 @@ namespace Husnisse.Storage
         {
             if (container == null) return false;
 
-            var view = container.GetComponent<ZNetView>();
+            var view = ContainerNet.View(container);
             var inventory = container.GetInventory();
             if (view == null || !view.IsValid() || inventory == null) return false;
 
@@ -113,7 +113,7 @@ namespace Husnisse.Storage
         {
             if (container == null) return false;
 
-            var view = container.GetComponent<ZNetView>();
+            var view = ContainerNet.View(container);
             var inventory = container.GetInventory();
             if (view == null || !view.IsValid() || inventory == null) return false;
 
@@ -152,7 +152,7 @@ namespace Husnisse.Storage
         /// <summary>Reads a container's contents as the ZDO has them, without touching the live copy.</summary>
         public static Inventory Read(Container container)
         {
-            var view = container != null ? container.GetComponent<ZNetView>() : null;
+            var view = ContainerNet.View(container);
             var zdo = view != null && view.IsValid() ? view.GetZDO() : null;
             if (zdo == null) return null;
 

@@ -51,7 +51,7 @@ Rejected: recent-moves undo (#6), pause (#8), per-mod blacklist (replaced by the
 | 0.5 | Craft from claim | `TryConsume`, the visible supply errand, craft repaint, DropMoreLoot deferral, stack rules | 0.4 |
 | 0.6 | Machines and permissions | processors, refuel, feed, caps, four-way permissions, mailbox decision | 0.5 |
 | 0.7 | Multiplayer and migration | shared chests, ownership revision, migration route | 0.6 |
-| 1.0 | Parity | stack sizes, ship unloading, coverage, config import, sign-off | 0.7 |
+| 1.0 | Parity | stack sizes, ship unloading, building coverage, sign-off (QM config import waived) | 0.7 |
 
 ## 0.1.2 — Flow, pantry and safety
 
@@ -368,8 +368,36 @@ two-client test is not possible on the current rig (one client target). Both are
 
 ## 1.0 — Parity
 
-Stack sizes, ship unloading, comfort coverage, QM config import, and a surface-by-surface sign-off
-against `PARITY.md` on a copied world.
+**Scope**
+
+- **Stack sizes.** One configured ceiling (`4. Storage / Max Stack Size`, default 1000) applied to every
+  stackable item's shared data after the item database arrives; single-item equipment keeps its native
+  1, item weight is never written, and a stack saved above the ceiling is left alone. DropMoreLoot owns
+  the number when installed and Husnisse writes none.
+- **Ship unloading.** A ship's hold inside a claim is a source for the claim's network: the nisse carries
+  its contents to the chests whose rules claim them and leaves unmatched cargo aboard. A boat that
+  leaves the claim mid-trip is not touched. Carts stay excluded.
+- **Building coverage.** A workbench, forge, stonecutter or other station standing anywhere inside a
+  claim supports building, structure repair and dismantling throughout that claim. Crafting, upgrades
+  and item repair still require walking to the station.
+- **Parity sign-off.** Every row of `PARITY.md` covered, deliberately waived, or moot; QM config import
+  is out of scope by the 2026-11-13 decision.
+
+**Done when**
+
+- Wood reads 1000 while Club stays 1 and weight is unchanged; with `Enable Stack Sizes` off Wood is the
+  game's 50; with DropMoreLoot installed the diagnostics read `stacks=dropmoreloot`.
+- A workbench 30 m from a build point in the same claim answers `HaveBuildStationInRange`, and the same
+  point outside the claim — or a wrong station name — does not; with `Extend Station Coverage` off it
+  does not answer at all.
+- A loaded ship's hold empties its matched cargo into a rule-bearing chest, leaves unmatched cargo
+  aboard, and is never a destination.
+- `husnisse_status` carries `[stacks]`, `[build]` and `[ship]`, and `PARITY.md` is signed.
+
+**Proven** — `testrig/scenarios/husnisse-10-parity.cmd` (23 assertions), `-switches-off` (6) and
+`-dml` (5); build, hashes and engine facts in `docs/evidence/1.0/RESULT.md`. **Waived** — QM config
+import, ledger search/controller navigation, and the client end of the 0.7 handshake (card
+`t_3298d461`).
 
 ## Cross-cutting
 
@@ -378,6 +406,5 @@ against `PARITY.md` on a copied world.
 - **Benchmarks**: 200 containers at 0.3; 10 nisses at 0.7; queue catch-up at 0.1.2.
 - **Every release**: changelog entry, four version fields, updated PARITY statuses, updated this file if
   scope moved.
-- **Open decisions**: mailbox (0.6), migration route (0.7), QM config import (1.0). The delivery
-  fiction is settled: the nisse fetches the shortfall and hands it over before the craft spends the
-  pockets.
+- **Open decisions**: none. Mailboxes (dropped 0.6), the migration route (0.7) and the delivery
+  fiction (0.5) are settled, and QM config import is out of scope by decision 2026-11-13.

@@ -74,11 +74,23 @@ namespace Husnisse.Flow
                 return true;
             }
 
-            var inventory = Source == FlowSource.Container
-                ? (Container != null ? Container.GetInventory() : null)
-                : Inventory;
+            if (Source == FlowSource.Container)
+            {
+                if (Container == null) return false;
 
-            return inventory != null && inventory.ContainsItem(Item);
+                var inventory = Container.GetInventory();
+                if (inventory == null || !inventory.ContainsItem(Item)) return false;
+
+                // A ship hold is work only while the ship is inside the claim: a boat that sails
+                // out mid-trip must not be unloaded from the dock, and its stack must not be taken
+                // after the nisse has ceased to be beside it. The stack stays aboard.
+                var ship = Container.GetComponentInParent<Ship>();
+                if (ship != null && !Claim.Contains(ship.transform.position)) return false;
+
+                return true;
+            }
+
+            return Inventory != null && Inventory.ContainsItem(Item);
         }
 
         /// <summary>How far below a claim's bowl a drop has to fall before it is out of the world.</summary>

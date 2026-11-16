@@ -376,7 +376,7 @@ namespace Husnisse.Net
                 var container = ContainerAt(position);
                 if (container == null) return;
 
-                var view = container.GetComponent<ZNetView>();
+                var view = ContainerNet.View(container);
                 if (view == null || !view.IsOwner()) return;
 
                 if (op == RuleOp.SetNetwork)

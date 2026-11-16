@@ -290,7 +290,7 @@ namespace Husnisse.Storage
 
         private static ZNetView ViewOf(Container container)
         {
-            return container != null ? container.GetComponent<ZNetView>() : null;
+            return ContainerNet.View(container);
         }
 
         private static ZDO ZdoOf(Container container)

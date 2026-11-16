@@ -29,6 +29,10 @@ namespace Husnisse.Config
         public static ConfigEntry<int> SulkIntervalMinutes;
         public static ConfigEntry<bool> SkipMobileContainers;
         public static ConfigEntry<bool> SkipDisplayPiles;
+        public static ConfigEntry<bool> UnloadShips;
+        public static ConfigEntry<bool> ExtendStationCoverage;
+        public static ConfigEntry<bool> EnableStackSizes;
+        public static ConfigEntry<int> MaxStackSize;
         public static ConfigEntry<bool> RespectWards;
         public static ConfigEntry<bool> RequireWardOwnership;
         public static ConfigEntry<bool> RequirementReadouts;
@@ -103,10 +107,26 @@ namespace Husnisse.Config
                 new ConfigDescription("Minutes between misfilings once a nisse is sulking.", new AcceptableValueRange<int>(1, 1440)));
 
             SkipMobileContainers = file.Bind("4. Storage", "Skip Carts and Ships", true,
-                "Never file items into a cart or ship hold; goods would sail away.");
+                "Never file items into a cart or ship hold; goods would sail away. Ship unloading (below) is the opposite direction and is not affected.");
 
             SkipDisplayPiles = file.Bind("4. Storage", "Skip Display Piles", true,
                 "Never treat DynamicStoragePiles or the Muji DynamicStorage display containers as storage.");
+
+            UnloadShips = file.Bind("4. Storage", "Unload Ships", true,
+                "A ship's hold inside a claim is emptied into the chests whose rules claim it, at the queue's rate and one visible trip at a time. " +
+                "A stack nothing accepts stays aboard; a boat that leaves the claim mid-trip is not touched. Carts stay excluded.");
+
+            ExtendStationCoverage = file.Bind("4. Storage", "Extend Station Coverage", true,
+                "A workbench, forge, stonecutter or other station standing anywhere inside a claim supports building, structure repair and " +
+                "dismantling throughout that claim. Crafting, item upgrades and item repair still require walking up to the station.");
+
+            EnableStackSizes = file.Bind("4. Storage", "Enable Stack Sizes", true,
+                "Apply one maximum stack size to every stackable item. Off leaves native limits — or DropMoreLoot's, when it is installed — in charge. Restart to take effect.");
+
+            MaxStackSize = file.Bind("4. Storage", "Max Stack Size", 1000,
+                new ConfigDescription("Maximum stack size for stackable items. Item weight is never changed, single-item equipment keeps its native limit, " +
+                    "and a stack already larger than the new maximum is left alone until it is split. Restart to take effect.",
+                    new AcceptableValueRange<int>(1, 10000)));
 
             RequirementReadouts = file.Bind("5. Contract", "Requirement Readouts", true,
                 "Show what the claim can reach on crafting and build requirement rows, and let AAA Crafting, " +

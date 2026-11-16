@@ -66,7 +66,7 @@ and not a parallel copy: the other mod answers, we consume or step aside.
 | Claim authority | bowl claim: radius, owner, permits | **WardIsLove**, only for a bowl standing inside a ward | inside a ward: the ward's range, owner and permitted players become the claim; outside: the native radius and owner stand |
 | Storage sources | containers inside the claim | **ExtraSlots**, **AdventureBackpacks** | their slots and backpack join the contract's source list |
 | Inventory provider | Husnisse's own query | **EpicLoot** | EpicLoot's provider answers; Husnisse refuses to double-register beside it. **Only one can own the list, and the list is also how EpicLoot pays**, so Husnisse's provider lands with the spend (0.5); until then EpicLoot stays pocket-only and the refusal beside EpicLootContainerBridge is already in |
-| Stack policy | native merge rules | **DropMoreLoot** | stack sizes and merging defer to it |
+| Stack policy | native merge rules; a configured stack ceiling | **DropMoreLoot** | stack sizes and merging defer to it: when it is installed Husnisse writes no stack size at all |
 | UI readouts | none — we do not draw panels | **AAA Crafting**, **AAABuildMenu**, **PlanBuild**, **MyLittleUI** | they query us; this is consumption, not handover |
 | Config locking | BepInEx config | **ConditionalConfigSync** (hard) | values are locked server-side |
 
@@ -139,7 +139,7 @@ Quartermaster's public feature list, and how each one becomes a creature action 
 | Supply permissions (which chests feed crafting/production) | Teaching a chest as a pantry; the nisse will fetch from pantries only |
 | Inventory tools (deposit all, sort, combine stacks) | Orders given to the nisse: Tidy, Combine, Empty Pockets |
 | Pickup controls (auto-collect certain types) | The nisse collects drops inside its claim while working |
-| Stack sizes | Plain config, no creature angle — it is a number, not a behaviour |
+| Stack sizes | Plain config, no creature angle — it is a number, not a behaviour (DropMoreLoot owns it when installed) |
 | Craft from storage | The nisse answers the call: crafting draws from its claim because it is the one holding the network together |
 | Building coverage (station range extension) | Coverage is the claim radius — no separate setting |
 | Production (supply processors, collect output) | The queue feeds and empties machines in the claim |
@@ -541,7 +541,10 @@ order, spend order, ward filtering, all-or-nothing spending, reentrancy — that
 - **Not a port.** See `CLEANROOM.md`. No Quartermaster code, no decompiled dumps in the tree, no
   line-by-line translation.
 - **Not a drop-in migration at v1.** Quartermaster's deposit chests are its own prefabs; removing it
-  removes them. A migration tool arrives at 0.7 and reads runtime ZDO data only, never its source.
+  removes them. The 0.7 migration tool (`husnisse migrate scan|apply`) reads Quartermaster's
+  per-container record out of a **copied** world's ZDOs and translates it — role, supply permissions,
+  priority and remembered items — without moving an item; chests whose prefab is gone are named in the
+  report rather than silently dropped.
 - **Not a Housecarl module.** Different domain, different users, server-side. It is its own project and
   its own release.
 
@@ -564,7 +567,7 @@ table is the summary.
 | **0.5** | **Craft from claim**: `TryConsume` (all-or-nothing, reentrancy-safe, claim leg delivered by the nisse), the visible supply errand and its bundle, craft-list repaint, AAA batches, EpicLoot and PlanBuild costs, DropMoreLoot deferral, stack rules | The first consuming surface; needs 0.4's contract. |
 | **0.6** | Machines: fuel, feed, collect, caps; four-way supply permissions; mailbox decision | The nightly queue earns its keep. |
 | **0.7** | *Implemented.* Shared-chest handshake and ownership revision, the read-only Quartermaster migration, and the ten-nisse benchmark. Client half of the handshake still to be driven on the rig | Two clients and a live world are where storage mods die. |
-| **1.0** | Stack sizes, ship unloading, comfort-based coverage, QM config import; parity sign-off against `PARITY.md` | Parity, surface by surface, on a copied world. |
+| **1.0** | *Implemented.* **Stack sizes** (one configured ceiling, weight untouched, DropMoreLoot owns it when installed), **ship unloading** (a hold inside a claim is a source), **building coverage** (a station anywhere in a claim supports building, repair and dismantling throughout it); parity sign-off against `PARITY.md`. QM config import is out of scope by decision | Parity, surface by surface, on a copied world. |
 
 ## Risks
 

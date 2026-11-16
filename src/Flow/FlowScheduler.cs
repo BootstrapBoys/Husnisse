@@ -35,6 +35,12 @@ namespace Husnisse.Flow
         private void Update()
         {
             if (!HusnissePlugin.Running) return;
+
+            // One-shot, and cheap after it has fired: the item database may arrive after content
+            // registration, and a player who never joins a world still needs the ceiling before a
+            // stack is merged or a chest is opened.
+            StackSizes.Ensure();
+
             if (ZNet.instance == null || !ZNet.instance.IsServer()) return;
             if (ZNetScene.instance == null) return;
 
@@ -76,6 +82,8 @@ namespace Husnisse.Flow
             if (_reconcile < interval) return;
             _reconcile = 0f;
 
+            ShipUnload.BeginPass();
+
             foreach (var claim in ClaimRegistry.All())
             {
                 if (claim == null || claim.Bowl == null || claim.Suppressed) continue;
@@ -111,6 +119,7 @@ namespace Husnisse.Flow
             var containers = ContainerIndex.InClaim(claim);
             EnqueueDrops(claim, containers);
             EnqueueDeposits(claim, containers);
+            ShipUnload.Enqueue(claim, containers);
         }
 
         private static void EnqueueDrops(Claim claim, List<Container> containers)

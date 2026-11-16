@@ -1,0 +1,61 @@
+scenario queued: husnisse-10-parity.cmd
+01:29:44.087 husnisse status [contract] sources pockets=absent slots=absent backpack=absent claim=absent
+01:29:44.087 husnisse status schema=2 feeding_required=False claims=1 trips=1 supply errands=0 nisses=1 bowl_piece=present
+01:29:44.087 husnisse status rule -595042737:110 2,0 net=on rule=cat:wood
+01:29:44.087 husnisse status [rules] containers=1 ruled=1 deposits=0 blacklisted=1
+01:29:44.087 husnisse status claim -595042737:110 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=Pickup/1 containers=1 stacks=0 pickup=all unknown=0 machines_tended=0 machines_paused=0 machines_ready=0 machines_wanting=0 lod=far nisse=yes
+01:29:44.087 husnisse status [flow] claim=-595042737:110 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+01:29:44.087 husnisse status [machines] machine errands=0 portions=0
+01:29:44.087 husnisse status [chest] chest_waits=0 rejected=0
+01:29:44.087 husnisse status lines=16
+01:29:44.392 > expect [ship]
+01:29:44.392   expect '[ship]': ok
+01:29:44.895 > expect unload=on
+01:29:44.895   expect 'unload=on': ok
+01:29:45.397 > wait 60
+01:29:45.397 wait: 60s (server keeps ticking)
+01:30:45.741 > contents piece_chest_wood
+01:30:45.751 contents piece_chest_wood stack[0] $item_wood x6
+01:30:45.751 contents piece_chest_wood stacks=1 items=6 types=$item_wood
+01:30:46.256 > expect_last stacks=1 items=6
+01:30:46.256   expect_last 'stacks=1 items=6' in 'contents piece_chest_wood stacks=1 items=6 types=$item_wood': ok
+01:30:46.745 > expect $item_wood
+01:30:46.746   expect '$item_wood': ok
+01:30:47.248 > contents VikingShip
+01:30:47.258 contents VikingShip stack[0] $item_feathers x5
+01:30:47.258 contents VikingShip stacks=1 items=5 types=$item_feathers
+01:30:47.751 > expect_last stacks=1 items=5
+01:30:47.751   expect_last 'stacks=1 items=5' in 'contents VikingShip stacks=1 items=5 types=$item_feathers': ok
+01:30:48.253 > expect $item_feathers
+01:30:48.253   expect '$item_feathers': ok
+01:30:48.756 > logcheck BSBLogs/Husnisse.log \[Flow\] landed .* target=piece_chest_wood
+01:30:48.758   logcheck BSBLogs/Husnisse.log /\[Flow\] landed .* target=piece_chest_wood/: ok '[Flow] landed moved=1 target=piece_chest_wood'
+01:30:49.271 > logcheck BSBLogs/Husnisse.log \[ship\] unload=on
+01:30:49.271   logcheck BSBLogs/Husnisse.log /\[ship\] unload=on/: ok '[ship] unload=on'
+01:30:49.760 > husnisse status
+01:30:49.948 husnisse status [config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 lod_distance=30 ledger_key=H presets=builtin tend_machines=True fuel_cap=50 input_cap=50 collect_at=1 feeding_required=False
+01:30:49.948 husnisse status [compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False stacks=native quartermaster=absent integrations=absent epicloot=absent epicloot_bridge=absent aaacrafting=absent aaabuildmenu=absent planbuild=absent mylittleui=absent extraslots=absent adventurebackpacks=absent
+01:30:49.948 husnisse status [stacks] stacks=husnisse max=1000 items=547
+01:30:49.948 husnisse status [build] coverage=on stations=1 extensions=1
+01:30:49.948 husnisse status [ship] unload=on holds=1 queued=1 last=piece_chest
+01:30:49.948 husnisse status [contract] readouts state=native rows=pocket+claim aaacrafting=absent aaabuildmenu=absent mylittleui=absent epicloot=absent planbuild=absent
+01:30:49.948 husnisse status [contract] api=1 provider=native can_consume=True busy=False ready=False
+01:30:49.948 husnisse status [contract] scope none (not ready: no local player)
+01:30:49.948 husnisse status [contract] sources pockets=absent slots=absent backpack=absent claim=absent
+01:30:49.948 husnisse status schema=2 feeding_required=False claims=1 trips=0 supply errands=0 nisses=1 bowl_piece=present
+01:30:49.948 husnisse status rule -595042737:110 2,0 net=on rule=cat:wood
+01:30:49.948 husnisse status [rules] containers=1 ruled=1 deposits=0 blacklisted=1
+01:30:49.948 husnisse status claim -595042737:110 source=native ward=0:0 owner=0 r=20 center=0,0 native_r=20 native_owner=0 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=1 stacks=1 pickup=all unknown=0 machines_tended=0 machines_paused=0 machines_ready=0 machines_wanting=0 lod=far nisse=yes
+01:30:49.948 husnisse status [flow] claim=-595042737:110 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+01:30:49.948 husnisse status [machines] machine errands=0 portions=0
+01:30:49.948 husnisse status [chest] chest_waits=0 rejected=0
+01:30:49.948 husnisse status lines=16
+01:30:50.286 > expect [rules]
+01:30:50.286   expect '[rules]': ok
+01:30:50.790 > expect containers=1
+01:30:50.790   expect 'containers=1': ok
+01:30:51.294 > cleanup
+01:30:51.443 mt master: no plugin instance
+01:30:51.444   cleanup: 1 spawned object(s) removed
+01:30:51.444 cleanup done
+01:30:51.826 scenario done: PASS (23 assertions, 0 failed)

@@ -1,4 +1,4 @@
-# Playtest checklist — 0.1.4
+# Playtest checklist — 1.0.0
 
 Everything below is unverified on a client unless marked proven. Run in this order: each block assumes
 the previous one passed. Tick a box only when the expected result happened; anything else is a finding,
@@ -9,9 +9,9 @@ including "it works but feels wrong".
 - [ ] `BepInEx/plugins/BootstrapBoys-Husnisse/` contains **Husnisse.dll only**, and
       `ValheimModding-YamlDotNet/` is a sibling folder (detector + `YamlDotNet.dll`). A copy of
       `YamlDotNet.dll` inside the Husnisse folder is a finding.
-- [ ] `LogOutput.log` shows `Husnisse 0.1.4 starting`, `localisation loaded: English (check: Porridge Bowl)`,
-      `bowl registered`, `creature registered`, `content registered`, `order RPC registered` — and no red
-      lines from us.
+- [ ] `LogOutput.log` shows `Husnisse 1.0.0 starting`, `localisation loaded: English (check: Porridge Bowl)`,
+      `bowl registered`, `creature registered`, `content registered`, `order RPC registered`, and
+      `[Stacks] maximum stack size 1000 applied to … stackable item(s)` — and no red lines from us.
 - [ ] `BepInEx/config/Husnisse/localization/en.yaml` exists after the first run, with `version: 3`.
 - [ ] `BepInEx/config/com.bootstrapboys.husnisse.cfg` has `3. Flow / Items Per Second` (2, 5 or 10) and
       `2. Nisse / Bowl Drain Minutes` (default 20).
@@ -281,6 +281,31 @@ can spend it?
       "Protect Valuable Wood" doing what you expect?
 - [ ] Anything a machine did that felt wrong — a stack it should not have taken, an errand that took
       too long, a machine it ignored.
+
+## 9b. Parity surfaces (1.0)
+
+Headless-proven on the rig (`docs/evidence/1.0/RESULT.md`); these are the client checks.
+
+- [ ] **Stack sizes.** Put 300 wood in a chest: it is **one** stack and reads 300, not six stacks of 50.
+      A weapon still stacks one per slot. `stacksize Wood` (harness console) is not needed for this —
+      the chest is the evidence. With DropMoreLoot installed instead, `husnisse_status` says
+      `stacks=dropmoreloot` and the number is DropMoreLoot's.
+- [ ] **Building coverage.** Put a workbench at one edge of the claim and a chest with its materials
+      near the opposite edge, 30 m away and still inside the claim — well outside the bench's own
+      circle. Look at a piece in the build menu beside the chest: it is buildable (not greyed), and
+      placing it works. Walk outside the claim: the same piece is refused.
+- [ ] **Dismantling through the claim.** With the same workbench in the claim, walk to a built piece
+      far from the bench, aim with the hammer and remove it: it comes down, no "missing station".
+      Crafting at the bench itself still needs you to stand at the bench.
+- [ ] **Ship unloading.** Load a ship's hold with wood and something no chest rule accepts, sail it
+      inside the claim, and wait: the nisse walks (or fades) to the hold and carries the wood to the
+      chest whose rule claims it, while the unmatched stack stays aboard. Sail the ship out while it
+      is working: the hold is not touched while it is outside the claim.
+- [ ] **The switches.** `4. Storage / Unload Ships = false` stops the unloading; `Extend Station
+      Coverage = false` takes the 30 m build away; `Enable Stack Sizes = false` leaves the game's own
+      50. Restart after each and confirm `husnisse_status` says so.
+- [ ] **The new status lines.** `husnisse_status` shows `[stacks]`, `[build]` and `[ship]`, with
+      `coverage=on`, `extensions=` rising as you build far from the station, and `unload=on`.
 
 ## 10. Feel — the actual question
 
