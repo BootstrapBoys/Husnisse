@@ -435,6 +435,34 @@ versions the pack ships. Both facts decide what a read-only contract can honestl
 | Pathing is free | **false** — 10 s lazy tile build, first query in a new tile loses the race |
 | 0.3 needs a new sync layer | **false** — ZDO already carries it |
 
+## 1.0 surfaces — measured 2026-11-16
+
+Run on `V:\ValheimTest` (port 2556) with Husnisse 1.0.0, sha256 `848138e3a309…`; full detail and
+the gate output in `docs/evidence/1.0/RESULT.md`.
+
+- **`ObjectDB.m_items` is empty at `OnVanillaPrefabsAvailable`.** Jotunn raises the event from the
+  database object's Awake; the game fills the list afterwards in `ObjectDB.CopyOtherDB`. A stack-size
+  loop at content registration changed **0** items (`[Stacks] … applied to 0 stackable item(s)`), and
+  `Wood` stayed at 50. Applying from a `CopyOtherDB` postfix (retried once per frame from the flow
+  pump) changed **547** stackable prefabs and Wood read 1000. **Consequence:** any prefab-level
+  number written at content registration must be treated as unwritten until the database copy has
+  happened.
+- **A ship's hold is a child `Container` with no `ZNetView`.** `VikingShip(Clone)/piece_chest` has
+  `m_rootObjectOverride` pointing at the ship root's ZNetView; its packed items live in the ship's
+  ZDO. `container.GetComponent<ZNetView>()` is null, so the first ship-unload run was refused at the
+  source gate on every trip (`[Flow] trip: source piece_chest is refused`, `moved=0`). Resolving the
+  view through `m_rootObjectOverride` (`Storage/ContainerNet.View`) made the same run land 6 wood in
+  the `cat:wood` chest while 5 unmatched feathers stayed aboard. **Consequence:** every
+  container-to-ZDO lookup must use the override, not `GetComponent`.
+- **The workbench's own build range is between 17 and 30 m on this build.** A query 17 m from a
+  workbench answered natively (`extensions=0`); the 30 m query inside the same 20 m claim needed the
+  claim extension (`extensions=1`). A coverage gate must be farther than the station's own range or
+  it proves nothing.
+- **DropMoreLoot's `ItemDrop.Awake` prefix does not raise the database prefab on a dedicated
+  server.** With DropMoreLoot 1.2.9 installed and stacking on (x3), `Wood` still read max=50 while
+  Husnisse correctly wrote nothing (`stacks=dropmoreloot`). The handover is proven by the policy
+  line; do not expect a multiplied database value on a headless server.
+
 ## Probe lessons (for the next spike)
 
 - The dedicated rig never loads terrain zones, even with a client connected. Client-side is the only
