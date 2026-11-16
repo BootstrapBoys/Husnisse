@@ -76,9 +76,9 @@ provider that counts a chest it cannot take from.
 | 14 | Helmsman ship unloading | 1.0 | scheduled — any container on a ship inside the claim |
 | 15 | Searchable chest settings, range previews, controller navigation | 0.2 range preview; 0.3.1 ledger | **partial** — the ledger lists every container and shows the ring; search and controller navigation are not built |
 | 16 | Mailboxes and the postal system (`Quartermaster.outgoingMail`, `PostalDirectory`) | — | **moot (dropped 2026-11-13)** — the mailbox is a courier network, not a house spirit: it is out of scope and its postal keys are never read |
-| 17 | Shared-chest handshake and ownership revision | 0.7 multiplayer | scheduled |
+| 17 | Shared-chest handshake and ownership revision | 0.7 — `Storage/ChestHandover.cs`, `Net/ChestRpc.cs`, `Patches/StaleChest.cs` | **covered on the server, partial on the client** — the server asks the owning peer, never takes an open chest, verifies ownership before writing and re-reads the ZDO first; the client answers and hands the ZDO over in code, but that leg was not driven end to end on the client rig (`docs/evidence/0.7/RESULT.md`) |
 | 18 | Ward ownership and access filtering | 0.2 — WardIsLove handover | **scheduled** — only for a bowl inside a ward |
-| 19 | Claim / revision semantics for chest ZDOs | 0.7 migration | scheduled |
+| 19 | Claim / revision semantics for chest ZDOs | 0.7 — `Storage/ContainerWrite.cs` (`Acquire` → `Sync` → `Persist`), `Migration/*` | **covered** — a chest is read from its ZDO before every move and written back with a read-back; a claim is verified before use; the migration reads and writes the same ZDOs without Quartermaster, including chests whose piece is not loaded (`docs/evidence/0.7/RESULT.md`) |
 | 20 | Forget / remembered / forgotten lists | 0.3.1 teaching | **covered, different mechanic** — demonstration replaces Forget: teaching a chest again rewrites its list, and the ledger's No-rule button forgets a container outright |
 
 ## QI surfaces

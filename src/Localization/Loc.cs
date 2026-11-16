@@ -48,6 +48,9 @@ namespace Husnisse.Localization
         public const string OrderDepositFull = "$husnisse_order_deposit_full";
         public const string OrderNoRoom = "$husnisse_order_no_room";
         public const string OrderPocketsEmpty = "$husnisse_order_pockets_empty";
+        public const string OrderDepositBusy = "$husnisse_order_deposit_busy";
+
+        public const string ChestTaken = "$husnisse_chest_taken";
 
         public const string HandHover = "$husnisse_hand_hover";
         public const string HandName = "$husnisse_hand_name";
@@ -291,7 +294,7 @@ namespace Husnisse.Localization
         }
 
         private const string DefaultEnglish = @"
-version: 10
+version: 11
 language: English
 strings:
   $husnisse_bowl_name: Porridge Bowl
@@ -326,6 +329,8 @@ strings:
   $husnisse_order_deposit_full: Deposited {0} stack(s); {1} would not fit.
   $husnisse_order_no_room: There is no room in this chest.
   $husnisse_order_pockets_empty: Your pockets are empty.
+  $husnisse_order_deposit_busy: Someone is using this chest. Try again when they close it.
+  $husnisse_chest_taken: The nisse borrowed this chest to sort it.
   $husnisse_hand_hover: ""[E] take my things""
   $husnisse_hand_name: Nisse
   $husnisse_voice_hungry1: The bowl is empty.

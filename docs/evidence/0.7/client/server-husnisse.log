@@ -1,0 +1,60 @@
+Husnisse 0.6.0
+started 2026-11-15 19:04:25
+
+
+== world ready @ 19:04:54 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 lod_distance=30 ledger_key=H presets=builtin tend_machines=True fuel_cap=50 input_cap=50 collect_at=1 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False stacks=native quartermaster=absent integrations=absent epicloot=absent epicloot_bridge=absent aaacrafting=absent aaabuildmenu=absent planbuild=absent mylittleui=absent extraslots=absent adventurebackpacks=absent
+[contract] readouts state=native rows=pocket+claim aaacrafting=absent aaabuildmenu=absent mylittleui=absent epicloot=absent planbuild=absent
+[contract] api=1 provider=native can_consume=True busy=False ready=False
+[contract] scope none (not ready: no local player)
+[contract] sources pockets=absent slots=absent backpack=absent claim=absent
+schema=2 feeding_required=False claims=0 trips=0 supply errands=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+[machines] machine errands=0 portions=0
+[chest] chest_waits=0 rejected=0
+
+== claim registered @ 19:07:43 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 lod_distance=30 ledger_key=H presets=builtin tend_machines=True fuel_cap=50 input_cap=50 collect_at=1 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False stacks=native quartermaster=absent integrations=absent epicloot=absent epicloot_bridge=absent aaacrafting=absent aaabuildmenu=absent planbuild=absent mylittleui=absent extraslots=absent adventurebackpacks=absent
+[contract] readouts state=native rows=pocket+claim aaacrafting=absent aaabuildmenu=absent mylittleui=absent epicloot=absent planbuild=absent
+[contract] api=1 provider=native can_consume=True busy=False ready=False
+[contract] scope none (not ready: no local player)
+[contract] sources pockets=absent slots=absent backpack=absent claim=absent
+schema=2 feeding_required=False claims=1 trips=0 supply errands=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+claim -375435173:24090 source=native ward=0:0 owner=-202584743 r=20 center=1206,1206 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 pickup=all unknown=0 machines_tended=0 machines_paused=0 machines_ready=0 machines_wanting=0 lod=- nisse=none
+[flow] claim=-375435173:24090 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+[machines] machine errands=0 portions=0
+[chest] chest_waits=0 rejected=0
+husnisse rule piece_chest_wood[0] 1208,1206 net=on rule=none
+husnisse rule piece_chest_wood[0] 1208,1206 net=on rule=cat:wood
+[Orders] order EmptyPockets -> NotYours player=76561198000000001 count=0
+
+== claim removed @ 19:08:34 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 lod_distance=30 ledger_key=H presets=builtin tend_machines=True fuel_cap=50 input_cap=50 collect_at=1 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False stacks=native quartermaster=absent integrations=absent epicloot=absent epicloot_bridge=absent aaacrafting=absent aaabuildmenu=absent planbuild=absent mylittleui=absent extraslots=absent adventurebackpacks=absent
+[contract] readouts state=native rows=pocket+claim aaacrafting=absent aaabuildmenu=absent mylittleui=absent epicloot=absent planbuild=absent
+[contract] api=1 provider=native can_consume=True busy=False ready=True
+[contract] scope no claim at 1207.2,1207.2
+[contract] sources pockets=stacks=1 items=6 slots=absent backpack=absent claim=absent
+schema=2 feeding_required=False claims=0 trips=0 supply errands=0 nisses=1 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+[machines] machine errands=0 portions=0
+[chest] chest_waits=0 rejected=0
+
+== claim registered @ 19:10:25 ==
+[config] enabled=True debug=True diagnostics_file=True rate=5 reconcile=5 bowl_drain=1 radius=20 lod_distance=30 ledger_key=H presets=builtin tend_machines=True fuel_cap=50 input_cap=50 collect_at=1 feeding_required=False
+[compat] wardislove=absent wards=0 ward_api=unbound require_ward_ownership=False stacks=native quartermaster=absent integrations=absent epicloot=absent epicloot_bridge=absent aaacrafting=absent aaabuildmenu=absent planbuild=absent mylittleui=absent extraslots=absent adventurebackpacks=absent
+[contract] readouts state=native rows=pocket+claim aaacrafting=absent aaabuildmenu=absent mylittleui=absent epicloot=absent planbuild=absent
+[contract] api=1 provider=native can_consume=True busy=False ready=False
+[contract] scope none (not ready: no local player)
+[contract] sources pockets=absent slots=absent backpack=absent claim=absent
+schema=2 feeding_required=False claims=1 trips=0 supply errands=0 nisses=0 bowl_piece=present
+[rules] containers=0 ruled=0 deposits=0 blacklisted=0
+claim -375435173:24119 source=native ward=0:0 owner=-202584743 r=20 center=-5,-2 native_r=20 native_owner=-202584743 suppressed=False refusal_code=None satiety=25 mood=100 sulk=0 bowl_items=0 pantry=4x1 queued=0 trip=idle containers=0 stacks=0 pickup=all unknown=0 machines_tended=0 machines_paused=0 machines_ready=0 machines_wanting=0 lod=- nisse=none
+[flow] claim=-375435173:24119 queued=0 lane_ground=0 lane_container=0 lane_pockets=0 next=none
+[machines] machine errands=0 portions=0
+[chest] chest_waits=0 rejected=0
+husnisse rule piece_chest_wood[0] -3,-2 net=on rule=none
+husnisse rule piece_chest_wood[0] -3,-2 net=on rule=cat:wood

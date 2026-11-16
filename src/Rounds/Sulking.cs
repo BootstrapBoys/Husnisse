@@ -50,20 +50,26 @@ namespace Husnisse.Rounds
             if (target == null) return;
 
             // Both chests are moved on the server, so neither ZDO is necessarily this machine's:
-            // take each one before the write and put the packed inventory back afterwards, or the
-            // sulk looks like it happened and the next owner write undoes it.
-            var claimed = Storage.ContainerWrite.EnsureOwned(from, "sulk source");
-            claimed &= Storage.ContainerWrite.EnsureOwned(target, "sulk target");
+            // ask for each one and read it back before touching it, or the sulk looks like it
+            // happened and the next owner write undoes it — or worse, duplicates the stack.
+            if (!Storage.ContainerWrite.Own(from, "sulk source") ||
+                !Storage.ContainerWrite.Own(target, "sulk target") ||
+                !Storage.ContainerWrite.Sync(from, "sulk source") ||
+                !Storage.ContainerWrite.Sync(target, "sulk target"))
+            {
+                Log.Debug("Flow", "sulk: a chest is not writable now; nothing was moved");
+                return;
+            }
 
             if (!target.GetInventory().AddItem(item.Clone())) return;
             fromInventory.RemoveItem(item, item.m_stack);
 
             var persisted = Storage.ContainerWrite.Persist(target, "sulk target");
             persisted &= Storage.ContainerWrite.Persist(from, "sulk source");
-            if (!claimed || !persisted)
+            if (!persisted)
             {
                 Log.Warn("sulk: the move from " + from.name + " to " + target.name +
-                         " may not have reached the ZDO (claimed=" + claimed + " persisted=" + persisted + ")");
+                         " may not have reached the ZDO (persisted=" + persisted + ")");
             }
 
             bowl.RegisterSulk();

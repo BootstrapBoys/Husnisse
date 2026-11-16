@@ -260,9 +260,16 @@ namespace Husnisse.Orders
 
             // The open chest's owner is the writing peer, so this is already the owner in the window
             // path. The harness (and a host) calls the same entry point from the server, where the
-            // chest's ZDO may belong to a player: take it before the first add, or every stack lands
-            // in memory and the owner's next write drops it.
-            var claimed = ContainerWrite.EnsureOwned(container, "deposit-all");
+            // chest's ZDO may belong to a player: ask for it, and refuse the whole deposit if it is
+            // not this machine's to write. Moving items into a copy that will not persist is how a
+            // deposit silently eats a player's stacks.
+            if (!ContainerWrite.Own(container, "deposit-all") || !ContainerWrite.Sync(container, "deposit-all"))
+            {
+                player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderDepositBusy));
+                Note("deposit-all refused: chest not writable now container=" + container.name +
+                     " at=" + Where(container.transform.position));
+                return true;
+            }
 
             var moved = 0;
             var spilled = 0;
@@ -282,7 +289,7 @@ namespace Husnisse.Orders
                 moved++;
             }
 
-            var persisted = moved == 0 || (claimed && ContainerWrite.Persist(container, "deposit-all"));
+            var persisted = moved == 0 || ContainerWrite.Persist(container, "deposit-all");
 
             if (moved > 0 && spilled > 0)
                 player.Message(MessageHud.MessageType.Center, Loc.T(Loc.OrderDepositFull, moved, spilled));

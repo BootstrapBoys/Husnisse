@@ -33,14 +33,18 @@ namespace Husnisse.Storage
         public ContainerRule Rule;
         public string Why;
 
+        /// <summary>Every chest that would have taken the stack was busy being handed over. The
+        /// ticket is worth keeping: the work exists, it just cannot run this tick.</summary>
+        public bool Busy;
+
         public bool Found
         {
             get { return Container != null; }
         }
 
-        public static RouteDecision Unrouted(string why)
+        public static RouteDecision Unrouted(string why, bool busy = false)
         {
-            return new RouteDecision { Container = null, Tier = RouteTier.None, Why = why };
+            return new RouteDecision { Container = null, Tier = RouteTier.None, Why = why, Busy = busy };
         }
     }
 
@@ -157,12 +161,22 @@ namespace Husnisse.Storage
             var candidates = new List<Candidate>();
             var full = new List<string>();
             var onNetwork = 0;
+            var busy = 0;
 
             foreach (var container in network)
             {
                 if (container == null || container == exclude) continue;
 
                 onNetwork++;
+
+                // A chest another player has open, or one whose owner is being asked for the ZDO,
+                // is not a destination: the nisse cannot write it safely yet. It may still be the
+                // right home, so the ticket waits instead of being filed elsewhere.
+                if (ChestHandover.Busy(container))
+                {
+                    busy++;
+                    continue;
+                }
 
                 var rule = ContainerNetwork.RuleOf(container);
                 var tier = TierOf(rule, item);
@@ -198,6 +212,11 @@ namespace Husnisse.Storage
 
             best = Pick(candidates, RouteTier.Generic);
             if (best.Container != null) return Answer(best, note);
+
+            if (busy > 0)
+            {
+                return RouteDecision.Unrouted("chest busy: " + busy + " waiting for a handover", true);
+            }
 
             return RouteDecision.Unrouted("no chest has room for " + name + note);
         }

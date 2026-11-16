@@ -245,9 +245,10 @@ namespace Husnisse.Machines
             var inventory = source.GetInventory();
             if (inventory == null) return;
 
-            if (!ContainerWrite.EnsureOwned(source, "machine supply pickup"))
+            if (!ContainerWrite.Own(source, "machine supply pickup") ||
+                !ContainerWrite.Sync(source, "machine supply pickup"))
             {
-                Log.Warn("machines: could not take from " + source.name + "; the stack stays where it is");
+                Log.Debug("Machines", "machine supply: " + source.name + " is not this machine's to read; the stack stays where it is");
                 return;
             }
             _touched.Add(source);
@@ -342,8 +343,8 @@ namespace Husnisse.Machines
             if (source != null)
             {
                 var inventory = source.GetInventory();
-                if (inventory != null && ContainerWrite.EnsureOwned(source, "machine supply return") &&
-                    inventory.AddItem(item))
+                if (inventory != null && ContainerWrite.Own(source, "machine supply return") &&
+                    ContainerWrite.Sync(source, "machine supply return") && inventory.AddItem(item))
                 {
                     ContainerWrite.Persist(source, "machine supply return");
                     return;
@@ -549,7 +550,14 @@ namespace Husnisse.Machines
             var inventory = container.GetInventory();
             if (inventory == null) return;
 
-            if (!ContainerWrite.EnsureOwned(container, "machine output")) return;
+            if (!ContainerWrite.Own(container, "machine output") ||
+                !ContainerWrite.Sync(container, "machine output"))
+            {
+                // A chest the nisse cannot write this trip: the load stays in its hands and is set
+                // down beside the machine rather than being added to a copy that will not persist.
+                Log.Debug("Machines", "machine output: " + container.name + " is not writable now; the load is not filed");
+                return;
+            }
 
             var memory = MemoryOf(_nisse);
             var moved = 0;

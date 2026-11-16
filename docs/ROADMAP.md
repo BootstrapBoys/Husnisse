@@ -340,6 +340,32 @@ migration route proven on a copied world (QM present read-only, or a one-shot co
 **Done when** — two clients cannot duplicate or lose an item across a chest handoff; migration preserves
 contents on a copied world.
 
+**Implemented 2026-11-15** — `Storage/ChestHandover.cs`, `Net/ChestRpc.cs`, `Storage/ContainerWrite.cs`
+(acquire → re-read the ZDO → move → write back and read back), `Patches/StaleChest.cs`,
+`Migration/*`, `Commands/MigrateCommand.cs`; evidence in `docs/evidence/0.7/RESULT.md`.
+
+- The server asks the chest's owning peer for the ZDO instead of claiming it. A chest a player has
+  open is never taken: the errand goes back on the queue, and the routing layer does not even choose
+  an in-use chest as a destination. A claim is only used when the recorded owner is not a connected
+  player, and it is verified before anything moves.
+- Every server-side move re-reads the packed inventory out of the ZDO first. A deposit into a chest
+  whose ZDO moved under the server merges with it instead of overwriting it (proven: 5 wood written
+  straight to the ZDO + 8 stone deposited = 13 items), and a move that cannot be persisted is refused
+  rather than performed.
+- The client closes the container window when it loses ownership and clears the stuck `m_inUse` flag,
+  so a stale grid can neither be written back nor survive a reopen.
+- Migration reads Quartermaster's per-container JSON record out of the ZDO map (no Quartermaster
+  installed, no key names needed) and translates role, supply permissions, priority and remembered
+  items. On a copy of the live world: 154 records, 154 applied, **contents byte-identical** before and
+  after, idempotent on a second run, unchanged across a save and reboot. 39 records belong to prefabs
+  the world no longer has (Quartermaster's own chests) and are reported with their stack counts; 92
+  item prefabs were untranslated because the migration tree did not have the pack installed.
+
+**Still open on this card** — the client half of the handshake (ask → save → release → ack) was not
+driven end to end: the client run proved only that a chest a player has open is never written. A
+two-client test is not possible on the current rig (one client target). Both are named in
+`docs/evidence/0.7/RESULT.md`.
+
 ## 1.0 — Parity
 
 Stack sizes, ship unloading, comfort coverage, QM config import, and a surface-by-surface sign-off

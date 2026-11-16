@@ -153,6 +153,10 @@ namespace Husnisse.Core
             lines.Add("[machines] " + Machines.MachineRunner.Describe() +
                       " portions=" + Machines.FeedGuard.Count);
 
+            // Shared-chest handover (0.7): who is being waited for, and how often a claim came back
+            // as "not mine". A stuck errand is visible here without debug logging.
+            lines.Add("[chest] " + Storage.ChestHandover.Describe());
+
             return lines;
         }
 

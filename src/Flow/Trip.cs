@@ -110,6 +110,15 @@ namespace Husnisse.Flow
                 var target = decision.Container;
                 if (target == null)
                 {
+                    if (decision.Busy)
+                    {
+                        // The chest is being handed over or a player has it open. The work is real
+                        // and its home is decided, so the ticket goes back rather than being filed
+                        // somewhere else.
+                        FlowQueue.EnqueueFront(ticket);
+                        break;
+                    }
+
                     // Nothing accepts it. A ground drop is re-queued by the next scan, and a stack
                     // from a chest stays where it is: the ticket is dropped, never silently landed
                     // in a chest whose rule said otherwise.
@@ -319,15 +328,20 @@ namespace Husnisse.Flow
             var memory = MemoryOf(_nisse);
             var moved = 0;
 
-            // The target's ZDO may belong to whoever last opened this chest — on a server that is a
-            // player, because opening a container hands it to the opener. Container.Save only fires
-            // for the owner, so the ZDO is taken before the first add and the packed inventory is
-            // read back out of it afterwards.
+            // The target's ZDO may belong to whoever last opened this chest — on a dedicated server
+            // that is a player, because opening a container hands it to the opener. Container.Save
+            // only fires for the owner, so the ZDO is asked for and then read back: nothing is moved
+            // into a copy the owner's next save would overwrite, and the move is applied to the
+            // contents the world actually has rather than to this machine's possibly stale buffer.
             var touched = new List<Container>();
-            var claimed = true;
             if (_pending.Count > 0)
             {
-                if (!ContainerWrite.EnsureOwned(_target, "trip deposit")) claimed = false;
+                var access = ContainerWrite.Acquire(_target, "trip deposit");
+                if (access != ChestAccess.Owned || !ContainerWrite.Sync(_target, "trip deposit"))
+                {
+                    Defer(access == ChestAccess.Refused ? "target refused" : "target busy");
+                    return;
+                }
                 touched.Add(_target);
             }
 
@@ -375,7 +389,17 @@ namespace Husnisse.Flow
                 // an unsaved removal would leave the stack in the chest *and* in the destination.
                 if (ticket.Source == FlowSource.Container && ticket.Container != null && !touched.Contains(ticket.Container))
                 {
-                    if (!ContainerWrite.EnsureOwned(ticket.Container, "trip pickup")) claimed = false;
+                    var access = ContainerWrite.Acquire(ticket.Container, "trip pickup");
+                    if (access != ChestAccess.Owned || !ContainerWrite.Sync(ticket.Container, "trip pickup"))
+                    {
+                        // Not readable this trip. The stack stays in its chest and the reconcile pass
+                        // re-queues it when the chest is free: taking it now would duplicate it.
+                        Log.Debug("Flow", "trip: source " + ticket.Container.name + " is " +
+                                          (access == ChestAccess.Owned ? "unreadable" : access.ToString().ToLowerInvariant()) +
+                                          "; the stack stays where it is");
+                        _pending.Remove(ticket);
+                        continue;
+                    }
                     touched.Add(ticket.Container);
                 }
 
@@ -399,7 +423,7 @@ namespace Husnisse.Flow
                 moved++;
             }
 
-            var persisted = claimed;
+            var persisted = true;
             if (moved > 0)
             {
                 foreach (var container in touched)
@@ -431,6 +455,30 @@ namespace Husnisse.Flow
 
             foreach (var source in _sources) return FlowQueue.Token(source);
             return "none";
+        }
+
+        /// <summary>
+        /// The chest cannot be written this trip: put every stack back on the queue and go home.
+        /// Nothing has moved yet, so there is nothing to undo — which is the whole point of asking
+        /// for the ZDO before the first add.
+        /// </summary>
+        private void Defer(string reason)
+        {
+            var returned = 0;
+            foreach (var ticket in _pending)
+            {
+                if (ticket == null || !ticket.IsValid()) continue;
+                FlowQueue.EnqueueFront(ticket);
+                returned++;
+            }
+            _pending.Clear();
+
+            Log.Debug("Flow", "trip deferred claim=" + (_claim != null ? _claim.BowlId.ToString() : "-") +
+                              " target=" + (_target != null ? _target.name : "-") + " reason=" + reason +
+                              " returned=" + returned);
+            DiagnosticsFile.Line("[Flow] deferred reason=" + reason + " target=" +
+                                 (_target != null ? _target.name : "-") + " returned=" + returned +
+                                 " claim=" + (_claim != null ? _claim.BowlId.ToString() : "-"));
         }
 
         public void Abort()

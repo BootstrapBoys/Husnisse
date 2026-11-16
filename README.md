@@ -563,7 +563,7 @@ table is the summary.
 | **0.4** | **Read-only contract**: `Count`/`CanAfford` and sources (ExtraSlots, AdventureBackpacks), AAABuildMenu and AAA Crafting readouts, MyLittleUI's row, QI stand-down. EpicLoot's provider and PlanBuild's adapter carried to 0.5 (both seams count *and* spend) | QI's queries, before any consumption needs a fiction. |
 | **0.5** | **Craft from claim**: `TryConsume` (all-or-nothing, reentrancy-safe, claim leg delivered by the nisse), the visible supply errand and its bundle, craft-list repaint, AAA batches, EpicLoot and PlanBuild costs, DropMoreLoot deferral, stack rules | The first consuming surface; needs 0.4's contract. |
 | **0.6** | Machines: fuel, feed, collect, caps; four-way supply permissions; mailbox decision | The nightly queue earns its keep. |
-| **0.7** | Multiplayer hardening, Quartermaster ZDO migration — only after a route is proven on a copied world | Two clients and a live world are where storage mods die. |
+| **0.7** | *Implemented.* Shared-chest handshake and ownership revision, the read-only Quartermaster migration, and the ten-nisse benchmark. Client half of the handshake still to be driven on the rig | Two clients and a live world are where storage mods die. |
 | **1.0** | Stack sizes, ship unloading, comfort-based coverage, QM config import; parity sign-off against `PARITY.md` | Parity, surface by surface, on a copied world. |
 
 ## Risks

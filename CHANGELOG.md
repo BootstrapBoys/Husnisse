@@ -1,5 +1,53 @@
 # Changelog
 
+## 0.7.0
+
+Internal only — multiplayer, and the Quartermaster migration.
+
+- **The nisse asks before it takes a chest.** A container's contents are written by its ZDO's owner,
+  and on a dedicated server that is the player who opened it last; ownership is a revision race, so a
+  server that simply claims the chest can lose it and watch its own deposit be overwritten by that
+  player's next save. The nisse now sends the owner a request (`Husnisse_Chest`), and the owner — the
+  client — saves its copy and hands the ZDO to the server. The server's next ownership check is true,
+  and only then does it write. A chest somebody has open is never taken: the request is answered
+  "busy", the errand goes back on the queue and the chest is left exactly as it is.
+- **Nothing is moved unless the ZDO is this machine's, and it is re-read first.** Every server-side
+  move (deposits, empties, machine supply and collection, deposit-all, a sulk) now goes through one
+  gate: acquire the ZDO, re-read the packed inventory out of it, move, write back and read back. A
+  chest whose contents changed under the server — a player's last save, another peer's write — is
+  merged with instead of overwritten, and a move that cannot persist is refused rather than performed:
+  the stack stays where it is, which is the only outcome that can neither lose nor duplicate it.
+- **A client whose chest was taken closes the window instead of writing a stale grid.** Vanilla hides
+  the container panel but leaves the window open on its old contents, and `Container.SetInUse` is a
+  no-op for a peer that no longer owns the chest, so the stale contents can never reload and the next
+  move writes them back — the duplication this release exists to remove. The window now closes, the
+  stuck in-use flag is cleared and the chest reloads from the ZDO.
+- **A deposit-all that cannot write says so.** On a chest the nisse may not write right now the player
+  is told, and nothing leaves their pockets.
+- **`husnisse migrate` reads Quartermaster's chest settings and translates them.** Quartermaster keeps
+  a per-container record as a JSON string in the chest's ZDO, so the record survives its removal. On a
+  copy of the world — with Quartermaster gone — `husnisse migrate scan` reports what it found and what
+  each chest would become (role, the four supply permissions, priority, the remembered item list),
+  plus everything with no equivalent (its base groups and watch-and-learn flags) and every item it
+  cannot translate because that mod is not installed. `husnisse migrate apply` writes the Husnisse
+  rules, reads each back from the ZDO and reports the contents' fingerprint before and after; a second
+  run skips everything. Nothing is written to a Quartermaster key and no item is moved.
+- **Migration works on the save, not on the loaded scene.** A server nobody is standing on loads no
+  zones, so it has no chest objects at all while it still holds every container ZDO; the scan and the
+  apply read and write the ZDOs. Chests whose prefab no longer exists (Quartermaster's own) are named
+  in the report with how many still hold stacks, instead of being silently skipped.
+- **`[chest]` in the diagnostics.** `husnisse status` gained a line with the handovers waiting and the
+  claims the peers refused, so an errand that is stuck on a player's open chest is visible on the
+  server without debug logging.
+- **Ten nisses, measured.** Ten claims with ten nisses working at once run at the server's own tick on
+  the rig: idle, no frame over 50 ms; working, no frame over 100 ms (`docs/evidence/0.7/RESULT.md`).
+- **One engine fact worth knowing.** A container's live `Inventory` and its ZDO's `items` bytes
+  diverge, and the game re-reads the ZDO at most once a second — and not at all while the chest is
+  marked in use. Any mod that writes a container from the server has to read the ZDO first.
+- **The client half of the handover is built and logged but not yet driven end to end on the client
+  rig**; the client-side test that did run proved the nisse never routes to a chest a player has open.
+  `docs/evidence/0.7/RESULT.md` says exactly what ran and what did not.
+
 ## 0.6.0
 
 Internal only — machines, and the four-way supply permission.

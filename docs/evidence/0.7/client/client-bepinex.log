@@ -1,0 +1,176 @@
+[Message:   BepInEx] BepInEx 5.4.23.6 - valheim (11/13/2026 12:24:48 PM)
+[Message:   BepInEx] User is running BepInExPack Valheim version 5.4.2360
+[Info   :   BepInEx] Running under Unity v6000.0.75.2503836
+[Info   :   BepInEx] CLR runtime version: 4.0.30319.42000
+[Info   :   BepInEx] Supports SRE: True
+[Info   :   BepInEx] System platform: Bits64, Windows
+[Message:   BepInEx] Preloader started
+[Info   :   BepInEx] Loaded 1 patcher method from [BepInEx.Preloader 5.4.23.6]
+[Info   :   BepInEx] 1 patcher plugin loaded
+[Info   :   BepInEx] Patching [UnityEngine.CoreModule] with [BepInEx.Chainloader]
+[Message:   BepInEx] Preloader finished
+[Message:   BepInEx] Valheim Version: 1.0.21
+[Message:   BepInEx] Chainloader ready
+[Message:   BepInEx] Chainloader started
+[Info   :   BepInEx] 6 plugins to load
+[Info   :   BepInEx] Loading [Conditional Config Sync 1.0.11] (_shudnal.ConditionalConfigSync)
+[Info   :   BepInEx] Loading [Husnisse Gate Client Probe 0.1.0] (bootstrapboys.husnisse.gateclient)
+[Info   :Husnisse Gate Client Probe] gc loaded 0.1.0
+[Info   :   BepInEx] Loading [Jotunn 2.30.2] (com.jotunn.jotunn)
+[Info   :Jotunn.Main] Initializing ModCompatibility
+[Info   :Jotunn.Main] Initializing SynchronizationManager
+[Info   :Jotunn.Main] Initializing NetworkManager
+[Info   :   BepInEx] Loading [YamlDotNet Detector 1.0.0] (com.ValheimModding.YamlDotNetDetector)
+[Info   :YamlDotNet Detector] YamlDotNet 16.0.0.0 loaded from plugins\ValheimModding-YamlDotNet\YamlDotNet.dll
+[Info   :   BepInEx] Loading [Husnisse 0.6.0] (com.bootstrapboys.husnisse)
+[Info   :  Husnisse] Husnisse 0.6.0 starting
+[Warning:  Husnisse] outdated English localisation ignored; embedded strings are used: C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\config\Husnisse\localization\en.yaml
+[Info   :  Husnisse] localisation loaded: English (check: Porridge Bowl)
+[Info   :  Husnisse] [Contract] readouts state=native rows=pocket+claim aaacrafting=absent aaabuildmenu=absent mylittleui=absent epicloot=absent planbuild=absent
+[Info   :  Husnisse] [Supply] craft from the claim bound: a shortfall becomes a visible supply errand.
+[Info   :Jotunn.Main] Initializing PrefabManager
+[Info   :  Husnisse] core ready; waiting for vanilla prefabs
+[Info   :   BepInEx] Loading [Newtonsoft.Json Detector 1.0.0] (com.ValheimModding.NewtonsoftJsonDetector)
+[Info   :Newtonsoft.Json Detector] Newtonsoft.Json 13.0.0.0 assembly already loaded from C:\Program Files (x86)\Steam\steamapps\common\Valheim\valheim_Data\Managed\Newtonsoft.Json.dll
+[Message:   BepInEx] Chainloader startup complete (6 loaded, 0 skipped, 0 failed)
+[Info   :Jotunn.Main] Initializing AssetManager
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/stone/Stone1_huge.prefab, new: Assets/world/Props/DeepNorth/HotSpring/Stone1_huge.prefab, using old path
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/Caverocks/caverock_pillar.prefab, new: Assets/world/Props/DeepNorth/HotSpring/caverock_pillar.prefab, using old path
+[Warning:Jotunn.Managers.AssetManager] Ambiguous asset name for path. old: Assets/world/Props/Rocks/highstone.prefab, new: Assets/world/Props/DeepNorth/HotSpring/highstone.prefab, using old path
+[Info   :Jotunn.Main] Initializing PieceManager
+[Info   :Jotunn.Main] Initializing MockManager
+[Info   :  Husnisse] bowl fields: category=Misc station=none resources=1 enabled=True table=_HammerPieceTable
+[Info   :  Husnisse] bowl registered as husnisse_bowl
+[Info   :Jotunn.Main] Initializing CreatureManager
+[Info   :  Husnisse] creature registered as husnisse_nisse (body=husnisse_nisse)
+[Info   :  Husnisse] content registered
+[Info   :Jotunn.Managers.PrefabManager] Adding 2 custom prefabs to the ZNetScene
+[Info   :Jotunn.Managers.CreatureManager] Adding 1 custom creatures
+[Info   :Jotunn.Managers.PieceManager] Adding 1 custom pieces to the PieceTables
+[Info   :Jotunn.Managers.NetworkManager] Registering 2 custom RPCs
+[Info   :ConditionalConfigSync] [com.bootstrapboys.husnisse][Client][Version] Received com.bootstrapboys.husnisse version 0.0.0, minimum version 0.0.0, ConditionalConfigSync protocol 1 from the server (0). Remote ConditionalConfigSync version 1.0.11; elapsed 263 ms.
+[Info   :ConditionalConfigSync] [com.bootstrapboys.husnisse][Client][Version] Received com.bootstrapboys.husnisse version 0.0.0, minimum version 0.0.0, ConditionalConfigSync protocol 1 from the server (90297550425323529). Remote ConditionalConfigSync version 1.0.11; elapsed 1276 ms.
+[Info   :ConditionalConfigSync] [com.bootstrapboys.husnisse][Client] Received 1 configs and 0 custom values from the server (config=1. General -> Lock Configuration)
+[Info   :Jotunn.Managers.SynchronizationManager+<AdminRPC_OnClientReceive>d__49] Received admin status from server: No Admin
+[Info   :Husnisse Gate Client Probe] gc ready player=Stranger id=-202584743 pos=1198.55,28.35,1198.22 world=MTTest peers=1
+[Info   :Husnisse Gate Client Probe] gc command_file=C:\Users\Hermes\husnisse-probe.cmd
+[Info   :Husnisse Gate Client Probe] gc hud center='You feel cold'
+[Info   :Husnisse Gate Client Probe] gc hud top='You are wet'
+[Info   :Husnisse Gate Client Probe] gc hud center='Day 1'
+[Info   :Husnisse Gate Client Probe] gc hud top='You are getting warmer'
+[Info   :Husnisse Gate Client Probe] gc hud top='You are wet'
+[Info   :Husnisse Gate Client Probe] gc cmd: where
+[Info   :Husnisse Gate Client Probe] gc where player=1198.41,28.21,1198.20 nisse=- peers=1
+[Info   :Husnisse Gate Client Probe] gc cmd: containers
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 1295.47,39.45,1281.61 net=False rule='' stacks=2 items=20 [amberx1,arrow_flintx19]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 1263.86,36.25,1104.14 net=False rule='' stacks=2 items=19 [flintx4,coinsx15]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 1299.32,36.46,1066.79 net=False rule='' stacks=3 items=28 [arrow_flintx18,coinsx9,torchx1]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 1299.50,39.42,1097.75 net=False rule='' stacks=2 items=2 [amberx1,upgrader_tier0 upgrader_armor upgrader_namex1]
+[Info   :Husnisse Gate Client Probe] gc containers total=4 net=0 ruled=0
+[Info   :Husnisse Gate Client Probe] gc cmd: setpos 1208.4 28.5 1206
+[Info   :Husnisse Gate Client Probe] gc setpos from=1198.41,28.19,1198.20 requested=1208.40,28.50,1206.00 now=1208.40,28.50,1206.00
+[Info   :Husnisse Gate Client Probe] gc cmd: open piece_chest_wood
+[Info   :Husnisse Gate Client Probe] gc use: no object for piece_chest_wood
+[Info   :Husnisse Gate Client Probe] gc cmd: ui
+[Info   :Husnisse Gate Client Probe] gc ui ui container=none strip=False net='-' netClickable=- rules='-' rulesClickable=- panel=False win=False inUse=- dist=-
+[Info   :  Husnisse] [debug][Claims] registered -375435173:24090 source=native ward=0:0 r=20 owner=-202584743 suppressed=False
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=0 permitted=True
+[Info   :  Husnisse] [debug][Bowl] ready -375435173:24090 owner=-202584743 source=native ward=0:0 r=20 satiety=25 mood=100 suppressed=False
+[Info   :  Husnisse] fade: property=_Cutoff mode=Cutoff renderers=4 shader=Custom/Creature
+[Info   :  Husnisse] bowl: pantry ready 4x1 (4 slots)
+[Info   :  Husnisse] [debug][Creature] lod near nearest=3.6m animator=True
+[Info   :Husnisse Gate Client Probe] gc open gui=none
+[Info   :Husnisse Gate Client Probe] gc cmd: containers
+[Info   :Husnisse Gate Client Probe] gc container piece_chest_wood(Clone) at 1208.00,28.30,1206.00 net=True rule='v1;k=cat;c=wood' stacks=0 items=0 []
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 1295.47,39.45,1281.61 net=False rule='' stacks=2 items=20 [amberx1,arrow_flintx19]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 1263.86,36.25,1104.14 net=False rule='' stacks=2 items=19 [flintx4,coinsx15]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 1299.32,36.46,1066.79 net=False rule='' stacks=3 items=28 [arrow_flintx18,coinsx9,torchx1]
+[Info   :Husnisse Gate Client Probe] gc container TreasureChest_meadows(Clone) at 1299.50,39.42,1097.75 net=False rule='' stacks=2 items=2 [amberx1,upgrader_tier0 upgrader_armor upgrader_namex1]
+[Info   :Husnisse Gate Client Probe] gc containers total=5 net=1 ruled=1
+[Info   :Husnisse Gate Client Probe] gc cmd: where
+[Info   :Husnisse Gate Client Probe] gc where player=1208.19,31.31,1206.01 nisse=1206.00,29.79,1206.00 peers=1
+[Info   :Husnisse Gate Client Probe] gc cmd: interact piece_chest_wood
+[Warning:Husnisse Gate Client Probe] gc unknown command: interact piece_chest_wood
+[Info   :Husnisse Gate Client Probe] gc cmd: open piece_chest_wood
+[Info   :Husnisse Gate Client Probe] gc interact piece_chest_wood(Clone) alt=False -> True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :Husnisse Gate Client Probe] gc open gui=piece_chest_wood(Clone) stacks=0 items=0 [] inUse=True owner=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :Husnisse Gate Client Probe] gc hud top='Added Wood'
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=1 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=0 permitted=True
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24090 at 1206,1206 r=20 source=native owner=-202584743 containers=0 permitted=True
+[Info   :  Husnisse] [debug][Claims] unregistered -375435173:24090
+[Info   :  Husnisse] nisse left with bowl -375435173:24090
+[Info   :  Husnisse] fade: property=_Cutoff mode=Cutoff renderers=4 shader=Custom/Creature
+[Info   :  Husnisse] [debug][Creature] lod near nearest=2.1m animator=True
+[Info   :  Husnisse] [debug][Contract] scope no claim at 1208,1206
+[Info   :  Husnisse] [debug][Contract] scope no claim at 1208,1206
+[Info   :Husnisse Gate Client Probe] gc hud top='Added Wood x4'
+[Info   :  Husnisse] [debug][Contract] scope no claim at 1208,1206
+[Info   :  Husnisse] [debug][Contract] scope no claim at 1208,1206
+[Info   :  Husnisse] [debug][Contract] scope no claim at 1208,1206
+[Info   :  Husnisse] [debug][Contract] scope no claim at 1208,1206
+[Info   :  Husnisse] [debug][Contract] scope no claim at 1208,1206
+[Info   :  Husnisse] [debug][Contract] scope no claim at 1208,1206
+[Info   :  Husnisse] [debug][Contract] scope no claim at 1208,1206
+[Info   :  Husnisse] [debug][Contract] scope no claim at 1208,1206
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=none
+[Info   :Husnisse Gate Client Probe] gc cmd: ui
+[Info   :Husnisse Gate Client Probe] gc ui ui container=none strip=False net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=False inUse=- dist=-
+[Info   :Husnisse Gate Client Probe] gc hud top='You are wet'
+[Info   :Husnisse Gate Client Probe] gc hud center='World save in 30s'
+[Info   :Husnisse Gate Client Probe] gc hud top='Added Wood'
+[Info   :Husnisse Gate Client Probe] gc hud top='Added Wood x6'
+[Info   :Husnisse Gate Client Probe] gc hud top='Added Wood x7'
+[Info   :Husnisse Gate Client Probe] gc hud top='World saved ( 0.06+1.11s )'
+[Info   :Husnisse Gate Client Probe] gc hud center='YOU DIED!'
+[Info   :Husnisse Gate Client Probe] gc hud top='You are dry again'
+[Info   :Husnisse Gate Client Probe] gc hud top='The Gods are merciful'
+[Info   :Husnisse Gate Client Probe] gc hud top='You are wet'
+[Info   :Husnisse Gate Client Probe] gc cmd: where
+[Info   :Husnisse Gate Client Probe] gc where player=-3.06,34.07,-0.65 nisse=- peers=1
+[Info   :Husnisse Gate Client Probe] gc cmd: setpos -2.6 34.3 -2
+[Info   :Husnisse Gate Client Probe] gc setpos from=-3.06,34.07,-0.65 requested=-2.60,34.30,-2.00 now=-2.60,34.30,-2.00
+[Info   :Husnisse Gate Client Probe] gc cmd: interact piece_chest_wood
+[Warning:Husnisse Gate Client Probe] gc unknown command: interact piece_chest_wood
+[Info   :Husnisse Gate Client Probe] gc cmd: ui
+[Info   :Husnisse Gate Client Probe] gc ui ui container=none strip=False net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=False inUse=- dist=-
+[Info   :Husnisse Gate Client Probe] gc cmd: close
+[Info   :Husnisse Gate Client Probe] gc close was=none
+[Info   :Husnisse Gate Client Probe] gc cmd: ui
+[Info   :Husnisse Gate Client Probe] gc ui ui container=none strip=False net='Off the network' netClickable=True rules='Rules: No rule' rulesClickable=True panel=False win=False inUse=- dist=-
+[Info   :  Husnisse] [debug][Claims] registered -375435173:24119 source=native ward=0:0 r=20 owner=-202584743 suppressed=False
+[Info   :  Husnisse] [debug][Contract] scope claim -375435173:24119 at -5,-2 r=20 source=native owner=-202584743 containers=0 permitted=True
+[Info   :  Husnisse] [debug][Bowl] ready -375435173:24119 owner=-202584743 source=native ward=0:0 r=20 satiety=25 mood=100 suppressed=False
+[Info   :  Husnisse] fade: property=_Cutoff mode=Cutoff renderers=4 shader=Custom/Creature
+[Info   :  Husnisse] bowl: pantry ready 4x1 (4 slots)
+[Info   :  Husnisse] [debug][Creature] lod near nearest=2.4m animator=True
+[Info   :Husnisse Gate Client Probe] gc close after: gui=none localZdoOwner=True stacks=0 items=0 []

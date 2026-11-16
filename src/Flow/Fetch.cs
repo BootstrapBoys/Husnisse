@@ -248,9 +248,10 @@ namespace Husnisse.Flow
                 var inventory = container.GetInventory();
                 if (inventory == null) continue;
 
-                if (!ContainerWrite.EnsureOwned(container, "supply pickup"))
+                if (!ContainerWrite.Own(container, "supply pickup") ||
+                    !ContainerWrite.Sync(container, "supply pickup"))
                 {
-                    Log.Warn("supply: could not take " + container.name + "; the stack stays where it is");
+                    Log.Debug("Flow", "supply: " + container.name + " is not this machine's to read now; the stack stays where it is");
                     continue;
                 }
 
