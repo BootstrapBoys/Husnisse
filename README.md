@@ -141,7 +141,7 @@ Quartermaster's public feature list, and how each one becomes a creature action 
 | Pickup controls (auto-collect certain types) | The nisse collects drops inside its claim while working |
 | Stack sizes | Plain config, no creature angle — it is a number, not a behaviour (DropMoreLoot owns it when installed) |
 | Craft from storage | The nisse answers the call: crafting draws from its claim because it is the one holding the network together |
-| Building coverage (station range extension) | Coverage is the claim radius — no separate setting |
+| Building coverage (station range extension) | Coverage is the claim radius — no separate radius, only an on/off switch |
 | Production (supply processors, collect output) | The queue feeds and empties machines in the claim |
 | Machine controls (caps, pause, protect valuable wood) | Standing orders per machine, set once, obeyed by the nisse |
 | Refuelling and feeding (fires, torches, animals, taming) | Part of the queue: fuel in, ash out, troughs filled |
